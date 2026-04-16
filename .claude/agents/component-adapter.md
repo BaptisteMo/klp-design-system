@@ -26,19 +26,24 @@ A single argument: the component name (kebab-case, e.g. `button`). You read ever
 4. **Install the Radix primitive.** Run `pnpm add <radixPrimitive>` at repo root. Skip if already present in `package.json`.
 5. **Read theme utilities.** Read `src/styles/tokens/theme.css` to confirm which `klp-*` Tailwind utilities exist. Build an in-memory map: `--klp-bg-brand` → `bg-klp-bg-brand`, `--klp-fg-on-emphasis` → `text-klp-fg-on-emphasis`, etc. (See "Token-to-utility mapping" below.) If a token referenced by the spec has no matching utility, abort — `theme.css` needs to be regenerated via `pnpm run sync:tokens`.
 6. **Build the variants table — literal mapping, no guessing.** For each variant in `spec.variants`, walk its `layers` and translate each token binding 1:1 into the matching `klp-*` utility class. Group classes by layer. The output is a `Record<variantId, Record<layerPart, string[]>>`.
-7. **Write the component source** at `src/components/<name>/<PascalName>.tsx`. The `cva` block must be **derived from the variants table**, not hand-authored. Apply layer-specific classes on the matching DOM node:
+7. **Resolve icons to `lucide-react`.** Scan `spec.anatomy[]` and `spec.variants[].layers` for icon-like parts (`indicator`, `icon`, `icon-left`, `icon-right`, `check-icon`, etc.). For each icon layer, decide the lucide import based on:
+   - `layer.literals.icon` if the extractor wrote one (`"check"` → `Check`, `"minus"` → `Minus`, `"chevron-down"` → `ChevronDown`, `"x"` → `X`).
+   - Otherwise, infer from the layer name + component type: checkbox/switch/radio with a checked state → `Check`; checkbox indeterminate → `Minus`; accordion/collapsible → `ChevronDown`; dialog/popover close → `X`.
+   - If the spec has `stroke` bindings on the icon layer, use `<Icon strokeWidth={N} />` where N matches the Figma `strokeWeight` literal (e.g. `1.5`). Color flows via `currentColor` — set `text-klp-*` on the parent wrapper so the lucide icon inherits. NEVER write inline `<svg>` / `<path>` markup.
+   - Import at the top of the file: `import { Check, Minus } from 'lucide-react'`. Use `aria-hidden="true"` on decorative icons.
+8. **Write the component source** at `src/components/<name>/<PascalName>.tsx`. The `cva` block must be **derived from the variants table**, not hand-authored. Apply layer-specific classes on the matching DOM node:
    - `root` layer classes → component root element
    - `label` layer classes → the `<span>` wrapping `children`
-   - `icon-left` / `icon-right` layer classes → the icon slot wrappers
+   - `icon-left` / `icon-right` / `indicator` / `icon` layer classes → the wrapper `<span>` around the lucide icon (from step 7)
    See source template below.
-8. **Write the barrel** `src/components/<name>/index.ts` re-exporting the public API.
-9. **Write an example** at `src/components/<name>/<PascalName>.example.tsx` — a single JSX snippet a consumer can copy.
-10. **Write the playground route** at `playground/routes/<name>.tsx` — a labeled grid rendering every variant from the spec. **Cell content must match the Figma reference layout** (e.g. `leftIcon + "Label" + rightIcon` if that's what Figma shows), not descriptive text. Cell IDs must equal `spec.variants[].id` exactly. The route's root element must call `document.documentElement.dataset.brand = spec.captureBrand` on mount so the playground renders in the brand the references were captured in.
-11. **Register the route** in `playground/App.tsx` (add to the `routes` map) and in `playground/routes/_index.tsx` (add a link to the index page).
-12. **Update the registry** entry at `registry/<name>.json`. If `scripts/build-registry.ts` exists, run `pnpm run build:registry` instead of editing by hand. If it doesn't exist yet (Phase 2 not done), write a minimal entry with just `{ name, type: "registry:ui", description, meta: { ...from spec } }` and a TODO comment.
-13. **Update `klp-components.json`** at repo root — add/update this component's entry (same shape as planned in Phase 3). If `scripts/generate-docs.ts` exists, prefer `pnpm run docs:generate`. If not yet, update the JSON directly in the minimal shape.
-14. **Run typecheck.** `pnpm typecheck`. If it fails, fix and retry (max 2 attempts). Do not hand off red.
-15. **Report.** Emit a JSON block: `{ "component": "<name>", "captureBrand": "<brand>", "filesCreated": [...], "filesModified": [...], "typecheck": "pass" }`.
+9. **Write the barrel** `src/components/<name>/index.ts` re-exporting the public API.
+10. **Write an example** at `src/components/<name>/<PascalName>.example.tsx` — a single JSX snippet a consumer can copy.
+11. **Write the playground route** at `playground/routes/<name>.tsx` — a labeled grid rendering every variant from the spec. **Cell content must match the Figma reference layout** (e.g. `leftIcon + "Label" + rightIcon` if that's what Figma shows), not descriptive text. Cell IDs must equal `spec.variants[].id` exactly. The route's root element must call `document.documentElement.dataset.brand = spec.captureBrand` on mount so the playground renders in the brand the references were captured in. Any icons in the playground cells MUST come from `lucide-react` — never inline SVG.
+12. **Register the route** in `playground/App.tsx` (add to the `routes` map) and in `playground/routes/_index.tsx` (add a link to the index page).
+13. **Update the registry** entry at `registry/<name>.json`. If `scripts/build-registry.ts` exists, run `pnpm run build:registry` instead of editing by hand. If it doesn't exist yet (Phase 2 not done), write a minimal entry with just `{ name, type: "registry:ui", description, meta: { ...from spec } }` and a TODO comment.
+14. **Update `klp-components.json`** at repo root — add/update this component's entry (same shape as planned in Phase 3). If `scripts/generate-docs.ts` exists, prefer `pnpm run docs:generate`. If not yet, update the JSON directly in the minimal shape.
+15. **Run typecheck.** `pnpm typecheck`. If it fails, fix and retry (max 2 attempts). Do not hand off red.
+16. **Report.** Emit a JSON block: `{ "component": "<name>", "captureBrand": "<brand>", "filesCreated": [...], "filesModified": [...], "typecheck": "pass" }`.
 
 ## Token-to-utility mapping (literal — no judgment calls)
 
@@ -150,15 +155,10 @@ Render a titled grid where **each cell is a `data-variant-id="<variantId>"` wrap
 
 ```tsx
 import { useEffect } from 'react'
+import { Check } from 'lucide-react'
 import { Button } from '@/components/button'
 
 const CAPTURE_BRAND = 'wireframe' // ← from spec.captureBrand
-
-const CheckIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M13.3 4.3L6 11.6L2.7 8.3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-  </svg>
-)
 
 export function ButtonRoute() {
   useEffect(() => {
@@ -172,7 +172,7 @@ export function ButtonRoute() {
       <h1 className="text-xl font-semibold">Button — captured in {CAPTURE_BRAND}</h1>
       <div className="grid grid-cols-4 gap-4">
         <div data-variant-id="primary-md-rest" className="flex items-center justify-center rounded-klp-m border border-klp-border-default p-4">
-          <Button variant="primary" size="md" leftIcon={<CheckIcon />} rightIcon={<CheckIcon />}>Label</Button>
+          <Button variant="primary" size="md" leftIcon={<Check />} rightIcon={<Check />}>Label</Button>
         </div>
         {/* ...one cell per spec.variants[] entry */}
       </div>
@@ -192,6 +192,7 @@ export function ButtonRoute() {
 - **No `any`, no `as unknown as`.** Use Radix's own types.
 - **No inline styles.** No `<style>` tags. No CSS modules.
 - **No console.log.** Leave code clean.
+- **Icons come from `lucide-react`. NEVER write inline `<svg>` markup.** If the spec shows a checkmark, use `import { Check } from 'lucide-react'`. For minus/indeterminate use `Minus`; for chevrons `ChevronDown` / `ChevronRight`; for close `X`; for search `Search`; for arrows `ArrowLeft` / `ArrowRight`. Size via Tailwind (`[&>svg]:h-[16px] [&>svg]:w-[16px]` on the parent, or `<Check className="h-4 w-4" />`). Color flows through `currentColor` — set it on the parent via `text-klp-*`. `strokeWidth` is a prop: `<Check strokeWidth={1.5} />` to match Figma's 1.5px stroke. Applies to both the component source AND the playground route.
 - **Playground must lock `[data-brand]` to `spec.captureBrand`.** This is so the designer's visual review in the playground sees the same brand the references were captured in. Token-validation itself is brand-independent.
 
 ## Scope

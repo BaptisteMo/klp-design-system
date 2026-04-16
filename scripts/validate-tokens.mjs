@@ -218,7 +218,7 @@ function validate(componentName) {
     warnings.push({ type: 'primitive-token', match: pm[0], line })
   }
 
-  // lucide-react import check
+  // lucide-react import check (triggered if spec names an icon by name)
   const iconNames = new Set()
   for (const v of spec.variants) {
     for (const layer of Object.values(v.layers)) {
@@ -227,6 +227,22 @@ function validate(componentName) {
   }
   if (iconNames.size > 0 && !/from\s+['"]lucide-react['"]/.test(source)) {
     warnings.push({ type: 'missing-lucide-import', icons: [...iconNames] })
+  }
+
+  // Inline-SVG detection — klp components must use lucide-react for icons, never
+  // write `<svg>` markup inline. The extractor doesn't always name the icon in
+  // literals.icon, so we also scan source JSX.
+  const inlineSvgCount = [...source.matchAll(/<svg\b/g)].length
+  if (inlineSvgCount > 0) {
+    // find the first line for the hint
+    const firstMatch = source.match(/<svg\b/)
+    const line = firstMatch ? source.slice(0, firstMatch.index).split('\n').length : null
+    warnings.push({
+      type: 'inline-svg',
+      count: inlineSvgCount,
+      line,
+      hint: 'Replace inline <svg> markup with a lucide-react import (e.g. `import { Check } from "lucide-react"`). See SKILL.md.',
+    })
   }
 
   // Per-variant validation

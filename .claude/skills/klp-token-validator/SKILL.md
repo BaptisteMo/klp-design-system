@@ -85,6 +85,7 @@ The rationale: token-correctness is enforced; state-scoping is the designer's re
 | `hex-literal` | A hex color literal (`#RRGGBB`) found in source. | Replace with a `klp-*` alias utility. |
 | `primitive-token` | A raw primitive token (`klp-color-*`, `klp-spacing-*`) used. Components must only reference aliases. | Find the alias that resolves to this primitive in `aliases.css`, use the alias utility instead. |
 | `missing-lucide-import` | Spec declares an icon but source has no `from 'lucide-react'` import. | `import { IconName } from 'lucide-react'`. |
+| `inline-svg` | Source contains inline `<svg>` markup. klp components must use lucide-react instead. | Replace the `<svg>...</svg>` block with a lucide import + JSX (`<Check strokeWidth={1.5} />`). Color flows through `currentColor` — set `text-klp-*` on the parent. |
 | `unknown-state` | A state in `spec.variants[].axes.state` isn't in `STATE_MAP` for this Radix primitive. | Add the state → selector mapping in `scripts/validate-tokens.mjs` (1 line). |
 | `unknown-property` | A layer property (e.g. `letterSpacing`) has no mapping in `PROPERTY_TO_PREFIX`. | Add the property → utility-prefix mapping in `scripts/validate-tokens.mjs`. |
 | `layer-no-cva` | A spec layer has no corresponding cva block in source. Its classes can't be validated. | Typically OK — layers rendered inline (e.g., `icon-left` inside a `<span>`) don't need their own cva. Review that classes are correctly applied inline. |
