@@ -1,0 +1,135 @@
+{
+  "name": "checkbox",
+  "displayName": "Checkbox",
+  "figmaNode": "35:1496",
+  "captureBrand": "klub",
+  "category": "inputs",
+  "description": "A toggle control that supports unchecked (Rest), hover, checked (Clicked), indeterminate (Mixed), and disabled states. Single variant axis: State.",
+  "radixPrimitive": "@radix-ui/react-checkbox",
+  "anatomy": [
+    { "part": "root",      "element": "button", "notes": "Radix Checkbox.Root; 24x24 box with padding and border radius" },
+    { "part": "indicator", "element": "span",   "notes": "Radix Checkbox.Indicator; wraps the icon vector; visible when checked or mixed" }
+  ],
+  "variantAxes": {
+    "state": ["rest", "hover", "clicked", "mixed", "disable"]
+  },
+  "variants": [
+    {
+      "id": "default-rest",
+      "axes": { "state": "rest" },
+      "figmaNodeId": "35:1497",
+      "screenshot": "default-rest.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",      "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-default",  "figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-radius-m",        "figmaVar": "Radius/M",      "value": "4px" },
+          "paddingTop":   { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingRight": { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingBottom":{ "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingLeft":  { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "literals":     { "width": "24px", "height": "24px", "strokeWeight": "1px" }
+        },
+        "indicator": {
+          "color":    { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "literals": { "visible": "false", "iconSize": "16px" }
+        }
+      }
+    },
+    {
+      "id": "default-hover",
+      "axes": { "state": "hover" },
+      "figmaNodeId": "35:1509",
+      "screenshot": "default-hover.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand-low",    "figmaVar": "bg/brand-low",  "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand",    "figmaVar": "bd/brand",      "value": "#1EADA5" },
+          "cornerRadius": { "token": "--klp-radius-m",        "figmaVar": "Radius/M",      "value": "4px" },
+          "paddingTop":   { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingRight": { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingBottom":{ "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingLeft":  { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "literals":     { "width": "24px", "height": "24px", "strokeWeight": "1px" }
+        },
+        "indicator": {
+          "color":    { "token": "--klp-bg-brand-low", "figmaVar": "bg/brand-low", "value": "#F2FAF7" },
+          "literals": { "visible": "false", "iconSize": "16px" }
+        }
+      }
+    },
+    {
+      "id": "default-clicked",
+      "axes": { "state": "clicked" },
+      "figmaNodeId": "35:1503",
+      "screenshot": "default-clicked.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand",        "figmaVar": "bg/brand",      "value": "#1EADA5" },
+          "stroke":       { "token": "--klp-border-brand",    "figmaVar": "bd/brand",      "value": "#1EADA5" },
+          "cornerRadius": { "token": "--klp-radius-m",        "figmaVar": "Radius/M",      "value": "4px" },
+          "paddingTop":   { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingRight": { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingBottom":{ "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingLeft":  { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "literals":     { "width": "24px", "height": "24px", "strokeWeight": "1px" }
+        },
+        "indicator": {
+          "color":    { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": "#F7F9F8" },
+          "literals": { "visible": "true", "iconSize": "16px", "icon": "check" }
+        }
+      }
+    },
+    {
+      "id": "default-mixed",
+      "axes": { "state": "mixed" },
+      "figmaNodeId": "112782:592",
+      "screenshot": "default-mixed.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand",        "figmaVar": "bg/brand",      "value": "#1EADA5" },
+          "stroke":       { "token": "--klp-border-brand",    "figmaVar": "bd/brand",      "value": "#1EADA5" },
+          "cornerRadius": { "token": "--klp-radius-m",        "figmaVar": "Radius/M",      "value": "4px" },
+          "paddingTop":   { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingRight": { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingBottom":{ "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingLeft":  { "token": "--klp-size-3xs",        "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "literals":     { "width": "24px", "height": "24px", "strokeWeight": "1px" }
+        },
+        "indicator": {
+          "color":    { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": "#F7F9F8" },
+          "literals": { "visible": "true", "iconSize": "16px", "icon": "minus" }
+        }
+      }
+    },
+    {
+      "id": "default-disable",
+      "axes": { "state": "disable" },
+      "figmaNodeId": "35:1532",
+      "screenshot": "default-disable.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-disable",        "figmaVar": "bg/disable",    "value": "#EEF1F0" },
+          "stroke":       { "token": "--klp-border-contrasted", "figmaVar": "bd/contrasted", "value": "#868E8B" },
+          "cornerRadius": { "token": "--klp-radius-m",          "figmaVar": "Radius/M",      "value": "4px" },
+          "paddingTop":   { "token": "--klp-size-3xs",          "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingRight": { "token": "--klp-size-3xs",          "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingBottom":{ "token": "--klp-size-3xs",          "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingLeft":  { "token": "--klp-size-3xs",          "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "literals":     { "width": "24px", "height": "24px", "strokeWeight": "1px" }
+        },
+        "indicator": {
+          "color":    { "token": "--klp-bg-disable", "figmaVar": "bg/disable", "value": "#EEF1F0" },
+          "literals": { "visible": "false", "iconSize": "16px" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "checkbox",
+    "keyboardSupport": ["Space"],
+    "ariaAttributes": ["aria-checked (true | false | mixed)", "disabled"],
+    "notes": "Radix Checkbox.Root handles role=checkbox and aria-checked automatically. Use aria-label or associate with a <label> via htmlFor."
+  },
+  "tokenGaps": []
+}

@@ -28,6 +28,7 @@ updated: 2026-04-16
 ## Used by
 
 - [Button](../components/_index_button.md) — `rounded-klp-l` on root layer.
+- [Checkbox](../components/_index_checkbox.md) — `rounded-klp-m` on root layer.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

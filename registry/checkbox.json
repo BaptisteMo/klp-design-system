@@ -1,0 +1,15 @@
+{
+  "name": "checkbox",
+  "type": "registry:ui",
+  "description": "A toggle control that supports unchecked (Rest), hover, checked (Clicked), indeterminate (Mixed), and disabled states. Single variant axis: State.",
+  "meta": {
+    "figmaNode": "35:1496",
+    "captureBrand": "wireframe",
+    "category": "inputs",
+    "radixPrimitive": "@radix-ui/react-checkbox",
+    "anatomy": ["root", "indicator"],
+    "variantAxes": {
+      "state": ["rest", "hover", "clicked", "mixed", "disable"]
+    }
+  }
+}

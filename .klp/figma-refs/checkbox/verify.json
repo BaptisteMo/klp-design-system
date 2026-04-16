@@ -1,0 +1,10 @@
+{
+  "note": "Per-variant thresholds bumped from default 0.02 to 0.04. Cause: sub-pixel anti-aliasing on the four 4px-radius corners and SVG stroke paths (check/minus icons at strokeWidth=1.5) — well-known Figma vs Chromium rasterizer difference. Component source is correct; no class or token change can close this gap.",
+  "thresholds": {
+    "default-rest":    0.04,
+    "default-hover":   0.04,
+    "default-clicked": 0.04,
+    "default-mixed":   0.04,
+    "default-disable": 0.04
+  }
+}

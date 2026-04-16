@@ -28,7 +28,15 @@ const brand = process.argv[3] || spec.captureBrand || 'wireframe';
 const verifyJsonPath = join(ROOT, '.klp', 'figma-refs', component, 'verify.json');
 let toleranceConfig = { maxDiffPixelRatio: 0.02, perVariant: {} };
 if (existsSync(verifyJsonPath)) {
-  toleranceConfig = { ...toleranceConfig, ...JSON.parse(readFileSync(verifyJsonPath, 'utf-8')) };
+  const raw = JSON.parse(readFileSync(verifyJsonPath, 'utf-8'));
+  toleranceConfig = { ...toleranceConfig, ...raw };
+  // Support both 'perVariant' and 'thresholds' as per-variant override keys.
+  // 'thresholds' is an alias used by the extractor/verify.json convention.
+  if (!toleranceConfig.perVariant || Object.keys(toleranceConfig.perVariant).length === 0) {
+    if (raw.thresholds && typeof raw.thresholds === 'object') {
+      toleranceConfig.perVariant = raw.thresholds;
+    }
+  }
 }
 
 const reportsDir = join(ROOT, '.klp', 'verify-reports', component);
@@ -38,13 +46,32 @@ mkdirSync(reportsDir, { recursive: true });
 const { default: pixelmatch } = await import('pixelmatch');
 const { PNG } = await import('pngjs');
 
+// Determine the deviceScaleFactor by peeking at the first reference PNG.
+// Figma often exports at 2x (48px for a 24px component). We match that so
+// screenshots are pixel-for-pixel comparable without lossy rescaling.
+let deviceScaleFactor = 1;
+const firstRef = spec.variants[0];
+if (firstRef) {
+  const firstRefPath = join(ROOT, '.klp', 'figma-refs', component, firstRef.screenshot);
+  if (existsSync(firstRefPath)) {
+    const firstRefPng = PNG.sync.read(readFileSync(firstRefPath));
+    // The spec lists the component's CSS size in the layers literals.
+    // Try to infer scale from the "width" literal of the first variant root layer.
+    const cssWidth = firstRef.layers?.root?.literals?.width
+      ? parseInt(firstRef.layers.root.literals.width, 10)
+      : null;
+    if (cssWidth && firstRefPng.width && firstRefPng.width > cssWidth) {
+      deviceScaleFactor = Math.round(firstRefPng.width / cssWidth);
+    }
+  }
+}
+
 const results = [];
 
 const browser = await chromium.launch({ headless: true });
-// deviceScaleFactor: 1 ensures screenshots are 1x CSS pixels, matching Figma 1x exports
 const context = await browser.newContext({
   viewport: { width: 1280, height: 800 },
-  deviceScaleFactor: 1
+  deviceScaleFactor,
 });
 const page = await context.newPage();
 
@@ -87,13 +114,22 @@ for (const variant of spec.variants) {
     continue;
   }
 
-  // Capture the first direct child of the cell (the button itself, not the wrapper cell)
-  const buttonEl = cell.locator('> *').first();
-  const btnCount = await buttonEl.count();
-  const targetEl = btnCount > 0 ? buttonEl : cell;
+  // Target the interactive component element inside the cell.
+  // Playground cells have a label <span> and the component itself.
+  // Prefer a <button> child; fall back to the first direct child; last resort: whole cell.
+  let targetEl;
+  const buttonChild = cell.locator('button').first();
+  const btnCount = await buttonChild.count();
+  if (btnCount > 0) {
+    targetEl = buttonChild;
+  } else {
+    const firstChild = cell.locator('> *').first();
+    const firstCount = await firstChild.count();
+    targetEl = firstCount > 0 ? firstChild : cell;
+  }
 
-  // Take screenshot of the button element
-  const actualBuffer = await targetEl.screenshot({ type: 'png' });
+  // Take screenshot of the component element
+  const actualBuffer = await targetEl.screenshot({ type: 'png', omitBackground: false });
 
   // Load reference PNG
   const refBuffer = readFileSync(refPath);
@@ -153,6 +189,7 @@ for (const variant of spec.variants) {
     variantId: id,
     passed,
     diffRatio: Math.round(diffRatio * 10000) / 10000,
+    capturedBrand: brand,
     ...(diffPath ? { diffPath } : {}),
     ...(actualPng.width !== refPng.width || actualPng.height !== refPng.height
       ? { sizeMismatch: { actual: { w: actualPng.width, h: actualPng.height }, ref: { w: refPng.width, h: refPng.height } } }

@@ -37,6 +37,7 @@ updated: 2026-04-16
 ## Used by
 
 - [Button](../components/_index_button.md) — `px-klp-size-{s,m,l}`, `py-klp-size-{2xs,xs,s}`, `gap-klp-size-2xs`, `p-klp-size-xs` (icon size).
+- [Checkbox](../components/_index_checkbox.md) — `p-klp-size-3xs` (4px padding on all sides of root).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

@@ -33,7 +33,7 @@ document.documentElement.dataset.brand = 'klub'
 
 ## Used by
 
-*(none yet — no component currently captures references in klub)*
+- [Checkbox](../components/_index_checkbox.md) — Figma reference screenshots captured under the klub brand.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

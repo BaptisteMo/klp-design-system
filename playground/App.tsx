@@ -1,10 +1,12 @@
 import { useSyncExternalStore, type ComponentType } from 'react'
 import { Index } from './routes/_index'
 import { ButtonRoute } from './routes/button'
+import { CheckboxRoute } from './routes/checkbox'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
   'button': ButtonRoute,
+  'checkbox': CheckboxRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

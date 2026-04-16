@@ -28,6 +28,33 @@
         "brands": ["atlas"]
       },
       "usedBy": []
+    },
+    {
+      "name": "checkbox",
+      "displayName": "Checkbox",
+      "description": "A toggle control that supports unchecked (Rest), hover, checked (Clicked), indeterminate (Mixed), and disabled states. Single variant axis: State.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/checkbox/Checkbox.tsx",
+      "doc": "docs/components/_index_checkbox.md",
+      "playground": "playground/routes/checkbox.tsx",
+      "registry": "registry/checkbox.json",
+      "spec": ".klp/figma-refs/checkbox/spec.json",
+      "radixPrimitive": "@radix-ui/react-checkbox",
+      "anatomy": ["root", "indicator"],
+      "variantAxes": {
+        "state": ["rest", "hover", "clicked", "mixed", "disable"]
+      },
+      "variantCount": 5,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-checkbox", "class-variance-authority"],
+        "tokenGroups": ["colors", "spacing", "radius"],
+        "brands": ["klub"]
+      },
+      "usedBy": []
     }
   ]
 }
