@@ -38,6 +38,7 @@ updated: 2026-04-16
 
 - [Button](../components/_index_button.md) — `px-klp-size-{s,m,l}`, `py-klp-size-{2xs,xs,s}`, `gap-klp-size-2xs`, `p-klp-size-xs` (icon size).
 - [Checkbox](../components/_index_checkbox.md) — `p-klp-size-3xs` (4px padding on all sides of root).
+- [Radio](../components/_index_radio.md) — `p-klp-size-3xs` (unchecked states), `p-klp-size-2xs` (checked state), `size-round` (full corner radius), `gap-klp-size-xs` (RadioGroup column gap).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

@@ -1,0 +1,15 @@
+{
+  "name": "radio",
+  "type": "registry:ui",
+  "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
+  "meta": {
+    "figmaNode": "35:1616",
+    "captureBrand": "klub",
+    "category": "inputs",
+    "radixPrimitive": "@radix-ui/react-radio-group",
+    "anatomy": ["root", "indicator"],
+    "variantAxes": {
+      "state": ["rest", "hover", "clicked", "disable"]
+    }
+  }
+}

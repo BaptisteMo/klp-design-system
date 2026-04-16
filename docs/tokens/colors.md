@@ -100,6 +100,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 
 - [Button](../components/_index_button.md) — consumes `bg`, `fg`, `border` tokens across all variants.
 - [Checkbox](../components/_index_checkbox.md) — consumes `bg-default`, `bg-brand-low`, `bg-brand`, `bg-disable`, `border-default`, `border-brand`, `border-contrasted`, `fg-on-emphasis` tokens across all states.
+- [Radio](../components/_index_radio.md) — consumes `bg-default`, `bg-brand-low`, `bg-brand`, `bg-disable`, `border-default`, `border-brand`, `border-contrasted` tokens across all four states.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

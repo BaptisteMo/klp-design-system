@@ -1,0 +1,112 @@
+{
+  "name": "radio",
+  "displayName": "Radio",
+  "figmaNode": "35:1616",
+  "captureBrand": "klub",
+  "category": "inputs",
+  "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
+  "radixPrimitive": "@radix-ui/react-radio-group",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "button",
+      "notes": "Outer circular container. Uses Radix RadioGroup.Item. cornerRadius is always full (Sizing/Round = 9999px). Padding changes between unchecked (3XS=4px) and checked (2XS=6px) states."
+    },
+    {
+      "part": "indicator",
+      "element": "span",
+      "notes": "Inner ellipse dot. Visible in all states but transparent/same-fill as root when unchecked. In clicked state shows white dot (bg/default) at 12px; in other states shows root bg color at 16px (invisible)."
+    }
+  ],
+  "variantAxes": {
+    "state": ["rest", "hover", "clicked", "disable"]
+  },
+  "variants": [
+    {
+      "id": "default-rest",
+      "axes": { "state": "rest" },
+      "figmaNodeId": "35:1617",
+      "screenshot": "default-rest.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",   "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-default", "figmaVar": "bd/default",   "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-size-round",     "figmaVar": "Sizing/Round", "value": "9999px" },
+          "paddingX":     { "token": "--klp-size-3xs",       "figmaVar": "Sizing/3XS",   "value": "4px" },
+          "paddingY":     { "token": "--klp-size-3xs",       "figmaVar": "Sizing/3XS",   "value": "4px" },
+          "literals":     { "strokeWeight": "1px", "width": "24px", "height": "24px" }
+        },
+        "indicator": {
+          "fill":    { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "literals": { "width": "16px", "height": "16px", "visible": "true (matches root bg — effectively invisible)" }
+        }
+      }
+    },
+    {
+      "id": "default-hover",
+      "axes": { "state": "hover" },
+      "figmaNodeId": "35:1619",
+      "screenshot": "default-hover.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand-low",   "figmaVar": "bg/brand-low", "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand",   "figmaVar": "bd/brand",     "value": "#1EADA5" },
+          "cornerRadius": { "token": "--klp-size-round",     "figmaVar": "Sizing/Round", "value": "9999px" },
+          "paddingX":     { "token": "--klp-size-3xs",       "figmaVar": "Sizing/3XS",   "value": "4px" },
+          "paddingY":     { "token": "--klp-size-3xs",       "figmaVar": "Sizing/3XS",   "value": "4px" },
+          "literals":     { "strokeWeight": "1px", "width": "24px", "height": "24px" }
+        },
+        "indicator": {
+          "fill":    { "token": "--klp-bg-brand-low", "figmaVar": "bg/brand-low", "value": "#F2FAF7" },
+          "literals": { "width": "16px", "height": "16px", "visible": "true (matches root bg — effectively invisible)" }
+        }
+      }
+    },
+    {
+      "id": "default-clicked",
+      "axes": { "state": "clicked" },
+      "figmaNodeId": "35:1621",
+      "screenshot": "default-clicked.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand",       "figmaVar": "bg/brand",     "value": "#1EADA5" },
+          "stroke":       { "token": "--klp-border-brand",   "figmaVar": "bd/brand",     "value": "#1EADA5" },
+          "cornerRadius": { "token": "--klp-size-round",     "figmaVar": "Sizing/Round", "value": "9999px" },
+          "paddingX":     { "token": "--klp-size-2xs",       "figmaVar": "Sizing/2XS",   "value": "6px" },
+          "paddingY":     { "token": "--klp-size-2xs",       "figmaVar": "Sizing/2XS",   "value": "6px" },
+          "literals":     { "strokeWeight": "1px", "width": "24px", "height": "24px" }
+        },
+        "indicator": {
+          "fill":    { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "literals": { "width": "12px", "height": "12px", "visible": "true (white dot — checked state indicator)" }
+        }
+      }
+    },
+    {
+      "id": "default-disable",
+      "axes": { "state": "disable" },
+      "figmaNodeId": "35:1623",
+      "screenshot": "default-disable.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-disable",        "figmaVar": "bg/disable",    "value": "#EEF1F0" },
+          "stroke":       { "token": "--klp-border-contrasted", "figmaVar": "bd/contrasted", "value": "#868E8B" },
+          "cornerRadius": { "token": "--klp-size-round",        "figmaVar": "Sizing/Round",  "value": "9999px" },
+          "paddingX":     { "token": "--klp-size-3xs",          "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "paddingY":     { "token": "--klp-size-3xs",          "figmaVar": "Sizing/3XS",    "value": "4px" },
+          "literals":     { "strokeWeight": "1px", "width": "24px", "height": "24px" }
+        },
+        "indicator": {
+          "fill":    { "token": "--klp-bg-disable", "figmaVar": "bg/disable", "value": "#EEF1F0" },
+          "literals": { "width": "16px", "height": "16px", "visible": "true (matches root bg — effectively invisible)" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "radio",
+    "keyboardSupport": ["Space", "ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"],
+    "notes": "Use Radix RadioGroup.Item which provides full keyboard navigation within the group. Disable state maps to disabled attribute. Checked state maps to data-state='checked' from Radix."
+  },
+  "tokenGaps": []
+}

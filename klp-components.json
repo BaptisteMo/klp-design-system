@@ -55,6 +55,33 @@
         "brands": ["klub"]
       },
       "usedBy": []
+    },
+    {
+      "name": "radio",
+      "displayName": "Radio",
+      "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/radio/Radio.tsx",
+      "doc": "docs/components/_index_radio.md",
+      "playground": "playground/routes/radio.tsx",
+      "registry": "registry/radio.json",
+      "spec": ".klp/figma-refs/radio/spec.json",
+      "radixPrimitive": "@radix-ui/react-radio-group",
+      "anatomy": ["root", "indicator"],
+      "variantAxes": {
+        "state": ["rest", "hover", "clicked", "disable"]
+      },
+      "variantCount": 4,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-radio-group", "class-variance-authority"],
+        "tokenGroups": ["colors", "spacing"],
+        "brands": ["klub"]
+      },
+      "usedBy": []
     }
   ]
 }

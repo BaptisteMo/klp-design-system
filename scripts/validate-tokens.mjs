@@ -298,6 +298,27 @@ function validate(componentName) {
           const pShorthand = `p-${tokenSuffix(binding.token)}`
           satisfied = classSetHasUtility(classSet, pShorthand)
         }
+        // Fallback: cornerRadius bound to a spacing token (e.g. --klp-size-round used
+        // when a designer reaches for Sizing/Round instead of a Radius/* token) has no
+        // corresponding `rounded-klp-size-*` utility — the project's theme exposes
+        // spacing tokens only under p-/m-/gap-/w-/h- namespaces. Accept any `rounded-*`
+        // class (e.g. `rounded-full` for klp-size-round=9999px) and warn.
+        if (!satisfied && property === 'cornerRadius' && /^klp-size-/.test(tokenSuffix(binding.token))) {
+          const hasAnyRounded = [...classSet].some((tok) => {
+            const bare = tok.includes(':') ? tok.slice(tok.lastIndexOf(':') + 1) : tok
+            return bare.startsWith('rounded-')
+          })
+          if (hasAnyRounded) {
+            satisfied = true
+            warnings.push({
+              type: 'spacing-token-for-radius',
+              variantId: variant.id,
+              layer: layerName,
+              figmaVar: binding.figmaVar,
+              hint: `Figma spec binds cornerRadius to spacing token ${binding.token}; accepting any rounded-* utility. Consider asking the designer to switch to a Radius/* token.`,
+            })
+          }
+        }
         if (!satisfied) {
           mismatches.push({
             variantId: variant.id,

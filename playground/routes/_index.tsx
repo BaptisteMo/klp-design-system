@@ -21,6 +21,12 @@ export function Index() {
         >
           Checkbox
         </a>
+        <a
+          href="#/radio"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Radio
+        </a>
       </nav>
 
       <section className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle p-4">
