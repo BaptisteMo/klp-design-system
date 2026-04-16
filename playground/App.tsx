@@ -3,12 +3,14 @@ import { Index } from './routes/_index'
 import { ButtonRoute } from './routes/button'
 import { CheckboxRoute } from './routes/checkbox'
 import { RadioRoute } from './routes/radio'
+import { SwitchRoute } from './routes/switch'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
   'button': ButtonRoute,
   'checkbox': CheckboxRoute,
   'radio': RadioRoute,
+  'switch': SwitchRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

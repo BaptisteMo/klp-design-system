@@ -13,3 +13,6 @@ Generated `docs/components/_index_checkbox.md`. Updated `klp-components.json` ca
 
 ## [2026-04-16] DOCUMENT | radio — 4 variants, 2 dependencies (0 components, 2 token groups, 1 brand), 0 usedBy
 Generated `docs/components/_index_radio.md`. Updated `klp-components.json` canonical entry (confirmed `captureBrand: klub`, `tokenGroups: [colors, spacing]`). Reverse-index pass: 3 components scanned, 0 component-to-component edges. Patched `tokens/colors.md` and `tokens/spacing.md` Used-by sections to add Radio. Patched `brands/klub.md` Used-by section to add Radio.
+
+## [2026-04-16] DOCUMENT | switch — 2 variants, 3 dependencies (0 components, 2 token groups, 1 brand), 0 usedBy
+Generated `docs/components/_index_switch.md`. Updated `klp-components.json` canonical entry (corrected `externals` to include `lucide-react`, confirmed `captureBrand: wireframe`, `tokenGroups: [colors, spacing]`). Reverse-index pass: 4 components scanned, 0 component-to-component edges. Patched `tokens/colors.md` and `tokens/spacing.md` Used-by sections to add Switch. Patched `brands/wireframe.md` Used-by section (first component validated under wireframe).

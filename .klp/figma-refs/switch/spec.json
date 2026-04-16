@@ -1,0 +1,81 @@
+{
+  "name": "switch",
+  "displayName": "Switch",
+  "figmaNode": "35:1682",
+  "captureBrand": "wireframe",
+  "category": "inputs",
+  "description": "Toggle switch with two states: on (checked) and off (unchecked). Uses animated thumb with icon indicator. Backed by Radix Switch primitive for full a11y and keyboard support.",
+  "radixPrimitive": "@radix-ui/react-switch",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "button",
+      "notes": "The track/pill container. Radix Switch.Root. Background switches between bg/brand (on) and bg/inset (off)."
+    },
+    {
+      "part": "thumb",
+      "element": "span",
+      "notes": "The sliding circle. Radix Switch.Thumb. Always bg/default (white). Translates from left to right on toggle."
+    },
+    {
+      "part": "icon",
+      "element": "span",
+      "notes": "Icon overlay inside the thumb. Checkmark visible when on (bd/brand stroke), invisible when off (bd/invisible stroke). Rendered via Icon selector instance at 16x16."
+    }
+  ],
+  "variantAxes": {
+    "state": ["toggle-on", "toggle-off"]
+  },
+  "variants": [
+    {
+      "id": "toggle-on-default",
+      "axes": { "state": "toggle-on" },
+      "figmaNodeId": "35:1683",
+      "screenshot": "toggle-on-default.png",
+      "layers": {
+        "root": {
+          "fill":              { "token": "--klp-bg-brand",        "figmaVar": "bg/brand",      "value": "#1EADA5" },
+          "stroke":            { "token": "--klp-border-brand",    "figmaVar": "bd/brand",      "value": "#1EADA5" },
+          "cornerRadius":      { "token": "--klp-size-round",      "figmaVar": "Sizing/Round",  "value": "9999px" },
+          "literals":          { "width": "44px", "height": "24px", "strokeWeight": "1px" }
+        },
+        "thumb": {
+          "fill":              { "token": "--klp-bg-default",      "figmaVar": "bg/default",   "value": "#FFFFFF" },
+          "literals":          { "width": "20px", "height": "20px", "dropShadow": "0 4px 16px rgba(112,112,112,0.35)" }
+        },
+        "icon": {
+          "stroke":            { "token": "--klp-border-brand",    "figmaVar": "bd/brand",     "value": "#1EADA5" },
+          "literals":          { "width": "16px", "height": "16px", "strokeWeight": "1.2px", "opacity": "1" }
+        }
+      }
+    },
+    {
+      "id": "toggle-off-default",
+      "axes": { "state": "toggle-off" },
+      "figmaNodeId": "35:1686",
+      "screenshot": "toggle-off-default.png",
+      "layers": {
+        "root": {
+          "fill":              { "token": "--klp-bg-inset",        "figmaVar": "bg/inset",     "value": "#EEF1F0" },
+          "stroke":            { "token": "--klp-border-default",  "figmaVar": "bd/default",   "value": "#D7DAD9" },
+          "cornerRadius":      { "token": "--klp-size-round",      "figmaVar": "Sizing/Round", "value": "9999px" },
+          "literals":          { "width": "44px", "height": "24px", "strokeWeight": "1px" }
+        },
+        "thumb": {
+          "fill":              { "token": "--klp-bg-default",      "figmaVar": "bg/default",   "value": "#FFFFFF" },
+          "literals":          { "width": "20px", "height": "20px", "dropShadow": "0 4px 16px rgba(112,112,112,0.35)" }
+        },
+        "icon": {
+          "stroke":            { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "literals":          { "width": "16px", "height": "16px", "strokeWeight": "1.2px", "opacity": "0" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "switch",
+    "keyboardSupport": ["Space"],
+    "notes": "Radix Switch.Root renders a native button with role=switch and aria-checked. Keyboard: Space toggles. Use the `checked` and `onCheckedChange` props. Always pair with a visible label (or aria-label) outside this component."
+  },
+  "tokenGaps": []
+}

@@ -18,7 +18,9 @@ const STATE_MAP = {
   },
   '@radix-ui/react-switch': {
     rest: '', hover: 'hover:', focus: 'focus-visible:',
-    clicked: 'data-[state=checked]:',
+    clicked:     'data-[state=checked]:',
+    'toggle-on': 'data-[state=checked]:',
+    'toggle-off': '', // base (unchecked is the default Radix state)
     disable: 'data-[disabled]:',
   },
   '@radix-ui/react-toggle': {
@@ -297,6 +299,14 @@ function validate(componentName) {
         if (!satisfied && (property === 'paddingX' || property === 'paddingY')) {
           const pShorthand = `p-${tokenSuffix(binding.token)}`
           satisfied = classSetHasUtility(classSet, pShorthand)
+        }
+        // Fallback: `stroke` on an SVG icon layer is applied via `text-klp-border-*` +
+        // `stroke="currentColor"` in the SVG. Accept the text-* form as equivalent to
+        // the border-* form. Any color-namespace utility with the same suffix drives
+        // the same CSS variable (theme.css exposes `--color-klp-border-*`).
+        if (!satisfied && property === 'stroke') {
+          const textForm = 'text-' + tokenSuffix(binding.token)
+          satisfied = classSetHasUtility(classSet, textForm)
         }
         // Fallback: cornerRadius bound to a spacing token (e.g. --klp-size-round used
         // when a designer reaches for Sizing/Round instead of a Radius/* token) has no

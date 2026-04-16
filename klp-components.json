@@ -82,6 +82,33 @@
         "brands": ["klub"]
       },
       "usedBy": []
+    },
+    {
+      "name": "switch",
+      "displayName": "Switch",
+      "description": "Toggle switch with two states: on (checked) and off (unchecked). Uses animated thumb with icon indicator. Backed by Radix Switch primitive for full a11y and keyboard support.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/switch/Switch.tsx",
+      "doc": "docs/components/_index_switch.md",
+      "playground": "playground/routes/switch.tsx",
+      "registry": "registry/switch.json",
+      "spec": ".klp/figma-refs/switch/spec.json",
+      "radixPrimitive": "@radix-ui/react-switch",
+      "anatomy": ["root", "thumb", "icon"],
+      "variantAxes": {
+        "state": ["toggle-on", "toggle-off"]
+      },
+      "variantCount": 2,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-switch", "class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing"],
+        "brands": ["wireframe"]
+      },
+      "usedBy": []
     }
   ]
 }

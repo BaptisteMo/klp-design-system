@@ -35,7 +35,7 @@ document.documentElement.dataset.brand = 'wireframe'
 
 ## Used by
 
-*(none yet — no component currently captures references in wireframe)*
+- [Switch](../components/_index_switch.md) — reference screenshots captured under the wireframe brand.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

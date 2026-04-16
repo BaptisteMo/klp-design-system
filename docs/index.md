@@ -18,6 +18,7 @@ Start here:
 - [Button](./components/_index_button.md) — Interactive button, 5 types × 4 sizes × 4 states (20 variants)
 - [Checkbox](./components/_index_checkbox.md) — Toggle control, single State axis (rest / hover / clicked / mixed / disable), 5 variants
 - [Radio](./components/_index_radio.md) — Radio button control, single State axis (rest / hover / clicked / disable), 4 variants
+- [Switch](./components/_index_switch.md) — Toggle switch, 2 states (toggle-on / toggle-off), animated thumb with check icon
 
 ### feedback
 *(empty — no components yet)*
