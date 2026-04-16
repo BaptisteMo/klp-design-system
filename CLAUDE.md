@@ -37,6 +37,8 @@ A React 19 + TypeScript + Vite design system built on **Radix Primitives** (for 
 - Health-check the doc tree: dispatch `documentalist` with `operation: LINT`.
 - Brief a fresh agent on the project: dispatch `documentalist` with `operation: CRAWL` — returns a 1-page summary of components, tokens, brands, and the dependency graph.
 - Visual review is a human step. Open the playground (`pnpm dev` → `http://localhost:5173/<name>`) alongside the Figma references in `.klp/figma-refs/<name>/` and reconcile any last-10% drift.
+- Batch import N components from Figma: `/klp-build-batch [--page=Components] [--names=A,B,C] [--force]` — discovers candidates on the named Figma page, then runs extract → adapt → validate → document SERIALLY for each. 3 user gates total (start / mid-batch failures / final commit). Use this when integrating 3+ components at once.
+- Expected Figma structure for batch: a single page named `Components` containing `Section`s named per category (e.g. `Inputs`, `Overlays`, `Feedback`). Each section contains `COMPONENT_SET` nodes. Section names map to spec `category`; component-set names map to component `name` (kebab-cased).
 
 ## Don'ts
 
@@ -62,3 +64,5 @@ A React 19 + TypeScript + Vite design system built on **Radix Primitives** (for 
 - Agent definitions: `.claude/agents/{figma-extractor,component-adapter,documentalist}.md`
 - Token validator: `scripts/validate-tokens.mjs` + skill at `.claude/skills/klp-token-validator/SKILL.md`
 - Slash command: `.claude/commands/klp-build-component.md`
+- Batch slash command: `.claude/commands/klp-build-batch.md`
+- Batch state helper: `scripts/batch-state.mjs` (writes to `.klp/staging/`, gitignored)
