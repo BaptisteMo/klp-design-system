@@ -1,20 +1,8 @@
 import { useEffect } from 'react'
+import { Search, ChevronDown } from 'lucide-react'
 import { Input } from '@/components/input'
 
 const CAPTURE_BRAND = 'klub'
-
-const SearchIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <circle cx="7" cy="7" r="5" stroke="currentColor" strokeWidth="1.5" />
-    <path d="M11 11L14 14" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-  </svg>
-)
-
-const ChevronIcon = () => (
-  <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-  </svg>
-)
 
 type Size = 'large' | 'medium' | 'small'
 type State = 'default' | 'filled' | 'focused' | 'success' | 'danger' | 'disable'
@@ -57,35 +45,76 @@ export function InputRoute() {
   }, [])
 
   return (
-    <div className="flex flex-col gap-6 p-6">
+    <div className="flex flex-col gap-8 p-6">
       <h1 className="text-xl font-semibold">Input — captured in {CAPTURE_BRAND}</h1>
 
-      <div className="grid grid-cols-3 gap-6">
-        {VARIANTS.map(({ id, size, state, value }) => (
-          <div
-            key={id}
-            data-variant-id={id}
-            className="flex flex-col gap-2 rounded-klp-m border border-klp-border-default p-4"
-          >
-            <span className="font-klp-label text-klp-text-smaller text-klp-fg-muted">
-              {id}
-            </span>
+      {/* Interactive demo — no `state` prop, so the component derives focused/filled
+          from real focus/value events. Click in, type, tab away to see transitions. */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold">Try it live (no state prop — auto-derived)</h2>
+        <div className="grid grid-cols-3 gap-6">
+          <div className="flex flex-col gap-2 rounded-klp-m border border-klp-border-default p-4">
+            <span className="font-klp-label text-klp-text-smaller text-klp-fg-muted">large — interactive</span>
             <Input
-              label="Label of the input"
-              size={size}
-              state={state}
+              label="Email"
+              size="large"
               showInfoIcon
-              iconLeft={<SearchIcon />}
-              iconRight={<ChevronIcon />}
-              placeholder="Placeholder"
-              defaultValue={value}
-              disabled={state === 'disable'}
-              aria-invalid={state === 'danger' ? 'true' : undefined}
-              id={`input-${id}`}
+              iconLeft={<Search className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />}
+              placeholder="Type to see filled state"
             />
           </div>
-        ))}
-      </div>
+          <div className="flex flex-col gap-2 rounded-klp-m border border-klp-border-default p-4">
+            <span className="font-klp-label text-klp-text-smaller text-klp-fg-muted">medium — interactive</span>
+            <Input
+              label="Search"
+              size="medium"
+              iconLeft={<Search className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />}
+              iconRight={<ChevronDown className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />}
+              placeholder="Click to focus"
+            />
+          </div>
+          <div className="flex flex-col gap-2 rounded-klp-m border border-klp-border-default p-4">
+            <span className="font-klp-label text-klp-text-smaller text-klp-fg-muted">small — interactive</span>
+            <Input
+              label="Tag"
+              size="small"
+              placeholder="No icons"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Static variant matrix — every cell locks `state` via prop so the visual
+          per-state appearance can be reviewed without interacting. */}
+      <section className="flex flex-col gap-4">
+        <h2 className="text-lg font-semibold">Locked variant grid (state prop overrides interaction)</h2>
+        <div className="grid grid-cols-3 gap-6">
+          {VARIANTS.map(({ id, size, state, value }) => (
+            <div
+              key={id}
+              data-variant-id={id}
+              className="flex flex-col gap-2 rounded-klp-m border border-klp-border-default p-4"
+            >
+              <span className="font-klp-label text-klp-text-smaller text-klp-fg-muted">
+                {id}
+              </span>
+              <Input
+                label="Label of the input"
+                size={size}
+                state={state}
+                showInfoIcon
+                iconLeft={<Search className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />}
+                iconRight={<ChevronDown className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />}
+                placeholder="Placeholder"
+                defaultValue={value}
+                disabled={state === 'disable'}
+                aria-invalid={state === 'danger' ? 'true' : undefined}
+                id={`input-${id}`}
+              />
+            </div>
+          ))}
+        </div>
+      </section>
     </div>
   )
 }

@@ -95,7 +95,12 @@ const infoIconVariants = cva(
 // stroke: varies by state; cornerRadius: rounded-klp-l (uniform)
 // padding varies by size; gap varies by size
 const inputBoxVariants = cva(
-  'flex flex-row items-center border rounded-klp-l transition-colors',
+  // Base + interactive focus ring: 4px brand-low ring on real focus, regardless
+  // of derived cva state (so the ring stays visible after the user starts
+  // typing, when state would have flipped from focused → filled).
+  // `group` enables children (icon-left, icon-right) to react to focus-within
+  // via `group-focus-within:` selectors.
+  'group flex flex-row items-center border rounded-klp-l transition-[colors,box-shadow] focus-within:ring-4 focus-within:ring-klp-bg-brand-low',
   {
     variants: {
       size: {
@@ -106,7 +111,9 @@ const inputBoxVariants = cva(
       state: {
         default: 'bg-klp-bg-default border-klp-border-default',
         filled: 'bg-klp-bg-default border-klp-border-brand',
-        focused: 'bg-klp-bg-default border-klp-border-brand',
+        // Static demo: when state="focused" is locked via prop (no real focus),
+        // mirror the focus ring so the playground grid still shows the effect.
+        focused: 'bg-klp-bg-default border-klp-border-brand ring-4 ring-klp-bg-brand-low',
         success: 'bg-klp-bg-default border-klp-border-success-emphasis',
         danger: 'bg-klp-bg-default border-klp-border-danger-emphasis',
         disable: 'bg-klp-bg-disable border-klp-border-default',
@@ -117,15 +124,18 @@ const inputBoxVariants = cva(
 )
 
 // ─── icon-left layer ──────────────────────────────────────────────────────────
-// color: --klp-fg-subtle in non-disable states; --klp-fg-disable in disable
+// color: --klp-fg-subtle in non-disable states; --klp-fg-disable in disable.
+// On real focus (input-box has focus-within), icon flips to --klp-fg-brand —
+// kept as long as the field is focused (regardless of derived state).
 const iconLeftVariants = cva(
-  'inline-flex shrink-0 items-center justify-center',
+  'inline-flex shrink-0 items-center justify-center group-focus-within:text-klp-fg-brand',
   {
     variants: {
       state: {
         default: 'text-klp-fg-subtle',
         filled: 'text-klp-fg-subtle',
-        focused: 'text-klp-fg-subtle',
+        // Static demo: state="focused" lock mirrors the focus-within behavior.
+        focused: 'text-klp-fg-brand',
         success: 'text-klp-fg-subtle',
         danger: 'text-klp-fg-subtle',
         disable: 'text-klp-fg-disable',
@@ -157,15 +167,15 @@ const placeholderVariants = cva(
 )
 
 // ─── icon-right layer ─────────────────────────────────────────────────────────
-// color: --klp-fg-subtle in non-disable states; --klp-fg-disable in disable
+// Same color rules as icon-left including the focus-within → brand flip.
 const iconRightVariants = cva(
-  'inline-flex shrink-0 items-center justify-center',
+  'inline-flex shrink-0 items-center justify-center group-focus-within:text-klp-fg-brand',
   {
     variants: {
       state: {
         default: 'text-klp-fg-subtle',
         filled: 'text-klp-fg-subtle',
-        focused: 'text-klp-fg-subtle',
+        focused: 'text-klp-fg-brand',
         success: 'text-klp-fg-subtle',
         danger: 'text-klp-fg-subtle',
         disable: 'text-klp-fg-disable',
@@ -242,15 +252,52 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
       id,
       disabled,
       'aria-invalid': ariaInvalid,
+      onFocus,
+      onBlur,
+      onChange,
+      defaultValue,
+      value,
       ...props
     },
     ref
   ) => {
-    // Derive state from HTML attributes when no explicit state is provided
+    // Track interactive state so `focused` and `filled` derive automatically
+    // when no explicit stateProp is passed. Controlled vs uncontrolled value
+    // tracking: if `value` is provided we read it; otherwise we shadow it
+    // internally from defaultValue + onChange.
+    const [isFocused, setIsFocused] = React.useState(false)
+    const [internalValue, setInternalValue] = React.useState<string>(
+      defaultValue !== undefined ? String(defaultValue) : ''
+    )
+    const isControlled = value !== undefined
+    const currentValue = isControlled ? String(value) : internalValue
+    const hasValue = currentValue.length > 0
+
+    const handleFocus = (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocused(true)
+      onFocus?.(e)
+    }
+    const handleBlur = (e: React.FocusEvent<HTMLInputElement>) => {
+      setIsFocused(false)
+      onBlur?.(e)
+    }
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      if (!isControlled) setInternalValue(e.target.value)
+      onChange?.(e)
+    }
+
+    // Derive state with explicit priority:
+    // 1. stateProp wins (used by playground variant grid + consumer overrides)
+    // 2. disabled / aria-invalid (declarative HTML state)
+    // 3. hasValue → filled  (so typed text gets the readable color)
+    // 4. isFocused → focused (empty + focused)
+    // 5. default
     const derivedState: InputState = (() => {
       if (stateProp) return stateProp
       if (disabled) return 'disable'
       if (ariaInvalid === true || ariaInvalid === 'true') return 'danger'
+      if (hasValue) return 'filled'
+      if (isFocused) return 'focused'
       return 'default'
     })()
 
@@ -298,6 +345,11 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
             disabled={disabled}
             aria-invalid={ariaInvalid}
             className={cn(placeholderVariants({ state: derivedState }))}
+            value={isControlled ? value : undefined}
+            defaultValue={isControlled ? undefined : defaultValue}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
             {...props}
           />
 
