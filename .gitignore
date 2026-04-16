@@ -8,3 +8,4 @@ coverage
 # Agent-local artefacts
 .klp/verify-reports
 .klp/token-gaps.md
+docs/.lint-report.md

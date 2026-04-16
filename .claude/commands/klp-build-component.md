@@ -56,7 +56,22 @@ While `attempt ≤ 3`:
 
 5. Otherwise: set `verifyReportPath = <path from verifier>`, increment `attempt`, and continue.
 
-## Stage 3 — Finalize
+## Stage 3 — Document (non-blocking)
+
+Only runs if Stage 2 ended with `passed: true`.
+
+Dispatch the **documentalist** subagent:
+
+- `subagent_type: "documentalist"`
+- `description`: "Document <ComponentName>"
+- `prompt`: "Generate the documentation for the klp component `<kebab-name>`. operation: DOCUMENT, component: <kebab-name>. Follow your system prompt exactly. Bootstrap `docs/` if missing. Run the reverse-index pass at the end. Return the JSON report."
+
+Parse the returned JSON.
+
+- On success: include the doc page path in the Stage 4 summary.
+- On failure: **do not abort** — print a warning to the user with the documentalist's error message, then proceed to Stage 4. The component is built and verified; missing docs is a recoverable state (the user can run the documentalist manually with `dispatch documentalist DOCUMENT <name>`).
+
+## Stage 4 — Finalize
 
 On success:
 
@@ -65,19 +80,23 @@ On success:
    - Files created (from adapter's report)
    - Variants verified (from verifier's report)
    - Number of correction passes used
+   - Doc page path (from documentalist's report) or "documentation skipped — see warning above"
 2. Suggest a commit: `feat(<kebab-name>): add <PascalName> component`.
 3. **Do not commit automatically.** Ask the user to review first; only commit if they explicitly say yes.
 
-On failure after 3 passes:
+On failure after 3 passes (Stage 2):
 
 1. Print the final verify report path.
 2. List the remaining failing variants and the adapter's last-known suspected causes.
 3. Ask: "Commit partial work, or abort and discard?" Do not commit without explicit confirmation.
+4. Skip Stage 3 (documentalist) — only document components that pass verification.
 
 ## Do-nots
 
 - Do not dispatch the adapter without a valid spec from the extractor.
 - Do not dispatch the verifier without the adapter having run at least once.
+- Do not dispatch the documentalist before the verifier reports `passed: true`.
 - Do not skip the typecheck gate.
 - Do not edit component source directly from this orchestrator — only via the component-adapter subagent.
 - Do not commit without user confirmation.
+- Do not let a documentalist failure block the commit gate — it is non-blocking.

@@ -3,20 +3,31 @@
     {
       "name": "button",
       "displayName": "Button",
-      "description": "Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states. Supports optional left/right icon slots.",
+      "description": "Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots.",
       "category": "inputs",
       "schemaVersion": "v2",
-      "captureBrand": "wireframe",
+      "captureBrand": "atlas",
+      "status": "stable",
       "source": "src/components/button/Button.tsx",
-      "radixPrimitive": "@radix-ui/react-slot",
+      "doc": "docs/components/_index_button.md",
       "playground": "playground/routes/button.tsx",
       "registry": "registry/button.json",
+      "spec": ".klp/figma-refs/button/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
       "anatomy": ["root", "icon-left", "label", "icon-right"],
       "variantAxes": {
         "type": ["primary", "secondary", "tertiary", "destructive", "validation"],
         "size": ["sm", "md", "lg", "icon"],
         "state": ["rest", "hover", "clicked", "disable"]
-      }
+      },
+      "variantCount": 20,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing", "radius", "typography"],
+        "brands": ["atlas"]
+      },
+      "usedBy": []
     }
   ]
 }
