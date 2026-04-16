@@ -32,13 +32,13 @@ Components split styles into **one cva block per anatomy layer** (root / label /
 
 ## Component pipeline
 
-`/klp-build-component <FigmaNodeName>` orchestrates four agents in sequence:
+`/klp-build-component <FigmaNodeName>` orchestrates the pipeline in four stages:
 
 | Stage | Agent | What it does |
 |---|---|---|
-| 1 | [`figma-extractor`](../.claude/agents/figma-extractor.md) | Captures the Figma component into `.klp/figma-refs/<name>/spec.json` with per-layer token bindings + reference screenshots. Records `captureBrand` so verification stays in the right brand. |
+| 1 | [`figma-extractor`](../.claude/agents/figma-extractor.md) | Captures the Figma component into `.klp/figma-refs/<name>/spec.json` with per-layer token bindings + reference screenshots. Records `captureBrand` (informational — for playground activation). |
 | 2 | [`component-adapter`](../.claude/agents/component-adapter.md) | Generates the React source, playground route, and registry stub. Uses literal token-to-utility mapping, no guessing. |
-| 3 | [`visual-verifier`](../.claude/agents/visual-verifier.md) | Forces `[data-brand]` to `spec.captureBrand`, screenshots each playground cell, diffs against Figma reference PNGs. Up to 3 correction passes. |
+| 3 | [`klp-token-validator`](../.claude/skills/klp-token-validator/SKILL.md) | Skill — runs `scripts/validate-tokens.mjs`. Asserts each layer × state × property in the source uses the correct Tailwind alias utility. Deterministic, <1s, single inline retry on mismatches. |
 | 4 | [`documentalist`](../.claude/agents/documentalist.md) | Generates `docs/components/_index_<name>.md`, updates `klp-components.json`, runs the cross-reference reverse-index pass. Non-blocking. |
 
 ## How to add a component

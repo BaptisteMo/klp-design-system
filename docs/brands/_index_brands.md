@@ -31,7 +31,7 @@ The default (`:root` selector in `aliases.css`) is **wireframe**.
 
 ## Capture brand vs runtime brand
 
-Every component spec records its `captureBrand` — the brand active in Figma when the reference screenshots were captured. The `visual-verifier` reads this and forces `[data-brand]` to match before diffing, so visual checks never compare apples (refs in atlas) to oranges (playground in wireframe).
+Every component spec records its `captureBrand` — the brand active in Figma when the reference screenshots were captured. The playground route activates this brand on mount so the designer's visual review sees the same rendering the references were taken in. `captureBrand` is **informational only**; token validation is brand-independent (aliases resolve per-brand automatically).
 
 The `playground/routes/<name>.tsx` for each component locks `[data-brand]` to its `captureBrand` on mount. To preview a component under a different brand, edit the playground route or use the runtime switch above.
 
