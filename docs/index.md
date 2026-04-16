@@ -17,6 +17,7 @@ Start here:
 ### inputs
 - [Button](./components/_index_button.md) — Interactive button, 5 types × 4 sizes × 4 states (20 variants)
 - [Checkbox](./components/_index_checkbox.md) — Toggle control, single State axis (rest / hover / clicked / mixed / disable), 5 variants
+- [Input](./components/_index_input.md) — Text input field with label and optional icons, 3 sizes × 6 states (18 variants)
 - [Radio](./components/_index_radio.md) — Radio button control, single State axis (rest / hover / clicked / disable), 4 variants
 - [Switch](./components/_index_switch.md) — Toggle switch, 2 states (toggle-on / toggle-off), animated thumb with check icon
 
@@ -29,11 +30,11 @@ Start here:
 ### navigation
 *(empty — no components yet)*
 
-### overlays
-*(empty — no components yet)*
+### overlay
+- [Tooltip](./components/_index_tooltip.md) — Contextual tooltip bubble with a directional arrow, 4 arrow-orientation variants
 
 ### data-display
-*(empty — no components yet)*
+- [Badge](./components/_index_badges.md) — Status indicator pill, 9 types × 3 sizes × 2 styles (48 variants)
 
 ## Tokens
 - [Token system overview](./tokens/_index_tokens.md) — 3-layer architecture (primitives → aliases → Tailwind theme)

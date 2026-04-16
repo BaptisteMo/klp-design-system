@@ -36,6 +36,7 @@ document.documentElement.dataset.brand = 'wireframe'
 ## Used by
 
 - [Switch](../components/_index_switch.md) — reference screenshots captured under the wireframe brand.
+- [Badge](../components/_index_badges.md) — reference screenshots captured under the wireframe brand (48 variants).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

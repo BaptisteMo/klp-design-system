@@ -102,6 +102,9 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Checkbox](../components/_index_checkbox.md) — consumes `bg-default`, `bg-brand-low`, `bg-brand`, `bg-disable`, `border-default`, `border-brand`, `border-contrasted`, `fg-on-emphasis` tokens across all states.
 - [Radio](../components/_index_radio.md) — consumes `bg-default`, `bg-brand-low`, `bg-brand`, `bg-disable`, `border-default`, `border-brand`, `border-contrasted` tokens across all four states.
 - [Switch](../components/_index_switch.md) — consumes `bg-brand`, `bg-inset`, `bg-default`, `border-brand`, `border-default`, `border-invisible` tokens across both states.
+- [Tooltip](../components/_index_tooltip.md) — consumes `bg-brand-contrasted`, `fg-on-emphasis` tokens across all arrow-orientation variants.
+- [Badge](../components/_index_badges.md) — consumes `bg-brand-low`, `bg-secondary-brand-low`, `bg-inset`, `bg-success`, `bg-info`, `bg-warning`, `bg-danger`, `bg-invisible`, `fg-brand-contrasted`, `fg-secondary-brand-contrasted`, `fg-default`, `fg-success`, `fg-info-contrasted`, `fg-warning`, `fg-danger`, `fg-muted`, `fg-brand`, `border-brand-emphasis`, `border-secondary-brand-emphasis`, `border-contrasted`, `border-success-emphasis`, `border-info-emphasis`, `border-warning-emphasis`, `border-danger-emphasis`, `border-invisible`, `border-brand` tokens across all 9 type × 2 style combinations.
+- [Input](../components/_index_input.md) — consumes `bg-default`, `bg-disable`, `fg-default`, `fg-subtle`, `fg-disable`, `fg-brand`, `fg-danger`, `border-default`, `border-brand`, `border-success-emphasis`, `border-danger-emphasis` tokens across all 3 size × 6 state variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

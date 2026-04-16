@@ -145,12 +145,30 @@ function extractCvaBlocks(source) {
 }
 
 // Pick the cva block matching a layer name.
+// Convention: kebab layer name → camelCase + "Variants" suffix.
+//   "root"        → "rootVariants"
+//   "icon-left"   → "iconLeftVariants"      (then strip -left/-right suffix → "iconVariants" fallback)
+//   "info-icon"   → "infoIconVariants"
+//   "input-box"   → "inputBoxVariants"
+function kebabToCamel(s) {
+  return s.replace(/-([a-z])/g, (_, c) => c.toUpperCase())
+}
 function pickCvaForLayer(blocks, layerName) {
+  // 1. Exact match: full layer name camelCased + Variants (e.g. "icon-left" → "iconLeftVariants")
+  const fullCamel = kebabToCamel(layerName) + 'Variants'
+  const fullMatch = blocks.find((b) => b.name.toLowerCase() === fullCamel.toLowerCase())
+  if (fullMatch) return fullMatch
+  // 2. Strip directional suffix (-left/-right/-top/-bottom) and try again
+  //    e.g. "icon-left" → "icon" → "iconVariants"
   const norm = layerName.replace(/-(left|right|top|bottom)$/, '')
-  const expected = `${norm}Variants`
-  const exactMatch = blocks.find((b) => b.name.toLowerCase() === expected.toLowerCase())
-  if (exactMatch) return exactMatch
-  const substringMatch = blocks.find((b) => b.name.toLowerCase().includes(norm.toLowerCase()))
+  if (norm !== layerName) {
+    const normCamel = kebabToCamel(norm) + 'Variants'
+    const normMatch = blocks.find((b) => b.name.toLowerCase() === normCamel.toLowerCase())
+    if (normMatch) return normMatch
+  }
+  // 3. Last-ditch substring match — but use the FULL camelCased name so we don't
+  //    accidentally match infoIconVariants when looking for iconLeftVariants.
+  const substringMatch = blocks.find((b) => b.name.toLowerCase().includes(kebabToCamel(norm).toLowerCase()))
   if (substringMatch) return substringMatch
   return null
 }

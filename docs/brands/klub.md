@@ -34,7 +34,9 @@ document.documentElement.dataset.brand = 'klub'
 ## Used by
 
 - [Checkbox](../components/_index_checkbox.md) — Figma reference screenshots captured under the klub brand.
+- [Input](../components/_index_input.md) — Figma reference screenshots captured under the klub brand.
 - [Radio](../components/_index_radio.md) — Figma reference screenshots captured under the klub brand.
+- [Tooltip](../components/_index_tooltip.md) — Figma reference screenshots captured under the klub brand.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

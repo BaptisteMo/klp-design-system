@@ -1,0 +1,122 @@
+{
+  "name": "tooltip",
+  "displayName": "Tooltip",
+  "figmaNode": "111682:7431",
+  "captureBrand": "klub",
+  "category": "overlay",
+  "description": "Contextual tooltip bubble with a directional arrow. Variant axis controls arrow placement (BottomLeft, BottomRight, TopLeft, TopRight).",
+  "radixPrimitive": "@radix-ui/react-tooltip",
+  "anatomy": [
+    { "part": "root",  "element": "div",  "notes": "Tooltip bubble container; receives the bg token and corner radius" },
+    { "part": "label", "element": "span", "notes": "Text content of the tooltip" },
+    { "part": "arrow", "element": "div",  "notes": "Directional caret; same fill token as root; positioned via CSS based on Arrow Orientation variant" }
+  ],
+  "variantAxes": {
+    "arrow-orientation": ["bottom-left", "bottom-right", "top-left", "top-right"]
+  },
+  "variants": [
+    {
+      "id": "bottom-left",
+      "axes": { "arrow-orientation": "bottom-left" },
+      "figmaNodeId": "111682:7430",
+      "screenshot": "bottom-left.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals":     { "cornerRadius": "4px", "paddingTop": "8px", "paddingRight": "8px", "paddingBottom": "8px", "paddingLeft": "8px", "itemSpacing": "8px", "backdropFilter": "blur(10px)" }
+        },
+        "label": {
+          "literals": { "color": "#FFFFFF", "fontSize": "16px", "fontFamily": "Inter", "fontWeight": "400", "lineHeight": "auto" }
+        },
+        "arrow": {
+          "fill": { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals": { "width": "22px", "height": "11px", "placement": "bottom-left" }
+        }
+      }
+    },
+    {
+      "id": "bottom-right",
+      "axes": { "arrow-orientation": "bottom-right" },
+      "figmaNodeId": "111682:7427",
+      "screenshot": "bottom-right.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals":     { "cornerRadius": "4px", "paddingTop": "8px", "paddingRight": "8px", "paddingBottom": "8px", "paddingLeft": "8px", "itemSpacing": "8px", "backdropFilter": "blur(10px)" }
+        },
+        "label": {
+          "literals": { "color": "#FFFFFF", "fontSize": "16px", "fontFamily": "Inter", "fontWeight": "400", "lineHeight": "auto" }
+        },
+        "arrow": {
+          "fill": { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals": { "width": "22px", "height": "11px", "placement": "bottom-right" }
+        }
+      }
+    },
+    {
+      "id": "top-left",
+      "axes": { "arrow-orientation": "top-left" },
+      "figmaNodeId": "111682:7428",
+      "screenshot": "top-left.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals":     { "cornerRadius": "4px", "paddingTop": "8px", "paddingRight": "8px", "paddingBottom": "8px", "paddingLeft": "8px", "itemSpacing": "8px", "backdropFilter": "blur(10px)" }
+        },
+        "label": {
+          "literals": { "color": "#FFFFFF", "fontSize": "16px", "fontFamily": "Inter", "fontWeight": "400", "lineHeight": "auto" }
+        },
+        "arrow": {
+          "fill": { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals": { "width": "22px", "height": "11px", "placement": "top-left" }
+        }
+      }
+    },
+    {
+      "id": "top-right",
+      "axes": { "arrow-orientation": "top-right" },
+      "figmaNodeId": "111682:7429",
+      "screenshot": "top-right.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals":     { "cornerRadius": "4px", "paddingTop": "8px", "paddingRight": "8px", "paddingBottom": "8px", "paddingLeft": "8px", "itemSpacing": "8px", "backdropFilter": "blur(10px)" }
+        },
+        "label": {
+          "literals": { "color": "#FFFFFF", "fontSize": "16px", "fontFamily": "Inter", "fontWeight": "400", "lineHeight": "auto" }
+        },
+        "arrow": {
+          "fill": { "token": "--klp-bg-brand-contrasted", "figmaVar": "bg/brand-contrasted", "value": "#0F6F7C" },
+          "literals": { "width": "22px", "height": "11px", "placement": "top-right" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "tooltip",
+    "keyboardSupport": [],
+    "notes": "Radix Tooltip handles show/hide on focus and hover. Always associate with a trigger via TooltipTrigger. Content receives role=tooltip automatically."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "(unbound — text color hardcoded white)",
+      "expectedKlp": "--klp-fg-on-emphasis",
+      "seenOn": "bottom-left/label/color, bottom-right/label/color, top-left/label/color, top-right/label/color"
+    },
+    {
+      "figmaVar": "(unbound — cornerRadius hardcoded 4px)",
+      "expectedKlp": "--klp-radius-m",
+      "seenOn": "bottom-left/root/cornerRadius, bottom-right/root/cornerRadius, top-left/root/cornerRadius, top-right/root/cornerRadius"
+    },
+    {
+      "figmaVar": "(unbound — padding hardcoded 8px)",
+      "expectedKlp": "--klp-size-xs",
+      "seenOn": "all-variants/root/padding"
+    },
+    {
+      "figmaVar": "(unbound — fontSize hardcoded 16px)",
+      "expectedKlp": "--klp-font-size-text-medium",
+      "seenOn": "all-variants/label/fontSize"
+    }
+  ]
+}

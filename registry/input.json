@@ -1,0 +1,17 @@
+{
+  "name": "input",
+  "type": "registry:ui",
+  "description": "Text input field with label, optional icons (search/action), and helper text. Supports three sizes (large, medium, small) and six states (default, filled, focused, success, danger, disable).",
+  "meta": {
+    "figmaNode": "270:2033",
+    "captureBrand": "klub",
+    "category": "inputs",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "head", "label", "info-icon", "input-box", "icon-left", "placeholder", "icon-right", "description"],
+    "variantAxes": {
+      "size": ["large", "medium", "small"],
+      "state": ["default", "filled", "focused", "success", "danger", "disable"]
+    }
+  }
+}

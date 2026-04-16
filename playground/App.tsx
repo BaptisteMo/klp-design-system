@@ -4,6 +4,9 @@ import { ButtonRoute } from './routes/button'
 import { CheckboxRoute } from './routes/checkbox'
 import { RadioRoute } from './routes/radio'
 import { SwitchRoute } from './routes/switch'
+import { TooltipRoute } from './routes/tooltip'
+import { BadgesRoute } from './routes/badges'
+import { InputRoute } from './routes/input'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -11,6 +14,9 @@ const routes: Record<string, ComponentType> = {
   'checkbox': CheckboxRoute,
   'radio': RadioRoute,
   'switch': SwitchRoute,
+  'tooltip': TooltipRoute,
+  'badges': BadgesRoute,
+  'input': InputRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

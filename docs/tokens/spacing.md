@@ -40,6 +40,9 @@ updated: 2026-04-16
 - [Checkbox](../components/_index_checkbox.md) — `p-klp-size-3xs` (4px padding on all sides of root).
 - [Radio](../components/_index_radio.md) — `p-klp-size-3xs` (unchecked states), `p-klp-size-2xs` (checked state), `size-round` (full corner radius), `gap-klp-size-xs` (RadioGroup column gap).
 - [Switch](../components/_index_switch.md) — `size-round` (9999px corner radius on root and thumb).
+- [Tooltip](../components/_index_tooltip.md) — `p-klp-size-xs` (8px padding on root layer).
+- [Badge](../components/_index_badges.md) — `px-klp-size-xs`, `py-klp-size-2xs`, `gap-klp-size-2xs` (small); `px-klp-size-m`, `py-klp-size-xs`, `gap-klp-size-2xs` (medium); `px-klp-size-l`, `py-klp-size-s`, `gap-klp-size-xs` (large).
+- [Input](../components/_index_input.md) — `gap-klp-size-xs` (root and head gap); `px-klp-size-m py-klp-size-m gap-klp-size-s` (large input-box); `px-klp-size-s py-klp-size-s gap-klp-size-s` (medium input-box); `px-klp-size-xs py-klp-size-xs gap-klp-size-xs` (small input-box).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

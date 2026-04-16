@@ -109,6 +109,90 @@
         "brands": ["wireframe"]
       },
       "usedBy": []
+    },
+    {
+      "name": "tooltip",
+      "displayName": "Tooltip",
+      "description": "Contextual tooltip bubble with a directional arrow. Variant axis controls arrow placement (bottom-left, bottom-right, top-left, top-right). Backed by @radix-ui/react-tooltip for a11y and keyboard support.",
+      "category": "overlay",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/tooltip/Tooltip.tsx",
+      "doc": "docs/components/_index_tooltip.md",
+      "playground": "playground/routes/tooltip.tsx",
+      "registry": "registry/tooltip.json",
+      "spec": ".klp/figma-refs/tooltip/spec.json",
+      "radixPrimitive": "@radix-ui/react-tooltip",
+      "anatomy": ["root", "label", "arrow"],
+      "variantAxes": {
+        "arrow-orientation": ["bottom-left", "bottom-right", "top-left", "top-right"]
+      },
+      "variantCount": 4,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-tooltip", "class-variance-authority"],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["klub"]
+      },
+      "usedBy": []
+    },
+    {
+      "name": "badges",
+      "displayName": "Badge",
+      "description": "Status indicator pill with optional leading/trailing icons. Supports 9 semantic types (Primary, Secondary, Tertiary, Success, Info, Warning, Danger, onEmphasis, Outlined), 3 sizes (Small, Medium, Large) and 2 styles (Bordered, Light). Outlined and onEmphasis only exist in Light style.",
+      "category": "data-display",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/badges/Badges.tsx",
+      "doc": "docs/components/_index_badges.md",
+      "playground": "playground/routes/badges.tsx",
+      "registry": "registry/badges.json",
+      "spec": ".klp/figma-refs/badges/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": ["root", "icon-left", "label", "icon-right"],
+      "variantAxes": {
+        "type": ["primary", "secondary", "tertiary", "success", "info", "warning", "danger", "on-emphasis", "outlined"],
+        "size": ["small", "medium", "large"],
+        "style": ["bordered", "light"]
+      },
+      "variantCount": 48,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-slot", "class-variance-authority"],
+        "tokenGroups": ["colors", "spacing", "typography"],
+        "brands": ["wireframe"]
+      },
+      "usedBy": []
+    },
+    {
+      "name": "input",
+      "displayName": "Input",
+      "description": "Text input field with label, optional icons (search/action), and helper text. Supports three sizes (large, medium, small) and six states (default, filled, focused, success, danger, disable).",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/input/Input.tsx",
+      "doc": "docs/components/_index_input.md",
+      "playground": "playground/routes/input.tsx",
+      "registry": "registry/input.json",
+      "spec": ".klp/figma-refs/input/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": ["root", "head", "label", "info-icon", "input-box", "icon-left", "placeholder", "icon-right", "description"],
+      "variantAxes": {
+        "size": ["large", "medium", "small"],
+        "state": ["default", "filled", "focused", "success", "danger", "disable"]
+      },
+      "variantCount": 18,
+      "dependencies": {
+        "components": [],
+        "externals": ["class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing", "radius", "typography"],
+        "brands": ["klub"]
+      },
+      "usedBy": []
     }
   ]
 }

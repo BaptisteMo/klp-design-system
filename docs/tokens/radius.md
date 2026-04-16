@@ -29,6 +29,8 @@ updated: 2026-04-16
 
 - [Button](../components/_index_button.md) — `rounded-klp-l` on root layer.
 - [Checkbox](../components/_index_checkbox.md) — `rounded-klp-m` on root layer.
+- [Tooltip](../components/_index_tooltip.md) — `rounded-klp-m` on root layer.
+- [Input](../components/_index_input.md) — `rounded-klp-l` on input-box layer across all 18 variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

@@ -57,6 +57,9 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 ## Used by
 
 - [Button](../components/_index_button.md) — `font-klp-label`, `font-bold`, `text-klp-text-medium`, `text-klp-text-large`.
+- [Tooltip](../components/_index_tooltip.md) — `font-klp-body`, `font-weight-klp-body`, `text-klp-text-medium` on label layer.
+- [Badge](../components/_index_badges.md) — `font-klp-body`, `font-weight-klp-body`, `text-klp-text-small` on label layer across all variants.
+- [Input](../components/_index_input.md) — `font-klp-label`, `font-weight-label` / `font-weight-label-bold`, `text-klp-text-large` / `text-klp-text-medium` on label, placeholder, and description layers.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
