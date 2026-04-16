@@ -1,0 +1,18 @@
+{
+  "name": "button",
+  "type": "registry:ui",
+  "description": "Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots.",
+  "meta": {
+    "figmaNode": "33:871",
+    "captureBrand": "wireframe",
+    "category": "inputs",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "icon-left", "label", "icon-right"],
+    "variantAxes": {
+      "type": ["primary", "secondary", "tertiary", "destructive", "validation"],
+      "size": ["sm", "md", "lg", "icon"],
+      "state": ["rest", "hover", "clicked", "disable"]
+    }
+  }
+}

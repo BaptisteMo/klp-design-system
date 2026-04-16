@@ -1,0 +1,636 @@
+{
+  "name": "button",
+  "displayName": "Button",
+  "figmaNode": "33:871",
+  "captureBrand": "atlas",
+  "category": "inputs",
+  "description": "Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots.",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    { "part": "root",       "element": "button", "notes": "Uses Slot when asChild prop is provided" },
+    { "part": "icon-left",  "element": "span",   "notes": "Optional icon slot before label; size varies by button size" },
+    { "part": "label",      "element": "span",   "notes": "Text label; hidden in icon-only variant" },
+    { "part": "icon-right", "element": "span",   "notes": "Optional icon slot after label; size varies by button size" }
+  ],
+  "variantAxes": {
+    "type":  ["primary", "secondary", "tertiary", "destructive", "validation"],
+    "size":  ["sm", "md", "lg", "icon"],
+    "state": ["rest", "hover", "clicked", "disable"]
+  },
+  "variants": [
+    {
+      "id": "primary-sm-rest",
+      "axes": { "type": "primary", "size": "sm", "state": "rest" },
+      "figmaNodeId": "33:870",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-brand",      "figmaVar": "bg/brand",      "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "36px" } },
+          "paddingX":     { "token": "--klp-size-s",        "figmaVar": "size/s",        "value": null },
+          "paddingY":     { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null },
+          "gap":          { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "16px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "14px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "14px" } }
+        }
+      },
+      "screenshot": "primary-sm-rest.png"
+    },
+    {
+      "id": "primary-md-rest",
+      "axes": { "type": "primary", "size": "md", "state": "rest" },
+      "figmaNodeId": "33:868",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-brand",      "figmaVar": "bg/brand",      "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",        "figmaVar": "size/m",        "value": null },
+          "paddingY":     { "token": "--klp-size-xs",       "figmaVar": "size/xs",       "value": null },
+          "gap":          { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "primary-md-rest.png"
+    },
+    {
+      "id": "primary-lg-rest",
+      "axes": { "type": "primary", "size": "lg", "state": "rest" },
+      "figmaNodeId": "33:867",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-brand",      "figmaVar": "bg/brand",      "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "52px" } },
+          "paddingX":     { "token": "--klp-size-l",        "figmaVar": "size/l",        "value": null },
+          "paddingY":     { "token": "--klp-size-s",        "figmaVar": "size/s",        "value": null },
+          "gap":          { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-large",   "figmaVar": "font-size/text-large",   "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "28px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "20px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "20px" } }
+        }
+      },
+      "screenshot": "primary-lg-rest.png"
+    },
+    {
+      "id": "primary-md-hover",
+      "axes": { "type": "primary", "size": "md", "state": "hover" },
+      "figmaNodeId": "35:91",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-brand-contrasted",   "figmaVar": "bg/brand-contrasted",   "value": null },
+          "borderColor":  { "token": "--klp-border-brand-emphasis", "figmaVar": "border/brand-emphasis", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",              "figmaVar": "radius/l",              "value": null },
+          "height":       { "token": null,                          "figmaVar": null,                     "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",                "figmaVar": "size/m",                "value": null },
+          "paddingY":     { "token": "--klp-size-xs",               "figmaVar": "size/xs",               "value": null },
+          "gap":          { "token": "--klp-size-2xs",              "figmaVar": "size/2xs",              "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "primary-md-hover.png"
+    },
+    {
+      "id": "primary-md-clicked",
+      "axes": { "type": "primary", "size": "md", "state": "clicked" },
+      "figmaNodeId": "35:207",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-brand-contrasted",     "figmaVar": "bg/brand-contrasted",     "value": null },
+          "borderColor":  { "token": "--klp-border-brand-contrasted", "figmaVar": "border/brand-contrasted", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",                "figmaVar": "radius/l",                "value": null },
+          "height":       { "token": null,                            "figmaVar": null,                       "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",                  "figmaVar": "size/m",                  "value": null },
+          "paddingY":     { "token": "--klp-size-xs",                 "figmaVar": "size/xs",                 "value": null },
+          "gap":          { "token": "--klp-size-2xs",                "figmaVar": "size/2xs",                "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "primary-md-clicked.png"
+    },
+    {
+      "id": "primary-md-disable",
+      "axes": { "type": "primary", "size": "md", "state": "disable" },
+      "figmaNodeId": "35:387",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-inset",       "figmaVar": "bg/inset",       "value": null },
+          "borderColor":  { "token": "--klp-border-default", "figmaVar": "border/default", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",       "figmaVar": "radius/l",       "value": null },
+          "height":       { "token": null,                   "figmaVar": null,              "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",         "figmaVar": "size/m",         "value": null },
+          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "size/xs",        "value": null },
+          "gap":          { "token": "--klp-size-2xs",       "figmaVar": "size/2xs",       "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-disable",            "figmaVar": "fg/disable",            "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "font-family/label",     "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "font-size/text-medium", "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold","figmaVar": "font-weight/label-bold","value": null },
+          "lineHeight": { "token": null,                           "figmaVar": null,                    "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-disable", "figmaVar": "fg/disable", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-disable", "figmaVar": "fg/disable", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "primary-md-disable.png"
+    },
+    {
+      "id": "secondary-sm-rest",
+      "axes": { "type": "secondary", "size": "sm", "state": "rest" },
+      "figmaNodeId": "33:864",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "36px" } },
+          "paddingX":     { "token": "--klp-size-s",        "figmaVar": "size/s",        "value": null },
+          "paddingY":     { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null },
+          "gap":          { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-brand",               "figmaVar": "fg/brand",               "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "16px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-brand", "figmaVar": "fg/brand", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "14px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-brand", "figmaVar": "fg/brand", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "14px" } }
+        }
+      },
+      "screenshot": "secondary-sm-rest.png"
+    },
+    {
+      "id": "secondary-md-rest",
+      "axes": { "type": "secondary", "size": "md", "state": "rest" },
+      "figmaNodeId": "33:863",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",        "figmaVar": "size/m",        "value": null },
+          "paddingY":     { "token": "--klp-size-xs",       "figmaVar": "size/xs",       "value": null },
+          "gap":          { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-brand",               "figmaVar": "fg/brand",               "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-brand", "figmaVar": "fg/brand", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-brand", "figmaVar": "fg/brand", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "secondary-md-rest.png"
+    },
+    {
+      "id": "secondary-lg-rest",
+      "axes": { "type": "secondary", "size": "lg", "state": "rest" },
+      "figmaNodeId": "33:862",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "52px" } },
+          "paddingX":     { "token": "--klp-size-l",        "figmaVar": "size/l",        "value": null },
+          "paddingY":     { "token": "--klp-size-s",        "figmaVar": "size/s",        "value": null },
+          "gap":          { "token": "--klp-size-2xs",      "figmaVar": "size/2xs",      "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-brand",               "figmaVar": "fg/brand",               "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-large",   "figmaVar": "font-size/text-large",   "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "28px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-brand", "figmaVar": "fg/brand", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "20px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-brand", "figmaVar": "fg/brand", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "20px" } }
+        }
+      },
+      "screenshot": "secondary-lg-rest.png"
+    },
+    {
+      "id": "tertiary-sm-rest",
+      "axes": { "type": "tertiary", "size": "sm", "state": "rest" },
+      "figmaNodeId": "33:866",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-inset",         "figmaVar": "bg/inset",         "value": null },
+          "borderColor":  { "token": "--klp-border-invisible", "figmaVar": "border/invisible", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",         "figmaVar": "radius/l",         "value": null },
+          "height":       { "token": null,                     "figmaVar": null,                "value": { "literal": "36px" } },
+          "paddingX":     { "token": "--klp-size-s",           "figmaVar": "size/s",           "value": null },
+          "paddingY":     { "token": "--klp-size-2xs",         "figmaVar": "size/2xs",         "value": null },
+          "gap":          { "token": "--klp-size-2xs",         "figmaVar": "size/2xs",         "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",             "figmaVar": "fg/default",             "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "16px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "14px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "14px" } }
+        }
+      },
+      "screenshot": "tertiary-sm-rest.png"
+    },
+    {
+      "id": "tertiary-md-rest",
+      "axes": { "type": "tertiary", "size": "md", "state": "rest" },
+      "figmaNodeId": "33:865",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-inset",         "figmaVar": "bg/inset",         "value": null },
+          "borderColor":  { "token": "--klp-border-invisible", "figmaVar": "border/invisible", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",         "figmaVar": "radius/l",         "value": null },
+          "height":       { "token": null,                     "figmaVar": null,                "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",           "figmaVar": "size/m",           "value": null },
+          "paddingY":     { "token": "--klp-size-xs",          "figmaVar": "size/xs",          "value": null },
+          "gap":          { "token": "--klp-size-2xs",         "figmaVar": "size/2xs",         "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",             "figmaVar": "fg/default",             "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "tertiary-md-rest.png"
+    },
+    {
+      "id": "tertiary-lg-rest",
+      "axes": { "type": "tertiary", "size": "lg", "state": "rest" },
+      "figmaNodeId": "33:869",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-inset",         "figmaVar": "bg/inset",         "value": null },
+          "borderColor":  { "token": "--klp-border-invisible", "figmaVar": "border/invisible", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",         "figmaVar": "radius/l",         "value": null },
+          "height":       { "token": null,                     "figmaVar": null,                "value": { "literal": "52px" } },
+          "paddingX":     { "token": "--klp-size-l",           "figmaVar": "size/l",           "value": null },
+          "paddingY":     { "token": "--klp-size-s",           "figmaVar": "size/s",           "value": null },
+          "gap":          { "token": "--klp-size-2xs",         "figmaVar": "size/2xs",         "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",             "figmaVar": "fg/default",             "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-large",   "figmaVar": "font-size/text-large",   "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "28px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "20px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": null },
+          "size":  { "token": null,               "figmaVar": null,          "value": { "literal": "20px" } }
+        }
+      },
+      "screenshot": "tertiary-lg-rest.png"
+    },
+    {
+      "id": "destructive-md-rest",
+      "axes": { "type": "destructive", "size": "md", "state": "rest" },
+      "figmaNodeId": "35:515",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-danger-emphasis",     "figmaVar": "bg/danger-emphasis",     "value": null },
+          "borderColor":  { "token": "--klp-border-danger-emphasis", "figmaVar": "border/danger-emphasis", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",               "figmaVar": "radius/l",               "value": null },
+          "height":       { "token": null,                           "figmaVar": null,                      "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",                 "figmaVar": "size/m",                 "value": null },
+          "paddingY":     { "token": "--klp-size-xs",                "figmaVar": "size/xs",                "value": null },
+          "gap":          { "token": "--klp-size-2xs",               "figmaVar": "size/2xs",               "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "destructive-md-rest.png"
+    },
+    {
+      "id": "destructive-md-hover",
+      "axes": { "type": "destructive", "size": "md", "state": "hover" },
+      "figmaNodeId": "35:519",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-danger-contrasted",   "figmaVar": "bg/danger-contrasted",   "value": null },
+          "borderColor":  { "token": "--klp-border-danger-emphasis", "figmaVar": "border/danger-emphasis", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",               "figmaVar": "radius/l",               "value": null },
+          "height":       { "token": null,                           "figmaVar": null,                      "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",                 "figmaVar": "size/m",                 "value": null },
+          "paddingY":     { "token": "--klp-size-xs",                "figmaVar": "size/xs",                "value": null },
+          "gap":          { "token": "--klp-size-2xs",               "figmaVar": "size/2xs",               "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "destructive-md-hover.png"
+    },
+    {
+      "id": "destructive-md-clicked",
+      "axes": { "type": "destructive", "size": "md", "state": "clicked" },
+      "figmaNodeId": "35:627",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-danger-contrasted",     "figmaVar": "bg/danger-contrasted",     "value": null },
+          "borderColor":  { "token": "--klp-border-danger-contrasted", "figmaVar": "border/danger-contrasted", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",                 "figmaVar": "radius/l",                 "value": null },
+          "height":       { "token": null,                             "figmaVar": null,                        "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",                   "figmaVar": "size/m",                   "value": null },
+          "paddingY":     { "token": "--klp-size-xs",                  "figmaVar": "size/xs",                  "value": null },
+          "gap":          { "token": "--klp-size-2xs",                 "figmaVar": "size/2xs",                 "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "destructive-md-clicked.png"
+    },
+    {
+      "id": "validation-md-rest",
+      "axes": { "type": "validation", "size": "md", "state": "rest" },
+      "figmaNodeId": "112655:9224",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-success-emphasis",     "figmaVar": "bg/success-emphasis",     "value": null },
+          "borderColor":  { "token": "--klp-border-success-emphasis", "figmaVar": "border/success-emphasis", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",                "figmaVar": "radius/l",                "value": null },
+          "height":       { "token": null,                            "figmaVar": null,                       "value": { "literal": "40px" } },
+          "paddingX":     { "token": "--klp-size-m",                  "figmaVar": "size/m",                  "value": null },
+          "paddingY":     { "token": "--klp-size-xs",                 "figmaVar": "size/xs",                 "value": null },
+          "gap":          { "token": "--klp-size-2xs",                "figmaVar": "size/2xs",                "value": null }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",         "value": null },
+          "fontFamily": { "token": "--klp-font-family-label",      "figmaVar": "font-family/label",      "value": null },
+          "fontSize":   { "token": "--klp-font-size-text-medium",  "figmaVar": "font-size/text-medium",  "value": null },
+          "fontWeight": { "token": "--klp-font-weight-label-bold", "figmaVar": "font-weight/label-bold", "value": null },
+          "lineHeight": { "token": null,                            "figmaVar": null,                     "value": { "literal": "24px" } }
+        },
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        }
+      },
+      "screenshot": "validation-md-rest.png"
+    },
+    {
+      "id": "icon-primary-rest",
+      "axes": { "type": "primary", "size": "icon", "state": "rest" },
+      "figmaNodeId": "35:899",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-brand",      "figmaVar": "bg/brand",      "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "36px" } },
+          "width":        { "token": null,                  "figmaVar": null,             "value": { "literal": "36px" } },
+          "paddingX":     { "token": "--klp-size-xs",       "figmaVar": "size/xs",       "value": null },
+          "paddingY":     { "token": "--klp-size-xs",       "figmaVar": "size/xs",       "value": null },
+          "gap":          { "token": null,                  "figmaVar": null,             "value": null }
+        },
+        "label": null,
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": null
+      },
+      "screenshot": "icon-primary-rest.png"
+    },
+    {
+      "id": "icon-secondary-rest",
+      "axes": { "type": "secondary", "size": "icon", "state": "rest" },
+      "figmaNodeId": "35:971",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": null },
+          "borderColor":  { "token": "--klp-border-brand",  "figmaVar": "border/brand",  "value": null },
+          "borderRadius": { "token": "--klp-radius-l",      "figmaVar": "radius/l",      "value": null },
+          "height":       { "token": null,                  "figmaVar": null,             "value": { "literal": "36px" } },
+          "width":        { "token": null,                  "figmaVar": null,             "value": { "literal": "36px" } },
+          "paddingX":     { "token": "--klp-size-xs",       "figmaVar": "size/xs",       "value": null },
+          "paddingY":     { "token": "--klp-size-xs",       "figmaVar": "size/xs",       "value": null },
+          "gap":          { "token": null,                  "figmaVar": null,             "value": null }
+        },
+        "label": null,
+        "icon-left": {
+          "color": { "token": "--klp-fg-brand", "figmaVar": "fg/brand", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "16px" } }
+        },
+        "icon-right": null
+      },
+      "screenshot": "icon-secondary-rest.png"
+    },
+    {
+      "id": "icon-tertiary-rest",
+      "axes": { "type": "tertiary", "size": "icon", "state": "rest" },
+      "figmaNodeId": "35:1035",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible",     "value": null },
+          "borderColor":  { "token": "--klp-border-invisible", "figmaVar": "border/invisible", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",         "figmaVar": "radius/l",         "value": null },
+          "height":       { "token": null,                     "figmaVar": null,                "value": { "literal": "36px" } },
+          "width":        { "token": null,                     "figmaVar": null,                "value": { "literal": "36px" } },
+          "paddingX":     { "token": "--klp-size-xs",          "figmaVar": "size/xs",          "value": null },
+          "paddingY":     { "token": "--klp-size-xs",          "figmaVar": "size/xs",          "value": null },
+          "gap":          { "token": null,                     "figmaVar": null,                "value": null }
+        },
+        "label": null,
+        "icon-left": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": null },
+          "size":  { "token": null,             "figmaVar": null,        "value": { "literal": "16px" } }
+        },
+        "icon-right": null
+      },
+      "screenshot": "icon-tertiary-rest.png"
+    },
+    {
+      "id": "icon-destructive-rest",
+      "axes": { "type": "destructive", "size": "icon", "state": "rest" },
+      "figmaNodeId": "35:1003",
+      "layers": {
+        "root": {
+          "background":   { "token": "--klp-bg-danger-emphasis",     "figmaVar": "bg/danger-emphasis",     "value": null },
+          "borderColor":  { "token": "--klp-border-danger-emphasis", "figmaVar": "border/danger-emphasis", "value": null },
+          "borderRadius": { "token": "--klp-radius-l",               "figmaVar": "radius/l",               "value": null },
+          "height":       { "token": null,                           "figmaVar": null,                      "value": { "literal": "36px" } },
+          "width":        { "token": null,                           "figmaVar": null,                      "value": { "literal": "36px" } },
+          "paddingX":     { "token": "--klp-size-xs",                "figmaVar": "size/xs",                "value": null },
+          "paddingY":     { "token": "--klp-size-xs",                "figmaVar": "size/xs",                "value": null },
+          "gap":          { "token": null,                           "figmaVar": null,                      "value": null }
+        },
+        "label": null,
+        "icon-left": {
+          "color": { "token": "--klp-fg-on-emphasis", "figmaVar": "fg/on-emphasis", "value": null },
+          "size":  { "token": null,                   "figmaVar": null,              "value": { "literal": "16px" } }
+        },
+        "icon-right": null
+      },
+      "screenshot": "icon-destructive-rest.png"
+    }
+  ],
+  "a11y": {
+    "role": "button",
+    "keyboardSupport": ["Enter", "Space"],
+    "notes": "Native button semantics. The `asChild` prop (via Radix Slot) delegates rendering and semantics to the child element (e.g. `<a>` for link-buttons). Disabled state uses `aria-disabled` rather than `disabled` to keep the element focusable for screen readers."
+  },
+  "tokenGaps": []
+}
