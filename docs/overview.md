@@ -70,4 +70,21 @@ The `<!-- KLP:NOTES:BEGIN --> ... <!-- KLP:NOTES:END -->` block on every doc pag
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
+
+## Batch import from Figma
+
+When you have 3+ components to integrate at once (e.g. a sprint to bring in a backlog of base components), use `/klp-build-batch` instead of running `/klp-build-component` repeatedly. The batch flow:
+
+1. **Discovery** — scans the Figma page named `Components` and lists every `COMPONENT_SET` inside named `Section`s. Compares against `klp-components.json` and proposes only the new ones (use `--force` to include already-integrated).
+2. **Extract all specs** — runs the existing `figma-extractor` agent serially for each candidate.
+3. **Pre-install deps** — collects every Radix primitive needed and runs a single `pnpm add`.
+4. **Build loop** — for each spec, adapt → validate → document via the existing agents/scripts. No agent modifications.
+5. **Review + commit** — single visual review at the playground, then choose 1 grouped commit or N separate commits.
+
+User gates: 3 total (start, optional mid-batch on failures, end commit).
+
+**Required Figma structure:** one page named `Components` (case-insensitive); inside it, `Section`s named by category (`Inputs`, `Overlays`, etc.); inside each section, `COMPONENT_SET` nodes named in kebab-case for the component (`button`, `alert-dialog`).
+
+Use the unitary `/klp-build-component <name>` for ad-hoc single-component additions outside a backlog session.
+
 <!-- KLP:NOTES:END -->
