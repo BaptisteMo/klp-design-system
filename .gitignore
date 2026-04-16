@@ -6,5 +6,6 @@ dist
 coverage
 
 # Agent-local artefacts
+.klp/staging
 .klp/token-gaps.md
 docs/.lint-report.md
