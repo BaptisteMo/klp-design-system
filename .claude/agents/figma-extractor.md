@@ -17,7 +17,7 @@ A single argument: a Figma component name (e.g. `Button`) or node ID. The user s
 
 1. **Check connection.** Call `mcp__figma-console__figma_get_status`. If the plugin is not connected, abort with a clear message telling the user to open Figma and pair the Claude Console plugin.
 2. **Resolve the node.** Use `mcp__figma-console__figma_get_component_for_development_deep` (or `figma_analyze_component_set` if the target is a component set with variants) to fetch the full structure including child layer node IDs. If no node ID was passed, ask the user to select the component in Figma (the Console plugin reports the selection).
-3. **Detect active brand.** Call `mcp__figma-console__figma_get_file_data` and inspect the active variable mode of the component's parent collection. Map the Figma mode name to one of `wireframe | klub | atlas | showup`. Record it as `captureBrand` at the root of the spec — the visual-verifier will force the playground into this brand before diffing. If the mode cannot be determined, abort and ask the user to confirm the active brand.
+3. **Detect active brand.** Call `mcp__figma-console__figma_get_file_data` and inspect the active variable mode of the component's parent collection. Map the Figma mode name to one of `wireframe | klub | atlas | showup`. Record it as `captureBrand` at the root of the spec — the playground will activate this brand on mount so the designer sees the same rendering the reference screenshots were captured under. `captureBrand` is **informational only**; token validation is brand-independent (aliases resolve per-brand automatically). If the mode cannot be determined, ask the user to confirm the active brand, but it is not a hard blocker.
 4. **Enumerate variants.** If the node is a component set, list every variant combination (variant × size × state). For a single component, produce a single-entry list.
 5. **Enumerate anatomy layers.** For each variant, walk the Figma node tree returned in step 2 and identify named child layers (root, label, icon-left, icon-right, indicator, etc.). Layer names should be normalized to kebab-case. The set of layers is the `anatomy` of the component.
 6. **Read per-layer variable bindings.** Call `mcp__figma-console__figma_get_variables` once for the whole file to get the variable catalog. Then, for **each layer of each variant**, inspect the layer node returned by step 2 and extract the `boundVariables` map for every styled property (fill, stroke, cornerRadius, paddingTop/Right/Bottom/Left, itemSpacing, fontSize, fontFamily, fontWeight, lineHeight, letterSpacing, opacity, effect tokens). For every bound property, record:
@@ -93,7 +93,7 @@ A single argument: a Figma component name (e.g. `Button`) or node ID. The user s
 
 ### Schema rules
 
-- `captureBrand` is **required** at root and must be one of `wireframe | klub | atlas | showup`. The visual-verifier reads it to set `[data-brand]` before screenshot diff.
+- `captureBrand` is **required** at root and must be one of `wireframe | klub | atlas | showup`. The playground activates this brand on mount for the designer's visual review. It is NOT used by token validation (aliases resolve per-brand).
 - Every layer in `anatomy[]` **must** appear in every variant's `layers` map. Missing a layer = invalid spec.
 - Every property in a layer follows one of two shapes:
   - **Token-bound:** `{ "token": "--klp-...", "figmaVar": "...", "value": "<resolved at capture>" }` — the adapter applies the matching `klp-*` utility.
@@ -116,7 +116,7 @@ A single argument: a Figma component name (e.g. `Button`) or node ID. The user s
 
 - Plugin not paired → abort, tell user to open Figma + pair.
 - Node not found → abort, list the nearest matches from `figma_get_file_data`.
-- Active brand cannot be determined → abort, ask user to confirm.
+- Active brand cannot be determined → ask the user to confirm (captureBrand is informational, so missing it is recoverable — default to `wireframe` if the user declines to choose).
 - Empty variant set → proceed with one default variant; emit a warning.
 - A required layer (e.g. `root`) has no `fill` binding AND no literal fill → abort, the spec would be unverifiable.
 - Screenshot capture fails for one variant → write a `FAILED:` marker file instead of the PNG and continue; list failures in the summary.

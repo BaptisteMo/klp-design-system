@@ -17,11 +17,11 @@ A single argument: the component name (kebab-case, e.g. `button`). You read ever
 
 1. **Load the spec.** Read `.klp/figma-refs/<name>/spec.json`. If missing or malformed, abort with a clear error.
 2. **Validate the spec — fail-fast.** Before doing anything else, check:
-   - `spec.captureBrand` is present and one of `wireframe | klub | atlas | showup`.
    - Every layer listed in `spec.anatomy[]` appears in **every** `spec.variants[].layers` map.
    - Every property binding has either `token` (with valid `--klp-*` alias) or `literal`. No raw values without a wrapper.
-   - `spec.tokenGaps` is empty. If non-empty, abort and tell the user to either fix the gaps in `aliases.css` (then re-run extractor) or accept the gaps explicitly via a `--allow-gaps` flag (not yet implemented).
-   If any check fails, **abort with a precise diagnostic** — do not try to "fix" the spec.
+   - `spec.captureBrand` is present (informational — it tells the playground which brand to activate for human visual review).
+   - `spec.tokenGaps` is informational. If non-empty, surface the list to the user but continue — the token-validator at Stage 3 will flag any concrete binding issues downstream.
+   If the structural checks fail (missing layers, missing token/literal wrappers), **abort with a precise diagnostic** — do not try to "fix" the spec.
 3. **Check Radix primitive compat.** The spec names a `radixPrimitive`. Call `mcp__plugin_context7_context7__resolve-library-id` then `mcp__plugin_context7_context7__query-docs` to confirm current API + React 19 compatibility. Note any breaking changes in your output.
 4. **Install the Radix primitive.** Run `pnpm add <radixPrimitive>` at repo root. Skip if already present in `package.json`.
 5. **Read theme utilities.** Read `src/styles/tokens/theme.css` to confirm which `klp-*` Tailwind utilities exist. Build an in-memory map: `--klp-bg-brand` → `bg-klp-bg-brand`, `--klp-fg-on-emphasis` → `text-klp-fg-on-emphasis`, etc. (See "Token-to-utility mapping" below.) If a token referenced by the spec has no matching utility, abort — `theme.css` needs to be regenerated via `pnpm run sync:tokens`.
@@ -55,7 +55,7 @@ Apply these rules mechanically. Each Figma binding category maps to exactly one 
 | `color` (label/icon)  | `--klp-fg-*`              | `text-klp-*`           | `--klp-fg-on-emphasis` → `text-klp-fg-on-emphasis`   |
 | `fontSize`            | `--klp-font-size-*`       | `text-klp-*`           | `--klp-font-size-text-medium` → `text-klp-text-medium` (the `font-size-` segment is dropped per `theme.css` convention) |
 | `fontFamily`          | `--klp-font-family-*`     | `font-klp-*`           | `--klp-font-family-label` → `font-klp-label`         |
-| `fontWeight`          | `--klp-font-weight-*`     | `font-weight-klp-*`    | `--klp-font-weight-label-bold` → `font-weight-klp-label-bold` |
+| `fontWeight`          | `--klp-font-weight-*`     | `font-klp-*`           | `--klp-font-weight-label-bold` → `font-klp-label-bold` (the `font-weight-` segment is dropped per `theme.css` convention — Tailwind v4 `--font-weight-*` namespace maps to `font-*` utilities) |
 
 For **literal** bindings (`{ "literal": "40px" }`), use Tailwind's arbitrary-value syntax: `h-[40px]`. Never round or substitute.
 
@@ -91,7 +91,7 @@ const rootVariants = cva(
   }
 )
 
-const labelVariants = cva('font-klp-label font-weight-klp-label-bold', {
+const labelVariants = cva('font-klp-label font-klp-label-bold', {
   variants: {
     variant: {
       primary: 'text-klp-fg-on-emphasis',
@@ -192,7 +192,7 @@ export function ButtonRoute() {
 - **No `any`, no `as unknown as`.** Use Radix's own types.
 - **No inline styles.** No `<style>` tags. No CSS modules.
 - **No console.log.** Leave code clean.
-- **Playground must lock `[data-brand]` to `spec.captureBrand`.** Otherwise the visual-verifier will diff apples vs oranges.
+- **Playground must lock `[data-brand]` to `spec.captureBrand`.** This is so the designer's visual review in the playground sees the same brand the references were captured in. Token-validation itself is brand-independent.
 
 ## Scope
 
@@ -201,15 +201,11 @@ export function ButtonRoute() {
 - You may read anywhere.
 - **Do not** touch `src/styles/tokens.css` (that's the sync-tokens script's job).
 - **Do not** touch `.klp/figma-refs/` (that's the extractor's job).
-- **Do not** write verification reports (that's the verifier's job).
-
-## Correction loop
-
-If invoked with a `verifyReport` path, read the report, identify the failing variants, and patch only the classes the report identified as probable causes. Do not rewrite the whole component.
 
 ## Success criteria
 
 - `pnpm typecheck` passes.
-- The new component's playground route renders (the orchestrator will verify this with the visual-verifier).
+- The new component's playground route renders (the designer validates visually in the playground at Stage 4).
 - Every variant from `spec.variants` has a matching cell in the playground with `data-variant-id` attribute.
 - `registry/<name>.json` and `klp-components.json` reflect the new component.
+- The token-validator (Stage 3 of the orchestrator) will flag any layer × state × property where the emitted Tailwind class doesn't match the spec binding — the adapter is expected to produce output that passes it on the first try.
