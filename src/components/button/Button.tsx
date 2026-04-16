@@ -35,6 +35,10 @@ const rootVariants = cva(
         icon: 'h-[36px] w-[36px] p-klp-size-xs',
       },
     },
+    compoundVariants: [
+      // tertiary × icon: spec specifies bg-invisible instead of bg-inset used by other tertiary sizes
+      { variant: 'tertiary', size: 'icon', className: 'bg-klp-bg-invisible' },
+    ],
     defaultVariants: { variant: 'primary', size: 'md' },
   }
 )
@@ -45,8 +49,9 @@ const rootVariants = cva(
 // Applied to the inner <span> wrapping the children text.
 // ---------------------------------------------------------------------------
 const labelVariants = cva(
-  // base: font family + weight shared across all sizes/types
-  'font-klp-label font-bold leading-none', // TODO: token gap — spec declares --klp-font-weight-label-bold: 600 (wireframe) but font-bold = 700; 100-unit drift on wireframe brand
+  // base: font family + weight (klp alias, resolves to brand-appropriate weight per --klp-font-weight-label-bold)
+  // disabled: spec requires --klp-fg-disable across all types
+  'font-klp-label font-klp-label-bold leading-none disabled:text-klp-fg-disable',
   {
     variants: {
       variant: {
@@ -73,7 +78,8 @@ const labelVariants = cva(
 // Applied identically to icon-left and icon-right spans.
 // ---------------------------------------------------------------------------
 const iconVariants = cva(
-  'inline-flex shrink-0 items-center justify-center',
+  // disabled: spec requires --klp-fg-disable across all types
+  'inline-flex shrink-0 items-center justify-center disabled:text-klp-fg-disable',
   {
     variants: {
       variant: {
@@ -90,6 +96,10 @@ const iconVariants = cva(
         icon: '[&>svg]:h-[16px] [&>svg]:w-[16px]',
       },
     },
+    compoundVariants: [
+      // tertiary × icon: spec specifies fg-muted instead of fg-default used by other tertiary sizes
+      { variant: 'tertiary', size: 'icon', className: 'text-klp-fg-muted' },
+    ],
     defaultVariants: { variant: 'primary', size: 'md' },
   }
 )
