@@ -173,6 +173,53 @@ function pickCvaForLayer(blocks, layerName) {
   return null
 }
 
+// Find all DS-component imports in a source file. Returns a map
+// { '<kebab-name>': { pascalNames: Set<string>, line: number } }.
+function extractDsImports(source) {
+  const out = new Map()
+  const importRe = /import\s+(?:\*\s+as\s+\w+|\{([^}]+)\}|(\w+))\s+from\s+['"]@\/components\/([\w-]+)['"]/g
+  for (const m of source.matchAll(importRe)) {
+    const namedClause = m[1]
+    const defaultClause = m[2]
+    const pkg = m[3]
+    const line = source.slice(0, m.index).split('\n').length
+    const pascalNames = new Set()
+    if (namedClause) {
+      for (const n of namedClause.split(',')) {
+        const trimmed = n.replace(/\s+as\s+\w+/, '').trim()
+        if (trimmed) pascalNames.add(trimmed)
+      }
+    }
+    if (defaultClause) pascalNames.add(defaultClause)
+    const existing = out.get(pkg)
+    if (existing) {
+      for (const n of pascalNames) existing.pascalNames.add(n)
+    } else {
+      out.set(pkg, { pascalNames, line })
+    }
+  }
+  return out
+}
+
+// Returns true if the source contains any JSX opening tag or namespace
+// access matching the given pascal name (e.g. `<Button`, `<Button\n`,
+// `<Button.Foo`, `Button.Foo`).
+function usesPascalName(source, pascal) {
+  const re = new RegExp(`(?:<${pascal}[\\s/>]|\\b${pascal}\\.)`)
+  return re.test(source)
+}
+
+function loadKlpComponentsSet(repoRoot) {
+  const p = path.join(repoRoot, 'klp-components.json')
+  if (!fs.existsSync(p)) return new Set()
+  try {
+    const data = JSON.parse(fs.readFileSync(p, 'utf-8'))
+    return new Set((data.components ?? []).map((c) => c.name))
+  } catch {
+    return new Set()
+  }
+}
+
 // Tokenize a cva body into the set of class names that appear inside string literals.
 function tokenizeClasses(cvaBody) {
   const set = new Set()
@@ -379,9 +426,58 @@ function validate(componentName) {
     }
   }
 
-  // NEW: reuse check (empty stub — filled in Task 2)
+  // --- reuse check -------------------------------------------------------
   const reuseMismatches = []
   const reuseWarnings = []
+
+  const integratedSet = loadKlpComponentsSet(repoRoot)
+  const dsImports = extractDsImports(source)
+  const instances = spec.composition?.instances ?? []
+
+  // Forward rule: each declared klpComponent must be imported + used.
+  for (const inst of instances) {
+    const klp = inst.klpComponent
+    if (!klp) continue // candidate-only entries are handled as adapter gaps
+    const importEntry = dsImports.get(klp)
+    if (!importEntry) {
+      reuseMismatches.push({
+        kind: 'missing-import',
+        part: inst.part,
+        klpComponent: klp,
+        hint: `Spec declares klpComponent="${klp}" on part "${inst.part}" but source does not import from '@/components/${klp}'.`,
+      })
+      continue
+    }
+    const pascal = kebabToPascal(klp)
+    if (!usesPascalName(source, pascal)) {
+      reuseMismatches.push({
+        kind: 'imported-not-used',
+        part: inst.part,
+        klpComponent: klp,
+        hint: `Source imports '@/components/${klp}' but does not render <${pascal}>.`,
+      })
+    }
+  }
+
+  // Reverse rule: each DS import should correspond to a declared reuse.
+  const declaredReuses = new Set((spec.composition?.reuses ?? []))
+  for (const [pkg] of dsImports) {
+    if (!integratedSet.has(pkg)) {
+      reuseWarnings.push({
+        kind: 'import-unknown-component',
+        component: pkg,
+        hint: `Source imports '@/components/${pkg}' but this component is not registered in klp-components.json.`,
+      })
+      continue
+    }
+    if (!declaredReuses.has(pkg)) {
+      reuseWarnings.push({
+        kind: 'undeclared-reuse',
+        component: pkg,
+        hint: `Source imports '@/components/${pkg}' but spec.composition.reuses does not list it. Verify this is intentional or add it to the spec.`,
+      })
+    }
+  }
 
   // NEW: icons check (empty stub — filled in Task 3)
   const iconsMismatches = []
