@@ -3,12 +3,13 @@ import { Slot } from '@radix-ui/react-slot'
 import { cva } from 'class-variance-authority'
 import { Plus, MoreVertical } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { Button } from '@/components/button'
 
 // ---------------------------------------------------------------------------
 // root layer — fill, padding, gap, radius vary by size + state
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'flex flex-col w-full transition-colors',
+  'group flex flex-col w-full cursor-pointer transition-colors',
   {
     variants: {
       size: {
@@ -17,7 +18,7 @@ const rootVariants = cva(
         large:  'pt-klp-size-m pb-klp-size-m pl-klp-size-s pr-klp-size-s gap-klp-size-m rounded-klp-l',
       },
       state: {
-        default: '',
+        default: 'hover:bg-klp-bg-subtle',
         hover:   'bg-klp-bg-subtle',
         active:  'bg-klp-bg-secondary-brand-low',
       },
@@ -74,16 +75,6 @@ const sublabelVariants = cva(
       },
     },
     defaultVariants: { size: 'medium' },
-  }
-)
-
-// ---------------------------------------------------------------------------
-// action-button layer — bg/invisible fill, bd/invisible border, always same
-// ---------------------------------------------------------------------------
-const actionButtonVariants = cva(
-  'inline-flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-klp-l border border-klp-border-invisible bg-klp-bg-invisible p-klp-size-xs text-klp-fg-default transition-colors hover:bg-klp-bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand',
-  {
-    variants: {},
   }
 )
 
@@ -172,20 +163,19 @@ const ListContent = React.forwardRef<HTMLDivElement, ListContentProps>(
             </div>
           </div>
 
-          {/* action-button */}
+          {/* action-button — reuses the DS Button (tertiary × icon) */}
           {showActionButton && (
-            <button
-              type="button"
+            <Button
+              variant="tertiary"
+              size="icon"
               aria-label={actionLabel}
-              onClick={onActionClick}
-              className={actionButtonVariants()}
+              onClick={(e) => {
+                e.stopPropagation()
+                onActionClick?.(e)
+              }}
             >
-              <MoreVertical
-                aria-hidden="true"
-                strokeWidth={1.5}
-                className="h-[16px] w-[16px]"
-              />
-            </button>
+              <MoreVertical strokeWidth={1.5} />
+            </Button>
           )}
         </div>
       </Comp>
@@ -195,4 +185,4 @@ const ListContent = React.forwardRef<HTMLDivElement, ListContentProps>(
 
 ListContent.displayName = 'ListContent'
 
-export { ListContent, rootVariants, decorativeIconVariants, labelVariants, sublabelVariants, actionButtonVariants }
+export { ListContent, rootVariants, decorativeIconVariants, labelVariants, sublabelVariants }

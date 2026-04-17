@@ -11,7 +11,7 @@ import { cn } from '@/lib/cn'
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
   // base: layout, border, radius, focus ring, transitions
-  'box-border inline-flex items-center justify-center border rounded-klp-l transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand-emphasis disabled:pointer-events-none',
+  'box-border inline-flex items-center justify-center border rounded-klp-l transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand-emphasis disabled:pointer-events-none cursor-pointer',
   {
     variants: {
       variant: {

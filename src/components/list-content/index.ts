@@ -4,6 +4,5 @@ export {
   decorativeIconVariants,
   labelVariants,
   sublabelVariants,
-  actionButtonVariants,
 } from './ListContent'
 export type { ListContentProps, ListContentSize, ListContentState } from './ListContent'
