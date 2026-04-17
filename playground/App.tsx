@@ -7,6 +7,15 @@ import { SwitchRoute } from './routes/switch'
 import { TooltipRoute } from './routes/tooltip'
 import { BadgesRoute } from './routes/badges'
 import { InputRoute } from './routes/input'
+import { ListContentRoute } from './routes/list-content'
+import { TableRowRoute } from './routes/table-row'
+import { ActionSheetItemRoute } from './routes/action-sheet-item'
+import { FloatingAlertRoute } from './routes/floating-alert'
+import { InContentAlertRoute } from './routes/in-content-alert'
+import { BreadCrumbsRoute } from './routes/breadcrumbs'
+import { TabulationCellsRoute } from './routes/tabulation-cells'
+import { TabulationsRoute } from './routes/tabulations'
+import { TextAreaRoute } from './routes/text-area'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -17,6 +26,15 @@ const routes: Record<string, ComponentType> = {
   'tooltip': TooltipRoute,
   'badges': BadgesRoute,
   'input': InputRoute,
+  'list-content': ListContentRoute,
+  'table-row': TableRowRoute,
+  'action-sheet-item': ActionSheetItemRoute,
+  'floating-alert': FloatingAlertRoute,
+  'in-content-alert': InContentAlertRoute,
+  'breadcrumbs': BreadCrumbsRoute,
+  'tabulation-cells': TabulationCellsRoute,
+  'tabulations': TabulationsRoute,
+  'text-area': TextAreaRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

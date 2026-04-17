@@ -193,6 +193,283 @@
         "brands": ["klub"]
       },
       "usedBy": []
+    },
+    {
+      "name": "list-content",
+      "displayName": "List Content",
+      "description": "A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).",
+      "category": "list",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/list-content/ListContent.tsx",
+      "doc": "docs/components/_index_list-content.md",
+      "playground": "playground/routes/list-content.tsx",
+      "registry": "registry/list-content.json",
+      "spec": ".klp/figma-refs/list-content/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": ["root", "content", "left-part", "decorative-icon", "label", "sublabel", "action-button"],
+      "variantAxes": {
+        "size": ["small", "medium", "large"],
+        "state": ["default", "hover", "active"]
+      },
+      "variantCount": 9,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing", "radius", "typography"],
+        "brands": ["wireframe"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "table-row",
+      "displayName": "Table Row",
+      "description": "A data table row component supporting default, hover, floating-action, and empty states. Contains a checkbox cell, one or more text/badge cells, and an actions cell with icon buttons.",
+      "category": "data-display",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/table-row/TableRow.tsx",
+      "doc": "docs/components/_index_table-row.md",
+      "playground": "playground/routes/table-row.tsx",
+      "registry": "registry/table-row.json",
+      "spec": ".klp/figma-refs/table-row/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "cell-checkbox",
+        "cell-left",
+        "cell-badge",
+        "cell-text",
+        "cell-actions",
+        "action-button",
+        "empty-message",
+        "empty-illustration"
+      ],
+      "variantAxes": {
+        "type": ["default", "default-hover", "floating-action", "empty"],
+        "floating-action": ["none", "on", "off"]
+      },
+      "variantCount": 5,
+      "dependencies": {
+        "components": [],
+        "externals": ["class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["klub"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "action-sheet-item",
+      "displayName": "ActionSheet Item",
+      "description": "A single row item for action sheets. Supports icon slots on both sides, an optional description label, and seven semantic states (Default, Hover, Active, Emphased, Disabled, Destructive, Creation) across three sizes.",
+      "category": "overlays",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/action-sheet-item/ActionSheetItem.tsx",
+      "doc": "docs/components/_index_action-sheet-item.md",
+      "playground": "playground/routes/action-sheet-item.tsx",
+      "registry": "registry/action-sheet-item.json",
+      "spec": ".klp/figma-refs/action-sheet-item/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": ["root", "icon-left", "content", "label", "icon-right"],
+      "variantAxes": {
+        "state": ["default", "hover", "active", "emphased", "disabled", "destructive", "creation"],
+        "size": ["lg", "md", "sm"]
+      },
+      "variantCount": 21,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing", "typography"],
+        "brands": ["wireframe"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "floating-alert",
+      "displayName": "Floating Alert",
+      "description": "A floating alert banner with a state-colored icon highlight, body text, and a dismiss button. Four severity states (Danger, Warning, Information, Success) in three sizes (Small, Medium, Large).",
+      "category": "feedback",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/floating-alert/FloatingAlert.tsx",
+      "doc": "docs/components/_index_floating-alert.md",
+      "playground": "playground/routes/floating-alert.tsx",
+      "registry": "registry/floating-alert.json",
+      "spec": ".klp/figma-refs/floating-alert/spec.json",
+      "radixPrimitive": null,
+      "anatomy": ["root", "icon-highlight", "icon", "content", "dismiss-button", "dismiss-icon"],
+      "variantAxes": {
+        "state": ["danger", "warning", "information", "success"],
+        "size": ["sm", "md", "lg"]
+      },
+      "variantCount": 12,
+      "dependencies": {
+        "components": [],
+        "externals": ["class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["wireframe"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "in-content-alert",
+      "displayName": "InContent Alert",
+      "description": "Inline alert banner with a semantic content type (Info, Success, Danger, Warning) and three sizes. Displays a title with matching icon and an optional body text below.",
+      "category": "feedback",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/in-content-alert/InContentAlert.tsx",
+      "doc": "docs/components/_index_in-content-alert.md",
+      "playground": "playground/routes/in-content-alert.tsx",
+      "registry": "registry/in-content-alert.json",
+      "spec": ".klp/figma-refs/in-content-alert/spec.json",
+      "radixPrimitive": null,
+      "anatomy": ["root", "header", "icon", "title", "body"],
+      "variantAxes": {
+        "content": ["info", "success", "danger", "warning"],
+        "size": ["lg", "md", "sm"]
+      },
+      "variantCount": 12,
+      "dependencies": {
+        "components": [],
+        "externals": ["class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing", "typography"],
+        "brands": ["klub"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "breadcrumbs",
+      "displayName": "BreadCrumbs",
+      "description": "Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/breadcrumbs/BreadCrumbs.tsx",
+      "doc": "docs/components/_index_breadcrumbs.md",
+      "playground": "playground/routes/breadcrumbs.tsx",
+      "registry": "registry/breadcrumbs.json",
+      "spec": ".klp/figma-refs/breadcrumbs/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": ["root", "step-item", "step-icon", "step-label", "step-separator"],
+      "variantAxes": {
+        "steps": ["0", "1", "2", "3"]
+      },
+      "variantCount": 4,
+      "dependencies": {
+        "components": [],
+        "externals": ["class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "typography"],
+        "brands": ["wireframe"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "tabulation-cells",
+      "displayName": "Tabulation Cells",
+      "description": "A single tab cell used within a tabulation bar. Renders a label and an optional badge count. State=Rest shows a neutral transparent background; State=Active shows the selected tab with brand-low fill, bold label, and brand-accented badge.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/tabulation-cells/TabulationCells.tsx",
+      "doc": "docs/components/_index_tabulation-cells.md",
+      "playground": "playground/routes/tabulation-cells.tsx",
+      "registry": "registry/tabulation-cells.json",
+      "spec": ".klp/figma-refs/tabulation-cells/spec.json",
+      "radixPrimitive": "@radix-ui/react-tabs",
+      "anatomy": ["root", "label", "badge"],
+      "variantAxes": {
+        "state": ["rest", "active"]
+      },
+      "variantCount": 2,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-tabs", "class-variance-authority"],
+        "tokenGroups": ["colors", "spacing", "typography"],
+        "brands": ["klub"]
+      },
+      "usedBy": ["tabulations"],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "tabulations",
+      "displayName": "Tabulations",
+      "description": "Horizontal tab bar container that wraps Tabulation_Cells instances separated by vertical line dividers. Scroll type=None (fixed layout). Delegates cell selection state (active/rest) to the tabulation-cells sub-component via a MutationObserver bridge. Backed by @radix-ui/react-tabs for full a11y keyboard navigation.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/tabulations/Tabulations.tsx",
+      "doc": "docs/components/_index_tabulations.md",
+      "playground": "playground/routes/tabulations.tsx",
+      "registry": "registry/tabulations.json",
+      "spec": ".klp/figma-refs/tabulations/spec.json",
+      "radixPrimitive": "@radix-ui/react-tabs",
+      "anatomy": ["root", "divider", "cell-root", "cell-label", "cell-badge"],
+      "variantAxes": {
+        "scroll-type": ["none"]
+      },
+      "variantCount": 1,
+      "dependencies": {
+        "components": ["tabulation-cells"],
+        "externals": ["@radix-ui/react-tabs", "class-variance-authority"],
+        "tokenGroups": ["colors", "spacing", "radius"],
+        "brands": ["klub"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "text-area",
+      "displayName": "Text Area",
+      "description": "Multi-line text input with optional rich-text formatting toolbar. Two feature variants: Simple (plain textarea) and Rich text (with formatting toolbar and action bar). Supports Default, Focus, Filled, Danger, Success, and Disable states.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/text-area/TextArea.tsx",
+      "doc": "docs/components/_index_text-area.md",
+      "playground": "playground/routes/text-area.tsx",
+      "registry": "registry/text-area.json",
+      "spec": ".klp/figma-refs/text-area/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": ["root", "head", "label", "info-icon", "input", "toolbar", "placeholder", "action-bar"],
+      "variantAxes": {
+        "feature": ["rich-text", "simple"],
+        "state": ["default", "focus", "filled", "danger", "success", "disable"]
+      },
+      "variantCount": 12,
+      "dependencies": {
+        "components": [],
+        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing", "typography"],
+        "brands": ["wireframe"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
     }
   ]
 }

@@ -1,0 +1,17 @@
+{
+  "name": "tabulations",
+  "type": "registry:ui",
+  "description": "Horizontal tab bar container that wraps Tabulation_Cells instances separated by vertical dividers. Delegates cell selection state to the tabulation-cells sub-component. Backed by @radix-ui/react-tabs.",
+  "meta": {
+    "figmaNode": "115177:6402",
+    "captureBrand": "klub",
+    "category": "navigation",
+    "radixPrimitive": "@radix-ui/react-tabs",
+    "anatomy": ["root", "divider", "cell-root", "cell-label", "cell-badge"],
+    "variantAxes": {
+      "scroll-type": ["none"]
+    },
+    "variantCount": 1,
+    "dependencies": ["tabulation-cells"]
+  }
+}

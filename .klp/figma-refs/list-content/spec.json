@@ -1,0 +1,502 @@
+{
+  "name": "list-content",
+  "displayName": "List Content",
+  "figmaNode": "115177:6964",
+  "captureBrand": "wireframe",
+  "category": "list",
+  "description": "A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    { "part": "root",            "element": "div",    "notes": "Vertical layout container. Padding and item-spacing vary by size. Fill changes on hover/active states." },
+    { "part": "content",         "element": "div",    "notes": "Horizontal row: left-part + action-button. Always fills root width." },
+    { "part": "left-part",       "element": "div",    "notes": "Horizontal: decorative-icon + headline-subcontent. Fills content width." },
+    { "part": "decorative-icon", "element": "span",   "notes": "Icon wrapper. Fixed 20x20. Icon slot defaults to plus, swappable via prop. Uses fg/default stroke." },
+    { "part": "label",           "element": "span",   "notes": "Primary text. fg/default color. Font: Family/Label, Weight/Label, Text/Medium size. Changes to fg/secondary-brand-contrasted on active." },
+    { "part": "sublabel",        "element": "span",   "notes": "Secondary text. fg/muted color. Font: Family/Label, Weight/Label, Text/Small size (Medium size) or Text/Medium size (Large size). Toggleable via prop." },
+    { "part": "action-button",   "element": "button", "notes": "Tertiary icon-only button (36x36). bg/invisible fill + bd/invisible border. Shows more-vertical icon. Toggleable via prop." }
+  ],
+  "variantAxes": {
+    "size":  ["small", "medium", "large"],
+    "state": ["default", "hover", "active"]
+  },
+  "variants": [
+    {
+      "id": "small-default",
+      "axes": { "size": "small", "state": "default" },
+      "figmaNodeId": "115177:6965",
+      "screenshot": "small-default.png",
+      "layers": {
+        "root": {
+          "paddingTop":    { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft":   { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "itemSpacing":   { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "cornerRadius":  { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": { "width": "364px", "height": "64px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",            "figmaVar": "fg/default",          "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium",   "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",         "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",         "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",             "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-small",  "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",         "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",         "value": "400" },
+          "literals": { "lineHeight": "20px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "small-hover",
+      "axes": { "size": "small", "state": "hover" },
+      "figmaNodeId": "115177:6981",
+      "screenshot": "small-hover.png",
+      "layers": {
+        "root": {
+          "fill":          { "token": "--klp-bg-subtle",  "figmaVar": "bg/subtle",  "value": "#F7F9F8" },
+          "paddingTop":    { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "paddingLeft":   { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "itemSpacing":   { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "cornerRadius":  { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "literals": { "width": "364px", "height": "64px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",            "figmaVar": "fg/default",        "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",             "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-small", "figmaVar": "Sizing/Text/Small",  "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",    "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",    "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "20px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "small-active",
+      "axes": { "size": "small", "state": "active" },
+      "figmaNodeId": "115177:6973",
+      "screenshot": "small-active.png",
+      "layers": {
+        "root": {
+          "fill":          { "token": "--klp-bg-secondary-brand-low",  "figmaVar": "bg/secondary-brand-low",  "value": "#F2F7F7" },
+          "paddingTop":    { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "paddingLeft":   { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "itemSpacing":   { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "cornerRadius":  { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "literals": { "width": "364px", "height": "64px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#2B5E80" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#2B5E80" },
+          "fontSize":   { "token": "--klp-font-size-text-medium",         "figmaVar": "Sizing/Text/Medium",             "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",             "figmaVar": "Family/Label",                   "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",             "figmaVar": "Weight/Label",                   "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",             "figmaVar": "fg/muted",         "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-small", "figmaVar": "Sizing/Text/Small", "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",    "figmaVar": "Family/Label",      "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",    "figmaVar": "Weight/Label",      "value": "400" },
+          "literals": { "lineHeight": "20px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "medium-default",
+      "axes": { "size": "medium", "state": "default" },
+      "figmaNodeId": "115177:6989",
+      "screenshot": "medium-default.png",
+      "layers": {
+        "root": {
+          "paddingTop":    { "token": "--klp-size-s",  "figmaVar": "Sizing/S", "value": "12px" },
+          "paddingBottom": { "token": "--klp-size-s",  "figmaVar": "Sizing/S", "value": "12px" },
+          "paddingLeft":   { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "itemSpacing":   { "token": "--klp-size-s",  "figmaVar": "Sizing/S", "value": "12px" },
+          "cornerRadius":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": { "width": "364px", "height": "72px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",            "figmaVar": "fg/default",        "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",             "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-small", "figmaVar": "Sizing/Text/Small",  "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",    "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",    "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "20px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "medium-hover",
+      "axes": { "size": "medium", "state": "hover" },
+      "figmaNodeId": "115177:7005",
+      "screenshot": "medium-hover.png",
+      "layers": {
+        "root": {
+          "fill":          { "token": "--klp-bg-subtle",  "figmaVar": "bg/subtle",  "value": "#F7F9F8" },
+          "paddingTop":    { "token": "--klp-size-s",     "figmaVar": "Sizing/S",   "value": "12px" },
+          "paddingBottom": { "token": "--klp-size-s",     "figmaVar": "Sizing/S",   "value": "12px" },
+          "paddingLeft":   { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "itemSpacing":   { "token": "--klp-size-s",     "figmaVar": "Sizing/S",   "value": "12px" },
+          "cornerRadius":  { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "literals": { "width": "364px", "height": "72px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",            "figmaVar": "fg/default",        "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",             "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-small", "figmaVar": "Sizing/Text/Small",  "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",    "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",    "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "20px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "medium-active",
+      "axes": { "size": "medium", "state": "active" },
+      "figmaNodeId": "115177:6997",
+      "screenshot": "medium-active.png",
+      "layers": {
+        "root": {
+          "fill":          { "token": "--klp-bg-secondary-brand-low",  "figmaVar": "bg/secondary-brand-low",  "value": "#F2F7F7" },
+          "paddingTop":    { "token": "--klp-size-s",                  "figmaVar": "Sizing/S",                "value": "12px" },
+          "paddingBottom": { "token": "--klp-size-s",                  "figmaVar": "Sizing/S",                "value": "12px" },
+          "paddingLeft":   { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "itemSpacing":   { "token": "--klp-size-s",                  "figmaVar": "Sizing/S",                "value": "12px" },
+          "cornerRadius":  { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "literals": { "width": "364px", "height": "72px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#2B5E80" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#2B5E80" },
+          "fontSize":   { "token": "--klp-font-size-text-medium",         "figmaVar": "Sizing/Text/Medium",             "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",             "figmaVar": "Family/Label",                   "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",             "figmaVar": "Weight/Label",                   "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",             "figmaVar": "fg/muted",         "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-small", "figmaVar": "Sizing/Text/Small", "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",    "figmaVar": "Family/Label",      "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",    "figmaVar": "Weight/Label",      "value": "400" },
+          "literals": { "lineHeight": "20px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "large-default",
+      "axes": { "size": "large", "state": "default" },
+      "figmaNodeId": "115177:7013",
+      "screenshot": "large-default.png",
+      "layers": {
+        "root": {
+          "paddingTop":    { "token": "--klp-size-m",  "figmaVar": "Sizing/M",  "value": "16px" },
+          "paddingBottom": { "token": "--klp-size-m",  "figmaVar": "Sizing/M",  "value": "16px" },
+          "paddingLeft":   { "token": "--klp-size-s",  "figmaVar": "Sizing/S",  "value": "12px" },
+          "paddingRight":  { "token": "--klp-size-s",  "figmaVar": "Sizing/S",  "value": "12px" },
+          "itemSpacing":   { "token": "--klp-size-m",  "figmaVar": "Sizing/M",  "value": "16px" },
+          "cornerRadius":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": { "width": "364px", "height": "84px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",            "figmaVar": "fg/default",        "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "large-hover",
+      "axes": { "size": "large", "state": "hover" },
+      "figmaNodeId": "115177:7029",
+      "screenshot": "large-hover.png",
+      "layers": {
+        "root": {
+          "fill":          { "token": "--klp-bg-subtle",  "figmaVar": "bg/subtle",  "value": "#F7F9F8" },
+          "paddingTop":    { "token": "--klp-size-m",     "figmaVar": "Sizing/M",   "value": "16px" },
+          "paddingBottom": { "token": "--klp-size-m",     "figmaVar": "Sizing/M",   "value": "16px" },
+          "paddingLeft":   { "token": "--klp-size-s",     "figmaVar": "Sizing/S",   "value": "12px" },
+          "paddingRight":  { "token": "--klp-size-s",     "figmaVar": "Sizing/S",   "value": "12px" },
+          "itemSpacing":   { "token": "--klp-size-m",     "figmaVar": "Sizing/M",   "value": "16px" },
+          "cornerRadius":  { "token": "--klp-size-xs",    "figmaVar": "Sizing/XS",  "value": "8px" },
+          "literals": { "width": "364px", "height": "84px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",            "figmaVar": "fg/default",        "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    },
+    {
+      "id": "large-active",
+      "axes": { "size": "large", "state": "active" },
+      "figmaNodeId": "115177:7021",
+      "screenshot": "large-active.png",
+      "layers": {
+        "root": {
+          "fill":          { "token": "--klp-bg-secondary-brand-low",  "figmaVar": "bg/secondary-brand-low",  "value": "#F2F7F7" },
+          "paddingTop":    { "token": "--klp-size-m",                  "figmaVar": "Sizing/M",                "value": "16px" },
+          "paddingBottom": { "token": "--klp-size-m",                  "figmaVar": "Sizing/M",                "value": "16px" },
+          "paddingLeft":   { "token": "--klp-size-s",                  "figmaVar": "Sizing/S",                "value": "12px" },
+          "paddingRight":  { "token": "--klp-size-s",                  "figmaVar": "Sizing/S",                "value": "12px" },
+          "itemSpacing":   { "token": "--klp-size-m",                  "figmaVar": "Sizing/M",                "value": "16px" },
+          "cornerRadius":  { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",               "value": "8px" },
+          "literals": { "width": "364px", "height": "84px" }
+        },
+        "content": {
+          "literals": { "gap": "4px" }
+        },
+        "left-part": {
+          "literals": { "gap": "7px" }
+        },
+        "decorative-icon": {
+          "color":   { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#2B5E80" },
+          "literals": { "size": "20px", "icon": "plus" }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#2B5E80" },
+          "fontSize":   { "token": "--klp-font-size-text-medium",         "figmaVar": "Sizing/Text/Medium",             "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",             "figmaVar": "Family/Label",                   "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",             "figmaVar": "Weight/Label",                   "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "sublabel": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",     "figmaVar": "Family/Label",       "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",     "figmaVar": "Weight/Label",       "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",     "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",         "figmaVar": "Radius/L",     "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",    "value": "8px" },
+          "literals": { "size": "36px", "icon": "more-vertical" }
+        }
+      }
+    }
+  ],
+  "componentProps": {
+    "sublabel":       { "type": "BOOLEAN", "default": true,              "notes": "Show/hide the sublabel text" },
+    "sublabelText":   { "type": "TEXT",    "default": "Sublabel",        "notes": "Content of the sublabel" },
+    "decorativeIcon": { "type": "BOOLEAN", "default": true,              "notes": "Show/hide the left decorative icon" },
+    "actionButton":   { "type": "BOOLEAN", "default": true,              "notes": "Show/hide the right action button" },
+    "label":          { "type": "TEXT",    "default": "Label of the list","notes": "Primary label text" }
+  },
+  "a11y": {
+    "role": "listitem",
+    "keyboardSupport": ["Tab", "Enter", "Space"],
+    "notes": "Root is a listitem; action-button is a native <button> with aria-label. Decorative icon is aria-hidden."
+  },
+  "tokenGaps": []
+}

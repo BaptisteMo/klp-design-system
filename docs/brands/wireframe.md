@@ -37,6 +37,11 @@ document.documentElement.dataset.brand = 'wireframe'
 
 - [Switch](../components/_index_switch.md) — reference screenshots captured under the wireframe brand.
 - [Badge](../components/_index_badges.md) — reference screenshots captured under the wireframe brand (48 variants).
+- [List Content](../components/_index_list-content.md) — reference screenshots captured under the wireframe brand (9 variants).
+- [ActionSheet Item](../components/_index_action-sheet-item.md) — reference screenshots captured under the wireframe brand (21 variants).
+- [Floating Alert](../components/_index_floating-alert.md) — reference screenshots captured under the wireframe brand (12 variants).
+- [BreadCrumbs](../components/_index_breadcrumbs.md) — reference screenshots captured under the wireframe brand (4 variants).
+- [Text Area](../components/_index_text-area.md) — reference screenshots captured under the wireframe brand (12 variants).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

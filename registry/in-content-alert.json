@@ -1,0 +1,17 @@
+{
+  "name": "in-content-alert",
+  "type": "registry:ui",
+  "description": "Inline alert banner with a semantic content type (Info, Success, Danger, Warning) and three sizes. Displays a title with matching icon and an optional body text below.",
+  "meta": {
+    "figmaNode": "115177:26510",
+    "captureBrand": "klub",
+    "category": "feedback",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": ["root", "header", "icon", "title", "body"],
+    "variantAxes": {
+      "content": ["info", "success", "danger", "warning"],
+      "size": ["lg", "md", "sm"]
+    }
+  }
+}

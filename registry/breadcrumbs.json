@@ -1,0 +1,16 @@
+{
+  "name": "breadcrumbs",
+  "type": "registry:ui",
+  "description": "Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.",
+  "meta": {
+    "figmaNode": "115177:4772",
+    "captureBrand": "wireframe",
+    "category": "navigation",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "step-item", "step-icon", "step-label", "step-separator"],
+    "variantAxes": {
+      "steps": ["0", "1", "2", "3"]
+    }
+  }
+}

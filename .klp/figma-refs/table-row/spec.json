@@ -1,0 +1,314 @@
+{
+  "name": "table-row",
+  "displayName": "Table Row",
+  "figmaNode": "115177:22885",
+  "captureBrand": "klub",
+  "category": "data-display",
+  "description": "A data table row component supporting default, hover, floating-action, and empty states. Contains a checkbox cell, one or more text/badge cells, and an actions cell with icon buttons.",
+  "radixPrimitive": null,
+  "anatomy": [
+    { "part": "root",            "element": "tr",   "notes": "Row container; horizontal layout, fixed height bound to Sizing/3XL. Bottom border via stroke. No fill on default; bg/subtle fill on hover/floating-action-on." },
+    { "part": "cell-checkbox",   "element": "td",   "notes": "Leftmost cell — renders a checkbox instance (table_cells/checkbox). Hidden in Empty variant." },
+    { "part": "cell-left",       "element": "td",   "notes": "Frame containing badge cell and multiple text cells (table_cells/badges, table_cells/text ×N). Hidden in Empty variant." },
+    { "part": "cell-badge",      "element": "span", "notes": "Badge instance inside cell-left. bg/info fill, bd/invisible stroke, fg/info icon color." },
+    { "part": "cell-text",       "element": "td",   "notes": "Repeating text cell inside cell-left. Primary text uses Weight/Body Bold + fg/default; secondary text uses Weight/Body + fg/muted." },
+    { "part": "cell-actions",    "element": "td",   "notes": "Rightmost cell with action icon buttons. Padding and spacing bound to Sizing/XS. Has bg/subtle fill when floating-action is ON." },
+    { "part": "action-button",   "element": "button", "notes": "Icon-only button inside cell-actions. bg/invisible fill, bd/invisible stroke, Radius/L corner, icons use fg/muted color." },
+    { "part": "empty-message",   "element": "td",   "notes": "Text label visible only in Empty variant. Literal black fill (token gap — expected --klp-fg-default)." },
+    { "part": "empty-illustration", "element": "div", "notes": "Illustration frame visible only in Empty variant (undraw SVG asset, no token bindings)." }
+  ],
+  "variantAxes": {
+    "type": ["default", "default-hover", "floating-action", "empty"],
+    "floating-action": ["none", "on", "off"]
+  },
+  "variants": [
+    {
+      "id": "default-none",
+      "axes": { "type": "default", "floating-action": "none" },
+      "figmaNodeId": "115177:22886",
+      "screenshot": "default-none.png",
+      "layers": {
+        "root": {
+          "stroke":      { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "height":      { "token": "--klp-size-3xl",        "figmaVar": "Sizing/3XL",  "value": "64px" },
+          "literals":    { "paddingTop": "2px", "paddingBottom": "2px", "fill": "none" }
+        },
+        "cell-checkbox": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-left": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-badge": {
+          "fill":        { "token": "--klp-bg-info",         "figmaVar": "bg/info",         "value": "#EEF1F0" },
+          "stroke":      { "token": "--klp-border-invisible","figmaVar": "bd/invisible",     "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",       "value": "6px" },
+          "color":       { "token": "--klp-fg-info",         "figmaVar": "fg/info",          "value": "#868E8B" },
+          "literals":    { "icon": "hourglass" }
+        },
+        "cell-text": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",              "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium",     "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body",      "figmaVar": "Family/Body",           "value": "Inter" },
+          "fontWeight": { "token": "--klp-font-weight-body",      "figmaVar": "Weight/Body",           "value": "400" },
+          "literals":   { "primaryFontWeight": "bold (Weight/Body Bold → --klp-font-weight-body-bold)" }
+        },
+        "cell-actions": {
+          "itemSpacing":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals":     { "fill": "none" }
+        },
+        "action-button": {
+          "fill":              { "token": "--klp-bg-invisible",    "figmaVar": "bg/invisible",   "value": "transparent" },
+          "stroke":            { "token": "--klp-border-invisible","figmaVar": "bd/invisible",   "value": "transparent" },
+          "cornerRadius":      { "token": "--klp-radius-l",        "figmaVar": "Radius/L",        "value": "8px" },
+          "paddingTop":        { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",       "value": "8px" },
+          "paddingRight":      { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",       "value": "8px" },
+          "paddingBottom":     { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",       "value": "8px" },
+          "paddingLeft":       { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",       "value": "8px" },
+          "color":             { "token": "--klp-fg-muted",         "figmaVar": "fg/muted",        "value": "#5F6563" },
+          "literals":          { "icon": "check" }
+        },
+        "empty-message": {
+          "literals": { "visibility": "hidden", "color": "TOKEN_GAP: hardcoded black — expected --klp-fg-default" }
+        },
+        "empty-illustration": {
+          "literals": { "visibility": "hidden" }
+        }
+      }
+    },
+    {
+      "id": "default-hover-none",
+      "axes": { "type": "default-hover", "floating-action": "none" },
+      "figmaNodeId": "115177:22900",
+      "screenshot": "default-hover-none.png",
+      "layers": {
+        "root": {
+          "fill":   { "token": "--klp-bg-subtle",      "figmaVar": "bg/subtle",   "value": "#F7F9F8" },
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default",  "value": "#D7DAD9" },
+          "height": { "token": "--klp-size-3xl",        "figmaVar": "Sizing/3XL",  "value": "64px" },
+          "literals": { "paddingTop": "2px", "paddingBottom": "2px" }
+        },
+        "cell-checkbox": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-left": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-badge": {
+          "fill":        { "token": "--klp-bg-info",          "figmaVar": "bg/info",         "value": "#EEF1F0" },
+          "stroke":      { "token": "--klp-border-invisible", "figmaVar": "bd/invisible",     "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",         "figmaVar": "Sizing/2XS",       "value": "6px" },
+          "color":       { "token": "--klp-fg-info",          "figmaVar": "fg/info",          "value": "#868E8B" },
+          "literals":    { "icon": "hourglass" }
+        },
+        "cell-text": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body",      "figmaVar": "Family/Body",       "value": "Inter" },
+          "fontWeight": { "token": "--klp-font-weight-body",      "figmaVar": "Weight/Body",       "value": "400" }
+        },
+        "cell-actions": {
+          "itemSpacing":   { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingTop":    { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft":   { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals":      { "fill": "none" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",    "figmaVar": "bg/invisible",  "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",  "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",       "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "color":        { "token": "--klp-fg-muted",         "figmaVar": "fg/muted",       "value": "#5F6563" },
+          "literals":     { "icon": "check" }
+        },
+        "empty-message": {
+          "literals": { "visibility": "hidden" }
+        },
+        "empty-illustration": {
+          "literals": { "visibility": "hidden" }
+        }
+      }
+    },
+    {
+      "id": "floating-action-on",
+      "axes": { "type": "floating-action", "floating-action": "on" },
+      "figmaNodeId": "115177:22914",
+      "screenshot": "floating-action-on.png",
+      "layers": {
+        "root": {
+          "fill":   { "token": "--klp-bg-subtle",      "figmaVar": "bg/subtle",  "value": "#F7F9F8" },
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "height": { "token": "--klp-size-3xl",        "figmaVar": "Sizing/3XL", "value": "64px" },
+          "literals": { "paddingTop": "2px", "paddingBottom": "2px" }
+        },
+        "cell-checkbox": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-left": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-badge": {
+          "fill":        { "token": "--klp-bg-info",          "figmaVar": "bg/info",        "value": "#EEF1F0" },
+          "stroke":      { "token": "--klp-border-invisible", "figmaVar": "bd/invisible",    "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",         "figmaVar": "Sizing/2XS",      "value": "6px" },
+          "color":       { "token": "--klp-fg-info",          "figmaVar": "fg/info",         "value": "#868E8B" },
+          "literals":    { "icon": "hourglass" }
+        },
+        "cell-text": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body",      "figmaVar": "Family/Body",       "value": "Inter" },
+          "fontWeight": { "token": "--klp-font-weight-body",      "figmaVar": "Weight/Body",       "value": "400" }
+        },
+        "cell-actions": {
+          "fill":          { "token": "--klp-bg-subtle", "figmaVar": "bg/subtle", "value": "#F7F9F8" },
+          "itemSpacing":   { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingTop":    { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft":   { "token": "--klp-size-xs",   "figmaVar": "Sizing/XS", "value": "8px" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",    "figmaVar": "bg/invisible",  "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",  "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",       "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "color":        { "token": "--klp-fg-muted",         "figmaVar": "fg/muted",       "value": "#5F6563" },
+          "literals":     { "icon": "check" }
+        },
+        "empty-message": {
+          "literals": { "visibility": "hidden" }
+        },
+        "empty-illustration": {
+          "literals": { "visibility": "hidden" }
+        }
+      }
+    },
+    {
+      "id": "floating-action-off",
+      "axes": { "type": "floating-action", "floating-action": "off" },
+      "figmaNodeId": "115177:22928",
+      "screenshot": "floating-action-off.png",
+      "layers": {
+        "root": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "height": { "token": "--klp-size-3xl",        "figmaVar": "Sizing/3XL", "value": "64px" },
+          "literals": { "paddingTop": "2px", "paddingBottom": "2px", "fill": "none" }
+        },
+        "cell-checkbox": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-left": {
+          "literals": { "visibility": "visible" }
+        },
+        "cell-badge": {
+          "fill":        { "token": "--klp-bg-info",          "figmaVar": "bg/info",        "value": "#EEF1F0" },
+          "stroke":      { "token": "--klp-border-invisible", "figmaVar": "bd/invisible",    "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",         "figmaVar": "Sizing/2XS",      "value": "6px" },
+          "color":       { "token": "--klp-fg-info",          "figmaVar": "fg/info",         "value": "#868E8B" },
+          "literals":    { "icon": "hourglass" }
+        },
+        "cell-text": {
+          "color":      { "token": "--klp-fg-muted",              "figmaVar": "fg/muted",          "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body",      "figmaVar": "Family/Body",       "value": "Inter" },
+          "fontWeight": { "token": "--klp-font-weight-body",      "figmaVar": "Weight/Body",       "value": "400" }
+        },
+        "cell-actions": {
+          "itemSpacing":   { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingTop":    { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft":   { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals":      { "fill": "none", "visibility": "hidden (floating-action OFF — actions panel collapsed)" }
+        },
+        "action-button": {
+          "fill":         { "token": "--klp-bg-invisible",    "figmaVar": "bg/invisible",  "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",  "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",       "value": "8px" },
+          "paddingTop":   { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingBottom":{ "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "paddingLeft":  { "token": "--klp-size-xs",          "figmaVar": "Sizing/XS",      "value": "8px" },
+          "color":        { "token": "--klp-fg-muted",         "figmaVar": "fg/muted",       "value": "#5F6563" },
+          "literals":     { "icon": "check" }
+        },
+        "empty-message": {
+          "literals": { "visibility": "hidden" }
+        },
+        "empty-illustration": {
+          "literals": { "visibility": "hidden" }
+        }
+      }
+    },
+    {
+      "id": "empty-off",
+      "axes": { "type": "empty", "floating-action": "off" },
+      "figmaNodeId": "115177:22942",
+      "screenshot": "empty-off.png",
+      "layers": {
+        "root": {
+          "paddingTop":    { "token": "--klp-size-3xl", "figmaVar": "Sizing/3XL", "value": "64px" },
+          "paddingRight":  { "token": "--klp-size-3xl", "figmaVar": "Sizing/3XL", "value": "64px" },
+          "paddingBottom": { "token": "--klp-size-3xl", "figmaVar": "Sizing/3XL", "value": "64px" },
+          "paddingLeft":   { "token": "--klp-size-3xl", "figmaVar": "Sizing/3XL", "value": "64px" },
+          "itemSpacing":   { "token": "--klp-size-2xl", "figmaVar": "Sizing/2XL", "value": "48px" },
+          "literals":      { "fill": "none", "stroke": "none", "height": "auto (447px)" }
+        },
+        "cell-checkbox": {
+          "literals": { "visibility": "hidden" }
+        },
+        "cell-left": {
+          "literals": { "visibility": "hidden" }
+        },
+        "cell-badge": {
+          "literals": { "visibility": "hidden" }
+        },
+        "cell-text": {
+          "literals": { "visibility": "hidden" }
+        },
+        "cell-actions": {
+          "literals": { "visibility": "hidden" }
+        },
+        "action-button": {
+          "literals": { "visibility": "hidden" }
+        },
+        "empty-message": {
+          "literals": {
+            "visibility": "visible",
+            "color": null,
+            "note": "TOKEN_GAP: text fill hardcoded black (no boundVariable). Expected --klp-fg-default."
+          }
+        },
+        "empty-illustration": {
+          "literals": { "visibility": "visible", "note": "SVG illustration asset (undraw). No token bindings." }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "row",
+    "keyboardSupport": ["Tab", "Enter", "Space"],
+    "notes": "Should be wrapped in a <tbody> inside a <table>. Checkbox cell uses native checkbox semantics. Action buttons should have aria-label. Empty state should use aria-live or role='status' on the message."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "hardcoded #000000 (no variable)",
+      "expectedKlp": "--klp-fg-default",
+      "seenOn": "empty-off/empty-message/color",
+      "note": "Empty variant Message text has a literal black fill with no boundVariable. The adapter must apply text-klp-fg-default."
+    }
+  ]
+}

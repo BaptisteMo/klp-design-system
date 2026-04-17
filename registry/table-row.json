@@ -1,0 +1,27 @@
+{
+  "name": "table-row",
+  "type": "registry:ui",
+  "description": "A data table row component supporting default, hover, floating-action, and empty states. Contains a checkbox cell, one or more text/badge cells, and an actions cell with icon buttons.",
+  "meta": {
+    "figmaNode": "115177:22885",
+    "captureBrand": "klub",
+    "category": "data-display",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": [
+      "root",
+      "cell-checkbox",
+      "cell-left",
+      "cell-badge",
+      "cell-text",
+      "cell-actions",
+      "action-button",
+      "empty-message",
+      "empty-illustration"
+    ],
+    "variantAxes": {
+      "type": ["default", "default-hover", "floating-action", "empty"],
+      "floating-action": ["none", "on", "off"]
+    }
+  }
+}

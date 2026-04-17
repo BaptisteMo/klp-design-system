@@ -1,0 +1,17 @@
+{
+  "name": "floating-alert",
+  "type": "registry:ui",
+  "description": "A floating alert banner with a state-colored icon highlight, body text, and a dismiss button. Four severity states (Danger, Warning, Information, Success) in three sizes (Small, Medium, Large).",
+  "meta": {
+    "figmaNode": "115177:26449",
+    "captureBrand": "wireframe",
+    "category": "feedback",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": ["root", "icon-highlight", "icon", "content", "dismiss-button", "dismiss-icon"],
+    "variantAxes": {
+      "state": ["danger", "warning", "information", "success"],
+      "size": ["sm", "md", "lg"]
+    }
+  }
+}

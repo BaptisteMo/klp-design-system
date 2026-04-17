@@ -1,0 +1,16 @@
+{
+  "name": "tabulation-cells",
+  "type": "registry:ui",
+  "description": "A single tab cell used within a tabulation bar. Renders a label and an optional badge count. State=Rest shows a neutral transparent background; State=Active shows the selected tab with brand-low fill, bold label, and brand-accented badge.",
+  "meta": {
+    "figmaNode": "115177:6395",
+    "captureBrand": "klub",
+    "category": "navigation",
+    "radixPrimitive": "@radix-ui/react-tabs",
+    "anatomy": ["root", "label", "badge"],
+    "variantAxes": {
+      "state": ["rest", "active"]
+    },
+    "variantCount": 2
+  }
+}

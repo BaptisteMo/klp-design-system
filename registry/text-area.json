@@ -1,0 +1,17 @@
+{
+  "name": "text-area",
+  "type": "registry:ui",
+  "description": "Multi-line text input with optional rich-text formatting toolbar and action bar. Two feature variants (simple, rich-text) and six states (default, focus, filled, danger, success, disable).",
+  "meta": {
+    "figmaNode": "115177:2608",
+    "captureBrand": "wireframe",
+    "category": "inputs",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "head", "label", "info-icon", "input", "toolbar", "placeholder", "action-bar"],
+    "variantAxes": {
+      "feature": ["rich-text", "simple"],
+      "state": ["default", "focus", "filled", "danger", "success", "disable"]
+    }
+  }
+}

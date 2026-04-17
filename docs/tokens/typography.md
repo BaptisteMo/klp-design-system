@@ -60,6 +60,14 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Tooltip](../components/_index_tooltip.md) — `font-klp-body`, `font-weight-klp-body`, `text-klp-text-medium` on label layer.
 - [Badge](../components/_index_badges.md) — `font-klp-body`, `font-weight-klp-body`, `text-klp-text-small` on label layer across all variants.
 - [Input](../components/_index_input.md) — `font-klp-label`, `font-weight-label` / `font-weight-label-bold`, `text-klp-text-large` / `text-klp-text-medium` on label, placeholder, and description layers.
+- [List Content](../components/_index_list-content.md) — `font-klp-label`, `text-klp-text-medium` on label layer; `text-klp-text-small` (small/medium size) or `text-klp-text-medium` (large size) on sublabel layer.
+- [Table Row](../components/_index_table-row.md) — `font-klp-body`, `text-klp-text-medium`, `font-klp-body` (body-bold weight) on cell-text layers for primary and secondary text.
+- [ActionSheet Item](../components/_index_action-sheet-item.md) — `font-klp-label`, `font-weight-klp-label` (400), `text-klp-text-medium` (16px) on label layer across all variants.
+- [Floating Alert](../components/_index_floating-alert.md) — `font-klp-body`, `font-klp-body` (weight 400), `text-klp-text-medium` (sm) / `text-klp-text-large` (md/lg) on content layer.
+- [InContent Alert](../components/_index_in-content-alert.md) — `font-klp-label`, `font-klp-label-bold` (weight 600), `text-klp-text-medium` on title layer; `font-klp-body`, `font-klp-body` (weight 400), `text-klp-text-medium` on body layer.
+- [BreadCrumbs](../components/_index_breadcrumbs.md) — `font-klp-body`, `font-weight-body` (400), `text-klp-text-medium` (16px) on step-label layer across all 4 step-count variants.
+- [Tabulation Cells](../components/_index_tabulation-cells.md) — `font-klp-label` / `font-klp-label-bold`, `text-klp-text-medium` on label layer; `font-klp-body`, `text-klp-text-small` on badge layer across both states.
+- [Text Area](../components/_index_text-area.md) — `font-klp-label`, `text-klp-text-medium`, `leading-[24px]` on label and placeholder layers across all variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

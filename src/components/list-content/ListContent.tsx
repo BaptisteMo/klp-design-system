@@ -1,0 +1,198 @@
+import * as React from 'react'
+import { Slot } from '@radix-ui/react-slot'
+import { cva } from 'class-variance-authority'
+import { Plus, MoreVertical } from 'lucide-react'
+import { cn } from '@/lib/cn'
+
+// ---------------------------------------------------------------------------
+// root layer — fill, padding, gap, radius vary by size + state
+// ---------------------------------------------------------------------------
+const rootVariants = cva(
+  'flex flex-col w-full transition-colors',
+  {
+    variants: {
+      size: {
+        small:  'p-klp-size-xs gap-klp-size-xs rounded-klp-l',
+        medium: 'pt-klp-size-s pb-klp-size-s pl-klp-size-xs pr-klp-size-xs gap-klp-size-s rounded-klp-l',
+        large:  'pt-klp-size-m pb-klp-size-m pl-klp-size-s pr-klp-size-s gap-klp-size-m rounded-klp-l',
+      },
+      state: {
+        default: '',
+        hover:   'bg-klp-bg-subtle',
+        active:  'bg-klp-bg-secondary-brand-low',
+      },
+    },
+    defaultVariants: { size: 'medium', state: 'default' },
+  }
+)
+
+// ---------------------------------------------------------------------------
+// decorative-icon layer — color varies by state; fixed 20×20
+// ---------------------------------------------------------------------------
+const decorativeIconVariants = cva(
+  'inline-flex shrink-0 items-center justify-center [&>svg]:h-[20px] [&>svg]:w-[20px]',
+  {
+    variants: {
+      state: {
+        default: 'text-klp-fg-default',
+        hover:   'text-klp-fg-default',
+        active:  'text-klp-fg-secondary-brand-contrasted',
+      },
+    },
+    defaultVariants: { state: 'default' },
+  }
+)
+
+// ---------------------------------------------------------------------------
+// label layer — color varies by state; typography is fixed across states
+// ---------------------------------------------------------------------------
+const labelVariants = cva(
+  'font-klp-label font-klp-label text-klp-text-medium leading-[24px]',
+  {
+    variants: {
+      state: {
+        default: 'text-klp-fg-default',
+        hover:   'text-klp-fg-default',
+        active:  'text-klp-fg-secondary-brand-contrasted',
+      },
+    },
+    defaultVariants: { state: 'default' },
+  }
+)
+
+// ---------------------------------------------------------------------------
+// sublabel layer — color is always fg-muted; font-size varies by size
+// ---------------------------------------------------------------------------
+const sublabelVariants = cva(
+  'font-klp-label font-klp-label text-klp-fg-muted',
+  {
+    variants: {
+      size: {
+        small:  'text-klp-text-small leading-[20px]',
+        medium: 'text-klp-text-small leading-[20px]',
+        large:  'text-klp-text-medium leading-[24px]',
+      },
+    },
+    defaultVariants: { size: 'medium' },
+  }
+)
+
+// ---------------------------------------------------------------------------
+// action-button layer — bg/invisible fill, bd/invisible border, always same
+// ---------------------------------------------------------------------------
+const actionButtonVariants = cva(
+  'inline-flex h-[36px] w-[36px] shrink-0 items-center justify-center rounded-klp-l border border-klp-border-invisible bg-klp-bg-invisible p-klp-size-xs text-klp-fg-default transition-colors hover:bg-klp-bg-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand',
+  {
+    variants: {},
+  }
+)
+
+// ---------------------------------------------------------------------------
+// Public types
+// ---------------------------------------------------------------------------
+export type ListContentSize  = 'small' | 'medium' | 'large'
+export type ListContentState = 'default' | 'hover' | 'active'
+
+export interface ListContentProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Size variant — controls padding and sublabel font-size */
+  size?: ListContentSize
+  /** Interaction state — controls background fill and text/icon color */
+  state?: ListContentState
+  /** Primary label text */
+  label?: React.ReactNode
+  /** Secondary sublabel text */
+  sublabel?: React.ReactNode
+  /** Whether to show the sublabel */
+  showSublabel?: boolean
+  /** Whether to show the left decorative icon */
+  showDecorativeIcon?: boolean
+  /** Custom decorative icon — defaults to Plus from lucide-react */
+  decorativeIcon?: React.ReactNode
+  /** Whether to show the right action button */
+  showActionButton?: boolean
+  /** Callback for the action button click */
+  onActionClick?: React.MouseEventHandler<HTMLButtonElement>
+  /** aria-label for the action button */
+  actionLabel?: string
+  /** Use Slot (asChild) pattern on the root */
+  asChild?: boolean
+}
+
+const ListContent = React.forwardRef<HTMLDivElement, ListContentProps>(
+  (
+    {
+      className,
+      size = 'medium',
+      state = 'default',
+      label = 'Label of the list',
+      sublabel = 'Sublabel',
+      showSublabel = true,
+      showDecorativeIcon = true,
+      decorativeIcon,
+      showActionButton = true,
+      onActionClick,
+      actionLabel = 'More options',
+      asChild = false,
+      children,
+      ...props
+    },
+    ref
+  ) => {
+    const Comp = asChild ? Slot : 'div'
+
+    return (
+      <Comp
+        ref={ref}
+        role="listitem"
+        className={cn(rootVariants({ size, state }), className)}
+        {...props}
+      >
+        {/* content row: left-part + action-button */}
+        <div className="flex items-center gap-[4px] w-full">
+          {/* left-part: decorative-icon + headline-subcontent */}
+          <div className="flex flex-1 items-center gap-[7px] min-w-0">
+            {showDecorativeIcon && (
+              <span
+                aria-hidden="true"
+                className={decorativeIconVariants({ state })}
+              >
+                {decorativeIcon ?? <Plus strokeWidth={1.5} />}
+              </span>
+            )}
+            {/* headline + sublabel stack */}
+            <div className="flex flex-col min-w-0">
+              <span className={labelVariants({ state })}>
+                {children ?? label}
+              </span>
+              {showSublabel && (
+                <span className={sublabelVariants({ size })}>
+                  {sublabel}
+                </span>
+              )}
+            </div>
+          </div>
+
+          {/* action-button */}
+          {showActionButton && (
+            <button
+              type="button"
+              aria-label={actionLabel}
+              onClick={onActionClick}
+              className={actionButtonVariants()}
+            >
+              <MoreVertical
+                aria-hidden="true"
+                strokeWidth={1.5}
+                className="h-[16px] w-[16px]"
+              />
+            </button>
+          )}
+        </div>
+      </Comp>
+    )
+  }
+)
+
+ListContent.displayName = 'ListContent'
+
+export { ListContent, rootVariants, decorativeIconVariants, labelVariants, sublabelVariants, actionButtonVariants }

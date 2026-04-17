@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-04-16
+updated: 2026-04-17
 ---
 
 # klp-design-system
@@ -20,21 +20,32 @@ Start here:
 - [Input](./components/_index_input.md) — Text input field with label and optional icons, 3 sizes × 6 states (18 variants)
 - [Radio](./components/_index_radio.md) — Radio button control, single State axis (rest / hover / clicked / disable), 4 variants
 - [Switch](./components/_index_switch.md) — Toggle switch, 2 states (toggle-on / toggle-off), animated thumb with check icon
+- [Text Area](./components/_index_text-area.md) — Multi-line text input, 2 feature variants × 6 states (12 variants)
 
 ### feedback
-*(empty — no components yet)*
+- [Floating Alert](./components/_index_floating-alert.md) — Floating alert banner, 4 states × 3 sizes (12 variants)
+- [InContent Alert](./components/_index_in-content-alert.md) — Inline alert banner, 4 content types × 3 sizes (12 variants)
 
 ### layout
 *(empty — no components yet)*
 
 ### navigation
-*(empty — no components yet)*
+- [BreadCrumbs](./components/_index_breadcrumbs.md) — Horizontal breadcrumb trail, single Steps axis (0–3 ancestor steps), 4 variants
+- [Tabulation Cells](./components/_index_tabulation-cells.md) — Single tab cell with label and optional badge, 2 states (rest / active)
+- [Tabulations](./components/_index_tabulations.md) — Horizontal tab bar container wrapping Tabulation Cells with dividers, scroll-type=none (1 variant)
 
 ### overlay
 - [Tooltip](./components/_index_tooltip.md) — Contextual tooltip bubble with a directional arrow, 4 arrow-orientation variants
 
+### overlays
+- [ActionSheet Item](./components/_index_action-sheet-item.md) — Single action-sheet row item, 7 states × 3 sizes (21 variants)
+
 ### data-display
 - [Badge](./components/_index_badges.md) — Status indicator pill, 9 types × 3 sizes × 2 styles (48 variants)
+- [Table Row](./components/_index_table-row.md) — Data table row, 4 types × floating-action axis (5 variants); supports empty state with illustration slot
+
+### list
+- [List Content](./components/_index_list-content.md) — List row with decorative icon, label + sublabel, and optional action button, 3 sizes × 3 states (9 variants)
 
 ## Tokens
 - [Token system overview](./tokens/_index_tokens.md) — 3-layer architecture (primitives → aliases → Tailwind theme)

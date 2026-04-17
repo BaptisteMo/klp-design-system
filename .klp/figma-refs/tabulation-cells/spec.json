@@ -1,0 +1,126 @@
+{
+  "name": "tabulation-cells",
+  "displayName": "Tabulation Cells",
+  "figmaNode": "115177:6395",
+  "captureBrand": "klub",
+  "category": "navigation",
+  "description": "A single tab cell used within a tabulation bar. Renders a label and an optional badge count. State=Rest shows a neutral transparent background; State=Active shows the selected tab with brand-low fill, bold label, and brand-accented badge.",
+  "radixPrimitive": "@radix-ui/react-tabs",
+  "anatomy": [
+    { "part": "root",  "element": "button", "notes": "Horizontal flex container; hug both axes; cornerRadius 8px literal" },
+    { "part": "label", "element": "span",   "notes": "Tab text; bold in Active, regular in Rest" },
+    { "part": "badge", "element": "span",   "notes": "Numeric count pill; always present but uses bg/invisible + fg/muted at rest, bg/brand-low + fg/brand-contrasted when active" }
+  ],
+  "variantAxes": {
+    "state": ["rest", "active"]
+  },
+  "variants": [
+    {
+      "id": "rest-default",
+      "axes": { "state": "rest" },
+      "figmaNodeId": "115177:6396",
+      "screenshot": "rest-default.png",
+      "layers": {
+        "root": {
+          "fill":     { "token": "--klp-bg-invisible",  "figmaVar": "bg/invisible", "value": "transparent" },
+          "literals": {
+            "cornerRadius": "8px",
+            "paddingLeft":  "12px",
+            "paddingRight": "12px",
+            "paddingTop":   "6px",
+            "paddingBottom":"6px",
+            "itemSpacing":  "8px"
+          }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",              "figmaVar": "fg/default",               "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium",   "figmaVar": "Sizing/Text/Medium",       "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",             "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label",       "figmaVar": "Weight/Label",             "value": "400" },
+          "literals":   { "lineHeight": "24px" }
+        },
+        "badge": {
+          "fill":       { "token": "--klp-bg-invisible",            "figmaVar": "bg/invisible",             "value": "transparent" },
+          "stroke":     { "token": "--klp-border-invisible",        "figmaVar": "bd/invisible",             "value": "transparent" },
+          "color":      { "token": "--klp-fg-muted",                "figmaVar": "fg/muted",                 "value": "#5F6563" },
+          "fontSize":   { "token": "--klp-font-size-text-small",    "figmaVar": "Sizing/Text/Small",        "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",        "figmaVar": "Family/Body",              "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-body",        "figmaVar": "Weight/Body",              "value": "400" },
+          "paddingX":   { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",                "value": "8px" },
+          "paddingY":   { "token": "--klp-size-2xs",                "figmaVar": "Sizing/2XS",               "value": "6px" },
+          "literals":   { "cornerRadius": "4px", "lineHeight": "18px" }
+        }
+      }
+    },
+    {
+      "id": "active-default",
+      "axes": { "state": "active" },
+      "figmaNodeId": "115177:6399",
+      "screenshot": "active-default.png",
+      "layers": {
+        "root": {
+          "fill":     { "token": "--klp-bg-brand-low",   "figmaVar": "bg/brand-low", "value": "#F2FAF7" },
+          "literals": {
+            "cornerRadius": "8px",
+            "paddingLeft":  "12px",
+            "paddingRight": "12px",
+            "paddingTop":   "6px",
+            "paddingBottom":"6px",
+            "itemSpacing":  "8px",
+            "dropShadow":   "0 1px 1px rgba(0,0,0,0.15)"
+          }
+        },
+        "label": {
+          "color":      { "token": "--klp-fg-default",              "figmaVar": "fg/default",               "value": "#1A211E" },
+          "fontSize":   { "token": "--klp-font-size-text-medium",   "figmaVar": "Sizing/Text/Medium",       "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",             "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",        "value": "700" },
+          "literals":   { "lineHeight": "24px" }
+        },
+        "badge": {
+          "fill":       { "token": "--klp-bg-brand-low",            "figmaVar": "bg/brand-low",             "value": "#F2FAF7" },
+          "stroke":     { "token": "--klp-border-invisible",        "figmaVar": "bd/invisible",             "value": "transparent" },
+          "color":      { "token": "--klp-fg-brand-contrasted",     "figmaVar": "fg/brand-contrasted",      "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",    "figmaVar": "Sizing/Text/Small",        "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",        "figmaVar": "Family/Body",              "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-body",        "figmaVar": "Weight/Body",              "value": "400" },
+          "paddingX":   { "token": "--klp-size-xs",                 "figmaVar": "Sizing/XS",                "value": "8px" },
+          "paddingY":   { "token": "--klp-size-2xs",                "figmaVar": "Sizing/2XS",               "value": "6px" },
+          "literals":   { "cornerRadius": "4px", "lineHeight": "18px" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "tab",
+    "keyboardSupport": ["Enter", "Space", "ArrowLeft", "ArrowRight"],
+    "notes": "Must be wrapped in a TabList (role=tablist). aria-selected=true when active. Radix Tabs.Trigger handles ARIA and keyboard navigation automatically."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "root/cornerRadius (literal 8px)",
+      "expectedKlp": "--klp-radius-m",
+      "seenOn": "rest-default/root/cornerRadius, active-default/root/cornerRadius"
+    },
+    {
+      "figmaVar": "root/paddingLeft+paddingRight (literal 12px)",
+      "expectedKlp": "--klp-size-s",
+      "seenOn": "rest-default/root/paddingLeft, rest-default/root/paddingRight, active-default/root/paddingLeft, active-default/root/paddingRight"
+    },
+    {
+      "figmaVar": "root/paddingTop+paddingBottom (literal 6px)",
+      "expectedKlp": "--klp-size-2xs",
+      "seenOn": "rest-default/root/paddingTop, rest-default/root/paddingBottom, active-default/root/paddingTop, active-default/root/paddingBottom"
+    },
+    {
+      "figmaVar": "root/itemSpacing (literal 8px)",
+      "expectedKlp": "--klp-size-xs",
+      "seenOn": "rest-default/root/itemSpacing, active-default/root/itemSpacing"
+    },
+    {
+      "figmaVar": "badge/cornerRadius (literal 4px)",
+      "expectedKlp": "--klp-radius-m",
+      "seenOn": "rest-default/badge/cornerRadius, active-default/badge/cornerRadius"
+    }
+  ]
+}

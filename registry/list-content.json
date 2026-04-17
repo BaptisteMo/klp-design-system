@@ -1,0 +1,15 @@
+{
+  "name": "list-content",
+  "type": "registry:ui",
+  "description": "A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).",
+  "meta": {
+    "figmaNode": "115177:6964",
+    "captureBrand": "wireframe",
+    "category": "list",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "variantAxes": {
+      "size": ["small", "medium", "large"],
+      "state": ["default", "hover", "active"]
+    }
+  }
+}

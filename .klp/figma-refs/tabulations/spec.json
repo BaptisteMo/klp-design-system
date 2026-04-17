@@ -1,0 +1,137 @@
+{
+  "name": "tabulations",
+  "displayName": "Tabulations",
+  "figmaNode": "115177:6402",
+  "captureBrand": "klub",
+  "category": "navigation",
+  "description": "Horizontal tab bar container that wraps a set of Tabulation_Cells instances separated by vertical line dividers. Scroll type=None (fixed layout). The bar handles the outer frame, inner padding, and divider chrome; individual cell selection state (active/rest) is delegated to the Tabulation_Cells sub-component.",
+  "radixPrimitive": "@radix-ui/react-tabs",
+  "anatomy": [
+    { "part": "root",       "element": "div",    "notes": "Horizontal flex container; hug both axes; holds cells and dividers; role=tablist" },
+    { "part": "divider",    "element": "span",   "notes": "Vertical separator line between cells; aria-hidden" },
+    { "part": "cell-root",  "element": "button", "notes": "Individual tab trigger; paddingX 12px, paddingY 6px, cornerRadius 8px; active state adds bg/brand-low fill + drop-shadow" },
+    { "part": "cell-label", "element": "span",   "notes": "Tab label text; bold weight in active state, regular in rest" },
+    { "part": "cell-badge", "element": "span",   "notes": "Numeric count pill; bg/brand-low + fg/brand-contrasted when active; transparent + fg/muted when rest" }
+  ],
+  "variantAxes": {
+    "scroll-type": ["none"]
+  },
+  "variants": [
+    {
+      "id": "scroll-type-none-default",
+      "axes": { "scroll-type": "none" },
+      "figmaNodeId": "115177:6403",
+      "screenshot": "scroll-type-none-default.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-subtle",       "figmaVar": "bg/subtle",    "value": "#F7F9F8" },
+          "stroke":       { "token": "--klp-border-default",  "figmaVar": "bd/default",   "value": "#D7DAD9" },
+          "literals": {
+            "cornerRadius":  "8px",
+            "paddingAll":    "2px",
+            "itemSpacing":   "4px",
+            "note": "cornerRadius/padding/itemSpacing have no variable binding in Figma; adapter should use --klp-radius-l / --klp-size-4xs / --klp-size-3xs respectively"
+          }
+        },
+        "divider": {
+          "stroke":       { "token": "--klp-border-default",  "figmaVar": "bd/default",   "value": "#D7DAD9" },
+          "literals":     { "strokeWeight": "1px", "length": "24px" }
+        },
+        "cell-root": {
+          "fill-active":  { "token": "--klp-bg-invisible",    "figmaVar": "bg/invisible", "value": "transparent",
+                            "note": "Active fill is supplied by the Tabulation_Cells component's own bg/brand-low fill; the Tabulations container does not override it" },
+          "fill-rest":    { "token": "--klp-bg-invisible",    "figmaVar": "bg/invisible", "value": "transparent" },
+          "literals": {
+            "cornerRadius":  "8px",
+            "paddingLeft":   "12px",
+            "paddingRight":  "12px",
+            "paddingTop":    "6px",
+            "paddingBottom": "6px",
+            "itemSpacing":   "8px",
+            "dropShadow-active": "0 1px 1px rgba(0,0,0,0.15)"
+          }
+        },
+        "cell-label": {
+          "color":        { "token": "--klp-fg-default",               "figmaVar": "fg/default",           "value": "#1A211E" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",    "figmaVar": "Sizing/Text/Medium",   "value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",        "figmaVar": "Family/Label",         "value": "Test Calibre" },
+          "fontWeight-active": { "token": "--klp-font-weight-label-bold", "figmaVar": "Weight/Label Bold", "value": "600" },
+          "fontWeight-rest":   { "token": "--klp-font-weight-label",   "figmaVar": "Weight/Label",         "value": "400" },
+          "literals":     { "lineHeight": "24px" }
+        },
+        "cell-badge": {
+          "fill-active":  { "token": "--klp-bg-brand-low",             "figmaVar": "bg/brand-low",         "value": "#F2FAF7" },
+          "fill-rest":    { "token": "--klp-bg-invisible",             "figmaVar": "bg/invisible",         "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible",         "figmaVar": "bd/invisible",         "value": "transparent" },
+          "color-active": { "token": "--klp-fg-brand-contrasted",      "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "color-rest":   { "token": "--klp-fg-muted",                 "figmaVar": "fg/muted",             "value": "#5F6563" },
+          "fontSize":     { "token": "--klp-font-size-text-small",     "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily":   { "token": "--klp-font-family-body",         "figmaVar": "Family/Body",          "value": "Arial" },
+          "fontWeight":   { "token": "--klp-font-weight-body",         "figmaVar": "Weight/Body",          "value": "400" },
+          "paddingX":     { "token": "--klp-size-xs",                  "figmaVar": "Sizing/XS",            "value": "8px" },
+          "paddingY":     { "token": "--klp-size-2xs",                 "figmaVar": "Sizing/2XS",           "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "lineHeight": "18px" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "tablist",
+    "keyboardSupport": ["ArrowLeft", "ArrowRight", "Home", "End", "Enter", "Space"],
+    "notes": "Root renders as role=tablist. Each cell trigger renders as role=tab with aria-selected=true when active. Radix Tabs.List + Tabs.Trigger handle all ARIA roles, selection state, and keyboard navigation automatically."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "root/fill — cross-file published variable (VariableID:2872b5c1f39d2e6e1bd7b3310c106233f8eedb64/693:36)",
+      "expectedKlp": "--klp-bg-subtle",
+      "seenOn": "scroll-type-none-default/root/fill",
+      "note": "Variable is from a published library (UI Kit Klepierre). Resolved value #F7F9F8 = gray-100 = --klp-bg-subtle in all brands. Mapping is inferred by value; fix by re-linking to the local alias variable."
+    },
+    {
+      "figmaVar": "root/stroke — cross-file published variable (VariableID:278a80f57c040e670ec913cb048805e6cb5c948e/693:75)",
+      "expectedKlp": "--klp-border-default",
+      "seenOn": "scroll-type-none-default/root/stroke",
+      "note": "Variable is from a published library. Resolved value #D7DAD9 = gray-400 in Klub brand. figma_analyze_component_set confirmed strokeToken=bd/default → --klp-border-default. Fix by re-linking to local alias."
+    },
+    {
+      "figmaVar": "root/cornerRadius — literal 8px (no variable bound)",
+      "expectedKlp": "--klp-radius-l",
+      "seenOn": "scroll-type-none-default/root/cornerRadius"
+    },
+    {
+      "figmaVar": "root/paddingAll — literal 2px (no variable bound)",
+      "expectedKlp": "--klp-size-4xs",
+      "seenOn": "scroll-type-none-default/root/paddingTop/Right/Bottom/Left"
+    },
+    {
+      "figmaVar": "root/itemSpacing — literal 4px (no variable bound)",
+      "expectedKlp": "--klp-size-3xs",
+      "seenOn": "scroll-type-none-default/root/itemSpacing"
+    },
+    {
+      "figmaVar": "cell-root/cornerRadius — literal 8px (no variable bound)",
+      "expectedKlp": "--klp-radius-l",
+      "seenOn": "scroll-type-none-default/cell-root/cornerRadius"
+    },
+    {
+      "figmaVar": "cell-root/paddingLeft+paddingRight — literal 12px (no variable bound)",
+      "expectedKlp": "--klp-size-s",
+      "seenOn": "scroll-type-none-default/cell-root/paddingLeft, scroll-type-none-default/cell-root/paddingRight"
+    },
+    {
+      "figmaVar": "cell-root/paddingTop+paddingBottom — literal 6px (no variable bound)",
+      "expectedKlp": "--klp-size-2xs",
+      "seenOn": "scroll-type-none-default/cell-root/paddingTop, scroll-type-none-default/cell-root/paddingBottom"
+    },
+    {
+      "figmaVar": "cell-root/itemSpacing — literal 8px (no variable bound)",
+      "expectedKlp": "--klp-size-xs",
+      "seenOn": "scroll-type-none-default/cell-root/itemSpacing"
+    },
+    {
+      "figmaVar": "cell-badge/cornerRadius — literal 4px (no variable bound)",
+      "expectedKlp": "--klp-radius-m",
+      "seenOn": "scroll-type-none-default/cell-badge/cornerRadius"
+    }
+  ]
+}

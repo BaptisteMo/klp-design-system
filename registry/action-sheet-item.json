@@ -1,0 +1,16 @@
+{
+  "name": "action-sheet-item",
+  "type": "registry:ui",
+  "description": "A single row item for action sheets. Supports icon slots on both sides, an optional description label, and seven semantic states (Default, Hover, Active, Emphased, Disabled, Destructive, Creation) across three sizes.",
+  "meta": {
+    "figmaNode": "115177:25061",
+    "captureBrand": "wireframe",
+    "category": "overlays",
+    "radixPrimitive": "@radix-ui/react-slot"
+  },
+  "files": [
+    "src/components/action-sheet-item/ActionSheetItem.tsx",
+    "src/components/action-sheet-item/index.ts"
+  ],
+  "dependencies": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+}

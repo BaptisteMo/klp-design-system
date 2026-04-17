@@ -1,0 +1,276 @@
+{
+  "name": "breadcrumbs",
+  "displayName": "BreadCrumbs",
+  "figmaNode": "115177:4772",
+  "captureBrand": "wireframe",
+  "category": "navigation",
+  "description": "Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "nav",
+      "notes": "Horizontal flex container; itemSpacing=4px between step items"
+    },
+    {
+      "part": "step-item",
+      "element": "button",
+      "notes": "Individual breadcrumb step (Breadcrumbs_Steps instance). paddingX=8px paddingY=4px cornerRadius=8px. Repeated N times per variant."
+    },
+    {
+      "part": "step-icon",
+      "element": "span",
+      "notes": "Home icon on first step only (store/building icon). 20x20 wrapper, 16x16 inner vector. Visible when Show Icon=true."
+    },
+    {
+      "part": "step-label",
+      "element": "span",
+      "notes": "Text label for each step. fg/muted for ancestor steps; fg/default for current step."
+    },
+    {
+      "part": "step-separator",
+      "element": "span",
+      "notes": "Chevron icon between steps. chevron-right for ancestor steps; chevron-down for current (dropdown) step."
+    }
+  ],
+  "variantAxes": {
+    "steps": ["0", "1", "2", "3"]
+  },
+  "variants": [
+    {
+      "id": "steps-0",
+      "axes": { "steps": "0" },
+      "figmaNodeId": "115177:4773",
+      "screenshot": "steps-0.png",
+      "description": "Single step: home icon + label + chevron-down. No ancestor steps.",
+      "layers": {
+        "root": {
+          "literals": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-item": {
+          "literals": {
+            "paddingLeft": "8px",
+            "paddingRight": "8px",
+            "paddingTop": "4px",
+            "paddingBottom": "4px",
+            "cornerRadius": "8px",
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-icon": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "icon": "store",
+            "wrapperSize": "20px",
+            "iconSize": "16px"
+          }
+        },
+        "step-label": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body", "figmaVar": "Family/Body", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body", "figmaVar": "Weight/Body", "value": "400" }
+        },
+        "step-separator": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "icon": "chevron-down",
+            "size": "16px"
+          }
+        }
+      }
+    },
+    {
+      "id": "steps-1",
+      "axes": { "steps": "1" },
+      "figmaNodeId": "115177:4775",
+      "screenshot": "steps-1.png",
+      "description": "Two steps: first is ancestor (home icon + label + chevron-right, fg/muted); second is current (label + chevron-down, fg/default).",
+      "layers": {
+        "root": {
+          "literals": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-item": {
+          "literals": {
+            "paddingLeft": "8px",
+            "paddingRight": "8px",
+            "paddingTop": "4px",
+            "paddingBottom": "4px",
+            "cornerRadius": "8px",
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-icon": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "icon": "store",
+            "wrapperSize": "20px",
+            "iconSize": "16px"
+          }
+        },
+        "step-label": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body", "figmaVar": "Family/Body", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body", "figmaVar": "Weight/Body", "value": "400" }
+        },
+        "step-separator": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "iconAncestor": "chevron-right",
+            "iconCurrent": "chevron-down",
+            "size": "16px",
+            "notes": "chevron-right between ancestor steps; chevron-down after current step label"
+          }
+        }
+      }
+    },
+    {
+      "id": "steps-2",
+      "axes": { "steps": "2" },
+      "figmaNodeId": "115177:4778",
+      "screenshot": "steps-2.png",
+      "description": "Three steps: two ancestors (fg/muted, chevron-right) + one current (fg/default, chevron-down).",
+      "layers": {
+        "root": {
+          "literals": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-item": {
+          "literals": {
+            "paddingLeft": "8px",
+            "paddingRight": "8px",
+            "paddingTop": "4px",
+            "paddingBottom": "4px",
+            "cornerRadius": "8px",
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-icon": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "icon": "store",
+            "wrapperSize": "20px",
+            "iconSize": "16px"
+          }
+        },
+        "step-label": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body", "figmaVar": "Family/Body", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body", "figmaVar": "Weight/Body", "value": "400" }
+        },
+        "step-separator": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "iconAncestor": "chevron-right",
+            "iconCurrent": "chevron-down",
+            "size": "16px"
+          }
+        }
+      }
+    },
+    {
+      "id": "steps-3",
+      "axes": { "steps": "3" },
+      "figmaNodeId": "115177:4782",
+      "screenshot": "steps-3.png",
+      "description": "Four steps: three ancestors (fg/muted, chevron-right) + one current (fg/default, chevron-down). Maximum depth shown in design.",
+      "layers": {
+        "root": {
+          "literals": {
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-item": {
+          "literals": {
+            "paddingLeft": "8px",
+            "paddingRight": "8px",
+            "paddingTop": "4px",
+            "paddingBottom": "4px",
+            "cornerRadius": "8px",
+            "display": "flex",
+            "flexDirection": "row",
+            "alignItems": "center",
+            "gap": "4px"
+          }
+        },
+        "step-icon": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "icon": "store",
+            "wrapperSize": "20px",
+            "iconSize": "16px"
+          }
+        },
+        "step-label": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-body", "figmaVar": "Family/Body", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body", "figmaVar": "Weight/Body", "value": "400" }
+        },
+        "step-separator": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals": {
+            "iconAncestor": "chevron-right",
+            "iconCurrent": "chevron-down",
+            "size": "16px"
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "navigation",
+    "ariaLabel": "Breadcrumb",
+    "keyboardSupport": ["Tab", "Enter", "Space"],
+    "notes": "Wrap in <nav aria-label='Breadcrumb'>. Each step is an interactive element (button or anchor). Current step should have aria-current='page' and is not a link. Ancestor steps are links or buttons. Use ordered list (<ol>/<li>) for screen reader hierarchy."
+  },
+  "stateNotes": {
+    "stepStates": ["Default", "Current"],
+    "styleVariants": ["Dropdown", "Link"],
+    "hoverInteraction": "MOUSE_ENTER reaction on Breadcrumbs_Steps triggers CHANGE_TO animation (SMART_ANIMATE, EASE_OUT, 150ms) to hover state node 111204:18499"
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "VariableID:19:522",
+      "expectedKlp": null,
+      "resolvedValue": "16px",
+      "notes": "Icon inner size (Icon/Store w/h). No named alias in 02 - Alias Spacing catalog. Use literal 16px. A --klp-size-icon-sm alias would be the correct fix.",
+      "seenOn": "steps-0,steps-1,steps-2,steps-3/step-icon/iconSize"
+    },
+    {
+      "figmaVar": "VariableID:19:533",
+      "expectedKlp": null,
+      "resolvedValue": "20px",
+      "notes": "Icon selector wrapper size (w/h). No named alias in 02 - Alias Spacing catalog. Use literal 20px. A --klp-size-icon-md alias would be the correct fix.",
+      "seenOn": "steps-0,steps-1,steps-2,steps-3/step-icon/wrapperSize"
+    }
+  ]
+}
