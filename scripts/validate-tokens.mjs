@@ -294,22 +294,6 @@ function validate(componentName) {
     tokenWarnings.push({ type: 'missing-lucide-import', icons: [...iconNames] })
   }
 
-  // Inline-SVG detection — klp components must use lucide-react for icons, never
-  // write `<svg>` markup inline. The extractor doesn't always name the icon in
-  // literals.icon, so we also scan source JSX.
-  const inlineSvgCount = [...source.matchAll(/<svg\b/g)].length
-  if (inlineSvgCount > 0) {
-    // find the first line for the hint
-    const firstMatch = source.match(/<svg\b/)
-    const line = firstMatch ? source.slice(0, firstMatch.index).split('\n').length : null
-    tokenWarnings.push({
-      type: 'inline-svg',
-      count: inlineSvgCount,
-      line,
-      hint: 'Replace inline <svg> markup with a lucide-react import (e.g. `import { Check } from "lucide-react"`). See SKILL.md.',
-    })
-  }
-
   // Per-variant validation
   for (const variant of spec.variants) {
     const stateName = variant.axes?.state
@@ -479,9 +463,35 @@ function validate(componentName) {
     }
   }
 
-  // NEW: icons check (empty stub — filled in Task 3)
+  // --- icons check -------------------------------------------------------
+  // Flag every `<svg` or `<path` JSX opening tag. Exception: the line
+  // immediately preceding contains `allow-inline-svg:<reason>`.
   const iconsMismatches = []
   const iconsWarnings = []
+  const sourceLines = source.split('\n')
+  const svgRe = /<(svg|path)\b/
+  for (let i = 0; i < sourceLines.length; i++) {
+    const line = sourceLines[i]
+    if (!svgRe.test(line)) continue
+    const prev = i > 0 ? sourceLines[i - 1] : ''
+    const allowed = /allow-inline-svg\s*:/.test(prev)
+    const snippet = line.trim().slice(0, 120)
+    if (allowed) {
+      iconsWarnings.push({
+        kind: 'allowed-inline-svg',
+        line: i + 1,
+        snippet,
+        hint: 'Inline SVG explicitly allowed via preceding comment. Keep the justification up to date.',
+      })
+    } else {
+      iconsMismatches.push({
+        kind: 'inline-svg',
+        line: i + 1,
+        snippet,
+        hint: 'Replace with a lucide-react import, or add `{/* allow-inline-svg: <reason> */}` on the previous line if truly needed.',
+      })
+    }
+  }
 
   const checks = {
     tokens: {
