@@ -177,7 +177,7 @@ function pickCvaForLayer(blocks, layerName) {
 // { '<kebab-name>': { pascalNames: Set<string>, line: number } }.
 function extractDsImports(source) {
   const out = new Map()
-  const importRe = /import\s+(?:\*\s+as\s+\w+|\{([^}]+)\}|(\w+))\s+from\s+['"]@\/components\/([\w-]+)['"]/g
+  const importRe = /import\s+(?:type\s+)?(?:\*\s+as\s+\w+|\{([^}]+)\}|(\w+))\s+from\s+['"]@\/components\/([\w-]+)['"]/g
   for (const m of source.matchAll(importRe)) {
     const namedClause = m[1]
     const defaultClause = m[2]
@@ -186,7 +186,7 @@ function extractDsImports(source) {
     const pascalNames = new Set()
     if (namedClause) {
       for (const n of namedClause.split(',')) {
-        const trimmed = n.replace(/\s+as\s+\w+/, '').trim()
+        const trimmed = n.replace(/\s+as\s+\w+/, '').replace(/^\s*type\s+/, '').trim()
         if (trimmed) pascalNames.add(trimmed)
       }
     }
@@ -448,13 +448,13 @@ function validate(componentName) {
       })
       continue
     }
-    const pascal = kebabToPascal(klp)
-    if (!usesPascalName(source, pascal)) {
+    const used = [...importEntry.pascalNames].some((p) => usesPascalName(source, p))
+    if (!used) {
       reuseMismatches.push({
         kind: 'imported-not-used',
         part: inst.part,
         klpComponent: klp,
-        hint: `Source imports '@/components/${klp}' but does not render <${pascal}>.`,
+        hint: `Source imports '@/components/${klp}' but does not render any imported symbol (${[...importEntry.pascalNames].join(', ') || '<none>'}).`,
       })
     }
   }
