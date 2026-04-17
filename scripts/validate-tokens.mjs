@@ -221,19 +221,19 @@ function validate(componentName) {
   const cvaBlocks = extractCvaBlocks(source)
   const cvaClassSets = new Map(cvaBlocks.map((b) => [b.name, tokenizeClasses(b.body)]))
 
-  const mismatches = []
-  const warnings = []
+  const tokenMismatches = []
+  const tokenWarnings = []
 
   // Hex/rgb literal scan (warning, not failure)
   for (const hm of source.matchAll(/#[0-9a-fA-F]{3,8}\b/g)) {
     const line = source.slice(0, hm.index).split('\n').length
-    warnings.push({ type: 'hex-literal', match: hm[0], line })
+    tokenWarnings.push({ type: 'hex-literal', match: hm[0], line })
   }
 
   // Primitive-token usage scan (forbid --klp-color-* / --klp-spacing-* primitives in source)
   for (const pm of source.matchAll(/\bklp-color-[\w-]+|\bklp-spacing-[\w-]+\b/g)) {
     const line = source.slice(0, pm.index).split('\n').length
-    warnings.push({ type: 'primitive-token', match: pm[0], line })
+    tokenWarnings.push({ type: 'primitive-token', match: pm[0], line })
   }
 
   // lucide-react import check (triggered if spec names an icon by name)
@@ -244,7 +244,7 @@ function validate(componentName) {
     }
   }
   if (iconNames.size > 0 && !/from\s+['"]lucide-react['"]/.test(source)) {
-    warnings.push({ type: 'missing-lucide-import', icons: [...iconNames] })
+    tokenWarnings.push({ type: 'missing-lucide-import', icons: [...iconNames] })
   }
 
   // Inline-SVG detection — klp components must use lucide-react for icons, never
@@ -255,7 +255,7 @@ function validate(componentName) {
     // find the first line for the hint
     const firstMatch = source.match(/<svg\b/)
     const line = firstMatch ? source.slice(0, firstMatch.index).split('\n').length : null
-    warnings.push({
+    tokenWarnings.push({
       type: 'inline-svg',
       count: inlineSvgCount,
       line,
@@ -269,7 +269,7 @@ function validate(componentName) {
     if (stateName === undefined) continue
     const selector = stateMap[stateName]
     if (selector === undefined) {
-      warnings.push({
+      tokenWarnings.push({
         type: 'unknown-state',
         state: stateName,
         primitive: spec.radixPrimitive ?? 'generic',
@@ -281,7 +281,7 @@ function validate(componentName) {
       if (!layer) continue
       const cva = pickCvaForLayer(cvaBlocks, layerName)
       if (!cva) {
-        warnings.push({
+        tokenWarnings.push({
           type: 'layer-no-cva',
           layer: layerName,
           variantId: variant.id,
@@ -298,7 +298,7 @@ function validate(componentName) {
       if (allFourPad) {
         const sizeSuffix = tokenSuffix(layer.paddingTop.token)
         if (!checkPaddingShorthand(classSet, sizeSuffix)) {
-          mismatches.push({
+          tokenMismatches.push({
             variantId: variant.id,
             layer: layerName,
             property: 'padding (all 4 sides)',
@@ -319,7 +319,7 @@ function validate(componentName) {
         if (!visible && ['fill', 'background', 'color', 'stroke', 'borderColor'].includes(property)) continue
         const utility = tokenToUtility(binding.token, property)
         if (!utility) {
-          warnings.push({
+          tokenWarnings.push({
             type: 'unknown-property',
             property,
             variantId: variant.id,
@@ -354,7 +354,7 @@ function validate(componentName) {
           })
           if (hasAnyRounded) {
             satisfied = true
-            warnings.push({
+            tokenWarnings.push({
               type: 'spacing-token-for-radius',
               variantId: variant.id,
               layer: layerName,
@@ -364,7 +364,7 @@ function validate(componentName) {
           }
         }
         if (!satisfied) {
-          mismatches.push({
+          tokenMismatches.push({
             variantId: variant.id,
             layer: layerName,
             property,
@@ -379,14 +379,50 @@ function validate(componentName) {
     }
   }
 
+  // NEW: reuse check (empty stub — filled in Task 2)
+  const reuseMismatches = []
+  const reuseWarnings = []
+
+  // NEW: icons check (empty stub — filled in Task 3)
+  const iconsMismatches = []
+  const iconsWarnings = []
+
+  const checks = {
+    tokens: {
+      passed: tokenMismatches.length === 0,
+      mismatchCount: tokenMismatches.length,
+      warningCount: tokenWarnings.length,
+      mismatches: tokenMismatches,
+      warnings: tokenWarnings,
+    },
+    reuse: {
+      passed: reuseMismatches.length === 0,
+      mismatchCount: reuseMismatches.length,
+      warningCount: reuseWarnings.length,
+      mismatches: reuseMismatches,
+      warnings: reuseWarnings,
+    },
+    icons: {
+      passed: iconsMismatches.length === 0,
+      mismatchCount: iconsMismatches.length,
+      warningCount: iconsWarnings.length,
+      mismatches: iconsMismatches,
+      warnings: iconsWarnings,
+    },
+  }
+
+  const mismatches = [...tokenMismatches, ...reuseMismatches, ...iconsMismatches]
+  const warnings = [...tokenWarnings, ...reuseWarnings, ...iconsWarnings]
+
   return {
     component: componentName,
     radixPrimitive: spec.radixPrimitive ?? null,
     passed: mismatches.length === 0,
     mismatchCount: mismatches.length,
     warningCount: warnings.length,
-    mismatches,
-    warnings,
+    checks,
+    mismatches, // BC flat list
+    warnings,   // BC flat list
   }
 }
 
