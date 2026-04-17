@@ -98,7 +98,7 @@ const infoIconVariants = cva('inline-flex shrink-0 items-center justify-center t
 // itemSpacing (gap between toolbar and textarea): gap-klp-size-m
 // ---------------------------------------------------------------------------
 const inputVariants = cva(
-  'flex flex-col gap-klp-size-m rounded-[8px] border pt-klp-size-m pr-klp-size-m pb-klp-size-m pl-klp-size-m',
+  'flex flex-col gap-klp-size-m rounded-klp-l border pt-klp-size-m pr-klp-size-m pb-klp-size-m pl-klp-size-m',
   {
     variants: {
       feature: {

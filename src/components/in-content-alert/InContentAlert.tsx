@@ -23,9 +23,9 @@ const rootVariants = cva('flex flex-col', {
       warning: 'bg-klp-bg-warning',
     },
     size: {
-      lg: 'px-klp-size-m py-klp-size-m gap-klp-size-xs rounded-[16px]',
+      lg: 'px-klp-size-m py-klp-size-m gap-klp-size-xs rounded-klp-xl',
       md: 'px-klp-size-s py-klp-size-s gap-klp-size-xs rounded-[var(--klp-size-s)]',
-      sm: 'px-klp-size-xs py-klp-size-xs gap-klp-size-xs rounded-[var(--klp-size-xs)]',
+      sm: 'px-klp-size-xs py-klp-size-xs gap-klp-size-xs rounded-klp-l',
     },
   },
   defaultVariants: { content: 'info', size: 'md' },

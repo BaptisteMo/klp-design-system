@@ -18,7 +18,7 @@ import {
 // itemSpacing:  literal 4px           → gap-[4px]
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'inline-flex items-center rounded-[8px] border border-klp-border-default bg-klp-bg-subtle p-[2px] gap-[4px]',
+  'inline-flex items-stretch rounded-klp-l border border-klp-border-default bg-klp-bg-subtle p-[2px] gap-[4px]',
   {
     variants: {
       scrollType: {

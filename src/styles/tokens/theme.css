@@ -92,6 +92,7 @@
   --radius-klp-m: var(--klp-radius-m);
   --radius-klp-l: var(--klp-radius-l);
   --radius-klp-xl: var(--klp-radius-xl);
+  --radius-klp-round: var(--klp-size-round);
 
   /* typography — font family, font weight, text size */
   --font-klp-title: var(--klp-font-family-title);

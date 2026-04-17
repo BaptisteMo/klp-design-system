@@ -31,7 +31,7 @@ const rootVariants = cva(
 // Spec uses paddingLeft/paddingRight/paddingTop/paddingBottom — emit pl-/pr-/pt-/pb-.
 // ---------------------------------------------------------------------------
 const stepItemVariants = cva(
-  'flex flex-row items-center gap-[4px] pl-[8px] pr-[8px] pt-[4px] pb-[4px] rounded-[8px] cursor-pointer',
+  'flex flex-row items-center gap-[4px] pl-[8px] pr-[8px] pt-[4px] pb-[4px] rounded-klp-l cursor-pointer',
   {
     variants: {
       steps: {

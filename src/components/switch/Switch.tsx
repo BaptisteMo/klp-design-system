@@ -26,7 +26,7 @@ const rootVariants = cva(
     // border (strokeWeight: 1px)
     'border',
     // cornerRadius: spec value 9999px → arbitrary
-    'rounded-[9999px]',
+    'rounded-klp-round',
     // transitions
     'transition-colors',
     // focus ring
@@ -59,7 +59,7 @@ const thumbVariants = cva(
     // fixed size from spec literals (width: 20px, height: 20px)
     'relative block h-[20px] w-[20px]',
     // shape: full circle
-    'rounded-[9999px]',
+    'rounded-klp-round',
     // fill: --klp-bg-default → bg-klp-bg-default (both states)
     'bg-klp-bg-default',
     // drop shadow from spec literal

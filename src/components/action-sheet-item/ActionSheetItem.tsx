@@ -8,11 +8,11 @@ import { cn } from '@/lib/cn'
 // Derived literally from spec.variants[].layers.root
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'inline-flex w-full items-center border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand disabled:pointer-events-none',
+  'inline-flex w-full cursor-pointer items-center border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand disabled:pointer-events-none',
   {
     variants: {
       state: {
-        default:     'bg-klp-bg-invisible border-klp-border-invisible',
+        default:     'bg-klp-bg-invisible border-klp-border-invisible hover:bg-klp-bg-subtle',
         hover:       'bg-klp-bg-subtle border-klp-border-invisible',
         active:      'bg-klp-bg-brand-low border-klp-border-brand',
         emphased:    'bg-klp-bg-inset border-transparent',
@@ -21,9 +21,9 @@ const rootVariants = cva(
         creation:    'bg-klp-bg-success border-klp-border-invisible',
       },
       size: {
-        lg: 'h-[56px] px-klp-size-m py-klp-size-m gap-klp-size-s rounded-[8px]',
-        md: 'h-[48px] px-klp-size-s py-klp-size-s gap-klp-size-xs rounded-[4px]',
-        sm: 'h-[40px] px-klp-size-xs py-klp-size-xs gap-klp-size-xs rounded-[8px]',
+        lg: 'h-[56px] px-klp-size-m py-klp-size-m gap-klp-size-s rounded-klp-l',
+        md: 'h-[48px] px-klp-size-s py-klp-size-s gap-klp-size-xs rounded-klp-l',
+        sm: 'h-[40px] px-klp-size-xs py-klp-size-xs gap-klp-size-xs rounded-klp-l',
       },
     },
     defaultVariants: { state: 'default', size: 'lg' },

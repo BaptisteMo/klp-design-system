@@ -2,6 +2,7 @@ import * as React from 'react'
 import * as TabsPrimitive from '@radix-ui/react-tabs'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/cn'
+import { Badge } from '@/components/badges'
 
 // ---------------------------------------------------------------------------
 // rootVariants — derived from spec.variants[].layers.root
@@ -9,12 +10,12 @@ import { cn } from '@/lib/cn'
 // cornerRadius and itemSpacing are literals (no --klp-* token in spec).
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'inline-flex items-center justify-center rounded-[8px] pl-[12px] pr-[12px] pt-[6px] pb-[6px] gap-[8px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand',
+  'inline-flex items-center justify-center rounded-[6px] pl-[12px] pr-[12px] pt-[6px] pb-[6px] gap-[8px] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand cursor-pointer',
   {
     variants: {
       state: {
         rest:   'bg-klp-bg-invisible',
-        active: 'bg-klp-bg-brand-low shadow-[0_1px_1px_rgba(0,0,0,0.15)]',
+        active: 'bg-klp-bg-default shadow-[0_1px_1px_rgba(0,0,0,0.15)]',
       },
     },
     defaultVariants: { state: 'rest' },
@@ -31,24 +32,6 @@ const labelVariants = cva(
       state: {
         rest:   'text-klp-fg-default font-klp-label',
         active: 'text-klp-fg-default font-klp-label-bold',
-      },
-    },
-    defaultVariants: { state: 'rest' },
-  }
-)
-
-// ---------------------------------------------------------------------------
-// badgeVariants — derived from spec.variants[].layers.badge
-// paddingX/paddingY use token-mapped utilities (--klp-size-xs / --klp-size-2xs).
-// cornerRadius is a literal 4px.
-// ---------------------------------------------------------------------------
-const badgeVariants = cva(
-  'inline-flex items-center justify-center rounded-[4px] border px-klp-size-xs py-klp-size-2xs font-klp-body text-klp-text-small',
-  {
-    variants: {
-      state: {
-        rest:   'bg-klp-bg-invisible border-klp-border-invisible text-klp-fg-muted',
-        active: 'bg-klp-bg-brand-low border-klp-border-invisible text-klp-fg-brand-contrasted',
       },
     },
     defaultVariants: { state: 'rest' },
@@ -82,9 +65,13 @@ const TabulationCell = React.forwardRef<
         {children}
       </span>
       {badge !== undefined && badge !== null && (
-        <span className={badgeVariants({ state })}>
+        <Badge
+          badgeType={state === 'active' ? 'primary' : 'on-emphasis'}
+          badgeStyle="light"
+          size="small"
+        >
           {badge}
-        </span>
+        </Badge>
       )}
     </TabsPrimitive.Trigger>
   )
@@ -110,5 +97,4 @@ export {
   TabulationCellsContent,
   rootVariants,
   labelVariants,
-  badgeVariants,
 }

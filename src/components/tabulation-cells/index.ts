@@ -5,6 +5,5 @@ export {
   TabulationCellsContent,
   rootVariants,
   labelVariants,
-  badgeVariants,
   type TabulationCellProps,
 } from './TabulationCells'

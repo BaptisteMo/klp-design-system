@@ -11,7 +11,7 @@ import { cn } from '@/lib/cn'
 // ---------------------------------------------------------------------------
 
 const rootVariants = cva(
-  'inline-flex items-center rounded-[4px] border',
+  'inline-flex items-center rounded-klp-m border',
   {
     variants: {
       // type × badgeStyle combined into a single compound key

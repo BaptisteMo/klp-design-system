@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cva } from 'class-variance-authority'
 import { AlertTriangle, Check, Info, X } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { Button } from '@/components/button'
 
 // ---------------------------------------------------------------------------
 // Root layer — derived from spec.variants[].layers.root
@@ -10,7 +11,7 @@ import { cn } from '@/lib/cn'
 // cornerRadius token is null for all variants (tokenGap); raw value 8px → rounded-[8px]
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'flex flex-row items-center rounded-[8px] border bg-klp-bg-default shadow-[0_10px_15px_-3px_rgba(0,0,0,0.10)]',
+  'flex flex-row items-center rounded-klp-l border bg-klp-bg-default shadow-[0_10px_15px_-3px_rgba(0,0,0,0.10)]',
   {
     variants: {
       state: {
@@ -33,7 +34,7 @@ const rootVariants = cva(
 // icon-highlight layer — fill changes per state; size/radius are literals
 // ---------------------------------------------------------------------------
 const iconHighlightVariants = cva(
-  'flex shrink-0 items-center justify-center rounded-[4px] h-[36px] w-[36px] p-[8px]',
+  'flex shrink-0 items-center justify-center rounded-klp-m h-[36px] w-[36px] p-[8px]',
   {
     variants: {
       state: {
@@ -79,19 +80,6 @@ const contentVariants = cva('flex-1 text-klp-fg-default font-klp-body font-klp-b
   },
   defaultVariants: { size: 'md' },
 })
-
-// ---------------------------------------------------------------------------
-// dismiss-button layer — fill: bg-invisible, stroke: border-invisible,
-// cornerRadius: --klp-radius-l → rounded-klp-l, padding: px-klp-size-xs py-klp-size-xs
-// ---------------------------------------------------------------------------
-const dismissButtonVariants = cva(
-  'flex shrink-0 items-center justify-center rounded-klp-l border border-klp-border-invisible bg-klp-bg-invisible px-klp-size-xs py-klp-size-xs cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand-emphasis'
-)
-
-// ---------------------------------------------------------------------------
-// dismiss-icon layer — color: --klp-fg-muted → text-klp-fg-muted; size literal 20px
-// ---------------------------------------------------------------------------
-const dismissIconVariants = cva('text-klp-fg-muted [&>svg]:h-[20px] [&>svg]:w-[20px]')
 
 // ---------------------------------------------------------------------------
 // State → Lucide icon mapping
@@ -147,18 +135,16 @@ export const FloatingAlert = React.forwardRef<HTMLDivElement, FloatingAlertProps
           {children}
         </span>
 
-        {/* dismiss-button + dismiss-icon */}
+        {/* dismiss-button — reuses the DS Button (tertiary × icon) */}
         {onDismiss && (
-          <button
-            type="button"
+          <Button
+            variant="tertiary"
+            size="icon"
             aria-label="Dismiss"
             onClick={onDismiss}
-            className={dismissButtonVariants()}
           >
-            <span className={dismissIconVariants()}>
-              <X aria-hidden="true" strokeWidth={1.5} />
-            </span>
-          </button>
+            <X strokeWidth={1.5} />
+          </Button>
         )}
       </div>
     )
@@ -171,6 +157,4 @@ export {
   iconHighlightVariants,
   iconVariants,
   contentVariants,
-  dismissButtonVariants,
-  dismissIconVariants,
 }
