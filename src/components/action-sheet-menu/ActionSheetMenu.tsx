@@ -30,7 +30,7 @@ const rootVariants = cva(
   {
     variants: {
       type: {
-        default:  'min-w-[251px]',
+        default:  'min-w-[251px] shadow-[0_0_1px_0_rgba(0,0,0,0.40),0_0_1.5px_0_rgba(0,0,0,0.30),0_7px_22px_0_rgba(0,0,0,0.25)]',
         checkbox: 'min-w-[249px] gap-klp-size-xs',
         flat:     'min-w-[251px]',
       },
