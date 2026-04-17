@@ -13,9 +13,9 @@ dependencies:
   externals: ["@radix-ui/react-slot", "class-variance-authority"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
-usedBy: []
+usedBy: [tabulation-cells]
 created: 2026-04-16
-updated: 2026-04-16
+updated: 2026-04-17
 ---
 
 # Badge
@@ -233,7 +233,7 @@ export function BadgeExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [Tabulation Cells](./_index_tabulation-cells.md) — imports `Badge` for the optional numeric count pill rendered alongside each tab label.
 
 ## Files
 
@@ -249,3 +249,9 @@ export function BadgeExample() {
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
+
+<!-- KLP:GAPS:BEGIN -->
+## Gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->

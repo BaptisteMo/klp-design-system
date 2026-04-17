@@ -9,7 +9,7 @@ sources:
   - .klp/figma-refs/list-content/spec.json
   - src/components/list-content/ListContent.tsx
 dependencies:
-  components: []
+  components: [button]
   externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "spacing", "radius", "typography"]
   brands: ["wireframe"]
@@ -157,7 +157,7 @@ export function ListContentExample() {
 
 ### klp components
 
-*Leaf component — no klp dependencies.*
+- [Button](./_index_button.md) — `Button` (variant=tertiary, size=icon) is used as the right-side action button slot (the `MoreVertical` trigger).
 
 ### External libraries
 
@@ -194,3 +194,9 @@ export function ListContentExample() {
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
+
+<!-- KLP:GAPS:BEGIN -->
+## Gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->

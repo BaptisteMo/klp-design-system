@@ -212,3 +212,9 @@ export function TabulationsExample() {
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
+
+<!-- KLP:GAPS:BEGIN -->
+## Gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->

@@ -9,7 +9,7 @@ sources:
   - .klp/figma-refs/floating-alert/spec.json
   - src/components/floating-alert/FloatingAlert.tsx
 dependencies:
-  components: []
+  components: [button]
   externals: [class-variance-authority, lucide-react]
   tokenGroups: [colors, radius, spacing, typography]
   brands: [wireframe]
@@ -170,7 +170,7 @@ export function FloatingAlertExample() {
 
 ### klp components
 
-*Leaf component — no klp dependencies.*
+- [Button](./_index_button.md) — `Button` (variant=tertiary, size=icon) is used as the dismiss button; renders the `X` icon and fires the `onDismiss` callback.
 
 ### External libraries
 
@@ -206,3 +206,9 @@ export function FloatingAlertExample() {
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
+
+<!-- KLP:GAPS:BEGIN -->
+## Gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->

@@ -9,7 +9,7 @@ sources:
   - .klp/figma-refs/text-area/spec.json
   - src/components/text-area/TextArea.tsx
 dependencies:
-  components: []
+  components: [button]
   externals: ["class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
@@ -221,7 +221,7 @@ export function TextAreaExample() {
 
 ### klp components
 
-*Leaf component — no klp dependencies.*
+- [Button](./_index_button.md) — `Button` instances are used in the action bar (rich-text variant) for the confirm and cancel actions.
 
 ### External libraries
 
@@ -257,3 +257,9 @@ export function TextAreaExample() {
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
+
+<!-- KLP:GAPS:BEGIN -->
+## Gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->

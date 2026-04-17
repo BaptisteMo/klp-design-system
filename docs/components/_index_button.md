@@ -21,9 +21,9 @@ dependencies:
     - typography
   brands:
     - atlas
-usedBy: []
+usedBy: [floating-alert, list-content, text-area]
 created: 2026-04-16
-updated: 2026-04-16
+updated: 2026-04-17
 ---
 
 # Button
@@ -191,7 +191,9 @@ import { Button } from '@/components/button'
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [Floating Alert](./_index_floating-alert.md) — imports `Button` for the dismiss button slot.
+- [List Content](./_index_list-content.md) — imports `Button` for the right-side action button slot.
+- [Text Area](./_index_text-area.md) — imports `Button` for the action bar confirm/cancel slots.
 
 ## Files
 
@@ -209,3 +211,9 @@ import { Button } from '@/components/button'
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
+
+<!-- KLP:GAPS:BEGIN -->
+## Gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->

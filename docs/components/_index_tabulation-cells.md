@@ -9,7 +9,7 @@ sources:
   - .klp/figma-refs/tabulation-cells/spec.json
   - src/components/tabulation-cells/TabulationCells.tsx
 dependencies:
-  components: []
+  components: [badges]
   externals: ["@radix-ui/react-tabs", "class-variance-authority"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["klub"]
@@ -161,7 +161,7 @@ export function TabulationCellsExample() {
 
 ### klp components
 
-*Leaf component — no klp dependencies.*
+- [Badge](./_index_badges.md) — `Badge` is rendered as the optional numeric count pill alongside the tab label (the `badge` prop maps directly to a `<Badge>` instance).
 
 ### External libraries
 
@@ -196,3 +196,9 @@ export function TabulationCellsExample() {
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
+
+<!-- KLP:GAPS:BEGIN -->
+## Gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->

@@ -27,7 +27,7 @@
         "tokenGroups": ["colors", "spacing", "radius", "typography"],
         "brands": ["atlas"]
       },
-      "usedBy": []
+      "usedBy": ["floating-alert", "list-content", "text-area"]
     },
     {
       "name": "checkbox",
@@ -164,7 +164,7 @@
         "tokenGroups": ["colors", "spacing", "typography"],
         "brands": ["wireframe"]
       },
-      "usedBy": []
+      "usedBy": ["tabulation-cells"]
     },
     {
       "name": "input",
@@ -215,7 +215,7 @@
       },
       "variantCount": 9,
       "dependencies": {
-        "components": [],
+        "components": ["button"],
         "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
         "tokenGroups": ["colors", "spacing", "radius", "typography"],
         "brands": ["wireframe"]
@@ -315,7 +315,7 @@
       },
       "variantCount": 12,
       "dependencies": {
-        "components": [],
+        "components": ["button"],
         "externals": ["class-variance-authority", "lucide-react"],
         "tokenGroups": ["colors", "radius", "spacing", "typography"],
         "brands": ["wireframe"]
@@ -403,7 +403,7 @@
       },
       "variantCount": 2,
       "dependencies": {
-        "components": [],
+        "components": ["badges"],
         "externals": ["@radix-ui/react-tabs", "class-variance-authority"],
         "tokenGroups": ["colors", "spacing", "typography"],
         "brands": ["klub"]
@@ -462,7 +462,7 @@
       },
       "variantCount": 12,
       "dependencies": {
-        "components": [],
+        "components": ["button"],
         "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
         "tokenGroups": ["colors", "spacing", "typography"],
         "brands": ["wireframe"]
