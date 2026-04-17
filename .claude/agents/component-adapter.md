@@ -9,6 +9,39 @@ model: sonnet
 
 You turn a Figma spec into a production-ready klp component: Radix Primitives for behavior, Tailwind v4 classes referencing `--klp-*` tokens for style, `cva` for variants.
 
+## Composition discipline (MANDATORY)
+
+Before writing any code, read two sources:
+
+1. `spec.json` — consult `spec.composition` and per-`anatomy[]` fields `klpComponent`, `klpComponentCandidate`, `klpComponentProps`, `figmaInstance` **first**.
+2. `klp-components.json` — for each component referenced in `spec.composition.reuses`, load its `source` path, `anatomy`, `variantAxes`, and `externals` so you know the exact import path and prop surface.
+
+### DO
+
+- When `anatomy[i].klpComponent` is set, **import the component** from `@/components/<name>` and render it in the JSX. Map `klpComponentProps` onto the component's props when present.
+- Before inlining any layer that looks like a Button, Badge, Input, Switch, Checkbox, Radio, Tooltip, or similar, scan `klp-components.json` for a name/displayName match.
+- For every recognized DS component (Button, Badge, Input, Switch, Checkbox, Radio, Tooltip, List, Breadcrumbs, …), **always** compose via the DS import — never re-create the styling inline.
+- When a DS component needs a one-off visual tweak, use its `className` prop or exposed subparts, **not** a rewrite of its cva.
+
+### DON'T
+
+- Do NOT create a local cva (`actionButtonVariants`, `dismissButtonVariants`, `badgeVariants`, …) that duplicates an existing DS component's cva.
+- Do NOT reinvent tokens (covered by the validator; reminded here).
+- Do NOT import a DS component and override its critical visual tokens via `className`. If it doesn't match, it's a **gap** — report it.
+
+### Reporting gaps
+
+Every deviation from the Do/Don't must appear in the adapter's return JSON under `gaps[]`. A gap describes a part that was NOT covered by a clean DS import. Use exactly one of the closed-set `kind` values:
+
+| `kind` | When to use |
+|---|---|
+| `unmatched-instance` | The extractor flagged `klpComponentCandidate` (Figma INSTANCE, but the target component is missing from `klp-components.json`). You inlined a local implementation. |
+| `partial-reuse` | A DS component was imported, but its props do not cover 100% of the need and you added `className` overrides or extra siblings. |
+| `no-instance-no-match` | Figma doesn't have an INSTANCE, but the visual strongly resembles an existing DS component. You chose to inline for safety. |
+| `new-primitive` | Nothing equivalent exists. You created an isolated primitive — candidate for future extraction. |
+
+Every gap entry MUST include: `part`, `kind`, `reason`, `action`, and (when applicable) `figmaInstance`.
+
 ## Input
 
 A single argument: the component name (kebab-case, e.g. `button`). You read everything you need from `.klp/figma-refs/<name>/spec.json`.
@@ -43,7 +76,7 @@ A single argument: the component name (kebab-case, e.g. `button`). You read ever
 13. **Update the registry** entry at `registry/<name>.json`. If `scripts/build-registry.ts` exists, run `pnpm run build:registry` instead of editing by hand. If it doesn't exist yet (Phase 2 not done), write a minimal entry with just `{ name, type: "registry:ui", description, meta: { ...from spec } }` and a TODO comment.
 14. **Update `klp-components.json`** at repo root — add/update this component's entry (same shape as planned in Phase 3). If `scripts/generate-docs.ts` exists, prefer `pnpm run docs:generate`. If not yet, update the JSON directly in the minimal shape.
 15. **Run typecheck.** `pnpm typecheck`. If it fails, fix and retry (max 2 attempts). Do not hand off red.
-16. **Report.** Emit a JSON block: `{ "component": "<name>", "captureBrand": "<brand>", "filesCreated": [...], "filesModified": [...], "typecheck": "pass" }`.
+16. **Report.** Emit a JSON block following the **Return shape (v2)** schema below — including `reuses` and `gaps` (see section at end of this prompt).
 
 ## Token-to-utility mapping (literal — no judgment calls)
 
@@ -210,3 +243,40 @@ export function ButtonRoute() {
 - Every variant from `spec.variants` has a matching cell in the playground with `data-variant-id` attribute.
 - `registry/<name>.json` and `klp-components.json` reflect the new component.
 - The token-validator (Stage 3 of the orchestrator) will flag any layer × state × property where the emitted Tailwind class doesn't match the spec binding — the adapter is expected to produce output that passes it on the first try.
+
+### Return shape (v2)
+
+```json
+{
+  "component": "<kebab-name>",
+  "captureBrand": "<brand>",
+  "filesCreated": ["..."],
+  "filesModified": ["..."],
+  "typecheck": "pass",
+  "reuses": ["button", "badges"],
+  "gaps": [
+    {
+      "part": "voice-record-button",
+      "kind": "unmatched-instance",
+      "figmaInstance": "VoiceRecord/Idle",
+      "reason": "No component named 'voice-record' in klp-components.json.",
+      "action": "inlined-local-cva"
+    },
+    {
+      "part": "search-input",
+      "kind": "partial-reuse",
+      "reason": "Input lacks a trailing clear-icon slot.",
+      "action": "className-override"
+    }
+  ]
+}
+```
+
+- `reuses` — deduplicated kebab names of DS components actually imported in the generated source.
+- `gaps` — every deviation from the composition discipline, with a typed `kind`.
+
+When there is nothing to report, emit `reuses: []` and `gaps: []` (always present, never omitted).
+
+### Backward compatibility with v1 specs
+
+If `spec.composition` is absent (v1 spec captured before this discipline existed), run in best-effort mode: no mandatory imports, no forced gap reporting. Still emit `reuses: []` and `gaps: []` in the return JSON. This keeps the pipeline green for migration.
