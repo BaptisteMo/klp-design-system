@@ -87,4 +87,15 @@ User gates: 3 total (start, optional mid-batch on failures, end commit).
 
 Use the unitary `/klp-build-component <name>` for ad-hoc single-component additions outside a backlog session.
 
+## Composition workflow (since 2026-04-17)
+
+Composite components (those that reuse existing primitives) go through the same `/klp-build-component` pipeline with four reinforcements:
+
+1. **figma-extractor** detects Figma INSTANCE nodes referencing integrated components and flags them in `spec.json` (`anatomy[].klpComponent`, top-level `composition`).
+2. **component-adapter** imports flagged components instead of reimplementing them. Any gap (unmatched instance, partial reuse, new primitive) is typed and returned as `gaps[]`.
+3. **validate-tokens.mjs** runs three check families: `tokens` (existing), `reuse` (imports honor spec), and `icons` (no inline SVG without an `allow-inline-svg` escape hatch).
+4. **documentalist** scans imports from source to keep the dependency graph in sync, writes a per-component `KLP:GAPS` block, and regenerates `docs/gaps.md`.
+
+To review the current DS gap backlog: open `docs/gaps.md`.
+
 <!-- KLP:NOTES:END -->
