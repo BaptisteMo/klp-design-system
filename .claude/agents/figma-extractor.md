@@ -15,28 +15,26 @@ A single argument: a Figma component name (e.g. `Button`) or node ID. The user s
 
 ## Steps
 
-0. **Bootstrap.** Read `klp-components.json` at the repo root once. Extract `integratedSet = new Set(components.map(c => c.name))`. You will cross-reference every Figma `INSTANCE` against this set.
+0. **Bootstrap.** Read `klp-components.json` at the repo root once. Extract `integratedSet = new Set(components.map(c => c.name.toLowerCase().replace(/\s+/g, '-')))`. Names in `klp-components.json` are already kebab-case by convention, but normalize defensively. You will cross-reference every Figma `INSTANCE` against this set.
 1. **Check connection.** Call `mcp__figma-console__figma_get_status`. If the plugin is not connected, abort with a clear message telling the user to open Figma and pair the Claude Console plugin.
 2. **Resolve the node.** Use `mcp__figma-console__figma_get_component_for_development_deep` (or `figma_analyze_component_set` if the target is a component set with variants) to fetch the full structure including child layer node IDs. If no node ID was passed, ask the user to select the component in Figma (the Console plugin reports the selection).
 3. **Detect active brand.** Call `mcp__figma-console__figma_get_file_data` and inspect the active variable mode of the component's parent collection. Map the Figma mode name to one of `wireframe | klub | atlas | showup`. Record it as `captureBrand` at the root of the spec — the playground will activate this brand on mount so the designer sees the same rendering the reference screenshots were captured under. `captureBrand` is **informational only**; token validation is brand-independent (aliases resolve per-brand automatically). If the mode cannot be determined, ask the user to confirm the active brand, but it is not a hard blocker.
 4. **Enumerate variants.** If the node is a component set, list every variant combination (variant × size × state). For a single component, produce a single-entry list.
 5. **Enumerate anatomy layers.** For each variant, walk the Figma node tree returned in step 2 and identify named child layers (root, label, icon-left, icon-right, indicator, etc.). Layer names should be normalized to kebab-case. The set of layers is the `anatomy` of the component.
 
-### Composition detection (per anatomy part)
+   For each anatomy part you identify, also run the composition detection below:
 
-For each anatomy part, look at the Figma node that backs it.
+   1. If the node `type === "INSTANCE"`, resolve `mainComponent.name` via `figma_get_component_for_development_deep`. Strip the variant suffix to keep only the component-set name. Kebab-case it: this is the `candidate` name.
+   2. If `integratedSet.has(candidate)`:
+      - Set `anatomy[i].klpComponent = candidate`.
+      - Infer `klpComponentProps` from the Figma variant string when obvious (e.g. `Button/Tertiary/Icon` → `{ variant: "tertiary", size: "icon" }`). Omit when not obvious.
+      - Set `anatomy[i].figmaInstance = { name: "<full-figma-name>", key: "<figma-key>" }`.
+   3. If the `candidate` is not in `integratedSet`:
+      - Set `anatomy[i].klpComponentCandidate = candidate`.
+      - Set `anatomy[i].figmaInstance = { name: "<full>", key: "<key>" }`.
+   4. If the node is not an INSTANCE, add no composition fields (inline-drawn layer).
 
-1. If the node `type === "INSTANCE"`, resolve `mainComponent.name` via `figma_get_component_for_development_deep`. Strip the variant suffix to keep only the component-set name. Kebab-case it: this is the `candidate` name.
-2. If `integratedSet.has(candidate)`:
-   - Set `anatomy[i].klpComponent = candidate`.
-   - Infer `klpComponentProps` from the Figma variant string when obvious (e.g. `Button/Tertiary/Icon` → `{ variant: "tertiary", size: "icon" }`). Omit when not obvious.
-   - Set `anatomy[i].figmaInstance = { name: "<full-figma-name>", key: "<figma-key>" }`.
-3. If the `candidate` is not in `integratedSet`:
-   - Set `anatomy[i].klpComponentCandidate = candidate`.
-   - Set `anatomy[i].figmaInstance = { name: "<full>", key: "<key>" }`.
-4. If the node is not an INSTANCE, add no composition fields (inline-drawn layer).
-
-If `mainComponent` cannot be resolved (cross-file library, detached instance), record `klpComponentCandidate: null` and `figmaInstance: { name: "<raw>", key: null }`.
+   If `mainComponent` cannot be resolved (cross-file library, detached instance), record `klpComponentCandidate: null` and `figmaInstance: { name: "<raw>", key: null }`.
 
 6. **Read per-layer variable bindings.** Call `mcp__figma-console__figma_get_variables` once for the whole file to get the variable catalog. Then, for **each layer of each variant**, inspect the layer node returned by step 2 and extract the `boundVariables` map for every styled property (fill, stroke, cornerRadius, paddingTop/Right/Bottom/Left, itemSpacing, fontSize, fontFamily, fontWeight, lineHeight, letterSpacing, opacity, effect tokens). For every bound property, record:
    - The exact Figma variable name (e.g. `bg/brand`, `fg/on-emphasis`, `font-size/text-medium`)
@@ -65,7 +63,21 @@ If `mainComponent` cannot be resolved (cross-file library, detached instance), r
     { "part": "root",       "element": "button", "notes": "Uses Slot when asChild" },
     { "part": "icon-left",  "element": "span",   "notes": "Optional, hidden if no leftIcon prop" },
     { "part": "label",      "element": "span",   "notes": "Hidden when size=icon" },
-    { "part": "icon-right", "element": "span",   "notes": "Optional, hidden if no rightIcon prop" }
+    {
+      "part": "action-button",
+      "element": "button",
+      "notes": "trailing action affordance",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "icon" },
+      "figmaInstance": { "name": "Button/Tertiary/Icon", "key": "abc123" }
+    },
+    {
+      "part": "calendar",
+      "element": "div",
+      "notes": "date picker slot — missing DS component",
+      "klpComponentCandidate": "date-picker",
+      "figmaInstance": { "name": "DatePicker/Default", "key": "def456" }
+    }
   ],
   "variantAxes": {
     "variant": ["primary", "secondary", "ghost", "link"],
@@ -108,14 +120,7 @@ If `mainComponent` cannot be resolved (cross-file library, detached instance), r
   "tokenGaps": [
     { "figmaVar": "bg/decorative-teal", "expectedKlp": "--klp-bg-decorative-teal", "seenOn": "primary-md-default/root/fill" }
   ],
-  "composition": {
-    "reuses": ["button", "badges"],
-    "candidates": ["date-picker"],
-    "instances": [
-      { "part": "action-button", "klpComponent": "button",               "figmaInstance": { "name": "Button/Tertiary/Icon", "key": "..." } },
-      { "part": "calendar",      "klpComponentCandidate": "date-picker", "figmaInstance": { "name": "DatePicker/Default",   "key": "..." } }
-    ]
-  }
+  "composition": { "...": "see ### composition section below" }
 }
 ```
 
@@ -145,6 +150,7 @@ If `mainComponent` cannot be resolved (cross-file library, detached instance), r
 - `reuses` — deduplicated kebab names of `anatomy[].klpComponent` values.
 - `candidates` — deduplicated kebab names of `anatomy[].klpComponentCandidate` values.
 - `instances` — one entry per anatomy part that is backed by a Figma INSTANCE (either matched or candidate).
+- `klpComponentProps` — a free-form object of inferred props (e.g. `{ variant: "tertiary", size: "icon" }`), emitted on an anatomy entry when the Figma variant string parses cleanly into recognizable prop names. Omitted otherwise. The adapter reads this as hints, not a binding contract — it may override or ignore any field.
 
 If no INSTANCE is found in the whole component, emit `composition: { reuses: [], candidates: [], instances: [] }`.
 
