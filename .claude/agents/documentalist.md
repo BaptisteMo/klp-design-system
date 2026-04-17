@@ -67,8 +67,21 @@ Steps:
    | `font-weight`   | `tokens/typography.md`    |
 
 7. **Compute brand dependencies.** Start from `spec.captureBrand`. If additional brand reference folders exist at `.klp/figma-refs/<component>/<brand>/`, add those too.
-8. **Read existing doc page** at `docs/components/_index_<component>.md` if present. Extract the contents between `<!-- KLP:NOTES:BEGIN -->` and `<!-- KLP:NOTES:END -->` — this is preserved verbatim.
-9. **Write the new doc page** at `docs/components/_index_<component>.md` using the schema below. Re-inject the preserved Notes block (or insert an empty one if first generation).
+8. **Read existing doc page** at `docs/components/_index_<component>.md` if present. Extract the contents between `<!-- KLP:NOTES:BEGIN -->` and `<!-- KLP:NOTES:END -->` — this is preserved verbatim. Also extract the contents between `<!-- KLP:GAPS:BEGIN -->` and `<!-- KLP:GAPS:END -->` for reference (will be overwritten with fresh data).
+9. **Write the new doc page** at `docs/components/_index_<component>.md` using the schema below. Re-inject the preserved Notes block (or insert an empty one if first generation). Write the `KLP:GAPS` block (see "KLP:GAPS block" subsection below) right before the `KLP:NOTES` block.
+
+### Systematic `@/components/*` import scan (DOCUMENT + SYNC)
+
+Before writing the canonical `klp-components.json` entry and the doc page:
+
+1. Read `src/components/<name>/<Component>.tsx` (and `.example.tsx` if present).
+2. Regex-match every `from ['"]@/components/([\w-]+)['"]` occurrence to collect a set of imported DS components.
+3. For each imported name, verify it exists in `klp-components.json` (otherwise warn: broken/unknown import — record it and continue).
+4. Write `dependencies.components: [...]` in the canonical entry for the current component. Sort alphabetically for stable diffs.
+5. **Reverse-index pass:** for every component in `dependencies.components`, ensure its `usedBy[]` contains the current component. The pass is idempotent — recompute from scratch each run.
+
+This scan is authoritative. Even if the adapter's `reuses[]` omits a composition edge, the documentalist catches it from the source code.
+
 10. **Update `klp-components.json`** at repo root. Find the component entry by `name` and overwrite with the canonical entry. If absent, append. Sort the array by `name`.
 11. **Update `docs/index.md`**. Find the entry under the component's `category` section and refresh the line. If the category section doesn't exist, create it.
 12. **Run the reverse-index pass.** See "Reverse-index pass" below.
@@ -83,6 +96,18 @@ Steps:
 Same as DOCUMENT plus:
 - Detect dependency removals: if the previous doc had `dependencies.components: [X]` and the new scan shows X is no longer imported, the reverse-index pass must remove `<component>` from X's `usedBy`.
 - Detect renamed/deleted components: if `<component>` no longer has a source file but its doc page exists, ask the user to confirm deletion (do NOT delete docs without confirmation). On confirm: remove the page, remove from `index.md`, remove from `klp-components.json`, and re-run the reverse-index pass to purge stale links.
+
+### Extended SYNC (full recompute)
+
+On `operation: SYNC`, iterate over every component in `klp-components.json`:
+
+1. Re-run the systematic import scan on each component's source.
+2. Rebuild `dependencies.components[]` from scratch for every entry.
+3. Reset every `usedBy[]` to `[]`, then re-populate from the freshly computed forward edges.
+4. Regenerate each `docs/components/_index_<name>.md` body (preserving only the `KLP:NOTES` and `KLP:GAPS` blocks).
+5. Regenerate `docs/gaps.md` (full rewrite — see below).
+
+SYNC is the one-shot migration for components that were manually refactored before this discipline existed.
 
 ### 3. CRAWL — read-only briefing for any agent starting a task
 
@@ -226,12 +251,39 @@ If empty: `*Not yet used by any other klp component.*`
 - Figma spec: [`.klp/figma-refs/<name>/spec.json`](../../.klp/figma-refs/<name>/spec.json)
 - Reference screenshots: [`.klp/figma-refs/<name>/`](../../.klp/figma-refs/<name>/)
 
+<!-- KLP:GAPS:BEGIN -->
+## DS gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->
+
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
 ```
+
+### KLP:GAPS block
+
+The adapter's return JSON includes `gaps[]` for the component. Persist it in `docs/components/_index_<name>.md` between markers, always present (even when empty, for diff stability):
+
+```markdown
+<!-- KLP:GAPS:BEGIN -->
+## DS gaps
+
+<!-- when gaps[] is non-empty: -->
+| Part | Kind | Reason | Action |
+|---|---|---|---|
+| <part> | <kind> | <reason> | <action> |
+...
+
+<!-- when gaps[] is empty: -->
+No gaps recorded.
+<!-- KLP:GAPS:END -->
+```
+
+Insert this block near the end of the doc page, right before the `KLP:NOTES` block. If the page already exists, replace everything between the `KLP:GAPS:BEGIN/END` markers — preserve the rest, especially the `KLP:NOTES` block.
 
 ## Reverse-index pass (runs at end of every DOCUMENT and SYNC)
 
@@ -246,6 +298,29 @@ Steps:
 5. **Patch each brand page's `## Used by` section**: for every `brands/<brand>.md`, list every component whose `dependencies.brands` includes `<brand>`.
 
 The reverse-index pass is **idempotent**: running it twice in a row produces no diff.
+
+## Aggregated gap report: `docs/gaps.md`
+
+On every DOCUMENT or SYNC run, regenerate `docs/gaps.md` from scratch — no manual blocks to preserve, pure snapshot.
+
+Structure:
+
+```markdown
+# DS gaps — YYYY-MM-DD snapshot
+
+## <component-name-1>
+- **<part>** (<kind>) → <one-line summary>
+...
+
+## <component-name-2>
+...
+```
+
+- Components are listed alphabetically.
+- Omit components whose current `gaps[]` is empty (keeps the file signal-dense).
+- If no component has gaps, emit a single-line body: `No gaps across the design system at this time.`
+
+Source the per-component data by re-reading the `KLP:GAPS` block of each `docs/components/_index_<name>.md`, so the aggregation reflects the ground truth written earlier in the same run.
 
 ## Index file format (`docs/index.md`)
 
@@ -444,6 +519,7 @@ The `doc` field is the path to the human-readable doc page; it is added by the d
 - **Source is the source.** Every claim in a generated page traces back to a real file: spec.json, source code, aliases.css, or a registry entry. Never invent.
 - **Notes block is sacred.** Anything between `<!-- KLP:NOTES:BEGIN -->` and `<!-- KLP:NOTES:END -->` is preserved verbatim across all regenerations on every page.
 - **You are the sole writer of `klp-components.json` and `docs/`.** The component-adapter writes a stub entry to `klp-components.json` during Stage 2; you replace that stub with the canonical entry during Stage 4. The component-adapter does not touch `docs/` at all.
+- `docs/gaps.md` (full regeneration at every DOCUMENT/SYNC)
 - **Idempotence.** Running DOCUMENT twice in a row on the same component (without source/spec change) must produce zero file diff except for `updated: <today>`.
 - **Non-blocking when invoked as Stage 4.** If you fail (e.g. spec.json malformed), report the error in your JSON output and exit non-zero, but do not crash the orchestrator. The orchestrator treats Stage 4 failure as a warning, not a build failure.
 - **Standard markdown links only.** Use `[text](relative/path.md)`, never `[[wikilinks]]`. The doc must be readable in any markdown viewer (GitHub, VS Code, Marked, etc.) without plugins.
