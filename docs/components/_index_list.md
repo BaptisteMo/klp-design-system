@@ -10,6 +10,7 @@ sources:
   - src/components/list/List.tsx
 dependencies:
   components:
+    - button
     - list-content
   externals:
     - class-variance-authority
@@ -184,6 +185,7 @@ export function ListExample() {
 ## Dependencies
 
 ### klp components
+- [Button](./_index_button.md) — imported from `@/components/button`; `header-button` renders as `<Button variant="tertiary" size="md">` (condensed and default styles only).
 - [List Content](./_index_list-content.md) — imported from `@/components/list-content`; each row in the `items` section is a `<ListContent>` instance.
 
 ### External libraries

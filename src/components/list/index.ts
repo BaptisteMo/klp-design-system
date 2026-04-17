@@ -3,7 +3,6 @@ export {
   rootVariants,
   headerVariants,
   headerTitleVariants,
-  headerButtonVariants,
   headerInputsVariants,
   itemsVariants,
 } from './List'

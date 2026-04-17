@@ -27,7 +27,7 @@
         "tokenGroups": ["colors", "spacing", "radius", "typography"],
         "brands": ["atlas"]
       },
-      "usedBy": ["floating-alert", "list-content", "text-area"]
+      "usedBy": ["floating-alert", "list", "list-content", "text-area"]
     },
     {
       "name": "checkbox",
@@ -534,13 +534,14 @@
       },
       "variantCount": 3,
       "dependencies": {
-        "components": ["list-content"],
+        "components": ["button", "list-content"],
         "externals": ["class-variance-authority", "lucide-react"],
         "tokenGroups": ["colors", "spacing", "radius", "typography"],
         "brands": ["wireframe"]
       },
       "composition": {
         "reuses": [
+          { "klpComponent": "button", "notes": "header-button renders as <Button variant=\"tertiary\" size=\"md\"> (condensed and default styles only)." },
           { "klpComponent": "list-content", "notes": "Each row in the items section is a ListContent instance." }
         ],
         "gaps": [

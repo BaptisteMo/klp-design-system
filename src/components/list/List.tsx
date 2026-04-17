@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cva } from 'class-variance-authority'
 import { ArrowRight } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { Button } from '@/components/button'
 import { ListContent } from '@/components/list-content'
 import type { ListContentSize, ListContentProps } from '@/components/list-content'
 
@@ -51,34 +52,6 @@ const headerTitleVariants = cva(
         condensed:    '',
         default:      '',
         'with-inputs': '',
-      },
-    },
-    defaultVariants: { style: 'default' },
-  }
-)
-
-// ---------------------------------------------------------------------------
-// header-button layer — present in condensed + default; hidden in with-inputs
-// Spec: fill=--klp-bg-inset, border=--klp-border-invisible, radius=--klp-radius-l
-// paddingX=--klp-size-m, paddingY=--klp-size-xs, gap=--klp-size-2xs
-// color=--klp-fg-default, fontSize=--klp-font-size-text-medium
-// fontFamily=--klp-font-family-label, fontWeight=--klp-font-weight-label-bold
-// ---------------------------------------------------------------------------
-const headerButtonVariants = cva(
-  [
-    'inline-flex items-center justify-center',
-    'bg-klp-bg-inset border border-klp-border-invisible rounded-klp-l',
-    'pl-klp-size-m pr-klp-size-m pt-klp-size-xs pb-klp-size-xs gap-klp-size-2xs',
-    'text-klp-fg-default text-klp-text-medium font-klp-label font-klp-label-bold',
-    'cursor-pointer transition-colors',
-    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand-emphasis',
-  ].join(' '),
-  {
-    variants: {
-      style: {
-        condensed:    '',
-        default:      '',
-        'with-inputs': 'hidden',
       },
     },
     defaultVariants: { style: 'default' },
@@ -180,19 +153,16 @@ const List = React.forwardRef<HTMLDivElement, ListProps>(
             {listTitle}
           </span>
 
-          {/* header-button — condensed + default only */}
-          {showButton && (
-            <button
-              type="button"
-              className={headerButtonVariants({ style: listStyle })}
+          {/* header-button — condensed + default only (DS Button tertiary × md) */}
+          {showButton && listStyle !== 'with-inputs' && (
+            <Button
+              variant="tertiary"
+              size="md"
+              rightIcon={<ArrowRight strokeWidth={1.5} />}
               onClick={onButtonClick}
-              style={{ fontWeight: 'var(--font-weight-klp-label-bold)' }}
             >
-              <span>{buttonLabel}</span>
-              <span aria-hidden="true" className="text-klp-fg-default inline-flex items-center [&>svg]:h-[16px] [&>svg]:w-[16px]">
-                <ArrowRight strokeWidth={1.5} />
-              </span>
-            </button>
+              {buttonLabel}
+            </Button>
           )}
 
           {/* header-inputs — with-inputs only */}
@@ -227,7 +197,6 @@ export {
   rootVariants,
   headerVariants,
   headerTitleVariants,
-  headerButtonVariants,
   headerInputsVariants,
   itemsVariants,
 }
