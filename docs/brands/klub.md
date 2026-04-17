@@ -40,6 +40,8 @@ document.documentElement.dataset.brand = 'klub'
 - [InContent Alert](../components/_index_in-content-alert.md) — Figma reference screenshots captured under the klub brand.
 - [Tabulation Cells](../components/_index_tabulation-cells.md) — Figma reference screenshots captured under the klub brand.
 - [Tabulations](../components/_index_tabulations.md) — Figma reference screenshots captured under the klub brand.
+- [Table Cells / Badges](../components/_index_table-cells-badges.md) — Figma reference screenshots captured under the klub brand.
+- [Table Cells / Checkbox](../components/_index_table-cells-checkbox.md) — Figma reference screenshots captured under the klub brand.
 - [Tooltip](../components/_index_tooltip.md) — Figma reference screenshots captured under the klub brand.
 
 <!-- KLP:NOTES:BEGIN -->

@@ -42,6 +42,9 @@ document.documentElement.dataset.brand = 'wireframe'
 - [Floating Alert](../components/_index_floating-alert.md) — reference screenshots captured under the wireframe brand (12 variants).
 - [BreadCrumbs](../components/_index_breadcrumbs.md) — reference screenshots captured under the wireframe brand (4 variants).
 - [Text Area](../components/_index_text-area.md) — reference screenshots captured under the wireframe brand (12 variants).
+- [Table Cells / Text](../components/_index_table-cells-text.md) — reference screenshots captured under the wireframe brand (10 variants).
+- [Table Cells / Actions](../components/_index_table-cells-actions.md) — reference screenshots captured under the wireframe brand (8 variants).
+- [Table Cells / Empty](../components/_index_table-cells-empty.md) — reference screenshots captured under the wireframe brand (3 variants).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

@@ -51,6 +51,11 @@ updated: 2026-04-16
 - [Tabulation Cells](../components/_index_tabulation-cells.md) — `px-klp-size-xs` and `py-klp-size-2xs` on badge padding; root padding and gap are CSS literals (12px, 6px, 8px) pending token assignment.
 - [Tabulations](../components/_index_tabulations.md) — `size-xs` and `size-2xs` on cell-badge padding; root padding (2px), root gap (4px), cell-root padding (12px/6px), and cell-root gap (8px) are CSS literals pending token assignment (candidates: `--klp-size-4xs`, `--klp-size-3xs`, `--klp-size-s`, `--klp-size-2xs`, `--klp-size-xs`).
 - [Text Area](../components/_index_text-area.md) — `gap-klp-size-m` (root gap, input inner gap), `gap-klp-size-xs` (head gap, toolbar gap, action-bar gap), `pt/pr/pb/pl-klp-size-m` (input padding).
+- [Table Cells / Text](../components/_index_table-cells-text.md) — `pt-klp-size-xs pb-klp-size-xs` (compact root); `pt-klp-size-s pb-klp-size-s` (relaxed root); `gap-klp-size-3xs` (text-container item spacing). paddingLeft/Right are CSS literals `8px` pending Figma variable binding.
+- [Table Cells / Badges](../components/_index_table-cells-badges.md) — `size-2xs` (badge paddingY, itemSpacing), `size-xs` (badge paddingX). Root padding values are CSS literals (`8px`, `12px`, `8px`) — Figma variable IDs present but names unresolved (source: spec.json:_extractorNotes.rootPaddingBinding).
+- [Table Cells / Actions](../components/_index_table-cells-actions.md) — `size-s` (height=2 root paddingX/Y/gap and primary button paddingX); `size-xs` (height=1 root paddingX/Y/gap and icon button paddingX/Y); `size-2xs` (primary button paddingY and itemSpacing).
+- [Table Cells / Checkbox](../components/_index_table-cells-checkbox.md) — `size-xs` (root itemSpacing, 8px). paddingLeft/Right (12px) and paddingTop/Bottom (8px height=1 / 12px height=2) are CSS literals pending Figma variable binding.
+- [Table Cells / Empty](../components/_index_table-cells-empty.md) — `size-xs` (itemSpacing, 8px). paddingLeft/Right (12px) and paddingTop/Bottom (8px height=1 / 12px height=2) are CSS literals pending Figma variable binding.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

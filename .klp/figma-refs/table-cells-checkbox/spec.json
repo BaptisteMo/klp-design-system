@@ -1,0 +1,177 @@
+{
+  "name": "table-cells-checkbox",
+  "displayName": "Table Cells / Checkbox",
+  "figmaNode": "115189:57854",
+  "captureBrand": "klub",
+  "category": "table cells",
+  "description": "A table cell wrapper that renders a single Checkbox instance. Two height variants (compact h=1 at 48px, default h=2 at 56px) and two width variants (fixed 48px, default fill). All cell variants expose the checkbox in State=Rest; state changes are delegated to the embedded Checkbox component.",
+  "radixPrimitive": "@radix-ui/react-checkbox",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "td",
+      "notes": "Cell container with horizontal layout. Padding is partially unbound (token gap). Fill bound to bg/default. itemSpacing bound to Sizing/XS."
+    },
+    {
+      "part": "checkbox",
+      "element": "div",
+      "notes": "INSTANCE of KLP Checkbox component (componentId: 35:1497). klp-components.json 'checkbox' entry. State prop forwarded from parent. Fill bound to bg/default; stroke bound to bd/default; cornerRadius bound to Radius/M."
+    }
+  ],
+  "variantAxes": {
+    "height": ["1", "2"],
+    "width": ["48", "default"]
+  },
+  "composition": {
+    "reuses": [
+      {
+        "klpComponent": "checkbox",
+        "klpComponentEntry": "src/components/checkbox/Checkbox.tsx",
+        "figmaComponentId": "35:1497",
+        "notes": "The cell embeds a Checkbox INSTANCE (State=Rest in Figma). The adapter must import and render <Checkbox> from klp — never recreate the checkbox markup inline. The State prop is forwarded from the table row selection context."
+      }
+    ],
+    "gaps": []
+  },
+  "variants": [
+    {
+      "id": "height-1-width-48",
+      "axes": { "height": "1", "width": "48" },
+      "figmaNodeId": "115189:57855",
+      "screenshot": "height-1-width-48.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",    "figmaVar": "bg/default",  "value": "#FFFFFF" },
+          "itemSpacing":  { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",   "value": "8px" },
+          "literals": {
+            "width":          "48px",
+            "height":         "48px",
+            "minHeight":      "36px",
+            "paddingLeft":    "12px",
+            "paddingRight":   "12px",
+            "paddingTop":     "8px",
+            "paddingBottom":  "8px",
+            "note_padding": "TOKEN_GAP: paddingLeft/Right/Top/Bottom not bound to variables. Expected --klp-size-s (12px) and --klp-size-xs (8px)."
+          }
+        },
+        "checkbox": {
+          "fill":         { "token": "--klp-bg-default",    "figmaVar": "bg/default",   "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-default","figmaVar": "bd/default",   "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-radius-m",      "figmaVar": "Radius/M",     "value": "4px" },
+          "padding":      { "token": "--klp-size-3xs",      "figmaVar": "Sizing/3XS",   "value": "4px" },
+          "literals": {
+            "size":  "24px",
+            "state": "Rest — delegated to Checkbox component"
+          }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-default",
+      "axes": { "height": "2", "width": "default" },
+      "figmaNodeId": "115189:57857",
+      "screenshot": "height-2-width-default.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",    "figmaVar": "bg/default",  "value": "#FFFFFF" },
+          "itemSpacing":  { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",   "value": "8px" },
+          "literals": {
+            "width":          "56px",
+            "height":         "56px",
+            "minHeight":      "36px",
+            "paddingLeft":    "12px",
+            "paddingRight":   "12px",
+            "paddingTop":     "12px",
+            "paddingBottom":  "12px",
+            "note_padding": "TOKEN_GAP: paddingLeft/Right/Top/Bottom not bound to variables. Expected --klp-size-s (12px) for all sides."
+          }
+        },
+        "checkbox": {
+          "fill":         { "token": "--klp-bg-default",    "figmaVar": "bg/default",   "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-default","figmaVar": "bd/default",   "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-radius-m",      "figmaVar": "Radius/M",     "value": "4px" },
+          "padding":      { "token": "--klp-size-3xs",      "figmaVar": "Sizing/3XS",   "value": "4px" },
+          "literals": {
+            "size":  "24px",
+            "state": "Rest — delegated to Checkbox component"
+          }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-default-b",
+      "axes": { "height": "2", "width": "default" },
+      "figmaNodeId": "115189:58352",
+      "screenshot": "height-2-width-default-b.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",    "figmaVar": "bg/default",  "value": "#FFFFFF" },
+          "itemSpacing":  { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",   "value": "8px" },
+          "literals": {
+            "width":          "56px",
+            "height":         "56px",
+            "minHeight":      "36px",
+            "paddingLeft":    "12px",
+            "paddingRight":   "12px",
+            "paddingTop":     "12px",
+            "paddingBottom":  "12px",
+            "note": "Duplicate name as height-2-width-default. Likely a Figma duplicate variant. Adapter should treat as identical to height-2-width-default."
+          }
+        },
+        "checkbox": {
+          "fill":         { "token": "--klp-bg-default",    "figmaVar": "bg/default",   "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-default","figmaVar": "bd/default",   "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-radius-m",      "figmaVar": "Radius/M",     "value": "4px" },
+          "padding":      { "token": "--klp-size-3xs",      "figmaVar": "Sizing/3XS",   "value": "4px" },
+          "literals": {
+            "size":  "24px",
+            "state": "Rest — delegated to Checkbox component"
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "cell",
+    "keyboardSupport": ["Space", "Enter"],
+    "notes": "The cell is a <td> wrapping a <Checkbox>. The Checkbox carries its own role=checkbox and aria-checked. The parent table row should supply aria-selected or data-state context. No additional aria attributes needed on the cell itself."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "paddingLeft/paddingRight (literal 12px — no variable bound)",
+      "expectedKlp": "--klp-size-s",
+      "seenOn": "all-variants/root/paddingLeft+Right",
+      "note": "Cell horizontal padding is hardcoded. Fix: bind to Sizing/S in Figma."
+    },
+    {
+      "figmaVar": "paddingTop/paddingBottom height-1 (literal 8px — no variable bound)",
+      "expectedKlp": "--klp-size-xs",
+      "seenOn": "height-1-width-48/root/paddingTop+Bottom",
+      "note": "Compact cell vertical padding is hardcoded. Fix: bind to Sizing/XS in Figma."
+    },
+    {
+      "figmaVar": "paddingTop/paddingBottom height-2 (literal 12px — no variable bound)",
+      "expectedKlp": "--klp-size-s",
+      "seenOn": "height-2-width-default/root/paddingTop+Bottom",
+      "note": "Default cell vertical padding is hardcoded. Fix: bind to Sizing/S in Figma."
+    },
+    {
+      "figmaVar": "VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644 (external, value: 36px)",
+      "expectedKlp": null,
+      "seenOn": "all-variants/root/minHeight",
+      "note": "External cross-file variable (same as seen in table-cells-text). 36px has no matching --klp-size-* alias. Use literal min-h-[36px] in adapter."
+    },
+    {
+      "figmaVar": "VariableID:4b97a7048a6aedae6ae1bbf0076a8ce0683702d1/515:722 (external cross-file, value: #FFFFFF)",
+      "expectedKlp": "--klp-bg-default",
+      "seenOn": "all-variants/root/fill",
+      "note": "Cell fill is bound to an external library variable resolving to white (#FFFFFF). Maps to --klp-bg-default. Adapter should use bg-klp-bg-default."
+    },
+    {
+      "figmaVar": "VariableID:9fcc8e86ee40c9052121fe7b46e3c394744eb83d/1328:1 (external cross-file, value: 8px)",
+      "expectedKlp": "--klp-size-xs",
+      "seenOn": "all-variants/root/itemSpacing",
+      "note": "Cell itemSpacing is bound to an external library variable resolving to 8px. Maps to --klp-size-xs (Sizing/XS). Adapter should use gap-klp-size-xs."
+    }
+  ]
+}

@@ -13,7 +13,7 @@ dependencies:
   externals: ["@radix-ui/react-slot", "class-variance-authority"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
-usedBy: [tabulation-cells]
+usedBy: [table-cells-badges, tabulation-cells, table-cells-text]
 created: 2026-04-16
 updated: 2026-04-17
 ---
@@ -233,7 +233,9 @@ export function BadgeExample() {
 
 ## Used by
 
+- [Table Cells / Badges](./_index_table-cells-badges.md) — imports `Badge` for both the primary bordered badge (`badgeType="primary" badgeStyle="bordered" size="small"`) and the info icon-only status badge (`badgeType="info" badgeStyle="light" size="small"`).
 - [Tabulation Cells](./_index_tabulation-cells.md) — imports `Badge` for the optional numeric count pill rendered alongside each tab label.
+- [Table Cells / Text](./_index_table-cells-text.md) — imports `Badge` for the optional badge slot rendered in the cell content area (`badgeType="tertiary" size="small"`).
 
 ## Files
 

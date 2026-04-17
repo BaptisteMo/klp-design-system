@@ -117,6 +117,36 @@ export function Index() {
         >
           List
         </a>
+        <a
+          href="#/table-cells-text"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Table Cells / Text
+        </a>
+        <a
+          href="#/table-cells-badges"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Table Cells / Badges
+        </a>
+        <a
+          href="#/table-cells-actions"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Table Cells / Actions
+        </a>
+        <a
+          href="#/table-cells-empty"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Table Cells / Empty
+        </a>
+        <a
+          href="#/table-cells-checkbox"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Table Cells / Checkbox
+        </a>
       </nav>
 
       <section className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle p-4">

@@ -114,6 +114,11 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Tabulation Cells](../components/_index_tabulation-cells.md) — consumes `bg-invisible` (rest root/badge fill), `bg-brand-low` (active root/badge fill), `border-invisible` (badge stroke), `fg-default` (label color), `fg-muted` (rest badge color), `fg-brand-contrasted` (active badge color) across both states.
 - [Tabulations](../components/_index_tabulations.md) — consumes `bg-subtle` (root fill), `bg-invisible` (cell-root fill), `bg-brand-low` (active cell-badge fill via TabulationCell), `border-default` (root stroke and divider stroke), `border-invisible` (cell-badge stroke), `fg-default` (cell-label color), `fg-muted` (rest cell-badge color), `fg-brand-contrasted` (active cell-badge color) across the scroll-type=none variant.
 - [Text Area](../components/_index_text-area.md) — consumes `bg-default`, `bg-inset`, `border-default`, `border-brand`, `border-danger-emphasis`, `border-success-emphasis`, `fg-default`, `fg-subtle`, `fg-muted`, `fg-danger-contrasted` tokens across all 2 feature × 6 state variants.
+- [Table Cells / Text](../components/_index_table-cells-text.md) — consumes `fg-default` on label and subtitle layers across all 10 variants.
+- [Table Cells / Badges](../components/_index_table-cells-badges.md) — consumes `bg-brand-low`, `border-brand-emphasis`, `fg-brand-contrasted` (type=badge) and `bg-info`, `border-invisible`, `fg-info` (type=status) across all 22 variants.
+- [Table Cells / Actions](../components/_index_table-cells-actions.md) — consumes `bg-invisible` (icon-only button fills), `bg-inset` (primary button fill), `border-invisible` (all button strokes), `fg-default` (primary button label) across all 8 variants.
+- [Table Cells / Checkbox](../components/_index_table-cells-checkbox.md) — consumes `bg-default` (root fill) across all 3 variants.
+- [Table Cells / Empty](../components/_index_table-cells-empty.md) — consumes `bg-default` (root fill) across all 3 variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

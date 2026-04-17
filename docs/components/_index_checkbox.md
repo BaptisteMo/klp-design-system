@@ -21,6 +21,8 @@ dependencies:
     - klub
 usedBy:
   - action-sheet-menu
+  - table-cells-checkbox
+  - table-cells-text
 created: 2026-04-16
 updated: 2026-04-16
 ---
@@ -206,6 +208,8 @@ export function CheckboxExample() {
 ## Used by
 
 - [ActionSheet Menu](./_index_action-sheet-menu.md) — imports Checkbox as the item row for the `checkbox` type variant.
+- [Table Cells / Checkbox](./_index_table-cells-checkbox.md) — the entire cell is a thin wrapper around a single embedded Checkbox instance.
+- [Table Cells / Text](./_index_table-cells-text.md) — imports Checkbox for the optional checkbox slot rendered before the text container.
 
 ## Files
 

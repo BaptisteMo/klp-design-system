@@ -14,20 +14,59 @@
       "registry": "registry/button.json",
       "spec": ".klp/figma-refs/button/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": ["root", "icon-left", "label", "icon-right"],
+      "anatomy": [
+        "root",
+        "icon-left",
+        "label",
+        "icon-right"
+      ],
       "variantAxes": {
-        "type": ["primary", "secondary", "tertiary", "destructive", "validation"],
-        "size": ["sm", "md", "lg", "icon"],
-        "state": ["rest", "hover", "clicked", "disable"]
+        "type": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "destructive",
+          "validation"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg",
+          "icon"
+        ],
+        "state": [
+          "rest",
+          "hover",
+          "clicked",
+          "disable"
+        ]
       },
       "variantCount": 20,
       "dependencies": {
         "components": [],
-        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing", "radius", "typography"],
-        "brands": ["atlas"]
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "atlas"
+        ]
       },
-      "usedBy": ["floating-alert", "list", "list-content", "text-area"]
+      "usedBy": [
+        "floating-alert",
+        "list",
+        "list-content",
+        "table-cells-actions",
+        "table-cells-text",
+        "text-area"
+      ]
     },
     {
       "name": "checkbox",
@@ -43,18 +82,40 @@
       "registry": "registry/checkbox.json",
       "spec": ".klp/figma-refs/checkbox/spec.json",
       "radixPrimitive": "@radix-ui/react-checkbox",
-      "anatomy": ["root", "indicator"],
+      "anatomy": [
+        "root",
+        "indicator"
+      ],
       "variantAxes": {
-        "state": ["rest", "hover", "clicked", "mixed", "disable"]
+        "state": [
+          "rest",
+          "hover",
+          "clicked",
+          "mixed",
+          "disable"
+        ]
       },
       "variantCount": 5,
       "dependencies": {
         "components": [],
-        "externals": ["@radix-ui/react-checkbox", "class-variance-authority"],
-        "tokenGroups": ["colors", "spacing", "radius"],
-        "brands": ["klub"]
+        "externals": [
+          "@radix-ui/react-checkbox",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
-      "usedBy": ["action-sheet-menu"]
+      "usedBy": [
+        "action-sheet-menu",
+        "table-cells-checkbox",
+        "table-cells-text"
+      ]
     },
     {
       "name": "radio",
@@ -70,16 +131,32 @@
       "registry": "registry/radio.json",
       "spec": ".klp/figma-refs/radio/spec.json",
       "radixPrimitive": "@radix-ui/react-radio-group",
-      "anatomy": ["root", "indicator"],
+      "anatomy": [
+        "root",
+        "indicator"
+      ],
       "variantAxes": {
-        "state": ["rest", "hover", "clicked", "disable"]
+        "state": [
+          "rest",
+          "hover",
+          "clicked",
+          "disable"
+        ]
       },
       "variantCount": 4,
       "dependencies": {
         "components": [],
-        "externals": ["@radix-ui/react-radio-group", "class-variance-authority"],
-        "tokenGroups": ["colors", "spacing"],
-        "brands": ["klub"]
+        "externals": [
+          "@radix-ui/react-radio-group",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "usedBy": []
     },
@@ -97,16 +174,32 @@
       "registry": "registry/switch.json",
       "spec": ".klp/figma-refs/switch/spec.json",
       "radixPrimitive": "@radix-ui/react-switch",
-      "anatomy": ["root", "thumb", "icon"],
+      "anatomy": [
+        "root",
+        "thumb",
+        "icon"
+      ],
       "variantAxes": {
-        "state": ["toggle-on", "toggle-off"]
+        "state": [
+          "toggle-on",
+          "toggle-off"
+        ]
       },
       "variantCount": 2,
       "dependencies": {
         "components": [],
-        "externals": ["@radix-ui/react-switch", "class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing"],
-        "brands": ["wireframe"]
+        "externals": [
+          "@radix-ui/react-switch",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "usedBy": []
     },
@@ -124,16 +217,35 @@
       "registry": "registry/tooltip.json",
       "spec": ".klp/figma-refs/tooltip/spec.json",
       "radixPrimitive": "@radix-ui/react-tooltip",
-      "anatomy": ["root", "label", "arrow"],
+      "anatomy": [
+        "root",
+        "label",
+        "arrow"
+      ],
       "variantAxes": {
-        "arrow-orientation": ["bottom-left", "bottom-right", "top-left", "top-right"]
+        "arrow-orientation": [
+          "bottom-left",
+          "bottom-right",
+          "top-left",
+          "top-right"
+        ]
       },
       "variantCount": 4,
       "dependencies": {
         "components": [],
-        "externals": ["@radix-ui/react-tooltip", "class-variance-authority"],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["klub"]
+        "externals": [
+          "@radix-ui/react-tooltip",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "usedBy": []
     },
@@ -151,20 +263,55 @@
       "registry": "registry/badges.json",
       "spec": ".klp/figma-refs/badges/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": ["root", "icon-left", "label", "icon-right"],
+      "anatomy": [
+        "root",
+        "icon-left",
+        "label",
+        "icon-right"
+      ],
       "variantAxes": {
-        "type": ["primary", "secondary", "tertiary", "success", "info", "warning", "danger", "on-emphasis", "outlined"],
-        "size": ["small", "medium", "large"],
-        "style": ["bordered", "light"]
+        "type": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "success",
+          "info",
+          "warning",
+          "danger",
+          "on-emphasis",
+          "outlined"
+        ],
+        "size": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "style": [
+          "bordered",
+          "light"
+        ]
       },
       "variantCount": 48,
       "dependencies": {
         "components": [],
-        "externals": ["@radix-ui/react-slot", "class-variance-authority"],
-        "tokenGroups": ["colors", "spacing", "typography"],
-        "brands": ["wireframe"]
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
-      "usedBy": ["tabulation-cells"]
+      "usedBy": [
+        "table-cells-badges",
+        "tabulation-cells",
+        "table-cells-text"
+      ]
     },
     {
       "name": "input",
@@ -180,17 +327,48 @@
       "registry": "registry/input.json",
       "spec": ".klp/figma-refs/input/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": ["root", "head", "label", "info-icon", "input-box", "icon-left", "placeholder", "icon-right", "description"],
+      "anatomy": [
+        "root",
+        "head",
+        "label",
+        "info-icon",
+        "input-box",
+        "icon-left",
+        "placeholder",
+        "icon-right",
+        "description"
+      ],
       "variantAxes": {
-        "size": ["large", "medium", "small"],
-        "state": ["default", "filled", "focused", "success", "danger", "disable"]
+        "size": [
+          "large",
+          "medium",
+          "small"
+        ],
+        "state": [
+          "default",
+          "filled",
+          "focused",
+          "success",
+          "danger",
+          "disable"
+        ]
       },
       "variantCount": 18,
       "dependencies": {
         "components": [],
-        "externals": ["class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing", "radius", "typography"],
-        "brands": ["klub"]
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "usedBy": []
     },
@@ -208,19 +386,50 @@
       "registry": "registry/list-content.json",
       "spec": ".klp/figma-refs/list-content/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": ["root", "content", "left-part", "decorative-icon", "label", "sublabel", "action-button"],
+      "anatomy": [
+        "root",
+        "content",
+        "left-part",
+        "decorative-icon",
+        "label",
+        "sublabel",
+        "action-button"
+      ],
       "variantAxes": {
-        "size": ["small", "medium", "large"],
-        "state": ["default", "hover", "active"]
+        "size": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "active"
+        ]
       },
       "variantCount": 9,
       "dependencies": {
-        "components": ["button"],
-        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing", "radius", "typography"],
-        "brands": ["wireframe"]
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
-      "usedBy": ["list"],
+      "usedBy": [
+        "list"
+      ],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -250,15 +459,34 @@
         "empty-illustration"
       ],
       "variantAxes": {
-        "type": ["default", "default-hover", "floating-action", "empty"],
-        "floating-action": ["none", "on", "off"]
+        "type": [
+          "default",
+          "default-hover",
+          "floating-action",
+          "empty"
+        ],
+        "floating-action": [
+          "none",
+          "on",
+          "off"
+        ]
       },
       "variantCount": 5,
       "dependencies": {
         "components": [],
-        "externals": ["class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["klub"]
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "usedBy": [],
       "created": "2026-04-17",
@@ -278,19 +506,49 @@
       "registry": "registry/action-sheet-item.json",
       "spec": ".klp/figma-refs/action-sheet-item/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": ["root", "icon-left", "content", "label", "icon-right"],
+      "anatomy": [
+        "root",
+        "icon-left",
+        "content",
+        "label",
+        "icon-right"
+      ],
       "variantAxes": {
-        "state": ["default", "hover", "active", "emphased", "disabled", "destructive", "creation"],
-        "size": ["lg", "md", "sm"]
+        "state": [
+          "default",
+          "hover",
+          "active",
+          "emphased",
+          "disabled",
+          "destructive",
+          "creation"
+        ],
+        "size": [
+          "lg",
+          "md",
+          "sm"
+        ]
       },
       "variantCount": 21,
       "dependencies": {
         "components": [],
-        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing", "typography"],
-        "brands": ["wireframe"]
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
-      "usedBy": ["action-sheet-menu"],
+      "usedBy": [
+        "action-sheet-menu"
+      ],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -308,17 +566,45 @@
       "registry": "registry/floating-alert.json",
       "spec": ".klp/figma-refs/floating-alert/spec.json",
       "radixPrimitive": null,
-      "anatomy": ["root", "icon-highlight", "icon", "content", "dismiss-button", "dismiss-icon"],
+      "anatomy": [
+        "root",
+        "icon-highlight",
+        "icon",
+        "content",
+        "dismiss-button",
+        "dismiss-icon"
+      ],
       "variantAxes": {
-        "state": ["danger", "warning", "information", "success"],
-        "size": ["sm", "md", "lg"]
+        "state": [
+          "danger",
+          "warning",
+          "information",
+          "success"
+        ],
+        "size": [
+          "sm",
+          "md",
+          "lg"
+        ]
       },
       "variantCount": 12,
       "dependencies": {
-        "components": ["button"],
-        "externals": ["class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["wireframe"]
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "usedBy": [],
       "created": "2026-04-17",
@@ -338,17 +624,41 @@
       "registry": "registry/in-content-alert.json",
       "spec": ".klp/figma-refs/in-content-alert/spec.json",
       "radixPrimitive": null,
-      "anatomy": ["root", "header", "icon", "title", "body"],
+      "anatomy": [
+        "root",
+        "header",
+        "icon",
+        "title",
+        "body"
+      ],
       "variantAxes": {
-        "content": ["info", "success", "danger", "warning"],
-        "size": ["lg", "md", "sm"]
+        "content": [
+          "info",
+          "success",
+          "danger",
+          "warning"
+        ],
+        "size": [
+          "lg",
+          "md",
+          "sm"
+        ]
       },
       "variantCount": 12,
       "dependencies": {
         "components": [],
-        "externals": ["class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing", "typography"],
-        "brands": ["klub"]
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "usedBy": [],
       "created": "2026-04-17",
@@ -368,16 +678,35 @@
       "registry": "registry/breadcrumbs.json",
       "spec": ".klp/figma-refs/breadcrumbs/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": ["root", "step-item", "step-icon", "step-label", "step-separator"],
+      "anatomy": [
+        "root",
+        "step-item",
+        "step-icon",
+        "step-label",
+        "step-separator"
+      ],
       "variantAxes": {
-        "steps": ["0", "1", "2", "3"]
+        "steps": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ]
       },
       "variantCount": 4,
       "dependencies": {
         "components": [],
-        "externals": ["class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "typography"],
-        "brands": ["wireframe"]
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "usedBy": [],
       "created": "2026-04-17",
@@ -397,18 +726,38 @@
       "registry": "registry/tabulation-cells.json",
       "spec": ".klp/figma-refs/tabulation-cells/spec.json",
       "radixPrimitive": "@radix-ui/react-tabs",
-      "anatomy": ["root", "label", "badge"],
+      "anatomy": [
+        "root",
+        "label",
+        "badge"
+      ],
       "variantAxes": {
-        "state": ["rest", "active"]
+        "state": [
+          "rest",
+          "active"
+        ]
       },
       "variantCount": 2,
       "dependencies": {
-        "components": ["badges"],
-        "externals": ["@radix-ui/react-tabs", "class-variance-authority"],
-        "tokenGroups": ["colors", "spacing", "typography"],
-        "brands": ["klub"]
+        "components": [
+          "badges"
+        ],
+        "externals": [
+          "@radix-ui/react-tabs",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
-      "usedBy": ["tabulations"],
+      "usedBy": [
+        "tabulations"
+      ],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -426,16 +775,35 @@
       "registry": "registry/tabulations.json",
       "spec": ".klp/figma-refs/tabulations/spec.json",
       "radixPrimitive": "@radix-ui/react-tabs",
-      "anatomy": ["root", "divider", "cell-root", "cell-label", "cell-badge"],
+      "anatomy": [
+        "root",
+        "divider",
+        "cell-root",
+        "cell-label",
+        "cell-badge"
+      ],
       "variantAxes": {
-        "scroll-type": ["none"]
+        "scroll-type": [
+          "none"
+        ]
       },
       "variantCount": 1,
       "dependencies": {
-        "components": ["tabulation-cells"],
-        "externals": ["@radix-ui/react-tabs", "class-variance-authority"],
-        "tokenGroups": ["colors", "spacing", "radius"],
-        "brands": ["klub"]
+        "components": [
+          "tabulation-cells"
+        ],
+        "externals": [
+          "@radix-ui/react-tabs",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "usedBy": [],
       "created": "2026-04-17",
@@ -455,17 +823,48 @@
       "registry": "registry/text-area.json",
       "spec": ".klp/figma-refs/text-area/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": ["root", "head", "label", "info-icon", "input", "toolbar", "placeholder", "action-bar"],
+      "anatomy": [
+        "root",
+        "head",
+        "label",
+        "info-icon",
+        "input",
+        "toolbar",
+        "placeholder",
+        "action-bar"
+      ],
       "variantAxes": {
-        "feature": ["rich-text", "simple"],
-        "state": ["default", "focus", "filled", "danger", "success", "disable"]
+        "feature": [
+          "rich-text",
+          "simple"
+        ],
+        "state": [
+          "default",
+          "focus",
+          "filled",
+          "danger",
+          "success",
+          "disable"
+        ]
       },
       "variantCount": 12,
       "dependencies": {
-        "components": ["button"],
-        "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing", "typography"],
-        "brands": ["wireframe"]
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "usedBy": [],
       "created": "2026-04-17",
@@ -485,21 +884,51 @@
       "registry": "registry/action-sheet-menu.json",
       "spec": ".klp/figma-refs/action-sheet-menu/spec.json",
       "radixPrimitive": "@radix-ui/react-popover",
-      "anatomy": ["root", "section", "title", "item", "separator"],
+      "anatomy": [
+        "root",
+        "section",
+        "title",
+        "item",
+        "separator"
+      ],
       "variantAxes": {
-        "type": ["default", "checkbox", "flat"]
+        "type": [
+          "default",
+          "checkbox",
+          "flat"
+        ]
       },
       "variantCount": 3,
       "dependencies": {
-        "components": ["action-sheet-item", "checkbox"],
-        "externals": ["@radix-ui/react-popover", "class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["wireframe"]
+        "components": [
+          "action-sheet-item",
+          "checkbox"
+        ],
+        "externals": [
+          "@radix-ui/react-popover",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "composition": {
         "reuses": [
-          { "klpComponent": "action-sheet-item", "notes": "Repeated for each list item row in default and flat types." },
-          { "klpComponent": "checkbox", "notes": "Used in checkbox type — each row wraps a Checkbox instance." }
+          {
+            "klpComponent": "action-sheet-item",
+            "notes": "Repeated for each list item row in default and flat types."
+          },
+          {
+            "klpComponent": "checkbox",
+            "notes": "Used in checkbox type — each row wraps a Checkbox instance."
+          }
         ],
         "gaps": [
           {
@@ -528,21 +957,51 @@
       "registry": "registry/list.json",
       "spec": ".klp/figma-refs/list/spec.json",
       "radixPrimitive": null,
-      "anatomy": ["root", "header", "header-title", "header-button", "header-inputs", "items"],
+      "anatomy": [
+        "root",
+        "header",
+        "header-title",
+        "header-button",
+        "header-inputs",
+        "items"
+      ],
       "variantAxes": {
-        "style": ["condensed", "default", "with-inputs"]
+        "style": [
+          "condensed",
+          "default",
+          "with-inputs"
+        ]
       },
       "variantCount": 3,
       "dependencies": {
-        "components": ["button", "list-content"],
-        "externals": ["class-variance-authority", "lucide-react"],
-        "tokenGroups": ["colors", "spacing", "radius", "typography"],
-        "brands": ["wireframe"]
+        "components": [
+          "button",
+          "list-content"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "composition": {
         "reuses": [
-          { "klpComponent": "button", "notes": "header-button renders as <Button variant=\"tertiary\" size=\"md\"> (condensed and default styles only)." },
-          { "klpComponent": "list-content", "notes": "Each row in the items section is a ListContent instance." }
+          {
+            "klpComponent": "button",
+            "notes": "header-button renders as <Button variant=\"tertiary\" size=\"md\"> (condensed and default styles only)."
+          },
+          {
+            "klpComponent": "list-content",
+            "notes": "Each row in the items section is a ListContent instance."
+          }
         ],
         "gaps": [
           {
@@ -555,6 +1014,363 @@
         ]
       },
       "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "table-cells-text",
+      "displayName": "Table Cells / Text",
+      "description": "A table cell displaying primary text with an optional subtitle. Supports two row height tiers (compact 36px / relaxed 44px) and five fixed column widths (100-400px). Optional slots: checkbox, avatar, icon-button, badge.",
+      "category": "table cells",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/table-cells-text/TableCellsText.tsx",
+      "doc": "docs/components/_index_table-cells-text.md",
+      "playground": "playground/routes/table-cells-text.tsx",
+      "registry": "registry/table-cells-text.json",
+      "spec": ".klp/figma-refs/table-cells-text/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "content",
+        "text-container",
+        "label",
+        "subtitle"
+      ],
+      "variantAxes": {
+        "height": [
+          "1",
+          "2"
+        ],
+        "width": [
+          "100",
+          "150",
+          "200",
+          "300",
+          "400"
+        ],
+        "justify": [
+          "start"
+        ]
+      },
+      "variantCount": 10,
+      "dependencies": {
+        "components": [
+          "badges",
+          "button",
+          "checkbox"
+        ],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "table-cells-badges",
+      "displayName": "Table Cells / Badges",
+      "description": "A table cell container that embeds a klp Badge (or Status-badge) instance. Two display types: 'badge' (text pill with branded border/fill) and 'status' (icon-only pill with semantic info styling). Two height modes (1 = single row / hug; 2 = double row / extra padding) and six width presets (100, 150-auto, 200, 300, 400, square).",
+      "category": "table cells",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/table-cells-badges/TableCellsBadges.tsx",
+      "doc": "docs/components/_index_table-cells-badges.md",
+      "playground": "playground/routes/table-cells-badges.tsx",
+      "registry": "registry/table-cells-badges.json",
+      "spec": ".klp/figma-refs/table-cells-badges/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "badge-instance",
+        "badge-label",
+        "badge-icon"
+      ],
+      "variantAxes": {
+        "type": [
+          "badge",
+          "status"
+        ],
+        "height": [
+          "1",
+          "2"
+        ],
+        "width": [
+          "100",
+          "150-auto",
+          "200",
+          "300",
+          "400",
+          "square"
+        ]
+      },
+      "variantCount": 22,
+      "dependencies": {
+        "components": [
+          "badges"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17",
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "badges",
+            "notes": "Each cell contains one INSTANCE of the 'badges' klp component. For type=badge it uses the primary bordered style (bg/brand-low + bd/brand-emphasis + fg/brand-contrasted label). For type=status it uses the info light style (bg/info + bd/invisible + fg/info icon)."
+          }
+        ],
+        "gaps": []
+      }
+    },
+    {
+      "name": "table-cells-empty",
+      "displayName": "Table Cells / Empty",
+      "description": "An empty table cell — horizontal layout with no content children. Used as a placeholder or spacer cell in data tables. Comes in two row-height variants (height=1 single-line, height=2 double-line) and three width variants (48px fixed, switch-width, or default/fluid).",
+      "category": "table cells",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/table-cells-empty/TableCellsEmpty.tsx",
+      "doc": "docs/components/_index_table-cells-empty.md",
+      "playground": "playground/routes/table-cells-empty.tsx",
+      "registry": "registry/table-cells-empty.json",
+      "spec": ".klp/figma-refs/table-cells-empty/spec.json",
+      "radixPrimitive": "none",
+      "anatomy": [
+        "root"
+      ],
+      "variantAxes": {
+        "height": [
+          "1",
+          "2"
+        ],
+        "width": [
+          "48",
+          "empty-switch",
+          "default"
+        ]
+      },
+      "variantCount": 3,
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "composition": {
+        "reuses": [],
+        "gaps": [
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "minHeight",
+            "reason": "VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644 resolves to 36px. No --klp-size-* alias exists for 36px.",
+            "action": "min-h-[36px] CSS literal. Fix: add --klp-size-row-sm or --klp-size-2xl (36px) alias to alias spacing layer and re-run pnpm sync:tokens."
+          },
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "paddingLeft/paddingRight",
+            "reason": "paddingLeft=12px and paddingRight=12px are Figma literals (unbound variable). Value matches Sizing/S=12px → --klp-size-s.",
+            "action": "pl-[12px] pr-[12px] CSS literals. Fix: bind to Sizing/S variable in Figma."
+          },
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "paddingTop/paddingBottom (height=1)",
+            "reason": "paddingTop=8px / paddingBottom=8px are Figma literals (unbound). Value matches Sizing/XS=8px → --klp-size-xs.",
+            "action": "pt-[8px] pb-[8px] CSS literals. Fix: bind to Sizing/XS variable in Figma."
+          },
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "paddingTop/paddingBottom (height=2)",
+            "reason": "paddingTop=12px / paddingBottom=12px are Figma literals (unbound). Value matches Sizing/S=12px → --klp-size-s.",
+            "action": "pt-[12px] pb-[12px] CSS literals. Fix: bind to Sizing/S variable in Figma."
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "table-cells-actions",
+      "displayName": "Table Cells / Actions",
+      "description": "A table cell that renders 1–4 action buttons inline. Icon-only buttons use bg/invisible; the last/primary action button uses bg/inset with a label and optional chevron icon.",
+      "category": "table cells",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/table-cells-actions/TableCellsActions.tsx",
+      "doc": "docs/components/_index_table-cells-actions.md",
+      "playground": "playground/routes/table-cells-actions.tsx",
+      "registry": "registry/table-cells-actions.json",
+      "spec": ".klp/figma-refs/table-cells-actions/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "button-1",
+        "button-2",
+        "button-3",
+        "button-primary"
+      ],
+      "variantAxes": {
+        "height": [
+          "1",
+          "2"
+        ],
+        "actions": [
+          "1",
+          "2",
+          "3",
+          "4"
+        ]
+      },
+      "variantCount": 8,
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17",
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "button",
+            "notes": "Icon-only buttons (button-1 to button-3) use <Button variant='tertiary' size='icon'> — the tertiary×icon compound variant activates bg-invisible. The primary button uses <Button variant='tertiary' size='md'> which carries bg-inset fill."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "minHeight",
+            "reason": "Cross-file Figma variable (VariableID:44254ea5bdcf2155e180be9f7f5798c986ae6ae2/1050:1645) — name unresolvable by the plugin. Controls minimum row height: 60px (height=2), 52px (height=1). No matching --klp-size-* alias exists.",
+            "action": "min-h-[60px] / min-h-[52px] CSS literals in the adapter. Request --klp-size-row-relaxed and --klp-size-row-compact aliases."
+          }
+        ]
+      }
+    },
+    {
+      "name": "table-cells-checkbox",
+      "displayName": "Table Cells / Checkbox",
+      "description": "A table cell wrapper (<td>) that renders a single klp Checkbox instance. Two height variants (height=1 compact 48px, height=2 default 56px) and two width variants (48px fixed, default fluid). Supports controlled, uncontrolled, indeterminate, and disabled checkbox states.",
+      "category": "table cells",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/table-cells-checkbox/TableCellsCheckbox.tsx",
+      "doc": "docs/components/_index_table-cells-checkbox.md",
+      "playground": "playground/routes/table-cells-checkbox.tsx",
+      "registry": "registry/table-cells-checkbox.json",
+      "spec": ".klp/figma-refs/table-cells-checkbox/spec.json",
+      "radixPrimitive": "@radix-ui/react-checkbox",
+      "anatomy": [
+        "root",
+        "checkbox"
+      ],
+      "variantAxes": {
+        "height": ["1", "2"],
+        "width": ["48", "default"]
+      },
+      "variantCount": 3,
+      "dependencies": {
+        "components": ["checkbox"],
+        "externals": [
+          "@radix-ui/react-checkbox",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": ["klub"]
+      },
+      "usedBy": [],
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "checkbox",
+            "notes": "The cell embeds a Checkbox INSTANCE (State=Rest in Figma). The adapter imports and renders <Checkbox> from @/components/checkbox — the checkbox's own token bindings (fill, stroke, cornerRadius, padding) are delegated entirely to the Checkbox component."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "paddingLeft + paddingRight",
+            "reason": "Figma variable not bound; literal 12px. Expected --klp-size-s.",
+            "action": "pl-[12px] pr-[12px] literals in adapter. Request Figma binding to Sizing/S."
+          },
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "paddingTop + paddingBottom (height=1)",
+            "reason": "Figma variable not bound; literal 8px. Expected --klp-size-xs.",
+            "action": "pt-[8px] pb-[8px] literals in adapter. Request Figma binding to Sizing/XS."
+          },
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "paddingTop + paddingBottom (height=2)",
+            "reason": "Figma variable not bound; literal 12px. Expected --klp-size-s.",
+            "action": "pt-[12px] pb-[12px] literals in adapter. Request Figma binding to Sizing/S."
+          },
+          {
+            "kind": "unbound-literal",
+            "part": "root",
+            "property": "minHeight",
+            "reason": "External cross-file Figma variable (VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644) resolving to 36px. No matching --klp-size-* alias.",
+            "action": "min-h-[36px] literal in adapter. Fix: add --klp-size-row-sm alias."
+          }
+        ]
+      },
       "created": "2026-04-17",
       "updated": "2026-04-17"
     }

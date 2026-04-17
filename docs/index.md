@@ -51,6 +51,13 @@ Start here:
 - [ActionSheet Menu](./components/_index_action-sheet-menu.md) — Contextual menu panel with grouped ActionSheet_Item rows, optional section titles, and separators. 3 layout types (default / checkbox / flat)
 - [List](./components/_index_list.md) — Vertical list container with header, optional action button, and repeated List Content rows. 3 style variants (condensed / default / with-inputs)
 
+### table cells
+- [Table Cells / Actions](./components/_index_table-cells-actions.md) — Table cell with 1–4 inline action buttons (icon-only + primary labelled), 2 height tiers × 4 action counts (8 variants)
+- [Table Cells / Badges](./components/_index_table-cells-badges.md) — Table cell embedding a klp Badge or Status-badge instance, 2 types × 2 heights × 6 widths (22 variants)
+- [Table Cells / Checkbox](./components/_index_table-cells-checkbox.md) — Table cell wrapping a single klp Checkbox instance, 2 height tiers × 2 width variants (3 variants)
+- [Table Cells / Empty](./components/_index_table-cells-empty.md) — Empty placeholder spacer cell, 2 height tiers × 3 width variants (3 variants)
+- [Table Cells / Text](./components/_index_table-cells-text.md) — Table cell with primary text and optional subtitle, 2 height tiers × 5 column widths (10 variants); optional checkbox, avatar, icon-button, badge slots
+
 ## Tokens
 - [Token system overview](./tokens/_index_tokens.md) — 3-layer architecture (primitives → aliases → Tailwind theme)
 - [Colors](./tokens/colors.md) — `bg-*`, `fg-*`, `border-*` aliases switched per brand

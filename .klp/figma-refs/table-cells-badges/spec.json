@@ -1,0 +1,702 @@
+{
+  "name": "table-cells-badges",
+  "displayName": "Table Cells / Badges",
+  "figmaNode": "115189:57723",
+  "captureBrand": "klub",
+  "category": "table cells",
+  "description": "A table cell container that embeds a klp Badge (or Status-badge) instance. Two display types: 'badge' (text pill with branded border/fill) and 'status' (icon-only pill with semantic info styling). Two height modes (1 = single row / hug; 2 = double row / extra padding) and six width presets (100, 150-auto, 200, 300, 400, square).",
+  "radixPrimitive": null,
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "td",
+      "notes": "Cell outer container. Padding and min-height differ between height=1 and height=2. Width is controlled by column layout, not inline style."
+    },
+    {
+      "part": "badge-instance",
+      "element": "span",
+      "notes": "INSTANCE of klp badges component. For type=badge: bg/brand-low fill + bd/brand-emphasis stroke + fg/brand-contrasted text. For type=status: bg/info fill + bd/invisible stroke + fg/info icon."
+    },
+    {
+      "part": "badge-label",
+      "element": "span",
+      "notes": "Text node inside the badge-instance. Visible in type=badge only."
+    },
+    {
+      "part": "badge-icon",
+      "element": "span",
+      "notes": "Icon selector node inside the badge-instance. Visible in type=status only. Icon: hourglass (lucide: 'hourglass')."
+    }
+  ],
+  "variantAxes": {
+    "type": ["badge", "status"],
+    "height": ["1", "2"],
+    "width": ["100", "150-auto", "200", "300", "400", "square"]
+  },
+  "composition": {
+    "reuses": [
+      {
+        "klpComponent": "badges",
+        "notes": "Each cell contains one INSTANCE of the 'badges' klp component. For type=badge it uses the primary bordered style (bg/brand-low + bd/brand-emphasis + fg/brand-contrasted label). For type=status it uses the info light style (bg/info + bd/invisible + fg/info icon)."
+      }
+    ],
+    "gaps": []
+  },
+  "variants": [
+    {
+      "id": "height-2-width-150-badge",
+      "axes": { "type": "badge", "height": "2", "width": "150-auto" },
+      "figmaNodeId": "115189:57724",
+      "screenshot": "height-2-width-150-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "150px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",        "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",      "figmaVar": "fg/brand-contrasted",      "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",     "figmaVar": "Sizing/Text/Small",         "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",         "figmaVar": "Family/Body",               "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",         "figmaVar": "Weight/Body",               "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-100-badge",
+      "axes": { "type": "badge", "height": "2", "width": "100" },
+      "figmaNodeId": "115189:57727",
+      "screenshot": "height-2-width-100-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "100px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-200-badge",
+      "axes": { "type": "badge", "height": "2", "width": "200" },
+      "figmaNodeId": "115189:57730",
+      "screenshot": "height-2-width-200-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "200px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-300-badge",
+      "axes": { "type": "badge", "height": "2", "width": "300" },
+      "figmaNodeId": "115189:57733",
+      "screenshot": "height-2-width-300-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "300px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-400-badge",
+      "axes": { "type": "badge", "height": "2", "width": "400" },
+      "figmaNodeId": "115189:57736",
+      "screenshot": "height-2-width-400-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "400px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-150-status",
+      "axes": { "type": "status", "height": "1", "width": "150-auto" },
+      "figmaNodeId": "115189:57739",
+      "screenshot": "height-1-width-150-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "150px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-100-status",
+      "axes": { "type": "status", "height": "1", "width": "100" },
+      "figmaNodeId": "115189:57742",
+      "screenshot": "height-1-width-100-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "100px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-square-status",
+      "axes": { "type": "status", "height": "1", "width": "square" },
+      "figmaNodeId": "115189:57745",
+      "screenshot": "height-1-width-square-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "48px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-200-status",
+      "axes": { "type": "status", "height": "1", "width": "200" },
+      "figmaNodeId": "115189:57748",
+      "screenshot": "height-1-width-200-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "200px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-300-status",
+      "axes": { "type": "status", "height": "1", "width": "300" },
+      "figmaNodeId": "115189:57751",
+      "screenshot": "height-1-width-300-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "300px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-400-status",
+      "axes": { "type": "status", "height": "1", "width": "400" },
+      "figmaNodeId": "115189:57754",
+      "screenshot": "height-1-width-400-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "400px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-150-status",
+      "axes": { "type": "status", "height": "2", "width": "150-auto" },
+      "figmaNodeId": "115189:57757",
+      "screenshot": "height-2-width-150-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "150px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-100-status",
+      "axes": { "type": "status", "height": "2", "width": "100" },
+      "figmaNodeId": "115189:57760",
+      "screenshot": "height-2-width-100-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "100px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-square-status",
+      "axes": { "type": "status", "height": "2", "width": "square" },
+      "figmaNodeId": "115189:57763",
+      "screenshot": "height-2-width-square-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "56px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-200-status",
+      "axes": { "type": "status", "height": "2", "width": "200" },
+      "figmaNodeId": "115189:57766",
+      "screenshot": "height-2-width-200-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "200px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-300-status",
+      "axes": { "type": "status", "height": "2", "width": "300" },
+      "figmaNodeId": "115189:57769",
+      "screenshot": "height-2-width-300-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "300px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-400-status",
+      "axes": { "type": "status", "height": "2", "width": "400" },
+      "figmaNodeId": "115189:57772",
+      "screenshot": "height-2-width-400-status.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "8px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "minHeight": "36px", "width": "400px" }
+        },
+        "badge-instance": {
+          "fill":        { "token": "--klp-bg-info",            "figmaVar": "bg/info",       "value": "#EDF4FA" },
+          "stroke":      { "token": "--klp-border-invisible",   "figmaVar": "bd/invisible",  "value": "transparent" },
+          "itemSpacing": { "token": "--klp-size-2xs",           "figmaVar": "Sizing/2XS",    "value": "6px" },
+          "literals":    { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "literals": { "display": "none" }
+        },
+        "badge-icon": {
+          "color": { "token": "--klp-fg-info", "figmaVar": "fg/info", "value": "#3B82C4" },
+          "literals": { "icon": "hourglass", "size": "16px" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-150-badge",
+      "axes": { "type": "badge", "height": "1", "width": "150-auto" },
+      "figmaNodeId": "115189:57775",
+      "screenshot": "height-1-width-150-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "150px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-100-badge",
+      "axes": { "type": "badge", "height": "1", "width": "100" },
+      "figmaNodeId": "115189:57778",
+      "screenshot": "height-1-width-100-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "100px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-200-badge",
+      "axes": { "type": "badge", "height": "1", "width": "200" },
+      "figmaNodeId": "115189:57781",
+      "screenshot": "height-1-width-200-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "200px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-300-badge",
+      "axes": { "type": "badge", "height": "1", "width": "300" },
+      "figmaNodeId": "115189:57784",
+      "screenshot": "height-1-width-300-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "300px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-400-badge",
+      "axes": { "type": "badge", "height": "1", "width": "400" },
+      "figmaNodeId": "115189:57787",
+      "screenshot": "height-1-width-400-badge.png",
+      "layers": {
+        "root": {
+          "paddingY": { "literal": "12px" },
+          "paddingX": { "literal": "8px" },
+          "itemSpacing": { "literal": "12px" },
+          "literals": { "minHeight": "44px", "width": "400px" }
+        },
+        "badge-instance": {
+          "fill":         { "token": "--klp-bg-brand-low",         "figmaVar": "bg/brand-low",        "value": "#F2FAF7" },
+          "stroke":       { "token": "--klp-border-brand-emphasis","figmaVar": "bd/brand-emphasis",   "value": "#0F6F7C" },
+          "paddingY":     { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "paddingX":     { "token": "--klp-size-xs",              "figmaVar": "Sizing/XS",           "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",             "figmaVar": "Sizing/2XS",          "value": "6px" },
+          "literals":     { "cornerRadius": "4px", "strokeWeight": "1px" }
+        },
+        "badge-label": {
+          "color":      { "token": "--klp-fg-brand-contrasted",    "figmaVar": "fg/brand-contrasted",  "value": "#0F6F7C" },
+          "fontSize":   { "token": "--klp-font-size-text-small",   "figmaVar": "Sizing/Text/Small",    "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-body",       "figmaVar": "Family/Body",          "value": "Inter, Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-body",       "figmaVar": "Weight/Body",          "value": "400" },
+          "literals":   { "lineHeight": "18px" }
+        },
+        "badge-icon": {
+          "literals": { "display": "none" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "cell",
+    "keyboardSupport": [],
+    "notes": "Rendered as a <td> inside a <tr>. The inner badge has role=status or role=img (for status type with icon). No interactive affordances — display-only cell."
+  },
+  "tokenGaps": [],
+  "_extractorNotes": {
+    "rootPaddingBinding": "Root COMPONENT paddingTop/Bottom/itemSpacing (12px) and status paddingY (8px) have VariableIDs with no 'name' field in the deep component response (likely sourced from a table_cells-specific spacing scale in the UI Kit file). Values match --klp-size-s (12px) and --klp-size-xs (8px) respectively, but since the binding name is unresolved, they are recorded as literals to avoid incorrect token assertions.",
+    "compositionFlag": "badge-instance layer is an INSTANCE node pointing to the Figma 'badges' COMPONENT_SET (48:304 on the Badges canvas). klp-components.json lists 'badges' as a stable component. The composition.reuses array documents this dependency.",
+    "capturedBrand": "Active Figma mode on collection '02 - Alias Colors' at extraction time was defaultModeId='19:0' ('Klub!'). Screenshot colors match Klub brand token values (teal for brand-emphasis, emerald-family; info blue for fg/info)."
+  }
+}

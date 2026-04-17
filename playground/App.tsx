@@ -18,6 +18,11 @@ import { TabulationsRoute } from './routes/tabulations'
 import { TextAreaRoute } from './routes/text-area'
 import { ActionSheetMenuRoute } from './routes/action-sheet-menu'
 import { ListRoute } from './routes/list'
+import { TableCellsTextRoute } from './routes/table-cells-text'
+import { TableCellsBadgesRoute } from './routes/table-cells-badges'
+import { TableCellsActionsRoute } from './routes/table-cells-actions'
+import { TableCellsEmptyRoute } from './routes/table-cells-empty'
+import { TableCellsCheckboxRoute } from './routes/table-cells-checkbox'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -39,6 +44,11 @@ const routes: Record<string, ComponentType> = {
   'text-area': TextAreaRoute,
   'action-sheet-menu': ActionSheetMenuRoute,
   'list': ListRoute,
+  'table-cells-text': TableCellsTextRoute,
+  'table-cells-badges': TableCellsBadgesRoute,
+  'table-cells-actions': TableCellsActionsRoute,
+  'table-cells-empty': TableCellsEmptyRoute,
+  'table-cells-checkbox': TableCellsCheckboxRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

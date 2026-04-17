@@ -1,0 +1,146 @@
+{
+  "name": "table-cells-empty",
+  "displayName": "Table Cells / Empty",
+  "figmaNode": "115189:57850",
+  "captureBrand": "wireframe",
+  "category": "table cells",
+  "description": "An empty table cell — horizontal layout with no content children. Used as a placeholder or spacer cell in data tables. Comes in two row-height variants (height=1 single-line, height=2 double-line) and three width variants (48px fixed, switch-width, or default/fluid).",
+  "radixPrimitive": "none",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "td",
+      "notes": "The entire cell is a single empty container. No child layers exist in any variant — this cell intentionally holds no content."
+    }
+  ],
+  "variantAxes": {
+    "height": ["1", "2"],
+    "width": ["48", "empty-switch", "default"]
+  },
+  "variants": [
+    {
+      "id": "height-1-width-48",
+      "axes": { "height": "1", "width": "48" },
+      "figmaNodeId": "115189:57851",
+      "screenshot": "height-1-width-48.png",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF",
+            "note": "Bound to cross-file published library variable VariableID:4b97a7048a6aedae6ae1bbf0076a8ce0683702d1/515:722 from [NEW] UI Kit Klepierre; resolves to #FFFFFF (bg/default) in all brands."
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px",
+            "note": "Bound to cross-file library variable VariableID:9fcc8e86ee40c9052121fe7b46e3c394744eb83d/1328:1; resolves to 8px = Sizing/XS."
+          },
+          "literals": {
+            "paddingLeft": "12px",
+            "paddingRight": "12px",
+            "paddingTop": "8px",
+            "paddingBottom": "8px",
+            "minWidth": "48px",
+            "minHeight": "36px",
+            "minHeightNote": "TOKEN GAP — bound to external primitive spacing VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644 (36px). No --klp-size-* alias exists for 36px. Use min-h-[36px] literal."
+          }
+        }
+      }
+    },
+    {
+      "id": "height-1-width-empty-switch",
+      "axes": { "height": "1", "width": "empty-switch" },
+      "figmaNodeId": "115189:57852",
+      "screenshot": "height-1-width-empty-switch.png",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF",
+            "note": "Bound to cross-file published library variable VariableID:4b97a7048a6aedae6ae1bbf0076a8ce0683702d1/515:722 from [NEW] UI Kit Klepierre; resolves to #FFFFFF (bg/default) in all brands."
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px",
+            "note": "Bound to cross-file library variable VariableID:9fcc8e86ee40c9052121fe7b46e3c394744eb83d/1328:1; resolves to 8px = Sizing/XS."
+          },
+          "literals": {
+            "paddingLeft": "12px",
+            "paddingRight": "12px",
+            "paddingTop": "8px",
+            "paddingBottom": "8px",
+            "minWidth": "56px",
+            "minHeight": "36px",
+            "minHeightNote": "TOKEN GAP — bound to external primitive spacing VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644 (36px). No --klp-size-* alias exists for 36px. Use min-h-[36px] literal."
+          }
+        }
+      }
+    },
+    {
+      "id": "height-2-width-default",
+      "axes": { "height": "2", "width": "default" },
+      "figmaNodeId": "115189:57853",
+      "screenshot": "height-2-width-default.png",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF",
+            "note": "Bound to cross-file published library variable VariableID:4b97a7048a6aedae6ae1bbf0076a8ce0683702d1/515:722 from [NEW] UI Kit Klepierre; resolves to #FFFFFF (bg/default) in all brands."
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px",
+            "note": "Bound to cross-file library variable VariableID:9fcc8e86ee40c9052121fe7b46e3c394744eb83d/1328:1; resolves to 8px = Sizing/XS."
+          },
+          "literals": {
+            "paddingLeft": "12px",
+            "paddingRight": "12px",
+            "paddingTop": "12px",
+            "paddingBottom": "12px",
+            "minWidth": "56px",
+            "minHeight": "36px",
+            "minHeightNote": "TOKEN GAP — bound to external primitive spacing VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644 (36px). No --klp-size-* alias exists for 36px. Use min-h-[36px] literal."
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "cell",
+    "keyboardSupport": [],
+    "notes": "Renders as a <td> (or <div role='cell'>) with no interactive content. No keyboard interaction required for an empty cell."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "external/minHeight-36px",
+      "expectedKlp": null,
+      "seenOn": "height-1-width-48/root/minHeight, height-1-width-empty-switch/root/minHeight, height-2-width-default/root/minHeight",
+      "note": "VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644 resolves to 36px. No --klp-size-* alias exists for 36px. Adapter should use min-h-[36px] literal. Fix: add Sizing/9 = 36px alias to 02 - Alias Spacing and expose as --klp-size-2xl or a dedicated --klp-size-row-sm token."
+    },
+    {
+      "figmaVar": "external/paddingX-12px-unbound",
+      "expectedKlp": "--klp-size-s",
+      "seenOn": "all-variants/root/paddingLeft, all-variants/root/paddingRight",
+      "note": "paddingLeft=12px and paddingRight=12px are literal (not bound to a variable). Value matches Sizing/S=12px → --klp-size-s. Fix: bind in Figma to Sizing/S variable."
+    },
+    {
+      "figmaVar": "external/paddingY-8px-unbound-height1",
+      "expectedKlp": "--klp-size-xs",
+      "seenOn": "height-1-width-48/root/paddingTop, height-1-width-48/root/paddingBottom, height-1-width-empty-switch/root/paddingTop, height-1-width-empty-switch/root/paddingBottom",
+      "note": "paddingTop=8px and paddingBottom=8px are literal in height=1 variants. Value matches Sizing/XS=8px → --klp-size-xs. Fix: bind in Figma to Sizing/XS variable."
+    },
+    {
+      "figmaVar": "external/paddingY-12px-unbound-height2",
+      "expectedKlp": "--klp-size-s",
+      "seenOn": "height-2-width-default/root/paddingTop, height-2-width-default/root/paddingBottom",
+      "note": "paddingTop=12px and paddingBottom=12px are literal in height=2 variant. Value matches Sizing/S=12px → --klp-size-s. Fix: bind in Figma to Sizing/S variable."
+    }
+  ]
+}

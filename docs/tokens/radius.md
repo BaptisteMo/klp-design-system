@@ -35,6 +35,7 @@ updated: 2026-04-16
 - [Table Row](../components/_index_table-row.md) — `rounded-klp-l` on action-button layer.
 - [Floating Alert](../components/_index_floating-alert.md) — `rounded-klp-l` on dismiss-button layer.
 - [Tabulations](../components/_index_tabulations.md) — `radius-l` is the candidate token for root and cell-root `cornerRadius 8px` literals (currently CSS literals pending Figma re-linking; see tokenGaps in spec.json). `radius-m` is the candidate for cell-badge `cornerRadius 4px`.
+- [Table Cells / Actions](../components/_index_table-cells-actions.md) — `--klp-radius-l` on all four button layers (button-1, button-2, button-3, button-primary) across all 8 variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

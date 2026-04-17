@@ -1,0 +1,23 @@
+{
+  "name": "table-cells-actions",
+  "type": "registry:ui",
+  "description": "A table cell that renders 1–4 action buttons inline. Icon-only buttons use bg/invisible; the last/primary action button uses bg/inset with a label and optional chevron icon.",
+  "meta": {
+    "figmaNode": "115189:57821",
+    "captureBrand": "wireframe",
+    "category": "table cells",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": ["root", "button-1", "button-2", "button-3", "button-primary"],
+    "variantAxes": {
+      "height": ["1", "2"],
+      "actions": ["1", "2", "3", "4"]
+    },
+    "composition": {
+      "reuses": ["button"],
+      "gaps": [
+        "root/minHeight: 60px (height=2) and 52px (height=1) — cross-file Figma variable, treated as literal"
+      ]
+    }
+  }
+}

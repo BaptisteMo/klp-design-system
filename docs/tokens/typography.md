@@ -68,6 +68,8 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [BreadCrumbs](../components/_index_breadcrumbs.md) — `font-klp-body`, `font-weight-body` (400), `text-klp-text-medium` (16px) on step-label layer across all 4 step-count variants.
 - [Tabulation Cells](../components/_index_tabulation-cells.md) — `font-klp-label` / `font-klp-label-bold`, `text-klp-text-medium` on label layer; `font-klp-body`, `text-klp-text-small` on badge layer across both states.
 - [Text Area](../components/_index_text-area.md) — `font-klp-label`, `text-klp-text-medium`, `leading-[24px]` on label and placeholder layers across all variants.
+- [Table Cells / Text](../components/_index_table-cells-text.md) — `font-klp-body`, `text-klp-text-medium` (`--klp-font-size-text-medium`), `--klp-font-weight-body` (400) on label and subtitle layers across all 10 variants.
+- [Table Cells / Actions](../components/_index_table-cells-actions.md) — `--klp-font-size-text-medium` (16px), `--klp-font-family-label`, `--klp-font-weight-label-bold` (600) on `button-primary` label layer.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
