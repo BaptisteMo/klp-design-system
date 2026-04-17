@@ -1,0 +1,25 @@
+{
+  "name": "list",
+  "type": "registry:ui",
+  "description": "A vertical list container with header, optional action button, and repeated List_content rows. Supports Condensed (tight spacing), Default (medium spacing), and withInputs (with filter inputs in the header) layout styles.",
+  "meta": {
+    "figmaNode": "115188:57217",
+    "captureBrand": "wireframe",
+    "category": "lists",
+    "radixPrimitive": null,
+    "anatomy": ["root", "header", "header-title", "header-button", "header-inputs", "items"],
+    "variantAxes": {
+      "style": ["condensed", "default", "with-inputs"]
+    },
+    "variantCount": 3,
+    "composition": {
+      "composedOf": ["list-content"]
+    }
+  },
+  "files": [
+    { "path": "src/components/list/List.tsx", "type": "registry:ui" },
+    { "path": "src/components/list/index.ts", "type": "registry:ui" }
+  ],
+  "dependencies": ["class-variance-authority", "lucide-react"],
+  "klpDependencies": ["list-content"]
+}

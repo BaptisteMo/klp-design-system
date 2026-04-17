@@ -13,7 +13,8 @@ dependencies:
   externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "spacing", "radius", "typography"]
   brands: ["wireframe"]
-usedBy: []
+usedBy:
+  - list
 created: 2026-04-17
 updated: 2026-04-17
 ---
@@ -178,7 +179,7 @@ export function ListContentExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [List](./_index_list.md) — composes `<ListContent>` as its repeated item rows via the `items` prop.
 
 ## Files
 

@@ -16,6 +16,8 @@ import { BreadCrumbsRoute } from './routes/breadcrumbs'
 import { TabulationCellsRoute } from './routes/tabulation-cells'
 import { TabulationsRoute } from './routes/tabulations'
 import { TextAreaRoute } from './routes/text-area'
+import { ActionSheetMenuRoute } from './routes/action-sheet-menu'
+import { ListRoute } from './routes/list'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -35,6 +37,8 @@ const routes: Record<string, ComponentType> = {
   'tabulation-cells': TabulationCellsRoute,
   'tabulations': TabulationsRoute,
   'text-area': TextAreaRoute,
+  'action-sheet-menu': ActionSheetMenuRoute,
+  'list': ListRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

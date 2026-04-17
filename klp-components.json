@@ -54,7 +54,7 @@
         "tokenGroups": ["colors", "spacing", "radius"],
         "brands": ["klub"]
       },
-      "usedBy": []
+      "usedBy": ["action-sheet-menu"]
     },
     {
       "name": "radio",
@@ -220,7 +220,7 @@
         "tokenGroups": ["colors", "spacing", "radius", "typography"],
         "brands": ["wireframe"]
       },
-      "usedBy": [],
+      "usedBy": ["list"],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -290,7 +290,7 @@
         "tokenGroups": ["colors", "spacing", "typography"],
         "brands": ["wireframe"]
       },
-      "usedBy": [],
+      "usedBy": ["action-sheet-menu"],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -466,6 +466,92 @@
         "externals": ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"],
         "tokenGroups": ["colors", "spacing", "typography"],
         "brands": ["wireframe"]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "action-sheet-menu",
+      "displayName": "ActionSheet Menu",
+      "description": "A contextual menu panel composed of grouped ActionSheet_Item rows, optional section titles, and separator lines. Supports three layout types: Default (icon + label + secondary icon), Checkbox (checkbox row layout), and Flat (icon + label + secondary icon, no section headers).",
+      "category": "lists",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/action-sheet-menu/ActionSheetMenu.tsx",
+      "doc": "docs/components/_index_action-sheet-menu.md",
+      "playground": "playground/routes/action-sheet-menu.tsx",
+      "registry": "registry/action-sheet-menu.json",
+      "spec": ".klp/figma-refs/action-sheet-menu/spec.json",
+      "radixPrimitive": "@radix-ui/react-popover",
+      "anatomy": ["root", "section", "title", "item", "separator"],
+      "variantAxes": {
+        "type": ["default", "checkbox", "flat"]
+      },
+      "variantCount": 3,
+      "dependencies": {
+        "components": ["action-sheet-item", "checkbox"],
+        "externals": ["@radix-ui/react-popover", "class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["wireframe"]
+      },
+      "composition": {
+        "reuses": [
+          { "klpComponent": "action-sheet-item", "notes": "Repeated for each list item row in default and flat types." },
+          { "klpComponent": "checkbox", "notes": "Used in checkbox type — each row wraps a Checkbox instance." }
+        ],
+        "gaps": [
+          {
+            "kind": "unmatched-instance",
+            "part": "separator",
+            "reason": "No klp Separator component registered.",
+            "action": "inlined-local"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "list",
+      "displayName": "List",
+      "description": "A vertical list container with header, optional action button, and repeated List_content rows. Supports Condensed (tight spacing), Default (medium spacing), and withInputs (with filter inputs in the header) layout styles.",
+      "category": "lists",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/list/List.tsx",
+      "doc": "docs/components/_index_list.md",
+      "playground": "playground/routes/list.tsx",
+      "registry": "registry/list.json",
+      "spec": ".klp/figma-refs/list/spec.json",
+      "radixPrimitive": null,
+      "anatomy": ["root", "header", "header-title", "header-button", "header-inputs", "items"],
+      "variantAxes": {
+        "style": ["condensed", "default", "with-inputs"]
+      },
+      "variantCount": 3,
+      "dependencies": {
+        "components": ["list-content"],
+        "externals": ["class-variance-authority", "lucide-react"],
+        "tokenGroups": ["colors", "spacing", "radius", "typography"],
+        "brands": ["wireframe"]
+      },
+      "composition": {
+        "reuses": [
+          { "klpComponent": "list-content", "notes": "Each row in the items section is a ListContent instance." }
+        ],
+        "gaps": [
+          {
+            "kind": "partial-reuse",
+            "part": "header-title",
+            "property": "color",
+            "reason": "header-title color is a literal #2b2b2b; no --klp-fg-* alias in any brand variant maps to this value. Closest alias (--klp-fg-default) resolves to --klp-color-gray-800 (wireframe), a different value.",
+            "action": "arbitrary-value-tailwind — text-[#2b2b2b] applied via cva class string"
+          }
+        ]
       },
       "usedBy": [],
       "created": "2026-04-17",

@@ -105,6 +105,18 @@ export function Index() {
         >
           Text Area
         </a>
+        <a
+          href="#/action-sheet-menu"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          ActionSheet Menu
+        </a>
+        <a
+          href="#/list"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          List
+        </a>
       </nav>
 
       <section className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle p-4">

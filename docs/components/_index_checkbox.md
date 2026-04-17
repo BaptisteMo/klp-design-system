@@ -19,7 +19,8 @@ dependencies:
     - radius
   brands:
     - klub
-usedBy: []
+usedBy:
+  - action-sheet-menu
 created: 2026-04-16
 updated: 2026-04-16
 ---
@@ -204,7 +205,7 @@ export function CheckboxExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [ActionSheet Menu](./_index_action-sheet-menu.md) — imports Checkbox as the item row for the `checkbox` type variant.
 
 ## Files
 

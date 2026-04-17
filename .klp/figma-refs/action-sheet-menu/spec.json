@@ -1,0 +1,180 @@
+{
+  "name": "action-sheet-menu",
+  "displayName": "ActionSheet Menu",
+  "figmaNode": "389:636",
+  "captureBrand": "wireframe",
+  "category": "lists",
+  "description": "A contextual menu panel composed of grouped ActionSheet_Item rows, optional section titles, and separator lines. Supports three layout types: Default (icon + label + secondary icon), Checkbox (checkbox row layout), and Flat (icon + label + secondary icon, no section headers).",
+  "radixPrimitive": "@radix-ui/react-popover",
+  "composition": {
+    "instances": [
+      {
+        "figmaNodeName": "ActionSheet_Item",
+        "klpComponent": "action-sheet-item",
+        "registeredIn": "klp-components.json",
+        "notes": "Repeated for each list item row. All 3 variant types use ActionSheet_Item instances as their primary content rows."
+      },
+      {
+        "figmaNodeName": "Input Checkbox",
+        "klpComponent": "checkbox",
+        "registeredIn": "klp-components.json",
+        "notes": "Used only in Type=Checkbox variant. Each row is an Input Checkbox instance containing a Checkbox sub-instance + label text."
+      },
+      {
+        "figmaNodeName": "Separator",
+        "klpComponent": null,
+        "registeredIn": null,
+        "notes": "Horizontal separator line instance (from Separator component set node 282:849). Not yet registered in klp-components.json as a standalone klp component."
+      }
+    ]
+  },
+  "anatomy": [
+    { "part": "root",        "element": "div",    "notes": "Menu container with padding and rounded corners. Clips children." },
+    { "part": "section",     "element": "div",    "notes": "Repeated group of title + items. Optional per variant." },
+    { "part": "title",       "element": "span",   "notes": "Section header text label ('Titre de section'). Hidden in Flat variant." },
+    { "part": "item",        "element": "div",    "notes": "INSTANCE of ActionSheet_Item or Input Checkbox. Repeated n times per section." },
+    { "part": "separator",   "element": "hr",     "notes": "INSTANCE of Separator. One between each section group." }
+  ],
+  "variantAxes": {
+    "type": ["default", "checkbox", "flat"]
+  },
+  "variants": [
+    {
+      "id": "default-default",
+      "axes": { "type": "default" },
+      "figmaNodeId": "284:1077",
+      "screenshot": "default-default.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "paddingX":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102", "value": "8px",
+                            "notes": "External library variable — no matching --klp-* alias. Token gap." },
+          "literals":     { "minWidth": "251px" }
+        },
+        "section": {
+          "literals":     { "layout": "vertical", "gap": "0px" }
+        },
+        "title": {
+          "color":      { "token": "--klp-fg-muted",                "figmaVar": "fg/muted",               "value": "#4A4A4A" },
+          "fontSize":   { "token": "--klp-font-size-text-small",    "figmaVar": "Sizing/Text/Small",      "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",           "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",      "value": "600" }
+        },
+        "item": {
+          "fill":         { "token": "--klp-bg-invisible",   "figmaVar": "bg/invisible",  "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",  "value": "transparent" },
+          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:278:2851", "value": "8px",
+                            "notes": "Unnamed local variable — no matching --klp-* alias. Token gap." },
+          "paddingX":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "itemSpacing":  { "token": "--klp-size-s",         "figmaVar": "Sizing/S",      "value": "12px" },
+          "notes":        "INSTANCE of action-sheet-item klp component."
+        },
+        "separator": {
+          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "stroke":       { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "notes":        "INSTANCE of Separator component."
+        }
+      }
+    },
+    {
+      "id": "checkbox-default",
+      "axes": { "type": "checkbox" },
+      "figmaNodeId": "389:637",
+      "screenshot": "checkbox-default.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "paddingX":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102", "value": "8px",
+                            "notes": "External library variable — no matching --klp-* alias. Token gap." },
+          "literals":     { "minWidth": "249px" }
+        },
+        "section": {
+          "literals":     { "layout": "vertical", "gap": "0px" }
+        },
+        "title": {
+          "color":      { "token": "--klp-fg-muted",                "figmaVar": "fg/muted",               "value": "#4A4A4A" },
+          "fontSize":   { "token": "--klp-font-size-text-small",    "figmaVar": "Sizing/Text/Small",      "value": "14px" },
+          "fontFamily": { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",           "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",      "value": "600" }
+        },
+        "item": {
+          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-radius-m",       "figmaVar": "Radius/M",      "value": "4px" },
+          "paddingX":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "notes":        "INSTANCE of Input Checkbox (checkbox klp component). Each row contains a Checkbox sub-instance + Label text."
+        },
+        "separator": {
+          "fill":         { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "literals":     { "height": "1px" },
+          "notes":        "Rectangle separator (not a Separator INSTANCE in this variant — direct rectangle)."
+        }
+      }
+    },
+    {
+      "id": "flat-default",
+      "axes": { "type": "flat" },
+      "figmaNodeId": "524:1723",
+      "screenshot": "flat-default.png",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "paddingX":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
+          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102", "value": "8px",
+                            "notes": "External library variable — no matching --klp-* alias. Token gap." },
+          "literals":     { "minWidth": "251px" }
+        },
+        "section": {
+          "literals":     { "layout": "vertical", "gap": "0px" }
+        },
+        "title": {
+          "literals":     { "display": "none" },
+          "notes":        "No section titles in Flat variant."
+        },
+        "item": {
+          "fill":         { "token": "--klp-bg-invisible",   "figmaVar": "bg/invisible",  "value": "transparent" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",  "value": "transparent" },
+          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:278:2851", "value": "8px",
+                            "notes": "Unnamed local variable — no matching --klp-* alias. Token gap." },
+          "paddingX":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "itemSpacing":  { "token": "--klp-size-s",         "figmaVar": "Sizing/S",      "value": "12px" },
+          "notes":        "INSTANCE of action-sheet-item klp component."
+        },
+        "separator": {
+          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
+          "stroke":       { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "notes":        "INSTANCE of Separator component."
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "menu",
+    "keyboardSupport": ["ArrowUp", "ArrowDown", "Enter", "Escape"],
+    "notes": "Each ActionSheet_Item should have role='menuitem'. The menu container should use role='menu' and be focusable. Checkbox variant items use role='menuitemcheckbox'. Managed by @radix-ui/react-popover or @radix-ui/react-dropdown-menu depending on trigger context."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102",
+      "expectedKlp": "--klp-radius-l",
+      "seenOn": "default-default/root/cornerRadius, checkbox-default/root/cornerRadius, flat-default/root/cornerRadius",
+      "notes": "External published library variable (cross-file). Resolved value 8px. Closest alias: --klp-radius-l (resolves to --klp-radius-lg = 8px in wireframe)."
+    },
+    {
+      "figmaVar": "VariableID:278:2851",
+      "expectedKlp": "--klp-radius-m",
+      "seenOn": "default-default/item/cornerRadius, flat-default/item/cornerRadius",
+      "notes": "Unnamed local variable. Resolved value 8px. Closest alias: --klp-radius-m."
+    }
+  ]
+}

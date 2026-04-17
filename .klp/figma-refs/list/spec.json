@@ -1,0 +1,235 @@
+{
+  "name": "list",
+  "displayName": "List",
+  "figmaNode": "115188:57217",
+  "captureBrand": "wireframe",
+  "category": "lists",
+  "description": "A vertical list container with header, optional action button, and repeated List_content rows. Supports Condensed (tight spacing), Default (medium spacing), and withInputs (with filter inputs in the header) layout styles.",
+  "radixPrimitive": null,
+  "composition": {
+    "description": "This component is a composition shell. Its items are instances of the List_content component (already registered in klp-components.json as 'list-content'). The adapter must import and compose ListContent rows rather than recreating row anatomy.",
+    "composedOf": [
+      {
+        "klpName": "list-content",
+        "figmaComponentSet": "339:6333",
+        "instanceType": "INSTANCE",
+        "role": "items",
+        "notes": "Each row in the list Items frame is a List_content instance. Size and State are driven by the List variant and the item's own state."
+      }
+    ]
+  },
+  "anatomy": [
+    { "part": "root",          "element": "div",    "notes": "Outer wrapper; vertical flex column, gap controlled by itemSpacing token" },
+    { "part": "header",        "element": "div",    "notes": "Horizontal flex row with title + optional action button or input filters" },
+    { "part": "header-title",  "element": "span",   "notes": "List title text; H2 typography token" },
+    { "part": "header-button", "element": "button", "notes": "Optional action button (Tertiary/Medium); hidden when Button prop is false" },
+    { "part": "header-inputs", "element": "div",    "notes": "withInputs variant only: horizontal flex row of Input instances" },
+    { "part": "items",         "element": "div",    "notes": "Vertical stack of List_content rows; gap = size-3xs" }
+  ],
+  "variantAxes": {
+    "style": ["condensed", "default", "with-inputs"]
+  },
+  "variants": [
+    {
+      "id": "condensed",
+      "axes": { "style": "condensed" },
+      "figmaNodeId": "115188:57218",
+      "screenshot": "condensed.png",
+      "layers": {
+        "root": {
+          "itemSpacing": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": {}
+        },
+        "header": {
+          "literals": { "height": "40px", "layoutMode": "HORIZONTAL", "alignItems": "center", "justifyContent": "space-between" }
+        },
+        "header-title": {
+          "color":      { "token": null, "figmaVar": null, "value": null, "literal": "#2b2b2b" },
+          "fontSize":   { "token": "--klp-font-size-heading-h2",  "figmaVar": "Sizing/Heading/H2",  "value": "24px" },
+          "fontFamily": { "token": "--klp-font-family-title",     "figmaVar": "Family/Title",        "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-title",     "figmaVar": "Weight/Title",        "value": "600" },
+          "literals":   { "lineHeight": "32px" }
+        },
+        "header-button": {
+          "fill":         { "token": "--klp-bg-inset",        "figmaVar": "bg/inset",        "value": "#EEF1F0" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",    "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",        "value": "8px" },
+          "paddingX":     { "token": "--klp-size-m",          "figmaVar": "Sizing/M",        "value": "16px" },
+          "paddingY":     { "token": "--klp-size-xs",         "figmaVar": "Sizing/XS",       "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",      "value": "6px" },
+          "color":        { "token": "--klp-fg-default",      "figmaVar": "fg/default",      "value": "#1A211E" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",  "figmaVar": "Sizing/Text/Medium","value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",      "figmaVar": "Family/Label",      "value": "Test Calibre" },
+          "fontWeight":   { "token": "--klp-font-weight-label-bold", "figmaVar": "Weight/Label Bold", "value": "600" },
+          "literals": {
+            "icon": "arrow-right",
+            "iconSize": "16px",
+            "iconColor": "fg/default"
+          }
+        },
+        "header-inputs": {
+          "literals": { "display": "none", "notes": "Hidden in condensed variant; shown in with-inputs variant" }
+        },
+        "items": {
+          "itemSpacing": { "token": "--klp-size-3xs", "figmaVar": "Sizing/3XS", "value": "4px" }
+        }
+      }
+    },
+    {
+      "id": "default",
+      "axes": { "style": "default" },
+      "figmaNodeId": "115188:57229",
+      "screenshot": "default.png",
+      "layers": {
+        "root": {
+          "itemSpacing": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": {}
+        },
+        "header": {
+          "literals": { "height": "40px", "layoutMode": "HORIZONTAL", "alignItems": "center", "justifyContent": "space-between" }
+        },
+        "header-title": {
+          "color":      { "literal": "#2b2b2b" },
+          "fontSize":   { "token": "--klp-font-size-heading-h2",  "figmaVar": "Sizing/Heading/H2", "value": "24px" },
+          "fontFamily": { "token": "--klp-font-family-title",     "figmaVar": "Family/Title",      "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-title",     "figmaVar": "Weight/Title",      "value": "600" },
+          "literals":   { "lineHeight": "32px" }
+        },
+        "header-button": {
+          "fill":         { "token": "--klp-bg-inset",        "figmaVar": "bg/inset",        "value": "#EEF1F0" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",    "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",        "value": "8px" },
+          "paddingX":     { "token": "--klp-size-m",          "figmaVar": "Sizing/M",        "value": "16px" },
+          "paddingY":     { "token": "--klp-size-xs",         "figmaVar": "Sizing/XS",       "value": "8px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",      "value": "6px" },
+          "color":        { "token": "--klp-fg-default",      "figmaVar": "fg/default",      "value": "#1A211E" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",  "figmaVar": "Sizing/Text/Medium","value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",      "figmaVar": "Family/Label",      "value": "Test Calibre" },
+          "fontWeight":   { "token": "--klp-font-weight-label-bold", "figmaVar": "Weight/Label Bold", "value": "600" },
+          "literals": {
+            "icon": "arrow-right",
+            "iconSize": "16px"
+          }
+        },
+        "header-inputs": {
+          "literals": { "display": "none", "notes": "Hidden in default variant; shown in with-inputs variant" }
+        },
+        "items": {
+          "itemSpacing": { "token": "--klp-size-3xs", "figmaVar": "Sizing/3XS", "value": "4px" }
+        }
+      }
+    },
+    {
+      "id": "with-inputs",
+      "axes": { "style": "with-inputs" },
+      "figmaNodeId": "115188:57240",
+      "screenshot": "with-inputs.png",
+      "layers": {
+        "root": {
+          "itemSpacing": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": {}
+        },
+        "header": {
+          "literals": { "height": "40px", "layoutMode": "HORIZONTAL", "alignItems": "center", "justifyContent": "space-between" }
+        },
+        "header-title": {
+          "color":      { "literal": "#2b2b2b" },
+          "fontSize":   { "token": "--klp-font-size-heading-h2",  "figmaVar": "Sizing/Heading/H2", "value": "24px" },
+          "fontFamily": { "token": "--klp-font-family-title",     "figmaVar": "Family/Title",      "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-title",     "figmaVar": "Weight/Title",      "value": "600" },
+          "literals":   { "lineHeight": "32px" }
+        },
+        "header-button": {
+          "literals": { "display": "none", "notes": "Hidden in withInputs variant; replaced by header-inputs" }
+        },
+        "header-inputs": {
+          "itemSpacing": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "literals": { "display": "flex", "notes": "Shown in with-inputs variant; composes Input instances from the input component" }
+        },
+        "items": {
+          "itemSpacing": { "token": "--klp-size-3xs", "figmaVar": "Sizing/3XS", "value": "4px" }
+        }
+      }
+    }
+  ],
+  "listContentVariantAxes": {
+    "size":  ["small", "medium", "large"],
+    "state": ["default", "hover", "active"]
+  },
+  "listContentTokensByVariant": {
+    "small-default": {
+      "root": {
+        "fill":         null,
+        "padding":      { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+        "cornerRadius": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+        "itemSpacing":  { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" }
+      }
+    },
+    "small-hover": {
+      "root": {
+        "fill": { "token": "--klp-bg-subtle", "figmaVar": "bg/subtle", "value": "#F7F9F8" }
+      }
+    },
+    "small-active": {
+      "root": {
+        "fill": { "token": "--klp-bg-secondary-brand-low", "figmaVar": "bg/secondary-brand-low", "value": "#DEF7E3" }
+      },
+      "label": {
+        "color": { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#0B4D2E" }
+      },
+      "decorative-icon": {
+        "color": { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#0B4D2E" }
+      }
+    },
+    "medium-default": {
+      "root": {
+        "fill":        null,
+        "paddingX":    { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+        "paddingY":    { "token": "--klp-size-s",  "figmaVar": "Sizing/S",  "value": "12px" },
+        "cornerRadius":{ "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+        "itemSpacing": { "token": "--klp-size-s",  "figmaVar": "Sizing/S",  "value": "12px" }
+      }
+    },
+    "medium-hover": {
+      "root": {
+        "fill": { "token": "--klp-bg-subtle", "figmaVar": "bg/subtle", "value": "#F7F9F8" }
+      }
+    },
+    "medium-active": {
+      "root": {
+        "fill": { "token": "--klp-bg-secondary-brand-low", "figmaVar": "bg/secondary-brand-low", "value": "#DEF7E3" }
+      },
+      "label": {
+        "color": { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#0B4D2E" }
+      }
+    },
+    "large-default": {
+      "root": {
+        "fill":        null,
+        "paddingX":    { "token": "--klp-size-s",  "figmaVar": "Sizing/S",  "value": "12px" },
+        "paddingY":    { "token": "--klp-size-m",  "figmaVar": "Sizing/M",  "value": "16px" },
+        "cornerRadius":{ "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+        "itemSpacing": { "token": "--klp-size-m",  "figmaVar": "Sizing/M",  "value": "16px" }
+      }
+    },
+    "large-hover": {
+      "root": {
+        "fill": { "token": "--klp-bg-subtle", "figmaVar": "bg/subtle", "value": "#F7F9F8" }
+      }
+    },
+    "large-active": {
+      "root": {
+        "fill": { "token": "--klp-bg-secondary-brand-low", "figmaVar": "bg/secondary-brand-low", "value": "#DEF7E3" }
+      },
+      "label": {
+        "color": { "token": "--klp-fg-secondary-brand-contrasted", "figmaVar": "fg/secondary-brand-contrasted", "value": "#0B4D2E" }
+      }
+    }
+  },
+  "a11y": {
+    "role": "list",
+    "keyboardSupport": [],
+    "notes": "Root renders as <ul> or <div role='list'>. Each ListContent row renders as <li> or <div role='listitem'>. Action button in header is a native <button>. Input instances in withInputs header use <input> semantics from the Input component."
+  },
+  "tokenGaps": []
+}

@@ -1,0 +1,28 @@
+{
+  "name": "action-sheet-menu",
+  "type": "registry:ui",
+  "description": "A contextual menu panel composed of grouped ActionSheet_Item rows, optional section titles, and separator lines. Supports three layout types: Default (icon + label + secondary icon), Checkbox (checkbox row layout), and Flat (icon + label + secondary icon, no section headers).",
+  "meta": {
+    "displayName": "ActionSheet Menu",
+    "category": "lists",
+    "captureBrand": "wireframe",
+    "radixPrimitive": "@radix-ui/react-popover",
+    "variantAxes": {
+      "type": ["default", "checkbox", "flat"]
+    },
+    "composition": {
+      "reuses": [
+        { "klpComponent": "action-sheet-item", "notes": "Repeated for each list item row in default and flat types." },
+        { "klpComponent": "checkbox", "notes": "Used in checkbox type — each row wraps a Checkbox instance." }
+      ],
+      "gaps": [
+        {
+          "type": "unmatched-instance",
+          "figmaNodeName": "Separator",
+          "notes": "Separator component (Figma node 282:849) is not yet registered as a standalone klp component. Inlined as <hr> with border-klp-border-default styling."
+        }
+      ]
+    }
+  },
+  "TODO": "Run pnpm run build:registry once scripts/build-registry.ts exists to generate full registry entry with dependencies list."
+}

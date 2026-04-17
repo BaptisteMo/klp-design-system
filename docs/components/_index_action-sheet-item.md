@@ -20,7 +20,8 @@ dependencies:
     - typography
   brands:
     - wireframe
-usedBy: []
+usedBy:
+  - action-sheet-menu
 created: 2026-04-17
 updated: 2026-04-17
 ---
@@ -200,7 +201,7 @@ export function ActionSheetItemExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [ActionSheet Menu](./_index_action-sheet-menu.md) — imports ActionSheetItem as the item row for `default` and `flat` type variants.
 
 ## Files
 
