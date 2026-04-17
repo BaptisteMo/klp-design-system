@@ -7,6 +7,5 @@ export {
   inputVariants,
   toolbarVariants,
   placeholderVariants,
-  actionBarVariants,
 } from './TextArea'
-export type { TextAreaProps } from './TextArea'
+export type { TextAreaProps, TextAreaResize, TextAreaState, ToolbarAction } from './TextArea'

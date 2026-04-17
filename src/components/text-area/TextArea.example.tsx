@@ -1,4 +1,13 @@
-import { TextArea } from './TextArea'
+import { Bold, Italic, Underline, Link as LinkIcon, List } from 'lucide-react'
+import { TextArea, type ToolbarAction } from './TextArea'
+
+const DEMO_TOOLBAR: ToolbarAction[] = [
+  { label: 'Bold',      icon: <Bold strokeWidth={1.5} /> },
+  { label: 'Italic',    icon: <Italic strokeWidth={1.5} /> },
+  { label: 'Underline', icon: <Underline strokeWidth={1.5} /> },
+  { label: 'Bulleted list', icon: <List strokeWidth={1.5} /> },
+  { label: 'Link',      icon: <LinkIcon strokeWidth={1.5} /> },
+]
 
 export function TextAreaExample() {
   return (
@@ -19,6 +28,7 @@ export function TextAreaExample() {
       <TextArea
         feature="simple"
         state="danger"
+        resize="none"
         label="Label"
         showHeader
         showInfoIcon
@@ -37,8 +47,8 @@ export function TextAreaExample() {
         placeholder="Start typing…"
         id="example-rich-text"
         rows={4}
-        toolbar={<span className="text-klp-text-small text-klp-fg-muted">B I U</span>}
-        actionBar={<span className="text-klp-text-small text-klp-fg-muted">Cancel · Confirm</span>}
+        resize="vertical"
+        toolbarActions={DEMO_TOOLBAR}
       />
     </div>
   )

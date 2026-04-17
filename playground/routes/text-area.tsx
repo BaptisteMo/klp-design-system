@@ -1,7 +1,16 @@
 import { useEffect } from 'react'
-import { TextArea } from '@/components/text-area'
+import { Bold, Italic, Underline, Link as LinkIcon, List } from 'lucide-react'
+import { TextArea, type ToolbarAction } from '@/components/text-area'
 
 const CAPTURE_BRAND = 'wireframe'
+
+const DEMO_TOOLBAR: ToolbarAction[] = [
+  { label: 'Bold',          icon: <Bold strokeWidth={1.5} /> },
+  { label: 'Italic',        icon: <Italic strokeWidth={1.5} /> },
+  { label: 'Underline',     icon: <Underline strokeWidth={1.5} /> },
+  { label: 'Bulleted list', icon: <List strokeWidth={1.5} /> },
+  { label: 'Link',          icon: <LinkIcon strokeWidth={1.5} /> },
+]
 
 export function TextAreaRoute() {
   useEffect(() => {
@@ -26,15 +35,14 @@ export function TextAreaRoute() {
         >
           <TextArea
             feature="rich-text"
-            state="default"
+            resize='both'
             label="Label"
             showHeader
             showInfoIcon
-            placeholder="Placeholder"
+            placeholder="Placeholder (interactive — type to see filled state)"
             id="rt-default"
             rows={3}
-            toolbar={<span className="text-klp-text-small text-klp-fg-muted">B I U</span>}
-            actionBar={<span className="text-klp-text-small text-klp-fg-muted">Cancel · Confirm</span>}
+            toolbarActions={DEMO_TOOLBAR}
             className="w-full"
           />
         </div>
@@ -52,8 +60,7 @@ export function TextAreaRoute() {
             placeholder="Placeholder"
             id="rt-focus"
             rows={3}
-            toolbar={<span className="text-klp-text-small text-klp-fg-muted">B I U</span>}
-            actionBar={<span className="text-klp-text-small text-klp-fg-muted">Cancel · Confirm</span>}
+            toolbarActions={DEMO_TOOLBAR}
             className="w-full"
           />
         </div>
@@ -71,8 +78,7 @@ export function TextAreaRoute() {
             placeholder="Filled text"
             id="rt-filled"
             rows={3}
-            toolbar={<span className="text-klp-text-small text-klp-fg-muted">B I U</span>}
-            actionBar={<span className="text-klp-text-small text-klp-fg-muted">Cancel · Confirm</span>}
+            toolbarActions={DEMO_TOOLBAR}
             className="w-full"
           />
         </div>
@@ -90,8 +96,7 @@ export function TextAreaRoute() {
             placeholder="Error text"
             id="rt-danger"
             rows={3}
-            toolbar={<span className="text-klp-text-small text-klp-fg-muted">B I U</span>}
-            actionBar={<span className="text-klp-text-small text-klp-fg-muted">Cancel · Confirm</span>}
+            toolbarActions={DEMO_TOOLBAR}
             className="w-full"
           />
         </div>
@@ -109,8 +114,7 @@ export function TextAreaRoute() {
             placeholder="Success text"
             id="rt-success"
             rows={3}
-            toolbar={<span className="text-klp-text-small text-klp-fg-muted">B I U</span>}
-            actionBar={<span className="text-klp-text-small text-klp-fg-muted">Cancel · Confirm</span>}
+            toolbarActions={DEMO_TOOLBAR}
             className="w-full"
           />
         </div>
@@ -128,8 +132,7 @@ export function TextAreaRoute() {
             placeholder="Disabled"
             id="rt-disable"
             rows={3}
-            toolbar={<span className="text-klp-text-small text-klp-fg-muted">B I U</span>}
-            actionBar={<span className="text-klp-text-small text-klp-fg-muted">Cancel · Confirm</span>}
+            toolbarActions={DEMO_TOOLBAR}
             className="w-full"
           />
         </div>
@@ -143,11 +146,10 @@ export function TextAreaRoute() {
         >
           <TextArea
             feature="simple"
-            state="default"
             label="Label"
             showHeader
             showInfoIcon
-            placeholder="Placeholder"
+            placeholder="Placeholder (interactive — type to see filled state)"
             id="s-default"
             rows={3}
             className="w-full"

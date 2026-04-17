@@ -2,6 +2,7 @@ import * as React from 'react'
 import { cva } from 'class-variance-authority'
 import { Info } from 'lucide-react'
 import { cn } from '@/lib/cn'
+import { Button } from '@/components/button'
 
 // ---------------------------------------------------------------------------
 // root layer — vertical flex wrapper; gap driven by --klp-size-m (all states)
@@ -94,11 +95,16 @@ const infoIconVariants = cva('inline-flex shrink-0 items-center justify-center t
 // ---------------------------------------------------------------------------
 // input layer — main textarea container; fill + stroke change per state
 // Padding: pt-klp-size-m pr-klp-size-m pb-klp-size-m pl-klp-size-m (all states)
-// cornerRadius literal: 8px → rounded-[8px]
-// itemSpacing (gap between toolbar and textarea): gap-klp-size-m
+// cornerRadius: rounded-klp-l, itemSpacing: gap-klp-size-m
+//
+// Real focus styling: `focus-within:*` on the wrapper lights up the brand
+// border + ring whenever the inner <textarea> is focused, regardless of the
+// derived cva state. `group` lets children react via `group-focus-within:*`.
+// The explicit `focus` cva variant mirrors the same styling so the playground
+// matrix still renders the focus ring when the state prop is locked.
 // ---------------------------------------------------------------------------
 const inputVariants = cva(
-  'flex flex-col gap-klp-size-m rounded-klp-l border pt-klp-size-m pr-klp-size-m pb-klp-size-m pl-klp-size-m',
+  'group relative flex flex-col gap-klp-size-m rounded-klp-l border overflow-hidden pt-klp-size-m pr-klp-size-m pb-klp-size-m pl-klp-size-m transition-[colors,box-shadow] focus-within:border-klp-border-brand focus-within:ring-4 focus-within:ring-klp-bg-brand-low',
   {
     variants: {
       feature: {
@@ -107,7 +113,7 @@ const inputVariants = cva(
       },
       state: {
         default: 'bg-klp-bg-default border-klp-border-default',
-        focus: 'bg-klp-bg-default border-klp-border-brand',
+        focus: 'bg-klp-bg-default border-klp-border-brand ring-4 ring-klp-bg-brand-low',
         filled: 'bg-klp-bg-default border-klp-border-brand',
         danger: 'bg-klp-bg-default border-klp-border-danger-emphasis',
         success: 'bg-klp-bg-default border-klp-border-success-emphasis',
@@ -166,37 +172,37 @@ const placeholderVariants = cva(
 )
 
 // ---------------------------------------------------------------------------
-// action-bar layer — bottom confirm/cancel row; hidden for feature=simple
-// itemSpacing: gap-klp-size-xs
-// ---------------------------------------------------------------------------
-const actionBarVariants = cva('flex items-center gap-klp-size-xs', {
-  variants: {
-    feature: {
-      simple: 'hidden',
-      'rich-text': 'flex',
-    },
-    state: {
-      default: '',
-      focus: '',
-      filled: '',
-      danger: '',
-      success: '',
-      disable: '',
-    },
-  },
-  defaultVariants: { feature: 'simple', state: 'default' },
-})
-
-// ---------------------------------------------------------------------------
 // Public types
 // ---------------------------------------------------------------------------
+
+export type TextAreaResize = 'none' | 'vertical' | 'horizontal' | 'both'
+
+/** A single action in the rich-text toolbar. Renders as a tertiary icon Button. */
+export interface ToolbarAction {
+  /** Accessible label (used as aria-label + title for the button) */
+  label: string
+  /** Icon element — pass a lucide-react icon, e.g. <Bold strokeWidth={1.5} /> */
+  icon: React.ReactNode
+  /** Click handler */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void
+  /** Disabled state */
+  disabled?: boolean
+  /** Stable key (falls back to index when omitted) */
+  key?: string
+}
+
+export type TextAreaState = 'default' | 'focus' | 'filled' | 'danger' | 'success' | 'disable'
 
 export interface TextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'children'> {
   /** Feature variant: plain textarea or rich-text with toolbar + action bar */
   feature?: 'simple' | 'rich-text'
-  /** Visual state — maps to Figma variant axis */
-  state?: 'default' | 'focus' | 'filled' | 'danger' | 'success' | 'disable'
+  /**
+   * Explicit visual state override. When omitted, state is derived from
+   * native attributes (disabled → "disable", aria-invalid → "danger") and
+   * from focus/value events (hasValue → "filled", isFocused → "focus").
+   */
+  state?: TextAreaState
   /** Field label */
   label?: string
   /** Show the header row (label + optional info icon). Matches Figma Show header prop. */
@@ -207,12 +213,13 @@ export interface TextAreaProps
   placeholder?: string
   /** Accessible id linking label → textarea */
   id?: string
-  /** Slot for the toolbar content (feature=rich-text only) */
-  toolbar?: React.ReactNode
-  /** Slot for the action bar content (feature=rich-text only) */
-  actionBar?: React.ReactNode
+  /** Rich-text toolbar actions (feature=rich-text only). Each action renders
+   *  as a tertiary icon Button with its icon + aria-label. */
+  toolbarActions?: ToolbarAction[]
   /** Extra className forwarded to the root wrapper */
   className?: string
+  /** Resize handle behavior on the textarea (mirrors Radix Themes' TextArea API) */
+  resize?: TextAreaResize
 }
 
 // ---------------------------------------------------------------------------
@@ -223,21 +230,64 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
   (
     {
       feature = 'simple',
-      state = 'default',
+      state: stateProp,
       label,
       showHeader = true,
       showInfoIcon = true,
       placeholder,
       id,
-      toolbar,
-      actionBar,
+      toolbarActions,
       className,
       disabled,
+      resize = 'none',
+      'aria-invalid': ariaInvalid,
+      onFocus,
+      onBlur,
+      onChange,
+      defaultValue,
+      value,
       ...props
     },
     ref
   ) => {
-    const resolvedState: TextAreaProps['state'] = disabled ? 'disable' : state
+    // Track interactive state so `focus` and `filled` derive automatically
+    // when no explicit stateProp is passed.
+    const [isFocused, setIsFocused] = React.useState(false)
+    const [internalValue, setInternalValue] = React.useState<string>(
+      defaultValue !== undefined ? String(defaultValue) : ''
+    )
+    const isControlled = value !== undefined
+    const currentValue = isControlled ? String(value) : internalValue
+    const hasValue = currentValue.length > 0
+
+    const handleFocus = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      setIsFocused(true)
+      onFocus?.(e)
+    }
+    const handleBlur = (e: React.FocusEvent<HTMLTextAreaElement>) => {
+      setIsFocused(false)
+      onBlur?.(e)
+    }
+    const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      if (!isControlled) setInternalValue(e.target.value)
+      onChange?.(e)
+    }
+
+    // Derive state with explicit priority:
+    // 1. stateProp wins (used by playground matrix + consumer overrides)
+    // 2. disabled / aria-invalid (declarative HTML state)
+    // 3. hasValue → filled
+    // 4. isFocused → focus
+    // 5. default
+    const resolvedState: TextAreaState = (() => {
+      if (stateProp) return stateProp
+      if (disabled) return 'disable'
+      if (ariaInvalid === true || ariaInvalid === 'true') return 'danger'
+      if (hasValue) return 'filled'
+      if (isFocused) return 'focus'
+      return 'default'
+    })()
+
     const inputId = id ?? 'textarea'
 
     return (
@@ -263,10 +313,25 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
           </div>
         )}
 
-        <div className={inputVariants({ feature, state: resolvedState })}>
+        <div
+          className={inputVariants({ feature, state: resolvedState })}
+          style={{ resize }}
+        >
           {feature === 'rich-text' && (
             <div className={toolbarVariants({ feature, state: resolvedState })}>
-              {toolbar}
+              {toolbarActions?.map((action, index) => (
+                <Button
+                  key={action.key ?? index}
+                  variant="tertiary"
+                  size="icon"
+                  aria-label={action.label}
+                  title={action.label}
+                  onClick={action.onClick}
+                  disabled={action.disabled || resolvedState === 'disable'}
+                >
+                  {action.icon}
+                </Button>
+              ))}
             </div>
           )}
 
@@ -274,19 +339,21 @@ export const TextArea = React.forwardRef<HTMLTextAreaElement, TextAreaProps>(
             ref={ref}
             id={inputId}
             disabled={resolvedState === 'disable' || disabled}
+            aria-invalid={ariaInvalid}
             placeholder={placeholder}
+            style={{ resize: 'none' }}
             className={cn(
-              'w-full resize-none bg-transparent outline-none',
+              'block w-full flex-1 bg-transparent outline-none',
               placeholderVariants({ feature, state: resolvedState })
             )}
+            value={isControlled ? value : undefined}
+            defaultValue={isControlled ? undefined : defaultValue}
+            onFocus={handleFocus}
+            onBlur={handleBlur}
+            onChange={handleChange}
             {...props}
           />
 
-          {feature === 'rich-text' && (
-            <div className={actionBarVariants({ feature, state: resolvedState })}>
-              {actionBar}
-            </div>
-          )}
         </div>
       </div>
     )
@@ -302,5 +369,4 @@ export {
   inputVariants,
   toolbarVariants,
   placeholderVariants,
-  actionBarVariants,
 }
