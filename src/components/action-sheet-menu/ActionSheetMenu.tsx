@@ -179,16 +179,20 @@ export const ActionSheetMenu = React.forwardRef<HTMLDivElement, ActionSheetMenuP
                     // paddingX: --klp-size-m → pl-klp-size-m pr-klp-size-m
                     // paddingY: --klp-size-xs → pt-klp-size-xs pb-klp-size-xs
                     // itemSpacing: --klp-size-m → gap-klp-size-m
+                    // htmlFor wires the label to Radix Checkbox's internal <button>
+                    // so clicks on the text toggle the checkbox.
                     <label
                       key={item.id}
+                      htmlFor={`${item.id}-checkbox`}
                       className={cn(
                         'flex cursor-pointer items-center',
-                        'bg-klp-bg-default border border-klp-border-default rounded-klp-m',
+                        'bg-klp-bg-default  rounded-klp-m',
                         'pl-klp-size-m pr-klp-size-m pt-klp-size-xs pb-klp-size-xs',
                         'gap-klp-size-m',
                       )}
                     >
                       <Checkbox
+                        id={`${item.id}-checkbox`}
                         checked={item.checked}
                         onCheckedChange={item.onCheckedChange}
                         aria-label={item.label}

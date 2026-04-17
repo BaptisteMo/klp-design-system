@@ -1,6 +1,8 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Settings, Share, Trash2, ChevronRight, Star } from 'lucide-react'
 import { ActionSheetMenu } from '@/components/action-sheet-menu'
+
+type CheckedState = boolean | 'indeterminate'
 
 // captureBrand from spec.captureBrand
 const CAPTURE_BRAND = 'wireframe'
@@ -55,24 +57,16 @@ const DEFAULT_SECTIONS = [
   },
 ]
 
-const CHECKBOX_SECTIONS = [
-  {
-    title: 'Titre de section',
-    items: [
-      { id: 'cb-1', label: 'Label', checked: true as const },
-      { id: 'cb-2', label: 'Label', checked: false as const },
-      { id: 'cb-3', label: 'Label', checked: 'indeterminate' as const },
-      { id: 'cb-4', label: 'Label', checked: false as const },
-    ],
-  },
-  {
-    title: 'Titre de section',
-    items: [
-      { id: 'cb-5', label: 'Label', checked: true as const },
-      { id: 'cb-6', label: 'Label', checked: false as const },
-    ],
-  },
-]
+const CHECKBOX_IDS = ['cb-1', 'cb-2', 'cb-3', 'cb-4', 'cb-5', 'cb-6'] as const
+
+const INITIAL_CHECKED: Record<string, CheckedState> = {
+  'cb-1': true,
+  'cb-2': false,
+  'cb-3': 'indeterminate',
+  'cb-4': false,
+  'cb-5': true,
+  'cb-6': false,
+}
 
 const FLAT_SECTIONS = [
   {
@@ -115,6 +109,31 @@ export function ActionSheetMenuRoute() {
     }
   }, [])
 
+  const [checked, setChecked] = useState<Record<string, CheckedState>>(INITIAL_CHECKED)
+  const toggle = (id: string) => (c: CheckedState) =>
+    setChecked((prev) => ({ ...prev, [id]: c }))
+
+  const checkboxSections = [
+    {
+      title: 'Titre de section',
+      items: CHECKBOX_IDS.slice(0, 4).map((id) => ({
+        id,
+        label: 'Label',
+        checked: checked[id],
+        onCheckedChange: toggle(id),
+      })),
+    },
+    {
+      title: 'Titre de section',
+      items: CHECKBOX_IDS.slice(4).map((id) => ({
+        id,
+        label: 'Label',
+        checked: checked[id],
+        onCheckedChange: toggle(id),
+      })),
+    },
+  ]
+
   return (
     <div className="flex flex-col gap-8 p-6">
       <h1 className="text-xl font-semibold">ActionSheet Menu — captured in {CAPTURE_BRAND}</h1>
@@ -135,7 +154,7 @@ export function ActionSheetMenuRoute() {
           className="flex flex-col gap-2"
         >
           <span className="text-xs text-klp-fg-muted font-klp-label">Type=Checkbox</span>
-          <ActionSheetMenu type="checkbox" sections={CHECKBOX_SECTIONS} />
+          <ActionSheetMenu type="checkbox" sections={checkboxSections} />
         </div>
 
         {/* flat-default */}
