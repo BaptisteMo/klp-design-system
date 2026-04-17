@@ -267,6 +267,18 @@ export function ButtonRoute() {
       "kind": "partial-reuse",
       "reason": "Input lacks a trailing clear-icon slot.",
       "action": "className-override"
+    },
+    {
+      "part": "avatar-stack",
+      "kind": "no-instance-no-match",
+      "reason": "Figma shows overlapping avatars drawn inline (no INSTANCE). Looks like Avatar but couldn't confirm without an explicit binding.",
+      "action": "inlined-ad-hoc"
+    },
+    {
+      "part": "voice-waveform",
+      "kind": "new-primitive",
+      "reason": "No DS equivalent exists. Rendered as an isolated span with a cva block scoped to this component.",
+      "action": "inlined-local-cva"
     }
   ]
 }
