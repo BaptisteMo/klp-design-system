@@ -2,6 +2,7 @@ import * as React from 'react'
 import {
   useReactTable,
   getCoreRowModel,
+  getFilteredRowModel,
   getSortedRowModel,
   getPaginationRowModel,
   flexRender,
@@ -77,22 +78,20 @@ export function DataTable<TData>({
     pageSize: pagination !== false ? pagination.pageSize : 10,
   })
 
-  // Map our ColumnDef to TanStack's ColumnDef.
-  const tanstackColumns = React.useMemo<TanstackColumnDef<TData>[]>(
-    () =>
-      columns.map((col) => ({
-        accessorKey: col.accessorKey,
-        id: col.id,
-        header: col.header,
-        cell: col.cell,
-        enableSorting: col.sortable ?? false,
-        sortingFn: col.sortingFn,
-        meta: { width: col.width },
-      } as TanstackColumnDef<TData>)),
-    [columns]
-  )
-
-  const hasSortable = columns.some((c) => c.sortable)
+  // Map our ColumnDef to TanStack's ColumnDef. Memoize hasSortable alongside.
+  const { tanstackColumns, hasSortable } = React.useMemo(() => {
+    const mapped = columns.map((col) => ({
+      accessorKey: col.accessorKey,
+      id: col.id,
+      header: col.header,
+      cell: col.cell,
+      enableSorting: col.sortable ?? false,
+      sortingFn: col.sortingFn,
+      meta: { width: col.width },
+    } as TanstackColumnDef<TData>))
+    const sortable = columns.some((c) => c.sortable)
+    return { tanstackColumns: mapped, hasSortable: sortable }
+  }, [columns])
 
   const handleSortingChange: OnChangeFn<SortingState> = (updater) => {
     setSorting((prev) => {
@@ -112,6 +111,7 @@ export function DataTable<TData>({
     ...(hasSortable && { onSortingChange: handleSortingChange }),
     ...(pagination !== false && { onPaginationChange: setPaginationState }),
     getCoreRowModel: getCoreRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
     ...(hasSortable && { getSortedRowModel: getSortedRowModel() }),
     ...(pagination !== false && { getPaginationRowModel: getPaginationRowModel() }),
   })
@@ -147,11 +147,23 @@ export function DataTable<TData>({
                     : sortState === 'desc'
                     ? ChevronDown
                     : ChevronsUpDown
+                const headerLabel =
+                  typeof header.column.columnDef.header === 'string'
+                    ? header.column.columnDef.header
+                    : header.column.id
+                const ariaSort: 'ascending' | 'descending' | 'none' =
+                  sortState === 'asc' ? 'ascending' : sortState === 'desc' ? 'descending' : 'none'
+                const nextDirection =
+                  sortState === 'asc' ? 'descending' : sortState === 'desc' ? 'unsorted' : 'ascending'
+                const ariaLabel = `Sort by ${headerLabel}, currently ${
+                  sortState === 'asc' ? 'ascending' : sortState === 'desc' ? 'descending' : 'unsorted'
+                }. Activate to sort ${nextDirection}.`
                 return (
-                  <Table.Head key={header.id} style={style}>
+                  <Table.Head key={header.id} style={style} aria-sort={ariaSort}>
                     <button
                       type="button"
                       onClick={header.column.getToggleSortingHandler()}
+                      aria-label={ariaLabel}
                       className="flex items-center gap-klp-size-2xs hover:text-klp-fg-default transition-colors"
                     >
                       {flexRender(header.column.columnDef.header, header.getContext())}
@@ -199,14 +211,12 @@ export function DataTable<TData>({
           )}
         </Table.Body>
       </Table.Root>
-      {pagination !== false && data.length > paginationState.pageSize && (
+      {pagination !== false && table.getPageCount() > 1 && (
         <Pagination
           page={paginationState.pageIndex + 1}
           pageSize={paginationState.pageSize}
-          total={data.length}
-          onPageChange={(p) =>
-            setPaginationState({ pageIndex: p - 1, pageSize: paginationState.pageSize })
-          }
+          total={table.getFilteredRowModel().rows.length}
+          onPageChange={(p) => setPaginationState((prev) => ({ ...prev, pageIndex: p - 1 }))}
         />
       )}
     </div>
