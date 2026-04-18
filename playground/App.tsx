@@ -8,7 +8,6 @@ import { TooltipRoute } from './routes/tooltip'
 import { BadgesRoute } from './routes/badges'
 import { InputRoute } from './routes/input'
 import { ListContentRoute } from './routes/list-content'
-import { TableRowRoute } from './routes/table-row'
 import { ActionSheetItemRoute } from './routes/action-sheet-item'
 import { FloatingAlertRoute } from './routes/floating-alert'
 import { InContentAlertRoute } from './routes/in-content-alert'
@@ -18,11 +17,6 @@ import { TabulationsRoute } from './routes/tabulations'
 import { TextAreaRoute } from './routes/text-area'
 import { ActionSheetMenuRoute } from './routes/action-sheet-menu'
 import { ListRoute } from './routes/list'
-import { TableCellsTextRoute } from './routes/table-cells-text'
-import { TableCellsBadgesRoute } from './routes/table-cells-badges'
-import { TableCellsActionsRoute } from './routes/table-cells-actions'
-import { TableCellsEmptyRoute } from './routes/table-cells-empty'
-import { TableCellsCheckboxRoute } from './routes/table-cells-checkbox'
 import { TableRoute } from './routes/table'
 import { PaginationRoute } from './routes/pagination'
 import { DataTableRoute } from './routes/data-table'
@@ -37,7 +31,6 @@ const routes: Record<string, ComponentType> = {
   'badges': BadgesRoute,
   'input': InputRoute,
   'list-content': ListContentRoute,
-  'table-row': TableRowRoute,
   'action-sheet-item': ActionSheetItemRoute,
   'floating-alert': FloatingAlertRoute,
   'in-content-alert': InContentAlertRoute,
@@ -47,11 +40,6 @@ const routes: Record<string, ComponentType> = {
   'text-area': TextAreaRoute,
   'action-sheet-menu': ActionSheetMenuRoute,
   'list': ListRoute,
-  'table-cells-text': TableCellsTextRoute,
-  'table-cells-badges': TableCellsBadgesRoute,
-  'table-cells-actions': TableCellsActionsRoute,
-  'table-cells-empty': TableCellsEmptyRoute,
-  'table-cells-checkbox': TableCellsCheckboxRoute,
   'table':      TableRoute,
   'pagination': PaginationRoute,
   'data-table': DataTableRoute,
