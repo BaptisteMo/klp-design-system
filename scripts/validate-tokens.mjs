@@ -254,7 +254,22 @@ function validate(componentName) {
   const repoRoot = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..')
   const specPath = path.join(repoRoot, '.klp', 'figma-refs', componentName, 'spec.json')
   if (!fs.existsSync(specPath)) {
-    return { component: componentName, passed: false, error: `spec.json not found at ${specPath}` }
+    return {
+      component: componentName,
+      radixPrimitive: null,
+      passed: true,
+      skipped: true,
+      skipReason: 'No spec.json — component is not produced by the Figma extractor pipeline.',
+      mismatchCount: 0,
+      warningCount: 0,
+      checks: {
+        tokens: { passed: true, mismatchCount: 0, warningCount: 0, mismatches: [], warnings: [] },
+        reuse:  { passed: true, mismatchCount: 0, warningCount: 0, mismatches: [], warnings: [] },
+        icons:  { passed: true, mismatchCount: 0, warningCount: 0, mismatches: [], warnings: [] },
+      },
+      mismatches: [],
+      warnings: [],
+    }
   }
   const spec = JSON.parse(fs.readFileSync(specPath, 'utf-8'))
   const pascalName = kebabToPascal(componentName)
