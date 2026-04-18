@@ -23,6 +23,9 @@ import { TableCellsBadgesRoute } from './routes/table-cells-badges'
 import { TableCellsActionsRoute } from './routes/table-cells-actions'
 import { TableCellsEmptyRoute } from './routes/table-cells-empty'
 import { TableCellsCheckboxRoute } from './routes/table-cells-checkbox'
+import { TableRoute } from './routes/table'
+import { PaginationRoute } from './routes/pagination'
+import { DataTableRoute } from './routes/data-table'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -49,6 +52,9 @@ const routes: Record<string, ComponentType> = {
   'table-cells-actions': TableCellsActionsRoute,
   'table-cells-empty': TableCellsEmptyRoute,
   'table-cells-checkbox': TableCellsCheckboxRoute,
+  'table':      TableRoute,
+  'pagination': PaginationRoute,
+  'data-table': DataTableRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

@@ -147,6 +147,24 @@ export function Index() {
         >
           Table Cells / Checkbox
         </a>
+        <a
+          href="#/table"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Table (primitives)
+        </a>
+        <a
+          href="#/pagination"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Pagination
+        </a>
+        <a
+          href="#/data-table"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Data Table
+        </a>
       </nav>
 
       <section className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle p-4">
