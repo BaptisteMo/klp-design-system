@@ -31,6 +31,7 @@ Start here:
 
 ### navigation
 - [BreadCrumbs](./components/_index_breadcrumbs.md) — Horizontal breadcrumb trail, single Steps axis (0–3 ancestor steps), 4 variants
+- [Pagination](./components/_index_pagination.md) — Standalone page navigator with ellipsis algorithm, reusable outside tables
 - [Tabulation Cells](./components/_index_tabulation-cells.md) — Single tab cell with label and optional badge, 2 states (rest / active)
 - [Tabulations](./components/_index_tabulations.md) — Horizontal tab bar container wrapping Tabulation Cells with dividers, scroll-type=none (1 variant)
 
@@ -42,7 +43,8 @@ Start here:
 
 ### data-display
 - [Badge](./components/_index_badges.md) — Status indicator pill, 9 types × 3 sizes × 2 styles (48 variants)
-- [Table Row](./components/_index_table-row.md) — Data table row, 4 types × floating-action axis (5 variants); supports empty state with illustration slot
+- [Data Table](./components/_index_data-table.md) — Generic data-driven table with sort + pagination, built on @tanstack/react-table
+- [Table (primitives)](./components/_index_table.md) — Compound HTML table primitives (Root/Header/Body/Row/Head/Cell/Caption) with klp styling, 3 row variants
 
 ### list
 - [List Content](./components/_index_list-content.md) — List row with decorative icon, label + sublabel, and optional action button, 3 sizes × 3 states (9 variants)
@@ -50,13 +52,6 @@ Start here:
 ### lists
 - [ActionSheet Menu](./components/_index_action-sheet-menu.md) — Contextual menu panel with grouped ActionSheet_Item rows, optional section titles, and separators. 3 layout types (default / checkbox / flat)
 - [List](./components/_index_list.md) — Vertical list container with header, optional action button, and repeated List Content rows. 3 style variants (condensed / default / with-inputs)
-
-### table cells
-- [Table Cells / Actions](./components/_index_table-cells-actions.md) — Table cell with 1–4 inline action buttons (icon-only + primary labelled), 2 height tiers × 4 action counts (8 variants)
-- [Table Cells / Badges](./components/_index_table-cells-badges.md) — Table cell embedding a klp Badge or Status-badge instance, 2 types × 2 heights × 6 widths (22 variants)
-- [Table Cells / Checkbox](./components/_index_table-cells-checkbox.md) — Table cell wrapping a single klp Checkbox instance, 2 height tiers × 2 width variants (3 variants)
-- [Table Cells / Empty](./components/_index_table-cells-empty.md) — Empty placeholder spacer cell, 2 height tiers × 3 width variants (3 variants)
-- [Table Cells / Text](./components/_index_table-cells-text.md) — Table cell with primary text and optional subtitle, 2 height tiers × 5 column widths (10 variants); optional checkbox, avatar, icon-button, badge slots
 
 ## Tokens
 - [Token system overview](./tokens/_index_tokens.md) — 3-layer architecture (primitives → aliases → Tailwind theme)

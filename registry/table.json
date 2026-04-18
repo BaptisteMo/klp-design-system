@@ -1,0 +1,1 @@
+{ "name": "table", "source": "src/components/table/Table.tsx", "externals": ["class-variance-authority"] }

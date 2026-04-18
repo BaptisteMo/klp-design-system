@@ -21,7 +21,7 @@ dependencies:
     - typography
   brands:
     - atlas
-usedBy: [floating-alert, list, list-content, table-cells-actions, table-cells-text, text-area]
+usedBy: [floating-alert, list, list-content, pagination, text-area]
 created: 2026-04-16
 updated: 2026-04-17
 ---
@@ -194,8 +194,7 @@ import { Button } from '@/components/button'
 - [Floating Alert](./_index_floating-alert.md) — imports `Button` for the dismiss button slot.
 - [List](./_index_list.md) — imports `Button` for the `header-button` slot (`variant="tertiary" size="md"`).
 - [List Content](./_index_list-content.md) — imports `Button` for the right-side action button slot.
-- [Table Cells / Actions](./_index_table-cells-actions.md) — imports `Button` for all four action slots; icon-only slots use `variant="tertiary" size="icon"`, primary slot uses `variant="tertiary" size="md"`.
-- [Table Cells / Text](./_index_table-cells-text.md) — imports `Button` for the icon-button slot (`variant="tertiary" size="icon"`).
+- [Pagination](./_index_pagination.md) — imports `Button` for the prev, next, and per-page-number interactive controls (`variant="tertiary" size="icon"`).
 - [Text Area](./_index_text-area.md) — imports `Button` for the action bar confirm/cancel slots.
 
 ## Files

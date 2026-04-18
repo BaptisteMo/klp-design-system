@@ -61,15 +61,15 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Badge](../components/_index_badges.md) — `font-klp-body`, `font-weight-klp-body`, `text-klp-text-small` on label layer across all variants.
 - [Input](../components/_index_input.md) — `font-klp-label`, `font-weight-label` / `font-weight-label-bold`, `text-klp-text-large` / `text-klp-text-medium` on label, placeholder, and description layers.
 - [List Content](../components/_index_list-content.md) — `font-klp-label`, `text-klp-text-medium` on label layer; `text-klp-text-small` (small/medium size) or `text-klp-text-medium` (large size) on sublabel layer.
-- [Table Row](../components/_index_table-row.md) — `font-klp-body`, `text-klp-text-medium`, `font-klp-body` (body-bold weight) on cell-text layers for primary and secondary text.
 - [ActionSheet Item](../components/_index_action-sheet-item.md) — `font-klp-label`, `font-weight-klp-label` (400), `text-klp-text-medium` (16px) on label layer across all variants.
 - [Floating Alert](../components/_index_floating-alert.md) — `font-klp-body`, `font-klp-body` (weight 400), `text-klp-text-medium` (sm) / `text-klp-text-large` (md/lg) on content layer.
 - [InContent Alert](../components/_index_in-content-alert.md) — `font-klp-label`, `font-klp-label-bold` (weight 600), `text-klp-text-medium` on title layer; `font-klp-body`, `font-klp-body` (weight 400), `text-klp-text-medium` on body layer.
 - [BreadCrumbs](../components/_index_breadcrumbs.md) — `font-klp-body`, `font-weight-body` (400), `text-klp-text-medium` (16px) on step-label layer across all 4 step-count variants.
 - [Tabulation Cells](../components/_index_tabulation-cells.md) — `font-klp-label` / `font-klp-label-bold`, `text-klp-text-medium` on label layer; `font-klp-body`, `text-klp-text-small` on badge layer across both states.
 - [Text Area](../components/_index_text-area.md) — `font-klp-label`, `text-klp-text-medium`, `leading-[24px]` on label and placeholder layers across all variants.
-- [Table Cells / Text](../components/_index_table-cells-text.md) — `font-klp-body`, `text-klp-text-medium` (`--klp-font-size-text-medium`), `--klp-font-weight-body` (400) on label and subtitle layers across all 10 variants.
-- [Table Cells / Actions](../components/_index_table-cells-actions.md) — `--klp-font-size-text-medium` (16px), `--klp-font-family-label`, `--klp-font-weight-label-bold` (600) on `button-primary` label layer.
+- [Table (primitives)](../components/_index_table.md) — `font-klp-label`, `font-klp-label-bold`, `text-klp-text-medium` on head cell layer; `font-klp-body`, `text-klp-text-medium` on data cell layer; `text-klp-text-small` on caption layer.
+- [Pagination](../components/_index_pagination.md) — `text-klp-text-small` on the range label.
+- [Data Table](../components/_index_data-table.md) — sort icon and empty-state text consume `text-klp-fg-default` / `text-klp-fg-muted`; body typography inherited from Table primitives.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

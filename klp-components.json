@@ -1,6 +1,251 @@
 {
   "components": [
     {
+      "name": "action-sheet-item",
+      "displayName": "ActionSheet Item",
+      "description": "A single row item for action sheets. Supports icon slots on both sides, an optional description label, and seven semantic states (Default, Hover, Active, Emphased, Disabled, Destructive, Creation) across three sizes.",
+      "category": "overlays",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/action-sheet-item/ActionSheetItem.tsx",
+      "doc": "docs/components/_index_action-sheet-item.md",
+      "playground": "playground/routes/action-sheet-item.tsx",
+      "registry": "registry/action-sheet-item.json",
+      "spec": ".klp/figma-refs/action-sheet-item/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "icon-left",
+        "content",
+        "label",
+        "icon-right"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "hover",
+          "active",
+          "emphased",
+          "disabled",
+          "destructive",
+          "creation"
+        ],
+        "size": [
+          "lg",
+          "md",
+          "sm"
+        ]
+      },
+      "variantCount": 21,
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "action-sheet-menu"
+      ],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "action-sheet-menu",
+      "displayName": "ActionSheet Menu",
+      "description": "A contextual menu panel composed of grouped ActionSheet_Item rows, optional section titles, and separator lines. Supports three layout types: Default (icon + label + secondary icon), Checkbox (checkbox row layout), and Flat (icon + label + secondary icon, no section headers).",
+      "category": "lists",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/action-sheet-menu/ActionSheetMenu.tsx",
+      "doc": "docs/components/_index_action-sheet-menu.md",
+      "playground": "playground/routes/action-sheet-menu.tsx",
+      "registry": "registry/action-sheet-menu.json",
+      "spec": ".klp/figma-refs/action-sheet-menu/spec.json",
+      "radixPrimitive": "@radix-ui/react-popover",
+      "anatomy": [
+        "root",
+        "section",
+        "title",
+        "item",
+        "separator"
+      ],
+      "variantAxes": {
+        "type": [
+          "default",
+          "checkbox",
+          "flat"
+        ]
+      },
+      "variantCount": 3,
+      "dependencies": {
+        "components": [
+          "action-sheet-item",
+          "checkbox"
+        ],
+        "externals": [
+          "@radix-ui/react-popover",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "action-sheet-item",
+            "notes": "Repeated for each list item row in default and flat types."
+          },
+          {
+            "klpComponent": "checkbox",
+            "notes": "Used in checkbox type — each row wraps a Checkbox instance."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "unmatched-instance",
+            "part": "separator",
+            "reason": "No klp Separator component registered.",
+            "action": "inlined-local"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "badges",
+      "displayName": "Badge",
+      "description": "Status indicator pill with optional leading/trailing icons. Supports 9 semantic types (Primary, Secondary, Tertiary, Success, Info, Warning, Danger, onEmphasis, Outlined), 3 sizes (Small, Medium, Large) and 2 styles (Bordered, Light). Outlined and onEmphasis only exist in Light style.",
+      "category": "data-display",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/badges/Badges.tsx",
+      "doc": "docs/components/_index_badges.md",
+      "playground": "playground/routes/badges.tsx",
+      "registry": "registry/badges.json",
+      "spec": ".klp/figma-refs/badges/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "icon-left",
+        "label",
+        "icon-right"
+      ],
+      "variantAxes": {
+        "type": [
+          "primary",
+          "secondary",
+          "tertiary",
+          "success",
+          "info",
+          "warning",
+          "danger",
+          "on-emphasis",
+          "outlined"
+        ],
+        "size": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "style": [
+          "bordered",
+          "light"
+        ]
+      },
+      "variantCount": 48,
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "tabulation-cells"
+      ],
+      "created": "2026-04-16",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "breadcrumbs",
+      "displayName": "BreadCrumbs",
+      "description": "Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/breadcrumbs/BreadCrumbs.tsx",
+      "doc": "docs/components/_index_breadcrumbs.md",
+      "playground": "playground/routes/breadcrumbs.tsx",
+      "registry": "registry/breadcrumbs.json",
+      "spec": ".klp/figma-refs/breadcrumbs/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "step-item",
+        "step-icon",
+        "step-label",
+        "step-separator"
+      ],
+      "variantAxes": {
+        "steps": [
+          "0",
+          "1",
+          "2",
+          "3"
+        ]
+      },
+      "variantCount": 4,
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
       "name": "button",
       "displayName": "Button",
       "description": "Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots.",
@@ -63,10 +308,11 @@
         "floating-alert",
         "list",
         "list-content",
-        "table-cells-actions",
-        "table-cells-text",
+        "pagination",
         "text-area"
-      ]
+      ],
+      "created": "2026-04-16",
+      "updated": "2026-04-17"
     },
     {
       "name": "checkbox",
@@ -112,443 +358,53 @@
         ]
       },
       "usedBy": [
-        "action-sheet-menu",
-        "table-cells-checkbox",
-        "table-cells-text"
-      ]
-    },
-    {
-      "name": "radio",
-      "displayName": "Radio",
-      "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
-      "category": "inputs",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/radio/Radio.tsx",
-      "doc": "docs/components/_index_radio.md",
-      "playground": "playground/routes/radio.tsx",
-      "registry": "registry/radio.json",
-      "spec": ".klp/figma-refs/radio/spec.json",
-      "radixPrimitive": "@radix-ui/react-radio-group",
-      "anatomy": [
-        "root",
-        "indicator"
-      ],
-      "variantAxes": {
-        "state": [
-          "rest",
-          "hover",
-          "clicked",
-          "disable"
-        ]
-      },
-      "variantCount": 4,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-radio-group",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing"
-        ],
-        "brands": [
-          "klub"
-        ]
-      },
-      "usedBy": []
-    },
-    {
-      "name": "switch",
-      "displayName": "Switch",
-      "description": "Toggle switch with two states: on (checked) and off (unchecked). Uses animated thumb with icon indicator. Backed by Radix Switch primitive for full a11y and keyboard support.",
-      "category": "inputs",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/switch/Switch.tsx",
-      "doc": "docs/components/_index_switch.md",
-      "playground": "playground/routes/switch.tsx",
-      "registry": "registry/switch.json",
-      "spec": ".klp/figma-refs/switch/spec.json",
-      "radixPrimitive": "@radix-ui/react-switch",
-      "anatomy": [
-        "root",
-        "thumb",
-        "icon"
-      ],
-      "variantAxes": {
-        "state": [
-          "toggle-on",
-          "toggle-off"
-        ]
-      },
-      "variantCount": 2,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-switch",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": []
-    },
-    {
-      "name": "tooltip",
-      "displayName": "Tooltip",
-      "description": "Contextual tooltip bubble with a directional arrow. Variant axis controls arrow placement (bottom-left, bottom-right, top-left, top-right). Backed by @radix-ui/react-tooltip for a11y and keyboard support.",
-      "category": "overlay",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/tooltip/Tooltip.tsx",
-      "doc": "docs/components/_index_tooltip.md",
-      "playground": "playground/routes/tooltip.tsx",
-      "registry": "registry/tooltip.json",
-      "spec": ".klp/figma-refs/tooltip/spec.json",
-      "radixPrimitive": "@radix-ui/react-tooltip",
-      "anatomy": [
-        "root",
-        "label",
-        "arrow"
-      ],
-      "variantAxes": {
-        "arrow-orientation": [
-          "bottom-left",
-          "bottom-right",
-          "top-left",
-          "top-right"
-        ]
-      },
-      "variantCount": 4,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-tooltip",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "radius",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "klub"
-        ]
-      },
-      "usedBy": []
-    },
-    {
-      "name": "badges",
-      "displayName": "Badge",
-      "description": "Status indicator pill with optional leading/trailing icons. Supports 9 semantic types (Primary, Secondary, Tertiary, Success, Info, Warning, Danger, onEmphasis, Outlined), 3 sizes (Small, Medium, Large) and 2 styles (Bordered, Light). Outlined and onEmphasis only exist in Light style.",
-      "category": "data-display",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/badges/Badges.tsx",
-      "doc": "docs/components/_index_badges.md",
-      "playground": "playground/routes/badges.tsx",
-      "registry": "registry/badges.json",
-      "spec": ".klp/figma-refs/badges/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": [
-        "root",
-        "icon-left",
-        "label",
-        "icon-right"
-      ],
-      "variantAxes": {
-        "type": [
-          "primary",
-          "secondary",
-          "tertiary",
-          "success",
-          "info",
-          "warning",
-          "danger",
-          "on-emphasis",
-          "outlined"
-        ],
-        "size": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "style": [
-          "bordered",
-          "light"
-        ]
-      },
-      "variantCount": 48,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-slot",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [
-        "table-cells-badges",
-        "tabulation-cells",
-        "table-cells-text"
-      ]
-    },
-    {
-      "name": "input",
-      "displayName": "Input",
-      "description": "Text input field with label, optional icons (search/action), and helper text. Supports three sizes (large, medium, small) and six states (default, filled, focused, success, danger, disable).",
-      "category": "inputs",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/input/Input.tsx",
-      "doc": "docs/components/_index_input.md",
-      "playground": "playground/routes/input.tsx",
-      "registry": "registry/input.json",
-      "spec": ".klp/figma-refs/input/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": [
-        "root",
-        "head",
-        "label",
-        "info-icon",
-        "input-box",
-        "icon-left",
-        "placeholder",
-        "icon-right",
-        "description"
-      ],
-      "variantAxes": {
-        "size": [
-          "large",
-          "medium",
-          "small"
-        ],
-        "state": [
-          "default",
-          "filled",
-          "focused",
-          "success",
-          "danger",
-          "disable"
-        ]
-      },
-      "variantCount": 18,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "radius",
-          "typography"
-        ],
-        "brands": [
-          "klub"
-        ]
-      },
-      "usedBy": []
-    },
-    {
-      "name": "list-content",
-      "displayName": "List Content",
-      "description": "A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).",
-      "category": "list",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/list-content/ListContent.tsx",
-      "doc": "docs/components/_index_list-content.md",
-      "playground": "playground/routes/list-content.tsx",
-      "registry": "registry/list-content.json",
-      "spec": ".klp/figma-refs/list-content/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": [
-        "root",
-        "content",
-        "left-part",
-        "decorative-icon",
-        "label",
-        "sublabel",
-        "action-button"
-      ],
-      "variantAxes": {
-        "size": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "state": [
-          "default",
-          "hover",
-          "active"
-        ]
-      },
-      "variantCount": 9,
-      "dependencies": {
-        "components": [
-          "button"
-        ],
-        "externals": [
-          "@radix-ui/react-slot",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "radius",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [
-        "list"
+        "action-sheet-menu"
       ],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
     {
-      "name": "table-row",
-      "displayName": "Table Row",
-      "description": "A data table row component supporting default, hover, floating-action, and empty states. Contains a checkbox cell, one or more text/badge cells, and an actions cell with icon buttons.",
+      "name": "data-table",
+      "displayName": "Data Table",
+      "description": "Generic data-driven table built on @tanstack/react-table. Accepts columns[] + data and renders sort + pagination + custom cells. Uses <Table> primitives internally.",
       "category": "data-display",
       "schemaVersion": "v2",
-      "captureBrand": "klub",
+      "captureBrand": "wireframe",
       "status": "stable",
-      "source": "src/components/table-row/TableRow.tsx",
-      "doc": "docs/components/_index_table-row.md",
-      "playground": "playground/routes/table-row.tsx",
-      "registry": "registry/table-row.json",
-      "spec": ".klp/figma-refs/table-row/spec.json",
+      "source": "src/components/data-table/DataTable.tsx",
+      "doc": "docs/components/_index_data-table.md",
+      "playground": "playground/routes/data-table.tsx",
+      "registry": "registry/data-table.json",
+      "spec": null,
       "radixPrimitive": null,
       "anatomy": [
-        "root",
-        "cell-checkbox",
-        "cell-left",
-        "cell-badge",
-        "cell-text",
-        "cell-actions",
-        "action-button",
-        "empty-message",
-        "empty-illustration"
+        "container",
+        "toolbar",
+        "table",
+        "pagination"
       ],
-      "variantAxes": {
-        "type": [
-          "default",
-          "default-hover",
-          "floating-action",
-          "empty"
-        ],
-        "floating-action": [
-          "none",
-          "on",
-          "off"
-        ]
-      },
-      "variantCount": 5,
+      "variantAxes": {},
+      "variantCount": 1,
       "dependencies": {
-        "components": [],
+        "components": [
+          "pagination",
+          "table"
+        ],
         "externals": [
+          "@tanstack/react-table",
           "class-variance-authority",
           "lucide-react"
         ],
         "tokenGroups": [
           "colors",
-          "radius",
           "spacing",
           "typography"
         ],
         "brands": [
-          "klub"
+          "wireframe"
         ]
       },
       "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "action-sheet-item",
-      "displayName": "ActionSheet Item",
-      "description": "A single row item for action sheets. Supports icon slots on both sides, an optional description label, and seven semantic states (Default, Hover, Active, Emphased, Disabled, Destructive, Creation) across three sizes.",
-      "category": "overlays",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/action-sheet-item/ActionSheetItem.tsx",
-      "doc": "docs/components/_index_action-sheet-item.md",
-      "playground": "playground/routes/action-sheet-item.tsx",
-      "registry": "registry/action-sheet-item.json",
-      "spec": ".klp/figma-refs/action-sheet-item/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": [
-        "root",
-        "icon-left",
-        "content",
-        "label",
-        "icon-right"
-      ],
-      "variantAxes": {
-        "state": [
-          "default",
-          "hover",
-          "active",
-          "emphased",
-          "disabled",
-          "destructive",
-          "creation"
-        ],
-        "size": [
-          "lg",
-          "md",
-          "sm"
-        ]
-      },
-      "variantCount": 21,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-slot",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [
-        "action-sheet-menu"
-      ],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -665,35 +521,46 @@
       "updated": "2026-04-17"
     },
     {
-      "name": "breadcrumbs",
-      "displayName": "BreadCrumbs",
-      "description": "Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.",
-      "category": "navigation",
+      "name": "input",
+      "displayName": "Input",
+      "description": "Text input field with label, optional icons (search/action), and helper text. Supports three sizes (large, medium, small) and six states (default, filled, focused, success, danger, disable).",
+      "category": "inputs",
       "schemaVersion": "v2",
-      "captureBrand": "wireframe",
+      "captureBrand": "klub",
       "status": "stable",
-      "source": "src/components/breadcrumbs/BreadCrumbs.tsx",
-      "doc": "docs/components/_index_breadcrumbs.md",
-      "playground": "playground/routes/breadcrumbs.tsx",
-      "registry": "registry/breadcrumbs.json",
-      "spec": ".klp/figma-refs/breadcrumbs/spec.json",
+      "source": "src/components/input/Input.tsx",
+      "doc": "docs/components/_index_input.md",
+      "playground": "playground/routes/input.tsx",
+      "registry": "registry/input.json",
+      "spec": ".klp/figma-refs/input/spec.json",
       "radixPrimitive": "@radix-ui/react-slot",
       "anatomy": [
         "root",
-        "step-item",
-        "step-icon",
-        "step-label",
-        "step-separator"
+        "head",
+        "label",
+        "info-icon",
+        "input-box",
+        "icon-left",
+        "placeholder",
+        "icon-right",
+        "description"
       ],
       "variantAxes": {
-        "steps": [
-          "0",
-          "1",
-          "2",
-          "3"
+        "size": [
+          "large",
+          "medium",
+          "small"
+        ],
+        "state": [
+          "default",
+          "filled",
+          "focused",
+          "success",
+          "danger",
+          "disable"
         ]
       },
-      "variantCount": 4,
+      "variantCount": 18,
       "dependencies": {
         "components": [],
         "externals": [
@@ -702,13 +569,338 @@
         ],
         "tokenGroups": [
           "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "list",
+      "displayName": "List",
+      "description": "A vertical list container with header, optional action button, and repeated List_content rows. Supports Condensed (tight spacing), Default (medium spacing), and withInputs (with filter inputs in the header) layout styles.",
+      "category": "lists",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/list/List.tsx",
+      "doc": "docs/components/_index_list.md",
+      "playground": "playground/routes/list.tsx",
+      "registry": "registry/list.json",
+      "spec": ".klp/figma-refs/list/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "header",
+        "header-title",
+        "header-button",
+        "header-inputs",
+        "items"
+      ],
+      "variantAxes": {
+        "style": [
+          "condensed",
+          "default",
+          "with-inputs"
+        ]
+      },
+      "variantCount": 3,
+      "dependencies": {
+        "components": [
+          "button",
+          "list-content"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
           "typography"
         ],
         "brands": [
           "wireframe"
         ]
       },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "button",
+            "notes": "header-button renders as <Button variant=\"tertiary\" size=\"md\"> (condensed and default styles only)."
+          },
+          {
+            "klpComponent": "list-content",
+            "notes": "Each row in the items section is a ListContent instance."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "partial-reuse",
+            "part": "header-title",
+            "property": "color",
+            "reason": "header-title color is a literal #2b2b2b; no --klp-fg-* alias in any brand variant maps to this value. Closest alias (--klp-fg-default) resolves to --klp-color-gray-800 (wireframe), a different value.",
+            "action": "arbitrary-value-tailwind — text-[#2b2b2b] applied via cva class string"
+          }
+        ]
+      },
       "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "list-content",
+      "displayName": "List Content",
+      "description": "A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).",
+      "category": "list",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/list-content/ListContent.tsx",
+      "doc": "docs/components/_index_list-content.md",
+      "playground": "playground/routes/list-content.tsx",
+      "registry": "registry/list-content.json",
+      "spec": ".klp/figma-refs/list-content/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "content",
+        "left-part",
+        "decorative-icon",
+        "label",
+        "sublabel",
+        "action-button"
+      ],
+      "variantAxes": {
+        "size": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "active"
+        ]
+      },
+      "variantCount": 9,
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "list"
+      ],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "pagination",
+      "displayName": "Pagination",
+      "description": "Standalone page navigator with ellipsis algorithm. Reusable outside tables.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/pagination/Pagination.tsx",
+      "doc": "docs/components/_index_pagination.md",
+      "playground": "playground/routes/pagination.tsx",
+      "registry": "registry/pagination.json",
+      "spec": null,
+      "radixPrimitive": null,
+      "anatomy": [
+        "nav",
+        "label",
+        "prev",
+        "pages",
+        "next"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "data-table"
+      ],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "radio",
+      "displayName": "Radio",
+      "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/radio/Radio.tsx",
+      "doc": "docs/components/_index_radio.md",
+      "playground": "playground/routes/radio.tsx",
+      "registry": "registry/radio.json",
+      "spec": ".klp/figma-refs/radio/spec.json",
+      "radixPrimitive": "@radix-ui/react-radio-group",
+      "anatomy": [
+        "root",
+        "indicator"
+      ],
+      "variantAxes": {
+        "state": [
+          "rest",
+          "hover",
+          "clicked",
+          "disable"
+        ]
+      },
+      "variantCount": 4,
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-radio-group",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "switch",
+      "displayName": "Switch",
+      "description": "Toggle switch with two states: on (checked) and off (unchecked). Uses animated thumb with icon indicator. Backed by Radix Switch primitive for full a11y and keyboard support.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/switch/Switch.tsx",
+      "doc": "docs/components/_index_switch.md",
+      "playground": "playground/routes/switch.tsx",
+      "registry": "registry/switch.json",
+      "spec": ".klp/figma-refs/switch/spec.json",
+      "radixPrimitive": "@radix-ui/react-switch",
+      "anatomy": [
+        "root",
+        "thumb",
+        "icon"
+      ],
+      "variantAxes": {
+        "state": [
+          "toggle-on",
+          "toggle-off"
+        ]
+      },
+      "variantCount": 2,
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-switch",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-17"
+    },
+    {
+      "name": "table",
+      "displayName": "Table (primitives)",
+      "description": "Compound HTML primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) with klp styling. Low-level building blocks for custom tables.",
+      "category": "data-display",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/table/Table.tsx",
+      "doc": "docs/components/_index_table.md",
+      "playground": "playground/routes/table.tsx",
+      "registry": "registry/table.json",
+      "spec": null,
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "header",
+        "body",
+        "footer",
+        "row",
+        "head",
+        "cell",
+        "caption"
+      ],
+      "variantAxes": {
+        "variant": [
+          "default",
+          "selected",
+          "muted"
+        ]
+      },
+      "variantCount": 3,
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "data-table"
+      ],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -871,506 +1063,50 @@
       "updated": "2026-04-17"
     },
     {
-      "name": "action-sheet-menu",
-      "displayName": "ActionSheet Menu",
-      "description": "A contextual menu panel composed of grouped ActionSheet_Item rows, optional section titles, and separator lines. Supports three layout types: Default (icon + label + secondary icon), Checkbox (checkbox row layout), and Flat (icon + label + secondary icon, no section headers).",
-      "category": "lists",
+      "name": "tooltip",
+      "displayName": "Tooltip",
+      "description": "Contextual tooltip bubble with a directional arrow. Variant axis controls arrow placement (bottom-left, bottom-right, top-left, top-right). Backed by @radix-ui/react-tooltip for a11y and keyboard support.",
+      "category": "overlay",
       "schemaVersion": "v2",
-      "captureBrand": "wireframe",
+      "captureBrand": "klub",
       "status": "stable",
-      "source": "src/components/action-sheet-menu/ActionSheetMenu.tsx",
-      "doc": "docs/components/_index_action-sheet-menu.md",
-      "playground": "playground/routes/action-sheet-menu.tsx",
-      "registry": "registry/action-sheet-menu.json",
-      "spec": ".klp/figma-refs/action-sheet-menu/spec.json",
-      "radixPrimitive": "@radix-ui/react-popover",
+      "source": "src/components/tooltip/Tooltip.tsx",
+      "doc": "docs/components/_index_tooltip.md",
+      "playground": "playground/routes/tooltip.tsx",
+      "registry": "registry/tooltip.json",
+      "spec": ".klp/figma-refs/tooltip/spec.json",
+      "radixPrimitive": "@radix-ui/react-tooltip",
       "anatomy": [
         "root",
-        "section",
-        "title",
-        "item",
-        "separator"
-      ],
-      "variantAxes": {
-        "type": [
-          "default",
-          "checkbox",
-          "flat"
-        ]
-      },
-      "variantCount": 3,
-      "dependencies": {
-        "components": [
-          "action-sheet-item",
-          "checkbox"
-        ],
-        "externals": [
-          "@radix-ui/react-popover",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "radius",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "action-sheet-item",
-            "notes": "Repeated for each list item row in default and flat types."
-          },
-          {
-            "klpComponent": "checkbox",
-            "notes": "Used in checkbox type — each row wraps a Checkbox instance."
-          }
-        ],
-        "gaps": [
-          {
-            "kind": "unmatched-instance",
-            "part": "separator",
-            "reason": "No klp Separator component registered.",
-            "action": "inlined-local"
-          }
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "list",
-      "displayName": "List",
-      "description": "A vertical list container with header, optional action button, and repeated List_content rows. Supports Condensed (tight spacing), Default (medium spacing), and withInputs (with filter inputs in the header) layout styles.",
-      "category": "lists",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/list/List.tsx",
-      "doc": "docs/components/_index_list.md",
-      "playground": "playground/routes/list.tsx",
-      "registry": "registry/list.json",
-      "spec": ".klp/figma-refs/list/spec.json",
-      "radixPrimitive": null,
-      "anatomy": [
-        "root",
-        "header",
-        "header-title",
-        "header-button",
-        "header-inputs",
-        "items"
-      ],
-      "variantAxes": {
-        "style": [
-          "condensed",
-          "default",
-          "with-inputs"
-        ]
-      },
-      "variantCount": 3,
-      "dependencies": {
-        "components": [
-          "button",
-          "list-content"
-        ],
-        "externals": [
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "radius",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "button",
-            "notes": "header-button renders as <Button variant=\"tertiary\" size=\"md\"> (condensed and default styles only)."
-          },
-          {
-            "klpComponent": "list-content",
-            "notes": "Each row in the items section is a ListContent instance."
-          }
-        ],
-        "gaps": [
-          {
-            "kind": "partial-reuse",
-            "part": "header-title",
-            "property": "color",
-            "reason": "header-title color is a literal #2b2b2b; no --klp-fg-* alias in any brand variant maps to this value. Closest alias (--klp-fg-default) resolves to --klp-color-gray-800 (wireframe), a different value.",
-            "action": "arbitrary-value-tailwind — text-[#2b2b2b] applied via cva class string"
-          }
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "table-cells-text",
-      "displayName": "Table Cells / Text",
-      "description": "A table cell displaying primary text with an optional subtitle. Supports two row height tiers (compact 36px / relaxed 44px) and five fixed column widths (100-400px). Optional slots: checkbox, avatar, icon-button, badge.",
-      "category": "table cells",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/table-cells-text/TableCellsText.tsx",
-      "doc": "docs/components/_index_table-cells-text.md",
-      "playground": "playground/routes/table-cells-text.tsx",
-      "registry": "registry/table-cells-text.json",
-      "spec": ".klp/figma-refs/table-cells-text/spec.json",
-      "radixPrimitive": null,
-      "anatomy": [
-        "root",
-        "content",
-        "text-container",
         "label",
-        "subtitle"
+        "arrow"
       ],
       "variantAxes": {
-        "height": [
-          "1",
-          "2"
-        ],
-        "width": [
-          "100",
-          "150",
-          "200",
-          "300",
-          "400"
-        ],
-        "justify": [
-          "start"
+        "arrow-orientation": [
+          "bottom-left",
+          "bottom-right",
+          "top-left",
+          "top-right"
         ]
       },
-      "variantCount": 10,
+      "variantCount": 4,
       "dependencies": {
-        "components": [
-          "badges",
-          "button",
-          "checkbox"
-        ],
+        "components": [],
         "externals": [
+          "@radix-ui/react-tooltip",
           "class-variance-authority"
         ],
         "tokenGroups": [
           "colors",
+          "radius",
           "spacing",
           "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "table-cells-badges",
-      "displayName": "Table Cells / Badges",
-      "description": "A table cell container that embeds a klp Badge (or Status-badge) instance. Two display types: 'badge' (text pill with branded border/fill) and 'status' (icon-only pill with semantic info styling). Two height modes (1 = single row / hug; 2 = double row / extra padding) and six width presets (100, 150-auto, 200, 300, 400, square).",
-      "category": "table cells",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/table-cells-badges/TableCellsBadges.tsx",
-      "doc": "docs/components/_index_table-cells-badges.md",
-      "playground": "playground/routes/table-cells-badges.tsx",
-      "registry": "registry/table-cells-badges.json",
-      "spec": ".klp/figma-refs/table-cells-badges/spec.json",
-      "radixPrimitive": null,
-      "anatomy": [
-        "root",
-        "badge-instance",
-        "badge-label",
-        "badge-icon"
-      ],
-      "variantAxes": {
-        "type": [
-          "badge",
-          "status"
-        ],
-        "height": [
-          "1",
-          "2"
-        ],
-        "width": [
-          "100",
-          "150-auto",
-          "200",
-          "300",
-          "400",
-          "square"
-        ]
-      },
-      "variantCount": 22,
-      "dependencies": {
-        "components": [
-          "badges"
-        ],
-        "externals": [
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing"
         ],
         "brands": [
           "klub"
         ]
       },
       "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17",
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "badges",
-            "notes": "Each cell contains one INSTANCE of the 'badges' klp component. For type=badge it uses the primary bordered style (bg/brand-low + bd/brand-emphasis + fg/brand-contrasted label). For type=status it uses the info light style (bg/info + bd/invisible + fg/info icon)."
-          }
-        ],
-        "gaps": []
-      }
-    },
-    {
-      "name": "table-cells-empty",
-      "displayName": "Table Cells / Empty",
-      "description": "An empty table cell — horizontal layout with no content children. Used as a placeholder or spacer cell in data tables. Comes in two row-height variants (height=1 single-line, height=2 double-line) and three width variants (48px fixed, switch-width, or default/fluid).",
-      "category": "table cells",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/table-cells-empty/TableCellsEmpty.tsx",
-      "doc": "docs/components/_index_table-cells-empty.md",
-      "playground": "playground/routes/table-cells-empty.tsx",
-      "registry": "registry/table-cells-empty.json",
-      "spec": ".klp/figma-refs/table-cells-empty/spec.json",
-      "radixPrimitive": "none",
-      "anatomy": [
-        "root"
-      ],
-      "variantAxes": {
-        "height": [
-          "1",
-          "2"
-        ],
-        "width": [
-          "48",
-          "empty-switch",
-          "default"
-        ]
-      },
-      "variantCount": 3,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "composition": {
-        "reuses": [],
-        "gaps": [
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "minHeight",
-            "reason": "VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644 resolves to 36px. No --klp-size-* alias exists for 36px.",
-            "action": "min-h-[36px] CSS literal. Fix: add --klp-size-row-sm or --klp-size-2xl (36px) alias to alias spacing layer and re-run pnpm sync:tokens."
-          },
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "paddingLeft/paddingRight",
-            "reason": "paddingLeft=12px and paddingRight=12px are Figma literals (unbound variable). Value matches Sizing/S=12px → --klp-size-s.",
-            "action": "pl-[12px] pr-[12px] CSS literals. Fix: bind to Sizing/S variable in Figma."
-          },
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "paddingTop/paddingBottom (height=1)",
-            "reason": "paddingTop=8px / paddingBottom=8px are Figma literals (unbound). Value matches Sizing/XS=8px → --klp-size-xs.",
-            "action": "pt-[8px] pb-[8px] CSS literals. Fix: bind to Sizing/XS variable in Figma."
-          },
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "paddingTop/paddingBottom (height=2)",
-            "reason": "paddingTop=12px / paddingBottom=12px are Figma literals (unbound). Value matches Sizing/S=12px → --klp-size-s.",
-            "action": "pt-[12px] pb-[12px] CSS literals. Fix: bind to Sizing/S variable in Figma."
-          }
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "table-cells-actions",
-      "displayName": "Table Cells / Actions",
-      "description": "A table cell that renders 1–4 action buttons inline. Icon-only buttons use bg/invisible; the last/primary action button uses bg/inset with a label and optional chevron icon.",
-      "category": "table cells",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/table-cells-actions/TableCellsActions.tsx",
-      "doc": "docs/components/_index_table-cells-actions.md",
-      "playground": "playground/routes/table-cells-actions.tsx",
-      "registry": "registry/table-cells-actions.json",
-      "spec": ".klp/figma-refs/table-cells-actions/spec.json",
-      "radixPrimitive": null,
-      "anatomy": [
-        "root",
-        "button-1",
-        "button-2",
-        "button-3",
-        "button-primary"
-      ],
-      "variantAxes": {
-        "height": [
-          "1",
-          "2"
-        ],
-        "actions": [
-          "1",
-          "2",
-          "3",
-          "4"
-        ]
-      },
-      "variantCount": 8,
-      "dependencies": {
-        "components": [
-          "button"
-        ],
-        "externals": [
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "radius",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17",
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "button",
-            "notes": "Icon-only buttons (button-1 to button-3) use <Button variant='tertiary' size='icon'> — the tertiary×icon compound variant activates bg-invisible. The primary button uses <Button variant='tertiary' size='md'> which carries bg-inset fill."
-          }
-        ],
-        "gaps": [
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "minHeight",
-            "reason": "Cross-file Figma variable (VariableID:44254ea5bdcf2155e180be9f7f5798c986ae6ae2/1050:1645) — name unresolvable by the plugin. Controls minimum row height: 60px (height=2), 52px (height=1). No matching --klp-size-* alias exists.",
-            "action": "min-h-[60px] / min-h-[52px] CSS literals in the adapter. Request --klp-size-row-relaxed and --klp-size-row-compact aliases."
-          }
-        ]
-      }
-    },
-    {
-      "name": "table-cells-checkbox",
-      "displayName": "Table Cells / Checkbox",
-      "description": "A table cell wrapper (<td>) that renders a single klp Checkbox instance. Two height variants (height=1 compact 48px, height=2 default 56px) and two width variants (48px fixed, default fluid). Supports controlled, uncontrolled, indeterminate, and disabled checkbox states.",
-      "category": "table cells",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/table-cells-checkbox/TableCellsCheckbox.tsx",
-      "doc": "docs/components/_index_table-cells-checkbox.md",
-      "playground": "playground/routes/table-cells-checkbox.tsx",
-      "registry": "registry/table-cells-checkbox.json",
-      "spec": ".klp/figma-refs/table-cells-checkbox/spec.json",
-      "radixPrimitive": "@radix-ui/react-checkbox",
-      "anatomy": [
-        "root",
-        "checkbox"
-      ],
-      "variantAxes": {
-        "height": ["1", "2"],
-        "width": ["48", "default"]
-      },
-      "variantCount": 3,
-      "dependencies": {
-        "components": ["checkbox"],
-        "externals": [
-          "@radix-ui/react-checkbox",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing"
-        ],
-        "brands": ["klub"]
-      },
-      "usedBy": [],
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "checkbox",
-            "notes": "The cell embeds a Checkbox INSTANCE (State=Rest in Figma). The adapter imports and renders <Checkbox> from @/components/checkbox — the checkbox's own token bindings (fill, stroke, cornerRadius, padding) are delegated entirely to the Checkbox component."
-          }
-        ],
-        "gaps": [
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "paddingLeft + paddingRight",
-            "reason": "Figma variable not bound; literal 12px. Expected --klp-size-s.",
-            "action": "pl-[12px] pr-[12px] literals in adapter. Request Figma binding to Sizing/S."
-          },
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "paddingTop + paddingBottom (height=1)",
-            "reason": "Figma variable not bound; literal 8px. Expected --klp-size-xs.",
-            "action": "pt-[8px] pb-[8px] literals in adapter. Request Figma binding to Sizing/XS."
-          },
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "paddingTop + paddingBottom (height=2)",
-            "reason": "Figma variable not bound; literal 12px. Expected --klp-size-s.",
-            "action": "pt-[12px] pb-[12px] literals in adapter. Request Figma binding to Sizing/S."
-          },
-          {
-            "kind": "unbound-literal",
-            "part": "root",
-            "property": "minHeight",
-            "reason": "External cross-file Figma variable (VariableID:1628ef2701274f14d27cbdbfc02f93663d1cc555/1050:1644) resolving to 36px. No matching --klp-size-* alias.",
-            "action": "min-h-[36px] literal in adapter. Fix: add --klp-size-row-sm alias."
-          }
-        ]
-      },
       "created": "2026-04-17",
       "updated": "2026-04-17"
     }
