@@ -1,0 +1,61 @@
+// src/mockups/_index.tsx
+// Auto-enumerated mockups list. Iterates every _meta.json at build time.
+// Do not hand-edit unless you know what you're doing — the pipeline only
+// regenerates this file if it is missing.
+
+const metas = import.meta.glob('/src/mockups/*/_meta.json', { eager: true }) as Record<
+  string,
+  { default: MockupMeta }
+>
+
+interface ScreenMeta {
+  name: string
+  route: string
+  states?: string[]
+}
+interface MockupMeta {
+  id: string
+  title: string
+  project?: string
+  goal?: string
+  generatedAt?: string
+  brand?: string
+  screens: ScreenMeta[]
+}
+
+export default function MockupsIndex() {
+  const entries = Object.values(metas).map((m) => m.default)
+  if (entries.length === 0) {
+    return (
+      <div className="max-w-2xl text-klp-fg-muted">
+        <p>
+          No mockups yet. Drop a YAML in <code>requests/pending/</code> then run{' '}
+          <code>/klp-design &lt;id&gt;</code>.
+        </p>
+      </div>
+    )
+  }
+  return (
+    <ul className="space-y-8">
+      {entries.map((meta) => (
+        <li key={meta.id}>
+          <h2 className="font-klp-display text-klp-fg-default">{meta.title}</h2>
+          {meta.project && <p className="text-klp-fg-muted text-sm">{meta.project}</p>}
+          {meta.goal && <p className="mt-1 text-klp-fg-muted">{meta.goal}</p>}
+          <ul className="mt-3 space-y-1">
+            {meta.screens.map((s) => (
+              <li key={s.name}>
+                <a className="underline text-klp-fg-default" href={`#/mockups/${meta.id}/${s.name}`}>
+                  {s.name}
+                </a>
+                {s.states && s.states.length > 1 && (
+                  <span className="text-klp-fg-muted"> — states: {s.states.join(', ')}</span>
+                )}
+              </li>
+            ))}
+          </ul>
+        </li>
+      ))}
+    </ul>
+  )
+}
