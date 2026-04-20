@@ -1,0 +1,540 @@
+{
+  "version": "0.1.0",
+  "generatedAt": "2026-04-20T09:23:00.108Z",
+  "ref": "main",
+  "brands": [
+    "wireframe",
+    "klub",
+    "atlas",
+    "showup"
+  ],
+  "groups": {
+    "tokens": {
+      "required": true,
+      "files": [
+        {
+          "src": "src/styles/tokens.css",
+          "dst": "src/styles/tokens.css",
+          "hash": "sha256:0ec3888ba9541a14144bfd668539951c31838d2f7df504f0e9a233806a0348da"
+        },
+        {
+          "src": "src/styles/tokens/primitives.css",
+          "dst": "src/styles/tokens/primitives.css",
+          "hash": "sha256:2b3a15dbb0406c3d175b232da9dc5e7978e5696eb5748d223610d75a8e4a24cc"
+        },
+        {
+          "src": "src/styles/tokens/aliases.css",
+          "dst": "src/styles/tokens/aliases.css",
+          "hash": "sha256:7f38276587641630e3fdf3632eda2e9d3ab9be5b3e08d8812e08ee370029a30f"
+        },
+        {
+          "src": "src/styles/tokens/theme.css",
+          "dst": "src/styles/tokens/theme.css",
+          "hash": "sha256:7598c1a1727d1102d62d0276cfaffd5caf365d8589ee447e86df5fb86c8f7b21"
+        }
+      ]
+    },
+    "lib": {
+      "required": true,
+      "files": [
+        {
+          "src": "src/lib/cn.ts",
+          "dst": "src/lib/cn.ts",
+          "hash": "sha256:ff064227ddd140660f87333b7807a3e772270b9af52a0aeea0a8d72daaa32b4a"
+        }
+      ]
+    },
+    "components": {
+      "required": true,
+      "items": {
+        "action-sheet-item": {
+          "files": [
+            {
+              "src": "src/components/action-sheet-item/ActionSheetItem.tsx",
+              "dst": "src/components/ui/action-sheet-item/ActionSheetItem.tsx",
+              "hash": "sha256:79497477f5e9c7cd96b61581acb9eb68a7b23db2900030437c54041cddbcdfed"
+            },
+            {
+              "src": "src/components/action-sheet-item/index.ts",
+              "dst": "src/components/ui/action-sheet-item/index.ts",
+              "hash": "sha256:160c5b8b4861862ad81165e4f7ce213a1d758ba4e2f4089a270a73dc45d65088"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "action-sheet-menu": {
+          "files": [
+            {
+              "src": "src/components/action-sheet-menu/ActionSheetMenu.tsx",
+              "dst": "src/components/ui/action-sheet-menu/ActionSheetMenu.tsx",
+              "hash": "sha256:1eaacae32483e740013c124f8956a1e71219ec6523fd4178b7c1fbcf57168b7c"
+            },
+            {
+              "src": "src/components/action-sheet-menu/index.ts",
+              "dst": "src/components/ui/action-sheet-menu/index.ts",
+              "hash": "sha256:ec84c15dcc80947681e2e3d84178ea037964e5bd96f7061a2d6af8fa964fefc8"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-popover"
+            ],
+            "components": []
+          }
+        },
+        "badges": {
+          "files": [
+            {
+              "src": "src/components/badges/Badges.tsx",
+              "dst": "src/components/ui/badges/Badges.tsx",
+              "hash": "sha256:319a46e5b00aa9f44e0179a23cbabe4f8d42d8b29cbd725d4d624ed814fc0047"
+            },
+            {
+              "src": "src/components/badges/index.ts",
+              "dst": "src/components/ui/badges/index.ts",
+              "hash": "sha256:b68d33e887be6e7859ad86bf314cc0b51b3a2049aee566633b04b02ec10287ac"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "brand-provider": {
+          "files": [
+            {
+              "src": "src/components/brand-provider/BrandProvider.tsx",
+              "dst": "src/components/brand-provider.tsx",
+              "hash": "sha256:3a8a7ac7b0cf6439ad7d2aa4c98dfae9bb7fbc49aba8652f52e658fd039e71cd"
+            },
+            {
+              "src": "src/components/brand-provider/index.ts",
+              "dst": "src/components/brand-provider/index.ts",
+              "hash": "sha256:522fe33babe400c39a62d184006f92d9f08595ef6e185c400150a391da93230a"
+            }
+          ],
+          "deps": {
+            "npm": [],
+            "components": []
+          }
+        },
+        "breadcrumbs": {
+          "files": [
+            {
+              "src": "src/components/breadcrumbs/BreadCrumbs.tsx",
+              "dst": "src/components/ui/breadcrumbs/BreadCrumbs.tsx",
+              "hash": "sha256:cc45cd16eb32fac0cac6ca2b12e4153d6485655b1b163653c0f839d9d38922ed"
+            },
+            {
+              "src": "src/components/breadcrumbs/index.ts",
+              "dst": "src/components/ui/breadcrumbs/index.ts",
+              "hash": "sha256:e2d7e0fed058383b75f8b82eb27dbf52f597612c9234c7dcf25e37144ca1e88c"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "button": {
+          "files": [
+            {
+              "src": "src/components/button/Button.tsx",
+              "dst": "src/components/ui/button/Button.tsx",
+              "hash": "sha256:d15227c510b0b5446f0913505d2300aa52813baa3d6e716dbe2edbe9ab362186"
+            },
+            {
+              "src": "src/components/button/index.ts",
+              "dst": "src/components/ui/button/index.ts",
+              "hash": "sha256:689d5b6e2583cd820df36ff56e3aa34d6a54adb108f9c914e4fba94401c89b88"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "checkbox": {
+          "files": [
+            {
+              "src": "src/components/checkbox/Checkbox.tsx",
+              "dst": "src/components/ui/checkbox/Checkbox.tsx",
+              "hash": "sha256:1775242e90c1ad9c1556eacba2f7a6029fb005b91e450a1172c89f5e7b1f464a"
+            },
+            {
+              "src": "src/components/checkbox/index.ts",
+              "dst": "src/components/ui/checkbox/index.ts",
+              "hash": "sha256:081983e2c1c6e0f2ce01eb92cc6f5add76abbc0db06314cb4e16a935261f5d37"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-checkbox"
+            ],
+            "components": []
+          }
+        },
+        "data-table": {
+          "files": [
+            {
+              "src": "src/components/data-table/DataTable.tsx",
+              "dst": "src/components/ui/data-table/DataTable.tsx",
+              "hash": "sha256:f23bacb1440dbd52d7d16c3514ec860c6b24ad880366db4953f7ad5e272389c2"
+            },
+            {
+              "src": "src/components/data-table/index.ts",
+              "dst": "src/components/ui/data-table/index.ts",
+              "hash": "sha256:bd28a89ea23507e444821bbddb94079cca92b04e17cbf7ab847260fe44156153"
+            }
+          ],
+          "deps": {
+            "npm": [],
+            "components": []
+          }
+        },
+        "floating-alert": {
+          "files": [
+            {
+              "src": "src/components/floating-alert/FloatingAlert.tsx",
+              "dst": "src/components/ui/floating-alert/FloatingAlert.tsx",
+              "hash": "sha256:1e80366c6eaa8dc19899677155d5bd896c90dcf07317af6e5df9330c71811eed"
+            },
+            {
+              "src": "src/components/floating-alert/index.ts",
+              "dst": "src/components/ui/floating-alert/index.ts",
+              "hash": "sha256:a2838c2be2cb716b72e027533773c261648b4ed5d99e3b0c6a050d690fad9209"
+            }
+          ],
+          "deps": {
+            "npm": [],
+            "components": []
+          }
+        },
+        "in-content-alert": {
+          "files": [
+            {
+              "src": "src/components/in-content-alert/InContentAlert.tsx",
+              "dst": "src/components/ui/in-content-alert/InContentAlert.tsx",
+              "hash": "sha256:11ad77a982cd5215dbfd8cf4dbeb4e1ef7e145648eb670243cffbf20140d6709"
+            },
+            {
+              "src": "src/components/in-content-alert/index.ts",
+              "dst": "src/components/ui/in-content-alert/index.ts",
+              "hash": "sha256:e4e6b0434fb0dcddbbde90fcb2802c611dfca895b0533fcda86c0d4b0e86fb40"
+            }
+          ],
+          "deps": {
+            "npm": [],
+            "components": []
+          }
+        },
+        "input": {
+          "files": [
+            {
+              "src": "src/components/input/Input.tsx",
+              "dst": "src/components/ui/input/Input.tsx",
+              "hash": "sha256:b26a011c1f2c48ba3b2201871c29f0a0e57d88d9d0b49d823449b93d9ee34ff2"
+            },
+            {
+              "src": "src/components/input/index.ts",
+              "dst": "src/components/ui/input/index.ts",
+              "hash": "sha256:d3707f71c7cccef0653f1c05d0ed7b4e8136abc13e32aff4df1f0c81d10db259"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "list": {
+          "files": [
+            {
+              "src": "src/components/list/List.tsx",
+              "dst": "src/components/ui/list/List.tsx",
+              "hash": "sha256:79e0b7876e05a6960dae218db65ed14481d50a2a8d187e1387bce51fa94e5b8d"
+            },
+            {
+              "src": "src/components/list/index.ts",
+              "dst": "src/components/ui/list/index.ts",
+              "hash": "sha256:9f316b258d54e5b2a22f1577805c29fba42f646bd3e179742d0c06874d6d18fb"
+            }
+          ],
+          "deps": {
+            "npm": [],
+            "components": []
+          }
+        },
+        "list-content": {
+          "files": [
+            {
+              "src": "src/components/list-content/ListContent.tsx",
+              "dst": "src/components/ui/list-content/ListContent.tsx",
+              "hash": "sha256:cd19bbe5db5931f560acb29054fd87ea0da243ef600fe483fc89952877c5169b"
+            },
+            {
+              "src": "src/components/list-content/index.ts",
+              "dst": "src/components/ui/list-content/index.ts",
+              "hash": "sha256:ed1eccbd3db19f78f3f674a6f86ec238ddb6eeef7efda3370f7f6f8f18ff3041"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "pagination": {
+          "files": [
+            {
+              "src": "src/components/pagination/Pagination.tsx",
+              "dst": "src/components/ui/pagination/Pagination.tsx",
+              "hash": "sha256:29d1357419ccd279c75c2036267e98b092346dec500ae823f4b115133b934bd7"
+            },
+            {
+              "src": "src/components/pagination/index.ts",
+              "dst": "src/components/ui/pagination/index.ts",
+              "hash": "sha256:be4003a493f2876debfc5e0820b93f2372b12fa4581cfdf1df27e736bfa0f977"
+            }
+          ],
+          "deps": {
+            "npm": [],
+            "components": []
+          }
+        },
+        "radio": {
+          "files": [
+            {
+              "src": "src/components/radio/Radio.tsx",
+              "dst": "src/components/ui/radio/Radio.tsx",
+              "hash": "sha256:4382d532f55a575459500512dadd253d23b25faa1028edca0dd13fb9ad7581fb"
+            },
+            {
+              "src": "src/components/radio/index.ts",
+              "dst": "src/components/ui/radio/index.ts",
+              "hash": "sha256:741d4e3d53a4dfc0b1db70aa28012288dd0bd2119f8faab8556cbfce6a95d5f5"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-radio-group"
+            ],
+            "components": []
+          }
+        },
+        "switch": {
+          "files": [
+            {
+              "src": "src/components/switch/Switch.tsx",
+              "dst": "src/components/ui/switch/Switch.tsx",
+              "hash": "sha256:806ba01fd6ddfbfe22d6ea7fc33ef42c9c311f0241fdf5bf002c2439038a535f"
+            },
+            {
+              "src": "src/components/switch/index.ts",
+              "dst": "src/components/ui/switch/index.ts",
+              "hash": "sha256:13ed39fb356bbc87e09fb0411907ac7f56efe50e2f0802de6897478be1503101"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-switch"
+            ],
+            "components": []
+          }
+        },
+        "table": {
+          "files": [
+            {
+              "src": "src/components/table/Table.tsx",
+              "dst": "src/components/ui/table/Table.tsx",
+              "hash": "sha256:067b4481aaa81c818892b99c019ac69a44c3e44e8b450d435f0ee40bf98b43d8"
+            },
+            {
+              "src": "src/components/table/index.ts",
+              "dst": "src/components/ui/table/index.ts",
+              "hash": "sha256:4c008ee03812e157eb28889a0c83c80de41281df1d2c0334683f4b92b919808e"
+            }
+          ],
+          "deps": {
+            "npm": [],
+            "components": []
+          }
+        },
+        "tabulation-cells": {
+          "files": [
+            {
+              "src": "src/components/tabulation-cells/TabulationCells.tsx",
+              "dst": "src/components/ui/tabulation-cells/TabulationCells.tsx",
+              "hash": "sha256:3d98073f7ee2e3095f3b662b8d52934ff209287a7b022826da6f1f9064ad9e29"
+            },
+            {
+              "src": "src/components/tabulation-cells/index.ts",
+              "dst": "src/components/ui/tabulation-cells/index.ts",
+              "hash": "sha256:43c6c2a9ee1e3843403b0c46672fe1e91c9875476bc8579b7ac61acdf0e45549"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-tabs"
+            ],
+            "components": []
+          }
+        },
+        "tabulations": {
+          "files": [
+            {
+              "src": "src/components/tabulations/Tabulations.tsx",
+              "dst": "src/components/ui/tabulations/Tabulations.tsx",
+              "hash": "sha256:4ee5478258ee5e0bb66e47e67964384f21520f026cec504e34921509df6743d7"
+            },
+            {
+              "src": "src/components/tabulations/index.ts",
+              "dst": "src/components/ui/tabulations/index.ts",
+              "hash": "sha256:15808b87a2e4ecece400dc2d392364fd94b862f928ee3b0219561749f8081fd3"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-tabs"
+            ],
+            "components": []
+          }
+        },
+        "text-area": {
+          "files": [
+            {
+              "src": "src/components/text-area/TextArea.tsx",
+              "dst": "src/components/ui/text-area/TextArea.tsx",
+              "hash": "sha256:51cdc41fa5b386f530eb64e63a3d9a7e1a158ae74c19ebeb329fb1448953a6f6"
+            },
+            {
+              "src": "src/components/text-area/index.ts",
+              "dst": "src/components/ui/text-area/index.ts",
+              "hash": "sha256:e7bf26a01054694cf7cc0c2ee1f093237fc726d7337efdf259b52e88936198ec"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "tooltip": {
+          "files": [
+            {
+              "src": "src/components/tooltip/Tooltip.tsx",
+              "dst": "src/components/ui/tooltip/Tooltip.tsx",
+              "hash": "sha256:ead4cbd809bb330c70371219efc5c5aa78b266c37856f574ce6f1ec6bbbed443"
+            },
+            {
+              "src": "src/components/tooltip/index.ts",
+              "dst": "src/components/ui/tooltip/index.ts",
+              "hash": "sha256:8ff6c2ed2e453b7d5ef3caa0f4d5b6fae566750868844d89a838be60497f34b3"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-tooltip"
+            ],
+            "components": []
+          }
+        }
+      }
+    },
+    "claude": {
+      "required": false,
+      "files": []
+    },
+    "scaffold": {
+      "required": true,
+      "files": [
+        {
+          "src": "cli/scaffold/App.tsx.tmpl",
+          "dst": "src/App.tsx",
+          "hash": "sha256:24a804e12aa480da11fdb159ee264b4a2950aa72105abe4e04aaf0eddd258746",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/claude/CLAUDE.md.tmpl",
+          "dst": ".claude/CLAUDE.md",
+          "hash": "sha256:07c000e829e506f384fa97eb3fd58fd97a331218529a0dd70e01605970783d54",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/claude/agents/.gitkeep",
+          "dst": ".claude/agents/.gitkeep",
+          "hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "template": false
+        },
+        {
+          "src": "cli/scaffold/claude/skills/.gitkeep",
+          "dst": ".claude/skills/.gitkeep",
+          "hash": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "template": false
+        },
+        {
+          "src": "cli/scaffold/gitignore.tmpl",
+          "dst": ".gitignore",
+          "hash": "sha256:3613ce8ec3ba056c89cc0aac19d1e057dc90fa529b617339fce76cbf79a75151",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/index.css.tmpl",
+          "dst": "src/index.css",
+          "hash": "sha256:ddefa9dc42316c68424618dba4020f6699fd2eada0b4667a7994f38eec6f1e61",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/index.html.tmpl",
+          "dst": "index.html",
+          "hash": "sha256:59988642b4b2995b79c59e38f7fee82954e84f15978a1d64519736041177edcb",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/main.tsx.tmpl",
+          "dst": "src/main.tsx",
+          "hash": "sha256:d4f3a194baaa2acd3b537cb707d426e7c66c306578102de433b31f15e7cd6b00",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/package.json.tmpl",
+          "dst": "package.json",
+          "hash": "sha256:f558c8e4104daf5f6a698ab86ce7082c09e0b08be7293da045c02a6f1aa85363",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/tsconfig.json.tmpl",
+          "dst": "tsconfig.json",
+          "hash": "sha256:5cd6e0fbf8e139972fee374917e7babcde21f02da955c182112e97bc2425539c",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/tsconfig.node.json.tmpl",
+          "dst": "tsconfig.node.json",
+          "hash": "sha256:b9382cedc8467d9b8e8c96fce8afa6302202a8eca39b4ff87c3611527f5ceebc",
+          "template": true
+        },
+        {
+          "src": "cli/scaffold/vite.config.ts.tmpl",
+          "dst": "vite.config.ts",
+          "hash": "sha256:b4889555a76758613ed445d50c2975f877856d00f976fa1b16864e3d6ea41806",
+          "template": true
+        }
+      ]
+    }
+  }
+}
