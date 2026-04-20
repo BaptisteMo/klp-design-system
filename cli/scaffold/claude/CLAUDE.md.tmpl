@@ -18,3 +18,44 @@ Brand: **{{brand}}**
 ## Updating the design system
 
 Run `npx github:BaptisteMo/klp-design-system update` to pull the latest components interactively.
+
+## Agentic design pipeline
+
+This project ships with a 4-stage pipeline that turns YAML design requests into React mockup pages.
+
+### Request lifecycle
+
+```
+requests/pending/        ← brain agents drop YAML here
+requests/to-be-review/   ← after pipeline generates mockups; review in-browser
+requests/to-be-validate/ ← after your review; pending meeting sign-off
+requests/processed/      ← validated, done
+```
+
+### Running the pipeline
+
+- `/klp-design <id> [extras…]` — runs the full pipeline on `requests/pending/<id>.yaml`. Optional trailing text becomes ephemeral context for the run (logged to `docs/design-log.md`, not written into the YAML).
+- `/klp-design-review <id>` — moves `to-be-review/<id>.yaml` → `to-be-validate/<id>.yaml`.
+- `/klp-design-validate <id>` — moves `to-be-validate/<id>.yaml` → `processed/<id>.yaml`.
+- `/klp-design-reset <id>` — moves any state → `pending/` and deletes `src/mockups/<id>/` so the run can be re-done.
+
+### Viewing mockups
+
+Run `pnpm dev` and visit `http://localhost:5173/`. The index auto-enumerates every `_meta.json` under `src/mockups/` and exposes each screen at `#/mockups/<id>/<screen>`.
+
+### DS awareness for agents
+
+Agents read `docs/agent-brief.md` first (condensed inventory + token aliases + rules), then drill into `docs/index.md` and `docs/components/_index_<name>.md` per component used. Brand-specific guidance lives in `docs/brands/{{brand}}.md`.
+
+### Ad-hoc components
+
+When the DS doesn't cover a need:
+
+- One-off use: composed inline in the mockup file.
+- Used across ≥ 2 screens: a reusable component is created under `src/components/custom/<name>/`.
+
+Every gap is logged to `docs/ds-gaps.md` for later DS promotion.
+
+### Updating the DS
+
+Run `npx github:BaptisteMo/klp-design-system update` to pull latest DS changes interactively. Your `src/mockups/*`, `src/components/custom/*`, `docs/ds-gaps.md`, `docs/design-log.md`, and request folders are never touched by update.
