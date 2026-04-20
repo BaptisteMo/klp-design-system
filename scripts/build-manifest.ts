@@ -102,6 +102,44 @@ function buildComponentsGroup(): { items: Record<string, ComponentManifest> } {
   return { items }
 }
 
+function buildDocsGroup(): { files: ManifestFile[]; brandFiles: (ManifestFile & { brand: string })[] } {
+  const files: ManifestFile[] = []
+  const simple = [
+    'docs/agent-brief.md',
+    'docs/index.md',
+    'docs/overview.md',
+    'docs/tokens/_index_tokens.md',
+    'docs/tokens/colors.md',
+    'docs/tokens/radius.md',
+    'docs/tokens/spacing.md',
+    'docs/tokens/typography.md',
+    'docs/brands/_index_brands.md',
+  ]
+  for (const p of simple) {
+    if (!existsSync(join(ROOT, p))) continue
+    files.push({ src: p, dst: p, hash: hashFile(join(ROOT, p)) })
+  }
+  const compDir = join(ROOT, 'docs/components')
+  if (existsSync(compDir)) {
+    for (const entry of readdirSync(compDir)) {
+      if (!/^_index_.*\.md$/.test(entry)) continue
+      const p = `docs/components/${entry}`
+      files.push({ src: p, dst: p, hash: hashFile(join(ROOT, p)) })
+    }
+  }
+  const brandFiles: (ManifestFile & { brand: string })[] = []
+  const brandDir = join(ROOT, 'docs/brands')
+  if (existsSync(brandDir)) {
+    for (const entry of readdirSync(brandDir)) {
+      if (!/^(klub|atlas|showup|wireframe)\.md$/.test(entry)) continue
+      const brand = entry.replace(/\.md$/, '')
+      const p = `docs/brands/${entry}`
+      brandFiles.push({ src: p, dst: p, hash: hashFile(join(ROOT, p)), brand })
+    }
+  }
+  return { files, brandFiles }
+}
+
 function buildScaffoldGroup(): { files: ManifestFile[] } {
   const dir = join(ROOT, 'cli/scaffold')
   const entries = walkDir(dir).map((p) => {
@@ -127,6 +165,19 @@ function tmplToDst(tmpl: string): string {
     'claude/CLAUDE.md.tmpl': '.claude/CLAUDE.md',
     'claude/agents/.gitkeep': '.claude/agents/.gitkeep',
     'claude/skills/.gitkeep': '.claude/skills/.gitkeep',
+    'claude/agents/request-analyzer.md.tmpl': '.claude/agents/request-analyzer.md',
+    'claude/agents/ad-hoc-builder.md.tmpl': '.claude/agents/ad-hoc-builder.md',
+    'claude/agents/mockup-composer.md.tmpl': '.claude/agents/mockup-composer.md',
+    'claude/agents/design-finalizer.md.tmpl': '.claude/agents/design-finalizer.md',
+    'claude/commands/klp-design.md.tmpl': '.claude/commands/klp-design.md',
+    'claude/commands/klp-design-review.md.tmpl': '.claude/commands/klp-design-review.md',
+    'claude/commands/klp-design-validate.md.tmpl': '.claude/commands/klp-design-validate.md',
+    'claude/commands/klp-design-reset.md.tmpl': '.claude/commands/klp-design-reset.md',
+    'mockups/_index.tsx.tmpl': 'src/mockups/_index.tsx',
+    'requests/pending/.gitkeep': 'requests/pending/.gitkeep',
+    'requests/to-be-review/.gitkeep': 'requests/to-be-review/.gitkeep',
+    'requests/to-be-validate/.gitkeep': 'requests/to-be-validate/.gitkeep',
+    'requests/processed/.gitkeep': 'requests/processed/.gitkeep',
   }
   return mapping[tmpl] ?? tmpl
 }
@@ -138,6 +189,7 @@ function buildClaudeGroup(): { files: ManifestFile[] } {
 }
 
 function main() {
+  const docs = buildDocsGroup()
   const manifest = {
     version: MANIFEST_VERSION,
     generatedAt: new Date().toISOString(),
@@ -147,6 +199,7 @@ function main() {
       tokens: { required: true, ...buildTokenGroup() },
       lib: { required: true, ...buildLibGroup() },
       components: { required: true, ...buildComponentsGroup() },
+      docs: { required: true, files: docs.files, brandFiles: docs.brandFiles },
       claude: { required: false, ...buildClaudeGroup() },
       scaffold: { required: true, ...buildScaffoldGroup() },
     },
