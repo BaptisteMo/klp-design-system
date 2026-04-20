@@ -12,6 +12,7 @@
     "src",
     "registry",
     "scripts/build-manifest.ts",
+    "scripts/build-agent-brief.ts",
     "scripts/validate-manifest.mjs",
     "README.md"
   ],
