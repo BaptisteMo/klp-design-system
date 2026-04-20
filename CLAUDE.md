@@ -82,3 +82,19 @@ For specs captured before this discipline (v1 specs without the `composition` fi
 - Batch state helper: `scripts/batch-state.mjs` (writes to `.klp/staging/`, gitignored)
 - Aggregated DS gaps: `docs/gaps.md` (regenerated at every documentalist pass)
 - Per-component gap block: inside `docs/components/_index_<name>.md` between `<!-- KLP:GAPS:BEGIN --> ... <!-- KLP:GAPS:END -->` (do not edit by hand)
+
+## CLI distribution workflow
+
+The DS is also distributed to external (personal) React projects via a CLI committed at `cli/`. Two commands: `init` (scaffold a fresh project) and `update` (batch + interactive per-file override).
+
+- Source of truth for distribution: `registry/manifest.json`. Never hand-edit. Regenerate via `pnpm run build:manifest` after any change to `src/components/**`, `src/styles/tokens/**`, `src/lib/**`, or `cli/scaffold/**`.
+- Integrity check: `pnpm run validate:manifest` — fails if a file's disk hash diverges from the manifest hash. Run before committing.
+- Smoke test: `pnpm run test:cli` — asserts CLI help/version, rewrite rules, hash, manifest module, and diff categorization. Run before committing CLI changes.
+- Consumer invocation: `npx github:BaptisteMo/klp-design-system init` and `npx github:BaptisteMo/klp-design-system update`.
+- Lockfile (`klp.lock.json`) on the consumer side records the hash of every file at install/update time. Used to categorize diff: NEW, CHANGED-UPSTREAM, LOCAL-ONLY-CHANGE, CONFLICT, REMOVED-UPSTREAM, ALREADY-APPLIED.
+- Consumer component path is flat: `src/components/ui/<name>/` (except `brand-provider` which is flat at `src/components/brand-provider.tsx`). The CLI rewrites imports on copy (`cli/rewrite.mjs`).
+- Scaffold templates live in `cli/scaffold/` and are loaded from the CLI's local tarball, not GitHub raw. `{{projectName}}`, `{{brand}}`, `{{npmDeps}}` are interpolated. Scaffold files are one-time init artifacts — update does not re-apply them.
+- npm tarball scope is limited via `"files"` in `package.json` to `cli/`, `src/`, `registry/`, `scripts/build-manifest.ts`, `scripts/validate-manifest.mjs`, `README.md`. Docs, playground, and `.klp/` are excluded.
+
+Spec: `docs/superpowers/specs/2026-04-20-cli-distribution-design.md`.
+Plan: `docs/superpowers/plans/2026-04-20-cli-distribution.md`.
