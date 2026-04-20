@@ -165,7 +165,7 @@ function validateBrand(brand) {
   const valid = ['wireframe', 'klub', 'atlas', 'showup']
   if (!valid.includes(brand)) {
     console.error(`Invalid brand "${brand}". Valid: ${valid.join(', ')}`)
-    process.exit(1)
+    process.exit(3)
   }
 }
 

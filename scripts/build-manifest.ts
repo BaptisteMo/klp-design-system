@@ -70,6 +70,7 @@ function buildComponentsGroup(): { items: Record<string, ComponentManifest> } {
     const files = walkDir(full)
       .filter((p) => /\.(tsx?|css)$/.test(p))
       .filter((p) => !/\.example\.tsx$/.test(p))
+      .filter((p) => !(FLAT_COMPONENTS.has(name) && /\/index\.ts$/.test(p)))
       .map((p) => {
         const relSrc = relative(ROOT, p).replace(/\\/g, '/')
         const dst = FLAT_COMPONENTS.has(name)

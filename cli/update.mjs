@@ -94,6 +94,12 @@ export async function run(rest) {
 
   console.log(pc.cyan(`\n→ applying ${selected.length} changes`))
   const newLockFiles = { ...lockfile.files }
+
+  // Silent refresh: entries already in sync with remote (user manually applied before update).
+  for (const e of grouped['already-applied']) {
+    newLockFiles[e.dst] = { hash: e.remoteHash, source: e.item ?? e.group ?? 'unknown' }
+  }
+
   for (const e of selected) {
     if (e.status === 'removed-upstream') {
       const abs = resolve(cwd, e.dst)
