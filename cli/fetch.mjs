@@ -29,8 +29,12 @@ async function fetchWithRetry(url, encoding) {
   throw lastErr
 }
 
-function fetchOnce(url, encoding) {
+function fetchOnce(url, encoding, depth = 0) {
   return new Promise((resolve, reject) => {
+    if (depth > 5) {
+      reject(new Error(`Too many redirects: ${url}`))
+      return
+    }
     const headers = {
       'User-Agent': 'klp-ui-cli',
       Accept: 'application/vnd.github.raw+json, */*',
@@ -42,7 +46,7 @@ function fetchOnce(url, encoding) {
       // follow redirects
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         res.resume()
-        fetchOnce(res.headers.location, encoding).then(resolve, reject)
+        fetchOnce(res.headers.location, encoding, depth + 1).then(resolve, reject)
         return
       }
       if (res.statusCode !== 200) {

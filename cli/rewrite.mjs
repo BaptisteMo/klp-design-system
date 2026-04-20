@@ -15,8 +15,9 @@ export function rewriteImports(source, dstPath) {
   if (!/\.(ts|tsx)$/.test(dstPath)) return source
 
   // Match `from '@/components/<name>` and `from "@/components/<name>`
+  // Negative lookahead (?!ui\/) prevents double-rewrite of already-migrated imports
   return source.replace(
-    /(['"])@\/components\/([a-z0-9-]+)/g,
+    /(['"])@\/components\/(?!ui\/)([a-z0-9-]+)/g,
     (match, quote, name) => {
       if (FLAT_COMPONENTS.has(name)) return match
       return `${quote}@/components/ui/${name}`
