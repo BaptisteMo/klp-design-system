@@ -165,7 +165,11 @@ my-project/
     },
     "claude": {
       "required": true,
-      "files": [ "TBD — structure to be provided by user" ]
+      "files": [
+        { "src": "cli/scaffold/claude/CLAUDE.md.tmpl", "dst": ".claude/CLAUDE.md", "hash": "...", "template": true },
+        { "src": "cli/scaffold/claude/agents/.gitkeep", "dst": ".claude/agents/.gitkeep", "hash": "..." },
+        { "src": "cli/scaffold/claude/skills/.gitkeep", "dst": ".claude/skills/.gitkeep", "hash": "..." }
+      ]
     },
     "scaffold": {
       "required": true,
@@ -414,8 +418,8 @@ Plain-node assertion scripts. No test framework dep.
 
 ## Open items
 
-- **Claude structure to ship** — user will provide the exact `.claude/` subset (agents, commands, skills) to include in the `claude` manifest group. Placeholder in schema until provided.
-- **`BrandProvider` authoring path** — decide whether to author it via the full `/klp-build-component` pipeline (would require a Figma node) or hand-author as a utility exempt from the pipeline. Recommendation: hand-author, add to `klp-components.json` manually, exempt from `validate-tokens` since it has no visual layers.
+- **Claude structure** — ships a minimal designer-oriented placeholder: `CLAUDE.md` (designer-focused rules for using the DS in prototyping context), empty `.claude/agents/` and `.claude/skills/` folders (preserved via `.gitkeep`). User will fill agents + skills later; CLI update will pick up new files automatically once they are added to the manifest. The `CLAUDE.md` template itself is plain (no interpolation beyond `{{projectName}}` + `{{brand}}`).
+- **`BrandProvider` authoring path** — hand-authored as a utility, exempt from the full `/klp-build-component` pipeline. Added to `klp-components.json` manually. Exempt from `validate-tokens` since it has no visual layers.
 
 ## Out of scope (future work)
 
