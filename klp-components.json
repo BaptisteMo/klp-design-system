@@ -1109,6 +1109,37 @@
       "usedBy": [],
       "created": "2026-04-17",
       "updated": "2026-04-17"
+    },
+    {
+      "name": "brand-provider",
+      "displayName": "Brand Provider",
+      "description": "Applies a chosen brand to document.documentElement so CSS alias tokens switch. No visual layers.",
+      "category": "utilities",
+      "schemaVersion": "v2",
+      "status": "stable",
+      "source": "src/components/brand-provider/BrandProvider.tsx",
+      "registry": "registry/brand-provider.json",
+      "anatomy": [
+        "root"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "dependencies": {
+        "components": [],
+        "externals": [],
+        "tokenGroups": [],
+        "brands": [
+          "klub",
+          "atlas",
+          "showup",
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-20",
+      "updated": "2026-04-20",
+      "exemptFromValidator": true,
+      "exemptFromFigmaPipeline": true
     }
   ]
 }
