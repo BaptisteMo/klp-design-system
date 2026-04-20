@@ -22,6 +22,7 @@ function flatten(m) {
   const out = []
   for (const [g, group] of Object.entries(m.groups)) {
     if (group.files) for (const f of group.files) out.push({ ...f, group: g })
+    if (group.brandFiles) for (const f of group.brandFiles) out.push({ ...f, group: g, brand: f.brand })
     if (group.items) {
       for (const [i, item] of Object.entries(group.items)) {
         for (const f of item.files) out.push({ ...f, group: g, item: i })
