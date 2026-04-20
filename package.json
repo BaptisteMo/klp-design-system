@@ -18,7 +18,8 @@
     "docs:validate": "echo 'Doc lint is performed by the documentalist agent. Dispatch it via Claude Code: operation=LINT.' && exit 1",
     "validate:tokens": "node scripts/validate-tokens.mjs",
     "validate:tokens:all": "node scripts/validate-tokens-all.mjs",
-    "build:manifest": "tsx scripts/build-manifest.ts"
+    "build:manifest": "tsx scripts/build-manifest.ts",
+    "validate:manifest": "node scripts/validate-manifest.mjs"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
