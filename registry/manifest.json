@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-20T10:59:25.060Z",
+  "generatedAt": "2026-04-20T11:52:39.790Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -641,7 +641,7 @@
         },
         {
           "src": "cli/scaffold/claude/CLAUDE.md.tmpl",
-          "dst": ".claude/CLAUDE.md",
+          "dst": "CLAUDE.md",
           "hash": "sha256:0f0d346449997a5c31b7a7daa04ad2180fa99a0c90757dd5710145bafbca4113",
           "template": true
         },

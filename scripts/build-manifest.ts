@@ -162,7 +162,7 @@ function tmplToDst(tmpl: string): string {
     'App.tsx.tmpl': 'src/App.tsx',
     'index.css.tmpl': 'src/index.css',
     'gitignore.tmpl': '.gitignore',
-    'claude/CLAUDE.md.tmpl': '.claude/CLAUDE.md',
+    'claude/CLAUDE.md.tmpl': 'CLAUDE.md',
     'claude/agents/.gitkeep': '.claude/agents/.gitkeep',
     'claude/skills/.gitkeep': '.claude/skills/.gitkeep',
     'claude/agents/request-analyzer.md.tmpl': '.claude/agents/request-analyzer.md',
