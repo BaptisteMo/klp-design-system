@@ -4,6 +4,7 @@ dist
 *.log
 .vite
 coverage
+.worktrees
 
 # Agent-local artefacts
 .klp/staging
