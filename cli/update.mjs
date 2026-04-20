@@ -61,7 +61,7 @@ export async function run(rest) {
     ...grouped['changed-upstream'],
     ...grouped['conflict'],
     ...grouped['removed-upstream'],
-  ]
+  ].filter((e) => e.group !== 'scaffold')
 
   if (actionable.length === 0) {
     console.log(pc.green('\n✓ Up to date.'))

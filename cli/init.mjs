@@ -101,10 +101,8 @@ export async function run(rest) {
     if (args.verbose) process.stdout.write('\n')
 
     if (f.group === 'scaffold') {
-      // scaffold group files already written above; record hash for lockfile
-      const localAbs = resolve(cwd, f.dst)
-      const content = await readFile(localAbs)
-      lockFiles[f.dst] = { hash: sha256(content), source: f.group }
+      // scaffold group files already written above; record manifest (raw template) hash
+      lockFiles[f.dst] = { hash: f.hash, source: f.group }
       continue
     }
 
@@ -127,7 +125,7 @@ export async function run(rest) {
     await writeFile(absDst, content)
 
     lockFiles[f.dst] = {
-      hash: sha256(content),
+      hash: f.hash,
       source: f.item ?? f.group,
     }
   }
