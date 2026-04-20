@@ -93,7 +93,7 @@ export async function run(rest) {
 
   try {
     console.log(pc.cyan(`→ writing scaffold templates`))
-    await writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose: args.verbose, writtenPaths })
+    await writeScaffoldFiles({ cwd, manifest, projectName, brand, npmDeps, verbose: args.verbose, writtenPaths })
 
     console.log(pc.cyan(`→ fetching ${files.length} DS files`))
     const lockFiles = {}
@@ -202,34 +202,27 @@ function formatNpmDepsJson(deps) {
   }).join('\n')
 }
 
-async function writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose, writtenPaths }) {
-  const files = [
-    ['package.json.tmpl', 'package.json'],
-    ['vite.config.ts.tmpl', 'vite.config.ts'],
-    ['tsconfig.json.tmpl', 'tsconfig.json'],
-    ['tsconfig.node.json.tmpl', 'tsconfig.node.json'],
-    ['index.html.tmpl', 'index.html'],
-    ['main.tsx.tmpl', 'src/main.tsx'],
-    ['App.tsx.tmpl', 'src/App.tsx'],
-    ['index.css.tmpl', 'src/index.css'],
-    ['gitignore.tmpl', '.gitignore'],
-    ['claude/CLAUDE.md.tmpl', '.claude/CLAUDE.md'],
-    ['claude/agents/.gitkeep', '.claude/agents/.gitkeep'],
-    ['claude/skills/.gitkeep', '.claude/skills/.gitkeep'],
-  ]
+async function writeScaffoldFiles({ cwd, manifest, projectName, brand, npmDeps, verbose, writtenPaths }) {
+  const scaffoldFiles = manifest.groups.scaffold?.files ?? []
+  if (scaffoldFiles.length === 0) {
+    throw new Error('manifest.groups.scaffold.files is empty — cannot initialize project')
+  }
   const npmDepsJson = formatNpmDepsJson(npmDeps)
 
-  for (const [tmpl, dst] of files) {
-    const srcPath = join(SCAFFOLD_DIR, tmpl)
+  for (const f of scaffoldFiles) {
+    const relToScaffold = f.src.replace(/^cli\/scaffold\//, '')
+    const srcPath = join(SCAFFOLD_DIR, relToScaffold)
     const raw = await readFile(srcPath, 'utf8')
-    const rendered = raw
-      .replace(/\{\{projectName\}\}/g, projectName)
-      .replace(/\{\{brand\}\}/g, brand)
-      .replace(/\{\{npmDeps\}\}/g, npmDepsJson)
-    const absDst = resolve(cwd, dst)
+    const rendered = f.template
+      ? raw
+          .replace(/\{\{projectName\}\}/g, projectName)
+          .replace(/\{\{brand\}\}/g, brand)
+          .replace(/\{\{npmDeps\}\}/g, npmDepsJson)
+      : raw
+    const absDst = resolve(cwd, f.dst)
     await mkdir(dirname(absDst), { recursive: true })
     writtenPaths.push(absDst)
     await writeFile(absDst, rendered)
-    if (verbose) console.log(pc.gray(`  ${dst}`))
+    if (verbose) console.log(pc.gray(`  ${f.dst}`))
   }
 }
