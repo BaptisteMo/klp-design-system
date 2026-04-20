@@ -75,7 +75,7 @@ function buildComponentsGroup(): { items: Record<string, ComponentManifest> } {
         const dst = FLAT_COMPONENTS.has(name)
           ? relSrc.replace(
               /^src\/components\/([^/]+)\/([^/]+)\.tsx$/,
-              (_, n, file) => `src/components/${n}.tsx`,
+              (_, n) => `src/components/${n}.tsx`,
             )
           : relSrc.replace(/^src\/components\//, 'src/components/ui/')
         return { src: relSrc, dst, hash: hashFile(p) }

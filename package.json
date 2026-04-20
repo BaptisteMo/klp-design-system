@@ -5,8 +5,16 @@
   "type": "module",
   "description": "KLP design system — Radix Primitives + Tailwind v4, shadcn-style copy-paste.",
   "bin": {
-    "klp-ui": "./dist/cli/index.js"
+    "klp-ui": "./cli/index.mjs"
   },
+  "files": [
+    "cli",
+    "src",
+    "registry",
+    "scripts/build-manifest.ts",
+    "scripts/validate-manifest.mjs",
+    "README.md"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -34,6 +42,8 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^1.8.0",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
     "tailwind-merge": "^2.5.4"
   },
   "peerDependencies": {
