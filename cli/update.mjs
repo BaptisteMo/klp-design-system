@@ -15,11 +15,12 @@ import { askMultiselect } from './prompts.mjs'
 const REPO = 'BaptisteMo/klp-design-system'
 
 function parseArgs(rest) {
-  const out = { ref: 'main', dryRun: false, verbose: false }
+  const out = { ref: 'main', dryRun: false, verbose: false, force: false }
   for (const arg of rest) {
     if (arg.startsWith('--ref=')) out.ref = arg.slice(6)
     else if (arg === '--dry-run') out.dryRun = true
     else if (arg === '--verbose') out.verbose = true
+    else if (arg === '--force') out.force = true
   }
   return out
 }
@@ -37,7 +38,7 @@ export async function run(rest) {
   const lockfile = JSON.parse(await readFile(lockPath, 'utf8'))
 
   console.log(pc.cyan(`→ fetching manifest from ${args.ref}`))
-  const manifest = await fetchManifest(args.ref, REPO)
+  const manifest = await fetchManifest(args.ref, REPO, { force: args.force })
 
   const entries = await computeDiff({ cwd, lockfile, remoteManifest: manifest })
   const grouped = groupByStatus(entries)

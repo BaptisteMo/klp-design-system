@@ -24,15 +24,15 @@ export const MANIFEST_SCHEMA_VERSION = '0.1.0'
  * @property {Object} groups
  */
 
-export async function fetchManifest(ref, repo) {
+export async function fetchManifest(ref, repo, options = {}) {
   const url = `https://raw.githubusercontent.com/${repo}/${ref}/registry/manifest.json`
   const text = await fetchText(url)
   const parsed = JSON.parse(text)
-  validateManifest(parsed)
+  validateManifest(parsed, options)
   return parsed
 }
 
-export function validateManifest(manifest) {
+export function validateManifest(manifest, options = {}) {
   if (!manifest || typeof manifest !== 'object') {
     throw new Error('Manifest must be an object')
   }
@@ -40,9 +40,12 @@ export function validateManifest(manifest) {
     throw new Error('Manifest.version missing')
   }
   if (manifest.version !== MANIFEST_SCHEMA_VERSION) {
-    throw new Error(
-      `Manifest schema version mismatch: got ${manifest.version}, expected ${MANIFEST_SCHEMA_VERSION}`,
-    )
+    const msg = `Manifest schema version mismatch: got ${manifest.version}, expected ${MANIFEST_SCHEMA_VERSION}`
+    if (options.force) {
+      console.error(`! ${msg} (proceeding because --force)`)
+    } else {
+      throw new Error(`${msg}. Re-run with --force to proceed.`)
+    }
   }
   if (!Array.isArray(manifest.brands) || manifest.brands.length === 0) {
     throw new Error('Manifest.brands missing or empty')

@@ -39,7 +39,7 @@ const DEP_VERSIONS = {
 }
 
 function parseArgs(rest) {
-  const out = { projectName: null, brand: null, pm: null, install: true, git: true, ref: 'main', verbose: false }
+  const out = { projectName: null, brand: null, pm: null, install: true, git: true, ref: 'main', verbose: false, force: false }
   for (const arg of rest) {
     if (arg.startsWith('--brand=')) out.brand = arg.slice(8)
     else if (arg.startsWith('--pm=')) out.pm = arg.slice(5)
@@ -47,6 +47,7 @@ function parseArgs(rest) {
     else if (arg === '--no-git') out.git = false
     else if (arg.startsWith('--ref=')) out.ref = arg.slice(6)
     else if (arg === '--verbose') out.verbose = true
+    else if (arg === '--force') out.force = true
     else if (!arg.startsWith('--') && !out.projectName) out.projectName = arg
   }
   return out
@@ -82,7 +83,7 @@ export async function run(rest) {
   await mkdir(cwd, { recursive: true })
 
   console.log(pc.cyan(`\n→ fetching manifest from ${args.ref}`))
-  const manifest = await fetchManifest(args.ref, REPO)
+  const manifest = await fetchManifest(args.ref, REPO, { force: args.force })
   const files = flattenManifest(manifest)
   console.log(pc.gray(`  manifest v${manifest.version}, ${files.length} files`))
 
