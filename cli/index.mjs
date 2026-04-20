@@ -13,8 +13,8 @@ const HELP = `klp-ui — design system distribution CLI (v${pkg.version})
 
 Usage:
   klp-ui init [project-name] [--brand=<name>] [--pm=<pnpm|npm|yarn|bun>]
-                              [--no-install] [--no-git] [--ref=<ref>] [--verbose]
-  klp-ui update [--ref=<ref>] [--dry-run] [--verbose]
+                              [--no-install] [--no-git] [--ref=<ref>] [--verbose] [--force]
+  klp-ui update [--ref=<ref>] [--dry-run] [--verbose] [--force]
   klp-ui --help
   klp-ui --version
 

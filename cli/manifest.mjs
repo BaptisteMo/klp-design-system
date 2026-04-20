@@ -1,6 +1,10 @@
 // cli/manifest.mjs
 // Manifest fetching, parsing, and shape validation.
 
+import { readFileSync, writeFileSync, mkdirSync, existsSync, statSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { homedir } from 'node:os'
+import { join } from 'node:path'
 import { fetchText } from './fetch.mjs'
 
 export const MANIFEST_SCHEMA_VERSION = '0.1.0'
@@ -24,15 +28,62 @@ export const MANIFEST_SCHEMA_VERSION = '0.1.0'
  * @property {Object} groups
  */
 
-export async function fetchManifest(ref, repo) {
-  const url = `https://raw.githubusercontent.com/${repo}/${ref}/registry/manifest.json`
-  const text = await fetchText(url)
-  const parsed = JSON.parse(text)
-  validateManifest(parsed)
-  return parsed
+const CACHE_DIR = join(homedir(), '.klp', 'cache')
+const CACHE_TTL_MS = 5 * 60 * 1000
+
+function cachePath(repo, ref) {
+  const key = createHash('sha256').update(`${repo}:${ref}`).digest('hex').slice(0, 16)
+  return join(CACHE_DIR, `manifest-${key}.json`)
 }
 
-export function validateManifest(manifest) {
+function readCache(repo, ref) {
+  const p = cachePath(repo, ref)
+  if (!existsSync(p)) return null
+  try {
+    const stat = statSync(p)
+    const age = Date.now() - stat.mtimeMs
+    const fresh = age < CACHE_TTL_MS
+    return { text: readFileSync(p, 'utf8'), fresh, age }
+  } catch {
+    return null
+  }
+}
+
+function writeCache(repo, ref, text) {
+  try {
+    mkdirSync(CACHE_DIR, { recursive: true })
+    writeFileSync(cachePath(repo, ref), text)
+  } catch {
+    // best-effort — do not fail on cache write errors
+  }
+}
+
+export async function fetchManifest(ref, repo, options = {}) {
+  const cached = readCache(repo, ref)
+  if (cached?.fresh) {
+    const parsed = JSON.parse(cached.text)
+    validateManifest(parsed, options)
+    return parsed
+  }
+  const url = `https://raw.githubusercontent.com/${repo}/${ref}/registry/manifest.json`
+  try {
+    const text = await fetchText(url)
+    writeCache(repo, ref, text)
+    const parsed = JSON.parse(text)
+    validateManifest(parsed, options)
+    return parsed
+  } catch (err) {
+    if (cached) {
+      console.error(`! network failed, falling back to cache (${Math.round(cached.age / 1000)}s old)`)
+      const parsed = JSON.parse(cached.text)
+      validateManifest(parsed, options)
+      return parsed
+    }
+    throw err
+  }
+}
+
+export function validateManifest(manifest, options = {}) {
   if (!manifest || typeof manifest !== 'object') {
     throw new Error('Manifest must be an object')
   }
@@ -40,9 +91,12 @@ export function validateManifest(manifest) {
     throw new Error('Manifest.version missing')
   }
   if (manifest.version !== MANIFEST_SCHEMA_VERSION) {
-    throw new Error(
-      `Manifest schema version mismatch: got ${manifest.version}, expected ${MANIFEST_SCHEMA_VERSION}`,
-    )
+    const msg = `Manifest schema version mismatch: got ${manifest.version}, expected ${MANIFEST_SCHEMA_VERSION}`
+    if (options.force) {
+      console.error(`! ${msg} (proceeding because --force)`)
+    } else {
+      throw new Error(`${msg}. Re-run with --force to proceed.`)
+    }
   }
   if (!Array.isArray(manifest.brands) || manifest.brands.length === 0) {
     throw new Error('Manifest.brands missing or empty')
