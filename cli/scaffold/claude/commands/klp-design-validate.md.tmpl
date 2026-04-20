@@ -1,0 +1,14 @@
+---
+description: Mark a validated design as processed. Usage: /klp-design-validate <id>
+argument-hint: <id>
+allowed-tools: Bash, Read, Write
+---
+
+# /klp-design-validate
+
+Argument: **$ARGUMENTS** — request id.
+
+1. Verify `requests/to-be-validate/<id>.yaml` exists. If not, abort.
+2. `git mv requests/to-be-validate/<id>.yaml requests/processed/<id>.yaml` (fallback to plain mv).
+3. Append to `docs/design-log.md`: `- <ISO now> — \`<id>\` → processed — (validated)`.
+4. Print: `✓ <id> moved to processed/. Done.`
