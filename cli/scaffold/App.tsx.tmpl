@@ -1,0 +1,12 @@
+import { BrandProvider } from '@/components/brand-provider'
+
+export default function App() {
+  return (
+    <BrandProvider brand="{{brand}}">
+      <main className="min-h-screen bg-klp-bg-default text-klp-fg-default p-6">
+        <h1 className="font-klp-display text-klp-fg-default">klp-ui ready</h1>
+        <p className="text-klp-fg-muted mt-2">Brand: {{brand}}</p>
+      </main>
+    </BrandProvider>
+  )
+}

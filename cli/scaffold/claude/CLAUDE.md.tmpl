@@ -1,0 +1,20 @@
+# {{projectName}} — designer notes
+
+This project is a sandbox for code-based design exploration using the klp-ui design system.
+Brand: **{{brand}}**
+
+## How to work here
+
+- Components live at `src/components/ui/<name>/`. Import them via `@/components/ui/<name>`.
+- Styling uses Tailwind utilities referencing `--klp-*` alias tokens (e.g. `bg-klp-bg-brand`). Never hardcode colors or reference primitives (`--klp-color-*`) directly.
+- Class composition goes through `cn()` from `@/lib/cn`.
+- Brand is applied via `<BrandProvider brand="{{brand}}">` at the top of `App.tsx`. To switch brand, edit that prop.
+
+## Folder layout
+
+- `.claude/agents/` — project-specific agents (add your own).
+- `.claude/skills/` — project-specific skills (add your own).
+
+## Updating the design system
+
+Run `npx github:BaptisteMo/klp-design-system update` to pull the latest components interactively.
