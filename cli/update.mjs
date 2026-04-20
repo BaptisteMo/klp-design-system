@@ -36,6 +36,8 @@ export async function run(rest) {
   }
 
   const lockfile = JSON.parse(await readFile(lockPath, 'utf8'))
+  const writtenPaths = []
+  const origLockfile = JSON.parse(JSON.stringify(lockfile))
 
   console.log(pc.cyan(`→ fetching manifest from ${args.ref}`))
   const manifest = await fetchManifest(args.ref, REPO, { force: args.force })
@@ -101,39 +103,52 @@ export async function run(rest) {
     newLockFiles[e.dst] = { hash: e.remoteHash, source: e.item ?? e.group ?? 'unknown' }
   }
 
-  for (const e of selected) {
-    if (e.status === 'removed-upstream') {
+  // Rollback restores newly-written files by removing them, and restores the lockfile.
+  // Does NOT re-create files that were deleted during the run (rare; removed-upstream entries).
+  try {
+    for (const e of selected) {
+      if (e.status === 'removed-upstream') {
+        const abs = resolve(cwd, e.dst)
+        if (existsSync(abs)) await unlink(abs)
+        delete newLockFiles[e.dst]
+        console.log(pc.magenta(`  − ${e.dst}`))
+        continue
+      }
+      const url = `https://raw.githubusercontent.com/${REPO}/${args.ref}/${e.src}`
+      const buf = await fetchBuffer(url)
+      if (sha256(buf) !== e.remoteHash) {
+        throw new Error(`Integrity mismatch for ${e.src}`)
+      }
+      let content = buf
+      if (/\.(ts|tsx)$/.test(e.dst)) {
+        content = Buffer.from(rewriteImports(buf.toString('utf8'), e.dst), 'utf8')
+      }
       const abs = resolve(cwd, e.dst)
-      if (existsSync(abs)) await unlink(abs)
-      delete newLockFiles[e.dst]
-      console.log(pc.magenta(`  − ${e.dst}`))
-      continue
+      await mkdir(dirname(abs), { recursive: true })
+      writtenPaths.push(abs)
+      await writeFile(abs, content)
+      newLockFiles[e.dst] = { hash: sha256(content), source: e.item ?? e.group ?? 'unknown' }
+      const sign = e.status === 'new' ? '+' : '~'
+      console.log(pc.gray(`  ${sign} ${e.dst}`))
     }
-    const url = `https://raw.githubusercontent.com/${REPO}/${args.ref}/${e.src}`
-    const buf = await fetchBuffer(url)
-    if (sha256(buf) !== e.remoteHash) {
-      throw new Error(`Integrity mismatch for ${e.src}`)
-    }
-    let content = buf
-    if (/\.(ts|tsx)$/.test(e.dst)) {
-      content = Buffer.from(rewriteImports(buf.toString('utf8'), e.dst), 'utf8')
-    }
-    const abs = resolve(cwd, e.dst)
-    await mkdir(dirname(abs), { recursive: true })
-    await writeFile(abs, content)
-    newLockFiles[e.dst] = { hash: sha256(content), source: e.item ?? e.group ?? 'unknown' }
-    const sign = e.status === 'new' ? '+' : '~'
-    console.log(pc.gray(`  ${sign} ${e.dst}`))
-  }
 
-  const newLock = {
-    ...lockfile,
-    manifestVersion: manifest.version,
-    ref: args.ref,
-    files: newLockFiles,
+    const newLock = {
+      ...lockfile,
+      manifestVersion: manifest.version,
+      ref: args.ref,
+      files: newLockFiles,
+    }
+    await writeFile(lockPath, JSON.stringify(newLock, null, 2) + '\n')
+    console.log(pc.green('✓ klp.lock.json updated'))
+  } catch (err) {
+    console.error(pc.red(`\n✗ update failed: ${err.message}`))
+    console.error(pc.gray('  rolling back…'))
+    for (const p of writtenPaths.reverse()) {
+      try { await unlink(p) } catch {}
+    }
+    await writeFile(lockPath, JSON.stringify(origLockfile, null, 2) + '\n')
+    process.exit(2)
   }
-  await writeFile(lockPath, JSON.stringify(newLock, null, 2) + '\n')
-  console.log(pc.green('✓ klp.lock.json updated'))
 
   // Deps reconcile
   const newDeps = collectNpmDeps(manifest)

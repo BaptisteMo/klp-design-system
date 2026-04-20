@@ -89,58 +89,73 @@ export async function run(rest) {
 
   const npmDeps = resolveNpmDeps(manifest)
 
-  console.log(pc.cyan(`→ writing scaffold templates`))
-  await writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose: args.verbose })
+  const writtenPaths = []
 
-  console.log(pc.cyan(`→ fetching ${files.length} DS files`))
-  const lockFiles = {}
-  let i = 0
-  for (const f of files) {
-    i++
-    const status = args.verbose ? '' : `\r[${i}/${files.length}] `
-    process.stdout.write(status + pc.gray(f.dst))
-    if (args.verbose) process.stdout.write('\n')
+  try {
+    console.log(pc.cyan(`→ writing scaffold templates`))
+    await writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose: args.verbose, writtenPaths })
 
-    if (f.group === 'scaffold') {
-      // scaffold group files already written above; record manifest (raw template) hash
-      lockFiles[f.dst] = { hash: f.hash, source: f.group }
-      continue
+    console.log(pc.cyan(`→ fetching ${files.length} DS files`))
+    const lockFiles = {}
+    let i = 0
+    for (const f of files) {
+      i++
+      const status = args.verbose ? '' : `\r[${i}/${files.length}] `
+      process.stdout.write(status + pc.gray(f.dst))
+      if (args.verbose) process.stdout.write('\n')
+
+      if (f.group === 'scaffold') {
+        // scaffold group files already written above; record manifest (raw template) hash
+        lockFiles[f.dst] = { hash: f.hash, source: f.group }
+        continue
+      }
+
+      const url = `https://raw.githubusercontent.com/${REPO}/${args.ref}/${f.src}`
+      const buf = await fetchBuffer(url)
+
+      // integrity check
+      if (sha256(buf) !== f.hash) {
+        throw new Error(`Integrity mismatch for ${f.src}`)
+      }
+
+      // apply rewrite for .ts/.tsx
+      let content = buf
+      if (/\.(ts|tsx)$/.test(f.dst)) {
+        content = Buffer.from(rewriteImports(buf.toString('utf8'), f.dst), 'utf8')
+      }
+
+      const absDst = resolve(cwd, f.dst)
+      await mkdir(dirname(absDst), { recursive: true })
+      writtenPaths.push(absDst)
+      await writeFile(absDst, content)
+
+      lockFiles[f.dst] = {
+        hash: f.hash,
+        source: f.item ?? f.group,
+      }
     }
+    process.stdout.write('\n')
 
-    const url = `https://raw.githubusercontent.com/${REPO}/${args.ref}/${f.src}`
-    const buf = await fetchBuffer(url)
-
-    // integrity check
-    if (sha256(buf) !== f.hash) {
-      throw new Error(`Integrity mismatch for ${f.src}`)
+    const lockfile = {
+      manifestVersion: manifest.version,
+      ref: args.ref,
+      brand,
+      installedAt: new Date().toISOString(),
+      files: lockFiles,
     }
-
-    // apply rewrite for .ts/.tsx
-    let content = buf
-    if (/\.(ts|tsx)$/.test(f.dst)) {
-      content = Buffer.from(rewriteImports(buf.toString('utf8'), f.dst), 'utf8')
+    const lockPath = resolve(cwd, 'klp.lock.json')
+    writtenPaths.push(lockPath)
+    await writeFile(lockPath, JSON.stringify(lockfile, null, 2) + '\n')
+    console.log(pc.green(`✓ wrote klp.lock.json`))
+  } catch (err) {
+    console.error(pc.red(`\n✗ init failed: ${err.message}`))
+    console.error(pc.gray('  rolling back written files…'))
+    const { unlink } = await import('node:fs/promises')
+    for (const p of writtenPaths.reverse()) {
+      try { await unlink(p) } catch {}
     }
-
-    const absDst = resolve(cwd, f.dst)
-    await mkdir(dirname(absDst), { recursive: true })
-    await writeFile(absDst, content)
-
-    lockFiles[f.dst] = {
-      hash: f.hash,
-      source: f.item ?? f.group,
-    }
+    process.exit(2)
   }
-  process.stdout.write('\n')
-
-  const lockfile = {
-    manifestVersion: manifest.version,
-    ref: args.ref,
-    brand,
-    installedAt: new Date().toISOString(),
-    files: lockFiles,
-  }
-  await writeFile(resolve(cwd, 'klp.lock.json'), JSON.stringify(lockfile, null, 2) + '\n')
-  console.log(pc.green(`✓ wrote klp.lock.json`))
 
   if (args.install) {
     console.log(pc.cyan(`→ installing deps with ${pm}`))
@@ -187,7 +202,7 @@ function formatNpmDepsJson(deps) {
   }).join('\n')
 }
 
-async function writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose }) {
+async function writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose, writtenPaths }) {
   const files = [
     ['package.json.tmpl', 'package.json'],
     ['vite.config.ts.tmpl', 'vite.config.ts'],
@@ -213,6 +228,7 @@ async function writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose })
       .replace(/\{\{npmDeps\}\}/g, npmDepsJson)
     const absDst = resolve(cwd, dst)
     await mkdir(dirname(absDst), { recursive: true })
+    writtenPaths.push(absDst)
     await writeFile(absDst, rendered)
     if (verbose) console.log(pc.gray(`  ${dst}`))
   }
