@@ -1,0 +1,15 @@
+---
+description: Reset a request to pending and delete its mockups so /klp-design can re-run. Usage: /klp-design-reset <id>
+argument-hint: <id>
+allowed-tools: Bash, Read, Write
+---
+
+# /klp-design-reset
+
+Argument: **$ARGUMENTS** — request id.
+
+1. Locate the YAML by searching `requests/to-be-review/`, `requests/to-be-validate/`, `requests/processed/`. If not found in any, abort.
+2. `git mv <found-path> requests/pending/<id>.yaml` (fallback to plain mv).
+3. If `src/mockups/<id>/` exists, `rm -rf src/mockups/<id>/`.
+4. Append to `docs/design-log.md`: `- <ISO now> — \`<id>\` → pending — (reset)`.
+5. Print: `✓ <id> reset to pending/. Mockups deleted. Re-run with /klp-design <id>.`

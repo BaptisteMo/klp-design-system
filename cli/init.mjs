@@ -84,7 +84,7 @@ export async function run(rest) {
 
   console.log(pc.cyan(`\n→ fetching manifest from ${args.ref}`))
   const manifest = await fetchManifest(args.ref, REPO, { force: args.force })
-  const files = flattenManifest(manifest)
+  const files = flattenManifest(manifest, { brand })
   console.log(pc.gray(`  manifest v${manifest.version}, ${files.length} files`))
 
   const npmDeps = resolveNpmDeps(manifest)

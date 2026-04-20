@@ -15,12 +15,13 @@ import { askMultiselect } from './prompts.mjs'
 const REPO = 'BaptisteMo/klp-design-system'
 
 function parseArgs(rest) {
-  const out = { ref: 'main', dryRun: false, verbose: false, force: false }
+  const out = { ref: 'main', dryRun: false, verbose: false, force: false, brand: null }
   for (const arg of rest) {
     if (arg.startsWith('--ref=')) out.ref = arg.slice(6)
     else if (arg === '--dry-run') out.dryRun = true
     else if (arg === '--verbose') out.verbose = true
     else if (arg === '--force') out.force = true
+    else if (arg.startsWith('--brand=')) out.brand = arg.slice(8)
   }
   return out
 }
@@ -36,11 +37,22 @@ export async function run(rest) {
   }
 
   const lockfile = JSON.parse(await readFile(lockPath, 'utf8'))
+  const effectiveBrand = args.brand ?? lockfile.brand
+  if (args.brand && args.brand !== lockfile.brand) {
+    console.log(pc.yellow(`! switching brand: ${lockfile.brand} → ${args.brand}`))
+    console.log(pc.gray(`  remember to update <BrandProvider brand="${args.brand}"> in src/App.tsx`))
+  }
   const writtenPaths = []
   const origLockfile = JSON.parse(JSON.stringify(lockfile))
 
   console.log(pc.cyan(`→ fetching manifest from ${args.ref}`))
   const manifest = await fetchManifest(args.ref, REPO, { force: args.force })
+  if (manifest.groups.docs?.brandFiles) {
+    manifest.groups.docs = {
+      ...manifest.groups.docs,
+      brandFiles: manifest.groups.docs.brandFiles.filter((f) => f.brand === effectiveBrand),
+    }
+  }
 
   const entries = await computeDiff({ cwd, lockfile, remoteManifest: manifest })
   const grouped = groupByStatus(entries)
@@ -136,6 +148,7 @@ export async function run(rest) {
       ...lockfile,
       manifestVersion: manifest.version,
       ref: args.ref,
+      brand: effectiveBrand,
       files: newLockFiles,
     }
     await writeFile(lockPath, JSON.stringify(newLock, null, 2) + '\n')

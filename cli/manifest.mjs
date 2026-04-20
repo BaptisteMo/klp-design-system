@@ -108,6 +108,14 @@ export function validateManifest(manifest, options = {}) {
     if (group.files) {
       for (const f of group.files) validateFile(f, `groups.${groupName}.files`)
     }
+    if (group.brandFiles) {
+      for (const f of group.brandFiles) {
+        validateFile(f, `groups.${groupName}.brandFiles`)
+        if (typeof f.brand !== 'string' || !f.brand) {
+          throw new Error(`groups.${groupName}.brandFiles: missing brand for ${f.src}`)
+        }
+      }
+    }
     if (group.items) {
       for (const [itemName, item] of Object.entries(group.items)) {
         for (const f of item.files) validateFile(f, `groups.${groupName}.items.${itemName}.files`)
@@ -128,11 +136,18 @@ function validateFile(f, ctx) {
  * Returns a flat array of all files in manifest order, across all groups and items.
  * Each entry carries its group name + (if item-based) item name.
  */
-export function flattenManifest(manifest) {
+export function flattenManifest(manifest, options = {}) {
+  const selectedBrand = options.brand ?? null
   const out = []
   for (const [groupName, group] of Object.entries(manifest.groups)) {
     if (group.files) {
       for (const f of group.files) out.push({ ...f, group: groupName })
+    }
+    if (group.brandFiles) {
+      for (const f of group.brandFiles) {
+        if (selectedBrand && f.brand !== selectedBrand) continue
+        out.push({ ...f, group: groupName })
+      }
     }
     if (group.items) {
       for (const [itemName, item] of Object.entries(group.items)) {

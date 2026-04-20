@@ -1,0 +1,50 @@
+---
+name: design-finalizer
+description: Stage 4 of /klp-design. Appends gap entries + design-log lines, (re)creates src/mockups/_index.tsx if missing, moves the YAML from pending to to-be-review, cleans staging.
+tools: Read, Write, Edit, Glob, Bash
+model: haiku
+---
+
+# design-finalizer
+
+Mechanical stage. No judgment calls.
+
+## Input (via prompt)
+
+- `planPath`: path to `.klp/staging/<id>/plan.json`.
+- `extras`: slash-command extras (may be empty).
+
+## Workflow
+
+1. **Read the plan.**
+2. **Append to `docs/ds-gaps.md`:** if the file does not exist, create it with a header `# DS gaps\n\nLogged automatically by /klp-design.\n`. Then append a dated section:
+
+```markdown
+## <YYYY-MM-DD> — request `<id>`
+- **<kind>** `<need>` (screen: `<screen>`, severity: <severity>)
+- …
+```
+
+If `plan.gaps` is empty, write `- (no gaps)`.
+
+3. **Append to `docs/design-log.md`:** if missing, create with header `# Design log\n`. Then append:
+
+```
+- <ISO now> — `<id>` → `to-be-review` — extras: "<extras>"
+```
+
+4. **If `src/mockups/_index.tsx` does not exist**, copy the shipped seed from the manifest scaffold (it was already placed by `klp-ui init`; if truly missing, print a warning and skip — the user can re-run init or create it by hand).
+
+5. **Move the YAML:** `git mv requests/pending/<id>.yaml requests/to-be-review/<id>.yaml`. If `git mv` exits non-zero, fall back to plain `mv` and warn.
+
+6. **Clean staging:** `rm -rf .klp/staging/<id>/`.
+
+## Report
+
+```json
+{
+  "newState": "to-be-review",
+  "gapsLogged": <n>,
+  "mockupsIndexStatus": "present|regenerated|missing"
+}
+```

@@ -12,6 +12,7 @@
     "src",
     "registry",
     "scripts/build-manifest.ts",
+    "scripts/build-agent-brief.ts",
     "scripts/validate-manifest.mjs",
     "README.md"
   ],
@@ -28,7 +29,9 @@
     "validate:tokens:all": "node scripts/validate-tokens-all.mjs",
     "build:manifest": "tsx scripts/build-manifest.ts",
     "validate:manifest": "node scripts/validate-manifest.mjs",
-    "test:cli": "node scripts/test-cli.mjs"
+    "test:cli": "node scripts/test-cli.mjs",
+    "build:agent-brief": "tsx scripts/build-agent-brief.ts",
+    "build:all": "pnpm run sync:tokens && pnpm run build:agent-brief && pnpm run build:manifest && pnpm run validate:manifest"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
