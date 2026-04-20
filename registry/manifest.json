@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-20T11:52:39.790Z",
+  "generatedAt": "2026-04-20T15:42:10.718Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -216,6 +216,46 @@
             "components": []
           }
         },
+        "header-desktop": {
+          "files": [
+            {
+              "src": "src/components/header-desktop/HeaderDesktop.tsx",
+              "dst": "src/components/ui/header-desktop/HeaderDesktop.tsx",
+              "hash": "sha256:60a4ab1c4206c499dd70d7a3a024059beeb6a0cee4d2c28414f354562eed3c09"
+            },
+            {
+              "src": "src/components/header-desktop/index.ts",
+              "dst": "src/components/ui/header-desktop/index.ts",
+              "hash": "sha256:b35dba86d980d753a0c4cd1d9bb4cce9306196cc8ba0b0e67003d9198ba6409a"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "header-phone": {
+          "files": [
+            {
+              "src": "src/components/header-phone/HeaderPhone.tsx",
+              "dst": "src/components/ui/header-phone/HeaderPhone.tsx",
+              "hash": "sha256:defc611362bd9bc860fb62329f5632facc4f827d8c70e8508b7ca1151f31d3af"
+            },
+            {
+              "src": "src/components/header-phone/index.ts",
+              "dst": "src/components/ui/header-phone/index.ts",
+              "hash": "sha256:99b67ee84d8489c4275422ec85f66372fd94d978fd66c09d63f0c4be03c43a65"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
         "in-content-alert": {
           "files": [
             {
@@ -250,6 +290,26 @@
           "deps": {
             "npm": [
               "@radix-ui/react-slot"
+            ],
+            "components": []
+          }
+        },
+        "item-side-bar": {
+          "files": [
+            {
+              "src": "src/components/item-side-bar/ItemSideBar.tsx",
+              "dst": "src/components/ui/item-side-bar/ItemSideBar.tsx",
+              "hash": "sha256:d116d62d512d916db7ad8336279f7c2d9d6c1f8eed8383837fba70a7d2d4f3c1"
+            },
+            {
+              "src": "src/components/item-side-bar/index.ts",
+              "dst": "src/components/ui/item-side-bar/index.ts",
+              "hash": "sha256:f78c47f982ff3c7114ff6d824c527b25dec7649a7fef65b48c5fee9c8902f7d8"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-collapsible"
             ],
             "components": []
           }
@@ -326,6 +386,26 @@
           "deps": {
             "npm": [
               "@radix-ui/react-radio-group"
+            ],
+            "components": []
+          }
+        },
+        "sidebar": {
+          "files": [
+            {
+              "src": "src/components/sidebar/SideBar.tsx",
+              "dst": "src/components/ui/sidebar/SideBar.tsx",
+              "hash": "sha256:c5312f9967c660ad107ba3ca020badb75a6fd854addf092866f69f71fde9edd7"
+            },
+            {
+              "src": "src/components/sidebar/index.ts",
+              "dst": "src/components/ui/sidebar/index.ts",
+              "hash": "sha256:53cdc9327873ce32940adcfeff3ef6255b29c865d19ca702f83b3b489257d4d3"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot"
             ],
             "components": []
           }
@@ -461,7 +541,7 @@
         {
           "src": "docs/index.md",
           "dst": "docs/index.md",
-          "hash": "sha256:f3a3b3540f787b44304013b4dbdd268dc56b7aa32fdf468f8673d01510ef648c"
+          "hash": "sha256:b646a2b6ffdb017156233f25f880229ce1ca685a51b5698136f3575d186938bb"
         },
         {
           "src": "docs/overview.md",
@@ -476,22 +556,22 @@
         {
           "src": "docs/tokens/colors.md",
           "dst": "docs/tokens/colors.md",
-          "hash": "sha256:6322b495b5388b2fc3e1eb77521963612c984711fae4f35205dec87132eb1658"
+          "hash": "sha256:1dd40272bc03354671c6bc232809dff9f28db8218732465a03a3a82b468fd624"
         },
         {
           "src": "docs/tokens/radius.md",
           "dst": "docs/tokens/radius.md",
-          "hash": "sha256:127e84fe210fd8186885cefffb5a8920e07514fa820ad31c7fd0e8ff70b87041"
+          "hash": "sha256:da3ceedb56bfa36d39f5f25328d3486e236737dfcf5b16c7206323b603183ecc"
         },
         {
           "src": "docs/tokens/spacing.md",
           "dst": "docs/tokens/spacing.md",
-          "hash": "sha256:a6d8f75ed05256d492b669a9ae5092829ca54d6d736d8bfb42be887b0b2e8ab5"
+          "hash": "sha256:7c8747056ae8ce3df4b76600bab05837aaf76d8cf4b219cc45922011694657eb"
         },
         {
           "src": "docs/tokens/typography.md",
           "dst": "docs/tokens/typography.md",
-          "hash": "sha256:5d77c2d34b3410a855f6cf0deaa2b7d2c8ddeb26a62e54cdc907edde2d661946"
+          "hash": "sha256:70b9806c0931e1bca9cf6524ff62a301b3f24f9f3bc7a9d0e890dd465997d9c5"
         },
         {
           "src": "docs/brands/_index_brands.md",
@@ -501,7 +581,7 @@
         {
           "src": "docs/components/_index_action-sheet-item.md",
           "dst": "docs/components/_index_action-sheet-item.md",
-          "hash": "sha256:f136ad96a2373cf429b2fed86906b9d15ea6f32fd6084a9db0209009d18804cc"
+          "hash": "sha256:64df7f64f304a37cada53948a2bf2bc10fd8ecd4a48f109d1a3b5a55cdd60b09"
         },
         {
           "src": "docs/components/_index_action-sheet-menu.md",
@@ -516,12 +596,12 @@
         {
           "src": "docs/components/_index_breadcrumbs.md",
           "dst": "docs/components/_index_breadcrumbs.md",
-          "hash": "sha256:885f6bb4164718b53163f2fd1eb9d7593cbe204d6fdc55ce1ff42a3ab1b1746a"
+          "hash": "sha256:160d65b8b4c1edcba97a5c3b7190d2fd4563e9edab9f08d4fdd71a410ee78124"
         },
         {
           "src": "docs/components/_index_button.md",
           "dst": "docs/components/_index_button.md",
-          "hash": "sha256:2f9a165be550ba0f326a4554712347ea1e0dd873d3da0a86ac84c62b0783e04d"
+          "hash": "sha256:f1df5ed6c576ff32543e8fd9ffc909ee00db10de91fce52fd34911593035e432"
         },
         {
           "src": "docs/components/_index_checkbox.md",
@@ -539,6 +619,16 @@
           "hash": "sha256:d0f8bc487b7f17bfd943975b313d5a534eec12cfe31a9a3df4ea6826e90b56ab"
         },
         {
+          "src": "docs/components/_index_header-desktop.md",
+          "dst": "docs/components/_index_header-desktop.md",
+          "hash": "sha256:e5083e55fd1476518d3dcab33c280f6945216e8c1431d3424442fcaa8839d88f"
+        },
+        {
+          "src": "docs/components/_index_header-phone.md",
+          "dst": "docs/components/_index_header-phone.md",
+          "hash": "sha256:221a6e97e68643cba4049e03144715d10dcecada94484b5cf6d8ec9710543f66"
+        },
+        {
           "src": "docs/components/_index_in-content-alert.md",
           "dst": "docs/components/_index_in-content-alert.md",
           "hash": "sha256:3eb7a8cf59bcc892806794182300b23f25dc0ce109091f0a67259f92bff4e2b7"
@@ -546,7 +636,12 @@
         {
           "src": "docs/components/_index_input.md",
           "dst": "docs/components/_index_input.md",
-          "hash": "sha256:984730c6128f75af66d85d27a1ed9a033834c63d4f480412ad0130d961146a4e"
+          "hash": "sha256:6d38dcddcf0e64e4e612195c4329a92e1940942be26787ac97e8f598ac2b9161"
+        },
+        {
+          "src": "docs/components/_index_item-side-bar.md",
+          "dst": "docs/components/_index_item-side-bar.md",
+          "hash": "sha256:29d02d60818403df01258b2e033d32fda2f288fb72a5021dc40c2548d7d9472e"
         },
         {
           "src": "docs/components/_index_list-content.md",
@@ -567,6 +662,11 @@
           "src": "docs/components/_index_radio.md",
           "dst": "docs/components/_index_radio.md",
           "hash": "sha256:0c90ae8457bea062eb800bd8820f54e3e5c3254d1d72b10d1d6b4f2777b695b1"
+        },
+        {
+          "src": "docs/components/_index_sidebar.md",
+          "dst": "docs/components/_index_sidebar.md",
+          "hash": "sha256:a923aa080b4c1e7cf091d334350333886b7c8ea5ddc4f435767fc7b058cb0db6"
         },
         {
           "src": "docs/components/_index_switch.md",
@@ -609,7 +709,7 @@
         {
           "src": "docs/brands/klub.md",
           "dst": "docs/brands/klub.md",
-          "hash": "sha256:c4311f04aa39cb95257e0bef42408003bad1026bf90da14ef07380f4a1308985",
+          "hash": "sha256:a9e2bb23104ebd905838b667fc52705d46bf92bf7463533bb1c642bfb68ee3e4",
           "brand": "klub"
         },
         {

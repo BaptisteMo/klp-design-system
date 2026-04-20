@@ -22,6 +22,7 @@ dependencies:
     - wireframe
 usedBy:
   - action-sheet-menu
+  - item-side-bar
 created: 2026-04-17
 updated: 2026-04-17
 ---
@@ -202,6 +203,7 @@ export function ActionSheetItemExample() {
 ## Used by
 
 - [ActionSheet Menu](./_index_action-sheet-menu.md) — imports ActionSheetItem as the item row for `default` and `flat` type variants.
+- [Item Side Bar](./_index_item-side-bar.md) — renders ActionSheetItem elements as children inside the expanded collapsible content panel.
 
 ## Files
 

@@ -1,0 +1,32 @@
+{
+  "name": "header-phone",
+  "type": "registry:ui",
+  "description": "Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.",
+  "meta": {
+    "category": "containers",
+    "captureBrand": "klub",
+    "figmaNode": "115197:82965",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "variantAxes": {},
+    "variantCount": 1
+  },
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "internalDependencies": [
+    "button",
+    "breadcrumbs"
+  ],
+  "files": [
+    {
+      "path": "src/components/header-phone/HeaderPhone.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/header-phone/index.ts",
+      "type": "registry:ui"
+    }
+  ]
+}

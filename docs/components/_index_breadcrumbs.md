@@ -13,7 +13,7 @@ dependencies:
   externals: [class-variance-authority, lucide-react]
   tokenGroups: [colors, typography]
   brands: [wireframe]
-usedBy: []
+usedBy: [header-desktop, header-phone]
 created: 2026-04-17
 updated: 2026-04-17
 ---
@@ -158,7 +158,8 @@ export function BreadCrumbsExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [Header Desktop](./_index_header-desktop.md) — imports `BreadCrumbs` for the breadcrumb trail below the title row.
+- [Header Phone](./_index_header-phone.md) — imports `BreadCrumbs` rendered as `<BreadCrumbs steps={...} stepsVariant="1">` at the bottom of the mobile header.
 
 ## Files
 

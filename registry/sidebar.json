@@ -1,0 +1,34 @@
+{
+  "name": "sidebar",
+  "type": "registry:ui",
+  "description": "Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247px wide, 640px tall) and Phone (320px wide, 568px tall).",
+  "meta": {
+    "category": "navigation",
+    "captureBrand": "klub",
+    "figmaNode": "115197:80880",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "variantAxes": {
+      "device": ["desktop", "phone"]
+    },
+    "variantCount": 2
+  },
+  "dependencies": [
+    "@radix-ui/react-slot",
+    "class-variance-authority",
+    "lucide-react"
+  ],
+  "internalDependencies": [
+    "button",
+    "item-side-bar"
+  ],
+  "files": [
+    {
+      "path": "src/components/sidebar/SideBar.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/sidebar/index.ts",
+      "type": "registry:ui"
+    }
+  ]
+}

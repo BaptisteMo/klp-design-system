@@ -1,0 +1,285 @@
+{
+  "name": "sidebar",
+  "displayName": "SideBar",
+  "figmaNode": "115197:80880",
+  "captureBrand": "klub",
+  "category": "navigation",
+  "description": "Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247px wide, 640px tall) and Phone (320px wide, 568px tall — wider with a close/dismiss button replacing the notification affordance).",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "nav",
+      "notes": "Outer sidebar container. bg-default fill, bd/default border (right edge), 16px padding all sides, horizontal layout with 8px gap."
+    },
+    {
+      "part": "content",
+      "element": "div",
+      "notes": "Inner vertical flex column filling the root. Sections: header, menu, profil with 24px itemSpacing."
+    },
+    {
+      "part": "header",
+      "element": "div",
+      "notes": "Top section containing logo+notification row and context-switcher row. bg/default fill, vertical stack with 10px gap."
+    },
+    {
+      "part": "logo-notif",
+      "element": "div",
+      "notes": "Horizontal row (space-between) with the KLUB logo on the left and notification button on the right."
+    },
+    {
+      "part": "logo",
+      "element": "div",
+      "notes": "KLUB complete logo — inline SVG/image asset, no variable bindings."
+    },
+    {
+      "part": "notification-button",
+      "element": "button",
+      "notes": "Tertiary icon-only button (Bell icon) with an orange notification dot overlay. On Phone variant replaced by a close (X) button.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "icon" },
+      "figmaInstance": { "name": "Button", "key": "" }
+    },
+    {
+      "part": "notification-dot",
+      "element": "span",
+      "notes": "Small circular indicator overlaid on the notification button. bg/decorative-orange fill. Not a DS component — inline-drawn."
+    },
+    {
+      "part": "context-switcher",
+      "element": "div",
+      "notes": "Horizontal row (space-between) showing a location thumbnail + label on the left and a chevron icon on the right. fg/default label, fg/muted chevron stroke."
+    },
+    {
+      "part": "context-label",
+      "element": "span",
+      "notes": "Text label for the active location/shopping center. fg/default color."
+    },
+    {
+      "part": "context-chevron",
+      "element": "span",
+      "notes": "Chevron-down vector icon indicating dropdown affordance. fg/muted stroke."
+    },
+    {
+      "part": "menu",
+      "element": "div",
+      "notes": "Vertical list of sidebar navigation items. bg/invisible fill (transparent), 8px itemSpacing, 16px paddingBottom. Clips overflow."
+    },
+    {
+      "part": "menu-item",
+      "element": "div",
+      "notes": "Each navigation row is an instance of the item-side-bar component (Figma: Item_01–Item_06). Supports Collapsible and Static feature variants, Rest/Hover/Active states.",
+      "klpComponentCandidate": "item-side-bar",
+      "figmaInstance": { "name": "Item_01 / Item_02 / Item_03 / Item_05 / Item_06", "key": null }
+    },
+    {
+      "part": "profil",
+      "element": "div",
+      "notes": "Footer row at the bottom of the sidebar. bg/default fill, bd/default top border, 16px padding all sides, 8px gap. Shows avatar ellipse + user name text."
+    },
+    {
+      "part": "avatar",
+      "element": "div",
+      "notes": "Circular image (ELLIPSE, 40x40px). IMAGE fill — no token binding."
+    },
+    {
+      "part": "user-name",
+      "element": "span",
+      "notes": "User display name text. fg/default color, 16px fontSize (Inter Regular)."
+    }
+  ],
+  "variantAxes": {
+    "device": ["desktop", "phone"]
+  },
+  "variants": [
+    {
+      "id": "desktop",
+      "axes": { "device": "desktop" },
+      "figmaNodeId": "115197:80881",
+      "screenshot": "desktop.png",
+      "layers": {
+        "root": {
+          "fill":        { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "stroke":      { "token": "--klp-border-default","figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "paddingX":    { "literal": "16px" },
+          "paddingY":    { "literal": "16px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals":    { "width": "247px", "height": "640px" }
+        },
+        "content": {
+          "fill":        { "literal": "none" },
+          "itemSpacing": { "literal": "24px" },
+          "literals":    { "width": "fill", "height": "fill" }
+        },
+        "header": {
+          "fill":        { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "itemSpacing": { "literal": "10px" },
+          "literals":    { "width": "fill" }
+        },
+        "logo-notif": {
+          "fill":        { "literal": "none" },
+          "literals":    { "layout": "space-between", "height": "40px" }
+        },
+        "logo": {
+          "fill":        { "literal": "none" },
+          "literals":    { "width": "123px", "height": "40px" }
+        },
+        "notification-button": {
+          "fill":        { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":      { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "transparent" },
+          "paddingX":    { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingY":    { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "cornerRadius":{ "token": "--klp-radius-l", "figmaVar": "Radius/L",   "value": "8px" },
+          "literals":    { "icon": "bell", "size": "40px" }
+        },
+        "notification-dot": {
+          "fill":        { "token": "--klp-bg-decorative-orange", "figmaVar": "bg/decorative-orange", "value": "#FB8F44" },
+          "literals":    { "width": "8px", "height": "8px", "borderRadius": "50%", "position": "absolute" }
+        },
+        "context-switcher": {
+          "fill":        { "literal": "none" },
+          "literals":    { "layout": "space-between", "height": "44px" }
+        },
+        "context-label": {
+          "color":       { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals":    { "fontSize": "14px" }
+        },
+        "context-chevron": {
+          "stroke":      { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals":    { "icon": "chevron-right", "size": "16px" }
+        },
+        "menu": {
+          "fill":        { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "transparent" },
+          "itemSpacing": { "literal": "8px" },
+          "literals":    { "paddingBottom": "16px", "overflow": "hidden" }
+        },
+        "menu-item": {
+          "fill":        { "literal": "none" },
+          "literals":    { "width": "fill", "height": "40px" }
+        },
+        "profil": {
+          "fill":        { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "stroke":      { "token": "--klp-border-default","figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "paddingX":    { "literal": "16px" },
+          "paddingY":    { "literal": "16px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals":    { "height": "72px" }
+        },
+        "avatar": {
+          "fill":        { "literal": "image" },
+          "literals":    { "width": "40px", "height": "40px", "borderRadius": "50%" }
+        },
+        "user-name": {
+          "color":       { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals":    { "fontSize": "16px", "fontWeight": "400", "fontFamily": "Inter" }
+        }
+      }
+    },
+    {
+      "id": "phone",
+      "axes": { "device": "phone" },
+      "figmaNodeId": "115197:80933",
+      "screenshot": "phone.png",
+      "layers": {
+        "root": {
+          "fill":        { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "stroke":      { "token": "--klp-border-default","figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "paddingX":    { "literal": "16px" },
+          "paddingY":    { "literal": "16px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals":    { "width": "320px", "height": "568px" }
+        },
+        "content": {
+          "fill":        { "literal": "none" },
+          "itemSpacing": { "literal": "24px" },
+          "literals":    { "width": "fill", "height": "fill" }
+        },
+        "header": {
+          "fill":        { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "itemSpacing": { "literal": "10px" },
+          "literals":    { "width": "fill" }
+        },
+        "logo-notif": {
+          "fill":        { "literal": "none" },
+          "literals":    { "layout": "space-between", "height": "40px" }
+        },
+        "logo": {
+          "fill":        { "literal": "none" },
+          "literals":    { "width": "123px", "height": "40px" }
+        },
+        "notification-button": {
+          "fill":        { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "transparent" },
+          "stroke":      { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "transparent" },
+          "paddingX":    { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingY":    { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "cornerRadius":{ "token": "--klp-radius-l", "figmaVar": "Radius/L",   "value": "8px" },
+          "literals":    { "icon": "x", "size": "40px", "note": "Phone uses X/close icon instead of bell" }
+        },
+        "notification-dot": {
+          "fill":        { "token": "--klp-bg-decorative-orange", "figmaVar": "bg/decorative-orange", "value": "#FB8F44" },
+          "literals":    { "width": "8px", "height": "8px", "borderRadius": "50%", "position": "absolute", "note": "Hidden on Phone — no notification dot in phone layout" }
+        },
+        "context-switcher": {
+          "fill":        { "literal": "none" },
+          "literals":    { "layout": "space-between", "height": "44px" }
+        },
+        "context-label": {
+          "color":       { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals":    { "fontSize": "14px" }
+        },
+        "context-chevron": {
+          "stroke":      { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "literals":    { "icon": "chevron-right", "size": "16px" }
+        },
+        "menu": {
+          "fill":        { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "transparent" },
+          "itemSpacing": { "literal": "8px" },
+          "literals":    { "paddingBottom": "16px", "overflow": "hidden" }
+        },
+        "menu-item": {
+          "fill":        { "literal": "none" },
+          "literals":    { "width": "fill", "height": "40px" }
+        },
+        "profil": {
+          "fill":        { "token": "--klp-bg-default",    "figmaVar": "bg/default",    "value": "#FFFFFF" },
+          "stroke":      { "token": "--klp-border-default","figmaVar": "bd/default",    "value": "#D7DAD9" },
+          "paddingX":    { "literal": "16px" },
+          "paddingY":    { "literal": "16px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals":    { "height": "72px" }
+        },
+        "avatar": {
+          "fill":        { "literal": "image" },
+          "literals":    { "width": "40px", "height": "40px", "borderRadius": "50%" }
+        },
+        "user-name": {
+          "color":       { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "literals":    { "fontSize": "16px", "fontWeight": "400", "fontFamily": "Inter" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "navigation",
+    "keyboardSupport": ["Tab", "Enter", "Space", "Escape"],
+    "notes": "The sidebar is a `<nav>` landmark. Notification/close button uses native button semantics via the Button klp component. Menu items (item-side-bar) handle their own collapsible keyboard interactions via @radix-ui/react-collapsible. The Phone close button should aria-label='Close navigation'."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": ["button"],
+    "candidates": ["item-side-bar"],
+    "instances": [
+      {
+        "part": "notification-button",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "tertiary", "size": "icon" },
+        "figmaInstance": { "name": "Button", "key": "" }
+      },
+      {
+        "part": "menu-item",
+        "klpComponentCandidate": "item-side-bar",
+        "figmaInstance": { "name": "Item_01 / Item_02 / Item_03 / Item_05 / Item_06", "key": null }
+      }
+    ]
+  }
+}

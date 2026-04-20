@@ -1,0 +1,262 @@
+{
+  "name": "header-phone",
+  "displayName": "Header Phone",
+  "figmaNode": "115197:82965",
+  "captureBrand": "klub",
+  "category": "containers",
+  "description": "Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "header",
+      "notes": "Vertical layout with background blur effect. Fill is semi-transparent white (no token bound — literal gap). Bottom border uses bd/default token."
+    },
+    {
+      "part": "content",
+      "element": "div",
+      "notes": "Inner vertical container filling full width, no token bindings."
+    },
+    {
+      "part": "top-bar",
+      "element": "div",
+      "notes": "Horizontal row, space-between, contains menu-button, logo, notification-button."
+    },
+    {
+      "part": "menu-button",
+      "element": "button",
+      "notes": "Tertiary icon button; icon is menu/hamburger (lucide: menu). Bound to bg/invisible and bd/invisible via Button instance.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "icon", "state": "rest" },
+      "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": null }
+    },
+    {
+      "part": "logo",
+      "element": "div",
+      "notes": "Brand logo instance (Klub! icon). Not a DS primitive — custom brand asset. Uses fg/brand-contrasted for vector fills.",
+      "klpComponentCandidate": "brand-logo",
+      "figmaInstance": { "name": "Icon selector/Larger/Logo", "key": null }
+    },
+    {
+      "part": "notification-button",
+      "element": "div",
+      "notes": "Wrapper for the bell button + notification dot indicator."
+    },
+    {
+      "part": "notification-btn",
+      "element": "button",
+      "notes": "Tertiary icon button; icon is bell (lucide: bell). Bound to bg/invisible and bd/invisible via Button instance.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "icon", "state": "rest" },
+      "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": null }
+    },
+    {
+      "part": "notification-dot",
+      "element": "span",
+      "notes": "Orange dot badge indicating unread notifications. Ellipse with bg/decorative-orange fill. 6×6px."
+    },
+    {
+      "part": "title-bar",
+      "element": "div",
+      "notes": "Horizontal row with page title + search button."
+    },
+    {
+      "part": "title",
+      "element": "h1",
+      "notes": "Page title text. fg/brand-contrasted color, Heading/H1 font size, Title font family and weight."
+    },
+    {
+      "part": "search-button",
+      "element": "button",
+      "notes": "Tertiary icon button; icon is search (lucide: search). Bound to bg/invisible and bd/invisible via Button instance.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "icon", "state": "rest" },
+      "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": null }
+    },
+    {
+      "part": "breadcrumbs",
+      "element": "nav",
+      "notes": "BreadCrumbs component instance with Steps=1 (one ancestor + current).",
+      "klpComponent": "breadcrumbs",
+      "klpComponentProps": { "steps": 1 },
+      "figmaInstance": { "name": "BreadCrumbs/Steps=1", "key": null }
+    }
+  ],
+  "variantAxes": {},
+  "variants": [
+    {
+      "id": "default",
+      "axes": {},
+      "figmaNodeId": "115197:82965",
+      "screenshot": "default.png",
+      "layers": {
+        "root": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": {
+            "fill": "rgba(255,255,255,0.9)",
+            "backdropFilter": "blur(8px)",
+            "paddingTop": "24px",
+            "paddingBottom": "16px",
+            "paddingLeft": "16px",
+            "paddingRight": "16px",
+            "itemSpacing": "8px",
+            "width": "320px"
+          }
+        },
+        "content": {
+          "literals": {
+            "width": "fill",
+            "itemSpacing": "8px"
+          }
+        },
+        "top-bar": {
+          "literals": {
+            "layout": "horizontal",
+            "justify": "space-between",
+            "align": "center",
+            "height": "36px"
+          }
+        },
+        "menu-button": {
+          "fill": { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "#FFFFFF00" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" },
+          "paddingTop": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": {
+            "icon": "menu",
+            "iconColor": "fg/muted",
+            "size": "36px"
+          }
+        },
+        "logo": {
+          "color": { "token": "--klp-fg-brand-contrasted", "figmaVar": "fg/brand-contrasted", "value": "#0F6F7C" },
+          "literals": {
+            "width": "28px",
+            "height": "28px",
+            "note": "Klub! brand logo SVG. Use <img> or a brand-specific SVG asset; not a lucide icon."
+          }
+        },
+        "notification-button": {
+          "literals": {
+            "layout": "horizontal",
+            "width": "36px",
+            "height": "36px",
+            "position": "relative"
+          }
+        },
+        "notification-btn": {
+          "fill": { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "#FFFFFF00" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" },
+          "paddingTop": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": {
+            "icon": "bell",
+            "size": "36px"
+          }
+        },
+        "notification-dot": {
+          "fill": { "token": "--klp-bg-decorative-orange", "figmaVar": "bg/decorative-orange", "value": "#FB8F44" },
+          "literals": {
+            "width": "6px",
+            "height": "6px",
+            "borderRadius": "9999px",
+            "position": "absolute",
+            "top": "4px",
+            "right": "4px"
+          }
+        },
+        "title-bar": {
+          "literals": {
+            "layout": "horizontal",
+            "justify": "space-between",
+            "align": "center",
+            "height": "36px"
+          }
+        },
+        "title": {
+          "color": { "token": "--klp-fg-brand-contrasted", "figmaVar": "fg/brand-contrasted", "value": "#0F6F7C" },
+          "fontSize": { "token": "--klp-font-size-heading-h1", "figmaVar": "Sizing/Heading/H1", "value": "30px" },
+          "fontFamily": { "token": "--klp-font-family-title", "figmaVar": "Family/Title", "value": "Arial" },
+          "fontWeight": { "token": "--klp-font-weight-title", "figmaVar": "Weight/Title", "value": "700" },
+          "literals": {
+            "lineHeight": "36px"
+          }
+        },
+        "search-button": {
+          "fill": { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "#FFFFFF00" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" },
+          "paddingTop": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingLeft": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": {
+            "icon": "search",
+            "size": "36px"
+          }
+        },
+        "breadcrumbs": {
+          "literals": {
+            "steps": 1,
+            "height": "24px",
+            "note": "Render <BreadCrumbs steps={1} /> — token bindings delegated to the breadcrumbs component."
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "banner",
+    "keyboardSupport": ["Tab", "Enter", "Space"],
+    "notes": "Wraps in <header> with role=banner. Menu, notification and search buttons are native <button> elements. BreadCrumbs provides its own <nav> with aria-label. Notification dot should have aria-label on the parent button (e.g., 'Notifications, 1 unread')."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "root/fill",
+      "expectedKlp": null,
+      "seenOn": "default/root/fill",
+      "notes": "Root fill is a literal rgba(255,255,255,0.9) with a backdrop-blur effect. No `--klp-*` alias exists for semi-transparent white. Use `bg-white/90 backdrop-blur-sm` in Tailwind."
+    }
+  ],
+  "composition": {
+    "reuses": ["button", "breadcrumbs"],
+    "candidates": ["brand-logo"],
+    "instances": [
+      {
+        "part": "menu-button",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "tertiary", "size": "icon", "state": "rest" },
+        "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": null }
+      },
+      {
+        "part": "notification-btn",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "tertiary", "size": "icon", "state": "rest" },
+        "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": null }
+      },
+      {
+        "part": "search-button",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "tertiary", "size": "icon", "state": "rest" },
+        "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": null }
+      },
+      {
+        "part": "logo",
+        "klpComponentCandidate": "brand-logo",
+        "figmaInstance": { "name": "Icon selector/Larger/Logo (Klub!_Icon)", "key": null }
+      },
+      {
+        "part": "breadcrumbs",
+        "klpComponent": "breadcrumbs",
+        "klpComponentProps": { "steps": 1 },
+        "figmaInstance": { "name": "BreadCrumbs/Steps=1", "key": null }
+      }
+    ]
+  }
+}

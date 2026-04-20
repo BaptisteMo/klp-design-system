@@ -1,0 +1,358 @@
+{
+  "name": "item-side-bar",
+  "displayName": "Item Side Bar",
+  "figmaNode": "115197:80837",
+  "captureBrand": "klub",
+  "category": "navigation",
+  "description": "A sidebar navigation item with an icon, label, and optional collapsible content panel. Two feature axes: Collapsible (shows chevron affordance and expands an ActionSheet content area) and Static (no chevron, no content panel). Three states: Rest, Hover, Active.",
+  "radixPrimitive": "@radix-ui/react-collapsible",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Outer container for the whole sidebar item (trigger + optional content panel)."
+    },
+    {
+      "part": "trigger",
+      "element": "button",
+      "notes": "Clickable row — icon-left + label + optional chevron. bg-filled on hover/active."
+    },
+    {
+      "part": "icon-container",
+      "element": "div",
+      "notes": "Decorative icon wrapper with padding and border. Shows brand border on active, invisible on rest/hover."
+    },
+    {
+      "part": "decorative-icon",
+      "element": "div",
+      "notes": "Icon instance inside icon-container. 20x20 container with 2px padding.",
+      "klpComponentCandidate": "decorative-icon",
+      "figmaInstance": { "name": "Decorative Icon", "key": null }
+    },
+    {
+      "part": "icon",
+      "element": "span",
+      "notes": "Folder-open vector icon inside decorative-icon. 16x16. lucide-react: folder-open.",
+      "klpComponentCandidate": "icon",
+      "figmaInstance": { "name": "Icon/Folder-open", "key": null }
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "notes": "Item text label."
+    },
+    {
+      "part": "chevron",
+      "element": "span",
+      "notes": "Collapsible-only. Chevron-right (rest/hover) or chevron-down (active). 16x16 icon-selector wrapper, 14x14 icon. lucide-react: chevron-right / chevron-down.",
+      "klpComponentCandidate": "icon",
+      "figmaInstance": { "name": "Icon selector", "key": null }
+    },
+    {
+      "part": "content",
+      "element": "div",
+      "notes": "Collapsible-only. Expanded panel containing ActionSheet_Item rows and separators. Hidden when Feature=Static or state=Rest.",
+      "klpComponent": "action-sheet-item",
+      "klpComponentProps": { "variant": "default" },
+      "figmaInstance": { "name": "Content", "key": null }
+    }
+  ],
+  "variantAxes": {
+    "state": ["rest", "hover", "active"],
+    "feature": ["collapsible", "static"]
+  },
+  "variants": [
+    {
+      "id": "active-collapsible",
+      "axes": { "state": "active", "feature": "collapsible" },
+      "figmaNodeId": "115197:80838",
+      "screenshot": "active-collapsible.png",
+      "layers": {
+        "root": {
+          "literals": {}
+        },
+        "trigger": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" }
+        },
+        "icon-container": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "stroke": { "token": "--klp-border-contrasted", "figmaVar": "bd/contrasted", "value": "#868E8B" },
+          "cornerRadius": { "token": "--klp-radius-m", "figmaVar": "Radius/M", "value": "4px" }
+        },
+        "decorative-icon": {
+          "paddingX": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "paddingY": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "literals": { "size": "20px", "note": "20px size bound to VariableID:19:533 — no --klp-size-* alias at 20px, nearest are --klp-size-m(16px) and --klp-size-l(24px)" }
+        },
+        "icon": {
+          "literals": { "size": "16px", "icon": "folder-open" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" }
+        },
+        "chevron": {
+          "literals": { "size": "16px", "icon": "chevron-down", "note": "chevron-down in active state; chevron-right in rest/hover" }
+        },
+        "content": {
+          "padding": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "cornerRadius": { "literal": "8px" },
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" }
+        }
+      }
+    },
+    {
+      "id": "hover-collapsible",
+      "axes": { "state": "hover", "feature": "collapsible" },
+      "figmaNodeId": "115197:80846",
+      "screenshot": "hover-collapsible.png",
+      "layers": {
+        "root": {
+          "literals": {}
+        },
+        "trigger": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" }
+        },
+        "icon-container": {
+          "fill": { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "#FFFFFF00" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-m", "figmaVar": "Radius/M", "value": "4px" }
+        },
+        "decorative-icon": {
+          "paddingX": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "paddingY": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "literals": { "size": "20px" }
+        },
+        "icon": {
+          "literals": { "size": "16px", "icon": "folder-open" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" }
+        },
+        "chevron": {
+          "literals": { "size": "16px", "icon": "chevron-right" }
+        },
+        "content": {
+          "padding": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "cornerRadius": { "literal": "8px" },
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" }
+        }
+      }
+    },
+    {
+      "id": "hover-static",
+      "axes": { "state": "hover", "feature": "static" },
+      "figmaNodeId": "115197:80854",
+      "screenshot": "hover-static.png",
+      "layers": {
+        "root": {
+          "literals": {}
+        },
+        "trigger": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" }
+        },
+        "icon-container": {
+          "fill": { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "#FFFFFF00" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-m", "figmaVar": "Radius/M", "value": "4px" }
+        },
+        "decorative-icon": {
+          "paddingX": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "paddingY": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "literals": { "size": "20px" }
+        },
+        "icon": {
+          "literals": { "size": "16px", "icon": "folder-open" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" }
+        },
+        "chevron": {
+          "literals": {}
+        },
+        "content": {
+          "literals": { "hidden": true }
+        }
+      }
+    },
+    {
+      "id": "active-static",
+      "axes": { "state": "active", "feature": "static" },
+      "figmaNodeId": "115197:80860",
+      "screenshot": "active-static.png",
+      "layers": {
+        "root": {
+          "literals": {}
+        },
+        "trigger": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" }
+        },
+        "icon-container": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "stroke": { "token": "--klp-border-contrasted", "figmaVar": "bd/contrasted", "value": "#868E8B" },
+          "cornerRadius": { "token": "--klp-radius-m", "figmaVar": "Radius/M", "value": "4px" }
+        },
+        "decorative-icon": {
+          "paddingX": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "paddingY": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "literals": { "size": "20px" }
+        },
+        "icon": {
+          "literals": { "size": "16px", "icon": "folder-open" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" }
+        },
+        "chevron": {
+          "literals": {}
+        },
+        "content": {
+          "literals": { "hidden": true }
+        }
+      }
+    },
+    {
+      "id": "rest-collapsible",
+      "axes": { "state": "rest", "feature": "collapsible" },
+      "figmaNodeId": "115197:80866",
+      "screenshot": "rest-collapsible.png",
+      "layers": {
+        "root": {
+          "literals": {}
+        },
+        "trigger": {
+          "literals": { "fill": "none" }
+        },
+        "icon-container": {
+          "fill": { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "#FFFFFF00" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-m", "figmaVar": "Radius/M", "value": "4px" }
+        },
+        "decorative-icon": {
+          "paddingX": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "paddingY": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "literals": { "size": "20px" }
+        },
+        "icon": {
+          "literals": { "size": "16px", "icon": "folder-open" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" }
+        },
+        "chevron": {
+          "literals": { "size": "16px", "icon": "chevron-right" }
+        },
+        "content": {
+          "padding": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "cornerRadius": { "literal": "8px" },
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" }
+        }
+      }
+    },
+    {
+      "id": "rest-static",
+      "axes": { "state": "rest", "feature": "static" },
+      "figmaNodeId": "115197:80874",
+      "screenshot": "rest-static.png",
+      "layers": {
+        "root": {
+          "literals": {}
+        },
+        "trigger": {
+          "literals": { "fill": "none" }
+        },
+        "icon-container": {
+          "fill": { "token": "--klp-bg-invisible", "figmaVar": "bg/invisible", "value": "#FFFFFF00" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-m", "figmaVar": "Radius/M", "value": "4px" }
+        },
+        "decorative-icon": {
+          "paddingX": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "paddingY": { "token": "--klp-size-4xs", "figmaVar": "Sizing/4XS", "value": "2px" },
+          "literals": { "size": "20px" }
+        },
+        "icon": {
+          "literals": { "size": "16px", "icon": "folder-open" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A211E" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" }
+        },
+        "chevron": {
+          "literals": {}
+        },
+        "content": {
+          "literals": { "hidden": true }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "button",
+    "keyboardSupport": ["Enter", "Space"],
+    "notes": "Collapsible feature maps to Radix Collapsible.Root + Trigger + Content for proper aria-expanded/aria-controls semantics. Static feature renders as a plain nav link without disclosure widget."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "Sizing/4XS (VariableID:19:533 — 20px icon-container size)",
+      "expectedKlp": null,
+      "seenOn": "active-collapsible/decorative-icon/width+height",
+      "note": "20px is not covered by any --klp-size-* alias. Nearest: --klp-size-m (16px) and --klp-size-l (24px). Adapter should use literal: w-[20px] h-[20px]."
+    },
+    {
+      "figmaVar": "Sizing (VariableID:19:518 — 14px chevron inner icon size)",
+      "expectedKlp": null,
+      "seenOn": "active-collapsible/chevron/width+height",
+      "note": "14px chevron icon is not covered by any --klp-size-* alias. Nearest: --klp-size-s (12px) and --klp-size-m (16px). Adapter should use literal: w-[14px] h-[14px]."
+    },
+    {
+      "figmaVar": "cross-file radius (VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102 — content panel corner radius)",
+      "expectedKlp": "--klp-radius-l",
+      "seenOn": "active-collapsible/content/cornerRadius",
+      "note": "Cross-file library variable not resolvable from this file. Resolved value is 8px which matches --klp-radius-l. Adapter should use --klp-radius-l."
+    }
+  ],
+  "composition": {
+    "reuses": ["action-sheet-item"],
+    "candidates": ["decorative-icon", "icon"],
+    "instances": [
+      {
+        "part": "content",
+        "klpComponent": "action-sheet-item",
+        "klpComponentProps": { "variant": "default" },
+        "figmaInstance": { "name": "Content (containing ActionSheet_Item rows)", "key": null }
+      },
+      {
+        "part": "decorative-icon",
+        "klpComponentCandidate": "decorative-icon",
+        "figmaInstance": { "name": "Decorative Icon", "key": null }
+      },
+      {
+        "part": "icon",
+        "klpComponentCandidate": "icon",
+        "figmaInstance": { "name": "Icon/Folder-open", "key": null }
+      },
+      {
+        "part": "chevron",
+        "klpComponentCandidate": "icon",
+        "figmaInstance": { "name": "Icon selector", "key": null }
+      }
+    ]
+  }
+}

@@ -34,6 +34,10 @@ updated: 2026-04-16
 - [List Content](../components/_index_list-content.md) — `rounded-klp-l` on root layer (via `--klp-size-xs` cornerRadius from spec) and `rounded-klp-l` on action-button layer.
 - [Floating Alert](../components/_index_floating-alert.md) — `rounded-klp-l` on dismiss-button layer.
 - [Tabulations](../components/_index_tabulations.md) — `radius-l` is the candidate token for root and cell-root `cornerRadius 8px` literals (currently CSS literals pending Figma re-linking; see tokenGaps in spec.json). `radius-m` is the candidate for cell-badge `cornerRadius 4px`.
+- [Item Side Bar](../components/_index_item-side-bar.md) — `--klp-radius-m` on icon-container layer; `--klp-radius-l` on content panel (resolved from cross-file Figma variable, value 8px).
+- [Header Desktop](../components/_index_header-desktop.md) — `--klp-radius-l` on action-button-tertiary, action-button-secondary, and search-input layers.
+- [Header Phone](../components/_index_header-phone.md) — `--klp-radius-l` on menu-button, notification-btn, and search-button `cornerRadius` layers.
+- [SideBar](../components/_index_sidebar.md) — `--klp-radius-l` on notification-button `cornerRadius` layer.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

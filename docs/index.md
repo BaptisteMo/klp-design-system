@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-04-17
+updated: 2026-04-20
 ---
 
 # klp-design-system
@@ -26,12 +26,18 @@ Start here:
 - [Floating Alert](./components/_index_floating-alert.md) — Floating alert banner, 4 states × 3 sizes (12 variants)
 - [InContent Alert](./components/_index_in-content-alert.md) — Inline alert banner, 4 content types × 3 sizes (12 variants)
 
+### containers
+- [Header Phone](./components/_index_header-phone.md) — Mobile phone header bar (top-bar + title-bar + breadcrumbs), single variant
+
 ### layout
 *(empty — no components yet)*
 
 ### navigation
 - [BreadCrumbs](./components/_index_breadcrumbs.md) — Horizontal breadcrumb trail, single Steps axis (0–3 ancestor steps), 4 variants
+- [Header Desktop](./components/_index_header-desktop.md) — Desktop page header with title, breadcrumb trail, and contextual action row, 2 feature variants (default / search-active)
+- [Item Side Bar](./components/_index_item-side-bar.md) — Sidebar navigation item with icon, label, and optional collapsible content panel, 2 features × 3 states (6 variants)
 - [Pagination](./components/_index_pagination.md) — Standalone page navigator with ellipsis algorithm, reusable outside tables
+- [SideBar](./components/_index_sidebar.md) — Vertical navigation sidebar (logo + notification + context-switcher + menu + profil footer), 2 device variants (desktop / phone)
 - [Tabulation Cells](./components/_index_tabulation-cells.md) — Single tab cell with label and optional badge, 2 states (rest / active)
 - [Tabulations](./components/_index_tabulations.md) — Horizontal tab bar container wrapping Tabulation Cells with dividers, scroll-type=none (1 variant)
 

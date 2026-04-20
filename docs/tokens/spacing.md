@@ -53,6 +53,10 @@ updated: 2026-04-16
 - [Table (primitives)](../components/_index_table.md) — `pt-klp-size-s pb-klp-size-s pl-klp-size-s pr-klp-size-s` (head cell padding); `pt-klp-size-m pb-klp-size-m pl-klp-size-s pr-klp-size-s` (data cell padding); `pt-klp-size-s pb-klp-size-s` (caption padding).
 - [Pagination](../components/_index_pagination.md) — `gap-klp-size-xs` (nav gap), `mr-klp-size-s` (label margin), `px-klp-size-xs` (dots padding).
 - [Data Table](../components/_index_data-table.md) — `gap-klp-size-m` (container column gap), `py-klp-size-2xl` (empty-state cell padding).
+- [Item Side Bar](../components/_index_item-side-bar.md) — `px-klp-size-xs py-klp-size-xs` (trigger padding); `p-klp-size-4xs` (decorative-icon padding); `p-klp-size-xs` (content panel padding); `gap-klp-size-xs` (trigger row gap).
+- [Header Desktop](../components/_index_header-desktop.md) — `px-klp-size-s py-klp-size-xs` (tertiary button padding); `px-klp-size-m py-klp-size-xs gap-klp-size-2xs` (secondary button padding/gap); `px-klp-size-xs py-klp-size-xs gap-klp-size-m` (search-input padding/gap).
+- [Header Phone](../components/_index_header-phone.md) — `p-klp-size-xs` (padding on menu-button, notification-btn, and search-button layers via `--klp-size-xs`).
+- [SideBar](../components/_index_sidebar.md) — `p-klp-size-xs` (notification-button padding via `--klp-size-xs`).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

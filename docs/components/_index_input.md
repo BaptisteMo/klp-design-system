@@ -13,7 +13,7 @@ dependencies:
   externals: ["class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "spacing", "radius", "typography"]
   brands: ["klub"]
-usedBy: []
+usedBy: [header-desktop]
 created: 2026-04-16
 updated: 2026-04-16
 ---
@@ -264,7 +264,7 @@ export function InputExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [Header Desktop](./_index_header-desktop.md) — imports `Input` for the search field in the search-active variant (`size="small" state="default"`).
 
 ## Files
 

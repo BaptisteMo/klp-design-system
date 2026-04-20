@@ -129,6 +129,30 @@ export function Index() {
         >
           Data Table
         </a>
+        <a
+          href="#/item-side-bar"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Item Side Bar
+        </a>
+        <a
+          href="#/header-desktop"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Header Desktop
+        </a>
+        <a
+          href="#/header-phone"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Header Phone
+        </a>
+        <a
+          href="#/sidebar"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          SideBar
+        </a>
       </nav>
 
       <section className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle p-4">

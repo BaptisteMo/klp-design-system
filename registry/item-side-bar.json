@@ -1,0 +1,16 @@
+{
+  "name": "item-side-bar",
+  "type": "registry:ui",
+  "description": "A sidebar navigation item with an icon, label, and optional collapsible content panel. Two feature axes: Collapsible (shows chevron affordance and expands an ActionSheet content area) and Static (no chevron, no content panel). Three states: Rest, Hover, Active.",
+  "meta": {
+    "figmaNode": "115197:80837",
+    "captureBrand": "klub",
+    "category": "navigation",
+    "radixPrimitive": "@radix-ui/react-collapsible"
+  },
+  "files": [
+    "src/components/item-side-bar/ItemSideBar.tsx",
+    "src/components/item-side-bar/index.ts"
+  ],
+  "dependencies": ["@radix-ui/react-collapsible", "class-variance-authority", "lucide-react"]
+}

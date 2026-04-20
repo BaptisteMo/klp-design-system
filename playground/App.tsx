@@ -20,6 +20,10 @@ import { ListRoute } from './routes/list'
 import { TableRoute } from './routes/table'
 import { PaginationRoute } from './routes/pagination'
 import { DataTableRoute } from './routes/data-table'
+import { ItemSideBarRoute } from './routes/item-side-bar'
+import { HeaderDesktopRoute } from './routes/header-desktop'
+import { HeaderPhoneRoute } from './routes/header-phone'
+import { SideBarRoute } from './routes/sidebar'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -43,6 +47,10 @@ const routes: Record<string, ComponentType> = {
   'table':      TableRoute,
   'pagination': PaginationRoute,
   'data-table': DataTableRoute,
+  'item-side-bar': ItemSideBarRoute,
+  'header-desktop': HeaderDesktopRoute,
+  'header-phone': HeaderPhoneRoute,
+  'sidebar': SideBarRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

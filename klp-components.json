@@ -55,7 +55,8 @@
         ]
       },
       "usedBy": [
-        "action-sheet-menu"
+        "action-sheet-menu",
+        "item-side-bar"
       ],
       "created": "2026-04-17",
       "updated": "2026-04-17"
@@ -241,7 +242,7 @@
           "wireframe"
         ]
       },
-      "usedBy": [],
+      "usedBy": ["header-desktop", "header-phone"],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -306,9 +307,12 @@
       },
       "usedBy": [
         "floating-alert",
+        "header-desktop",
+        "header-phone",
         "list",
         "list-content",
         "pagination",
+        "sidebar",
         "text-area"
       ],
       "created": "2026-04-16",
@@ -577,7 +581,7 @@
           "klub"
         ]
       },
-      "usedBy": [],
+      "usedBy": ["header-desktop"],
       "created": "2026-04-17",
       "updated": "2026-04-17"
     },
@@ -1109,6 +1113,292 @@
       "usedBy": [],
       "created": "2026-04-17",
       "updated": "2026-04-17"
+    },
+    {
+      "name": "item-side-bar",
+      "displayName": "Item Side Bar",
+      "description": "A sidebar navigation item with an icon, label, and optional collapsible content panel. Two feature axes: Collapsible (shows chevron affordance and expands an ActionSheet content area) and Static (no chevron, no content panel). Three states: Rest, Hover, Active.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/item-side-bar/ItemSideBar.tsx",
+      "doc": "docs/components/_index_item-side-bar.md",
+      "playground": "playground/routes/item-side-bar.tsx",
+      "registry": "registry/item-side-bar.json",
+      "spec": ".klp/figma-refs/item-side-bar/spec.json",
+      "radixPrimitive": "@radix-ui/react-collapsible",
+      "anatomy": [
+        "root",
+        "trigger",
+        "icon-container",
+        "decorative-icon",
+        "icon",
+        "label",
+        "chevron",
+        "content"
+      ],
+      "variantAxes": {
+        "feature": ["collapsible", "static"],
+        "state": ["rest", "hover", "active"]
+      },
+      "variantCount": 6,
+      "dependencies": {
+        "components": ["action-sheet-item"],
+        "externals": [
+          "@radix-ui/react-collapsible",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["klub"]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "action-sheet-item",
+            "notes": "Content panel renders ActionSheetItem rows as children."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "unmatched-instance",
+            "part": "decorative-icon",
+            "figmaInstance": "Decorative Icon",
+            "reason": "No 'decorative-icon' component in klp-components.json. Inlined as a 20x20 span wrapper with px-klp-size-4xs / py-klp-size-4xs padding.",
+            "action": "inlined-local-cva"
+          },
+          {
+            "kind": "unmatched-instance",
+            "part": "icon",
+            "figmaInstance": "Icon/Folder-open",
+            "reason": "No standalone 'icon' component in klp-components.json. Rendered directly via lucide-react FolderOpen.",
+            "action": "inlined-local-cva"
+          },
+          {
+            "kind": "unmatched-instance",
+            "part": "chevron",
+            "figmaInstance": "Icon selector",
+            "reason": "No standalone 'icon' component in klp-components.json. Chevron rendered via lucide-react ChevronRight / ChevronDown.",
+            "action": "inlined-local-cva"
+          }
+        ]
+      },
+      "usedBy": [
+        "sidebar"
+      ],
+      "created": "2026-04-20",
+      "updated": "2026-04-20"
+    },
+    {
+      "name": "header-desktop",
+      "displayName": "Header Desktop",
+      "description": "Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/header-desktop/HeaderDesktop.tsx",
+      "doc": "docs/components/_index_header-desktop.md",
+      "playground": "playground/routes/header-desktop.tsx",
+      "registry": "registry/header-desktop.json",
+      "spec": ".klp/figma-refs/header-desktop/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "title-action-row",
+        "title",
+        "actions",
+        "action-button-tertiary",
+        "action-button-secondary",
+        "search-input",
+        "breadcrumbs"
+      ],
+      "variantAxes": {
+        "features": ["default", "search-active"]
+      },
+      "variantCount": 2,
+      "dependencies": {
+        "components": ["breadcrumbs", "button", "input"],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["klub"]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "breadcrumbs",
+            "notes": "Breadcrumb trail rendered via <BreadCrumbs> with showDropdownAffordance."
+          },
+          {
+            "klpComponent": "button",
+            "notes": "action-button-tertiary renders as <Button variant=\"tertiary\" size=\"icon\">; action-button-secondary renders as <Button variant=\"secondary\" size=\"md\">."
+          },
+          {
+            "klpComponent": "input",
+            "notes": "search-input renders as <Input size=\"small\" state=\"default\"> in the search-active variant."
+          }
+        ],
+        "gaps": []
+      },
+      "usedBy": [],
+      "created": "2026-04-20",
+      "updated": "2026-04-20"
+    },
+    {
+      "name": "header-phone",
+      "displayName": "Header Phone",
+      "description": "Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.",
+      "category": "containers",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/header-phone/HeaderPhone.tsx",
+      "doc": "docs/components/_index_header-phone.md",
+      "playground": "playground/routes/header-phone.tsx",
+      "registry": "registry/header-phone.json",
+      "spec": ".klp/figma-refs/header-phone/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "content",
+        "top-bar",
+        "menu-button",
+        "logo",
+        "notification-button",
+        "notification-btn",
+        "notification-dot",
+        "title-bar",
+        "title",
+        "search-button",
+        "breadcrumbs"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "dependencies": {
+        "components": ["button", "breadcrumbs"],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": ["colors", "spacing", "radius", "typography"],
+        "brands": ["klub"]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "button",
+            "notes": "menu-button, notification-btn, and search-button each render as <Button variant=\"tertiary\" size=\"icon\">."
+          },
+          {
+            "klpComponent": "breadcrumbs",
+            "notes": "breadcrumbs renders as <BreadCrumbs steps={...} stepsVariant=\"1\">."
+          }
+        ],
+        "gaps": [
+          {
+            "part": "logo",
+            "kind": "unmatched-instance",
+            "figmaInstance": "Icon selector/Larger/Logo (Klub!_Icon)",
+            "reason": "No 'brand-logo' component in klp-components.json. The Klub! brand logo is a custom SVG asset, not a lucide icon. Inlined as a slot prop accepting any ReactNode, with a text fallback 'K!'.",
+            "action": "inlined-ad-hoc"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-20",
+      "updated": "2026-04-20"
+    },
+    {
+      "name": "sidebar",
+      "displayName": "SideBar",
+      "description": "Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247px wide, 640px tall) and Phone (320px wide, 568px tall — wider with a close/dismiss button replacing the notification affordance).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/sidebar/SideBar.tsx",
+      "doc": "docs/components/_index_sidebar.md",
+      "playground": "playground/routes/sidebar.tsx",
+      "registry": "registry/sidebar.json",
+      "spec": ".klp/figma-refs/sidebar/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "content",
+        "header",
+        "logo-notif",
+        "logo",
+        "notification-button",
+        "notification-dot",
+        "context-switcher",
+        "context-label",
+        "context-chevron",
+        "menu",
+        "menu-item",
+        "profil",
+        "avatar",
+        "user-name"
+      ],
+      "variantAxes": {
+        "device": ["desktop", "phone"]
+      },
+      "variantCount": 2,
+      "dependencies": {
+        "components": [
+          "button",
+          "item-side-bar"
+        ],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "button",
+            "notes": "notification-button renders as <Button variant=\"tertiary\" size=\"icon\"> with Bell (desktop) or X (phone) icon."
+          },
+          {
+            "klpComponent": "item-side-bar",
+            "notes": "Each menu item renders as <ItemSideBar feature=... state=...>."
+          }
+        ],
+        "gaps": [
+          {
+            "part": "logo",
+            "kind": "unmatched-instance",
+            "figmaInstance": "KLUB complete logo",
+            "reason": "No 'brand-logo' component in klp-components.json. The Klub! brand logo is a custom SVG asset. Inlined as a slot prop (logo?: ReactNode) with a text fallback 'KLUB'.",
+            "action": "inlined-ad-hoc"
+          },
+          {
+            "part": "avatar",
+            "kind": "new-primitive",
+            "reason": "No DS Avatar component registered. Rendered as a 40x40 rounded-full div accepting a ReactNode or img src string.",
+            "action": "inlined-ad-hoc"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-20",
+      "updated": "2026-04-20"
     },
     {
       "name": "brand-provider",

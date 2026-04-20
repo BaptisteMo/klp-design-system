@@ -1,0 +1,16 @@
+{
+  "name": "header-desktop",
+  "type": "registry:ui",
+  "description": "Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).",
+  "meta": {
+    "figmaNode": "115197:80745",
+    "captureBrand": "klub",
+    "category": "navigation",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "title-action-row", "title", "actions", "action-button-tertiary", "action-button-secondary", "search-input", "breadcrumbs"],
+    "variantAxes": {
+      "features": ["default", "search-active"]
+    }
+  }
+}

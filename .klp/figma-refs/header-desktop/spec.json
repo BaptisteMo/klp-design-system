@@ -1,0 +1,457 @@
+{
+  "name": "header-desktop",
+  "displayName": "Header Desktop",
+  "figmaNode": "115197:80745",
+  "captureBrand": "klub",
+  "category": "navigation",
+  "description": "Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "header",
+      "notes": "Vertical stack (title+action row on top, breadcrumbs below). No fill — transparent background inherits from page."
+    },
+    {
+      "part": "title-action-row",
+      "element": "div",
+      "notes": "Horizontal flex row: title text on the left, actions on the right."
+    },
+    {
+      "part": "title",
+      "element": "h1",
+      "notes": "Page title text. Uses Heading/H1 font size, Title family & weight. Color = fg/brand-contrasted (emerald-700 in klub)."
+    },
+    {
+      "part": "actions",
+      "element": "div",
+      "notes": "Horizontal row of action buttons. In Default variant: 4 tertiary icon buttons + 1 secondary labeled button. In Search active variant: replaced by a small Input component."
+    },
+    {
+      "part": "action-button-tertiary",
+      "element": "button",
+      "notes": "Icon-only tertiary action button (check, search, pen, folder-plus icons). Transparent fill, transparent border.",
+      "klpComponent": "button",
+      "klpComponentProps": { "type": "tertiary", "size": "icon", "state": "rest" },
+      "figmaInstance": { "name": "Button/Tertiary/Icon", "key": null }
+    },
+    {
+      "part": "action-button-secondary",
+      "element": "button",
+      "notes": "Secondary labeled button with right icon (file-plus). bg/default fill, bd/brand stroke.",
+      "klpComponent": "button",
+      "klpComponentProps": { "type": "secondary", "size": "medium", "state": "rest" },
+      "figmaInstance": { "name": "Button/Secondary/Medium", "key": null }
+    },
+    {
+      "part": "search-input",
+      "element": "div",
+      "notes": "Small search input replacing the actions row in the Search active variant. Size=Small, State=Default.",
+      "klpComponent": "input",
+      "klpComponentProps": { "size": "small", "state": "default" },
+      "figmaInstance": { "name": "Input/Small/Default", "key": null }
+    },
+    {
+      "part": "breadcrumbs",
+      "element": "nav",
+      "notes": "Breadcrumb trail below the title row. Two steps visible: a home/store icon step (fg/muted, chevron-right separator) and the current page step (fg/default, chevron-down dropdown affordance).",
+      "klpComponent": "breadcrumbs",
+      "klpComponentProps": { "steps": "1" },
+      "figmaInstance": { "name": "BreadCrumbs/Steps-1", "key": null }
+    }
+  ],
+  "variantAxes": {
+    "features": ["default", "search-active"]
+  },
+  "variants": [
+    {
+      "id": "features-default",
+      "axes": { "features": "default" },
+      "figmaNodeId": "115197:80746",
+      "screenshot": "features-default.png",
+      "layers": {
+        "root": {
+          "literals": {
+            "fill": "none",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": "4px",
+            "width": "936px",
+            "height": "73px"
+          }
+        },
+        "title-action-row": {
+          "literals": {
+            "layoutMode": "HORIZONTAL",
+            "width": "936px",
+            "height": "45px"
+          }
+        },
+        "title": {
+          "color": {
+            "token": "--klp-fg-brand-contrasted",
+            "figmaVar": "fg/brand-contrasted",
+            "value": "#0F6F7C"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-heading-h1",
+            "figmaVar": "Sizing/Heading/H1",
+            "value": "30px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-title",
+            "figmaVar": "Family/Title",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-title",
+            "figmaVar": "Weight/Title",
+            "value": "600"
+          },
+          "literals": {
+            "lineHeight": "36px"
+          }
+        },
+        "actions": {
+          "literals": {
+            "layoutMode": "HORIZONTAL",
+            "gap": "auto"
+          }
+        },
+        "action-button-tertiary": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "transparent"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-s",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "icons": ["check", "search", "pen-line", "folder-plus"]
+          }
+        },
+        "action-button-secondary": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-brand",
+            "figmaVar": "bd/brand",
+            "value": "#1EADA5"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "color": {
+            "token": "--klp-fg-brand",
+            "figmaVar": "fg/brand",
+            "value": "#1EADA5"
+          },
+          "literals": {
+            "icon": "file-plus",
+            "iconPosition": "right"
+          }
+        },
+        "search-input": {
+          "literals": {
+            "note": "Not rendered in Default variant — hidden in this feature."
+          }
+        },
+        "breadcrumbs": {
+          "color-step-muted": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#5F6563"
+          },
+          "color-step-active": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "color-separator": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#5F6563"
+          },
+          "literals": {
+            "stepIcons": ["store", "chevron-right"],
+            "currentStepAffordance": "chevron-down"
+          }
+        }
+      }
+    },
+    {
+      "id": "features-search-active",
+      "axes": { "features": "search-active" },
+      "figmaNodeId": "115197:80756",
+      "screenshot": "features-search-active.png",
+      "layers": {
+        "root": {
+          "literals": {
+            "fill": "none",
+            "layoutMode": "VERTICAL",
+            "itemSpacing": "4px",
+            "width": "936px",
+            "height": "73px"
+          }
+        },
+        "title-action-row": {
+          "literals": {
+            "layoutMode": "HORIZONTAL",
+            "width": "936px",
+            "height": "45px"
+          }
+        },
+        "title": {
+          "color": {
+            "token": "--klp-fg-brand-contrasted",
+            "figmaVar": "fg/brand-contrasted",
+            "value": "#0F6F7C"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-heading-h1",
+            "figmaVar": "Sizing/Heading/H1",
+            "value": "30px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-title",
+            "figmaVar": "Family/Title",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-title",
+            "figmaVar": "Weight/Title",
+            "value": "600"
+          },
+          "literals": {
+            "lineHeight": "36px"
+          }
+        },
+        "actions": {
+          "literals": {
+            "layoutMode": "HORIZONTAL",
+            "note": "Hidden in Search active variant — replaced by search-input."
+          }
+        },
+        "action-button-tertiary": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "transparent"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-s",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "note": "Hidden in Search active variant.",
+            "icons": ["check", "search", "pen-line", "folder-plus"]
+          }
+        },
+        "action-button-secondary": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-brand",
+            "figmaVar": "bd/brand",
+            "value": "#1EADA5"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "color": {
+            "token": "--klp-fg-brand",
+            "figmaVar": "fg/brand",
+            "value": "#1EADA5"
+          },
+          "literals": {
+            "note": "Hidden in Search active variant.",
+            "icon": "file-plus",
+            "iconPosition": "right"
+          }
+        },
+        "search-input": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#D7DAD9"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "color-placeholder": {
+            "token": "--klp-fg-subtle",
+            "figmaVar": "fg/subtle",
+            "value": "#868E8B"
+          },
+          "color-icon": {
+            "token": "--klp-fg-subtle",
+            "figmaVar": "fg/subtle",
+            "value": "#868E8B"
+          },
+          "literals": {
+            "icon": "search"
+          }
+        },
+        "breadcrumbs": {
+          "color-step-muted": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#5F6563"
+          },
+          "color-step-active": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "color-separator": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#5F6563"
+          },
+          "literals": {
+            "stepIcons": ["store", "chevron-right"],
+            "currentStepAffordance": "chevron-down"
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "banner",
+    "keyboardSupport": ["Tab", "Enter", "Space"],
+    "notes": "Wraps in <header> with role=banner. Title should be an <h1>. Breadcrumb nav uses <nav aria-label='Breadcrumb'>. Action buttons are native <button> elements. Search input uses <input type='search'>."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "fg/brand-contrasted (cross-file VariableID:40b7e1fa462c3d2aeb9d0a5a3a52800ffe0c01ad/515:488)",
+      "expectedKlp": "--klp-fg-brand-contrasted",
+      "seenOn": "features-default/title/color, features-search-active/title/color",
+      "note": "Cross-file published variable from the UI Kit Klepierre design system library. Color resolves to emerald-700 (#0F6F7C) in klub brand, matching --klp-fg-brand-contrasted. Token mapping is correct but the variable ID is from an external file — adapter must use --klp-fg-brand-contrasted directly."
+    }
+  ],
+  "composition": {
+    "reuses": ["button", "input", "breadcrumbs"],
+    "candidates": [],
+    "instances": [
+      {
+        "part": "action-button-tertiary",
+        "klpComponent": "button",
+        "klpComponentProps": { "type": "tertiary", "size": "icon", "state": "rest" },
+        "figmaInstance": { "name": "Button/Tertiary/Icon", "key": null }
+      },
+      {
+        "part": "action-button-secondary",
+        "klpComponent": "button",
+        "klpComponentProps": { "type": "secondary", "size": "medium", "state": "rest" },
+        "figmaInstance": { "name": "Button/Secondary/Medium", "key": null }
+      },
+      {
+        "part": "search-input",
+        "klpComponent": "input",
+        "klpComponentProps": { "size": "small", "state": "default" },
+        "figmaInstance": { "name": "Input/Small/Default", "key": null }
+      },
+      {
+        "part": "breadcrumbs",
+        "klpComponent": "breadcrumbs",
+        "klpComponentProps": { "steps": "1" },
+        "figmaInstance": { "name": "BreadCrumbs/Steps-1", "key": null }
+      }
+    ]
+  }
+}

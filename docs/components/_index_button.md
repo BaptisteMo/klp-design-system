@@ -21,7 +21,7 @@ dependencies:
     - typography
   brands:
     - atlas
-usedBy: [floating-alert, list, list-content, pagination, text-area]
+usedBy: [floating-alert, header-desktop, header-phone, list, list-content, pagination, sidebar, text-area]
 created: 2026-04-16
 updated: 2026-04-17
 ---
@@ -192,9 +192,12 @@ import { Button } from '@/components/button'
 ## Used by
 
 - [Floating Alert](./_index_floating-alert.md) — imports `Button` for the dismiss button slot.
+- [Header Desktop](./_index_header-desktop.md) — imports `Button` for tertiary icon action buttons and the secondary "New" button.
+- [Header Phone](./_index_header-phone.md) — imports `Button` for menu-button, notification-btn, and search-button (`variant="tertiary" size="icon"`).
 - [List](./_index_list.md) — imports `Button` for the `header-button` slot (`variant="tertiary" size="md"`).
 - [List Content](./_index_list-content.md) — imports `Button` for the right-side action button slot.
 - [Pagination](./_index_pagination.md) — imports `Button` for the prev, next, and per-page-number interactive controls (`variant="tertiary" size="icon"`).
+- [SideBar](./_index_sidebar.md) — imports `Button` for the notification/close button slot (`variant="tertiary" size="icon"`).
 - [Text Area](./_index_text-area.md) — imports `Button` for the action bar confirm/cancel slots.
 
 ## Files

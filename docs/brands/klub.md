@@ -40,6 +40,10 @@ document.documentElement.dataset.brand = 'klub'
 - [Tabulation Cells](../components/_index_tabulation-cells.md) — Figma reference screenshots captured under the klub brand.
 - [Tabulations](../components/_index_tabulations.md) — Figma reference screenshots captured under the klub brand.
 - [Tooltip](../components/_index_tooltip.md) — Figma reference screenshots captured under the klub brand.
+- [Header Desktop](../components/_index_header-desktop.md) — Figma reference screenshots captured under the klub brand.
+- [Item Side Bar](../components/_index_item-side-bar.md) — Figma reference screenshots captured under the klub brand.
+- [Header Phone](../components/_index_header-phone.md) — Figma reference screenshots captured under the klub brand.
+- [SideBar](../components/_index_sidebar.md) — Figma reference screenshots captured under the klub brand.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

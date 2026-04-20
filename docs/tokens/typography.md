@@ -70,6 +70,10 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Table (primitives)](../components/_index_table.md) — `font-klp-label`, `font-klp-label-bold`, `text-klp-text-medium` on head cell layer; `font-klp-body`, `text-klp-text-medium` on data cell layer; `text-klp-text-small` on caption layer.
 - [Pagination](../components/_index_pagination.md) — `text-klp-text-small` on the range label.
 - [Data Table](../components/_index_data-table.md) — sort icon and empty-state text consume `text-klp-fg-default` / `text-klp-fg-muted`; body typography inherited from Table primitives.
+- [Item Side Bar](../components/_index_item-side-bar.md) — `--klp-font-size-text-medium`, `--klp-font-family-label`, `--klp-font-weight-label` on label layer across all variants.
+- [Header Desktop](../components/_index_header-desktop.md) — `--klp-font-size-heading-h1`, `--klp-font-family-title`, `--klp-font-weight-title` on title layer across both feature variants.
+- [Header Phone](../components/_index_header-phone.md) — `--klp-font-size-heading-h1`, `--klp-font-family-title`, `--klp-font-weight-title` on the title `h1` layer.
+- [SideBar](../components/_index_sidebar.md) — `font-klp-label` on context-label and user-name layers; literal 14px (context-label) and 16px (user-name) font sizes.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

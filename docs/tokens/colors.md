@@ -116,6 +116,10 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Table (primitives)](../components/_index_table.md) — consumes `border-default` (row bottom border), `bg-subtle` (default hover + muted row fill), `bg-secondary-brand-low` (selected row fill), `fg-muted` (head cell color), `fg-default` (data cell color) across all 3 row variants.
 - [Pagination](../components/_index_pagination.md) — consumes `fg-muted` (range label and dots), `bg-inset` (active page button background), `border-brand` (active page button border).
 - [Data Table](../components/_index_data-table.md) — consumes `fg-default` (active sort icon), `fg-muted` (inactive sort icon and empty-state text); table-level and pagination-level color tokens inherited from sub-components.
+- [Item Side Bar](../components/_index_item-side-bar.md) — consumes `bg-default`, `bg-inset`, `bg-invisible`, `fg-default`, `border-contrasted`, `border-invisible` tokens across trigger, icon-container, label, and content layers.
+- [SideBar](../components/_index_sidebar.md) — consumes `bg-default`, `bg-invisible`, `bg-decorative-orange`, `bg-inset`, `border-default`, `fg-default`, `fg-muted` tokens across root, header, notification-button, notification-dot, context-label, context-chevron, menu, profil, and user-name layers.
+- [Header Desktop](../components/_index_header-desktop.md) — consumes `fg-brand-contrasted` (title), `bg-invisible`, `border-invisible` (tertiary buttons), `bg-default`, `border-brand`, `fg-brand` (secondary button), `bg-default`, `border-default`, `fg-subtle` (search-input), `fg-muted`, `fg-default` (breadcrumbs) across both feature variants.
+- [Header Phone](../components/_index_header-phone.md) — consumes `border-default` (root bottom border), `bg-invisible`, `border-invisible` (tertiary button layers), `fg-brand-contrasted` (logo color, title color), `bg-decorative-orange` (notification dot).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
