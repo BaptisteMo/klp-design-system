@@ -1,0 +1,220 @@
+// cli/init.mjs
+// `klp-ui init` — scaffolds a fresh project and copies DS files.
+
+import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
+import { fileURLToPath } from 'node:url'
+import { dirname, resolve, join } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import pc from 'picocolors'
+import { fetchManifest, flattenManifest, collectNpmDeps } from './manifest.mjs'
+import { fetchBuffer } from './fetch.mjs'
+import { sha256 } from './hash.mjs'
+import { rewriteImports } from './rewrite.mjs'
+import { askText, askSelect, askConfirm } from './prompts.mjs'
+
+const __dirname = dirname(fileURLToPath(import.meta.url))
+const SCAFFOLD_DIR = resolve(__dirname, 'scaffold')
+const REPO = 'BaptisteMo/klp-design-system'
+
+const BASELINE_DEPS = {
+  react: '^19.0.0',
+  'react-dom': '^19.0.0',
+  clsx: '^2.1.1',
+  'tailwind-merge': '^2.5.4',
+}
+
+const DEP_VERSIONS = {
+  '@radix-ui/react-checkbox': '^1.3.3',
+  '@radix-ui/react-popover': '^1.1.15',
+  '@radix-ui/react-radio-group': '^1.3.8',
+  '@radix-ui/react-slot': '^1.2.4',
+  '@radix-ui/react-switch': '^1.2.6',
+  '@radix-ui/react-tabs': '^1.1.13',
+  '@radix-ui/react-tooltip': '^1.2.8',
+  '@tanstack/react-table': '^8.21.3',
+  'class-variance-authority': '^0.7.1',
+  'lucide-react': '^1.8.0',
+  '@fontsource/inter': '^5.2.8',
+}
+
+function parseArgs(rest) {
+  const out = { projectName: null, brand: null, pm: null, install: true, git: true, ref: 'main', verbose: false }
+  for (const arg of rest) {
+    if (arg.startsWith('--brand=')) out.brand = arg.slice(8)
+    else if (arg.startsWith('--pm=')) out.pm = arg.slice(5)
+    else if (arg === '--no-install') out.install = false
+    else if (arg === '--no-git') out.git = false
+    else if (arg.startsWith('--ref=')) out.ref = arg.slice(6)
+    else if (arg === '--verbose') out.verbose = true
+    else if (!arg.startsWith('--') && !out.projectName) out.projectName = arg
+  }
+  return out
+}
+
+export async function run(rest) {
+  const args = parseArgs(rest)
+
+  const projectName = args.projectName ?? (await askText('projectName', 'Project name', 'klp-app'))
+  const brand = args.brand ?? (await askSelect('brand', 'Brand', [
+    { title: 'wireframe', value: 'wireframe' },
+    { title: 'klub', value: 'klub' },
+    { title: 'atlas', value: 'atlas' },
+    { title: 'showup', value: 'showup' },
+  ]))
+  const pm = args.pm ?? (await askSelect('pm', 'Package manager', [
+    { title: 'pnpm', value: 'pnpm' },
+    { title: 'npm', value: 'npm' },
+    { title: 'yarn', value: 'yarn' },
+    { title: 'bun', value: 'bun' },
+  ]))
+
+  validateBrand(brand)
+
+  const cwd = resolve(process.cwd(), projectName)
+  if (existsSync(cwd)) {
+    const entries = await readdir(cwd).catch(() => [])
+    if (entries.length > 0) {
+      const ok = await askConfirm('ok', `Directory "${projectName}" exists and is non-empty. Overwrite?`, false)
+      if (!ok) { console.log('Aborted.'); process.exit(1) }
+    }
+  }
+  await mkdir(cwd, { recursive: true })
+
+  console.log(pc.cyan(`\n→ fetching manifest from ${args.ref}`))
+  const manifest = await fetchManifest(args.ref, REPO)
+  const files = flattenManifest(manifest)
+  console.log(pc.gray(`  manifest v${manifest.version}, ${files.length} files`))
+
+  const npmDeps = resolveNpmDeps(manifest)
+
+  console.log(pc.cyan(`→ writing scaffold templates`))
+  await writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose: args.verbose })
+
+  console.log(pc.cyan(`→ fetching ${files.length} DS files`))
+  const lockFiles = {}
+  let i = 0
+  for (const f of files) {
+    i++
+    const status = args.verbose ? '' : `\r[${i}/${files.length}] `
+    process.stdout.write(status + pc.gray(f.dst))
+    if (args.verbose) process.stdout.write('\n')
+
+    if (f.group === 'scaffold') {
+      // scaffold group files already written above; record hash for lockfile
+      const localAbs = resolve(cwd, f.dst)
+      const content = await readFile(localAbs)
+      lockFiles[f.dst] = { hash: sha256(content), source: f.group }
+      continue
+    }
+
+    const url = `https://raw.githubusercontent.com/${REPO}/${args.ref}/${f.src}`
+    const buf = await fetchBuffer(url)
+
+    // integrity check
+    if (sha256(buf) !== f.hash) {
+      throw new Error(`Integrity mismatch for ${f.src}`)
+    }
+
+    // apply rewrite for .ts/.tsx
+    let content = buf
+    if (/\.(ts|tsx)$/.test(f.dst)) {
+      content = Buffer.from(rewriteImports(buf.toString('utf8'), f.dst), 'utf8')
+    }
+
+    const absDst = resolve(cwd, f.dst)
+    await mkdir(dirname(absDst), { recursive: true })
+    await writeFile(absDst, content)
+
+    lockFiles[f.dst] = {
+      hash: sha256(content),
+      source: f.item ?? f.group,
+    }
+  }
+  process.stdout.write('\n')
+
+  const lockfile = {
+    manifestVersion: manifest.version,
+    ref: args.ref,
+    brand,
+    installedAt: new Date().toISOString(),
+    files: lockFiles,
+  }
+  await writeFile(resolve(cwd, 'klp.lock.json'), JSON.stringify(lockfile, null, 2) + '\n')
+  console.log(pc.green(`✓ wrote klp.lock.json`))
+
+  if (args.install) {
+    console.log(pc.cyan(`→ installing deps with ${pm}`))
+    const res = spawnSync(pm, ['install'], { cwd, stdio: 'inherit' })
+    if (res.status !== 0) {
+      console.error(pc.yellow(`! ${pm} install failed — run "${pm} install" in ${projectName} manually`))
+    }
+  }
+
+  if (args.git) {
+    console.log(pc.cyan(`→ git init + initial commit`))
+    spawnSync('git', ['init', '--initial-branch=main'], { cwd, stdio: 'ignore' })
+    spawnSync('git', ['add', '.'], { cwd, stdio: 'ignore' })
+    spawnSync('git', ['commit', '-m', `chore: init klp-ui project (brand: ${brand})`], { cwd, stdio: 'ignore' })
+  }
+
+  console.log(pc.green(`\n✓ Project "${projectName}" ready (brand: ${brand}).`))
+  console.log(pc.gray(`\n  cd ${projectName}`))
+  console.log(pc.gray(`  ${pm} dev\n`))
+}
+
+function validateBrand(brand) {
+  const valid = ['wireframe', 'klub', 'atlas', 'showup']
+  if (!valid.includes(brand)) {
+    console.error(`Invalid brand "${brand}". Valid: ${valid.join(', ')}`)
+    process.exit(1)
+  }
+}
+
+function resolveNpmDeps(manifest) {
+  const components = collectNpmDeps(manifest)
+  const all = { ...BASELINE_DEPS }
+  for (const pkg of components) {
+    all[pkg] = DEP_VERSIONS[pkg] ?? 'latest'
+  }
+  return all
+}
+
+function formatNpmDepsJson(deps) {
+  const entries = Object.entries(deps).sort(([a], [b]) => a.localeCompare(b))
+  return entries.map(([name, ver], i) => {
+    const comma = i < entries.length - 1 ? ',' : ''
+    return `    "${name}": "${ver}"${comma}`
+  }).join('\n')
+}
+
+async function writeScaffoldFiles({ cwd, projectName, brand, npmDeps, verbose }) {
+  const files = [
+    ['package.json.tmpl', 'package.json'],
+    ['vite.config.ts.tmpl', 'vite.config.ts'],
+    ['tsconfig.json.tmpl', 'tsconfig.json'],
+    ['tsconfig.node.json.tmpl', 'tsconfig.node.json'],
+    ['index.html.tmpl', 'index.html'],
+    ['main.tsx.tmpl', 'src/main.tsx'],
+    ['App.tsx.tmpl', 'src/App.tsx'],
+    ['index.css.tmpl', 'src/index.css'],
+    ['gitignore.tmpl', '.gitignore'],
+    ['claude/CLAUDE.md.tmpl', '.claude/CLAUDE.md'],
+    ['claude/agents/.gitkeep', '.claude/agents/.gitkeep'],
+    ['claude/skills/.gitkeep', '.claude/skills/.gitkeep'],
+  ]
+  const npmDepsJson = formatNpmDepsJson(npmDeps)
+
+  for (const [tmpl, dst] of files) {
+    const srcPath = join(SCAFFOLD_DIR, tmpl)
+    const raw = await readFile(srcPath, 'utf8')
+    const rendered = raw
+      .replace(/\{\{projectName\}\}/g, projectName)
+      .replace(/\{\{brand\}\}/g, brand)
+      .replace(/\{\{npmDeps\}\}/g, npmDepsJson)
+    const absDst = resolve(cwd, dst)
+    await mkdir(dirname(absDst), { recursive: true })
+    await writeFile(absDst, rendered)
+    if (verbose) console.log(pc.gray(`  ${dst}`))
+  }
+}
