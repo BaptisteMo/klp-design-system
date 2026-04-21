@@ -13,5 +13,12 @@
       "feature": ["rich-text", "simple"],
       "state": ["default", "focus", "filled", "danger", "success", "disable"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

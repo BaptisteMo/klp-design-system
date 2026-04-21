@@ -11,5 +11,13 @@
     "variantAxes": {
       "state": ["rest", "hover", "clicked", "mixed", "disable"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-checkbox",
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

@@ -24,5 +24,12 @@
       ]
     }
   },
-  "TODO": "Run pnpm run build:registry once scripts/build-registry.ts exists to generate full registry entry with dependencies list."
+  "TODO": "Run pnpm run build:registry once scripts/build-registry.ts exists to generate full registry entry with dependencies list.",
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-popover",
+      "class-variance-authority"
+    ]
+  }
 }

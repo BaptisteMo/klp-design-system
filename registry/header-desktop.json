@@ -12,5 +12,12 @@
     "variantAxes": {
       "features": ["default", "search-active"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

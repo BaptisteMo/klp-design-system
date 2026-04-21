@@ -12,5 +12,12 @@
     "src/components/item-side-bar/ItemSideBar.tsx",
     "src/components/item-side-bar/index.ts"
   ],
-  "dependencies": ["@radix-ui/react-collapsible", "class-variance-authority", "lucide-react"]
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-collapsible",
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
 }

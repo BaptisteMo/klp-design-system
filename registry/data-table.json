@@ -1,1 +1,11 @@
-{ "name": "data-table", "source": "src/components/data-table/DataTable.tsx", "externals": ["@tanstack/react-table", "lucide-react", "class-variance-authority"], "components": ["table", "pagination"] }
+{
+  "name": "data-table",
+  "source": "src/components/data-table/DataTable.tsx",
+  "dependencies": {
+    "components": ["pagination", "table"],
+    "npm": [
+      "@tanstack/react-table",
+      "lucide-react"
+    ]
+  }
+}

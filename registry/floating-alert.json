@@ -13,5 +13,12 @@
       "state": ["danger", "warning", "information", "success"],
       "size": ["sm", "md", "lg"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

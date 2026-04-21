@@ -13,5 +13,12 @@
     },
     "variantCount": 1,
     "dependencies": ["tabulation-cells"]
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-tabs",
+      "class-variance-authority"
+    ]
   }
 }

@@ -11,5 +11,13 @@
       "size": ["small", "medium", "large"],
       "state": ["default", "hover", "active"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-slot",
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

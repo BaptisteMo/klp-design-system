@@ -12,5 +12,12 @@
     "variantAxes": {
       "arrow-orientation": ["bottom-left", "bottom-right", "top-left", "top-right"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-tooltip",
+      "class-variance-authority"
+    ]
   }
 }

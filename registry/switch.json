@@ -11,5 +11,13 @@
     "variantAxes": {
       "state": ["toggle-on", "toggle-off"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-switch",
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-21T08:41:41.832Z",
+  "generatedAt": "2026-04-21T08:54:49.483Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -62,7 +62,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority"
             ],
             "components": []
           }
@@ -82,7 +83,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-popover"
+              "@radix-ui/react-popover",
+              "class-variance-authority"
             ],
             "components": []
           }
@@ -102,7 +104,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority"
             ],
             "components": []
           }
@@ -135,7 +138,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -155,7 +160,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority"
             ],
             "components": []
           }
@@ -175,7 +181,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-checkbox"
+              "@radix-ui/react-checkbox",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -195,7 +203,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-collapsible"
+              "@radix-ui/react-collapsible",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -214,8 +224,14 @@
             }
           ],
           "deps": {
-            "npm": [],
-            "components": []
+            "npm": [
+              "@tanstack/react-table",
+              "lucide-react"
+            ],
+            "components": [
+              "pagination",
+              "table"
+            ]
           }
         },
         "floating-alert": {
@@ -232,7 +248,10 @@
             }
           ],
           "deps": {
-            "npm": [],
+            "npm": [
+              "class-variance-authority",
+              "lucide-react"
+            ],
             "components": []
           }
         },
@@ -251,7 +270,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -271,7 +292,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -290,7 +313,10 @@
             }
           ],
           "deps": {
-            "npm": [],
+            "npm": [
+              "class-variance-authority",
+              "lucide-react"
+            ],
             "components": []
           }
         },
@@ -309,7 +335,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -329,7 +357,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-collapsible"
+              "@radix-ui/react-collapsible",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -348,8 +378,13 @@
             }
           ],
           "deps": {
-            "npm": [],
-            "components": []
+            "npm": [
+              "class-variance-authority",
+              "lucide-react"
+            ],
+            "components": [
+              "list-content"
+            ]
           }
         },
         "list-content": {
@@ -367,7 +402,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -386,8 +423,12 @@
             }
           ],
           "deps": {
-            "npm": [],
-            "components": []
+            "npm": [
+              "lucide-react"
+            ],
+            "components": [
+              "button"
+            ]
           }
         },
         "radio": {
@@ -405,7 +446,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-radio-group"
+              "@radix-ui/react-radio-group",
+              "class-variance-authority"
             ],
             "components": []
           }
@@ -425,7 +467,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -445,7 +489,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-switch"
+              "@radix-ui/react-switch",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -464,7 +510,9 @@
             }
           ],
           "deps": {
-            "npm": [],
+            "npm": [
+              "class-variance-authority"
+            ],
             "components": []
           }
         },
@@ -483,7 +531,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-tabs"
+              "@radix-ui/react-tabs",
+              "class-variance-authority"
             ],
             "components": []
           }
@@ -503,7 +552,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-tabs"
+              "@radix-ui/react-tabs",
+              "class-variance-authority"
             ],
             "components": []
           }
@@ -523,7 +573,9 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-slot"
+              "@radix-ui/react-slot",
+              "class-variance-authority",
+              "lucide-react"
             ],
             "components": []
           }
@@ -543,7 +595,8 @@
           ],
           "deps": {
             "npm": [
-              "@radix-ui/react-tooltip"
+              "@radix-ui/react-tooltip",
+              "class-variance-authority"
             ],
             "components": []
           }

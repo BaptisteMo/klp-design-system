@@ -11,5 +11,12 @@
     "variantAxes": {
       "state": ["rest", "hover", "clicked", "disable"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-radio-group",
+      "class-variance-authority"
+    ]
   }
 }

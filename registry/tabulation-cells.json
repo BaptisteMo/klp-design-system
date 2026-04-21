@@ -12,5 +12,12 @@
       "state": ["rest", "active"]
     },
     "variantCount": 2
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-tabs",
+      "class-variance-authority"
+    ]
   }
 }

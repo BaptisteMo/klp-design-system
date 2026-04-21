@@ -12,5 +12,12 @@
     "variantAxes": {
       "steps": ["0", "1", "2", "3"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

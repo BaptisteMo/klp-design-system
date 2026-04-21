@@ -1,1 +1,10 @@
-{ "name": "table", "source": "src/components/table/Table.tsx", "externals": ["class-variance-authority"] }
+{
+  "name": "table",
+  "source": "src/components/table/Table.tsx",
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority"
+    ]
+  }
+}

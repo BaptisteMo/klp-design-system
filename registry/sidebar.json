@@ -12,11 +12,6 @@
     },
     "variantCount": 2
   },
-  "dependencies": [
-    "@radix-ui/react-slot",
-    "class-variance-authority",
-    "lucide-react"
-  ],
   "internalDependencies": [
     "button",
     "item-side-bar"
@@ -30,5 +25,12 @@
       "path": "src/components/sidebar/index.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
 }

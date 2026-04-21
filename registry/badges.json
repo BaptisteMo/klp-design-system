@@ -14,5 +14,12 @@
       "size": ["small", "medium", "large"],
       "style": ["bordered", "light"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-slot",
+      "class-variance-authority"
+    ]
   }
 }

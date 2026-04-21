@@ -12,5 +12,13 @@
     "variantAxes": {
       "state": ["close", "open"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "@radix-ui/react-collapsible",
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

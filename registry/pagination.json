@@ -1,1 +1,10 @@
-{ "name": "pagination", "source": "src/components/pagination/Pagination.tsx", "externals": ["lucide-react", "class-variance-authority"], "components": ["button"] }
+{
+  "name": "pagination",
+  "source": "src/components/pagination/Pagination.tsx",
+  "dependencies": {
+    "components": ["button"],
+    "npm": [
+      "lucide-react"
+    ]
+  }
+}

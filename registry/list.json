@@ -20,6 +20,12 @@
     { "path": "src/components/list/List.tsx", "type": "registry:ui" },
     { "path": "src/components/list/index.ts", "type": "registry:ui" }
   ],
-  "dependencies": ["class-variance-authority", "lucide-react"],
-  "klpDependencies": ["list-content"]
+  "klpDependencies": ["list-content"],
+  "dependencies": {
+    "components": ["list-content"],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
 }

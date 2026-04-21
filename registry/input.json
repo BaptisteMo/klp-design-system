@@ -13,5 +13,12 @@
       "size": ["large", "medium", "small"],
       "state": ["default", "filled", "focused", "success", "danger", "disable"]
     }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
   }
 }

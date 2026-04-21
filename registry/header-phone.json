@@ -10,11 +10,6 @@
     "variantAxes": {},
     "variantCount": 1
   },
-  "dependencies": [
-    "@radix-ui/react-slot",
-    "class-variance-authority",
-    "lucide-react"
-  ],
   "internalDependencies": [
     "button",
     "breadcrumbs"
@@ -28,5 +23,12 @@
       "path": "src/components/header-phone/index.ts",
       "type": "registry:ui"
     }
-  ]
+  ],
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
 }
