@@ -38,6 +38,50 @@
         ]
       },
       "variantCount": 21,
+      "props": {
+        "state": {
+          "class": "persistent",
+          "type": "ActionSheetItemState",
+          "default": "\"default\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "optional",
+          "type": "ActionSheetItemSize",
+          "default": "\"lg\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "asChild": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "",
+          "derivedFrom": null
+        },
+        "firstIcon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "secondAction": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "description": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [],
         "externals": [
@@ -59,7 +103,7 @@
         "item-side-bar"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
     },
     {
       "name": "action-sheet-menu",
@@ -90,6 +134,22 @@
         ]
       },
       "variantCount": 3,
+      "props": {
+        "sections": {
+          "class": "required",
+          "type": "ActionSheetMenuSection[]",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "type": {
+          "class": "optional",
+          "type": "ActionSheetMenuType",
+          "default": "\"default\"",
+          "description": "",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [
           "action-sheet-item",
@@ -132,7 +192,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
     },
     {
       "name": "badges",
@@ -177,6 +237,57 @@
         ]
       },
       "variantCount": 48,
+      "props": {
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Required badge content (text, number, etc.).",
+          "derivedFrom": null
+        },
+        "badgeType": {
+          "class": "optional",
+          "type": "BadgeType",
+          "default": "\"primary\"",
+          "description": "Semantic type (color scheme)",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "optional",
+          "type": "BadgeSize",
+          "default": "\"medium\"",
+          "description": "Size variant — controls padding and gap",
+          "derivedFrom": null
+        },
+        "badgeStyle": {
+          "class": "optional",
+          "type": "BadgeStyle",
+          "default": "\"bordered\"",
+          "description": "Style variant — bordered adds a colored stroke, light removes it",
+          "derivedFrom": null
+        },
+        "leftIcon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional leading icon",
+          "derivedFrom": null
+        },
+        "rightIcon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional trailing icon",
+          "derivedFrom": null
+        },
+        "asChild": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Render as child element (Slot pattern)",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [],
         "externals": [
@@ -196,7 +307,54 @@
         "tabulation-cells"
       ],
       "created": "2026-04-16",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "brand-provider",
+      "displayName": "Brand Provider",
+      "description": "Applies a chosen brand to document.documentElement so CSS alias tokens switch. No visual layers.",
+      "category": "utilities",
+      "schemaVersion": "v2",
+      "status": "stable",
+      "source": "src/components/brand-provider/BrandProvider.tsx",
+      "registry": "registry/brand-provider.json",
+      "anatomy": [
+        "root"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "brand": {
+          "class": "required",
+          "type": "Brand",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "required",
+          "type": "ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [],
+        "tokenGroups": [],
+        "brands": [
+          "klub",
+          "atlas",
+          "showup",
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-20",
+      "updated": "2026-04-21",
+      "exemptFromValidator": true,
+      "exemptFromFigmaPipeline": true
     },
     {
       "name": "breadcrumbs",
@@ -228,6 +386,29 @@
         ]
       },
       "variantCount": 4,
+      "props": {
+        "steps": {
+          "class": "required",
+          "type": "BreadCrumbStep[]",
+          "default": null,
+          "description": "Ordered list of steps from root to current",
+          "derivedFrom": null
+        },
+        "showDropdownAffordance": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Whether the current (last) step shows a chevron-down dropdown affordance",
+          "derivedFrom": null
+        },
+        "stepsVariant": {
+          "class": "optional",
+          "type": "VariantProps<typeof rootVariants>['steps']",
+          "default": null,
+          "description": "Override the steps variant key (derived from steps.length - 1 if omitted)",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [],
         "externals": [
@@ -244,7 +425,7 @@
       },
       "usedBy": ["header-desktop", "header-phone"],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
     },
     {
       "name": "button",
@@ -288,6 +469,57 @@
         ]
       },
       "variantCount": 20,
+      "props": {
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Button label or content.",
+          "derivedFrom": null
+        },
+        "variant": {
+          "class": "optional",
+          "type": "VariantProps<typeof rootVariants>['variant']",
+          "default": "\"primary\"",
+          "description": "Visual style variant (maps to spec variantAxes.type)",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "optional",
+          "type": "VariantProps<typeof rootVariants>['size']",
+          "default": "\"md\"",
+          "description": "Size axis",
+          "derivedFrom": null
+        },
+        "htmlType": {
+          "class": "optional",
+          "type": "'button' | 'submit' | 'reset'",
+          "default": "\"button\"",
+          "description": "Native button type attribute",
+          "derivedFrom": null
+        },
+        "asChild": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Render child element in place of <button> (e.g. <a>)",
+          "derivedFrom": null
+        },
+        "leftIcon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional icon rendered before the label",
+          "derivedFrom": null
+        },
+        "rightIcon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional icon rendered after the label",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [],
         "externals": [
@@ -317,7 +549,7 @@
         "text-area"
       ],
       "created": "2026-04-16",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
     },
     {
       "name": "checkbox",
@@ -347,6 +579,15 @@
         ]
       },
       "variantCount": 5,
+      "props": {
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional class names for the root element",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [],
         "externals": [
@@ -366,7 +607,115 @@
         "action-sheet-menu"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "collapsible",
+      "displayName": "Collapsible",
+      "description": "Expandable disclosure panel with a header (icon + title + chevron toggle button) and a collapsible content area. Single variant axis: open/close state.",
+      "category": "disclosure",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/collapsible/Collapsible.tsx",
+      "doc": "docs/components/_index_collapsible.md",
+      "playground": "playground/routes/collapsible.tsx",
+      "registry": "registry/collapsible.json",
+      "spec": ".klp/figma-refs/collapsible/spec.json",
+      "radixPrimitive": "@radix-ui/react-collapsible",
+      "anatomy": [
+        "root",
+        "header",
+        "icon",
+        "title",
+        "toggle-button",
+        "content",
+        "content-text"
+      ],
+      "variantAxes": {
+        "state": ["close", "open"]
+      },
+      "variantCount": 2,
+      "props": {
+        "open": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Controlled open state",
+          "derivedFrom": null
+        },
+        "defaultOpen": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Default open state (uncontrolled)",
+          "derivedFrom": null
+        },
+        "onOpenChange": {
+          "class": "optional",
+          "type": "(open: boolean) => void",
+          "default": null,
+          "description": "Callback when open state changes",
+          "derivedFrom": null
+        },
+        "icon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Leading icon in the header. Defaults to ShoppingCart as placeholder.",
+          "derivedFrom": null
+        },
+        "title": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Section title\"",
+          "description": "Section title",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Content rendered inside the collapsible area",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className on the root element",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": ["button"],
+        "externals": [
+          "@radix-ui/react-collapsible",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["wireframe"]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "button",
+            "notes": "toggle-button renders as <Button variant=\"tertiary\" size=\"icon\"> wrapping a ChevronDown icon."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "partial-reuse",
+            "part": "toggle-button",
+            "reason": "Button is imported and used for the toggle. ChevronDown is passed as children (icon-only slot). A rotation class is appended via className to animate the chevron on open — this is a one-off visual tweak, not a rebuild.",
+            "action": "className-override"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-21",
+      "updated": "2026-04-21"
     },
     {
       "name": "data-table",
@@ -390,6 +739,78 @@
       ],
       "variantAxes": {},
       "variantCount": 1,
+      "props": {
+        "columns": {
+          "class": "required",
+          "type": "ColumnDef<TData>[]",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "data": {
+          "class": "required",
+          "type": "TData[]",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "pagination": {
+          "class": "optional",
+          "type": "{ pageSize: number } | false",
+          "default": "false",
+          "description": "Enables pagination when given an object. Default false.",
+          "derivedFrom": null
+        },
+        "initialSorting": {
+          "class": "optional",
+          "type": "{ id: string; desc: boolean }[]",
+          "default": "[]",
+          "description": "Initial sort state (uncontrolled).",
+          "derivedFrom": null
+        },
+        "onSortingChange": {
+          "class": "optional",
+          "type": "(sorting: SortingState) => void",
+          "default": null,
+          "description": "Controlled sort callback (optional).",
+          "derivedFrom": null
+        },
+        "toolbar": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Toolbar slot rendered above the table.",
+          "derivedFrom": null
+        },
+        "emptyState": {
+          "class": "optional",
+          "type": "React.ReactNode | string",
+          "default": "\"No data.\"",
+          "description": "Content when data is empty. Default \"No data.\"",
+          "derivedFrom": null
+        },
+        "caption": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Accessible caption forwarded to <table>.",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Passed to the outer container div.",
+          "derivedFrom": null
+        },
+        "tableClassName": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Passed to <Table.Root>.",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [
           "pagination",
@@ -411,7 +832,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
     },
     {
       "name": "floating-alert",
@@ -449,6 +870,36 @@
         ]
       },
       "variantCount": 12,
+      "props": {
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Alert title / content — the primary message.",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "optional",
+          "type": "'danger' | 'warning' | 'information' | 'success'",
+          "default": "\"information\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "optional",
+          "type": "'sm' | 'md' | 'lg'",
+          "default": "\"md\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "onDismiss": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [
           "button"
@@ -469,7 +920,240 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "header-desktop",
+      "displayName": "Header Desktop",
+      "description": "Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/header-desktop/HeaderDesktop.tsx",
+      "doc": "docs/components/_index_header-desktop.md",
+      "playground": "playground/routes/header-desktop.tsx",
+      "registry": "registry/header-desktop.json",
+      "spec": ".klp/figma-refs/header-desktop/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "title-action-row",
+        "title",
+        "actions",
+        "action-button-tertiary",
+        "action-button-secondary",
+        "search-input",
+        "breadcrumbs"
+      ],
+      "variantAxes": {
+        "features": ["default", "search-active"]
+      },
+      "variantCount": 2,
+      "props": {
+        "features": {
+          "class": "optional",
+          "type": "HeaderDesktopFeatures",
+          "default": "\"default\"",
+          "description": "Feature variant controlling which action row is shown",
+          "derivedFrom": null
+        },
+        "title": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Page title\"",
+          "description": "Page title text",
+          "derivedFrom": null
+        },
+        "breadcrumbSteps": {
+          "class": "optional",
+          "type": "BreadCrumbStep[]",
+          "default": null,
+          "description": "Breadcrumb steps array — forwarded to BreadCrumbs",
+          "derivedFrom": null
+        },
+        "onActionClick": {
+          "class": "optional",
+          "type": "(action: 'check' | 'search' | 'pen-line' | 'folder-plus') => void",
+          "default": null,
+          "description": "Callback when a tertiary icon button is clicked (receives icon name)",
+          "derivedFrom": null
+        },
+        "onNewClick": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Callback when the secondary \"New\" button is clicked",
+          "derivedFrom": null
+        },
+        "onSearchChange": {
+          "class": "optional",
+          "type": "(value: string) => void",
+          "default": null,
+          "description": "Callback on search input change (search-active variant)",
+          "derivedFrom": null
+        },
+        "searchPlaceholder": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Search…\"",
+          "description": "Placeholder text for the search input",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": ["breadcrumbs", "button", "input"],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["klub"]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "breadcrumbs",
+            "notes": "Breadcrumb trail rendered via <BreadCrumbs> with showDropdownAffordance."
+          },
+          {
+            "klpComponent": "button",
+            "notes": "action-button-tertiary renders as <Button variant=\"tertiary\" size=\"icon\">; action-button-secondary renders as <Button variant=\"secondary\" size=\"md\">."
+          },
+          {
+            "klpComponent": "input",
+            "notes": "search-input renders as <Input size=\"small\" state=\"default\"> in the search-active variant."
+          }
+        ],
+        "gaps": []
+      },
+      "usedBy": [],
+      "created": "2026-04-20",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "header-phone",
+      "displayName": "Header Phone",
+      "description": "Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.",
+      "category": "containers",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/header-phone/HeaderPhone.tsx",
+      "doc": "docs/components/_index_header-phone.md",
+      "playground": "playground/routes/header-phone.tsx",
+      "registry": "registry/header-phone.json",
+      "spec": ".klp/figma-refs/header-phone/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "content",
+        "top-bar",
+        "menu-button",
+        "logo",
+        "notification-button",
+        "notification-btn",
+        "notification-dot",
+        "title-bar",
+        "title",
+        "search-button",
+        "breadcrumbs"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "title": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Page Title\"",
+          "description": "Page title rendered in the title bar",
+          "derivedFrom": null
+        },
+        "hasNotification": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Whether to show the notification dot on the bell button",
+          "derivedFrom": null
+        },
+        "notificationCount": {
+          "class": "optional",
+          "type": "number",
+          "default": "1",
+          "description": "Unread count label for the notification button (for screen readers)",
+          "derivedFrom": null
+        },
+        "breadcrumbSteps": {
+          "class": "optional",
+          "type": "BreadCrumbStep[]",
+          "default": null,
+          "description": "Breadcrumb steps passed to BreadCrumbs",
+          "derivedFrom": null
+        },
+        "logo": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Logo slot — accepts any React node (brand asset, img, svg component, etc.)",
+          "derivedFrom": null
+        },
+        "onMenuClick": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Handler for menu button click",
+          "derivedFrom": null
+        },
+        "onNotificationClick": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Handler for notification button click",
+          "derivedFrom": null
+        },
+        "onSearchClick": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Handler for search button click",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": ["button", "breadcrumbs"],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": ["colors", "spacing", "radius", "typography"],
+        "brands": ["klub"]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "button",
+            "notes": "menu-button, notification-btn, and search-button each render as <Button variant=\"tertiary\" size=\"icon\">."
+          },
+          {
+            "klpComponent": "breadcrumbs",
+            "notes": "breadcrumbs renders as <BreadCrumbs steps={...} stepsVariant=\"1\">."
+          }
+        ],
+        "gaps": [
+          {
+            "part": "logo",
+            "kind": "unmatched-instance",
+            "figmaInstance": "Icon selector/Larger/Logo (Klub!_Icon)",
+            "reason": "No 'brand-logo' component in klp-components.json. The Klub! brand logo is a custom SVG asset, not a lucide icon. Inlined as a slot prop accepting any ReactNode, with a text fallback 'K!'.",
+            "action": "inlined-ad-hoc"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-20",
+      "updated": "2026-04-21"
     },
     {
       "name": "in-content-alert",
@@ -506,6 +1190,36 @@
         ]
       },
       "variantCount": 12,
+      "props": {
+        "content": {
+          "class": "optional",
+          "type": "'info' | 'success' | 'danger' | 'warning'",
+          "default": "\"info\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "optional",
+          "type": "'lg' | 'md' | 'sm'",
+          "default": "\"md\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "title": {
+          "class": "required",
+          "type": "string",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "body": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [],
         "externals": [
@@ -523,7 +1237,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
     },
     {
       "name": "input",
@@ -566,6 +1280,71 @@
         ]
       },
       "variantCount": 18,
+      "props": {
+        "label": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Label text displayed above the input",
+          "derivedFrom": null
+        },
+        "description": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Helper / description text displayed below the input",
+          "derivedFrom": null
+        },
+        "showInfoIcon": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Show the optional info icon next to the label",
+          "derivedFrom": null
+        },
+        "iconLeft": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Icon rendered on the left inside the input box",
+          "derivedFrom": null
+        },
+        "iconRight": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Icon rendered on the right inside the input box",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "optional",
+          "type": "InputSize",
+          "default": "\"medium\"",
+          "description": "Visual size of the input",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "computed",
+          "type": "InputState",
+          "default": null,
+          "description": "Explicit visual state override. When omitted the component derives state from native HTML attributes (disabled, aria-invalid) and focus/value events.",
+          "derivedFrom": "disabled, aria-invalid, focus, value"
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the outer root wrapper",
+          "derivedFrom": null
+        },
+        "inputBoxClassName": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the input-box container",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [],
         "externals": [
@@ -584,536 +1363,7 @@
       },
       "usedBy": ["header-desktop"],
       "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "list",
-      "displayName": "List",
-      "description": "A vertical list container with header, optional action button, and repeated List_content rows. Supports Condensed (tight spacing), Default (medium spacing), and withInputs (with filter inputs in the header) layout styles.",
-      "category": "lists",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/list/List.tsx",
-      "doc": "docs/components/_index_list.md",
-      "playground": "playground/routes/list.tsx",
-      "registry": "registry/list.json",
-      "spec": ".klp/figma-refs/list/spec.json",
-      "radixPrimitive": null,
-      "anatomy": [
-        "root",
-        "header",
-        "header-title",
-        "header-button",
-        "header-inputs",
-        "items"
-      ],
-      "variantAxes": {
-        "style": [
-          "condensed",
-          "default",
-          "with-inputs"
-        ]
-      },
-      "variantCount": 3,
-      "dependencies": {
-        "components": [
-          "button",
-          "list-content"
-        ],
-        "externals": [
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "radius",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "button",
-            "notes": "header-button renders as <Button variant=\"tertiary\" size=\"md\"> (condensed and default styles only)."
-          },
-          {
-            "klpComponent": "list-content",
-            "notes": "Each row in the items section is a ListContent instance."
-          }
-        ],
-        "gaps": [
-          {
-            "kind": "partial-reuse",
-            "part": "header-title",
-            "property": "color",
-            "reason": "header-title color is a literal #2b2b2b; no --klp-fg-* alias in any brand variant maps to this value. Closest alias (--klp-fg-default) resolves to --klp-color-gray-800 (wireframe), a different value.",
-            "action": "arbitrary-value-tailwind — text-[#2b2b2b] applied via cva class string"
-          }
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "list-content",
-      "displayName": "List Content",
-      "description": "A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).",
-      "category": "list",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/list-content/ListContent.tsx",
-      "doc": "docs/components/_index_list-content.md",
-      "playground": "playground/routes/list-content.tsx",
-      "registry": "registry/list-content.json",
-      "spec": ".klp/figma-refs/list-content/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": [
-        "root",
-        "content",
-        "left-part",
-        "decorative-icon",
-        "label",
-        "sublabel",
-        "action-button"
-      ],
-      "variantAxes": {
-        "size": [
-          "small",
-          "medium",
-          "large"
-        ],
-        "state": [
-          "default",
-          "hover",
-          "active"
-        ]
-      },
-      "variantCount": 9,
-      "dependencies": {
-        "components": [
-          "button"
-        ],
-        "externals": [
-          "@radix-ui/react-slot",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "radius",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [
-        "list"
-      ],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "pagination",
-      "displayName": "Pagination",
-      "description": "Standalone page navigator with ellipsis algorithm. Reusable outside tables.",
-      "category": "navigation",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/pagination/Pagination.tsx",
-      "doc": "docs/components/_index_pagination.md",
-      "playground": "playground/routes/pagination.tsx",
-      "registry": "registry/pagination.json",
-      "spec": null,
-      "radixPrimitive": null,
-      "anatomy": [
-        "nav",
-        "label",
-        "prev",
-        "pages",
-        "next"
-      ],
-      "variantAxes": {},
-      "variantCount": 1,
-      "dependencies": {
-        "components": [
-          "button"
-        ],
-        "externals": [
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [
-        "data-table"
-      ],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "radio",
-      "displayName": "Radio",
-      "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
-      "category": "inputs",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/radio/Radio.tsx",
-      "doc": "docs/components/_index_radio.md",
-      "playground": "playground/routes/radio.tsx",
-      "registry": "registry/radio.json",
-      "spec": ".klp/figma-refs/radio/spec.json",
-      "radixPrimitive": "@radix-ui/react-radio-group",
-      "anatomy": [
-        "root",
-        "indicator"
-      ],
-      "variantAxes": {
-        "state": [
-          "rest",
-          "hover",
-          "clicked",
-          "disable"
-        ]
-      },
-      "variantCount": 4,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-radio-group",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing"
-        ],
-        "brands": [
-          "klub"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "switch",
-      "displayName": "Switch",
-      "description": "Toggle switch with two states: on (checked) and off (unchecked). Uses animated thumb with icon indicator. Backed by Radix Switch primitive for full a11y and keyboard support.",
-      "category": "inputs",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/switch/Switch.tsx",
-      "doc": "docs/components/_index_switch.md",
-      "playground": "playground/routes/switch.tsx",
-      "registry": "registry/switch.json",
-      "spec": ".klp/figma-refs/switch/spec.json",
-      "radixPrimitive": "@radix-ui/react-switch",
-      "anatomy": [
-        "root",
-        "thumb",
-        "icon"
-      ],
-      "variantAxes": {
-        "state": [
-          "toggle-on",
-          "toggle-off"
-        ]
-      },
-      "variantCount": 2,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-switch",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "table",
-      "displayName": "Table (primitives)",
-      "description": "Compound HTML primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) with klp styling. Low-level building blocks for custom tables.",
-      "category": "data-display",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/table/Table.tsx",
-      "doc": "docs/components/_index_table.md",
-      "playground": "playground/routes/table.tsx",
-      "registry": "registry/table.json",
-      "spec": null,
-      "radixPrimitive": null,
-      "anatomy": [
-        "root",
-        "header",
-        "body",
-        "footer",
-        "row",
-        "head",
-        "cell",
-        "caption"
-      ],
-      "variantAxes": {
-        "variant": [
-          "default",
-          "selected",
-          "muted"
-        ]
-      },
-      "variantCount": 3,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [
-        "data-table"
-      ],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "tabulation-cells",
-      "displayName": "Tabulation Cells",
-      "description": "A single tab cell used within a tabulation bar. Renders a label and an optional badge count. State=Rest shows a neutral transparent background; State=Active shows the selected tab with brand-low fill, bold label, and brand-accented badge.",
-      "category": "navigation",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/tabulation-cells/TabulationCells.tsx",
-      "doc": "docs/components/_index_tabulation-cells.md",
-      "playground": "playground/routes/tabulation-cells.tsx",
-      "registry": "registry/tabulation-cells.json",
-      "spec": ".klp/figma-refs/tabulation-cells/spec.json",
-      "radixPrimitive": "@radix-ui/react-tabs",
-      "anatomy": [
-        "root",
-        "label",
-        "badge"
-      ],
-      "variantAxes": {
-        "state": [
-          "rest",
-          "active"
-        ]
-      },
-      "variantCount": 2,
-      "dependencies": {
-        "components": [
-          "badges"
-        ],
-        "externals": [
-          "@radix-ui/react-tabs",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "klub"
-        ]
-      },
-      "usedBy": [
-        "tabulations"
-      ],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "tabulations",
-      "displayName": "Tabulations",
-      "description": "Horizontal tab bar container that wraps Tabulation_Cells instances separated by vertical line dividers. Scroll type=None (fixed layout). Delegates cell selection state (active/rest) to the tabulation-cells sub-component via a MutationObserver bridge. Backed by @radix-ui/react-tabs for full a11y keyboard navigation.",
-      "category": "navigation",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/tabulations/Tabulations.tsx",
-      "doc": "docs/components/_index_tabulations.md",
-      "playground": "playground/routes/tabulations.tsx",
-      "registry": "registry/tabulations.json",
-      "spec": ".klp/figma-refs/tabulations/spec.json",
-      "radixPrimitive": "@radix-ui/react-tabs",
-      "anatomy": [
-        "root",
-        "divider",
-        "cell-root",
-        "cell-label",
-        "cell-badge"
-      ],
-      "variantAxes": {
-        "scroll-type": [
-          "none"
-        ]
-      },
-      "variantCount": 1,
-      "dependencies": {
-        "components": [
-          "tabulation-cells"
-        ],
-        "externals": [
-          "@radix-ui/react-tabs",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "radius"
-        ],
-        "brands": [
-          "klub"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "text-area",
-      "displayName": "Text Area",
-      "description": "Multi-line text input with optional rich-text formatting toolbar. Two feature variants: Simple (plain textarea) and Rich text (with formatting toolbar and action bar). Supports Default, Focus, Filled, Danger, Success, and Disable states.",
-      "category": "inputs",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/text-area/TextArea.tsx",
-      "doc": "docs/components/_index_text-area.md",
-      "playground": "playground/routes/text-area.tsx",
-      "registry": "registry/text-area.json",
-      "spec": ".klp/figma-refs/text-area/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": [
-        "root",
-        "head",
-        "label",
-        "info-icon",
-        "input",
-        "toolbar",
-        "placeholder",
-        "action-bar"
-      ],
-      "variantAxes": {
-        "feature": [
-          "rich-text",
-          "simple"
-        ],
-        "state": [
-          "default",
-          "focus",
-          "filled",
-          "danger",
-          "success",
-          "disable"
-        ]
-      },
-      "variantCount": 12,
-      "dependencies": {
-        "components": [
-          "button"
-        ],
-        "externals": [
-          "@radix-ui/react-slot",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": [
-          "colors",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
-    },
-    {
-      "name": "tooltip",
-      "displayName": "Tooltip",
-      "description": "Contextual tooltip bubble with a directional arrow. Variant axis controls arrow placement (bottom-left, bottom-right, top-left, top-right). Backed by @radix-ui/react-tooltip for a11y and keyboard support.",
-      "category": "overlay",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/tooltip/Tooltip.tsx",
-      "doc": "docs/components/_index_tooltip.md",
-      "playground": "playground/routes/tooltip.tsx",
-      "registry": "registry/tooltip.json",
-      "spec": ".klp/figma-refs/tooltip/spec.json",
-      "radixPrimitive": "@radix-ui/react-tooltip",
-      "anatomy": [
-        "root",
-        "label",
-        "arrow"
-      ],
-      "variantAxes": {
-        "arrow-orientation": [
-          "bottom-left",
-          "bottom-right",
-          "top-left",
-          "top-right"
-        ]
-      },
-      "variantCount": 4,
-      "dependencies": {
-        "components": [],
-        "externals": [
-          "@radix-ui/react-tooltip",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "radius",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "klub"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-17",
-      "updated": "2026-04-17"
+      "updated": "2026-04-21"
     },
     {
       "name": "item-side-bar",
@@ -1144,6 +1394,78 @@
         "state": ["rest", "hover", "active"]
       },
       "variantCount": 6,
+      "props": {
+        "state": {
+          "class": "persistent",
+          "type": "ItemSideBarState",
+          "default": "\"rest\"",
+          "description": "Interaction state — drives trigger fill and icon-container border. Represents the currently-selected navigation item.",
+          "derivedFrom": null
+        },
+        "feature": {
+          "class": "optional",
+          "type": "ItemSideBarFeature",
+          "default": "\"collapsible\"",
+          "description": "Feature mode — collapsible adds chevron + expandable content panel",
+          "derivedFrom": null
+        },
+        "icon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Icon to render inside the decorative icon box. Defaults to FolderOpen.",
+          "derivedFrom": null
+        },
+        "label": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": "\"Label\"",
+          "description": "Item label text",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Content rows rendered inside the expanded panel.",
+          "derivedFrom": null
+        },
+        "open": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Whether the collapsible panel is open (controlled)",
+          "derivedFrom": null
+        },
+        "defaultOpen": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Default open state (uncontrolled)",
+          "derivedFrom": null
+        },
+        "onOpenChange": {
+          "class": "optional",
+          "type": "(open: boolean) => void",
+          "default": null,
+          "description": "Callback when open state changes",
+          "derivedFrom": null
+        },
+        "onClick": {
+          "class": "optional",
+          "type": "React.MouseEventHandler<HTMLButtonElement>",
+          "default": null,
+          "description": "Forwarded to the trigger button",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": ["action-sheet-item"],
         "externals": [
@@ -1189,131 +1511,423 @@
         "sidebar"
       ],
       "created": "2026-04-20",
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "name": "header-desktop",
-      "displayName": "Header Desktop",
-      "description": "Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).",
-      "category": "navigation",
+      "name": "list",
+      "displayName": "List",
+      "description": "A vertical list container with header, optional action button, and repeated List_content rows. Supports Condensed (tight spacing), Default (medium spacing), and withInputs (with filter inputs in the header) layout styles.",
+      "category": "lists",
       "schemaVersion": "v2",
-      "captureBrand": "klub",
+      "captureBrand": "wireframe",
       "status": "stable",
-      "source": "src/components/header-desktop/HeaderDesktop.tsx",
-      "doc": "docs/components/_index_header-desktop.md",
-      "playground": "playground/routes/header-desktop.tsx",
-      "registry": "registry/header-desktop.json",
-      "spec": ".klp/figma-refs/header-desktop/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
+      "source": "src/components/list/List.tsx",
+      "doc": "docs/components/_index_list.md",
+      "playground": "playground/routes/list.tsx",
+      "registry": "registry/list.json",
+      "spec": ".klp/figma-refs/list/spec.json",
+      "radixPrimitive": null,
       "anatomy": [
         "root",
-        "title-action-row",
-        "title",
-        "actions",
-        "action-button-tertiary",
-        "action-button-secondary",
-        "search-input",
-        "breadcrumbs"
+        "header",
+        "header-title",
+        "header-button",
+        "header-inputs",
+        "items"
       ],
       "variantAxes": {
-        "features": ["default", "search-active"]
+        "style": [
+          "condensed",
+          "default",
+          "with-inputs"
+        ]
       },
-      "variantCount": 2,
+      "variantCount": 3,
+      "props": {
+        "listStyle": {
+          "class": "optional",
+          "type": "ListStyle",
+          "default": "\"default\"",
+          "description": "Layout style variant",
+          "derivedFrom": null
+        },
+        "listTitle": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "\"List title\"",
+          "description": "Title text rendered in the header",
+          "derivedFrom": null
+        },
+        "showButton": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Whether to show the header action button (hidden in with-inputs)",
+          "derivedFrom": null
+        },
+        "buttonLabel": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "\"See all\"",
+          "description": "Label text for the header action button",
+          "derivedFrom": null
+        },
+        "onButtonClick": {
+          "class": "optional",
+          "type": "React.MouseEventHandler<HTMLButtonElement>",
+          "default": null,
+          "description": "Click handler for the header action button",
+          "derivedFrom": null
+        },
+        "itemSize": {
+          "class": "optional",
+          "type": "ListContentSize",
+          "default": "\"medium\"",
+          "description": "Size passed down to each ListContent row",
+          "derivedFrom": null
+        },
+        "items": {
+          "class": "required",
+          "type": "ListItemConfig[]",
+          "default": "[]",
+          "description": "Rows — each entry maps to a <ListContent> instance",
+          "derivedFrom": null
+        },
+        "headerInputs": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Slot for filter inputs shown in the header when style=\"with-inputs\".",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
-        "components": ["breadcrumbs", "button", "input"],
+        "components": [
+          "button",
+          "list-content"
+        ],
         "externals": [
-          "@radix-ui/react-slot",
           "class-variance-authority",
           "lucide-react"
         ],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["klub"]
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "composition": {
         "reuses": [
           {
-            "klpComponent": "breadcrumbs",
-            "notes": "Breadcrumb trail rendered via <BreadCrumbs> with showDropdownAffordance."
-          },
-          {
             "klpComponent": "button",
-            "notes": "action-button-tertiary renders as <Button variant=\"tertiary\" size=\"icon\">; action-button-secondary renders as <Button variant=\"secondary\" size=\"md\">."
+            "notes": "header-button renders as <Button variant=\"tertiary\" size=\"md\"> (condensed and default styles only)."
           },
           {
-            "klpComponent": "input",
-            "notes": "search-input renders as <Input size=\"small\" state=\"default\"> in the search-active variant."
-          }
-        ],
-        "gaps": []
-      },
-      "usedBy": [],
-      "created": "2026-04-20",
-      "updated": "2026-04-20"
-    },
-    {
-      "name": "header-phone",
-      "displayName": "Header Phone",
-      "description": "Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.",
-      "category": "containers",
-      "schemaVersion": "v2",
-      "captureBrand": "klub",
-      "status": "stable",
-      "source": "src/components/header-phone/HeaderPhone.tsx",
-      "doc": "docs/components/_index_header-phone.md",
-      "playground": "playground/routes/header-phone.tsx",
-      "registry": "registry/header-phone.json",
-      "spec": ".klp/figma-refs/header-phone/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
-      "anatomy": [
-        "root",
-        "content",
-        "top-bar",
-        "menu-button",
-        "logo",
-        "notification-button",
-        "notification-btn",
-        "notification-dot",
-        "title-bar",
-        "title",
-        "search-button",
-        "breadcrumbs"
-      ],
-      "variantAxes": {},
-      "variantCount": 1,
-      "dependencies": {
-        "components": ["button", "breadcrumbs"],
-        "externals": [
-          "@radix-ui/react-slot",
-          "class-variance-authority",
-          "lucide-react"
-        ],
-        "tokenGroups": ["colors", "spacing", "radius", "typography"],
-        "brands": ["klub"]
-      },
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "button",
-            "notes": "menu-button, notification-btn, and search-button each render as <Button variant=\"tertiary\" size=\"icon\">."
-          },
-          {
-            "klpComponent": "breadcrumbs",
-            "notes": "breadcrumbs renders as <BreadCrumbs steps={...} stepsVariant=\"1\">."
+            "klpComponent": "list-content",
+            "notes": "Each row in the items section is a ListContent instance."
           }
         ],
         "gaps": [
           {
-            "part": "logo",
-            "kind": "unmatched-instance",
-            "figmaInstance": "Icon selector/Larger/Logo (Klub!_Icon)",
-            "reason": "No 'brand-logo' component in klp-components.json. The Klub! brand logo is a custom SVG asset, not a lucide icon. Inlined as a slot prop accepting any ReactNode, with a text fallback 'K!'.",
-            "action": "inlined-ad-hoc"
+            "kind": "partial-reuse",
+            "part": "header-title",
+            "property": "color",
+            "reason": "header-title color is a literal #2b2b2b; no --klp-fg-* alias in any brand variant maps to this value. Closest alias (--klp-fg-default) resolves to --klp-color-gray-800 (wireframe), a different value.",
+            "action": "arbitrary-value-tailwind — text-[#2b2b2b] applied via cva class string"
           }
         ]
       },
       "usedBy": [],
-      "created": "2026-04-20",
-      "updated": "2026-04-20"
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "list-content",
+      "displayName": "List Content",
+      "description": "A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).",
+      "category": "list",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/list-content/ListContent.tsx",
+      "doc": "docs/components/_index_list-content.md",
+      "playground": "playground/routes/list-content.tsx",
+      "registry": "registry/list-content.json",
+      "spec": ".klp/figma-refs/list-content/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "content",
+        "left-part",
+        "decorative-icon",
+        "label",
+        "sublabel",
+        "action-button"
+      ],
+      "variantAxes": {
+        "size": [
+          "small",
+          "medium",
+          "large"
+        ],
+        "state": [
+          "default",
+          "hover",
+          "active"
+        ]
+      },
+      "variantCount": 9,
+      "props": {
+        "size": {
+          "class": "optional",
+          "type": "ListContentSize",
+          "default": "\"medium\"",
+          "description": "Size variant — controls padding and sublabel font-size",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "persistent",
+          "type": "ListContentState",
+          "default": "\"default\"",
+          "description": "Interaction state — controls background fill and text/icon color. Represents the selected row in the list.",
+          "derivedFrom": null
+        },
+        "label": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "\"Label of the list\"",
+          "description": "Primary label text",
+          "derivedFrom": null
+        },
+        "sublabel": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "\"Sublabel\"",
+          "description": "Secondary sublabel text",
+          "derivedFrom": null
+        },
+        "showSublabel": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Whether to show the sublabel",
+          "derivedFrom": null
+        },
+        "showDecorativeIcon": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Whether to show the left decorative icon",
+          "derivedFrom": null
+        },
+        "decorativeIcon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Custom decorative icon — defaults to Plus from lucide-react",
+          "derivedFrom": null
+        },
+        "showActionButton": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Whether to show the right action button",
+          "derivedFrom": null
+        },
+        "onActionClick": {
+          "class": "optional",
+          "type": "React.MouseEventHandler<HTMLButtonElement>",
+          "default": null,
+          "description": "Callback for the action button click",
+          "derivedFrom": null
+        },
+        "actionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"More options\"",
+          "description": "aria-label for the action button",
+          "derivedFrom": null
+        },
+        "asChild": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Use Slot (asChild) pattern on the root",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "list"
+      ],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "pagination",
+      "displayName": "Pagination",
+      "description": "Standalone page navigator with ellipsis algorithm. Reusable outside tables.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/pagination/Pagination.tsx",
+      "doc": "docs/components/_index_pagination.md",
+      "playground": "playground/routes/pagination.tsx",
+      "registry": "registry/pagination.json",
+      "spec": null,
+      "radixPrimitive": null,
+      "anatomy": [
+        "nav",
+        "label",
+        "prev",
+        "pages",
+        "next"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "page": {
+          "class": "required",
+          "type": "number",
+          "default": null,
+          "description": "1-indexed current page.",
+          "derivedFrom": null
+        },
+        "pageSize": {
+          "class": "required",
+          "type": "number",
+          "default": null,
+          "description": "Items per page (used for the \"X-Y of Z\" label).",
+          "derivedFrom": null
+        },
+        "total": {
+          "class": "required",
+          "type": "number",
+          "default": null,
+          "description": "Total number of items across all pages.",
+          "derivedFrom": null
+        },
+        "onPageChange": {
+          "class": "required",
+          "type": "(page: number) => void",
+          "default": null,
+          "description": "Called with the new 1-indexed page number.",
+          "derivedFrom": null
+        },
+        "siblingCount": {
+          "class": "optional",
+          "type": "number",
+          "default": "1",
+          "description": "Number of pages shown on each side of the current page. Default 1.",
+          "derivedFrom": null
+        },
+        "showLabel": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Toggle the \"X-Y of Z\" label on the left. Default true.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "data-table"
+      ],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "radio",
+      "displayName": "Radio",
+      "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/radio/Radio.tsx",
+      "doc": "docs/components/_index_radio.md",
+      "playground": "playground/routes/radio.tsx",
+      "registry": "registry/radio.json",
+      "spec": ".klp/figma-refs/radio/spec.json",
+      "radixPrimitive": "@radix-ui/react-radio-group",
+      "anatomy": [
+        "root",
+        "indicator"
+      ],
+      "variantAxes": {
+        "state": [
+          "rest",
+          "hover",
+          "clicked",
+          "disable"
+        ]
+      },
+      "variantCount": 4,
+      "props": {
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional class names for the root element",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-radio-group",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
     },
     {
       "name": "sidebar",
@@ -1350,6 +1964,64 @@
         "device": ["desktop", "phone"]
       },
       "variantCount": 2,
+      "props": {
+        "device": {
+          "class": "optional",
+          "type": "SideBarDevice",
+          "default": "\"desktop\"",
+          "description": "Desktop or phone layout",
+          "derivedFrom": null
+        },
+        "logo": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Logo node rendered in the header",
+          "derivedFrom": null
+        },
+        "contextLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Shopping Center\"",
+          "description": "Context/location label text",
+          "derivedFrom": null
+        },
+        "onNotificationClick": {
+          "class": "optional",
+          "type": "React.MouseEventHandler<HTMLButtonElement>",
+          "default": null,
+          "description": "Called when notification/close button is clicked",
+          "derivedFrom": null
+        },
+        "onContextSwitcherClick": {
+          "class": "optional",
+          "type": "React.MouseEventHandler<HTMLDivElement>",
+          "default": null,
+          "description": "Called when context-switcher is clicked",
+          "derivedFrom": null
+        },
+        "menuItems": {
+          "class": "required",
+          "type": "SideBarMenuItem[]",
+          "default": "[]",
+          "description": "Menu items rendered as ItemSideBar instances",
+          "derivedFrom": null
+        },
+        "avatar": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Avatar image node or src string",
+          "derivedFrom": null
+        },
+        "userName": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"User Name\"",
+          "description": "User display name",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
         "components": [
           "button",
@@ -1399,96 +2071,476 @@
       },
       "usedBy": [],
       "created": "2026-04-20",
-      "updated": "2026-04-20"
+      "updated": "2026-04-21"
     },
     {
-      "name": "collapsible",
-      "displayName": "Collapsible",
-      "description": "Expandable disclosure panel with a header (icon + title + chevron toggle button) and a collapsible content area. Single variant axis: open/close state.",
-      "category": "disclosure",
+      "name": "switch",
+      "displayName": "Switch",
+      "description": "Toggle switch with two states: on (checked) and off (unchecked). Uses animated thumb with icon indicator. Backed by Radix Switch primitive for full a11y and keyboard support.",
+      "category": "inputs",
       "schemaVersion": "v2",
       "captureBrand": "wireframe",
       "status": "stable",
-      "source": "src/components/collapsible/Collapsible.tsx",
-      "doc": "docs/components/_index_collapsible.md",
-      "playground": "playground/routes/collapsible.tsx",
-      "registry": "registry/collapsible.json",
-      "spec": ".klp/figma-refs/collapsible/spec.json",
-      "radixPrimitive": "@radix-ui/react-collapsible",
+      "source": "src/components/switch/Switch.tsx",
+      "doc": "docs/components/_index_switch.md",
+      "playground": "playground/routes/switch.tsx",
+      "registry": "registry/switch.json",
+      "spec": ".klp/figma-refs/switch/spec.json",
+      "radixPrimitive": "@radix-ui/react-switch",
       "anatomy": [
         "root",
-        "header",
-        "icon",
-        "title",
-        "toggle-button",
-        "content",
-        "content-text"
+        "thumb",
+        "icon"
       ],
       "variantAxes": {
-        "state": ["close", "open"]
+        "state": [
+          "toggle-on",
+          "toggle-off"
+        ]
       },
       "variantCount": 2,
+      "props": {
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional class names for the root element",
+          "derivedFrom": null
+        }
+      },
       "dependencies": {
-        "components": ["button"],
+        "components": [],
         "externals": [
-          "@radix-ui/react-collapsible",
+          "@radix-ui/react-switch",
           "class-variance-authority",
           "lucide-react"
         ],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["wireframe"]
-      },
-      "composition": {
-        "reuses": [
-          {
-            "klpComponent": "button",
-            "notes": "toggle-button renders as <Button variant=\"tertiary\" size=\"icon\"> wrapping a ChevronDown icon."
-          }
+        "tokenGroups": [
+          "colors",
+          "spacing"
         ],
-        "gaps": [
-          {
-            "kind": "partial-reuse",
-            "part": "toggle-button",
-            "reason": "Button is imported and used for the toggle. ChevronDown is passed as children (icon-only slot). A rotation class is appended via className to animate the chevron on open — this is a one-off visual tweak, not a rebuild.",
-            "action": "className-override"
-          }
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-21",
-      "updated": "2026-04-21"
-    },
-
-    {
-      "name": "brand-provider",
-      "displayName": "Brand Provider",
-      "description": "Applies a chosen brand to document.documentElement so CSS alias tokens switch. No visual layers.",
-      "category": "utilities",
-      "schemaVersion": "v2",
-      "status": "stable",
-      "source": "src/components/brand-provider/BrandProvider.tsx",
-      "registry": "registry/brand-provider.json",
-      "anatomy": [
-        "root"
-      ],
-      "variantAxes": {},
-      "variantCount": 1,
-      "dependencies": {
-        "components": [],
-        "externals": [],
-        "tokenGroups": [],
         "brands": [
-          "klub",
-          "atlas",
-          "showup",
           "wireframe"
         ]
       },
       "usedBy": [],
-      "created": "2026-04-20",
-      "updated": "2026-04-20",
-      "exemptFromValidator": true,
-      "exemptFromFigmaPipeline": true
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "table",
+      "displayName": "Table (primitives)",
+      "description": "Compound HTML primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) with klp styling. Low-level building blocks for custom tables.",
+      "category": "data-display",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/table/Table.tsx",
+      "doc": "docs/components/_index_table.md",
+      "playground": "playground/routes/table.tsx",
+      "registry": "registry/table.json",
+      "spec": null,
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "header",
+        "body",
+        "footer",
+        "row",
+        "head",
+        "cell",
+        "caption"
+      ],
+      "variantAxes": {
+        "variant": [
+          "default",
+          "selected",
+          "muted"
+        ]
+      },
+      "variantCount": 3,
+      "props": {
+        "variant": {
+          "class": "optional",
+          "type": "'default' | 'selected' | 'muted'",
+          "default": "\"default\"",
+          "description": "",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [
+        "data-table"
+      ],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "tabulation-cells",
+      "displayName": "Tabulation Cells",
+      "description": "A single tab cell used within a tabulation bar. Renders a label and an optional badge count. State=Rest shows a neutral transparent background; State=Active shows the selected tab with brand-low fill, bold label, and brand-accented badge.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/tabulation-cells/TabulationCells.tsx",
+      "doc": "docs/components/_index_tabulation-cells.md",
+      "playground": "playground/routes/tabulation-cells.tsx",
+      "registry": "registry/tabulation-cells.json",
+      "spec": ".klp/figma-refs/tabulation-cells/spec.json",
+      "radixPrimitive": "@radix-ui/react-tabs",
+      "anatomy": [
+        "root",
+        "label",
+        "badge"
+      ],
+      "variantAxes": {
+        "state": [
+          "rest",
+          "active"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Label text rendered inside the tab cell (passed as children).",
+          "derivedFrom": null
+        },
+        "badge": {
+          "class": "optional",
+          "type": "number | string",
+          "default": null,
+          "description": "Badge count to display alongside the label. Omit to hide the badge.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "badges"
+        ],
+        "externals": [
+          "@radix-ui/react-tabs",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [
+        "tabulations"
+      ],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "tabulations",
+      "displayName": "Tabulations",
+      "description": "Horizontal tab bar container that wraps Tabulation_Cells instances separated by vertical line dividers. Scroll type=None (fixed layout). Delegates cell selection state (active/rest) to the tabulation-cells sub-component via a MutationObserver bridge. Backed by @radix-ui/react-tabs for full a11y keyboard navigation.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/tabulations/Tabulations.tsx",
+      "doc": "docs/components/_index_tabulations.md",
+      "playground": "playground/routes/tabulations.tsx",
+      "registry": "registry/tabulations.json",
+      "spec": ".klp/figma-refs/tabulations/spec.json",
+      "radixPrimitive": "@radix-ui/react-tabs",
+      "anatomy": [
+        "root",
+        "divider",
+        "cell-root",
+        "cell-label",
+        "cell-badge"
+      ],
+      "variantAxes": {
+        "scroll-type": [
+          "none"
+        ]
+      },
+      "variantCount": 1,
+      "props": {
+        "tabs": {
+          "class": "required",
+          "type": "Array<{ value: string; label: React.ReactNode; badge?: TabulationCellProps['badge'] }>",
+          "default": null,
+          "description": "Each tab item. Provide value (unique id), label (display text), and optional badge count.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "tabulation-cells"
+        ],
+        "externals": [
+          "@radix-ui/react-tabs",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "text-area",
+      "displayName": "Text Area",
+      "description": "Multi-line text input with optional rich-text formatting toolbar. Two feature variants: Simple (plain textarea) and Rich text (with formatting toolbar and action bar). Supports Default, Focus, Filled, Danger, Success, and Disable states.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/text-area/TextArea.tsx",
+      "doc": "docs/components/_index_text-area.md",
+      "playground": "playground/routes/text-area.tsx",
+      "registry": "registry/text-area.json",
+      "spec": ".klp/figma-refs/text-area/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "head",
+        "label",
+        "info-icon",
+        "input",
+        "toolbar",
+        "placeholder",
+        "action-bar"
+      ],
+      "variantAxes": {
+        "feature": [
+          "rich-text",
+          "simple"
+        ],
+        "state": [
+          "default",
+          "focus",
+          "filled",
+          "danger",
+          "success",
+          "disable"
+        ]
+      },
+      "variantCount": 12,
+      "props": {
+        "feature": {
+          "class": "optional",
+          "type": "'simple' | 'rich-text'",
+          "default": "\"simple\"",
+          "description": "Feature variant: plain textarea or rich-text with toolbar + action bar",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "computed",
+          "type": "TextAreaState",
+          "default": null,
+          "description": "Explicit visual state override. When omitted, state is derived from native attributes (disabled, aria-invalid) and from focus/value events (hasValue, isFocused).",
+          "derivedFrom": "disabled, aria-invalid, focus, value"
+        },
+        "label": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Field label",
+          "derivedFrom": null
+        },
+        "showHeader": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Show the header row (label + optional info icon). Matches Figma Show header prop.",
+          "derivedFrom": null
+        },
+        "showInfoIcon": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Show the info icon next to the label. Matches Figma Show info icon prop.",
+          "derivedFrom": null
+        },
+        "placeholder": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Placeholder text shown inside the input area",
+          "derivedFrom": null
+        },
+        "id": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Accessible id linking label to textarea",
+          "derivedFrom": null
+        },
+        "toolbarActions": {
+          "class": "optional",
+          "type": "ToolbarAction[]",
+          "default": null,
+          "description": "Rich-text toolbar actions (feature=rich-text only). Each action renders as a tertiary icon Button with its icon + aria-label.",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Extra className forwarded to the root wrapper",
+          "derivedFrom": null
+        },
+        "resize": {
+          "class": "optional",
+          "type": "TextAreaResize",
+          "default": "\"none\"",
+          "description": "Resize handle behavior on the textarea",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
+    },
+    {
+      "name": "tooltip",
+      "displayName": "Tooltip",
+      "description": "Contextual tooltip bubble with a directional arrow. Variant axis controls arrow placement (bottom-left, bottom-right, top-left, top-right). Backed by @radix-ui/react-tooltip for a11y and keyboard support.",
+      "category": "overlay",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/tooltip/Tooltip.tsx",
+      "doc": "docs/components/_index_tooltip.md",
+      "playground": "playground/routes/tooltip.tsx",
+      "registry": "registry/tooltip.json",
+      "spec": ".klp/figma-refs/tooltip/spec.json",
+      "radixPrimitive": "@radix-ui/react-tooltip",
+      "anatomy": [
+        "root",
+        "label",
+        "arrow"
+      ],
+      "variantAxes": {
+        "arrow-orientation": [
+          "bottom-left",
+          "bottom-right",
+          "top-left",
+          "top-right"
+        ]
+      },
+      "variantCount": 4,
+      "props": {
+        "content": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "The tooltip bubble text.",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "The element that triggers the tooltip.",
+          "derivedFrom": null
+        },
+        "arrowOrientation": {
+          "class": "optional",
+          "type": "ArrowOrientation",
+          "default": "\"bottom-left\"",
+          "description": "Controls arrow placement and tooltip position.",
+          "derivedFrom": null
+        },
+        "open": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Controlled open state.",
+          "derivedFrom": null
+        },
+        "defaultOpen": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Uncontrolled default open state.",
+          "derivedFrom": null
+        },
+        "onOpenChange": {
+          "class": "optional",
+          "type": "(open: boolean) => void",
+          "default": null,
+          "description": "Callback when open state changes.",
+          "derivedFrom": null
+        },
+        "delayDuration": {
+          "class": "optional",
+          "type": "number",
+          "default": null,
+          "description": "Override delay in ms.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-tooltip",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-17",
+      "updated": "2026-04-21"
     }
   ]
 }

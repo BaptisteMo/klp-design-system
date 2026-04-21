@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-04-21T11:43:53.897Z
+generated-at: 2026-04-21T13:39:44.931Z
 schema-version: 0.1.0
 ---
 
@@ -79,7 +79,20 @@ Brand is set in `src/App.tsx` via `<BrandProvider brand="…">`. For brand-speci
 - No inline SVG — use `lucide-react`.
 - No hex colors, no `--klp-color-*` primitive refs.
 - Do not import `@radix-ui/*` directly in mockups — DS already wraps them.
+- Never hardcode a prop classified `computed` — read the component's Props usage table before calling it. `persistent` props may be passed when a user-owned state applies (current page, selected row).
 
 ## DS gap log
 
 See `docs/ds-gaps.md` (initially empty in consumer; pipeline appends).
+
+## Computed & persistent props (appendix)
+
+Derived from every component's `Props` interface `@propClass` tags. Computed = do NOT pass. Persistent = pass when relevant.
+
+| Component | Prop | Class | Description |
+|---|---|---|---|
+| `action-sheet-item` | `state` | **persistent** |  |
+| `input` | `state` | **computed** | Explicit visual state override. When omitted the component derives state from native HTML attributes (disabled, aria-inv |
+| `item-side-bar` | `state` | **persistent** | Interaction state — drives trigger fill and icon-container border. Represents the currently-selected navigation item. |
+| `list-content` | `state` | **persistent** | Interaction state — controls background fill and text/icon color. Represents the selected row in the list. |
+| `text-area` | `state` | **computed** | Explicit visual state override. When omitted, state is derived from native attributes (disabled, aria-invalid) and from  |

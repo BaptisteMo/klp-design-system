@@ -2,127 +2,72 @@
 title: List Content
 type: component
 status: stable
-category: list
-captureBrand: wireframe
+category: containers
+captureBrand: klub
 radixPrimitive: "@radix-ui/react-slot"
 sources:
   - .klp/figma-refs/list-content/spec.json
   - src/components/list-content/ListContent.tsx
 dependencies:
-  components: [button]
+  components: ["button"]
   externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
-  tokenGroups: ["colors", "spacing", "radius", "typography"]
-  brands: ["wireframe"]
-usedBy:
-  - list
-created: 2026-04-17
-updated: 2026-04-17
+  tokenGroups: ["colors", "spacing", "typography"]
+  brands: ["klub"]
+usedBy: ["list"]
+created: 2026-04-20
+updated: 2026-04-21
 ---
 
 # List Content
 
-A list row with a decorative icon on the left, label + sublabel text block, and an optional tertiary icon-button action on the right. Three sizes (Small, Medium, Large) and three interaction states (Default, Hover, Active).
+A single list row with a decorative icon, label/sublabel stack, and an optional action button. Three sizes and three states (default, hover, active). The active state communicates the selected row.
 
 ## Anatomy
 
 ```
-list-content
-├── root            (div)     — Vertical layout container. Padding and item-spacing vary by size. Fill changes on hover/active states.
-└── content         (div)     — Horizontal row: left-part + action-button. Always fills root width.
-    ├── left-part   (div)     — Horizontal: decorative-icon + headline-subcontent. Fills content width.
-    │   ├── decorative-icon (span)   — Icon wrapper. Fixed 20×20. Icon slot defaults to Plus, swappable via prop. Uses fg/default stroke.
-    │   ├── label           (span)   — Primary text. fg/default color. Font: Family/Label, Weight/Label, Text/Medium size. Changes to fg/secondary-brand-contrasted on active.
-    │   └── sublabel        (span)   — Secondary text. fg/muted color. Font: Family/Label, Weight/Label. Text/Small size (Small, Medium) or Text/Medium size (Large). Toggleable via prop.
-    └── action-button (button) — Tertiary icon-only button (36×36). bg/invisible fill + bd/invisible border. Shows more-vertical icon. Toggleable via prop.
+div (root)          — size + state variants; role=listitem
+└── content-row (div)
+    ├── left-part (div)
+    │   ├── decorative-icon (span) — 20×20; color varies by state
+    │   └── headline-stack (div)
+    │       ├── label    (span)  — Primary text; color varies by state
+    │       └── sublabel (span)  — Secondary text; always fg-muted
+    └── action-button (Button/tertiary/icon) — MoreVertical icon; optional
 ```
 
 ## Variants
 
-Size × State matrix. All 9 combinations are documented with reference screenshots in `.klp/figma-refs/list-content/`.
-
 | size \ state | default | hover | active |
 |---|---|---|---|
-| small | [✓](../../.klp/figma-refs/list-content/small-default.png) | [✓](../../.klp/figma-refs/list-content/small-hover.png) | [✓](../../.klp/figma-refs/list-content/small-active.png) |
-| medium | [✓](../../.klp/figma-refs/list-content/medium-default.png) | [✓](../../.klp/figma-refs/list-content/medium-hover.png) | [✓](../../.klp/figma-refs/list-content/medium-active.png) |
-| large | [✓](../../.klp/figma-refs/list-content/large-default.png) | [✓](../../.klp/figma-refs/list-content/large-hover.png) | [✓](../../.klp/figma-refs/list-content/large-active.png) |
+| small | ✓ | ✓ | ✓ |
+| medium | ✓ | ✓ | ✓ |
+| large | ✓ | ✓ | ✓ |
 
-## API
+## Props usage
 
-Extends `React.HTMLAttributes<HTMLDivElement>`. All native `div` attributes are forwarded to the root element.
+Extends `React.HTMLAttributes<HTMLDivElement>`.
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `size` | `'small' \| 'medium' \| 'large'` | `'medium'` | Size variant — controls padding and sublabel font-size. |
-| `state` | `'default' \| 'hover' \| 'active'` | `'default'` | Interaction state — controls background fill and text/icon color. |
-| `label` | `React.ReactNode` | `'Label of the list'` | Primary label text. |
-| `sublabel` | `React.ReactNode` | `'Sublabel'` | Secondary sublabel text. |
-| `showSublabel` | `boolean` | `true` | Whether to show the sublabel. |
-| `showDecorativeIcon` | `boolean` | `true` | Whether to show the left decorative icon. |
-| `decorativeIcon` | `React.ReactNode` | `<Plus />` | Custom decorative icon — defaults to Plus from lucide-react. |
-| `showActionButton` | `boolean` | `true` | Whether to show the right action button. |
-| `onActionClick` | `React.MouseEventHandler<HTMLButtonElement>` | — | Callback for the action button click. |
-| `actionLabel` | `string` | `'More options'` | `aria-label` for the action button. |
-| `asChild` | `boolean` | `false` | Render child element in place of the root `<div>` using Radix Slot. |
+| Prop | Class | Type | Default | Description |
+|---|---|---|---|---|
+| `state` | **persistent** | `ListContentState` | `"default"` | Interaction state — controls background fill and text/icon color. Represents the selected row in the list. |
+| `size` | optional | `ListContentSize` | `"medium"` | Size variant — controls padding and sublabel font-size |
+| `label` | optional | `React.ReactNode` | `"Label of the list"` | Primary label text |
+| `sublabel` | optional | `React.ReactNode` | `"Sublabel"` | Secondary sublabel text |
+| `showSublabel` | optional | `boolean` | `true` | Whether to show the sublabel |
+| `showDecorativeIcon` | optional | `boolean` | `true` | Whether to show the left decorative icon |
+| `decorativeIcon` | optional | `React.ReactNode` | — | Custom decorative icon — defaults to Plus from lucide-react |
+| `showActionButton` | optional | `boolean` | `true` | Whether to show the right action button |
+| `onActionClick` | optional | `React.MouseEventHandler<HTMLButtonElement>` | — | Callback for the action button click |
+| `actionLabel` | optional | `string` | `"More options"` | aria-label for the action button |
+| `asChild` | optional | `boolean` | `false` | Use Slot (asChild) pattern on the root |
 
-## Tokens
+### Do / Don't
 
-### `root` layer
+**Do:** Set `state="active"` on the row that represents the currently selected item. The parent List or page context owns this value.
 
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| fill (hover state) | `--klp-bg-subtle` | `var(--klp-color-gray-100)` |
-| fill (active state) | `--klp-bg-secondary-brand-low` | `var(--klp-color-gray-300)` |
-| paddingTop / paddingBottom (small) | `--klp-size-xs` | `8px` |
-| paddingLeft / paddingRight (small) | `--klp-size-xs` | `8px` |
-| paddingTop / paddingBottom (medium) | `--klp-size-s` | `12px` |
-| paddingLeft / paddingRight (medium) | `--klp-size-xs` | `8px` |
-| paddingTop / paddingBottom (large) | `--klp-size-m` | `16px` |
-| paddingLeft / paddingRight (large) | `--klp-size-s` | `12px` |
-| itemSpacing (small) | `--klp-size-xs` | `8px` |
-| itemSpacing (medium) | `--klp-size-s` | `12px` |
-| itemSpacing (large) | `--klp-size-m` | `16px` |
-| cornerRadius | `--klp-size-xs` | `8px` (= `--klp-radius-l` → `--klp-spacing-2`) |
+**Don't:** Derive `state` from local click events — the selection state is controlled by the parent (which item is the current selection in a list or navigation context).
 
-### `decorative-icon` layer
-
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| color (default / hover) | `--klp-fg-default` | `var(--klp-color-gray-800)` |
-| color (active) | `--klp-fg-secondary-brand-contrasted` | `var(--klp-color-gray-800)` |
-| size | literal: `20px` | — |
-
-### `label` layer
-
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| color (default / hover) | `--klp-fg-default` | `var(--klp-color-gray-800)` |
-| color (active) | `--klp-fg-secondary-brand-contrasted` | `var(--klp-color-gray-800)` |
-| fontSize | `--klp-font-size-text-medium` | `16px` |
-| fontFamily | `--klp-font-family-label` | `Inter, Test Calibre, system-ui` |
-| fontWeight | `--klp-font-weight-label` | `400` |
-| lineHeight | literal: `24px` | — |
-
-### `sublabel` layer
-
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| color | `--klp-fg-muted` | `var(--klp-color-gray-700)` |
-| fontSize (small, medium) | `--klp-font-size-text-small` | `14px` |
-| fontSize (large) | `--klp-font-size-text-medium` | `16px` |
-| fontFamily | `--klp-font-family-label` | `Inter, Test Calibre, system-ui` |
-| fontWeight | `--klp-font-weight-label` | `400` |
-| lineHeight (small, medium) | literal: `20px` | — |
-| lineHeight (large) | literal: `24px` | — |
-
-### `action-button` layer
-
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| fill | `--klp-bg-invisible` | `var(--klp-color-light-0)` |
-| stroke | `--klp-border-invisible` | `var(--klp-color-light-0)` |
-| cornerRadius | `--klp-radius-l` | `12px` |
-| padding | `--klp-size-xs` | `8px` |
-| size | literal: `36px` | — |
+**Do:** Pass `state="default"` for all unselected rows. CSS `:hover` adds the hover background automatically — no need to set `state="hover"` in interactive contexts.
 
 ## Examples
 
@@ -148,38 +93,35 @@ export function ListContentExample() {
 
 ## Accessibility
 
-- **Role**: `listitem` — applied on the root element via `role="listitem"`.
-- **Keyboard support**: Tab, Enter, Space — Tab reaches the action-button; Enter/Space activates it.
-- **ARIA notes**: Root carries `role="listitem"`. The action-button is a native `<button>` with an explicit `aria-label` (defaults to `"More options"`). The decorative icon wrapper is `aria-hidden="true"`. The `MoreVertical` icon inside the action-button is also `aria-hidden="true"`.
-
-(source: spec.json `a11y`)
+- **Role**: `listitem` (set on root)
+- **Keyboard support**: The action button is a standard focusable `<button>`.
+- **ARIA notes**: Decorative icon is `aria-hidden`. Action button has `aria-label` via the `actionLabel` prop.
 
 ## Dependencies
 
 ### klp components
 
-- [Button](./_index_button.md) — `Button` (variant=tertiary, size=icon) is used as the right-side action button slot (the `MoreVertical` trigger).
+- [Button](./_index_button.md) — action-button renders as `<Button variant="tertiary" size="icon">` with MoreVertical icon.
 
 ### External libraries
 
-- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot) — `Slot` used for the `asChild` pattern on the root element.
-- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — `cva` blocks for `rootVariants`, `decorativeIconVariants`, `labelVariants`, `sublabelVariants`, `actionButtonVariants`.
-- [lucide-react](https://www.npmjs.com/package/lucide-react) — `Plus` (default decorative icon) and `MoreVertical` (action button icon).
+- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot) — asChild pattern on root
+- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — cva variant composition
+- [lucide-react](https://www.npmjs.com/package/lucide-react) — Plus (default decorative icon), MoreVertical (action button)
 
 ### Token groups
 
-- [Colors](../tokens/colors.md) — `bg-subtle`, `bg-secondary-brand-low`, `bg-invisible`, `fg-default`, `fg-muted`, `fg-secondary-brand-contrasted`, `border-invisible` aliases.
-- [Spacing](../tokens/spacing.md) — `size-xs`, `size-s`, `size-m` for padding and gap across all three size variants.
-- [Radius](../tokens/radius.md) — `rounded-klp-l` on root and `rounded-klp-l` on action-button.
-- [Typography](../tokens/typography.md) — `font-klp-label`, `text-klp-text-medium`, `text-klp-text-small` across label and sublabel layers.
+- [Colors](../tokens/colors.md)
+- [Spacing](../tokens/spacing.md)
+- [Typography](../tokens/typography.md)
 
 ### Brands
 
-- [wireframe](../brands/wireframe.md) — all 9 reference screenshots captured under the wireframe brand.
+- [klub](../brands/klub.md)
 
 ## Used by
 
-- [List](./_index_list.md) — composes `<ListContent>` as its repeated item rows via the `items` prop.
+- [List](./_index_list.md) — renders ListContent instances for each row in the `items[]` prop.
 
 ## Files
 
@@ -190,14 +132,14 @@ export function ListContentExample() {
 - Figma spec: [`.klp/figma-refs/list-content/spec.json`](../../.klp/figma-refs/list-content/spec.json)
 - Reference screenshots: [`.klp/figma-refs/list-content/`](../../.klp/figma-refs/list-content/)
 
+<!-- KLP:GAPS:BEGIN -->
+## DS gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->
+
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
-
-<!-- KLP:GAPS:BEGIN -->
-## Gaps
-
-No gaps recorded.
-<!-- KLP:GAPS:END -->

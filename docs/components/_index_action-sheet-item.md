@@ -10,21 +10,14 @@ sources:
   - src/components/action-sheet-item/ActionSheetItem.tsx
 dependencies:
   components: []
-  externals:
-    - "@radix-ui/react-slot"
-    - class-variance-authority
-    - lucide-react
-  tokenGroups:
-    - colors
-    - spacing
-    - typography
-  brands:
-    - wireframe
+  externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+  tokenGroups: ["colors", "spacing", "typography"]
+  brands: ["wireframe"]
 usedBy:
   - action-sheet-menu
   - item-side-bar
 created: 2026-04-17
-updated: 2026-04-17
+updated: 2026-04-21
 ---
 
 # ActionSheet Item
@@ -34,99 +27,46 @@ A single row item for action sheets. Supports icon slots on both sides, an optio
 ## Anatomy
 
 ```
-action-sheet-item
-├── root        (button)  — Full-width horizontal layout; fill=FIXED, counter=HUG. Uses Slot when asChild.
-├── icon-left   (span)    — Icon selector instance; 20×20px container wrapping a 16×16px lucide icon. Optional via firstIcon prop.
-├── content     (span)    — Vertical flex column filling remaining width; contains label and optional description.
-│   ├── label       (span)    — Primary action text. fontFamily=Family/Label, fontSize=Sizing/Text/Medium.
-│   └── description (span)    — Optional sublabel. Rendered when description prop is provided.
-└── icon-right  (span)    — Second action icon selector instance; 20×20px. Optional via secondAction prop.
+button (root)
+├── icon-left  (span) — Optional first icon, 20×20px
+├── content    (span) — Vertical flex stack
+│   ├── label  (span) — Primary text content (children)
+│   └── description (span) — Optional secondary text
+└── icon-right (span) — Optional second action, 20×20px
 ```
 
 ## Variants
 
-State × Size matrix. `✓` = documented in spec with reference screenshot; `—` = not documented.
-
-| State \ Size | `lg` | `md` | `sm` |
+| state \ size | lg | md | sm |
 |---|---|---|---|
-| `default` | [✓](../../.klp/figma-refs/action-sheet-item/default-lg-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/default-md-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/default-sm-default.png) |
-| `hover` | [✓](../../.klp/figma-refs/action-sheet-item/default-lg-hover.png) | [✓](../../.klp/figma-refs/action-sheet-item/default-md-hover.png) | [✓](../../.klp/figma-refs/action-sheet-item/default-sm-hover.png) |
-| `active` | [✓](../../.klp/figma-refs/action-sheet-item/default-lg-active.png) | [✓](../../.klp/figma-refs/action-sheet-item/default-md-active.png) | [✓](../../.klp/figma-refs/action-sheet-item/default-sm-active.png) |
-| `emphased` | [✓](../../.klp/figma-refs/action-sheet-item/emphased-lg-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/emphased-md-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/emphased-sm-default.png) |
-| `disabled` | [✓](../../.klp/figma-refs/action-sheet-item/disabled-lg-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/disabled-md-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/disabled-sm-default.png) |
-| `destructive` | [✓](../../.klp/figma-refs/action-sheet-item/destructive-lg-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/destructive-md-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/destructive-sm-default.png) |
-| `creation` | [✓](../../.klp/figma-refs/action-sheet-item/creation-lg-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/creation-md-default.png) | [✓](../../.klp/figma-refs/action-sheet-item/creation-sm-default.png) |
+| default | ✓ | ✓ | ✓ |
+| hover | ✓ | ✓ | ✓ |
+| active | ✓ | ✓ | ✓ |
+| emphased | ✓ | ✓ | ✓ |
+| disabled | ✓ | ✓ | ✓ |
+| destructive | ✓ | ✓ | ✓ |
+| creation | ✓ | ✓ | ✓ |
 
-**Total: 21 documented variants** (source: spec.json:variants[])
+> Note: `state` is a **persistent** prop — it represents the navigation/selection state of the item and is set externally by the parent (e.g. ActionSheetMenu, ItemSideBar). It does not self-derive from interactions.
 
-## API
+## Props usage
 
-Extends `React.ButtonHTMLAttributes<HTMLButtonElement>`. Native HTML button attributes are forwarded to the underlying `<button>` element (or the child element when `asChild` is true). The `disabled` HTML attribute automatically resolves `state` to `"disabled"`.
+Extends `React.ButtonHTMLAttributes<HTMLButtonElement>` and `VariantProps<typeof rootVariants>`.
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `state` | `'default' \| 'hover' \| 'active' \| 'emphased' \| 'disabled' \| 'destructive' \| 'creation'` | `'default'` | Visual semantic state of the item. Setting `disabled={true}` overrides this to `'disabled'`. |
-| `size` | `'lg' \| 'md' \| 'sm'` | `'lg'` | Controls padding, gap, height, and border-radius (source: spec.json:variantAxes.size). |
-| `asChild` | `boolean` | `false` | Render child element in place of `<button>` via Radix Slot. |
-| `firstIcon` | `React.ReactNode` | — | Left icon slot. Renders a 20×20px container wrapping the provided icon at 16×16px. Hidden when falsy. |
-| `secondAction` | `React.ReactNode` | — | Right icon slot. Same sizing as `firstIcon`. Hidden when falsy. |
-| `description` | `React.ReactNode` | — | Optional sublabel rendered below the primary label text in the content column. |
-| `children` | `React.ReactNode` | — | Primary label text rendered in the `label` span. |
-| `className` | `string` | — | Additional classes merged via `cn()` onto the root element. |
+| Prop | Class | Type | Default | Description |
+|---|---|---|---|---|
+| `state` | **persistent** | `ActionSheetItemState` | `"default"` | Semantic visual state — set by the parent to reflect selection/status. |
+| `size` | optional | `ActionSheetItemSize` | `"lg"` | Row height and padding |
+| `asChild` | optional | `boolean` | `false` | Render as child element via Slot |
+| `firstIcon` | optional | `React.ReactNode` | — | Left-side icon slot |
+| `secondAction` | optional | `React.ReactNode` | — | Right-side action/icon slot |
+| `description` | optional | `React.ReactNode` | — | Secondary text below the label |
 
-## Tokens
+### Do / Don't
 
-### `root` layer
+**Do:** Set `state` from the parent to reflect the selected or contextual condition of the item.
 
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| fill — default | `--klp-bg-invisible` | `var(--klp-color-light-0)` |
-| fill — hover | `--klp-bg-subtle` | `var(--klp-color-gray-100)` |
-| fill — active | `--klp-bg-brand-low` | `var(--klp-color-gray-300)` |
-| fill — emphased | `--klp-bg-inset` | `var(--klp-color-gray-200)` |
-| fill — disabled | `--klp-bg-disable` | `var(--klp-color-gray-200)` |
-| fill — destructive | `--klp-bg-danger` | `var(--klp-color-gray-300)` |
-| fill — creation | `--klp-bg-success` | `var(--klp-color-gray-300)` |
-| stroke — default/hover/disabled/destructive/creation | `--klp-border-invisible` | `var(--klp-color-light-0)` |
-| stroke — active | `--klp-border-brand` | `var(--klp-color-gray-500)` |
-| stroke — emphased | `literal: transparent` | — |
-| paddingX — lg | `--klp-size-m` | `var(--klp-spacing-4)` → 16px |
-| paddingY — lg | `--klp-size-m` | `var(--klp-spacing-4)` → 16px |
-| gap — lg | `--klp-size-s` | `var(--klp-spacing-3)` → 12px |
-| paddingX — md | `--klp-size-s` | `var(--klp-spacing-3)` → 12px |
-| paddingY — md | `--klp-size-s` | `var(--klp-spacing-3)` → 12px |
-| gap — md | `--klp-size-xs` | `var(--klp-spacing-2)` → 8px |
-| paddingX — sm | `--klp-size-xs` | `var(--klp-spacing-2)` → 8px |
-| paddingY — sm | `--klp-size-xs` | `var(--klp-spacing-2)` → 8px |
-| gap — sm | `--klp-size-xs` | `var(--klp-spacing-2)` → 8px |
-| height | `literal: 56px / 48px / 40px` | — |
-| cornerRadius | `literal: 8px (lg/sm) / 4px (md)` | — |
-
-> ❓ UNVERIFIED: cornerRadius is bound to cross-file Figma variable IDs (278:2851, 278:2849). No local alias name resolved. Values recorded as literals `8px` and `4px` (source: spec.json:_notes.cornerRadiusGap).
-
-### `icon-left` and `icon-right` layers
-
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| color — default/hover/active/emphased | `--klp-fg-default` | `var(--klp-color-gray-800)` |
-| color — disabled | `--klp-fg-disable` | `var(--klp-color-gray-500)` |
-| color — destructive | `--klp-fg-danger-contrasted` | `var(--klp-color-gray-800)` |
-| color — creation | `--klp-fg-success-contrasted` | `var(--klp-color-gray-800)` |
-| icon size | `literal: 16px` | — |
-| container size | `literal: 20px` | — |
-
-### `label` layer
-
-| Property | Token | Resolved (wireframe) |
-|---|---|---|
-| color — default/hover/active/emphased | `--klp-fg-default` | `var(--klp-color-gray-800)` |
-| color — disabled | `--klp-fg-disable` | `var(--klp-color-gray-500)` |
-| color — destructive | `--klp-fg-danger-contrasted` | `var(--klp-color-gray-800)` |
-| color — creation | `--klp-fg-success-contrasted` | `var(--klp-color-gray-800)` |
-| fontSize | `--klp-font-size-text-medium` | `16px` |
-| fontFamily | `--klp-font-family-label` | `'Inter', 'Test Calibre', system-ui, sans-serif` |
-| fontWeight | `--klp-font-weight-label` | `400` |
-| lineHeight | `literal: 24px` | — |
+**Don't:** Leave `state` managed by this component's own click handler — it has no internal state machine. The parent (menu or sidebar) owns the active/selected state.
 
 ## Examples
 
@@ -137,33 +77,14 @@ import { ActionSheetItem } from './ActionSheetItem'
 export function ActionSheetItemExample() {
   return (
     <div className="flex w-80 flex-col gap-2">
-      <ActionSheetItem
-        state="default"
-        size="lg"
-        firstIcon={<Plus strokeWidth={1.5} />}
-        secondAction={<Plus strokeWidth={1.5} />}
-      >
+      <ActionSheetItem state="default" size="lg" firstIcon={<Plus strokeWidth={1.5} />} secondAction={<Plus strokeWidth={1.5} />}>
         Label action
       </ActionSheetItem>
-
-      <ActionSheetItem
-        state="destructive"
-        size="lg"
-        firstIcon={<Plus strokeWidth={1.5} />}
-      >
+      <ActionSheetItem state="destructive" size="lg" firstIcon={<Plus strokeWidth={1.5} />}>
         Delete item
       </ActionSheetItem>
-
-      <ActionSheetItem
-        state="creation"
-        size="md"
-        firstIcon={<Plus strokeWidth={1.5} />}
-      >
+      <ActionSheetItem state="creation" size="md" firstIcon={<Plus strokeWidth={1.5} />}>
         Create new
-      </ActionSheetItem>
-
-      <ActionSheetItem state="disabled" size="md" disabled>
-        Unavailable action
       </ActionSheetItem>
     </div>
   )
@@ -172,11 +93,9 @@ export function ActionSheetItemExample() {
 
 ## Accessibility
 
-- **Role**: `button` (native `<button>` element, or delegated via `asChild`)
-- **Keyboard support**: `Enter`, `Space`
-- **ARIA notes**: `aria-disabled` is set to `true` when the resolved state is `disabled`. Destructive items should carry `aria-label` clarifying irreversibility. The `asChild` pattern delegates rendering to a child element via Radix Slot — consumer is responsible for ensuring the child has appropriate role and keyboard handling.
-
-(source: spec.json:a11y)
+- **Role**: `button` (native)
+- **Keyboard support**: `Enter` and `Space` activate; `Tab` focuses.
+- **ARIA notes**: `aria-disabled` is set when `resolvedState === 'disabled'`. The `disabled` attribute is also forwarded to prevent pointer events.
 
 ## Dependencies
 
@@ -186,24 +105,24 @@ export function ActionSheetItemExample() {
 
 ### External libraries
 
-- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot) — Radix Slot primitive enabling the `asChild` pattern (source: spec.json:radixPrimitive)
-- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — CVA for variant class composition
-- [lucide-react](https://www.npmjs.com/package/lucide-react) — icon library used in examples and expected by icon slot props
+- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot) — asChild pattern
+- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — cva variant composition
+- [lucide-react](https://www.npmjs.com/package/lucide-react) — icons used by consumers
 
 ### Token groups
 
-- [Colors](../tokens/colors.md) — `bg-*`, `fg-*`, `border-*` aliases
-- [Spacing](../tokens/spacing.md) — `size-*` scale for padding and gap
-- [Typography](../tokens/typography.md) — `font-family-label`, `font-weight-label`, `font-size-text-medium`
+- [Colors](../tokens/colors.md)
+- [Spacing](../tokens/spacing.md)
+- [Typography](../tokens/typography.md)
 
 ### Brands
 
-- [wireframe](../brands/wireframe.md) — component was captured and validated under the wireframe brand
+- [wireframe](../brands/wireframe.md)
 
 ## Used by
 
-- [ActionSheet Menu](./_index_action-sheet-menu.md) — imports ActionSheetItem as the item row for `default` and `flat` type variants.
-- [Item Side Bar](./_index_item-side-bar.md) — renders ActionSheetItem elements as children inside the expanded collapsible content panel.
+- [ActionSheet Menu](./_index_action-sheet-menu.md)
+- [Item Side Bar](./_index_item-side-bar.md)
 
 ## Files
 
@@ -214,14 +133,14 @@ export function ActionSheetItemExample() {
 - Figma spec: [`.klp/figma-refs/action-sheet-item/spec.json`](../../.klp/figma-refs/action-sheet-item/spec.json)
 - Reference screenshots: [`.klp/figma-refs/action-sheet-item/`](../../.klp/figma-refs/action-sheet-item/)
 
+<!-- KLP:GAPS:BEGIN -->
+## DS gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->
+
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
-
-<!-- KLP:GAPS:BEGIN -->
-## Gaps
-
-No gaps recorded.
-<!-- KLP:GAPS:END -->

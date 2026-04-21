@@ -9,13 +9,13 @@ sources:
   - .klp/figma-refs/header-phone/spec.json
   - src/components/header-phone/HeaderPhone.tsx
 dependencies:
-  components: [breadcrumbs, button]
-  externals: ["@radix-ui/react-slot", class-variance-authority, lucide-react]
-  tokenGroups: [colors, radius, spacing, typography]
-  brands: [klub]
+  components: ["button", "breadcrumbs"]
+  externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+  tokenGroups: ["colors", "spacing", "radius", "typography"]
+  brands: ["klub"]
 usedBy: []
 created: 2026-04-20
-updated: 2026-04-20
+updated: 2026-04-21
 ---
 
 # Header Phone
@@ -26,107 +26,37 @@ Mobile phone header bar with a top row (hamburger menu button, brand logo, notif
 
 ```
 header (root)
-└── div (content) — Full-width vertical container
-    ├── div (top-bar) — Horizontal row, space-between, height 36px
-    │   ├── button (menu-button) — Tertiary icon button (lucide: Menu); bound via Button instance
-    │   ├── div (logo) — Brand logo slot; accepts any ReactNode; fg/brand-contrasted fill
-    │   └── div (notification-button) — Relative wrapper, 36×36px
-    │       ├── button (notification-btn) — Tertiary icon button (lucide: Bell); bound via Button instance
-    │       └── span (notification-dot) — Orange dot badge, 6×6px, absolute top-[4px] right-[4px]; hidden when hasNotification=false
-    └── div (title-bar) — Horizontal row, space-between, height 36px
-        ├── h1 (title) — Page title; fg/brand-contrasted, Heading/H1 font
-        └── button (search-button) — Tertiary icon button (lucide: Search); bound via Button instance
-nav (breadcrumbs) — BreadCrumbs component instance (Steps=1)
+└── content (div)
+    ├── top-bar (div)
+    │   ├── menu-button           (Button/tertiary/icon) — Menu/hamburger
+    │   ├── logo                  (div)  — Brand logo slot; defaults to "K!" text fallback
+    │   └── notification-button   (div)  — relative wrapper
+    │       ├── notification-btn  (Button/tertiary/icon) — Bell icon
+    │       └── notification-dot  (span) — Orange dot; hidden when hasNotification=false
+    └── title-bar (div)
+        ├── title         (h1)
+        └── search-button (Button/tertiary/icon) — Search icon
+└── breadcrumbs (BreadCrumbs)
 ```
 
 ## Variants
 
-Single variant — no variant axes (source: spec.json:variantAxes).
+No variant axes — single layout.
 
-| Variant | Screenshot |
-|---|---|
-| default | [`.klp/figma-refs/header-phone/default.png`](../../.klp/figma-refs/header-phone/default.png) |
+## Props usage
 
-## API
+Extends `React.HTMLAttributes<HTMLElement>`.
 
-Extends `React.HTMLAttributes<HTMLElement>`. Native HTML attributes are forwarded to the root `<header>` element.
-
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `title` | `string` | `'Page Title'` | Page title rendered in the title bar. |
-| `hasNotification` | `boolean` | `true` | Whether to show the notification dot on the bell button. |
-| `notificationCount` | `number` | `1` | Unread count label for the notification button (screen reader only). |
-| `breadcrumbSteps` | `BreadCrumbStep[]` | `[{ label: 'Home' }, { label: 'Section' }]` | Breadcrumb steps passed to `<BreadCrumbs>`. |
-| `logo` | `React.ReactNode` | `undefined` | Logo slot — accepts any React node (brand asset, img, svg component, etc.). Falls back to a `K!` text placeholder when omitted. |
-| `onMenuClick` | `() => void` | `undefined` | Handler for menu button click. |
-| `onNotificationClick` | `() => void` | `undefined` | Handler for notification button click. |
-| `onSearchClick` | `() => void` | `undefined` | Handler for search button click. |
-
-## Tokens
-
-### `root` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| stroke (border-bottom) | `--klp-border-default` | `var(--klp-color-gray-400)` |
-| fill | literal: `rgba(255,255,255,0.9)` | — (no `--klp-*` alias; see DS gaps) |
-| backdropFilter | literal: `blur(8px)` | — |
-| paddingTop | literal: `24px` | — |
-| paddingBottom | literal: `16px` | — |
-| paddingLeft / paddingRight | literal: `16px` | — |
-| itemSpacing | literal: `8px` | — |
-| width | literal: `320px` | — |
-
-### `menu-button` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| fill | `--klp-bg-invisible` | `var(--klp-color-light-0)` |
-| stroke | `--klp-border-invisible` | `var(--klp-color-light-0)` |
-| cornerRadius | `--klp-radius-l` | `var(--klp-radius-lg)` = `8px` |
-| paddingAll | `--klp-size-xs` | `var(--klp-spacing-2)` = `8px` |
-
-### `logo` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| color | `--klp-fg-brand-contrasted` | `var(--klp-color-emerald-700)` = `#0F6F7C` |
-| width / height | literal: `28px` | — |
-
-### `notification-btn` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| fill | `--klp-bg-invisible` | `var(--klp-color-light-0)` |
-| stroke | `--klp-border-invisible` | `var(--klp-color-light-0)` |
-| cornerRadius | `--klp-radius-l` | `var(--klp-radius-lg)` = `8px` |
-| paddingAll | `--klp-size-xs` | `var(--klp-spacing-2)` = `8px` |
-
-### `notification-dot` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| fill | `--klp-bg-decorative-orange` | `var(--klp-color-orange-300)` |
-| width / height | literal: `6px` | — |
-
-### `title` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| color | `--klp-fg-brand-contrasted` | `var(--klp-color-emerald-700)` = `#0F6F7C` |
-| fontSize | `--klp-font-size-heading-h1` | `30px` |
-| fontFamily | `--klp-font-family-title` | `'Inter', 'Test Calibre', system-ui, sans-serif` |
-| fontWeight | `--klp-font-weight-title` | `600` |
-| lineHeight | literal: `36px` | — |
-
-### `search-button` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| fill | `--klp-bg-invisible` | `var(--klp-color-light-0)` |
-| stroke | `--klp-border-invisible` | `var(--klp-color-light-0)` |
-| cornerRadius | `--klp-radius-l` | `var(--klp-radius-lg)` = `8px` |
-| paddingAll | `--klp-size-xs` | `var(--klp-spacing-2)` = `8px` |
+| Prop | Class | Type | Default | Description |
+|---|---|---|---|---|
+| `title` | optional | `string` | `"Page Title"` | Page title rendered in the title bar |
+| `hasNotification` | optional | `boolean` | `true` | Whether to show the notification dot on the bell button |
+| `notificationCount` | optional | `number` | `1` | Unread count label for the notification button (for screen readers) |
+| `breadcrumbSteps` | optional | `BreadCrumbStep[]` | — | Breadcrumb steps passed to BreadCrumbs |
+| `logo` | optional | `React.ReactNode` | — | Logo slot — accepts any React node (brand asset, img, svg component, etc.) |
+| `onMenuClick` | optional | `() => void` | — | Handler for menu button click |
+| `onNotificationClick` | optional | `() => void` | — | Handler for notification button click |
+| `onSearchClick` | optional | `() => void` | — | Handler for search button click |
 
 ## Examples
 
@@ -139,10 +69,7 @@ export function HeaderPhoneExample() {
       title="Dashboard"
       hasNotification={true}
       notificationCount={3}
-      breadcrumbSteps={[
-        { label: 'Home', onClick: () => {} },
-        { label: 'Dashboard' },
-      ]}
+      breadcrumbSteps={[{ label: 'Home', onClick: () => {} }, { label: 'Dashboard' }]}
       onMenuClick={() => {}}
       onNotificationClick={() => {}}
       onSearchClick={() => {}}
@@ -153,29 +80,33 @@ export function HeaderPhoneExample() {
 
 ## Accessibility
 
-- **Role**: `banner` (implicit from `<header>` element; explicit `role="banner"` is set).
-- **Keyboard support**: `Tab`, `Enter`, `Space`.
-- **ARIA notes**: Menu, notification, and search buttons are native `<button>` elements rendered via the `Button` primitive — keyboard focus and activation are handled by the browser. The notification dot has `aria-hidden="true"` and the notification count is surfaced via the button's `aria-label` (e.g. `"Notifications, 3 unread"`). `BreadCrumbs` provides its own `<nav>` with an `aria-label`. (source: spec.json:a11y)
+- **Role**: `banner` (native `<header>` with `role="banner"`)
+- **Keyboard support**: All buttons are focusable; Tab order follows DOM order.
+- **ARIA notes**: Notification button `aria-label` includes unread count when `hasNotification` is true (e.g. "Notifications, 3 unread").
 
 ## Dependencies
 
 ### klp components
-- [BreadCrumbs](./_index_breadcrumbs.md) — breadcrumb trail rendered via `<BreadCrumbs steps={...} stepsVariant="1">`.
+
 - [Button](./_index_button.md) — menu-button, notification-btn, and search-button each render as `<Button variant="tertiary" size="icon">`.
+- [BreadCrumbs](./_index_breadcrumbs.md) — breadcrumbs renders as `<BreadCrumbs steps={...} stepsVariant="1">`.
 
 ### External libraries
-- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot) — Radix Slot primitive (spec.json:radixPrimitive).
-- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — CVA for variant class management.
-- [lucide-react](https://www.npmjs.com/package/lucide-react) — `Menu`, `Bell`, `Search` icons.
+
+- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot) — asChild pattern
+- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — cva variant composition
+- [lucide-react](https://www.npmjs.com/package/lucide-react) — Menu, Bell, Search icons
 
 ### Token groups
-- [Colors](../tokens/colors.md) — `--klp-border-default`, `--klp-bg-invisible`, `--klp-border-invisible`, `--klp-fg-brand-contrasted`, `--klp-bg-decorative-orange`.
-- [Radius](../tokens/radius.md) — `--klp-radius-l` on button layers.
-- [Spacing](../tokens/spacing.md) — `--klp-size-xs` on button padding layers.
-- [Typography](../tokens/typography.md) — `--klp-font-size-heading-h1`, `--klp-font-family-title`, `--klp-font-weight-title` on title layer.
+
+- [Colors](../tokens/colors.md)
+- [Spacing](../tokens/spacing.md)
+- [Radius](../tokens/radius.md)
+- [Typography](../tokens/typography.md)
 
 ### Brands
-- [klub](../brands/klub.md) — spec captured under the `klub` brand (source: spec.json:captureBrand).
+
+- [klub](../brands/klub.md)
 
 ## Used by
 
@@ -195,8 +126,7 @@ export function HeaderPhoneExample() {
 
 | Part | Kind | Reason | Action |
 |---|---|---|---|
-| logo | unmatched-instance | No `brand-logo` component in klp-components.json. The Klub! brand logo is a custom SVG asset, not a lucide icon. | Inlined as a slot prop (`logo?: ReactNode`) accepting any ReactNode, with a text fallback `K!`. |
-
+| logo | unmatched-instance | No 'brand-logo' component in klp-components.json. The Klub! brand logo is a custom SVG asset, not a lucide icon. Inlined as a slot prop accepting any ReactNode, with a text fallback 'K!'. | inlined-ad-hoc |
 <!-- KLP:GAPS:END -->
 
 <!-- KLP:NOTES:BEGIN -->

@@ -3,77 +3,52 @@ title: Pagination
 type: component
 status: stable
 category: navigation
-captureBrand: wireframe
+captureBrand: klub
 radixPrimitive: null
 sources:
+  - .klp/figma-refs/pagination/spec.json
   - src/components/pagination/Pagination.tsx
 dependencies:
-  components: [button]
-  externals: [class-variance-authority, lucide-react]
-  tokenGroups: [colors, spacing, typography]
-  brands: [wireframe]
-usedBy: [data-table]
-created: 2026-04-17
-updated: 2026-04-17
+  components: ["button"]
+  externals: ["lucide-react"]
+  tokenGroups: ["colors", "spacing", "typography"]
+  brands: ["klub"]
+usedBy: []
+created: 2026-04-20
+updated: 2026-04-21
 ---
 
 # Pagination
 
-Standalone page navigator with ellipsis algorithm. Renders a label showing the current range ("X–Y of Z"), prev/next chevron buttons, and a page number strip with smart ellipsis (`…`) when there are many pages. Reusable outside tables.
-
-> No Figma spec — this component was introduced as part of the table refactor and has no spec.json. Documentation is derived from source only.
+A page navigation bar with prev/next buttons, numbered page buttons, ellipsis markers, and an optional "X-Y of Z" count label. Page list is computed from `page`, `total`, `pageSize`, and `siblingCount`.
 
 ## Anatomy
 
 ```
-nav  (<nav> role="navigation" aria-label="Pagination")
-├── label  (<span>)    — "X–Y of Z" range label. Hidden when showLabel=false.
-├── prev   (<Button>)  — Prev-page icon button (tertiary/icon, ChevronLeft). Disabled on page 1.
-├── pages  (fragment)  — Page buttons and ellipsis spans
-│   ├── page-button  (<Button>)  — Per page number; aria-current="page" on active page.
-│   └── dots         (<span aria-hidden="true">) — Ellipsis marker between page ranges.
-└── next   (<Button>)  — Next-page icon button (tertiary/icon, ChevronRight). Disabled on last page.
+nav (root)         — role=navigation, aria-label="Pagination"
+├── label (span)   — "X-Y of Z" text; hidden when showLabel=false
+├── prev-button (Button/tertiary/icon) — ChevronLeft; disabled at page 1
+├── page-button[*] (Button/tertiary/icon) — One per visible page number
+├── dots[*] (span) — Ellipsis marker between non-contiguous page ranges
+└── next-button (Button/tertiary/icon) — ChevronRight; disabled at last page
 ```
 
 ## Variants
 
-No variant axis. The only configurable behaviors are controlled via props (`siblingCount`, `showLabel`). Visual state is reflected by the active page button receiving `bg-klp-bg-inset border-klp-border-brand` classes.
+No variant axes — single layout. Page list shape adapts based on total pages and sibling count.
 
-## API
+## Props usage
 
-`PaginationProps` extends `React.HTMLAttributes<HTMLElement>`. All native `<nav>` attributes are forwarded.
+Extends `React.HTMLAttributes<HTMLElement>`.
 
-| Prop | Type | Default | Description |
-|---|---|---|---|
-| `page` | `number` | — | Current 1-indexed page number. |
-| `pageSize` | `number` | — | Items per page — used to compute the "X–Y of Z" label. |
-| `total` | `number` | — | Total item count across all pages. |
-| `onPageChange` | `(page: number) => void` | — | Callback called with the new 1-indexed page number. |
-| `siblingCount` | `number` | `1` | Number of page buttons shown on each side of the current page. |
-| `showLabel` | `boolean` | `true` | Whether to show the "X–Y of Z" range label on the left. |
-| `className` | `string` | — | Additional classes merged via `cn()` on the `<nav>`. |
-
-### Exported utility
-
-`buildPageList(page, pageCount, siblingCount): (number | 'dots')[]` — the ellipsis algorithm is exported for testing and custom pagination UI. It returns an array of page numbers interspersed with `'dots'` markers.
-
-(source: src/components/pagination/Pagination.tsx)
-
-## Tokens
-
-Tokens are applied via the `Button` sub-component for prev/next/page controls, and via inline Tailwind utilities for the active-page highlight and the label.
-
-| Element | Property | Token | Resolved (wireframe) |
-|---|---|---|---|
-| label | color | `--klp-fg-muted` | `var(--klp-color-gray-700)` |
-| label | margin-right | `--klp-size-s` | `12px` |
-| nav | gap | `--klp-size-xs` | `8px` |
-| active page button | background | `--klp-bg-inset` | `var(--klp-color-gray-200)` |
-| active page button | border-color | `--klp-border-brand` | `var(--klp-color-gray-500)` |
-| dots | color | `--klp-fg-muted` | `var(--klp-color-gray-700)` |
-| dots | padding-x | `--klp-size-xs` | `8px` |
-
-(source: src/components/pagination/Pagination.tsx)
+| Prop | Class | Type | Default | Description |
+|---|---|---|---|---|
+| `page` | **required** | `number` | — | 1-indexed current page |
+| `pageSize` | **required** | `number` | — | Items per page (used for the "X-Y of Z" label) |
+| `total` | **required** | `number` | — | Total number of items across all pages |
+| `onPageChange` | **required** | `(page: number) => void` | — | Called with the new 1-indexed page number |
+| `siblingCount` | optional | `number` | `1` | Number of pages shown on each side of the current page |
+| `showLabel` | optional | `boolean` | `true` | Toggle the "X-Y of Z" label on the left |
 
 ## Examples
 
@@ -91,38 +66,35 @@ export function PaginationExample() {
 }
 ```
 
-(source: src/components/pagination/Pagination.example.tsx)
-
 ## Accessibility
 
-- **Role:** `navigation` via `<nav role="navigation" aria-label="Pagination">`.
-- **Keyboard support:** All interactive controls are `<Button>` instances — fully keyboard-navigable via Tab/Enter/Space.
-- **ARIA notes:** The prev button carries `aria-label="Previous page"` and the next button `aria-label="Next page"`. The active page button carries `aria-current="page"`. Ellipsis spans are `aria-hidden="true"`.
+- **Role**: `navigation` (native `<nav>` with `aria-label="Pagination"`)
+- **Keyboard support**: All buttons are focusable. Tab order: label → prev → page buttons → next.
+- **ARIA notes**: Current page button has `aria-current="page"`. Prev/Next have `aria-label`. Dots markers are `aria-hidden`.
 
 ## Dependencies
 
 ### klp components
 
-- [Button](./_index_button.md) — renders the prev, next, and per-page-number interactive controls as `variant="tertiary" size="icon"` buttons.
+- [Button](./_index_button.md) — prev/next and numbered page buttons render as `<Button variant="tertiary" size="icon">`.
 
 ### External libraries
 
-- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — (indirect, via Button).
-- [lucide-react](https://www.npmjs.com/package/lucide-react) — `ChevronLeft` and `ChevronRight` icons for the prev/next buttons.
+- [lucide-react](https://www.npmjs.com/package/lucide-react) — ChevronLeft, ChevronRight icons
 
 ### Token groups
 
-- [Colors](../tokens/colors.md) — `fg-muted`, `bg-inset`, `border-brand` for label, active page, and ellipsis.
-- [Spacing](../tokens/spacing.md) — `size-xs`, `size-s` for gaps, padding, and margin.
-- [Typography](../tokens/typography.md) — `text-klp-text-small` on the range label.
+- [Colors](../tokens/colors.md)
+- [Spacing](../tokens/spacing.md)
+- [Typography](../tokens/typography.md)
 
 ### Brands
 
-- [wireframe](../brands/wireframe.md) — default brand; no Figma spec captured yet.
+- [klub](../brands/klub.md)
 
 ## Used by
 
-- [Data Table](./_index_data-table.md) — embedded in the DataTable footer when `pagination` prop is set; driven by TanStack's `paginationState`.
+*Not yet used by any other klp component.*
 
 ## Files
 
@@ -130,15 +102,17 @@ export function PaginationExample() {
 - Example: [`src/components/pagination/Pagination.example.tsx`](../../src/components/pagination/Pagination.example.tsx)
 - Playground: [`playground/routes/pagination.tsx`](../../playground/routes/pagination.tsx)
 - Registry: [`registry/pagination.json`](../../registry/pagination.json)
+- Figma spec: [`.klp/figma-refs/pagination/spec.json`](../../.klp/figma-refs/pagination/spec.json)
+- Reference screenshots: [`.klp/figma-refs/pagination/`](../../.klp/figma-refs/pagination/)
+
+<!-- KLP:GAPS:BEGIN -->
+## DS gaps
+
+No gaps recorded.
+<!-- KLP:GAPS:END -->
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
 
 *Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
 <!-- KLP:NOTES:END -->
-
-<!-- KLP:GAPS:BEGIN -->
-## Gaps
-
-No gaps recorded.
-<!-- KLP:GAPS:END -->

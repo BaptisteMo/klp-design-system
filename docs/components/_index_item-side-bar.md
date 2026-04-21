@@ -9,135 +9,65 @@ sources:
   - .klp/figma-refs/item-side-bar/spec.json
   - src/components/item-side-bar/ItemSideBar.tsx
 dependencies:
-  components:
-    - action-sheet-item
-  externals:
-    - "@radix-ui/react-collapsible"
-    - class-variance-authority
-    - lucide-react
-  tokenGroups:
-    - colors
-    - radius
-    - spacing
-    - typography
-  brands:
-    - klub
-usedBy: [sidebar]
+  components: ["action-sheet-item"]
+  externals: ["@radix-ui/react-collapsible", "class-variance-authority", "lucide-react"]
+  tokenGroups: ["colors", "spacing", "radius"]
+  brands: ["klub"]
+usedBy: ["sidebar"]
 created: 2026-04-20
-updated: 2026-04-20
+updated: 2026-04-21
 ---
 
 # Item Side Bar
 
-A sidebar navigation item with an icon, label, and optional collapsible content panel. Two feature axes: Collapsible (shows chevron affordance and expands an ActionSheet content area) and Static (no chevron, no content panel). Three states: Rest, Hover, Active.
+A sidebar navigation item with an icon, label, and optional collapsible content panel. Two feature modes: Collapsible (shows chevron affordance and expands an ActionSheet content area) and Static (no chevron, no content panel). Three states: Rest, Hover, Active.
+
+> **Class B note:** The `hover` state is driven by CSS `:hover` pseudo-class on the trigger element — it is not a value you pass via a prop. The `state` prop controls `rest` and `active` only; the `hover` appearance applies automatically when the user hovers. Do not set `state="hover"` in interactive contexts.
 
 ## Anatomy
 
 ```
-item-side-bar
-├── root            (div)     — Outer container wrapping trigger + optional content panel.
-├── trigger         (button)  — Clickable row: icon-container + label + optional chevron. bg-filled on hover/active.
-│   ├── icon-container (div)  — Decorative icon wrapper with padding and border. Shows brand border on active, invisible on rest/hover.
-│   │   └── decorative-icon (div) — 20×20 icon wrapper with 2px (size-4xs) padding.
-│   │       └── icon        (span) — Folder-open vector icon inside decorative-icon. 16×16. lucide-react: folder-open.
-│   ├── label       (span)    — Item text label.
-│   └── chevron     (span)    — Collapsible-only. chevron-right (rest/hover) or chevron-down (active). 16×16 wrapper, 14×14 icon.
-└── content         (div)     — Collapsible-only. Expanded panel containing ActionSheetItem rows. Hidden when feature=static or state=rest.
+div (root)
+└── Collapsible.Root | div  — feature=collapsible uses Radix root; static uses plain div
+    ├── trigger (button)    — Collapsible.Trigger (collapsible) or plain button (static)
+    │   ├── icon-container (span) — Rounded square; border + bg vary by state
+    │   │   └── decorative-icon (span) — 20×20 wrapper with padding
+    │   │       └── icon (span)  — 16×16 icon; defaults to FolderOpen
+    │   ├── label (span)    — Item label text
+    │   └── chevron (span)  — collapsible-only; ChevronRight at rest/hover, ChevronDown at active
+    └── Collapsible.Content — collapsible-only; contains content panel
+        └── content (div)   — Expanded panel; rounded-klp-l, bg-klp-bg-default
 ```
 
 ## Variants
 
-Two variant axes: **feature** (collapsible / static) × **state** (rest / hover / active). 6 documented variants.
-
-| state \ feature | collapsible | static |
-|---|---|---|
-| rest | [✓](.klp/figma-refs/item-side-bar/rest-collapsible.png) | [✓](.klp/figma-refs/item-side-bar/rest-static.png) |
-| hover | [✓](.klp/figma-refs/item-side-bar/hover-collapsible.png) | [✓](.klp/figma-refs/item-side-bar/hover-static.png) |
-| active | [✓](.klp/figma-refs/item-side-bar/active-collapsible.png) | [✓](.klp/figma-refs/item-side-bar/active-static.png) |
-
-**Notes on variant matrix:**
-- `active/collapsible` — trigger fill `bg-klp-bg-default`; icon-container shows contrasted border; chevron changes to `chevron-down`; content panel expanded.
-- `active/static` — trigger fill `bg-klp-bg-inset` (same as hover); icon-container shows contrasted border; no chevron or content.
-- `rest/*` — trigger has no fill (transparent); icon-container border and fill are invisible.
-- `hover/*` — trigger fill `bg-klp-bg-inset`; icon-container border and fill remain invisible.
-
-## API
-
-`ItemSideBar` extends no HTML attribute type directly but accepts `className` and forwards `onClick` to the trigger button.
-
-| Prop | Type | Default | Description |
+| feature \ state | rest | hover | active |
 |---|---|---|---|
-| `state` | `'rest' \| 'hover' \| 'active'` | `'rest'` | Interaction state — drives trigger fill and icon-container border. |
-| `feature` | `'collapsible' \| 'static'` | `'collapsible'` | Feature mode — collapsible adds chevron and expandable content panel. |
-| `icon` | `React.ReactNode` | `<FolderOpen />` | Icon rendered inside the decorative icon box. Defaults to FolderOpen from lucide-react. |
-| `label` | `React.ReactNode` | `'Label'` | Item label text. |
-| `children` | `React.ReactNode` | — | Content rows rendered inside the expanded panel. Pass one or more `<ActionSheetItem>` elements. |
-| `open` | `boolean` | — | Whether the collapsible panel is open (controlled). Only relevant when `feature='collapsible'`. |
-| `defaultOpen` | `boolean` | — | Default open state (uncontrolled). Only relevant when `feature='collapsible'`. |
-| `onOpenChange` | `(open: boolean) => void` | — | Callback when open state changes. Forwarded to Radix Collapsible.Root. |
-| `onClick` | `React.MouseEventHandler<HTMLButtonElement>` | — | Forwarded to the trigger button. |
-| `className` | `string` | — | Additional CSS classes applied to the root element. |
+| collapsible | ✓ | ✓ | ✓ |
+| static | ✓ | ✓ | ✓ |
 
-## Tokens
+## Props usage
 
-### `trigger` layer
+| Prop | Class | Type | Default | Description |
+|---|---|---|---|---|
+| `state` | **persistent** | `ItemSideBarState` | `"rest"` | Interaction state — drives trigger fill and icon-container border. Represents the currently-selected navigation item. |
+| `feature` | optional | `ItemSideBarFeature` | `"collapsible"` | Feature mode — collapsible adds chevron + expandable content panel |
+| `icon` | optional | `React.ReactNode` | — | Icon to render inside the decorative icon box. Defaults to FolderOpen. |
+| `label` | **required** | `React.ReactNode` | `"Label"` | Item label text |
+| `children` | optional | `React.ReactNode` | — | Content rows rendered inside the expanded panel (collapsible only). |
+| `open` | optional | `boolean` | — | Whether the collapsible panel is open (controlled) |
+| `defaultOpen` | optional | `boolean` | — | Default open state (uncontrolled) |
+| `onOpenChange` | optional | `(open: boolean) => void` | — | Callback when open state changes |
+| `onClick` | optional | `React.MouseEventHandler<HTMLButtonElement>` | — | Forwarded to the trigger button |
+| `className` | optional | `string` | — | Additional className applied to the root wrapper |
 
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| fill (hover, active/collapsible) | `--klp-bg-inset` | `var(--klp-color-gray-200)` |
-| fill (active/collapsible) | `--klp-bg-default` | `var(--klp-color-light-100)` |
-| fill (rest) | literal: `transparent` | — |
+### Do / Don't
 
-### `icon-container` layer
+**Do:** Set `state="active"` on the item that represents the currently selected navigation destination. The parent component (Sidebar) owns and passes this value.
 
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| fill (active) | `--klp-bg-default` | `var(--klp-color-light-100)` |
-| fill (rest/hover) | `--klp-bg-invisible` | `var(--klp-color-light-0)` |
-| stroke (active) | `--klp-border-contrasted` | `var(--klp-color-gray-600)` |
-| stroke (rest/hover) | `--klp-border-invisible` | `var(--klp-color-light-0)` |
-| cornerRadius | `--klp-radius-m` | `var(--klp-radius-base)` |
+**Don't:** Derive `state` inside the component itself, or set it based on local click state — it represents the navigation selection owned by the router or page context above.
 
-### `decorative-icon` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| paddingX | `--klp-size-4xs` | `var(--klp-spacing-0-5)` |
-| paddingY | `--klp-size-4xs` | `var(--klp-spacing-0-5)` |
-| width/height | literal: `20px` | — (no `--klp-size-*` alias at 20px; see DS gaps) |
-
-### `icon` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| size | literal: `16px` | — |
-| icon | literal: `folder-open` | lucide-react `FolderOpen` |
-
-### `label` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| color | `--klp-fg-default` | `var(--klp-color-gray-800)` |
-| fontSize | `--klp-font-size-text-medium` | `16px` |
-| fontFamily | `--klp-font-family-label` | `'Inter', 'Test Calibre', system-ui, sans-serif` |
-| fontWeight | `--klp-font-weight-label` | `400` |
-
-### `chevron` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| wrapper size | literal: `16px` | — |
-| icon size | literal: `14px` | — (no `--klp-size-*` alias at 14px; see DS gaps) |
-| icon (rest/hover) | literal: `chevron-right` | lucide-react `ChevronRight` |
-| icon (active) | literal: `chevron-down` | lucide-react `ChevronDown` |
-
-### `content` layer
-
-| Property | Token | Resolved (klub) |
-|---|---|---|
-| padding | `--klp-size-xs` | `var(--klp-spacing-2)` |
-| cornerRadius | `--klp-radius-l` | `var(--klp-radius-lg)` (resolved from cross-file Figma variable; see DS gaps) |
-| fill | `--klp-bg-default` | `var(--klp-color-light-100)` |
+**Do:** Use `feature="static"` when the item is a leaf (no sub-navigation). Use `feature="collapsible"` when the item has child routes.
 
 ## Examples
 
@@ -193,36 +123,35 @@ export function ItemSideBarExample() {
 
 ## Accessibility
 
-- **Role**: `button` (trigger element). The collapsible feature maps to `Collapsible.Root` + `Collapsible.Trigger` + `Collapsible.Content` from `@radix-ui/react-collapsible`, which provides proper `aria-expanded` and `aria-controls` semantics automatically.
-- **Keyboard support**: `Enter`, `Space` — activates the trigger (toggles collapsible open/close, or fires `onClick` for static).
-- **ARIA notes**: Collapsible feature uses Radix Collapsible for proper `aria-expanded`/`aria-controls` semantics. Static feature renders as a plain button without a disclosure widget. The icon and chevron spans are marked `aria-hidden="true"`. (source: spec.json:a11y)
+- **Role**: `button` (trigger element)
+- **Keyboard support**: `Enter`/`Space` expands/collapses (collapsible variant). Tab to focus.
+- **ARIA notes**: Collapsible.Trigger sets `aria-expanded` automatically via Radix. Icon is `aria-hidden`.
 
 ## Dependencies
 
 ### klp components
 
-- [ActionSheet Item](./_index_action-sheet-item.md) — imported from `@/components/action-sheet-item`; used as content row children inside the expanded collapsible panel (source: spec.json:composition.reuses[0]).
+- [Action Sheet Item](./_index_action-sheet-item.md) — content panel rows rendered as `<ActionSheetItem>` instances.
 
 ### External libraries
 
-- [@radix-ui/react-collapsible](https://www.npmjs.com/package/@radix-ui/react-collapsible) — `Collapsible.Root`, `Collapsible.Trigger`, `Collapsible.Content` for the collapsible feature variant.
-- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — `cva` for all layer variant maps.
-- [lucide-react](https://www.npmjs.com/package/lucide-react) — `FolderOpen`, `ChevronRight`, `ChevronDown` icons.
+- [@radix-ui/react-collapsible](https://www.npmjs.com/package/@radix-ui/react-collapsible) — Collapsible.Root, Trigger, Content for the collapsible variant
+- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — cva variant composition
+- [lucide-react](https://www.npmjs.com/package/lucide-react) — FolderOpen (default icon), ChevronRight, ChevronDown
 
 ### Token groups
 
-- [Colors](../tokens/colors.md) — `bg-*`, `fg-*`, `border-*` aliases for trigger fill, icon-container border, label color, content fill.
-- [Radius](../tokens/radius.md) — `--klp-radius-m` (icon-container), `--klp-radius-l` (content panel).
-- [Spacing](../tokens/spacing.md) — `--klp-size-4xs` (decorative-icon padding), `--klp-size-xs` (trigger padding, content padding).
-- [Typography](../tokens/typography.md) — `--klp-font-size-text-medium`, `--klp-font-family-label`, `--klp-font-weight-label` on the label layer.
+- [Colors](../tokens/colors.md)
+- [Spacing](../tokens/spacing.md)
+- [Radius](../tokens/radius.md)
 
 ### Brands
 
-- [klub](../brands/klub.md) — captureBrand; all reference screenshots captured under the klub brand.
+- [klub](../brands/klub.md)
 
 ## Used by
 
-- [SideBar](./_index_sidebar.md) — imports `ItemSideBar` for each navigation row in the scrollable menu.
+- [SideBar](./_index_sidebar.md) — renders ItemSideBar instances for each menu item.
 
 ## Files
 
@@ -238,9 +167,9 @@ export function ItemSideBarExample() {
 
 | Part | Kind | Reason | Action |
 |---|---|---|---|
-| `decorative-icon` | `unmatched-instance` | No `decorative-icon` component in `klp-components.json`. Figma instance "Decorative Icon" has no klp entry. Inlined as 20×20 span wrapper with `p-klp-size-4xs`. | `inlined-local-cva` |
-| `icon` | `unmatched-instance` | No standalone `icon` component in `klp-components.json`. Figma instance "Icon/Folder-open" has no klp entry. Rendered directly via lucide-react `FolderOpen`. | `inlined-local-cva` |
-| `chevron` | `unmatched-instance` | No standalone `icon` component in `klp-components.json`. Figma instance "Icon selector" has no klp entry. Chevron rendered via lucide-react `ChevronRight` / `ChevronDown`. | `inlined-local-cva` |
+| decorative-icon | unmatched-instance | No DS icon component — lucide-react icons inlined directly | inlined-ad-hoc |
+| icon | unmatched-instance | No DS icon component — lucide-react icons inlined directly | inlined-ad-hoc |
+| chevron | unmatched-instance | No DS icon component — ChevronRight/ChevronDown from lucide-react, not a klp primitive | inlined-ad-hoc |
 <!-- KLP:GAPS:END -->
 
 <!-- KLP:NOTES:BEGIN -->
