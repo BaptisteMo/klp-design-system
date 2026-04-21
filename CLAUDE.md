@@ -14,6 +14,7 @@ A React 19 + TypeScript + Vite design system built on **Radix Primitives** (for 
 - Class composition goes through `cn()` from `@/lib/cn`. Never concatenate class strings by hand.
 - Variants use `class-variance-authority`. One `cva` block per component.
 - Compose Radix Primitives as base. Re-export Radix parts for compound components (e.g. `<Dialog.Root>`, `<Dialog.Trigger>`).
+- Every prop in a component's exported `Props` interface carries a `/** @propClass <required|optional|computed|persistent> */` JSDoc tag. Omitting it defaults to `optional` and surfaces a documentalist warning. Computed props (e.g. Input `state`) are auto-derived from HTML attrs — never hardcode them.
 
 ### Composition discipline (new components)
 
