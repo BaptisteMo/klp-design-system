@@ -48,7 +48,7 @@ Steps:
 1. **Validate sources.** Confirm `.klp/figma-refs/<component>/spec.json` and `src/components/<component>/<PascalName>.tsx` exist. If either is missing, abort with a precise diagnostic (don't try to fix the spec — that's the extractor's job).
 2. **Read the spec** at `.klp/figma-refs/<component>/spec.json`. Extract: displayName, captureBrand, category, description, radixPrimitive, anatomy, variantAxes, variants[], a11y.
 3. **Read the source** at `src/components/<component>/<PascalName>.tsx`. Extract:
-   - The exported `interface <Name>Props { ... }` block (props API).
+   - The exported `interface <Name>Props { ... }` block (props API). For each prop, parse the JSDoc comment immediately above it and extract the `@propClass <class>` tag where `<class>` ∈ `required` | `optional` | `computed` | `persistent`. If no `@propClass` is present, default to `optional` and append a warning `{ "type": "missing-propclass", "prop": "<name>" }` to the returned JSON report's `warnings[]`. Also parse an optional `@derivedFrom` tag on `computed` props (free-form comma-separated list of HTML attrs / internal state that drive the derivation).
    - All `from '@/components/<other>'` imports (forward klp-component dependencies).
    - All `from '<external>'` imports for `@radix-ui/*`, `lucide-react`, `class-variance-authority`, `tailwind-merge`, etc. (external dependencies).
 4. **Read the example** at `src/components/<component>/<PascalName>.example.tsx`. Use its content for the Examples section.
@@ -80,6 +80,7 @@ Steps:
 
 Everything else scanned from `from '<pkg>'` imports (notably `@radix-ui/*`, `@tanstack/*`, `@fontsource/*`, `lucide-react`, `class-variance-authority`) is kept.
 11. **Update `klp-components.json`** at repo root. Find the component entry by `name` and overwrite with the canonical entry. If absent, append. Sort the array by `name`.
+11b. **Populate the `props` field on the canonical entry.** Shape: `props: { "<prop-name>": { "class": "required" | "optional" | "computed" | "persistent", "type": "<raw TS type>", "default": "<string or null>", "description": "<first line of JSDoc or empty>", "derivedFrom": "<comma list or null>" } }`. Source: the parsed JSDoc tags + TS type + `@default` JSDoc tag (if present) from step 3. Preserve order matching the source interface. Sole writer of this field is the documentalist.
 12. **Update `docs/index.md`**. Find the entry under the component's `category` section and refresh the line. If the category section doesn't exist, create it.
 13. **Run the reverse-index pass.** See "Reverse-index pass" below.
 14. **Regenerate `docs/gaps.md`** from the freshly computed per-component gap data (see "Aggregated gap report" subsection below).
@@ -124,6 +125,7 @@ On `operation: SYNC`, iterate over every component in `klp-components.json`:
 
 1. Re-run the systematic import scan on each component's source.
 2. Rebuild `dependencies.components[]` from scratch for every entry.
+2a. Re-parse the `@propClass` JSDoc tags from every component source and rewrite `klp-components.json[<name>].props` for every component.
 2b. Run the external import scan (see "Systematic external import scan → `registry/<name>.json` sync" subsection) and rewrite `registry/<name>.json#dependencies.npm` for every component.
 3. Reset every `usedBy[]` to `[]`, then re-populate from the freshly computed forward edges.
 4. Regenerate each `docs/components/_index_<name>.md` body. Preserve only the `KLP:NOTES` block across the regeneration. The `KLP:GAPS` block is rewritten from freshly computed gap data (source of truth: the newly recomputed state — or an empty block if no adapter report is available in SYNC mode).
@@ -163,6 +165,7 @@ Walk `docs/` and validate:
 7. **Graph symmetry**: for every component A whose frontmatter declares `dependencies.components: [B]`, component B's frontmatter must declare `usedBy: [A, ...]`. Any asymmetry is a bug.
 8. **No circular component dependencies**: walk the forward graph; any cycle is an architectural smell — report but do not auto-fix.
 9. **Registry npm-deps consistency**: for every component, the set `registry/<name>.json#dependencies.npm` must equal the component's scanned externals minus the baseline-exclusion list (`react`, `react-dom`, `clsx`, `tailwind-merge`). Any divergence (missing or extra package) is a drift bug. Report but do not auto-fix under LINT — the user re-runs DOCUMENT (or full SYNC) to correct it.
+10. **Prop classification coverage**: every prop in every component's `Props` interface must declare a `@propClass` JSDoc tag. Any prop without it counts as a violation. Report with component + prop name. Do not auto-fix.
 
 Report findings as a Markdown checklist at `docs/.lint-report.md` (gitignored — see project `.gitignore`). Fix what is mechanically safe (graph asymmetry, missing index entries, stale dependency lists). Ask before deleting anything.
 
@@ -212,9 +215,35 @@ A markdown table covering the variant matrix from `spec.variantAxes`. Columns ar
 
 For multi-axis matrices (>2 axes), generate one table per primary axis × secondary axis pair, with the third axis varying within each cell.
 
-## API
+**Class B note.** If the component's cva defines a `state` axis but the exported `Props` interface has no `state` prop (detected by cross-referencing step 3's parsed interface against the cva block found in the source), insert the following blockquote immediately above the Variants table:
 
-Props table generated from the `interface <Name>Props` block in source. Columns: **Prop**, **Type**, **Default**, **Description**. Description comes from JSDoc above each prop if present, otherwise from a short heuristic (e.g. `asChild` → "Render child element in place of <button>"). One row per prop. Native HTML attribute extensions (e.g. `extends ButtonHTMLAttributes`) are noted in a paragraph above the table, not duplicated row by row.
+> The `state` column below documents visual appearances driven by CSS pseudo-classes
+> (`:hover`, `:focus`, `:disabled`) or the Radix `data-state` attribute. It is NOT a
+> runtime prop — the component derives it automatically.
+
+## Props usage
+
+Extends `<native HTML interface>` if the component interface extends one (short paragraph, one line).
+
+| Prop | Type | Default | Class | Description |
+|---|---|---|---|---|
+| `<name>` | `<type>` | `<default or —>` | `<class>` | `<JSDoc description>` |
+
+The **Class** column uses one of:
+- `required` — must be passed; no sensible default.
+- `optional` — has a default; override only when needed.
+- **`computed`** (bold) — auto-derived from HTML attributes or internal state. Passing freezes the UI. Do not pass outside playground/demo.
+- **`persistent`** (bold) — consumer-owned state with semantic meaning. Pass when relevant.
+
+### Do / Don't
+
+*Emitted only if at least one prop in the table is `computed` or `persistent`. Omit the heading and block otherwise.*
+
+When emitted, render two sub-blocks back-to-back:
+
+✅ **Do** — let the component handle its own interactive state. One `tsx` fenced example per non-`computed` usage idiom. For every `computed` prop, include a line of the form `<Component <nativeAttr> />` where `<nativeAttr>` is the HTML/ARIA attribute that drives the derivation (read from the prop's JSDoc `@derivedFrom` tag if present, else `disabled` / `aria-invalid` heuristic). For every `persistent` prop, include a line showing a realistic value (e.g. `<ItemSideBar state="active" />`).
+
+❌ **Don't** — one `tsx` fenced example per `computed` prop, showing the anti-pattern `<Component <prop>="<first variant value>" />` with an inline `{/* reason */}` comment explaining the consequence (hoisted from the prop's JSDoc description, or the stock phrase `freezes the visual state and breaks interactive transitions`).
 
 ## Tokens
 
