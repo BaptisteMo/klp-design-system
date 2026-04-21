@@ -34,8 +34,11 @@ div (root) — Radix CollapsiblePrimitive.Root
     └── content-text (div) — Children or default placeholder text
 ```
 
-## Variants
+> The `state` column below documents visual appearances driven by CSS pseudo-classes
+> (`:hover`, `:focus`, `:disabled`) or the Radix `data-state` attribute. It is NOT a
+> runtime prop — the component derives it automatically.
 
+## Variants
 | state |
 |---|
 | close |

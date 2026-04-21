@@ -37,15 +37,27 @@ export function parsePropsInterface(source) {
 
   const props = []
   // Line-by-line state machine: accumulate jsdoc lines, then emit a prop when we see it.
+  // Track bracket depth across lines so nested inline types (e.g. `Array<{ value: string }>`)
+  // do NOT have their members mis-parsed as top-level props.
   const lines = body.split('\n')
   let jsdocLines = []
   let inJsdoc = false
+  let bracketDepth = 0
+
+  const updateDepth = (s) => {
+    // Strip string literals before counting brackets.
+    const clean = s.replace(/'[^']*'|"[^"]*"|`[^`]*`/g, '')
+    for (const ch of clean) {
+      if (ch === '{' || ch === '[' || ch === '(' || ch === '<') bracketDepth++
+      else if (ch === '}' || ch === ']' || ch === ')' || ch === '>') bracketDepth--
+    }
+  }
 
   for (const line of lines) {
     const stripped = line.trim()
     if (!stripped) continue
 
-    // Track JSDoc blocks
+    // Track JSDoc blocks — JSDoc content never affects bracket depth.
     if (stripped.startsWith('/**')) {
       inJsdoc = true
       jsdocLines = [stripped]
@@ -58,9 +70,18 @@ export function parsePropsInterface(source) {
       continue
     }
 
-    // Standalone `// comment` line — skip, but clear any accumulated jsdoc
+    // Standalone `// comment` line — skip, but clear any accumulated jsdoc.
     if (stripped.startsWith('//')) {
       jsdocLines = []
+      continue
+    }
+
+    // Only emit a prop when this line STARTS at top-level (depth 0).
+    const depthAtLineStart = bracketDepth
+    updateDepth(stripped)
+
+    if (depthAtLineStart !== 0) {
+      // Inside a nested type body — skip without touching jsdoc accumulator.
       continue
     }
 
@@ -369,9 +390,12 @@ async function runAll({ fix }) {
     process.exit(2)
   }
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'))
+  // Skip utility/exempt components (e.g. brand-provider) — no doc page by design.
   const components = Array.isArray(manifest.components)
-    ? manifest.components.map(c => c.name)
-    : Object.keys(manifest.components ?? {})
+    ? manifest.components.filter(c => !c.exemptFromFigmaPipeline).map(c => c.name)
+    : Object.entries(manifest.components ?? {})
+        .filter(([, c]) => !c.exemptFromFigmaPipeline)
+        .map(([name]) => name)
   const results = []
   for (const name of components) {
     results.push(await runOne(name, { fix }))
