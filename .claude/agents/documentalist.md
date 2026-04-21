@@ -162,6 +162,7 @@ Walk `docs/` and validate:
 6. **Markdown link integrity**: every relative markdown link `[text](path.md)` resolves to an existing file.
 7. **Graph symmetry**: for every component A whose frontmatter declares `dependencies.components: [B]`, component B's frontmatter must declare `usedBy: [A, ...]`. Any asymmetry is a bug.
 8. **No circular component dependencies**: walk the forward graph; any cycle is an architectural smell — report but do not auto-fix.
+9. **Registry npm-deps consistency**: for every component, the set `registry/<name>.json#dependencies.npm` must equal the component's scanned externals minus the baseline-exclusion list (`react`, `react-dom`, `clsx`, `tailwind-merge`). Any divergence (missing or extra package) is a drift bug. Report but do not auto-fix under LINT — the user re-runs DOCUMENT (or full SYNC) to correct it.
 
 Report findings as a Markdown checklist at `docs/.lint-report.md` (gitignored — see project `.gitignore`). Fix what is mechanically safe (graph asymmetry, missing index entries, stale dependency lists). Ask before deleting anything.
 
