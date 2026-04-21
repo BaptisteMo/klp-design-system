@@ -10,15 +10,15 @@ Goal: a new skill `klp-doc-rules-validator` that mechanically enforces 5 structu
 
 ## Architecture
 
-Three artifacts, one clear responsibility each:
+Three artifacts, co-located per Anthropic skill convention (`${CLAUDE_SKILL_DIR}`):
 
-- `scripts/validate-doc-rules.mjs` — deterministic Node 22 script. Reads `src/components/<name>/<Pascal>.tsx` + `docs/components/_index_<name>.md`, checks 5 rules, optionally auto-fixes in place (`--fix`), emits JSON to stdout. Exit 0 pass, 1 mismatch, 2 usage.
-- `.claude/skills/klp-doc-rules-validator/SKILL.md` — thin skill wrapper (~80 lines). Frontmatter includes `name`, `description` (front-loaded triggers), `allowed-tools: Bash(node *)`. Body documents: invocation, JSON shape, rule IDs, how to interpret `mismatches[]` vs `autoFixed[]`.
+- `.claude/skills/klp-doc-rules-validator/SKILL.md` — skill entrypoint (~80 lines). Frontmatter: `name`, `description` (front-loaded triggers), `allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs:*)`. Body documents invocation, JSON shape, rule IDs, how to interpret `mismatches[]` vs `autoFixed[]`.
+- `.claude/skills/klp-doc-rules-validator/scripts/validate-doc-rules.mjs` — deterministic Node 22 script. Reads `src/components/<name>/<Pascal>.tsx` + `docs/components/_index_<name>.md`, checks 5 rules, optionally auto-fixes in place (`--fix`), emits JSON to stdout. Exit 0 pass, 1 mismatch, 2 usage. Resolves repo-root via `process.env.CLAUDE_PROJECT_DIR` or `process.cwd()` fallback.
 - `.claude/commands/klp-doc-validate.md` — slash command `/klp-doc-validate [<name>]`. No arg → full DS sweep (walks every component in `klp-components.json`). With arg → single component. Prints a compact summary + non-zero exit code on any mismatch.
 
 Documentalist is extended in `.claude/agents/documentalist.md`:
 
-- DOCUMENT operation: insert new step 15a between current 15 (append to `docs/log.md`) and 16 (report JSON). Step 15a invokes `Bash: node scripts/validate-doc-rules.mjs <name> --fix`, parses the returned JSON, merges `mismatches[]` and `autoFixed[]` into its own report.
+- DOCUMENT operation: insert new step 15a between current 15 (append to `docs/log.md`) and 16 (report JSON). Step 15a invokes `Bash: node .claude/skills/klp-doc-rules-validator/scripts/validate-doc-rules.mjs <name> --fix`, parses the returned JSON, merges `mismatches[]` and `autoFixed[]` into its own report.
 - Extended SYNC: same invocation per component inside the existing loop, after regen + before log append.
 
 ## Rules (portée B)
@@ -63,11 +63,13 @@ R1-R4 are mechanical structural checks on the Markdown output. R5 reads the TS s
 
 ## CLI surface
 
+From an agent / skill context: invoke via `${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs`. From the terminal / CI: repo-root-relative path works too (same file).
+
 ```
-node scripts/validate-doc-rules.mjs <component>           # read-only, exit 1 on any mismatch
-node scripts/validate-doc-rules.mjs <component> --fix     # apply auto-fixes, exit 1 only if R5 mismatches remain
-node scripts/validate-doc-rules.mjs --all                  # read-only sweep, all components from klp-components.json
-node scripts/validate-doc-rules.mjs --all --fix            # sweep + auto-fix
+node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs <component>           # read-only, exit 1 on any mismatch
+node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs <component> --fix     # apply auto-fixes, exit 1 only if R5 mismatches remain
+node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs --all                 # read-only sweep, all components from klp-components.json
+node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs --all --fix           # sweep + auto-fix
 ```
 
 `--fix` writes the doc file in place, preserving the `KLP:NOTES` block verbatim (same contract the documentalist respects). Auto-fix never touches source files — R5 is report-only.
@@ -88,7 +90,7 @@ Same as `klp-token-validator`: max 1 retry. Because the validator auto-fixes R1-
 ---
 name: klp-doc-rules-validator
 description: Validate structural rules on a klp component's generated doc page (Props usage table, Class column, Do/Don't block, Class B blockquote, @propClass coverage). Auto-fixes mechanical drift. Invoked by /klp-build-component Stage 4 post-documentalist, by documentalist SYNC per component, or manually via /klp-doc-validate.
-allowed-tools: Bash(node scripts/validate-doc-rules.mjs:*)
+allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs:*)
 ---
 ```
 
@@ -103,7 +105,7 @@ The description front-loads the five check names so the skill is retrievable by 
 
 Argument: optional `<component>` (kebab-case). Omit to sweep all components.
 
-Runs `node scripts/validate-doc-rules.mjs <component-or--all> --fix` in the repo root. Parses JSON. Prints:
+Runs `node .claude/skills/klp-doc-rules-validator/scripts/validate-doc-rules.mjs <component-or--all> --fix` in the repo root. Parses JSON. Prints:
 - One line per auto-fix applied.
 - One line per mismatch remaining.
 - Exit with script's exit code.
@@ -111,8 +113,8 @@ Runs `node scripts/validate-doc-rules.mjs <component-or--all> --fix` in the repo
 
 ## Verification
 
-1. Unit coverage: the script has a handful of fixture pairs in `scripts/__fixtures__/doc-rules/` — a source.tsx + doc.md pair for each rule's failure mode + a passing baseline. Run via `node --test scripts/validate-doc-rules.test.mjs`.
-2. Regression: invoke `node scripts/validate-doc-rules.mjs tabulation-cells`. Expect `passed: true` (the manual fix committed 2026-04-21 holds) with R4 in `autoFixed: []`.
+1. Unit coverage: the script has a handful of fixture pairs in `.claude/skills/klp-doc-rules-validator/__fixtures__/` — a source.tsx + doc.md pair for each rule's failure mode + a passing baseline. Run via `node --test .claude/skills/klp-doc-rules-validator/scripts/validate-doc-rules.test.mjs`.
+2. Regression: invoke `node .claude/skills/klp-doc-rules-validator/scripts/validate-doc-rules.mjs tabulation-cells`. Expect `passed: true` (the manual fix committed 2026-04-21 holds) with R4 in `autoFixed: []`.
 3. Regression: invoke `--all` in read-only mode after a SYNC run. Expect no mismatches across the 25-component DS.
 4. Integration: run documentalist DOCUMENT on a component where the doc is missing the Class B blockquote. Confirm the validator auto-fixed it and the final doc matches the template.
 5. Integration: run `/klp-doc-validate` standalone. Confirm the slash command returns a per-component summary.
