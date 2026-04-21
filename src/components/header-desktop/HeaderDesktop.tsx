@@ -59,7 +59,7 @@ const titleVariants = cva(
 // Layer: actions
 // Horizontal row of action buttons. Hidden in search-active variant.
 // ---------------------------------------------------------------------------
-const actionsVariants = cva('flex flex-row items-center gap-[auto]', {
+const actionsVariants = cva('flex flex-row items-center gap-klp-size-2xs ', {
   variants: {
     features: {
       default: 'flex',
@@ -174,11 +174,7 @@ export const HeaderDesktop = React.forwardRef<HTMLElement, HeaderDesktopProps>(
         ref={ref}
         className={cn(rootVariants({ features }), className)}
       >
-        {showBreadcrumbs && (
-          <div>
-            <BreadCrumbs steps={breadcrumbs as BreadCrumbStep[]} showDropdownAffordance />
-          </div>
-        )}
+
 
         <div className={cn(titleActionRowVariants({ features }))}>
           <h1 className={cn(titleVariants({ features }))}>{title}</h1>
@@ -222,6 +218,11 @@ export const HeaderDesktop = React.forwardRef<HTMLElement, HeaderDesktopProps>(
             </div>
           )}
         </div>
+                {showBreadcrumbs && (
+          <div>
+            <BreadCrumbs steps={breadcrumbs as BreadCrumbStep[]} showDropdownAffordance />
+          </div>
+        )}
       </header>
     )
   }

@@ -1084,11 +1084,18 @@
           "description": "Unread count label for the notification button (for screen readers)",
           "derivedFrom": null
         },
-        "breadcrumbSteps": {
+        "breadcrumbs": {
           "class": "optional",
-          "type": "BreadCrumbStep[]",
+          "type": "BreadCrumbStep[] | false",
           "default": null,
-          "description": "Breadcrumb steps passed to BreadCrumbs",
+          "description": "Breadcrumb steps forwarded to <BreadCrumbs>. Omit or pass false to hide the row entirely.",
+          "derivedFrom": null
+        },
+        "showSearch": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Show the search button in the title bar. Defaults to true.",
           "derivedFrom": null
         },
         "logo": {
@@ -1116,12 +1123,12 @@
           "class": "optional",
           "type": "() => void",
           "default": null,
-          "description": "Handler for search button click",
+          "description": "Handler for search button click. Only invoked when showSearch is true.",
           "derivedFrom": null
         }
       },
       "dependencies": {
-        "components": ["button", "breadcrumbs"],
+        "components": ["breadcrumbs", "button"],
         "externals": [
           "@radix-ui/react-slot",
           "class-variance-authority",

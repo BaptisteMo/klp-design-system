@@ -96,10 +96,16 @@ export interface HeaderPhoneProps extends React.HTMLAttributes<HTMLElement> {
    * @propClass optional
    */
   notificationCount?: number
-  /** Breadcrumb steps passed to BreadCrumbs
+  /**
+   * Breadcrumbs steps. Omit or pass false to hide the breadcrumbs row entirely.
    * @propClass optional
    */
-  breadcrumbSteps?: BreadCrumbStep[]
+  breadcrumbs?: BreadCrumbStep[] | false
+  /**
+   * Show the search button in the title bar. Defaults to true.
+   * @propClass optional
+   */
+  showSearch?: boolean
   /** Logo slot — accepts any React node (brand asset, img, svg component, etc.)
    * @propClass optional
    */
@@ -112,7 +118,7 @@ export interface HeaderPhoneProps extends React.HTMLAttributes<HTMLElement> {
    * @propClass optional
    */
   onNotificationClick?: () => void
-  /** Handler for search button click
+  /** Handler for search button click. Only invoked when showSearch is true.
    * @propClass optional
    */
   onSearchClick?: () => void
@@ -128,10 +134,8 @@ export const HeaderPhone = React.forwardRef<HTMLElement, HeaderPhoneProps>(
       title = 'Page Title',
       hasNotification = true,
       notificationCount = 1,
-      breadcrumbSteps = [
-        { label: 'Home' },
-        { label: 'Section' },
-      ],
+      breadcrumbs,
+      showSearch = true,
       logo,
       onMenuClick,
       onNotificationClick,
@@ -143,6 +147,7 @@ export const HeaderPhone = React.forwardRef<HTMLElement, HeaderPhoneProps>(
     const notificationAriaLabel = hasNotification
       ? `Notifications, ${notificationCount} unread`
       : 'Notifications'
+    const showBreadcrumbs = Array.isArray(breadcrumbs) && breadcrumbs.length > 0
 
     return (
       <header
@@ -203,20 +208,22 @@ export const HeaderPhone = React.forwardRef<HTMLElement, HeaderPhoneProps>(
           <div className={titleBarVariants()}>
             <h1 className={titleVariants()}>{title}</h1>
 
-            {/* search-button: Button/Tertiary/Icon/Rest */}
-            <Button
-              variant="tertiary"
-              size="icon"
-              aria-label="Search"
-              onClick={onSearchClick}
-            >
-              <Search className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />
-            </Button>
+            {showSearch && (
+              <Button
+                variant="tertiary"
+                size="icon"
+                aria-label="Search"
+                onClick={onSearchClick}
+              >
+                <Search className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />
+              </Button>
+            )}
           </div>
         </div>
 
-        {/* breadcrumbs: BreadCrumbs/Steps=1 */}
-        <BreadCrumbs steps={breadcrumbSteps} stepsVariant="1" />
+        {showBreadcrumbs && (
+          <BreadCrumbs steps={breadcrumbs as BreadCrumbStep[]} stepsVariant="1" />
+        )}
       </header>
     )
   }
