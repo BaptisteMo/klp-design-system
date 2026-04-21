@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-04-21T13:39:44.931Z
+generated-at: 2026-04-21T15:53:38.850Z
 schema-version: 0.1.0
 ---
 

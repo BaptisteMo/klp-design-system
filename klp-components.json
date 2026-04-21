@@ -951,53 +951,53 @@
       },
       "variantCount": 2,
       "props": {
-        "features": {
-          "class": "optional",
-          "type": "HeaderDesktopFeatures",
-          "default": "\"default\"",
-          "description": "Feature variant controlling which action row is shown",
-          "derivedFrom": null
-        },
         "title": {
           "class": "optional",
           "type": "string",
           "default": "\"Page title\"",
-          "description": "Page title text",
+          "description": "Page title rendered as <h1> in the title row.",
           "derivedFrom": null
         },
-        "breadcrumbSteps": {
+        "features": {
           "class": "optional",
-          "type": "BreadCrumbStep[]",
-          "default": null,
-          "description": "Breadcrumb steps array — forwarded to BreadCrumbs",
+          "type": "'default' | 'search-active'",
+          "default": "\"default\"",
+          "description": "Mode selector: default renders the actions row; search-active replaces it with a search input.",
           "derivedFrom": null
         },
-        "onActionClick": {
+        "actions": {
           "class": "optional",
-          "type": "(action: 'check' | 'search' | 'pen-line' | 'folder-plus') => void",
+          "type": "HeaderAction[]",
           "default": null,
-          "description": "Callback when a tertiary icon button is clicked (receives icon name)",
+          "description": "Action buttons rendered left-to-right in the title row when features='default'. Ignored in search-active.",
           "derivedFrom": null
         },
-        "onNewClick": {
+        "breadcrumbs": {
           "class": "optional",
-          "type": "() => void",
+          "type": "BreadCrumbStep[] | false",
           "default": null,
-          "description": "Callback when the secondary \"New\" button is clicked",
-          "derivedFrom": null
-        },
-        "onSearchChange": {
-          "class": "optional",
-          "type": "(value: string) => void",
-          "default": null,
-          "description": "Callback on search input change (search-active variant)",
+          "description": "Breadcrumb steps forwarded to <BreadCrumbs>. Omit or pass false to hide the row.",
           "derivedFrom": null
         },
         "searchPlaceholder": {
           "class": "optional",
           "type": "string",
           "default": "\"Search…\"",
-          "description": "Placeholder text for the search input",
+          "description": "Placeholder for the search input. Only used when features='search-active'.",
+          "derivedFrom": null
+        },
+        "onSearchChange": {
+          "class": "optional",
+          "type": "(value: string) => void",
+          "default": null,
+          "description": "Called on every search input change. Only used when features='search-active'.",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the root <header> element.",
           "derivedFrom": null
         }
       },

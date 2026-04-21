@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-21T15:06:02.445Z",
+  "generatedAt": "2026-04-21T15:53:39.219Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -260,12 +260,12 @@
             {
               "src": "src/components/header-desktop/HeaderDesktop.tsx",
               "dst": "src/components/ui/header-desktop/HeaderDesktop.tsx",
-              "hash": "sha256:531c5e1b0d559430e9899d962eafaef72e8e092eb5ff81d4299c79d08a8295d4"
+              "hash": "sha256:6d09741a76d874a58c090028fb36636976cbcb80bc65455dfddb1a9c433dd118"
             },
             {
               "src": "src/components/header-desktop/index.ts",
               "dst": "src/components/ui/header-desktop/index.ts",
-              "hash": "sha256:b35dba86d980d753a0c4cd1d9bb4cce9306196cc8ba0b0e67003d9198ba6409a"
+              "hash": "sha256:dd3260d1458beb992202425f310deb0f2feb4727fef012002179e6bd520f1d0c"
             }
           ],
           "deps": {
@@ -609,7 +609,7 @@
         {
           "src": "docs/agent-brief.md",
           "dst": "docs/agent-brief.md",
-          "hash": "sha256:a078d9e096e9d9884cc796350e5bf9426f2143fbb8f51c0ae98c2b0e55aecc89"
+          "hash": "sha256:2efbc50f3f4ae602049fc060f5e11d19478306d95d90bf92678a3ac7180398db"
         },
         {
           "src": "docs/index.md",
@@ -699,7 +699,7 @@
         {
           "src": "docs/components/_index_header-desktop.md",
           "dst": "docs/components/_index_header-desktop.md",
-          "hash": "sha256:e0d4f3010bc328a87fb25b902a18250c7eea99fb1dcd8e9faa607ee3e1a80f01"
+          "hash": "sha256:fdb2068cf72679311796e3babbf8e30ac2dd6a4d708cbe08520e47730771deb7"
         },
         {
           "src": "docs/components/_index_header-phone.md",
