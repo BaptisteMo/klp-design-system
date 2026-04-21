@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-20T15:42:10.718Z",
+  "generatedAt": "2026-04-21T08:29:02.458Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -20,17 +20,17 @@
         {
           "src": "src/styles/tokens/primitives.css",
           "dst": "src/styles/tokens/primitives.css",
-          "hash": "sha256:2b3a15dbb0406c3d175b232da9dc5e7978e5696eb5748d223610d75a8e4a24cc"
+          "hash": "sha256:62b1462b9a02ec2adee793f8a09b6060697e9a6d4bf4fd46195d6b23020e5086"
         },
         {
           "src": "src/styles/tokens/aliases.css",
           "dst": "src/styles/tokens/aliases.css",
-          "hash": "sha256:7f38276587641630e3fdf3632eda2e9d3ab9be5b3e08d8812e08ee370029a30f"
+          "hash": "sha256:89ca6550bca5c1270cebf7e2fcf3c4bee7a1d209f01dfb4f6de18d731d196259"
         },
         {
           "src": "src/styles/tokens/theme.css",
           "dst": "src/styles/tokens/theme.css",
-          "hash": "sha256:7598c1a1727d1102d62d0276cfaffd5caf365d8589ee447e86df5fb86c8f7b21"
+          "hash": "sha256:beb33601dec06eb9e747f3919a95b84a5fedea5784e0a9831f84fb3f9bf80387"
         }
       ]
     },
@@ -176,6 +176,26 @@
           "deps": {
             "npm": [
               "@radix-ui/react-checkbox"
+            ],
+            "components": []
+          }
+        },
+        "collapsible": {
+          "files": [
+            {
+              "src": "src/components/collapsible/Collapsible.tsx",
+              "dst": "src/components/ui/collapsible/Collapsible.tsx",
+              "hash": "sha256:7f954d7211368748e94c1c7e0aca95b3de1c71b1da7b5a29184ee319f66621b2"
+            },
+            {
+              "src": "src/components/collapsible/index.ts",
+              "dst": "src/components/ui/collapsible/index.ts",
+              "hash": "sha256:d876eb9db1dd9533cef0ef78cf91e11739ab572e14fcdbe3925b0a9871a6484a"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-collapsible"
             ],
             "components": []
           }
@@ -536,12 +556,12 @@
         {
           "src": "docs/agent-brief.md",
           "dst": "docs/agent-brief.md",
-          "hash": "sha256:b7854c96fcf3a57808a61fc80be2941060038040dd331416255231ee4f699d8c"
+          "hash": "sha256:e4c5219678cdda654e3edea6932c3488fc0a42b9ffc5f7278ecfb94f6b059d5c"
         },
         {
           "src": "docs/index.md",
           "dst": "docs/index.md",
-          "hash": "sha256:b646a2b6ffdb017156233f25f880229ce1ca685a51b5698136f3575d186938bb"
+          "hash": "sha256:e4a361444a14659efd55a719144bb9fa5ac05922855f5ae1249d637ef8596c49"
         },
         {
           "src": "docs/overview.md",
@@ -556,22 +576,22 @@
         {
           "src": "docs/tokens/colors.md",
           "dst": "docs/tokens/colors.md",
-          "hash": "sha256:1dd40272bc03354671c6bc232809dff9f28db8218732465a03a3a82b468fd624"
+          "hash": "sha256:cafb18ced2c08392a7a51b3885b9c1cfcd5c73ecedbb095a33b52ba914f43b6c"
         },
         {
           "src": "docs/tokens/radius.md",
           "dst": "docs/tokens/radius.md",
-          "hash": "sha256:da3ceedb56bfa36d39f5f25328d3486e236737dfcf5b16c7206323b603183ecc"
+          "hash": "sha256:1c9e413c02eda83abeb599098c3864fa4782747211005ef9fdb97229af1b0a2d"
         },
         {
           "src": "docs/tokens/spacing.md",
           "dst": "docs/tokens/spacing.md",
-          "hash": "sha256:7c8747056ae8ce3df4b76600bab05837aaf76d8cf4b219cc45922011694657eb"
+          "hash": "sha256:033c073ff6f0160954538b5e10ee9d28140ce41775633a5b44d73d72778e06ed"
         },
         {
           "src": "docs/tokens/typography.md",
           "dst": "docs/tokens/typography.md",
-          "hash": "sha256:70b9806c0931e1bca9cf6524ff62a301b3f24f9f3bc7a9d0e890dd465997d9c5"
+          "hash": "sha256:0f4af2df54205bff19b7ec4d27a7a952b559dec734527c943ebcb850c5da89ab"
         },
         {
           "src": "docs/brands/_index_brands.md",
@@ -601,12 +621,17 @@
         {
           "src": "docs/components/_index_button.md",
           "dst": "docs/components/_index_button.md",
-          "hash": "sha256:f1df5ed6c576ff32543e8fd9ffc909ee00db10de91fce52fd34911593035e432"
+          "hash": "sha256:0773a1954a8d3798229b1652fb1d005a0447ac39640efa2dfab2b48fd07d9b7d"
         },
         {
           "src": "docs/components/_index_checkbox.md",
           "dst": "docs/components/_index_checkbox.md",
           "hash": "sha256:3e156cad59ceb0008d464b864f3a27f2d08726fd896e082f36e57209cda32e0f"
+        },
+        {
+          "src": "docs/components/_index_collapsible.md",
+          "dst": "docs/components/_index_collapsible.md",
+          "hash": "sha256:ce5f20535fae27d1e0365b77a0624f842c4c34e8aef6429fd61557d9b669cf5d"
         },
         {
           "src": "docs/components/_index_data-table.md",
@@ -721,7 +746,7 @@
         {
           "src": "docs/brands/wireframe.md",
           "dst": "docs/brands/wireframe.md",
-          "hash": "sha256:6764a5ea32316b05d5a0ccce896feff9e9c2929a5149c9c9b0a6dde443f10db5",
+          "hash": "sha256:8dbc8c467825332334b91b1bdd53120758d3245e78106ed4d8a204a42aba881d",
           "brand": "wireframe"
         }
       ]

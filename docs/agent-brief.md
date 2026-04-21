@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-04-20T10:48:54.984Z
+generated-at: 2026-04-21T08:29:01.772Z
 schema-version: 0.1.0
 ---
 
@@ -9,12 +9,18 @@ schema-version: 0.1.0
 
 Condensed reference for design agents. Read this first before any design task; drill into `docs/components/_index_<name>.md` for specifics.
 
-## Inventory (21 components)
+## Inventory (26 components)
+
+### containers
+- **header-phone** (1 variants) — Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.
 
 ### data-display
 - **badges** (48 variants) — Status indicator pill with optional leading/trailing icons. Supports 9 semantic types (Primary, Secondary, Tertiary, Success, Info, Warning, Danger, onEmphasis, Outlined), 3 sizes (Small, Medium, Large) and 2 styles (Bordered, Light). Outlined and onEmphasis only exist in Light style.
 - **data-table** (1 variants) — Generic data-driven table built on @tanstack/react-table. Accepts columns[] + data and renders sort + pagination + custom cells. Uses <Table> primitives internally.
 - **table** (3 variants) — Compound HTML primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) with klp styling. Low-level building blocks for custom tables.
+
+### disclosure
+- **collapsible** (2 variants) — Expandable disclosure panel with a header (icon + title + chevron toggle button) and a collapsible content area. Single variant axis: open/close state.
 
 ### feedback
 - **floating-alert** (12 variants) — A floating alert banner with a state-colored icon highlight, body text, and a dismiss button. Four severity states (Danger, Warning, Information, Success) in three sizes (Small, Medium, Large).
@@ -37,7 +43,10 @@ Condensed reference for design agents. Read this first before any design task; d
 
 ### navigation
 - **breadcrumbs** (4 variants) — Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.
+- **header-desktop** (2 variants) — Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).
+- **item-side-bar** (6 variants) — A sidebar navigation item with an icon, label, and optional collapsible content panel. Two feature axes: Collapsible (shows chevron affordance and expands an ActionSheet content area) and Static (no chevron, no content panel). Three states: Rest, Hover, Active.
 - **pagination** (1 variants) — Standalone page navigator with ellipsis algorithm. Reusable outside tables.
+- **sidebar** (2 variants) — Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247px wide, 640px tall) and Phone (320px wide, 568px tall — wider with a close/dismiss button replacing the notification affordance).
 - **tabulation-cells** (2 variants) — A single tab cell used within a tabulation bar. Renders a label and an optional badge count. State=Rest shows a neutral transparent background; State=Active shows the selected tab with brand-low fill, bold label, and brand-accented badge.
 - **tabulations** (1 variants) — Horizontal tab bar container that wraps Tabulation_Cells instances separated by vertical line dividers. Scroll type=None (fixed layout). Delegates cell selection state (active/rest) to the tabulation-cells sub-component via a MutationObserver bridge. Backed by @radix-ui/react-tabs for full a11y keyboard navigation.
 
