@@ -110,11 +110,29 @@ function main() {
   lines.push('- No inline SVG — use `lucide-react`.')
   lines.push('- No hex colors, no `--klp-color-*` primitive refs.')
   lines.push('- Do not import `@radix-ui/*` directly in mockups — DS already wraps them.')
+  lines.push('- Never hardcode a prop classified `computed` — read the component\'s Props usage table before calling it. `persistent` props may be passed when a user-owned state applies (current page, selected row).')
   lines.push('')
 
   lines.push('## DS gap log')
   lines.push('')
   lines.push('See `docs/ds-gaps.md` (initially empty in consumer; pipeline appends).')
+  lines.push('')
+
+  lines.push('## Computed & persistent props (appendix)')
+  lines.push('')
+  lines.push('Derived from every component\'s `Props` interface `@propClass` tags. Computed = do NOT pass. Persistent = pass when relevant.')
+  lines.push('')
+  lines.push('| Component | Prop | Class | Description |')
+  lines.push('|---|---|---|---|')
+  for (const c of components) {
+    const props = ((c as unknown as Record<string, unknown>).props ?? {}) as Record<string, { class: string; type: string; default: string | null; description?: string }>
+    for (const [name, meta] of Object.entries(props)) {
+      if (meta.class === 'computed' || meta.class === 'persistent') {
+        const desc = (meta.description ?? '').replace(/\|/g, '\\|').slice(0, 120)
+        lines.push(`| \`${c.name}\` | \`${name}\` | **${meta.class}** | ${desc} |`)
+      }
+    }
+  }
   lines.push('')
 
   writeFileSync(join(ROOT, 'docs/agent-brief.md'), lines.join('\n'))
