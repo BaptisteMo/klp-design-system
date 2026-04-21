@@ -86,7 +86,7 @@
   --klp-size-2xl: var(--klp-spacing-12);
   --klp-size-3xl: var(--klp-spacing-16);
   --klp-size-square: var(--klp-radius-none);
-  --klp-size-round: var(--klp-radius-full);
+  --klp-radius-round: var(--klp-radius-full);
   --klp-radius-m: var(--klp-radius-base);
   --klp-radius-l: var(--klp-radius-lg);
   --klp-radius-xl: var(--klp-radius-2xl);
@@ -189,7 +189,7 @@
   --klp-size-2xl: var(--klp-spacing-12);
   --klp-size-3xl: var(--klp-spacing-16);
   --klp-size-square: var(--klp-radius-none);
-  --klp-size-round: var(--klp-radius-full);
+  --klp-radius-round: var(--klp-radius-full);
   --klp-radius-m: var(--klp-radius-base);
   --klp-radius-l: var(--klp-radius-lg);
   --klp-radius-xl: var(--klp-radius-2xl);
@@ -292,7 +292,7 @@
   --klp-size-2xl: var(--klp-spacing-12);
   --klp-size-3xl: var(--klp-spacing-16);
   --klp-size-square: var(--klp-radius-none);
-  --klp-size-round: var(--klp-radius-full);
+  --klp-radius-round: var(--klp-radius-full);
   --klp-radius-m: var(--klp-radius-base);
   --klp-radius-l: var(--klp-radius-lg);
   --klp-radius-xl: var(--klp-radius-2xl);
@@ -395,7 +395,7 @@
   --klp-size-2xl: var(--klp-spacing-12);
   --klp-size-3xl: var(--klp-spacing-16);
   --klp-size-square: var(--klp-radius-none);
-  --klp-size-round: var(--klp-radius-full);
+  --klp-radius-round: var(--klp-radius-full);
   --klp-radius-m: var(--klp-radius-base);
   --klp-radius-l: var(--klp-radius-lg);
   --klp-radius-xl: var(--klp-radius-2xl);

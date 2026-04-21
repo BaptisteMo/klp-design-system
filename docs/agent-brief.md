@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-04-21T08:29:01.772Z
+generated-at: 2026-04-21T11:43:53.897Z
 schema-version: 0.1.0
 ---
 
@@ -64,8 +64,8 @@ Condensed reference for design agents. Read this first before any design task; d
 - **bg:** `bg-klp-bg-brand`, `bg-klp-bg-brand-contrasted`, `bg-klp-bg-brand-low`, `bg-klp-bg-danger`, `bg-klp-bg-danger-contrasted`, `bg-klp-bg-danger-emphasis`, `bg-klp-bg-decorative-orange`, `bg-klp-bg-default`, … (14 more)
 - **fg:** `text-klp-fg-brand`, `text-klp-fg-brand-contrasted`, `text-klp-fg-danger`, `text-klp-fg-danger-contrasted`, `text-klp-fg-default`, `text-klp-fg-disable`, `text-klp-fg-info`, `text-klp-fg-info-contrasted`, … (9 more)
 - **border:** `border-klp-border-brand`, `border-klp-border-brand-contrasted`, `border-klp-border-brand-emphasis`, `border-klp-border-contrasted`, `border-klp-border-danger`, `border-klp-border-danger-contrasted`, `border-klp-border-danger-emphasis`, `border-klp-border-default`, … (15 more)
-- **radius:** `rounded-klp-l`, `rounded-klp-m`, `rounded-klp-xl`
-- **size:** `gap-klp-size-2xl`, `gap-klp-size-2xs`, `gap-klp-size-3xl`, `gap-klp-size-3xs`, `gap-klp-size-4xs`, `gap-klp-size-l`, `gap-klp-size-m`, `gap-klp-size-round`, … (4 more)
+- **radius:** `rounded-klp-l`, `rounded-klp-m`, `rounded-klp-round`, `rounded-klp-xl`
+- **size:** `gap-klp-size-2xl`, `gap-klp-size-2xs`, `gap-klp-size-3xl`, `gap-klp-size-3xs`, `gap-klp-size-4xs`, `gap-klp-size-l`, `gap-klp-size-m`, `gap-klp-size-s`, … (3 more)
 - **font:** `font-klp-family-body`, `font-klp-family-label`, `font-klp-family-title`, `font-klp-size-heading-h1`, `font-klp-size-heading-h2`, `font-klp-size-heading-h3`, `font-klp-size-heading-h4`, `font-klp-size-text-large`, … (8 more)
 
 ## Brand

@@ -17,7 +17,7 @@ import { cn } from '@/lib/cn'
 //   default-clicked: fill=--klp-bg-brand,      stroke=--klp-border-brand,    paddingX/Y=--klp-size-2xs
 //   default-disable: fill=--klp-bg-disable,    stroke=--klp-border-contrasted, paddingX/Y=--klp-size-3xs
 //
-// cornerRadius: --klp-size-round (9999px) → rounded-full (always full pill)
+// cornerRadius: --klp-radius-round (9999px) → rounded-full (always full pill)
 // fixed size literals: width=24px, height=24px → h-[24px] w-[24px]
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
@@ -25,7 +25,7 @@ const rootVariants = cva(
     // layout + fixed size from spec literals (width: 24px, height: 24px)
     'box-border inline-flex shrink-0 items-center justify-center',
     'h-[24px] w-[24px]',
-    // cornerRadius: --klp-size-round = 9999px → always fully rounded
+    // cornerRadius: --klp-radius-round = 9999px → always fully rounded
     'rounded-full',
     // border
     'border',

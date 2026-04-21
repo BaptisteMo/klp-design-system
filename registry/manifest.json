@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-21T08:54:49.483Z",
+  "generatedAt": "2026-04-21T11:43:54.254Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -25,12 +25,12 @@
         {
           "src": "src/styles/tokens/aliases.css",
           "dst": "src/styles/tokens/aliases.css",
-          "hash": "sha256:89ca6550bca5c1270cebf7e2fcf3c4bee7a1d209f01dfb4f6de18d731d196259"
+          "hash": "sha256:7e93f3b28cb2d8503d241bdbd7bfdfd3569c432d804fae5834154f277ae684fe"
         },
         {
           "src": "src/styles/tokens/theme.css",
           "dst": "src/styles/tokens/theme.css",
-          "hash": "sha256:beb33601dec06eb9e747f3919a95b84a5fedea5784e0a9831f84fb3f9bf80387"
+          "hash": "sha256:05f41cdb0d33ec93201dabe2d2a67960625326552169fa73afc2f7aaa6531645"
         }
       ]
     },
@@ -436,7 +436,7 @@
             {
               "src": "src/components/radio/Radio.tsx",
               "dst": "src/components/ui/radio/Radio.tsx",
-              "hash": "sha256:4382d532f55a575459500512dadd253d23b25faa1028edca0dd13fb9ad7581fb"
+              "hash": "sha256:608b127d522d9f3381591359fe7a55201861a44315ecea326bc0a96726392376"
             },
             {
               "src": "src/components/radio/index.ts",
@@ -609,7 +609,7 @@
         {
           "src": "docs/agent-brief.md",
           "dst": "docs/agent-brief.md",
-          "hash": "sha256:e4c5219678cdda654e3edea6932c3488fc0a42b9ffc5f7278ecfb94f6b059d5c"
+          "hash": "sha256:c6a1b724850a0de8c7dcca79da6c5042b6a9f3fb62db3fb0ec474cb92a00be2b"
         },
         {
           "src": "docs/index.md",

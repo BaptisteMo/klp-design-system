@@ -85,10 +85,10 @@
   --spacing-klp-size-2xl: var(--klp-size-2xl);
   --spacing-klp-size-3xl: var(--klp-size-3xl);
   --spacing-klp-size-square: var(--klp-size-square);
-  --spacing-klp-size-round: var(--klp-size-round);
   --spacing-klp-default-text: var(--klp-default-text);
 
   /* radius → rounded-klp-* */
+  --radius-klp-round: var(--klp-radius-round);
   --radius-klp-m: var(--klp-radius-m);
   --radius-klp-l: var(--klp-radius-l);
   --radius-klp-xl: var(--klp-radius-xl);
