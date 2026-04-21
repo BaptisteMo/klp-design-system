@@ -124,6 +124,7 @@ On `operation: SYNC`, iterate over every component in `klp-components.json`:
 
 1. Re-run the systematic import scan on each component's source.
 2. Rebuild `dependencies.components[]` from scratch for every entry.
+2b. Run the external import scan (see "Systematic external import scan → `registry/<name>.json` sync" subsection) and rewrite `registry/<name>.json#dependencies.npm` for every component.
 3. Reset every `usedBy[]` to `[]`, then re-populate from the freshly computed forward edges.
 4. Regenerate each `docs/components/_index_<name>.md` body. Preserve only the `KLP:NOTES` block across the regeneration. The `KLP:GAPS` block is rewritten from freshly computed gap data (source of truth: the newly recomputed state — or an empty block if no adapter report is available in SYNC mode).
 5. Regenerate `docs/gaps.md` (full rewrite — see below).
