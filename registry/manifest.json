@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-21T13:39:45.253Z",
+  "generatedAt": "2026-04-21T15:06:02.445Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -684,7 +684,7 @@
         {
           "src": "docs/components/_index_collapsible.md",
           "dst": "docs/components/_index_collapsible.md",
-          "hash": "sha256:f2577dee6893840837823596cdcc63e2f62591a52686c0adc7e6397992a6b33d"
+          "hash": "sha256:d38f2c37f437234290b569ddd0839d56c4eede8f21d6db3dc9ce631e7fada912"
         },
         {
           "src": "docs/components/_index_data-table.md",
@@ -759,7 +759,7 @@
         {
           "src": "docs/components/_index_tabulation-cells.md",
           "dst": "docs/components/_index_tabulation-cells.md",
-          "hash": "sha256:41b13a4e8ad4eea3776b55309d5cd2e7f772ad514f43735a1b1f1fc03672f306"
+          "hash": "sha256:44f2dd9b2046967210ef55b803ff07c0e546467dbdd14bfbc34fadca4bdf8299"
         },
         {
           "src": "docs/components/_index_tabulations.md",
