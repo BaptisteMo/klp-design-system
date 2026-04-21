@@ -85,6 +85,7 @@ Everything else scanned from `from '<pkg>'` imports (notably `@radix-ui/*`, `@ta
 13. **Run the reverse-index pass.** See "Reverse-index pass" below.
 14. **Regenerate `docs/gaps.md`** from the freshly computed per-component gap data (see "Aggregated gap report" subsection below).
 15. **Append to `docs/log.md`**. One line: `## [YYYY-MM-DD] DOCUMENT | <component> — N variants, M dependencies, K usedBy`.
+15a. **Run the `klp-doc-rules-validator` skill.** Invoke `node .claude/skills/klp-doc-rules-validator/scripts/validate-doc-rules.mjs <component> --fix` via Bash. Parse the JSON. Merge `autoFixed[]` and `mismatches[]` into the returned report under a new field `docRulesValidator: { autoFixed, mismatches }`. For each entry in `mismatches[]`, append one item to the report's top-level `warnings[]` with shape `{ "type": "doc-rules-mismatch", "rule": "<id>", "component": "<name>", "prop": "<name-if-R5>", "hint": "<hint>" }`. Do NOT fail the DOCUMENT operation if mismatches remain — validator auto-fix already wrote mechanical fixes to disk; remaining mismatches (R5 only in v1) are user-semantic decisions.
 16. **Report.** Emit a JSON block to stdout:
     ```json
     { "operation": "DOCUMENT", "component": "<name>", "docPath": "docs/components/_index_<name>.md", "dependencies": { "components": [...], "tokenGroups": [...], "brands": [...] }, "usedBy": [...], "warnings": [] }
@@ -129,6 +130,7 @@ On `operation: SYNC`, iterate over every component in `klp-components.json`:
 2b. Run the external import scan (see "Systematic external import scan → `registry/<name>.json` sync" subsection) and rewrite `registry/<name>.json#dependencies.npm` for every component.
 3. Reset every `usedBy[]` to `[]`, then re-populate from the freshly computed forward edges.
 4. Regenerate each `docs/components/_index_<name>.md` body. Preserve only the `KLP:NOTES` block across the regeneration. The `KLP:GAPS` block is rewritten from freshly computed gap data (source of truth: the newly recomputed state — or an empty block if no adapter report is available in SYNC mode).
+4b. **Run the `klp-doc-rules-validator` skill across every component.** Invoke `node .claude/skills/klp-doc-rules-validator/scripts/validate-doc-rules.mjs --all --fix` via Bash once at the end of the regen loop. Parse the aggregated JSON. Merge `autoFixed[]` and `mismatches[]` into the SYNC report under `docRulesValidator`. Surface R5 mismatches in the report's `warnings[]`; do NOT fail SYNC.
 5. Regenerate `docs/gaps.md` (full rewrite — see below).
 
 SYNC is the one-shot migration for components that were manually refactored before this discipline existed.
