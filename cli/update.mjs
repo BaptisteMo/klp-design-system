@@ -4,6 +4,7 @@
 import { readFile, writeFile, mkdir, unlink } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
+import { spawnSync } from 'node:child_process'
 import pc from 'picocolors'
 import { fetchManifest, collectNpmDeps } from './manifest.mjs'
 import { fetchBuffer } from './fetch.mjs'
@@ -15,15 +16,23 @@ import { askMultiselect } from './prompts.mjs'
 const REPO = 'BaptisteMo/klp-design-system'
 
 function parseArgs(rest) {
-  const out = { ref: 'main', dryRun: false, verbose: false, force: false, brand: null }
+  const out = { ref: 'main', dryRun: false, verbose: false, force: false, brand: null, install: true }
   for (const arg of rest) {
     if (arg.startsWith('--ref=')) out.ref = arg.slice(6)
     else if (arg === '--dry-run') out.dryRun = true
     else if (arg === '--verbose') out.verbose = true
     else if (arg === '--force') out.force = true
+    else if (arg === '--no-install') out.install = false
     else if (arg.startsWith('--brand=')) out.brand = arg.slice(8)
   }
   return out
+}
+
+function detectPackageManager(cwd) {
+  if (existsSync(resolve(cwd, 'pnpm-lock.yaml'))) return 'pnpm'
+  if (existsSync(resolve(cwd, 'yarn.lock'))) return 'yarn'
+  if (existsSync(resolve(cwd, 'bun.lockb')) || existsSync(resolve(cwd, 'bun.lock'))) return 'bun'
+  return 'npm'
 }
 
 export async function run(rest) {
@@ -172,7 +181,17 @@ export async function run(rest) {
     const missing = newDeps.filter((d) => !currentDeps.has(d))
     if (missing.length > 0) {
       console.log(pc.yellow(`\n! New npm deps detected: ${missing.join(', ')}`))
-      console.log(pc.gray(`  Run your package manager's add command manually.`))
+      if (args.install && !args.dryRun) {
+        const pm = detectPackageManager(cwd)
+        const addCmd = pm === 'npm' ? 'install' : 'add'
+        console.log(pc.cyan(`→ installing with ${pm} ${addCmd} ${missing.join(' ')}`))
+        const res = spawnSync(pm, [addCmd, ...missing], { cwd, stdio: 'inherit' })
+        if (res.status !== 0) {
+          console.error(pc.yellow(`! ${pm} ${addCmd} failed — run "${pm} ${addCmd} ${missing.join(' ')}" manually`))
+        }
+      } else {
+        console.log(pc.gray(`  Run "<pm> add ${missing.join(' ')}" manually (--no-install or --dry-run in effect).`))
+      }
     }
   }
 
