@@ -90,9 +90,29 @@ export type ActionSheetItemSize  = 'lg' | 'md' | 'sm'
 export interface ActionSheetItemProps
   extends React.ButtonHTMLAttributes<HTMLButtonElement>,
     VariantProps<typeof rootVariants> {
+  /**
+   * @propClass persistent
+   */
+  state?: ActionSheetItemState
+  /**
+   * @propClass optional
+   */
+  size?: ActionSheetItemSize
+  /**
+   * @propClass optional
+   */
   asChild?:         boolean
+  /**
+   * @propClass optional
+   */
   firstIcon?:       React.ReactNode
+  /**
+   * @propClass optional
+   */
   secondAction?:    React.ReactNode
+  /**
+   * @propClass optional
+   */
   description?:     React.ReactNode
 }
 

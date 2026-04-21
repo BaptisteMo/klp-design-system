@@ -94,9 +94,21 @@ const CONTENT_ICONS = {
 // Public props
 // ---------------------------------------------------------------------------
 export interface InContentAlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  /**
+   * @propClass optional
+   */
   content?: 'info' | 'success' | 'danger' | 'warning'
+  /**
+   * @propClass optional
+   */
   size?: 'lg' | 'md' | 'sm'
+  /**
+   * @propClass required
+   */
   title: string
+  /**
+   * @propClass optional
+   */
   body?: React.ReactNode
 }
 

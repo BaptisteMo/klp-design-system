@@ -124,17 +124,34 @@ export type BadgeSize = 'small' | 'medium' | 'large'
 export type BadgeStyle = 'bordered' | 'light'
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLSpanElement> {
-  /** Semantic type (color scheme) */
+  /**
+   * Required badge content (text, number, etc.).
+   * @propClass required
+   */
+  children?: React.ReactNode
+  /** Semantic type (color scheme)
+   * @propClass optional
+   */
   badgeType?: BadgeType
-  /** Size variant — controls padding and gap */
+  /** Size variant — controls padding and gap
+   * @propClass optional
+   */
   size?: BadgeSize
-  /** Style variant — bordered adds a colored stroke, light removes it */
+  /** Style variant — bordered adds a colored stroke, light removes it
+   * @propClass optional
+   */
   badgeStyle?: BadgeStyle
-  /** Optional leading icon */
+  /** Optional leading icon
+   * @propClass optional
+   */
   leftIcon?: React.ReactNode
-  /** Optional trailing icon */
+  /** Optional trailing icon
+   * @propClass optional
+   */
   rightIcon?: React.ReactNode
-  /** Render as child element (Slot pattern) */
+  /** Render as child element (Slot pattern)
+   * @propClass optional
+   */
   asChild?: boolean
 }
 

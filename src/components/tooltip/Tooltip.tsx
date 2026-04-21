@@ -92,7 +92,9 @@ export interface TooltipContentProps
     'side' | 'align'
   >,
     VariantProps<typeof rootVariants> {
-  /** Controls arrow placement and tooltip position relative to the trigger. */
+  /** Controls arrow placement and tooltip position relative to the trigger.
+   * @propClass optional
+   */
   arrowOrientation?: ArrowOrientation
 }
 
@@ -147,19 +149,33 @@ TooltipContent.displayName = 'TooltipContent'
 // Accepts a `content` prop so consumers don't have to wire Root+Trigger+Content.
 // ---------------------------------------------------------------------------
 export interface TooltipProps {
-  /** The tooltip bubble text. */
+  /** The tooltip bubble text.
+   * @propClass required
+   */
   content: React.ReactNode
-  /** The element that triggers the tooltip. */
+  /** The element that triggers the tooltip.
+   * @propClass optional
+   */
   children: React.ReactNode
-  /** Controls arrow placement and tooltip position. */
+  /** Controls arrow placement and tooltip position.
+   * @propClass optional
+   */
   arrowOrientation?: ArrowOrientation
-  /** Controlled open state. */
+  /** Controlled open state.
+   * @propClass optional
+   */
   open?: boolean
-  /** Uncontrolled default open state. */
+  /** Uncontrolled default open state.
+   * @propClass optional
+   */
   defaultOpen?: boolean
-  /** Callback when open state changes. */
+  /** Callback when open state changes.
+   * @propClass optional
+   */
   onOpenChange?: (open: boolean) => void
-  /** Override delay in ms. */
+  /** Override delay in ms.
+   * @propClass optional
+   */
   delayDuration?: number
 }
 

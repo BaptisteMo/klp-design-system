@@ -109,17 +109,34 @@ const iconVariants = cva(
 // ---------------------------------------------------------------------------
 export interface ButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'type'> {
-  /** Visual style variant (maps to spec variantAxes.type) */
+  /**
+   * Button label or content.
+   * @propClass required
+   */
+  children?: React.ReactNode
+  /** Visual style variant (maps to spec variantAxes.type)
+   * @propClass optional
+   */
   variant?: VariantProps<typeof rootVariants>['variant']
-  /** Size axis */
+  /** Size axis
+   * @propClass optional
+   */
   size?: VariantProps<typeof rootVariants>['size']
-  /** Native button type attribute */
+  /** Native button type attribute
+   * @propClass optional
+   */
   htmlType?: 'button' | 'submit' | 'reset'
-  /** Render child element in place of <button> (e.g. <a>) */
+  /** Render child element in place of <button> (e.g. <a>)
+   * @propClass optional
+   */
   asChild?: boolean
-  /** Optional icon rendered before the label */
+  /** Optional icon rendered before the label
+   * @propClass optional
+   */
   leftIcon?: React.ReactNode
-  /** Optional icon rendered after the label */
+  /** Optional icon rendered after the label
+   * @propClass optional
+   */
   rightIcon?: React.ReactNode
 }
 

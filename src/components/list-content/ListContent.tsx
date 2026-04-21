@@ -85,27 +85,51 @@ export type ListContentSize  = 'small' | 'medium' | 'large'
 export type ListContentState = 'default' | 'hover' | 'active'
 
 export interface ListContentProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Size variant — controls padding and sublabel font-size */
+  /** Size variant — controls padding and sublabel font-size
+   * @propClass optional
+   */
   size?: ListContentSize
-  /** Interaction state — controls background fill and text/icon color */
+  /** Interaction state — controls background fill and text/icon color.
+   * Represents the selected row in the list.
+   *
+   * @propClass persistent
+   */
   state?: ListContentState
-  /** Primary label text */
+  /** Primary label text
+   * @propClass optional
+   */
   label?: React.ReactNode
-  /** Secondary sublabel text */
+  /** Secondary sublabel text
+   * @propClass optional
+   */
   sublabel?: React.ReactNode
-  /** Whether to show the sublabel */
+  /** Whether to show the sublabel
+   * @propClass optional
+   */
   showSublabel?: boolean
-  /** Whether to show the left decorative icon */
+  /** Whether to show the left decorative icon
+   * @propClass optional
+   */
   showDecorativeIcon?: boolean
-  /** Custom decorative icon — defaults to Plus from lucide-react */
+  /** Custom decorative icon — defaults to Plus from lucide-react
+   * @propClass optional
+   */
   decorativeIcon?: React.ReactNode
-  /** Whether to show the right action button */
+  /** Whether to show the right action button
+   * @propClass optional
+   */
   showActionButton?: boolean
-  /** Callback for the action button click */
+  /** Callback for the action button click
+   * @propClass optional
+   */
   onActionClick?: React.MouseEventHandler<HTMLButtonElement>
-  /** aria-label for the action button */
+  /** aria-label for the action button
+   * @propClass optional
+   */
   actionLabel?: string
-  /** Use Slot (asChild) pattern on the root */
+  /** Use Slot (asChild) pattern on the root
+   * @propClass optional
+   */
   asChild?: boolean
 }
 

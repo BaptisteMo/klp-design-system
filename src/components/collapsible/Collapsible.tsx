@@ -125,19 +125,33 @@ const contentTextVariants = cva(
 // Types
 // ---------------------------------------------------------------------------
 export interface CollapsibleProps {
-  /** Controlled open state */
+  /** Controlled open state
+   * @propClass optional
+   */
   open?: boolean
-  /** Default open state (uncontrolled) */
+  /** Default open state (uncontrolled)
+   * @propClass optional
+   */
   defaultOpen?: boolean
-  /** Callback when open state changes */
+  /** Callback when open state changes
+   * @propClass optional
+   */
   onOpenChange?: (open: boolean) => void
-  /** Leading icon in the header. Defaults to ShoppingCart as placeholder. */
+  /** Leading icon in the header. Defaults to ShoppingCart as placeholder.
+   * @propClass optional
+   */
   icon?: React.ReactNode
-  /** Section title */
+  /** Section title
+   * @propClass optional
+   */
   title?: string
-  /** Content rendered inside the collapsible area */
+  /** Content rendered inside the collapsible area
+   * @propClass optional
+   */
   children?: React.ReactNode
-  /** Additional className on the root element */
+  /** Additional className on the root element
+   * @propClass optional
+   */
   className?: string
 }
 

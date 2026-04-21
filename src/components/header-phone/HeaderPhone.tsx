@@ -84,21 +84,37 @@ const titleVariants = cva(
 // Types
 // ---------------------------------------------------------------------------
 export interface HeaderPhoneProps extends React.HTMLAttributes<HTMLElement> {
-  /** Page title rendered in the title bar */
+  /** Page title rendered in the title bar
+   * @propClass optional
+   */
   title?: string
-  /** Whether to show the notification dot on the bell button */
+  /** Whether to show the notification dot on the bell button
+   * @propClass optional
+   */
   hasNotification?: boolean
-  /** Unread count label for the notification button (for screen readers) */
+  /** Unread count label for the notification button (for screen readers)
+   * @propClass optional
+   */
   notificationCount?: number
-  /** Breadcrumb steps passed to BreadCrumbs */
+  /** Breadcrumb steps passed to BreadCrumbs
+   * @propClass optional
+   */
   breadcrumbSteps?: BreadCrumbStep[]
-  /** Logo slot — accepts any React node (brand asset, img, svg component, etc.) */
+  /** Logo slot — accepts any React node (brand asset, img, svg component, etc.)
+   * @propClass optional
+   */
   logo?: React.ReactNode
-  /** Handler for menu button click */
+  /** Handler for menu button click
+   * @propClass optional
+   */
   onMenuClick?: () => void
-  /** Handler for notification button click */
+  /** Handler for notification button click
+   * @propClass optional
+   */
   onNotificationClick?: () => void
-  /** Handler for search button click */
+  /** Handler for search button click
+   * @propClass optional
+   */
   onSearchClick?: () => void
 }
 

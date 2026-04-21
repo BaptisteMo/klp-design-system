@@ -95,10 +95,23 @@ const STATE_ICONS = {
 // Public props
 // ---------------------------------------------------------------------------
 export interface FloatingAlertProps extends React.HTMLAttributes<HTMLDivElement> {
-  state?: 'danger' | 'warning' | 'information' | 'success'
-  size?: 'sm' | 'md' | 'lg'
-  onDismiss?: () => void
+  /**
+   * Alert title / content — the primary message.
+   * @propClass required
+   */
   children?: React.ReactNode
+  /**
+   * @propClass optional
+   */
+  state?: 'danger' | 'warning' | 'information' | 'success'
+  /**
+   * @propClass optional
+   */
+  size?: 'sm' | 'md' | 'lg'
+  /**
+   * @propClass optional
+   */
+  onDismiss?: () => void
 }
 
 // ---------------------------------------------------------------------------

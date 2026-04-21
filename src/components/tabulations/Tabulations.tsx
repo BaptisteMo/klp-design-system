@@ -51,6 +51,8 @@ export interface TabulationsProps
    * - `value`: unique identifier used by Radix Tabs for controlled selection.
    * - `label`: display text rendered inside the cell.
    * - `badge`: optional numeric count shown in the badge pill.
+   *
+   * @propClass required
    */
   tabs: Array<{
     value: string

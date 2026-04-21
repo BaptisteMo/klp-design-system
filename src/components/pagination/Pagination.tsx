@@ -4,17 +4,29 @@ import { cn } from '@/lib/cn'
 import { Button } from '@/components/button'
 
 export interface PaginationProps extends React.HTMLAttributes<HTMLElement> {
-  /** 1-indexed current page. */
+  /** 1-indexed current page.
+   * @propClass required
+   */
   page: number
-  /** Items per page (used for the "X-Y of Z" label). */
+  /** Items per page (used for the "X-Y of Z" label).
+   * @propClass required
+   */
   pageSize: number
-  /** Total number of items across all pages. */
+  /** Total number of items across all pages.
+   * @propClass required
+   */
   total: number
-  /** Called with the new 1-indexed page number. */
+  /** Called with the new 1-indexed page number.
+   * @propClass required
+   */
   onPageChange: (page: number) => void
-  /** Number of pages shown on each side of the current page. Default 1. */
+  /** Number of pages shown on each side of the current page. Default 1.
+   * @propClass optional
+   */
   siblingCount?: number
-  /** Toggle the "X-Y of Z" label on the left. Default true. */
+  /** Toggle the "X-Y of Z" label on the left. Default true.
+   * @propClass optional
+   */
   showLabel?: boolean
 }
 

@@ -100,12 +100,18 @@ const indicatorVariants = cva(
 /** Props for the RadioGroup container */
 export interface RadioGroupProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Root> {
+  /**
+   * @propClass optional
+   */
   className?: string
 }
 
 /** Props for a single RadioGroup.Item */
 export interface RadioItemProps
   extends React.ComponentPropsWithoutRef<typeof RadioGroupPrimitive.Item> {
+  /**
+   * @propClass optional
+   */
   className?: string
 }
 

@@ -213,27 +213,46 @@ type InputState = 'default' | 'filled' | 'focused' | 'success' | 'danger' | 'dis
 export interface InputProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'>,
     VariantProps<typeof inputBoxVariants> {
-  /** Label text displayed above the input */
+  /** Label text displayed above the input
+   * @propClass optional
+   */
   label?: string
-  /** Helper / description text displayed below the input */
+  /** Helper / description text displayed below the input
+   * @propClass optional
+   */
   description?: string
-  /** Show the optional info icon next to the label */
+  /** Show the optional info icon next to the label
+   * @propClass optional
+   */
   showInfoIcon?: boolean
-  /** Icon rendered on the left inside the input box */
+  /** Icon rendered on the left inside the input box
+   * @propClass optional
+   */
   iconLeft?: React.ReactNode
-  /** Icon rendered on the right inside the input box */
+  /** Icon rendered on the right inside the input box
+   * @propClass optional
+   */
   iconRight?: React.ReactNode
-  /** Visual size of the input */
+  /** Visual size of the input
+   * @propClass optional
+   */
   size?: InputSize
   /**
    * Explicit visual state override. When omitted the component derives state
    * from native HTML attributes (disabled → "disable", aria-invalid → "danger")
    * and focus/value events.
+   *
+   * @propClass computed
+   * @derivedFrom disabled, aria-invalid, focus, value
    */
   state?: InputState
-  /** Additional className applied to the outer root wrapper */
+  /** Additional className applied to the outer root wrapper
+   * @propClass optional
+   */
   className?: string
-  /** Additional className applied to the input-box container */
+  /** Additional className applied to the input-box container
+   * @propClass optional
+   */
   inputBoxClassName?: string
 }
 

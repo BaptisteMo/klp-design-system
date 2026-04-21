@@ -127,11 +127,17 @@ export interface BreadCrumbStep {
 }
 
 export interface BreadCrumbsProps extends React.HTMLAttributes<HTMLElement> {
-  /** Ordered list of steps from root → current */
+  /** Ordered list of steps from root → current
+   * @propClass required
+   */
   steps: BreadCrumbStep[]
-  /** Whether the current (last) step shows a chevron-down dropdown affordance */
+  /** Whether the current (last) step shows a chevron-down dropdown affordance
+   * @propClass optional
+   */
   showDropdownAffordance?: boolean
-  /** Override the steps variant key (derived from steps.length - 1 if omitted) */
+  /** Override the steps variant key (derived from steps.length - 1 if omitted)
+   * @propClass optional
+   */
   stepsVariant?: VariantProps<typeof rootVariants>['steps']
 }
 

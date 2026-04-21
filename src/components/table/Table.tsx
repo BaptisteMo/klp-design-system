@@ -84,6 +84,9 @@ const Footer = React.forwardRef<
 Footer.displayName = 'Table.Footer'
 
 export interface TableRowProps extends React.HTMLAttributes<HTMLTableRowElement> {
+  /**
+   * @propClass optional
+   */
   variant?: 'default' | 'selected' | 'muted'
 }
 const Row = React.forwardRef<HTMLTableRowElement, TableRowProps>(

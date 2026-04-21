@@ -190,21 +190,37 @@ export interface SideBarMenuItem {
 }
 
 export interface SideBarProps extends React.HTMLAttributes<HTMLElement> {
-  /** Desktop or phone layout */
+  /** Desktop or phone layout
+   * @propClass optional
+   */
   device?: SideBarDevice
-  /** Logo node rendered in the header */
+  /** Logo node rendered in the header
+   * @propClass optional
+   */
   logo?: React.ReactNode
-  /** Context/location label text */
+  /** Context/location label text
+   * @propClass optional
+   */
   contextLabel?: string
-  /** Called when notification/close button is clicked */
+  /** Called when notification/close button is clicked
+   * @propClass optional
+   */
   onNotificationClick?: React.MouseEventHandler<HTMLButtonElement>
-  /** Called when context-switcher is clicked */
+  /** Called when context-switcher is clicked
+   * @propClass optional
+   */
   onContextSwitcherClick?: React.MouseEventHandler<HTMLDivElement>
-  /** Menu items rendered as ItemSideBar instances */
+  /** Menu items rendered as ItemSideBar instances
+   * @propClass required
+   */
   menuItems?: SideBarMenuItem[]
-  /** Avatar image node or src string */
+  /** Avatar image node or src string
+   * @propClass optional
+   */
   avatar?: React.ReactNode
-  /** User display name */
+  /** User display name
+   * @propClass optional
+   */
   userName?: string
 }
 

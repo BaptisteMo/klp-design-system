@@ -99,23 +99,39 @@ export interface ListItemConfig
 }
 
 export interface ListProps extends React.HTMLAttributes<HTMLDivElement> {
-  /** Layout style variant */
+  /** Layout style variant
+   * @propClass optional
+   */
   listStyle?: ListStyle
-  /** Title text rendered in the header */
+  /** Title text rendered in the header
+   * @propClass optional
+   */
   listTitle?: React.ReactNode
-  /** Whether to show the header action button (hidden in with-inputs) */
+  /** Whether to show the header action button (hidden in with-inputs)
+   * @propClass optional
+   */
   showButton?: boolean
-  /** Label text for the header action button */
+  /** Label text for the header action button
+   * @propClass optional
+   */
   buttonLabel?: React.ReactNode
-  /** Click handler for the header action button */
+  /** Click handler for the header action button
+   * @propClass optional
+   */
   onButtonClick?: React.MouseEventHandler<HTMLButtonElement>
-  /** Size passed down to each ListContent row */
+  /** Size passed down to each ListContent row
+   * @propClass optional
+   */
   itemSize?: ListContentSize
-  /** Rows — each entry maps to a <ListContent> instance */
+  /** Rows — each entry maps to a <ListContent> instance
+   * @propClass required
+   */
   items?: ListItemConfig[]
   /**
    * Slot for filter inputs shown in the header when style="with-inputs".
    * Render your <Input> instances here.
+   *
+   * @propClass optional
    */
   headerInputs?: React.ReactNode
 }

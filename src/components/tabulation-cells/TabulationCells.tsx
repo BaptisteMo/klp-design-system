@@ -44,7 +44,14 @@ const labelVariants = cva(
 export interface TabulationCellProps
   extends React.ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>,
     VariantProps<typeof rootVariants> {
-  /** Badge count to display alongside the label. Omit to hide the badge. */
+  /**
+   * Label text rendered inside the tab cell (passed as children).
+   * @propClass required
+   */
+  children?: React.ReactNode
+  /** Badge count to display alongside the label. Omit to hide the badge.
+   * @propClass optional
+   */
   badge?: number | string
 }
 

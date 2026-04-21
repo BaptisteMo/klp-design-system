@@ -195,30 +195,51 @@ export type TextAreaState = 'default' | 'focus' | 'filled' | 'danger' | 'success
 
 export interface TextAreaProps
   extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'children'> {
-  /** Feature variant: plain textarea or rich-text with toolbar + action bar */
+  /** Feature variant: plain textarea or rich-text with toolbar + action bar
+   * @propClass optional
+   */
   feature?: 'simple' | 'rich-text'
   /**
    * Explicit visual state override. When omitted, state is derived from
    * native attributes (disabled → "disable", aria-invalid → "danger") and
    * from focus/value events (hasValue → "filled", isFocused → "focus").
+   *
+   * @propClass computed
+   * @derivedFrom disabled, aria-invalid, focus, value
    */
   state?: TextAreaState
-  /** Field label */
+  /** Field label
+   * @propClass optional
+   */
   label?: string
-  /** Show the header row (label + optional info icon). Matches Figma Show header prop. */
+  /** Show the header row (label + optional info icon). Matches Figma Show header prop.
+   * @propClass optional
+   */
   showHeader?: boolean
-  /** Show the info icon next to the label. Matches Figma Show info icon prop. */
+  /** Show the info icon next to the label. Matches Figma Show info icon prop.
+   * @propClass optional
+   */
   showInfoIcon?: boolean
-  /** Placeholder text shown inside the input area */
+  /** Placeholder text shown inside the input area
+   * @propClass optional
+   */
   placeholder?: string
-  /** Accessible id linking label → textarea */
+  /** Accessible id linking label → textarea
+   * @propClass optional
+   */
   id?: string
   /** Rich-text toolbar actions (feature=rich-text only). Each action renders
-   *  as a tertiary icon Button with its icon + aria-label. */
+   *  as a tertiary icon Button with its icon + aria-label.
+   * @propClass optional
+   */
   toolbarActions?: ToolbarAction[]
-  /** Extra className forwarded to the root wrapper */
+  /** Extra className forwarded to the root wrapper
+   * @propClass optional
+   */
   className?: string
-  /** Resize handle behavior on the textarea (mirrors Radix Themes' TextArea API) */
+  /** Resize handle behavior on the textarea (mirrors Radix Themes' TextArea API)
+   * @propClass optional
+   */
   resize?: TextAreaResize
 }
 

@@ -5,7 +5,13 @@ export type Brand = 'wireframe' | 'klub' | 'atlas' | 'showup'
 export const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const
 
 export interface BrandProviderProps {
+  /**
+   * @propClass required
+   */
   brand: Brand
+  /**
+   * @propClass required
+   */
   children: ReactNode
 }
 

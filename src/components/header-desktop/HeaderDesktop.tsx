@@ -90,19 +90,33 @@ const searchInputVariants = cva('', {
 export type HeaderDesktopFeatures = 'default' | 'search-active'
 
 export interface HeaderDesktopProps extends React.HTMLAttributes<HTMLElement> {
-  /** Feature variant controlling which action row is shown */
+  /** Feature variant controlling which action row is shown
+   * @propClass optional
+   */
   features?: HeaderDesktopFeatures
-  /** Page title text */
+  /** Page title text
+   * @propClass optional
+   */
   title?: string
-  /** Breadcrumb steps array — forwarded to BreadCrumbs */
+  /** Breadcrumb steps array — forwarded to BreadCrumbs
+   * @propClass optional
+   */
   breadcrumbSteps?: BreadCrumbStep[]
-  /** Callback when a tertiary icon button is clicked (receives icon name) */
+  /** Callback when a tertiary icon button is clicked (receives icon name)
+   * @propClass optional
+   */
   onActionClick?: (action: 'check' | 'search' | 'pen-line' | 'folder-plus') => void
-  /** Callback when the secondary "New" button is clicked */
+  /** Callback when the secondary "New" button is clicked
+   * @propClass optional
+   */
   onNewClick?: () => void
-  /** Callback on search input change (search-active variant) */
+  /** Callback on search input change (search-active variant)
+   * @propClass optional
+   */
   onSearchChange?: (value: string) => void
-  /** Placeholder text for the search input */
+  /** Placeholder text for the search input
+   * @propClass optional
+   */
   searchPlaceholder?: string
 }
 

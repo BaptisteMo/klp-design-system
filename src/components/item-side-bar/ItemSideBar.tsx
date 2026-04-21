@@ -114,27 +114,50 @@ export type ItemSideBarState   = 'rest' | 'hover' | 'active'
 export type ItemSideBarFeature = 'collapsible' | 'static'
 
 export interface ItemSideBarProps {
-  /** Interaction state — drives trigger fill and icon-container border */
+  /** Interaction state — drives trigger fill and icon-container border.
+   * Represents the currently-selected navigation item.
+   *
+   * @propClass persistent
+   */
   state?: ItemSideBarState
-  /** Feature mode — collapsible adds chevron + expandable content panel */
+  /** Feature mode — collapsible adds chevron + expandable content panel
+   * @propClass optional
+   */
   feature?: ItemSideBarFeature
-  /** Icon to render inside the decorative icon box. Defaults to FolderOpen. */
+  /** Icon to render inside the decorative icon box. Defaults to FolderOpen.
+   * @propClass optional
+   */
   icon?: React.ReactNode
-  /** Item label text */
+  /** Item label text
+   * @propClass required
+   */
   label?: React.ReactNode
   /**
    * Content rows rendered inside the expanded panel.
    * Pass one or more <ActionSheetItem> elements (or any ReactNode).
+   *
+   * @propClass optional
    */
   children?: React.ReactNode
-  /** Whether the collapsible panel is open (controlled) */
+  /** Whether the collapsible panel is open (controlled)
+   * @propClass optional
+   */
   open?: boolean
-  /** Default open state (uncontrolled) */
+  /** Default open state (uncontrolled)
+   * @propClass optional
+   */
   defaultOpen?: boolean
-  /** Callback when open state changes */
+  /** Callback when open state changes
+   * @propClass optional
+   */
   onOpenChange?: (open: boolean) => void
-  /** Forwarded to the trigger button */
+  /** Forwarded to the trigger button
+   * @propClass optional
+   */
   onClick?: React.MouseEventHandler<HTMLButtonElement>
+  /**
+   * @propClass optional
+   */
   className?: string
 }
 

@@ -111,7 +111,9 @@ export interface SwitchProps
     'asChild'
   >,
     VariantProps<typeof rootVariants> {
-  /** Additional class names for the root element */
+  /** Additional class names for the root element
+   * @propClass optional
+   */
   className?: string
 }
 

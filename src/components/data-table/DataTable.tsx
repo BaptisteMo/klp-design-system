@@ -40,23 +40,45 @@ export interface ColumnDef<TData> {
 }
 
 export interface DataTableProps<TData> {
+  /**
+   * @propClass required
+   */
   columns: ColumnDef<TData>[]
+  /**
+   * @propClass required
+   */
   data: TData[]
-  /** Enables pagination when given an object. Default false. */
+  /** Enables pagination when given an object. Default false.
+   * @propClass optional
+   */
   pagination?: { pageSize: number } | false
-  /** Initial sort state (uncontrolled). */
+  /** Initial sort state (uncontrolled).
+   * @propClass optional
+   */
   initialSorting?: { id: string; desc: boolean }[]
-  /** Controlled sort callback (optional). */
+  /** Controlled sort callback (optional).
+   * @propClass optional
+   */
   onSortingChange?: (sorting: SortingState) => void
-  /** Toolbar slot rendered above the table. */
+  /** Toolbar slot rendered above the table.
+   * @propClass optional
+   */
   toolbar?: React.ReactNode
-  /** Content when data is empty. Default "No data." */
+  /** Content when data is empty. Default "No data."
+   * @propClass optional
+   */
   emptyState?: React.ReactNode | string
-  /** Accessible caption forwarded to <table>. */
+  /** Accessible caption forwarded to <table>.
+   * @propClass optional
+   */
   caption?: React.ReactNode
-  /** Passed to the outer container div. */
+  /** Passed to the outer container div.
+   * @propClass optional
+   */
   className?: string
-  /** Passed to <Table.Root>. */
+  /** Passed to <Table.Root>.
+   * @propClass optional
+   */
   tableClassName?: string
 }
 

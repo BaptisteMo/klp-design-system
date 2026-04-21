@@ -124,7 +124,13 @@ export interface ActionSheetMenuItemDef {
 export interface ActionSheetMenuProps
   extends React.HTMLAttributes<HTMLDivElement>,
     VariantProps<typeof rootVariants> {
+  /**
+   * @propClass required
+   */
   sections: ActionSheetMenuSection[]
+  /**
+   * @propClass optional
+   */
   type?: ActionSheetMenuType
 }
 
@@ -247,6 +253,8 @@ const ActionSheetMenuTrigger = Popover.Trigger
 const ActionSheetMenuPortal = Popover.Portal
 const ActionSheetMenuAnchor = Popover.Anchor
 
+// ActionSheetMenuContentProps inherits sections (required) and type (optional) from ActionSheetMenuProps.
+// Only those inline props are annotated; Omit<Popover.Content, 'children'> props are native Radix props.
 export interface ActionSheetMenuContentProps
   extends Omit<React.ComponentPropsWithoutRef<typeof Popover.Content>, 'children'>,
     ActionSheetMenuProps {}
