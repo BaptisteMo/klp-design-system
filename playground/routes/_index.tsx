@@ -153,6 +153,12 @@ export function Index() {
         >
           SideBar
         </a>
+        <a
+          href="#/collapsible"
+          className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle px-4 py-2 text-sm text-klp-fg-default hover:bg-klp-bg-inset"
+        >
+          Collapsible
+        </a>
       </nav>
 
       <section className="rounded-klp-m border border-klp-border-default bg-klp-bg-subtle p-4">

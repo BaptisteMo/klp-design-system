@@ -45,6 +45,7 @@ document.documentElement.dataset.brand = 'wireframe'
 - [Table (primitives)](../components/_index_table.md) — default brand; no Figma spec captured yet.
 - [Pagination](../components/_index_pagination.md) — default brand; no Figma spec captured yet.
 - [Data Table](../components/_index_data-table.md) — default brand; no Figma spec captured yet.
+- [Collapsible](../components/_index_collapsible.md) — reference screenshots captured under the wireframe brand (2 variants: close-default, open-default).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

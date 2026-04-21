@@ -38,6 +38,7 @@ updated: 2026-04-16
 - [Header Desktop](../components/_index_header-desktop.md) — `--klp-radius-l` on action-button-tertiary, action-button-secondary, and search-input layers.
 - [Header Phone](../components/_index_header-phone.md) — `--klp-radius-l` on menu-button, notification-btn, and search-button `cornerRadius` layers.
 - [SideBar](../components/_index_sidebar.md) — `--klp-radius-l` on notification-button `cornerRadius` layer.
+- [Collapsible](../components/_index_collapsible.md) — `rounded-klp-l` (close root cornerRadius 8px literal), `rounded-klp-xl` (open root cornerRadius 16px literal), `--klp-radius-l` (toggle-button cornerRadius via Button tertiary/icon spec).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

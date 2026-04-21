@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-04-20
+updated: 2026-04-21
 ---
 
 # klp-design-system
@@ -28,6 +28,9 @@ Start here:
 
 ### containers
 - [Header Phone](./components/_index_header-phone.md) — Mobile phone header bar (top-bar + title-bar + breadcrumbs), single variant
+
+### disclosure
+- [Collapsible](./components/_index_collapsible.md) — Expandable disclosure panel with icon + title + chevron toggle, 2 state variants (close / open)
 
 ### layout
 *(empty — no components yet)*

@@ -306,6 +306,7 @@
         ]
       },
       "usedBy": [
+        "collapsible",
         "floating-alert",
         "header-desktop",
         "header-phone",
@@ -1400,6 +1401,64 @@
       "created": "2026-04-20",
       "updated": "2026-04-20"
     },
+    {
+      "name": "collapsible",
+      "displayName": "Collapsible",
+      "description": "Expandable disclosure panel with a header (icon + title + chevron toggle button) and a collapsible content area. Single variant axis: open/close state.",
+      "category": "disclosure",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/collapsible/Collapsible.tsx",
+      "doc": "docs/components/_index_collapsible.md",
+      "playground": "playground/routes/collapsible.tsx",
+      "registry": "registry/collapsible.json",
+      "spec": ".klp/figma-refs/collapsible/spec.json",
+      "radixPrimitive": "@radix-ui/react-collapsible",
+      "anatomy": [
+        "root",
+        "header",
+        "icon",
+        "title",
+        "toggle-button",
+        "content",
+        "content-text"
+      ],
+      "variantAxes": {
+        "state": ["close", "open"]
+      },
+      "variantCount": 2,
+      "dependencies": {
+        "components": ["button"],
+        "externals": [
+          "@radix-ui/react-collapsible",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": ["colors", "radius", "spacing", "typography"],
+        "brands": ["wireframe"]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "button",
+            "notes": "toggle-button renders as <Button variant=\"tertiary\" size=\"icon\"> wrapping a ChevronDown icon."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "partial-reuse",
+            "part": "toggle-button",
+            "reason": "Button is imported and used for the toggle. ChevronDown is passed as children (icon-only slot). A rotation class is appended via className to animate the chevron on open — this is a one-off visual tweak, not a rebuild.",
+            "action": "className-override"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-21",
+      "updated": "2026-04-21"
+    },
+
     {
       "name": "brand-provider",
       "displayName": "Brand Provider",

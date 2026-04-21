@@ -24,6 +24,7 @@ import { ItemSideBarRoute } from './routes/item-side-bar'
 import { HeaderDesktopRoute } from './routes/header-desktop'
 import { HeaderPhoneRoute } from './routes/header-phone'
 import { SideBarRoute } from './routes/sidebar'
+import { CollapsibleRoute } from './routes/collapsible'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -51,6 +52,7 @@ const routes: Record<string, ComponentType> = {
   'header-desktop': HeaderDesktopRoute,
   'header-phone': HeaderPhoneRoute,
   'sidebar': SideBarRoute,
+  'collapsible': CollapsibleRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

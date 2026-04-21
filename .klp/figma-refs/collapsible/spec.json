@@ -1,0 +1,359 @@
+{
+  "name": "collapsible",
+  "displayName": "Collapsible",
+  "figmaNode": "115201:84159",
+  "captureBrand": "wireframe",
+  "category": "disclosure",
+  "description": "Expandable disclosure panel with a header (icon + title + chevron toggle button) and a collapsible content area. Single variant axis: open/close state.",
+  "radixPrimitive": "@radix-ui/react-collapsible",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Outer card wrapper. cornerRadius differs per state: 8px (close), 16px (open). Both bind fill/stroke to cross-file variables resolving to bg/default and bd/default."
+    },
+    {
+      "part": "header",
+      "element": "div",
+      "notes": "Trigger row with icon, title and toggle button. In the open variant the header has a frosted-glass fill (bg/inset at 70% opacity + backdrop-blur). In the close variant the header is the root itself — no separate header frame."
+    },
+    {
+      "part": "icon",
+      "element": "span",
+      "notes": "Leading icon in the header. Currently a shopping-cart placeholder; consumer replaces via prop. Lucide icon wrapper at 20px size."
+    },
+    {
+      "part": "title",
+      "element": "span",
+      "notes": "Section title text (semibold, text-large)."
+    },
+    {
+      "part": "toggle-button",
+      "element": "button",
+      "notes": "Tertiary icon button containing a chevron-down icon. Triggers open/close.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "icon" },
+      "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": "8a719f67643fddf515a583ffc43b6d90988774d2" }
+    },
+    {
+      "part": "content",
+      "element": "div",
+      "notes": "Revealed content area. Hidden when state=close. padding 24px, gap 16px, cornerRadius 12px (literal)."
+    },
+    {
+      "part": "content-text",
+      "element": "p",
+      "notes": "Placeholder body text slot inside the content area. Consumer replaces with arbitrary children."
+    }
+  ],
+  "variantAxes": {
+    "state": ["close", "open"]
+  },
+  "variants": [
+    {
+      "id": "close-default",
+      "axes": { "state": "close" },
+      "figmaNodeId": "115201:84158",
+      "screenshot": "close-default.png",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#E6E9E8"
+          },
+          "paddingX": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "paddingY": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "cornerRadius": "8px",
+            "note": "cornerRadius not bound to a variable in Figma; closest alias is --klp-radius-l (8px). Use rounded-klp-l."
+          }
+        },
+        "header": {
+          "literals": {
+            "note": "No separate header frame in close variant — header IS the root. No additional layer bindings."
+          }
+        },
+        "icon": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "literals": {
+            "size": "16px",
+            "wrapperSize": "20px"
+          }
+        },
+        "title": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-large",
+            "figmaVar": "Sizing/Text/Large",
+            "value": "18px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label-bold",
+            "figmaVar": "Weight/Label Bold",
+            "value": "600"
+          },
+          "literals": {
+            "lineHeight": "28px"
+          }
+        },
+        "toggle-button": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "#FFFFFF00"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "#FFFFFF00"
+          },
+          "paddingAll": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "literals": {
+            "icon": "chevron-down",
+            "iconColor": "fg/muted → --klp-fg-muted",
+            "iconSize": "16px"
+          }
+        },
+        "content": {
+          "literals": {
+            "note": "Hidden in close state. No bindings to record."
+          }
+        },
+        "content-text": {
+          "literals": {
+            "note": "Hidden in close state. No bindings to record."
+          }
+        }
+      }
+    },
+    {
+      "id": "open-default",
+      "axes": { "state": "open" },
+      "figmaNodeId": "115201:84157",
+      "screenshot": "open-default.png",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#E6E9E8"
+          },
+          "literals": {
+            "cornerRadius": "16px",
+            "note": "cornerRadius not bound; closest alias is --klp-radius-xl (16px). Use rounded-klp-xl."
+          }
+        },
+        "header": {
+          "literals": {
+            "fill": "#EEF1F0",
+            "fillOpacity": "0.70",
+            "backdropBlur": "20px",
+            "paddingX": "16px",
+            "paddingY": "16px",
+            "note": "Header fill is bg/inset color at 70% opacity with backdrop-blur effect. The fill has no boundVariable in Figma — it is a hardcoded literal. Expected token: --klp-bg-inset at opacity-70. Adapter should use bg-klp-bg-inset/70 backdrop-blur-xl."
+          }
+        },
+        "icon": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "literals": {
+            "size": "16px",
+            "wrapperSize": "20px"
+          }
+        },
+        "title": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-large",
+            "figmaVar": "Sizing/Text/Large",
+            "value": "18px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label-bold",
+            "figmaVar": "Weight/Label Bold",
+            "value": "600"
+          },
+          "literals": {
+            "lineHeight": "28px"
+          }
+        },
+        "toggle-button": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "#FFFFFF00"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "#FFFFFF00"
+          },
+          "paddingAll": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "literals": {
+            "icon": "chevron-down",
+            "iconColor": "fg/muted → --klp-fg-muted",
+            "iconSize": "16px"
+          }
+        },
+        "content": {
+          "literals": {
+            "paddingX": "16px",
+            "paddingY": "24px",
+            "gap": "16px",
+            "cornerRadius": "12px",
+            "note": "Content area has no token bindings. paddingY=24px matches Sizing/L (--klp-size-l). paddingX=16px matches Sizing/M (--klp-size-m). gap=16px matches Sizing/M. cornerRadius=12px is unbound literal."
+          }
+        },
+        "content-text": {
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "400"
+          },
+          "literals": {
+            "color": "#000000",
+            "lineHeight": "24px",
+            "note": "Text color is hardcoded #000000 — no variable bound. Should use fg/default → --klp-fg-default."
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "region",
+    "keyboardSupport": ["Enter", "Space"],
+    "notes": "Use @radix-ui/react-collapsible. Trigger is a <Collapsible.Trigger> wrapping the toggle-button. Content is <Collapsible.Content> with animated open/close. aria-expanded is managed by Radix."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "content-text/fill (literal #000000)",
+      "expectedKlp": "--klp-fg-default",
+      "seenOn": "open-default/content-text/color"
+    },
+    {
+      "figmaVar": "root/cornerRadius (literal 8px, close variant)",
+      "expectedKlp": "--klp-radius-l",
+      "seenOn": "close-default/root/cornerRadius"
+    },
+    {
+      "figmaVar": "root/cornerRadius (literal 16px, open variant)",
+      "expectedKlp": "--klp-radius-xl",
+      "seenOn": "open-default/root/cornerRadius"
+    },
+    {
+      "figmaVar": "header/fill (literal #EEF1F0 at 70% opacity, no binding)",
+      "expectedKlp": "--klp-bg-inset",
+      "seenOn": "open-default/header/fill"
+    },
+    {
+      "figmaVar": "content/paddingY (literal 24px, no binding)",
+      "expectedKlp": "--klp-size-l",
+      "seenOn": "open-default/content/paddingY"
+    },
+    {
+      "figmaVar": "content/paddingX (literal 16px, no binding)",
+      "expectedKlp": "--klp-size-m",
+      "seenOn": "open-default/content/paddingX"
+    },
+    {
+      "figmaVar": "content/itemSpacing (literal 16px, no binding)",
+      "expectedKlp": "--klp-size-m",
+      "seenOn": "open-default/content/itemSpacing"
+    },
+    {
+      "figmaVar": "content/cornerRadius (literal 12px, no binding)",
+      "expectedKlp": null,
+      "seenOn": "open-default/content/cornerRadius",
+      "note": "12px has no direct klp alias. Closest: --klp-radius-xl (16px). Use literal rounded-xl or rounded-[12px] in adapter."
+    }
+  ],
+  "composition": {
+    "reuses": ["button"],
+    "candidates": [],
+    "instances": [
+      {
+        "part": "toggle-button",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "tertiary", "size": "icon" },
+        "figmaInstance": { "name": "Button/Tertiary/Icon/Rest", "key": "8a719f67643fddf515a583ffc43b6d90988774d2" }
+      }
+    ]
+  }
+}

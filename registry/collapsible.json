@@ -1,0 +1,16 @@
+{
+  "name": "collapsible",
+  "type": "registry:ui",
+  "description": "Expandable disclosure panel with a header (icon + title + chevron toggle button) and a collapsible content area. Single variant axis: open/close state.",
+  "meta": {
+    "figmaNode": "115201:84159",
+    "captureBrand": "wireframe",
+    "category": "disclosure",
+    "radixPrimitive": "@radix-ui/react-collapsible",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "header", "icon", "title", "toggle-button", "content", "content-text"],
+    "variantAxes": {
+      "state": ["close", "open"]
+    }
+  }
+}

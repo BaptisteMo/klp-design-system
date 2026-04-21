@@ -21,7 +21,7 @@ dependencies:
     - typography
   brands:
     - atlas
-usedBy: [floating-alert, header-desktop, header-phone, list, list-content, pagination, sidebar, text-area]
+usedBy: [collapsible, floating-alert, header-desktop, header-phone, list, list-content, pagination, sidebar, text-area]
 created: 2026-04-16
 updated: 2026-04-17
 ---
@@ -191,6 +191,7 @@ import { Button } from '@/components/button'
 
 ## Used by
 
+- [Collapsible](./_index_collapsible.md) — imports `Button` for the `toggle-button` slot (`variant="tertiary" size="icon"`) with a ChevronDown icon; `className` override applied to animate chevron rotation on open.
 - [Floating Alert](./_index_floating-alert.md) — imports `Button` for the dismiss button slot.
 - [Header Desktop](./_index_header-desktop.md) — imports `Button` for tertiary icon action buttons and the secondary "New" button.
 - [Header Phone](./_index_header-phone.md) — imports `Button` for menu-button, notification-btn, and search-button (`variant="tertiary" size="icon"`).

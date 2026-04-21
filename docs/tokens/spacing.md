@@ -57,6 +57,7 @@ updated: 2026-04-16
 - [Header Desktop](../components/_index_header-desktop.md) — `px-klp-size-s py-klp-size-xs` (tertiary button padding); `px-klp-size-m py-klp-size-xs gap-klp-size-2xs` (secondary button padding/gap); `px-klp-size-xs py-klp-size-xs gap-klp-size-m` (search-input padding/gap).
 - [Header Phone](../components/_index_header-phone.md) — `p-klp-size-xs` (padding on menu-button, notification-btn, and search-button layers via `--klp-size-xs`).
 - [SideBar](../components/_index_sidebar.md) — `p-klp-size-xs` (notification-button padding via `--klp-size-xs`).
+- [Collapsible](../components/_index_collapsible.md) — `px-klp-size-m py-klp-size-m gap-klp-size-m` (close root padding/gap); `px-klp-size-m py-klp-size-m` (open header padding); `px-klp-size-m py-klp-size-l gap-klp-size-m` (open content padding/gap); `p-klp-size-xs` (toggle-button padding).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
