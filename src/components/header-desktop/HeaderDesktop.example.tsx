@@ -1,31 +1,44 @@
-import { HeaderDesktop } from '@/components/header-desktop'
+import { Check, FilePlus, PenLine, Search } from 'lucide-react'
+import { HeaderDesktop } from './HeaderDesktop'
 
-export default function HeaderDesktopExample() {
+/**
+ * Example 1 — Default mode, mixed actions, breadcrumbs.
+ * Demonstrates icon-only tertiary buttons + a secondary label button.
+ */
+export function HeaderDesktopDefault() {
   return (
-    <div className="flex flex-col gap-8 p-6">
-      {/* Default — icon buttons + secondary action */}
-      <HeaderDesktop
-        features="default"
-        title="My Page"
-        breadcrumbSteps={[
-          { label: 'Home' },
-          { label: 'My Page' },
-        ]}
-        onNewClick={() => console.log('new')}
-        onActionClick={(a) => console.log(a)}
-      />
-
-      {/* Search active — search input replaces action row */}
-      <HeaderDesktop
-        features="search-active"
-        title="My Page"
-        breadcrumbSteps={[
-          { label: 'Home' },
-          { label: 'My Page' },
-        ]}
-        searchPlaceholder="Search items…"
-        onSearchChange={(v) => console.log(v)}
-      />
-    </div>
+    <HeaderDesktop
+      title="Turnover Collection"
+      actions={[
+        { variant: 'tertiary', size: 'icon', children: <Check aria-hidden="true" />, 'aria-label': 'Validate', onClick: () => {} },
+        { variant: 'tertiary', size: 'icon', children: <Search aria-hidden="true" />, 'aria-label': 'Search', onClick: () => {} },
+        { variant: 'tertiary', size: 'icon', children: <PenLine aria-hidden="true" />, 'aria-label': 'Edit', onClick: () => {} },
+        { variant: 'secondary', size: 'md', children: 'New', rightIcon: <FilePlus aria-hidden="true" />, onClick: () => {} },
+      ]}
+      breadcrumbs={[{ label: 'Home' }, { label: 'Turnover Collection' }]}
+    />
   )
+}
+
+/**
+ * Example 2 — Search-active mode with custom placeholder.
+ * Actions are ignored in this mode.
+ */
+export function HeaderDesktopSearch() {
+  return (
+    <HeaderDesktop
+      features="search-active"
+      title="Turnover Collection"
+      searchPlaceholder="Input placeholder texte custom"
+      breadcrumbs={[{ label: 'Home' }, { label: 'Turnover Collection' }]}
+      onSearchChange={(value) => console.log('search:', value)}
+    />
+  )
+}
+
+/**
+ * Example 3 — Title-only. No breadcrumbs, no actions.
+ */
+export function HeaderDesktopMinimal() {
+  return <HeaderDesktop title="Dashboard" />
 }
