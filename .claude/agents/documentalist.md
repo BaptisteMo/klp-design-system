@@ -70,6 +70,15 @@ Steps:
 8. **Read existing doc page** at `docs/components/_index_<component>.md` if present. Extract the contents between `<!-- KLP:NOTES:BEGIN -->` and `<!-- KLP:NOTES:END -->` — this is preserved verbatim. Also extract the contents between `<!-- KLP:GAPS:BEGIN -->` and `<!-- KLP:GAPS:END -->` for reference (will be overwritten with fresh data).
 9. **Write the new doc page** at `docs/components/_index_<component>.md` using the schema below. Re-inject the preserved Notes block (or insert an empty one if first generation). Write the `KLP:GAPS` block (see "KLP:GAPS block" subsection below) right before the `KLP:NOTES` block.
 10. **Run the systematic import scan** (see subsection below): collect DS imports from the source, populate `dependencies.components[]`, re-run the reverse-index pass.
+10b. **Sync `registry/<component>.json#dependencies.npm`.** Filter the freshly scanned externals by the baseline-exclusion list below; write the result (sorted, deduped) to `registry/<component>.json` under `dependencies.npm`. If the file is missing, warn and skip — the adapter owns Stage-2 creation. If the file exists but has no `dependencies` key, create it. Preserve `dependencies.components` if already present (rewritten by Stage 2); if absent, leave as empty array.
+
+**Baseline-exclusion list** (never written to `registry.dependencies.npm` because scaffold already installs them):
+- `react`
+- `react-dom`
+- `clsx`
+- `tailwind-merge`
+
+Everything else scanned from `from '<pkg>'` imports (notably `@radix-ui/*`, `@tanstack/*`, `@fontsource/*`, `lucide-react`, `class-variance-authority`) is kept.
 11. **Update `klp-components.json`** at repo root. Find the component entry by `name` and overwrite with the canonical entry. If absent, append. Sort the array by `name`.
 12. **Update `docs/index.md`**. Find the entry under the component's `category` section and refresh the line. If the category section doesn't exist, create it.
 13. **Run the reverse-index pass.** See "Reverse-index pass" below.
@@ -91,6 +100,17 @@ Before writing the canonical `klp-components.json` entry and the doc page:
 5. **Reverse-index pass:** for every component in `dependencies.components`, ensure its `usedBy[]` contains the current component. The pass is idempotent — recompute from scratch each run.
 
 This scan is authoritative. Even if the adapter's `reuses[]` omits a composition edge, the documentalist catches it from the source code.
+
+### Systematic external import scan → `registry/<name>.json` sync (DOCUMENT + SYNC)
+
+After the `@/components/*` scan, run a regex against `src/components/<name>/<Component>.tsx` to collect `from ['"](...)['"]` matches that are **not** relative (`./`, `../`) and **not** `@/…`. This captures external npm packages such as `@radix-ui/react-collapsible`, `class-variance-authority`, `lucide-react`.
+
+1. Deduplicate, sort.
+2. Drop the baseline-exclusion list (`react`, `react-dom`, `clsx`, `tailwind-merge`).
+3. Read `registry/<name>.json`. If it parses, set `reg.dependencies = reg.dependencies ?? {}`, set `reg.dependencies.npm = <filtered sorted list>`. Preserve `reg.dependencies.components` (written by the adapter).
+4. Write back with 2-space indent and a trailing newline.
+
+This field is what `scripts/build-manifest.ts` reads; without it, `klp-ui init`/`update` cannot install the component's runtime dependencies in the consumer project.
 
 ### 2. SYNC — refresh a component when source/spec changed outside the pipeline
 
