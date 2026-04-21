@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { cva } from 'class-variance-authority'
-import { Check, Search, PenLine, FolderPlus, FilePlus } from 'lucide-react'
+import { Search } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { Button } from '@/components/button'
 import { Input } from '@/components/input'
@@ -87,37 +87,67 @@ const searchInputVariants = cva('', {
 // Types
 // ---------------------------------------------------------------------------
 
-export type HeaderDesktopFeatures = 'default' | 'search-active'
+/**
+ * A single action button rendered in the title-action row (default mode).
+ * Maps 1:1 to a subset of @/components/button props.
+ */
+export type HeaderAction = {
+  variant?: 'primary' | 'secondary' | 'tertiary' | 'destructive' | 'validation'
+  size?: 'sm' | 'md' | 'lg' | 'icon'
+  /** Label (sm/md/lg) or icon node (size='icon'). */
+  children: React.ReactNode
+  leftIcon?: React.ReactNode
+  rightIcon?: React.ReactNode
+  onClick?: () => void
+  /** Recommended when size='icon' (no visible label). */
+  'aria-label'?: string
+  /** Stable key for React list rendering. Optional; falls back to array index. */
+  key?: string
+}
 
-export interface HeaderDesktopProps extends React.HTMLAttributes<HTMLElement> {
-  /** Feature variant controlling which action row is shown
-   * @propClass optional
-   */
-  features?: HeaderDesktopFeatures
-  /** Page title text
+export interface HeaderDesktopProps {
+  /**
+   * Page title rendered in the title row.
    * @propClass optional
    */
   title?: string
-  /** Breadcrumb steps array — forwarded to BreadCrumbs
+
+  /**
+   * Mode selector. 'default' renders actions; 'search-active' renders a search input.
    * @propClass optional
    */
-  breadcrumbSteps?: BreadCrumbStep[]
-  /** Callback when a tertiary icon button is clicked (receives icon name)
+  features?: 'default' | 'search-active'
+
+  /**
+   * Action buttons rendered left-to-right in the title row when features='default'.
+   * Ignored when features='search-active'.
    * @propClass optional
    */
-  onActionClick?: (action: 'check' | 'search' | 'pen-line' | 'folder-plus') => void
-  /** Callback when the secondary "New" button is clicked
+  actions?: HeaderAction[]
+
+  /**
+   * Breadcrumbs steps. Omit or pass false to hide the breadcrumbs row entirely.
    * @propClass optional
    */
-  onNewClick?: () => void
-  /** Callback on search input change (search-active variant)
-   * @propClass optional
-   */
-  onSearchChange?: (value: string) => void
-  /** Placeholder text for the search input
+  breadcrumbs?: BreadCrumbStep[] | false
+
+  /**
+   * Placeholder for the search input. Only used when features='search-active'.
    * @propClass optional
    */
   searchPlaceholder?: string
+
+  /**
+   * Called on every search input change. Only used when features='search-active'.
+   * @propClass optional
+   */
+  onSearchChange?: (value: string) => void
+
+  /**
+   * Additional className applied to the root element.
+   * @propClass optional
+   */
+  className?: string
 }
 
 // ---------------------------------------------------------------------------
@@ -126,94 +156,72 @@ export interface HeaderDesktopProps extends React.HTMLAttributes<HTMLElement> {
 export const HeaderDesktop = React.forwardRef<HTMLElement, HeaderDesktopProps>(
   (
     {
-      className,
-      features = 'default',
       title = 'Page title',
-      breadcrumbSteps,
-      onActionClick,
-      onNewClick,
-      onSearchChange,
+      features = 'default',
+      actions,
+      breadcrumbs,
       searchPlaceholder = 'Search…',
-      ...props
+      onSearchChange,
+      className,
     },
     ref
   ) => {
-    const defaultSteps: BreadCrumbStep[] = breadcrumbSteps ?? [
-      { label: 'Home' },
-      { label: 'Current page' },
-    ]
+    const showBreadcrumbs = Array.isArray(breadcrumbs) && breadcrumbs.length > 0
+    const isSearchActive = features === 'search-active'
 
     return (
       <header
         ref={ref}
-        role="banner"
         className={cn(rootVariants({ features }), className)}
-        {...props}
       >
-        {/* title-action-row layer */}
-        <div className={titleActionRowVariants({ features })}>
-          {/* title layer */}
-          <h1 className={titleVariants({ features })}>{title}</h1>
-
-          {/* actions layer — Default variant: 4 tertiary icon buttons + 1 secondary button */}
-          <div className={actionsVariants({ features })} aria-label="Page actions">
-            <Button
-              variant="tertiary"
-              size="icon"
-              aria-label="Check"
-              onClick={() => onActionClick?.('check')}
-            >
-              <Check className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />
-            </Button>
-            <Button
-              variant="tertiary"
-              size="icon"
-              aria-label="Search"
-              onClick={() => onActionClick?.('search')}
-            >
-              <Search className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />
-            </Button>
-            <Button
-              variant="tertiary"
-              size="icon"
-              aria-label="Edit"
-              onClick={() => onActionClick?.('pen-line')}
-            >
-              <PenLine className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />
-            </Button>
-            <Button
-              variant="tertiary"
-              size="icon"
-              aria-label="New folder"
-              onClick={() => onActionClick?.('folder-plus')}
-            >
-              <FolderPlus className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />
-            </Button>
-            <Button
-              variant="secondary"
-              size="md"
-              rightIcon={<FilePlus className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />}
-              onClick={onNewClick}
-            >
-              New
-            </Button>
+        {showBreadcrumbs && (
+          <div>
+            <BreadCrumbs steps={breadcrumbs as BreadCrumbStep[]} showDropdownAffordance />
           </div>
+        )}
 
-          {/* search-input layer — Search active variant only */}
-          <div className={searchInputVariants({ features })}>
-            <Input
-              size="small"
-              state="default"
-              type="search"
-              placeholder={searchPlaceholder}
-              iconLeft={<Search className="h-[16px] w-[16px]" strokeWidth={1.5} aria-hidden="true" />}
-              onChange={(e) => onSearchChange?.(e.target.value)}
-            />
-          </div>
+        <div className={cn(titleActionRowVariants({ features }))}>
+          <h1 className={cn(titleVariants({ features }))}>{title}</h1>
+
+          {isSearchActive ? (
+            <div className={cn(searchInputVariants({ features }))}>
+              <Input
+                iconLeft={<Search aria-hidden="true" />}
+                placeholder={searchPlaceholder}
+                onChange={(e) => onSearchChange?.(e.target.value)}
+                aria-label="Search"
+              />
+            </div>
+          ) : (
+            <div className={cn(actionsVariants({ features }))}>
+              {(actions ?? []).map((action, i) => {
+                const {
+                  key,
+                  children,
+                  variant = 'tertiary',
+                  size = 'icon',
+                  leftIcon,
+                  rightIcon,
+                  onClick,
+                  'aria-label': ariaLabel,
+                } = action
+                return (
+                  <Button
+                    key={key ?? i}
+                    variant={variant}
+                    size={size}
+                    leftIcon={leftIcon}
+                    rightIcon={rightIcon}
+                    onClick={onClick}
+                    aria-label={ariaLabel}
+                  >
+                    {children}
+                  </Button>
+                )
+              })}
+            </div>
+          )}
         </div>
-
-        {/* breadcrumbs layer */}
-        <BreadCrumbs steps={defaultSteps} showDropdownAffordance />
       </header>
     )
   }
