@@ -124,10 +124,11 @@ export interface ItemSideBarProps {
    * @propClass optional
    */
   feature?: ItemSideBarFeature
-  /** Icon to render inside the decorative icon box. Defaults to FolderOpen.
+  /** Icon to render inside the decorative icon box. Defaults to FolderOpen when
+   * undefined. Pass `null` to skip the icon container entirely (e.g. nested sub-rows).
    * @propClass optional
    */
-  icon?: React.ReactNode
+  icon?: React.ReactNode | null
   /** Item label text
    * @propClass required
    */
@@ -183,7 +184,7 @@ export const ItemSideBar = React.forwardRef<HTMLDivElement, ItemSideBarProps>(
     const isCollapsible = feature === 'collapsible'
     const isActive = state === 'active'
 
-    const iconNode = icon ?? <FolderOpen aria-hidden="true" strokeWidth={1.5} />
+    const iconNode = icon === null ? null : icon ?? <FolderOpen aria-hidden="true" strokeWidth={1.5} />
 
     if (!isCollapsible) {
       // Static variant: plain button row, no Collapsible primitive
@@ -194,13 +195,15 @@ export const ItemSideBar = React.forwardRef<HTMLDivElement, ItemSideBarProps>(
             onClick={onClick}
             className={triggerVariants({ state, feature })}
           >
-            <span className={iconContainerVariants({ state })}>
-              <span className={decorativeIconVariants()}>
-                <span className={iconVariants()} aria-hidden="true">
-                  {iconNode}
+            {iconNode && (
+              <span className={iconContainerVariants({ state })}>
+                <span className={decorativeIconVariants()}>
+                  <span className={iconVariants()} aria-hidden="true">
+                    {iconNode}
+                  </span>
                 </span>
               </span>
-            </span>
+            )}
             <span className={labelVariants()}>{label}</span>
           </button>
         </div>
@@ -222,13 +225,15 @@ export const ItemSideBar = React.forwardRef<HTMLDivElement, ItemSideBarProps>(
             onClick={onClick}
             className={triggerVariants({ state, feature })}
           >
-            <span className={iconContainerVariants({ state })}>
-              <span className={decorativeIconVariants()}>
-                <span className={iconVariants()} aria-hidden="true">
-                  {iconNode}
+            {iconNode && (
+              <span className={iconContainerVariants({ state })}>
+                <span className={decorativeIconVariants()}>
+                  <span className={iconVariants()} aria-hidden="true">
+                    {iconNode}
+                  </span>
                 </span>
               </span>
-            </span>
+            )}
             <span className={labelVariants()}>{label}</span>
             <span className={chevronVariants()} aria-hidden="true">
               {isActive ? (

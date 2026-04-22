@@ -3,7 +3,7 @@ import { cva } from 'class-variance-authority'
 import { Bell, X, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { Button } from '@/components/button'
-import { ItemSideBar, ActionSheetItem } from '@/components/item-side-bar'
+import { ItemSideBar } from '@/components/item-side-bar'
 import { SIDEBAR_MENU } from './menu'
 
 // ---------------------------------------------------------------------------
@@ -339,13 +339,19 @@ export const SideBar = React.forwardRef<HTMLElement, SideBarProps>(
                       const childActive =
                         isActive && activeChildKey === child.key
                       return (
-                        <ActionSheetItem
+                        <ItemSideBar
                           key={child.key}
-                          state={childActive ? 'active' : 'default'}
+                          feature="static"
+                          state={childActive ? 'active' : 'rest'}
+                          icon={null}
+                          label={child.label}
+                          className={
+                            childActive
+                              ? 'bg-klp-bg-default border border-klp-border-contrasted shadow-[0_1px_0_0_var(--klp-border-contrasted)] rounded-klp-m'
+                              : undefined
+                          }
                           onClick={() => onNavigate?.(child.key, item.key)}
-                        >
-                          {child.label}
-                        </ActionSheetItem>
+                        />
                       )
                     })}
                   </ItemSideBar>
