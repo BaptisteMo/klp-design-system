@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-21T16:06:52.007Z",
+  "generatedAt": "2026-04-22T13:08:21.130Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -20,17 +20,17 @@
         {
           "src": "src/styles/tokens/primitives.css",
           "dst": "src/styles/tokens/primitives.css",
-          "hash": "sha256:62b1462b9a02ec2adee793f8a09b6060697e9a6d4bf4fd46195d6b23020e5086"
+          "hash": "sha256:9fac35bee7a3a2d27bf3a190a8f48e1d7f38a792e7d6c874049ef9ac8f5f8dec"
         },
         {
           "src": "src/styles/tokens/aliases.css",
           "dst": "src/styles/tokens/aliases.css",
-          "hash": "sha256:7e93f3b28cb2d8503d241bdbd7bfdfd3569c432d804fae5834154f277ae684fe"
+          "hash": "sha256:02b28cdb3d0b7b921d52f758d0d5d4bca63d73b272839960d266e22d92676674"
         },
         {
           "src": "src/styles/tokens/theme.css",
           "dst": "src/styles/tokens/theme.css",
-          "hash": "sha256:05f41cdb0d33ec93201dabe2d2a67960625326552169fa73afc2f7aaa6531645"
+          "hash": "sha256:68d919b50a4ed56c9a25a976647f5113a44aac3f78198719f967e83d123d995b"
         }
       ]
     },
@@ -52,7 +52,7 @@
             {
               "src": "src/components/action-sheet-item/ActionSheetItem.tsx",
               "dst": "src/components/ui/action-sheet-item/ActionSheetItem.tsx",
-              "hash": "sha256:23271904f57c2c0dd6540cd2ca80b1e78cff06a73289ac182cf66483a9a582ff"
+              "hash": "sha256:4f29b3f9fe066be714cc31171ffe472012e7df4fc81a5a40d5a16b7cb9e49189"
             },
             {
               "src": "src/components/action-sheet-item/index.ts",
@@ -347,7 +347,7 @@
             {
               "src": "src/components/item-side-bar/ItemSideBar.tsx",
               "dst": "src/components/ui/item-side-bar/ItemSideBar.tsx",
-              "hash": "sha256:1e683967ae4f53b0a9f24d2dd3fe669bf3132149108ba2324d500beb6767d56d"
+              "hash": "sha256:cddce479939783bd2ca75fb78a8bf7beb8d756371e057479455fe99b1492add9"
             },
             {
               "src": "src/components/item-side-bar/index.ts",
@@ -457,12 +457,17 @@
             {
               "src": "src/components/sidebar/SideBar.tsx",
               "dst": "src/components/ui/sidebar/SideBar.tsx",
-              "hash": "sha256:d2aa9f5cf563fa8b8149ecc9474660a200be6e1c59e33ce865ae09fd2bf5b742"
+              "hash": "sha256:6ba09635f1990e612e6010676aa66a79c525464ebf5802253553a436fadc7cf5"
             },
             {
               "src": "src/components/sidebar/index.ts",
               "dst": "src/components/ui/sidebar/index.ts",
-              "hash": "sha256:53cdc9327873ce32940adcfeff3ef6255b29c865d19ca702f83b3b489257d4d3"
+              "hash": "sha256:a3ecfe5aa04ec35ac8f9366bbacccd31890ca01bde3a8b73755e7fd7aeada7dd"
+            },
+            {
+              "src": "src/components/sidebar/menu.ts",
+              "dst": "src/components/ui/sidebar/menu.ts",
+              "hash": "sha256:544006b842bccec1ecf42387315248558e5ed5af197f1f1ceaba08f8e3cc02eb"
             }
           ],
           "deps": {
@@ -609,7 +614,7 @@
         {
           "src": "docs/agent-brief.md",
           "dst": "docs/agent-brief.md",
-          "hash": "sha256:ebc321acc822fec7fbf5977f32e7c476357c90c92be0f20c0afb9ac94576c2da"
+          "hash": "sha256:a3606b01bae992b02396266d2c2feb25fb5aeb4dc53cb0b96d9c22ccd366d15f"
         },
         {
           "src": "docs/index.md",
@@ -744,7 +749,7 @@
         {
           "src": "docs/components/_index_sidebar.md",
           "dst": "docs/components/_index_sidebar.md",
-          "hash": "sha256:37c9490044152e90bf22d8c90a9753233da6f94f66ac6b9389b212607e0be2d3"
+          "hash": "sha256:926ab426544ff83cd91608c53fe36b0a31c0b8b4acce437f05d593d066cde6e2"
         },
         {
           "src": "docs/components/_index_switch.md",

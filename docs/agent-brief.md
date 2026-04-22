@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-04-21T16:06:51.576Z
+generated-at: 2026-04-22T13:08:20.802Z
 schema-version: 0.1.0
 ---
 
@@ -95,4 +95,6 @@ Derived from every component's `Props` interface `@propClass` tags. Computed = d
 | `input` | `state` | **computed** | Explicit visual state override. When omitted the component derives state from native HTML attributes (disabled, aria-inv |
 | `item-side-bar` | `state` | **persistent** | Interaction state — drives trigger fill and icon-container border. Represents the currently-selected navigation item. |
 | `list-content` | `state` | **persistent** | Interaction state — controls background fill and text/icon color. Represents the selected row in the list. |
+| `sidebar` | `activeKey` | **persistent** | Key of the currently active top-level menu entry. Drives row highlight and auto-expansion of the matching collapsible pa |
+| `sidebar` | `activeChildKey` | **persistent** | Key of the currently active sub-item. Only honored when its parent matches `activeKey`. |
 | `text-area` | `state` | **computed** | Explicit visual state override. When omitted, state is derived from native attributes (disabled, aria-invalid) and from  |
