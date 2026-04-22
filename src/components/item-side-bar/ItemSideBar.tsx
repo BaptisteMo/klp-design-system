@@ -24,7 +24,7 @@ const rootVariants = cva('flex w-full flex-col')
 //   active/static     → bg-klp-bg-inset
 // ---------------------------------------------------------------------------
 const triggerVariants = cva(
-  'inline-flex w-full cursor-pointer items-center gap-klp-size-xs rounded-klp-m transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand px-klp-size-xs py-klp-size-xs',
+  'inline-flex w-full cursor-pointer items-center gap-klp-size-xs rounded-klp-m transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand px-klp-size-xs py-klp-size-xs text-left',
   {
     variants: {
       state: {

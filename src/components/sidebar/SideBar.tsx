@@ -17,12 +17,12 @@ import { SIDEBAR_MENU } from './menu'
 // phone:   w-[320px] h-[568px]
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'flex flex-col bg-klp-bg-default border border-klp-border-default p-[16px]',
+  'flex flex-col bg-klp-bg-default border border-klp-border-default p-[16px] overflow-hidden',
   {
     variants: {
       device: {
-        desktop: 'w-[247px] h-[640px]',
-        phone:   'w-[320px] h-[568px]',
+        desktop: 'w-[247px] max-h-[640px]',
+        phone:   'w-[320px] max-h-[568px]',
       },
     },
     defaultVariants: { device: 'desktop' },
@@ -36,7 +36,7 @@ const rootVariants = cva(
 // width/height: fill → flex-1
 // ---------------------------------------------------------------------------
 const contentVariants = cva(
-  'flex flex-1 flex-col gap-[24px]'
+  'flex flex-1 flex-col gap-[24px] min-h-0'
 )
 
 // ---------------------------------------------------------------------------
@@ -46,7 +46,7 @@ const contentVariants = cva(
 // width: fill → w-full
 // ---------------------------------------------------------------------------
 const headerVariants = cva(
-  'flex flex-col gap-[10px] bg-klp-bg-default w-full'
+  'flex flex-col gap-[10px] bg-klp-bg-default w-full shrink-0'
 )
 
 // ---------------------------------------------------------------------------
@@ -123,7 +123,7 @@ const contextChevronVariants = cva(
 // overflow: hidden
 // ---------------------------------------------------------------------------
 const menuVariants = cva(
-  'flex flex-1 flex-col gap-[8px] bg-klp-bg-invisible overflow-hidden pb-[16px]'
+  'flex flex-1 flex-col gap-[8px] bg-klp-bg-invisible overflow-y-auto min-h-0 pb-[16px]'
 )
 
 // ---------------------------------------------------------------------------
