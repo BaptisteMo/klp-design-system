@@ -8,7 +8,7 @@ import { cn } from '@/lib/cn'
 // Derived literally from spec.variants[].layers.root
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'inline-flex w-full cursor-pointer items-center border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand disabled:pointer-events-none',
+  'inline-flex w-full cursor-pointer items-center border transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand disabled:pointer-events-none text-left',
   {
     variants: {
       state: {
