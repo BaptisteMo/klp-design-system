@@ -94,17 +94,7 @@ const labelVariants = cva(
 // 16×16 wrapper, 14×14 icon (literal — no --klp-size-* alias at 14px)
 // ---------------------------------------------------------------------------
 const chevronVariants = cva(
-  'inline-flex shrink-0 items-center justify-center text-klp-fg-default [&>svg]:h-[14px] [&>svg]:w-[14px] transition-transform duration-150',
-  {
-    variants: {
-      state: {
-        rest:   '',
-        hover:  '',
-        active: 'rotate-90',
-      },
-    },
-    defaultVariants: { state: 'rest' },
-  }
+  'inline-flex shrink-0 items-center justify-center text-klp-fg-default [&>svg]:h-[14px] [&>svg]:w-[14px] transition-transform duration-150 group-data-[state=open]:rotate-90'
 )
 
 // ---------------------------------------------------------------------------
@@ -232,7 +222,7 @@ export const ItemSideBar = React.forwardRef<HTMLDivElement, ItemSideBarProps>(
           <button
             type="button"
             onClick={onClick}
-            className={triggerVariants({ state, feature })}
+            className={cn('group', triggerVariants({ state, feature }))}
           >
             {iconNode && (
               <span className={iconContainerVariants({ state })}>
@@ -244,7 +234,7 @@ export const ItemSideBar = React.forwardRef<HTMLDivElement, ItemSideBarProps>(
               </span>
             )}
             <span className={labelVariants()}>{label}</span>
-            <span className={chevronVariants({ state })} aria-hidden="true">
+            <span className={chevronVariants()} aria-hidden="true">
               <ChevronRight strokeWidth={1.5} />
             </span>
           </button>
