@@ -53,7 +53,7 @@ const triggerVariants = cva(
 // rest/hover states → bg-klp-bg-invisible + border-klp-border-invisible
 // ---------------------------------------------------------------------------
 const iconContainerVariants = cva(
-  'inline-flex shrink-0 items-center justify-center rounded-klp-m border',
+  'inline-flex shrink-0 items-center justify-center rounded-klp-m border transition-colors group-data-[state=open]:bg-klp-bg-default group-data-[state=open]:border-klp-border-contrasted group-data-[state=open]:shadow-[0_1px_0_0_var(--klp-border-contrasted)]',
   {
     variants: {
       state: {
