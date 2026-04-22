@@ -78,7 +78,7 @@ const decorativeIconVariants = cva(
 // icon layer — 16×16 folder-open icon; color inherits from parent via currentColor
 // ---------------------------------------------------------------------------
 const iconVariants = cva(
-  'inline-flex shrink-0 items-center justify-center text-klp-fg-default [&>svg]:h-[16px] [&>svg]:w-[16px]'
+  'inline-flex shrink-0 items-center justify-center text-klp-fg-brand [&>svg]:h-[16px] [&>svg]:w-[16px]'
 )
 
 // ---------------------------------------------------------------------------
