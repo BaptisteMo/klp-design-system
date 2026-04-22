@@ -59,7 +59,7 @@ const iconContainerVariants = cva(
       state: {
         rest:   'bg-klp-bg-invisible border-klp-border-invisible',
         hover:  'bg-klp-bg-invisible border-klp-border-invisible',
-        active: 'bg-klp-bg-default border-klp-border-contrasted',
+        active: 'bg-klp-bg-default border-klp-border-contrasted shadow-[0_1px_0_0_var(--klp-border-contrasted)]',
       },
     },
     defaultVariants: { state: 'rest' },
