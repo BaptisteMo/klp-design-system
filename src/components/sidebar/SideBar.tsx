@@ -17,7 +17,7 @@ import { SIDEBAR_MENU } from './menu'
 // phone:   w-[320px] h-[568px]
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
-  'flex flex-col bg-klp-bg-default border border-klp-border-default p-[16px] overflow-hidden',
+  'flex flex-col bg-klp-bg-default border border-klp-border-default overflow-hidden',
   {
     variants: {
       device: {
@@ -36,7 +36,7 @@ const rootVariants = cva(
 // width/height: fill → flex-1
 // ---------------------------------------------------------------------------
 const contentVariants = cva(
-  'flex flex-1 flex-col gap-[24px] min-h-0'
+  'flex flex-1 flex-col min-h-0'
 )
 
 // ---------------------------------------------------------------------------
@@ -46,7 +46,7 @@ const contentVariants = cva(
 // width: fill → w-full
 // ---------------------------------------------------------------------------
 const headerVariants = cva(
-  'flex flex-col gap-[10px] bg-klp-bg-default w-full shrink-0'
+  'flex flex-col border-b border-klp-border-default gap-[10px] p-[16px] bg-klp-bg-default w-full shrink-0'
 )
 
 // ---------------------------------------------------------------------------
@@ -145,7 +145,7 @@ const menuItemVariants = cva(
 // height: 72px (literal)
 // ---------------------------------------------------------------------------
 const profilVariants = cva(
-  'flex items-center gap-[8px] bg-klp-bg-default border-t border-klp-border-default px-[16px] py-[16px] h-[72px] shrink-0'
+  'flex items-center gap-[8px] bg-klp-bg-default border-t border-klp-border-default p-[16px] border-t  shrink-0'
 )
 
 // ---------------------------------------------------------------------------
@@ -347,7 +347,7 @@ export const SideBar = React.forwardRef<HTMLElement, SideBarProps>(
                           label={child.label}
                           className={
                             childActive
-                              ? 'bg-klp-bg-default border border-klp-border-contrasted shadow-[0_1px_0_0_var(--klp-border-contrasted)] rounded-klp-m'
+                              ? 'bg-klp-bg-default rounded-klp-xl'
                               : undefined
                           }
                           onClick={() => onNavigate?.(child.key, item.key)}
