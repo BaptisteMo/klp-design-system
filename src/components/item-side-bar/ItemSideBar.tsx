@@ -1,7 +1,7 @@
 import * as React from 'react'
 import * as Collapsible from '@radix-ui/react-collapsible'
 import { cva } from 'class-variance-authority'
-import { FolderOpen, ChevronRight, ChevronDown } from 'lucide-react'
+import { FolderOpen, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { ActionSheetItem } from '@/components/action-sheet-item'
 
@@ -94,7 +94,17 @@ const labelVariants = cva(
 // 16×16 wrapper, 14×14 icon (literal — no --klp-size-* alias at 14px)
 // ---------------------------------------------------------------------------
 const chevronVariants = cva(
-  'inline-flex shrink-0 items-center justify-center text-klp-fg-default [&>svg]:h-[14px] [&>svg]:w-[14px]'
+  'inline-flex shrink-0 items-center justify-center text-klp-fg-default [&>svg]:h-[14px] [&>svg]:w-[14px] transition-transform duration-150',
+  {
+    variants: {
+      state: {
+        rest:   '',
+        hover:  '',
+        active: 'rotate-90',
+      },
+    },
+    defaultVariants: { state: 'rest' },
+  }
 )
 
 // ---------------------------------------------------------------------------
@@ -182,7 +192,6 @@ export const ItemSideBar = React.forwardRef<HTMLDivElement, ItemSideBarProps>(
     ref
   ) => {
     const isCollapsible = feature === 'collapsible'
-    const isActive = state === 'active'
 
     const iconNode = icon === null ? null : icon ?? <FolderOpen aria-hidden="true" strokeWidth={1.5} />
 
@@ -235,12 +244,8 @@ export const ItemSideBar = React.forwardRef<HTMLDivElement, ItemSideBarProps>(
               </span>
             )}
             <span className={labelVariants()}>{label}</span>
-            <span className={chevronVariants()} aria-hidden="true">
-              {isActive ? (
-                <ChevronDown strokeWidth={1.5} />
-              ) : (
-                <ChevronRight strokeWidth={1.5} />
-              )}
+            <span className={chevronVariants({ state })} aria-hidden="true">
+              <ChevronRight strokeWidth={1.5} />
             </span>
           </button>
         </Collapsible.Trigger>
