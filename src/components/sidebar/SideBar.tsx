@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { cva } from 'class-variance-authority'
-import { Bell, X, ChevronRight, FolderOpen } from 'lucide-react'
+import { Bell, X, ChevronRight } from 'lucide-react'
 import { cn } from '@/lib/cn'
 import { Button } from '@/components/button'
-import { ItemSideBar } from '@/components/item-side-bar'
+import { ItemSideBar, ActionSheetItem } from '@/components/item-side-bar'
+import { SIDEBAR_MENU } from './menu'
 
 // ---------------------------------------------------------------------------
 // root layer
@@ -172,23 +173,6 @@ const userNameVariants = cva(
 // ---------------------------------------------------------------------------
 export type SideBarDevice = 'desktop' | 'phone'
 
-export interface SideBarMenuItem {
-  /** Unique key for the menu item */
-  key: string
-  /** Label text */
-  label: React.ReactNode
-  /** Icon node (defaults to FolderOpen) */
-  icon?: React.ReactNode
-  /** Feature mode for the item */
-  feature?: 'collapsible' | 'static'
-  /** Interaction state */
-  state?: 'rest' | 'hover' | 'active'
-  /** Children for collapsible items */
-  children?: React.ReactNode
-  /** Click handler */
-  onClick?: React.MouseEventHandler<HTMLButtonElement>
-}
-
 export interface SideBarProps extends React.HTMLAttributes<HTMLElement> {
   /** Desktop or phone layout
    * @propClass optional
@@ -210,10 +194,21 @@ export interface SideBarProps extends React.HTMLAttributes<HTMLElement> {
    * @propClass optional
    */
   onContextSwitcherClick?: React.MouseEventHandler<HTMLDivElement>
-  /** Menu items rendered as ItemSideBar instances
-   * @propClass required
+  /** Key of the currently active top-level menu entry. Drives row highlight
+   * and auto-expansion of the matching collapsible panel.
+   * @propClass persistent
    */
-  menuItems?: SideBarMenuItem[]
+  activeKey?: string
+  /** Key of the currently active sub-item. Only honored when its parent
+   * matches `activeKey`.
+   * @propClass persistent
+   */
+  activeChildKey?: string
+  /** Called when a leaf row is clicked. `parentKey` is set for sub-rows.
+   * Parents with children do not fire this — they toggle their panel.
+   * @propClass optional
+   */
+  onNavigate?: (key: string, parentKey?: string) => void
   /** Avatar image node or src string
    * @propClass optional
    */
@@ -236,7 +231,9 @@ export const SideBar = React.forwardRef<HTMLElement, SideBarProps>(
       contextLabel = 'Shopping Center',
       onNotificationClick,
       onContextSwitcherClick,
-      menuItems = [],
+      activeKey,
+      activeChildKey,
+      onNavigate,
       avatar,
       userName = 'User Name',
       ...props
@@ -310,19 +307,51 @@ export const SideBar = React.forwardRef<HTMLElement, SideBarProps>(
 
           {/* menu */}
           <div className={menuVariants()}>
-            {menuItems.map((item) => (
-              <div key={item.key} className={menuItemVariants()}>
-                <ItemSideBar
-                  feature={item.feature ?? 'static'}
-                  state={item.state ?? 'rest'}
-                  icon={item.icon ?? <FolderOpen aria-hidden="true" strokeWidth={1.5} />}
-                  label={item.label}
-                  onClick={item.onClick}
-                >
-                  {item.children}
-                </ItemSideBar>
-              </div>
-            ))}
+            {SIDEBAR_MENU.map((item) => {
+              const Icon = item.icon
+              const isActive = activeKey === item.key
+              const hasChildren = !!item.children?.length
+
+              if (!hasChildren) {
+                return (
+                  <div key={item.key} className={menuItemVariants()}>
+                    <ItemSideBar
+                      feature="static"
+                      state={isActive ? 'active' : 'rest'}
+                      icon={<Icon aria-hidden="true" strokeWidth={1.5} />}
+                      label={item.label}
+                      onClick={() => onNavigate?.(item.key)}
+                    />
+                  </div>
+                )
+              }
+
+              return (
+                <div key={item.key} className={menuItemVariants()}>
+                  <ItemSideBar
+                    feature="collapsible"
+                    state={isActive ? 'active' : 'rest'}
+                    icon={<Icon aria-hidden="true" strokeWidth={1.5} />}
+                    label={item.label}
+                    defaultOpen={isActive}
+                  >
+                    {item.children!.map((child) => {
+                      const childActive =
+                        isActive && activeChildKey === child.key
+                      return (
+                        <ActionSheetItem
+                          key={child.key}
+                          state={childActive ? 'active' : 'default'}
+                          onClick={() => onNavigate?.(child.key, item.key)}
+                        >
+                          {child.label}
+                        </ActionSheetItem>
+                      )
+                    })}
+                  </ItemSideBar>
+                </div>
+              )
+            })}
           </div>
         </div>
 
