@@ -2,6 +2,9 @@
 
 Append-only. Never delete entries.
 
+## [2026-04-22] DOCUMENT | sidebar — 2 variants, 6 dependencies (2 components, 4 token groups, 1 brand), 0 usedBy
+Regenerated `docs/components/_index_sidebar.md` after refactor from consumer-configurable `menuItems` API to baked-in `SIDEBAR_MENU` tree. Removed stale `menuItems` / `SideBarMenuItem` from props; added `activeKey` (persistent), `activeChildKey` (persistent), `onNavigate` (optional). Updated `klp-components.json` props block accordingly. Added `menu.ts` to `registry/sidebar.json#files`. Externals corrected: removed transitive `@radix-ui/react-slot` (direct imports are `class-variance-authority` and `lucide-react` only). Reverse-index pass: 0 new edges (sidebar is a leaf in usedBy graph).
+
 ## [2026-04-16] BOOTSTRAP | docs tree initialized
 Created `docs/`, `docs/components/`, `docs/tokens/`, `docs/brands/` with skeletons. 4 brand pages seeded from `aliases.css` (wireframe, klub, atlas, showup). 4 token-group pages seeded from `theme.css` (colors, spacing, radius, typography).
 

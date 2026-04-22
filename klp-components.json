@@ -2007,11 +2007,25 @@
           "description": "Called when context-switcher is clicked",
           "derivedFrom": null
         },
-        "menuItems": {
-          "class": "required",
-          "type": "SideBarMenuItem[]",
-          "default": "[]",
-          "description": "Menu items rendered as ItemSideBar instances",
+        "activeKey": {
+          "class": "persistent",
+          "type": "string",
+          "default": null,
+          "description": "Key of the currently active top-level menu entry. Drives row highlight and auto-expansion of the matching collapsible panel.",
+          "derivedFrom": null
+        },
+        "activeChildKey": {
+          "class": "persistent",
+          "type": "string",
+          "default": null,
+          "description": "Key of the currently active sub-item. Only honored when its parent matches `activeKey`.",
+          "derivedFrom": null
+        },
+        "onNavigate": {
+          "class": "optional",
+          "type": "(key: string, parentKey?: string) => void",
+          "default": null,
+          "description": "Called when a leaf row is clicked. `parentKey` is set for sub-rows. Parents with children do not fire this — they toggle their panel.",
           "derivedFrom": null
         },
         "avatar": {
@@ -2035,7 +2049,6 @@
           "item-side-bar"
         ],
         "externals": [
-          "@radix-ui/react-slot",
           "class-variance-authority",
           "lucide-react"
         ],
@@ -2078,7 +2091,7 @@
       },
       "usedBy": [],
       "created": "2026-04-20",
-      "updated": "2026-04-21"
+      "updated": "2026-04-22"
     },
     {
       "name": "switch",

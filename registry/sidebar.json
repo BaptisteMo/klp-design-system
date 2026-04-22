@@ -22,6 +22,10 @@
       "type": "registry:ui"
     },
     {
+      "path": "src/components/sidebar/menu.ts",
+      "type": "registry:ui"
+    },
+    {
       "path": "src/components/sidebar/index.ts",
       "type": "registry:ui"
     }
