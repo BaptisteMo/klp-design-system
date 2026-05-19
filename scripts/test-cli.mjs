@@ -6,6 +6,8 @@
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve, join } from 'node:path'
+import { mkdtempSync, rmSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = resolve(__dirname, '..')
@@ -155,8 +157,15 @@ async function testDetectApp() {
   assert(single.matches.length === 1, 'detects exactly one react sub-app')
   assert(single.matches[0] === 'forge-output/04-app', 'returns relative path to sub-app')
 
-  const none = await detectReactApp(REPO_ROOT)
-  assert(Array.isArray(none.matches), 'returns matches array on no match too')
+  // Scan an empty tmp dir to prove no false positives, not just shape.
+  const emptyDir = mkdtempSync(join(tmpdir(), 'klp-detect-empty-'))
+  try {
+    const none = await detectReactApp(emptyDir)
+    assert(Array.isArray(none.matches), 'returns matches array on no match too')
+    assert(none.matches.length === 0, 'returns empty matches when no react sub-app present')
+  } finally {
+    rmSync(emptyDir, { recursive: true, force: true })
+  }
 }
 
 async function main() {
