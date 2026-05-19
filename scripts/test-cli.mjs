@@ -74,6 +74,23 @@ async function testRewrite() {
       === `import { A } from "@/components/ui/data-table"`,
     'double-quoted imports rewritten',
   )
+
+  // attach mode
+  assert(
+    rewriteImports(`import { Button } from '@/components/button'`, 'src/foo.tsx', { mode: 'attach' })
+      === `import { Button } from '@klp/components/button'`,
+    'attach mode rewrites to @klp/components/<name>',
+  )
+  assert(
+    rewriteImports(`import { BrandProvider } from '@/components/brand-provider'`, 'src/App.tsx', { mode: 'attach' })
+      === `import { BrandProvider } from '@klp/components/brand-provider'`,
+    'attach mode rewrites brand-provider too',
+  )
+  assert(
+    rewriteImports(`import { cn } from '@/lib/cn'`, 'src/foo.tsx', { mode: 'attach' })
+      === `import { cn } from '@klp/lib/cn'`,
+    'attach mode rewrites @/lib/* to @klp/lib/*',
+  )
 }
 
 async function testHash() {
