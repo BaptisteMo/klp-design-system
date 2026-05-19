@@ -50,8 +50,10 @@ export async function copyComponent(manifest, name, dsRoot, opts = {}) {
   if (!item) throw new Error(`Unknown component: ${name}`)
   for (const f of item.files) {
     const raw = await loadFile(opts.ref ?? 'main', f.src)
-    const transformed = applyTransforms(raw, f.dst, { ...opts, mode: 'attach' })
-    await writeFileTo(join(dsRoot, f.dst), transformed)
+    // In attach mode the destination mirrors the DS repo layout (no ui/ segment),
+    // so use f.src — manifest's f.dst is fresh-init shape (src/components/ui/<n>/...).
+    const transformed = applyTransforms(raw, f.src, { ...opts, mode: 'attach' })
+    await writeFileTo(join(dsRoot, f.src), transformed)
   }
 }
 

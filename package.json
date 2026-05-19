@@ -5,7 +5,8 @@
   "type": "module",
   "description": "KLP design system — Radix Primitives + Tailwind v4, shadcn-style copy-paste.",
   "bin": {
-    "klp-ui": "./cli/index.mjs"
+    "klp-ui": "./cli/index.mjs",
+    "klep-ds-init": "./cli/klep-ds-init.mjs"
   },
   "files": [
     "cli",

@@ -348,6 +348,16 @@ function testOpencodeScaffoldGroup() {
   assert(group.files.some((f) => /commands\/klp-design\.md$/.test(f.dst)), 'includes klp-design command')
 }
 
+function testKlepDsInitHelp() {
+  console.log('\n[test] klep-ds-init help')
+  const out = spawnSync('node', [join(REPO_ROOT, 'cli/klep-ds-init.mjs'), '--help'], { encoding: 'utf8' })
+  assert(out.status === 0, 'klep-ds-init --help exits 0')
+  assert(/Usage: klep-ds-init/.test(out.stdout), 'help shows binary name')
+  assert(/--app-dir/.test(out.stdout), 'help lists --app-dir')
+  assert(/--brand/.test(out.stdout), 'help lists --brand')
+  assert(/--components/.test(out.stdout), 'help lists --components')
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -362,6 +372,7 @@ async function main() {
   await testAddCommand()
   testListSubcommand()
   testOpencodeScaffoldGroup()
+  testKlepDsInitHelp()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
