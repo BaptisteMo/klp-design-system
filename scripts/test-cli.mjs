@@ -168,6 +168,27 @@ async function testDetectApp() {
   }
 }
 
+async function testPatchConfig() {
+  console.log('\n[test] patch-config')
+  const { patchTsconfig, patchViteConfig } = await import(join(REPO_ROOT, 'cli/patch-config.mjs'))
+
+  const tsBefore = JSON.stringify({ compilerOptions: { strict: true } }, null, 2)
+  const tsAfter = patchTsconfig(tsBefore, '../../external/klp-design-system/src')
+  const parsed = JSON.parse(tsAfter)
+  assert(parsed.compilerOptions.paths['@klp/*'][0] === '../../external/klp-design-system/src/*', 'tsconfig paths injected')
+
+  const tsAfter2 = patchTsconfig(tsAfter, '../../external/klp-design-system/src')
+  assert(tsAfter === tsAfter2, 'tsconfig patch is idempotent')
+
+  const viteBefore = `import { defineConfig } from 'vite'\nimport react from '@vitejs/plugin-react'\n\nexport default defineConfig({\n  plugins: [react()],\n})\n`
+  const viteAfter = patchViteConfig(viteBefore, '../../external/klp-design-system/src')
+  assert(/'@klp':\s*path\.resolve/.test(viteAfter), 'vite alias injected')
+  assert(/import path from 'node:path'/.test(viteAfter), 'vite import path added')
+
+  const viteAfter2 = patchViteConfig(viteAfter, '../../external/klp-design-system/src')
+  assert(viteAfter === viteAfter2, 'vite patch is idempotent')
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -176,6 +197,7 @@ async function main() {
   await testManifestModule()
   await testDiff()
   await testDetectApp()
+  await testPatchConfig()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
