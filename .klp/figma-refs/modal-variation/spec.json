@@ -1,0 +1,305 @@
+{
+  "name": "modal-variation",
+  "displayName": "Modal Variation",
+  "figmaNode": "115223:3842",
+  "captureBrand": "wireframe",
+  "category": "overlays",
+  "description": "Modal dialog component with two layout variants: 'Options actions' (left option + right secondary/primary CTA) and '2 Actions' (full-width secondary + primary CTA). Composed of a Header zone, a scrollable Content zone, and a footer Footer with frosted-glass backdrop blur. Button instances in the footer reuse the integrated Button DS component.",
+  "radixPrimitive": "@radix-ui/react-dialog",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Modal card container. Vertical stack layout with 24px gap. Rounded-2xl border, fill bg/default, border bd/default."
+    },
+    {
+      "part": "header",
+      "element": "div",
+      "notes": "Top zone with inset fill and 24px padding on all sides. Contains the title text."
+    },
+    {
+      "part": "title",
+      "element": "h2",
+      "notes": "Header title text. Font: Inter/Semibold/20px, color fg/heading (cross-file var 693:171)."
+    },
+    {
+      "part": "content",
+      "element": "div",
+      "notes": "Body area with bg/default fill, 24px padding, optional decorative icon (hidden by default) and label text."
+    },
+    {
+      "part": "label",
+      "element": "p",
+      "notes": "Body copy text. Font: Inter/Regular/16px, color fg/default."
+    },
+    {
+      "part": "footer",
+      "element": "div",
+      "notes": "Horizontal bar with space-between layout, 16px side padding, 24px top/bottom padding. Semi-transparent white fill (70% opacity) with 20px background-blur effect. Top border uses cross-file var 734:5."
+    },
+    {
+      "part": "left-buttons",
+      "element": "div",
+      "notes": "Left slot for optional action buttons (visible in options-actions variant only). HUG sizing."
+    },
+    {
+      "part": "right-buttons",
+      "element": "div",
+      "notes": "Right slot for primary + secondary actions. FILL in 2-actions variant, HUG in options-actions variant."
+    },
+    {
+      "part": "button-option",
+      "element": "button",
+      "notes": "Tertiary button in left-buttons slot (options-actions variant only). Reuses Button DS component.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "md" },
+      "figmaInstance": { "name": "Button/Tertiary/Medium", "key": "2864a0d1688ad9b04aa39ed7e0bc221f2fbfb755" }
+    },
+    {
+      "part": "button-secondary",
+      "element": "button",
+      "notes": "Tertiary/secondary-styled button in right-buttons slot. Reuses Button DS component.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "md" },
+      "figmaInstance": { "name": "Button/Tertiary/Medium", "key": "2864a0d1688ad9b04aa39ed7e0bc221f2fbfb755" }
+    },
+    {
+      "part": "button-primary",
+      "element": "button",
+      "notes": "Primary CTA button in right-buttons slot. Reuses Button DS component.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "primary", "size": "md" },
+      "figmaInstance": { "name": "Button/Primary/Medium", "key": "2864a0d1688ad9b04aa39ed7e0bc221f2fbfb755" }
+    }
+  ],
+  "variantAxes": {
+    "type": ["options-actions", "2-actions"]
+  },
+  "variants": [
+    {
+      "id": "options-actions-default",
+      "axes": { "type": "options-actions" },
+      "figmaNodeId": "115223:3843",
+      "screenshot": "options-actions-default.png",
+      "layers": {
+        "root": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default (cross-file 4b97.../515:722)", "value": "#FFFFFF" },
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default (cross-file 278a.../693:75)", "value": "#D7DAD9" },
+          "cornerRadius": { "literal": "16px" },
+          "itemSpacing": { "literal": "24px" }
+        },
+        "header": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" },
+          "paddingX": { "literal": "24px" },
+          "paddingY": { "literal": "24px" },
+          "itemSpacing": { "literal": "8px" }
+        },
+        "title": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/heading (cross-file a7f6.../693:171)", "value": "#1A2120" },
+          "literals": {
+            "fontSize": "20px",
+            "fontWeight": "600",
+            "lineHeight": "28px",
+            "fontFamily": "Inter"
+          }
+        },
+        "content": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default (cross-file 4b97.../515:722)", "value": "#FFFFFF" },
+          "paddingX": { "literal": "24px" },
+          "paddingY": { "literal": "24px" },
+          "itemSpacing": { "literal": "24px" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A2120" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "footer": {
+          "stroke": { "token": "--klp-bg-inset", "figmaVar": "footer-border (cross-file 50dd.../734:5)", "value": "#EEF1F0" },
+          "paddingX": { "literal": "16px" },
+          "paddingY": { "literal": "24px" },
+          "literals": {
+            "fill": "rgba(255,255,255,0.70)",
+            "backdropBlur": "20px"
+          }
+        },
+        "left-buttons": {
+          "literals": { "itemSpacing": "16px" }
+        },
+        "right-buttons": {
+          "literals": { "itemSpacing": "16px" }
+        },
+        "button-option": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "paddingX": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "paddingY": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "itemSpacing": { "token": "--klp-size-2xs", "figmaVar": "Sizing/2XS", "value": "6px" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" }
+        },
+        "button-secondary": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "paddingX": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "paddingY": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "itemSpacing": { "token": "--klp-size-2xs", "figmaVar": "Sizing/2XS", "value": "6px" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" }
+        },
+        "button-primary": {
+          "fill": { "token": "--klp-bg-brand", "figmaVar": "bg/brand", "value": "#1EADA5" },
+          "stroke": { "token": "--klp-border-brand", "figmaVar": "bd/brand", "value": "#1EADA5" },
+          "paddingX": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "paddingY": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "itemSpacing": { "token": "--klp-size-2xs", "figmaVar": "Sizing/2XS", "value": "6px" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" }
+        }
+      }
+    },
+    {
+      "id": "2-actions-default",
+      "axes": { "type": "2-actions" },
+      "figmaNodeId": "115223:3856",
+      "screenshot": "2-actions-default.png",
+      "layers": {
+        "root": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default (cross-file 4b97.../515:722)", "value": "#FFFFFF" },
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default (cross-file 278a.../693:75)", "value": "#D7DAD9" },
+          "cornerRadius": { "literal": "16px" },
+          "itemSpacing": { "literal": "24px" }
+        },
+        "header": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" },
+          "paddingX": { "literal": "24px" },
+          "paddingY": { "literal": "24px" },
+          "itemSpacing": { "literal": "8px" }
+        },
+        "title": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/heading (cross-file a7f6.../693:171)", "value": "#1A2120" },
+          "literals": {
+            "fontSize": "20px",
+            "fontWeight": "600",
+            "lineHeight": "28px",
+            "fontFamily": "Inter"
+          }
+        },
+        "content": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default (cross-file 4b97.../515:722)", "value": "#FFFFFF" },
+          "paddingX": { "literal": "24px" },
+          "paddingY": { "literal": "24px" },
+          "itemSpacing": { "literal": "24px" }
+        },
+        "label": {
+          "color": { "token": "--klp-fg-default", "figmaVar": "fg/default", "value": "#1A2120" },
+          "fontSize": { "token": "--klp-font-size-text-medium", "figmaVar": "Sizing/Text/Medium", "value": "16px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" },
+          "literals": { "lineHeight": "24px" }
+        },
+        "footer": {
+          "stroke": { "token": "--klp-bg-inset", "figmaVar": "footer-border (cross-file 50dd.../734:5)", "value": "#EEF1F0" },
+          "paddingX": { "literal": "16px" },
+          "paddingY": { "literal": "24px" },
+          "literals": {
+            "fill": "rgba(255,255,255,0.70)",
+            "backdropBlur": "20px"
+          }
+        },
+        "left-buttons": {
+          "literals": { "itemSpacing": "16px" }
+        },
+        "right-buttons": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default (implicit container)", "value": "transparent" },
+          "literals": { "itemSpacing": "16px" }
+        },
+        "button-option": {
+          "literals": { "display": "none (hidden in 2-actions variant)" }
+        },
+        "button-secondary": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "paddingX": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "paddingY": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "itemSpacing": { "token": "--klp-size-2xs", "figmaVar": "Sizing/2XS", "value": "6px" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" }
+        },
+        "button-primary": {
+          "fill": { "token": "--klp-bg-brand", "figmaVar": "bg/brand", "value": "#1EADA5" },
+          "stroke": { "token": "--klp-border-brand", "figmaVar": "bd/brand", "value": "#1EADA5" },
+          "paddingX": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "paddingY": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "itemSpacing": { "token": "--klp-size-2xs", "figmaVar": "Sizing/2XS", "value": "6px" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "dialog",
+    "keyboardSupport": ["Tab", "Shift+Tab", "Escape"],
+    "notes": "Radix Dialog handles focus trap, aria-modal, aria-labelledby on the header title, and Escape to close. Button children receive native button semantics."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": "bg/default (cross-file VariableID:4b97a7048a6aedae6ae1bbf0076a8ce0683702d1/515:722)",
+      "expectedKlp": "--klp-bg-default",
+      "seenOn": "options-actions-default/root/fill, 2-actions-default/root/fill, options-actions-default/content/fill, 2-actions-default/content/fill",
+      "note": "Cross-file published library variable. Renders as #FFFFFF. Adapter should use --klp-bg-default. Known gap — also seen in table-cells-checkbox."
+    },
+    {
+      "figmaVar": "bd/default (cross-file VariableID:278a80f57c040e670ec913cb048805e6cb5c948e/693:75)",
+      "expectedKlp": "--klp-border-default",
+      "seenOn": "options-actions-default/root/stroke, 2-actions-default/root/stroke",
+      "note": "Cross-file published library variable. Renders as #D7DAD9. Adapter should use --klp-border-default. Known gap — also seen in tabulations."
+    },
+    {
+      "figmaVar": "fg/heading (cross-file VariableID:a7f627ee14157c3df8ae9fcf71b1cdb68c199fcd/693:171)",
+      "expectedKlp": "--klp-fg-default",
+      "seenOn": "options-actions-default/title/color, 2-actions-default/title/color",
+      "note": "Cross-file published library variable. Renders as dark (#1A2120). Semantically equivalent to fg/default. Adapter should use --klp-fg-default."
+    },
+    {
+      "figmaVar": "footer-border (cross-file VariableID:50ddcb656821e669349ec7d566a2f2543bcf424f/734:5)",
+      "expectedKlp": "--klp-bg-inset",
+      "seenOn": "options-actions-default/footer/stroke, 2-actions-default/footer/stroke",
+      "note": "Cross-file published library variable. Renders as #EEF1F0 which matches bg/inset. Adapter should use --klp-bg-inset. Footer fill itself is a literal rgba(255,255,255,0.70) with backdrop-blur — no token alias exists for semi-transparent backgrounds."
+    },
+    {
+      "figmaVar": "footer fill rgba(255,255,255,0.70) + backdrop-blur:20px",
+      "expectedKlp": null,
+      "seenOn": "options-actions-default/footer/fill, 2-actions-default/footer/fill",
+      "note": "No token variable bound for the semi-transparent frosted glass footer fill. Literal value only. Adapter: use bg-white/70 backdrop-blur-xl (Tailwind v4)."
+    },
+    {
+      "figmaVar": "root cornerRadius literal 16px",
+      "expectedKlp": "--klp-radius-xl",
+      "seenOn": "options-actions-default/root/cornerRadius, 2-actions-default/root/cornerRadius",
+      "note": "16px cornerRadius on the modal card root has no variable bound. --klp-radius-xl = 16px (radius-2xl). Adapter should use rounded-klp-xl."
+    }
+  ],
+  "composition": {
+    "reuses": ["button"],
+    "candidates": [],
+    "instances": [
+      {
+        "part": "button-option",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "tertiary", "size": "md" },
+        "figmaInstance": { "name": "Button/Tertiary/Medium", "key": "2864a0d1688ad9b04aa39ed7e0bc221f2fbfb755" }
+      },
+      {
+        "part": "button-secondary",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "tertiary", "size": "md" },
+        "figmaInstance": { "name": "Button/Tertiary/Medium", "key": "2864a0d1688ad9b04aa39ed7e0bc221f2fbfb755" }
+      },
+      {
+        "part": "button-primary",
+        "klpComponent": "button",
+        "klpComponentProps": { "variant": "primary", "size": "md" },
+        "figmaInstance": { "name": "Button/Primary/Medium", "key": "2864a0d1688ad9b04aa39ed7e0bc221f2fbfb755" }
+      }
+    ]
+  }
+}

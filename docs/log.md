@@ -2,6 +2,9 @@
 
 Append-only. Never delete entries.
 
+## [2026-04-23] DOCUMENT | modal-variation — 2 variants, 6 dependencies (1 component, 4 token groups, 1 brand), 0 usedBy
+Generated `docs/components/_index_modal-variation.md`. Updated `klp-components.json` canonical entry (confirmed props with raw TS types from source interface; corrected `registry/modal-variation.json#dependencies.npm` — removed stale `lucide-react`, component source does not import it). Reverse-index pass: patched `button` usedBy to add `modal-variation` (both frontmatter and `## Used by` section). Patched token group pages: `tokens/colors.md`, `tokens/spacing.md`, `tokens/radius.md`, `tokens/typography.md`. Patched `brands/wireframe.md`. Added entry under `overlays` in `docs/index.md`. Regenerated `docs/gaps.md` (2 new modal-variation gaps: literal-gap on footer fill, token-gap on root cornerRadius; total 13 gaps across 7 components).
+
 ## [2026-04-22] DOCUMENT | sidebar — 2 variants, 6 dependencies (2 components, 4 token groups, 1 brand), 0 usedBy
 Regenerated `docs/components/_index_sidebar.md` after refactor from consumer-configurable `menuItems` API to baked-in `SIDEBAR_MENU` tree. Removed stale `menuItems` / `SideBarMenuItem` from props; added `activeKey` (persistent), `activeChildKey` (persistent), `onNavigate` (optional). Updated `klp-components.json` props block accordingly. Added `menu.ts` to `registry/sidebar.json#files`. Externals corrected: removed transitive `@radix-ui/react-slot` (direct imports are `class-variance-authority` and `lucide-react` only). Reverse-index pass: 0 new edges (sidebar is a leaf in usedBy graph).
 

@@ -121,6 +121,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Header Desktop](../components/_index_header-desktop.md) — consumes `fg-brand-contrasted` (title), `bg-invisible`, `border-invisible` (tertiary buttons), `bg-default`, `border-brand`, `fg-brand` (secondary button), `bg-default`, `border-default`, `fg-subtle` (search-input), `fg-muted`, `fg-default` (breadcrumbs) across both feature variants.
 - [Header Phone](../components/_index_header-phone.md) — consumes `border-default` (root bottom border), `bg-invisible`, `border-invisible` (tertiary button layers), `fg-brand-contrasted` (logo color, title color), `bg-decorative-orange` (notification dot).
 - [Collapsible](../components/_index_collapsible.md) — consumes `bg-default`, `bg-inset`, `bg-invisible`, `border-default`, `border-invisible`, `fg-default`, `fg-muted` tokens across root, header, icon, title, toggle-button, content, and content-text layers.
+- [Modal Variation](../components/_index_modal-variation.md) — consumes `bg-default`, `bg-inset`, `fg-default`, `border-default`, `border-invisible`, `border-brand`, `bg-brand` tokens across root, header, title, content, label, footer, button-option, button-secondary, and button-primary layers.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-22T13:08:21.130Z",
+  "generatedAt": "2026-04-23T07:58:19.287Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -407,6 +407,30 @@
               "lucide-react"
             ],
             "components": []
+          }
+        },
+        "modal-variation": {
+          "files": [
+            {
+              "src": "src/components/modal-variation/ModalVariation.tsx",
+              "dst": "src/components/ui/modal-variation/ModalVariation.tsx",
+              "hash": "sha256:c97cbca04c922a945a8ed4b12e68cc188348b27867e23b6d2a5b9781004fe997"
+            },
+            {
+              "src": "src/components/modal-variation/index.ts",
+              "dst": "src/components/ui/modal-variation/index.ts",
+              "hash": "sha256:fa20e5814bf0221e112a59b5c4865e8012f330fdcf7d9876bc8af35c6fb3438a"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-dialog",
+              "class-variance-authority",
+              "lucide-react"
+            ],
+            "components": [
+              "button"
+            ]
           }
         },
         "pagination": {

@@ -49,6 +49,7 @@ Start here:
 
 ### overlays
 - [ActionSheet Item](./components/_index_action-sheet-item.md) — Single action-sheet row item, 7 states × 3 sizes (21 variants)
+- [Modal Variation](./components/_index_modal-variation.md) — Modal dialog with options-actions and 2-actions layout variants, frosted-glass footer, 2 variants
 
 ### data-display
 - [Badge](./components/_index_badges.md) — Status indicator pill, 9 types × 3 sizes × 2 styles (48 variants)

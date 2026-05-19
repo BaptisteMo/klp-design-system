@@ -25,6 +25,7 @@ import { HeaderDesktopRoute } from './routes/header-desktop'
 import { HeaderPhoneRoute } from './routes/header-phone'
 import { SideBarRoute } from './routes/sidebar'
 import { CollapsibleRoute } from './routes/collapsible'
+import { ModalVariationRoute } from './routes/modal-variation'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -53,6 +54,7 @@ const routes: Record<string, ComponentType> = {
   'header-phone': HeaderPhoneRoute,
   'sidebar': SideBarRoute,
   'collapsible': CollapsibleRoute,
+  'modal-variation': ModalVariationRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

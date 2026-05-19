@@ -20,6 +20,7 @@ usedBy:
   - header-phone
   - list
   - list-content
+  - modal-variation
   - pagination
   - sidebar
   - text-area
@@ -133,6 +134,7 @@ export function ButtonExample() {
 - [Header Phone](./_index_header-phone.md)
 - [List](./_index_list.md)
 - [List Content](./_index_list-content.md)
+- [Modal Variation](./_index_modal-variation.md)
 - [Pagination](./_index_pagination.md)
 - [SideBar](./_index_sidebar.md)
 - [Text Area](./_index_text-area.md)
