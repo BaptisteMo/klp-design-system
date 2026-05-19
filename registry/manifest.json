@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-05-19T14:00:54.104Z",
+  "generatedAt": "2026-05-19T14:09:03.221Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -993,6 +993,51 @@
           "dst": "vite.config.ts",
           "hash": "sha256:b4889555a76758613ed445d50c2975f877856d00f976fa1b16864e3d6ea41806",
           "template": true
+        }
+      ]
+    },
+    "opencode-scaffold": {
+      "required": false,
+      "files": [
+        {
+          "src": "cli/scaffold/opencode/agents/ad-hoc-builder.md",
+          "dst": "agents/ad-hoc-builder.md",
+          "hash": "sha256:66785540d28a63a1da6c35207c94b5d7eb0aa5539c79f7304b379d935616825e"
+        },
+        {
+          "src": "cli/scaffold/opencode/agents/design-finalizer.md",
+          "dst": "agents/design-finalizer.md",
+          "hash": "sha256:10cf917e9a5f5d0ba7c168919e424969d11ce1aec666291d94dad7726261bed0"
+        },
+        {
+          "src": "cli/scaffold/opencode/agents/mockup-composer.md",
+          "dst": "agents/mockup-composer.md",
+          "hash": "sha256:30b65a3b1859bdc03f38dc1be9b1634657d52a7151e930eed921bf5b534b2369"
+        },
+        {
+          "src": "cli/scaffold/opencode/agents/request-analyzer.md",
+          "dst": "agents/request-analyzer.md",
+          "hash": "sha256:a3efaf3f0401d85e178e69614a1289ca68f3b04044f1c8a45f1745495d84069a"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design-reset.md",
+          "dst": "commands/klp-design-reset.md",
+          "hash": "sha256:4f26a16404424532da40eb547adbfa865fbd5cbd0338076c138a186dbd4bdebd"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design-review.md",
+          "dst": "commands/klp-design-review.md",
+          "hash": "sha256:536d05f5baf4d361c67300e29098701c2acd5b8f8109cbde9a3cde67c87ee8b0"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design-validate.md",
+          "dst": "commands/klp-design-validate.md",
+          "hash": "sha256:59e9d63956190d4d62e501c8d878bfce819f659203a069c7144c14f574c78014"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design.md",
+          "dst": "commands/klp-design.md",
+          "hash": "sha256:079aecb11af96abb0548ddec96b4325c81cb1d42b7bb90904615410a4e103130"
         }
       ]
     }

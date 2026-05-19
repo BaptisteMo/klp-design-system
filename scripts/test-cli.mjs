@@ -338,6 +338,16 @@ function testListSubcommand() {
   }
 }
 
+function testOpencodeScaffoldGroup() {
+  console.log('\n[test] opencode-scaffold manifest group')
+  const manifest = JSON.parse(readFileSync(join(REPO_ROOT, 'registry/manifest.json'), 'utf8'))
+  const group = manifest.groups['opencode-scaffold']
+  assert(group, 'opencode-scaffold group present')
+  assert(group.files.length === 8, 'group has 8 files (4 agents + 4 commands)')
+  assert(group.files.some((f) => /agents\/request-analyzer\.md$/.test(f.dst)), 'includes request-analyzer')
+  assert(group.files.some((f) => /commands\/klp-design\.md$/.test(f.dst)), 'includes klp-design command')
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -351,6 +361,7 @@ async function main() {
   await testListCommand()
   await testAddCommand()
   testListSubcommand()
+  testOpencodeScaffoldGroup()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
