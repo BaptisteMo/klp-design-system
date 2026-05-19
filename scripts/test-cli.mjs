@@ -146,6 +146,19 @@ async function testDiff() {
   assert(Array.isArray(grouped['new']) && grouped['new'].length === 0, 'groupByStatus initializes empty buckets')
 }
 
+async function testDetectApp() {
+  console.log('\n[test] detect-app')
+  const { detectReactApp } = await import(join(REPO_ROOT, 'cli/detect-app.mjs'))
+  const fixture = join(REPO_ROOT, 'tests/fixtures/attach')
+
+  const single = await detectReactApp(fixture)
+  assert(single.matches.length === 1, 'detects exactly one react sub-app')
+  assert(single.matches[0] === 'forge-output/04-app', 'returns relative path to sub-app')
+
+  const none = await detectReactApp(REPO_ROOT)
+  assert(Array.isArray(none.matches), 'returns matches array on no match too')
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -153,6 +166,7 @@ async function main() {
   await testHash()
   await testManifestModule()
   await testDiff()
+  await testDetectApp()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
