@@ -358,6 +358,68 @@ function testKlepDsInitHelp() {
   assert(/--components/.test(out.stdout), 'help lists --components')
 }
 
+function testKlepDsInitE2E() {
+  console.log('\n[test] klep-ds-init E2E')
+  const fixtureSrc = join(REPO_ROOT, 'tests/fixtures/attach')
+  const dir = mkdtempSync(join(tmpdir(), 'klp-attach-'))
+  spawnSync('cp', ['-R', `${fixtureSrc}/.`, dir])
+
+  const out = spawnSync('node', [
+    join(REPO_ROOT, 'cli/klep-ds-init.mjs'),
+    '--brand=wireframe', '--components=button', '--ref=local',
+  ], { cwd: dir, encoding: 'utf8' })
+
+  try {
+    assert(out.status === 0, `klep-ds-init E2E exits 0 (stderr: ${out.stderr})`)
+    assert(existsSync(join(dir, 'external/klp-design-system/src/components/button/Button.tsx')), 'button installed')
+    assert(existsSync(join(dir, 'external/klp-design-system/src/lib/cn.ts')), 'lib/cn.ts installed')
+    assert(existsSync(join(dir, '.opencode/agents/request-analyzer.md')), 'opencode agent installed')
+    assert(existsSync(join(dir, '.opencode/commands/klp-design.md')), 'opencode command installed')
+    assert(existsSync(join(dir, 'docs/agent-brief.md')), 'docs/agent-brief.md installed')
+    assert(existsSync(join(dir, 'klp.lock.json')), 'lockfile created')
+    assert(existsSync(join(dir, 'klp-inventory.json')), 'inventory created')
+
+    const ts = JSON.parse(readFileSync(join(dir, 'forge-output/04-app/tsconfig.app.json'), 'utf8'))
+    assert(ts.compilerOptions.paths['@klp/*'][0].includes('external/klp-design-system/src'), 'tsconfig patched')
+
+    const vite = readFileSync(join(dir, 'forge-output/04-app/vite.config.ts'), 'utf8')
+    assert(/'@klp':\s*path\.resolve/.test(vite), 'vite patched')
+
+    const inv = JSON.parse(readFileSync(join(dir, 'klp-inventory.json'), 'utf8'))
+    assert(inv.components.button.status === 'installed', 'inventory shows button installed')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
+function testAddCommandE2E() {
+  console.log('\n[test] add command E2E')
+  const fixtureSrc = join(REPO_ROOT, 'tests/fixtures/attach')
+  const dir = mkdtempSync(join(tmpdir(), 'klp-add-e2e-'))
+  spawnSync('cp', ['-R', `${fixtureSrc}/.`, dir])
+
+  const init = spawnSync('node', [
+    join(REPO_ROOT, 'cli/klep-ds-init.mjs'),
+    '--brand=wireframe', '--components=button', '--ref=local',
+  ], { cwd: dir, encoding: 'utf8' })
+  assert(init.status === 0, `init succeeds (stderr: ${init.stderr})`)
+
+  const add = spawnSync('node', [
+    join(REPO_ROOT, 'cli/index.mjs'), 'add', 'input', '--ref=local',
+  ], { cwd: dir, encoding: 'utf8' })
+
+  try {
+    assert(add.status === 0, `add succeeds (stderr: ${add.stderr})`)
+    assert(existsSync(join(dir, 'external/klp-design-system/src/components/input/Input.tsx')), 'input installed')
+
+    const inv = JSON.parse(readFileSync(join(dir, 'klp-inventory.json'), 'utf8'))
+    assert(inv.components.input.status === 'installed', 'inventory updated')
+    assert(inv.components.button.status === 'installed', 'button still installed')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -373,6 +435,8 @@ async function main() {
   testListSubcommand()
   testOpencodeScaffoldGroup()
   testKlepDsInitHelp()
+  testKlepDsInitE2E()
+  testAddCommandE2E()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)

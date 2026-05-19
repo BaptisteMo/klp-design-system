@@ -26,6 +26,55 @@ Env:
 
 const argv = process.argv.slice(2)
 
+async function runAdd(rest) {
+  const { planAdd } = await import('./add.mjs')
+  const { copyComponent, copyDocOfComponent } = await import('./copy.mjs')
+  const { writeInventory, markInstalled } = await import('./inventory.mjs')
+  const { join } = await import('node:path')
+  const { readFileSync } = await import('node:fs')
+
+  const positional = rest.filter((a) => !a.startsWith('--'))
+  const force = rest.includes('--force')
+  const json = rest.includes('--json')
+  const refFlag = rest.find((a) => a.startsWith('--ref='))
+  const ref = refFlag ? refFlag.slice(6) : 'main'
+
+  const rootDir = process.cwd()
+  const plan = planAdd({ rootDir, names: positional, force })
+
+  if (plan.unknown.length) {
+    console.error(`Unknown components: ${plan.unknown.join(', ')}`)
+    process.exit(2)
+  }
+  if (!plan.toInstall.length) {
+    console.log(`Nothing to install. Already installed: ${plan.alreadyInstalled.join(', ') || '(none)'}`)
+    process.exit(0)
+  }
+
+  let manifest
+  if (ref === 'local') {
+    manifest = JSON.parse(readFileSync(resolve(__dirname, '../registry/manifest.json'), 'utf8'))
+  } else {
+    const { fetchText } = await import('./fetch.mjs')
+    const url = `https://raw.githubusercontent.com/BaptisteMo/klp-design-system/${ref}/registry/manifest.json`
+    manifest = JSON.parse(await fetchText(url))
+  }
+
+  const dsRoot  = join(rootDir, plan.inventory.dsDir)
+  const docsRoot = join(rootDir, 'docs')
+
+  for (const name of plan.toInstall) {
+    await copyComponent(manifest, name, dsRoot, { ref })
+    await copyDocOfComponent(manifest, name, docsRoot, { ref })
+  }
+
+  const updated = markInstalled(plan.inventory, plan.toInstall)
+  writeInventory(rootDir, updated)
+
+  if (json) console.log(JSON.stringify({ installed: plan.toInstall }, null, 2))
+  else console.log(`✓ Installed: ${plan.toInstall.join(', ')}`)
+}
+
 async function main() {
   if (argv.length === 0 || argv.includes('--help') || argv.includes('-h')) {
     console.log(HELP)
@@ -48,21 +97,7 @@ async function main() {
     const json = rest.includes('--json')
     console.log(runList({ rootDir: process.cwd(), json }))
   } else if (cmd === 'add') {
-    const { planAdd } = await import('./add.mjs')
-    const positional = rest.filter((a) => !a.startsWith('--'))
-    const force = rest.includes('--force')
-    const json = rest.includes('--json')
-    const plan = planAdd({ rootDir: process.cwd(), names: positional, force })
-    if (plan.unknown.length) {
-      console.error(`Unknown components: ${plan.unknown.join(', ')}`)
-      process.exit(2)
-    }
-    if (json) console.log(JSON.stringify(plan, null, 2))
-    else {
-      console.log(`Would install: ${plan.toInstall.join(', ') || '(none)'}`)
-      if (plan.alreadyInstalled.length) console.log(`Already installed: ${plan.alreadyInstalled.join(', ')}`)
-    }
-    // Filesystem execution wired in Task 14.
+    await runAdd(rest)
   } else {
     console.error(`Unknown command: ${cmd}\n`)
     console.error(HELP)
