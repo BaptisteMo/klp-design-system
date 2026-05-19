@@ -249,6 +249,34 @@ async function testInventory() {
   }
 }
 
+async function testListCommand() {
+  console.log('\n[test] list command')
+  const { runList } = await import(join(REPO_ROOT, 'cli/list.mjs'))
+  const { writeInventory, createInventory } = await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+
+  const dir = mkdtempSync(join(tmpdir(), 'klp-list-'))
+  try {
+    const inv = createInventory({
+      ref: 'main', brand: 'wireframe', appDir: 'app', dsDir: 'external/ds',
+      catalog: [
+        { name: 'button', category: 'inputs', deps: [] },
+        { name: 'input',  category: 'inputs', deps: [] },
+      ],
+      initiallyInstalled: ['button'],
+    })
+    writeInventory(dir, inv)
+
+    const jsonOut = runList({ rootDir: dir, json: true })
+    assert(JSON.parse(jsonOut).components.button.status === 'installed', 'list --json returns inventory')
+
+    const textOut = runList({ rootDir: dir, json: false })
+    assert(/installed/.test(textOut) && /button/.test(textOut), 'list text shows installed section')
+    assert(/available/.test(textOut) && /input/.test(textOut), 'list text shows available section')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -259,6 +287,7 @@ async function main() {
   await testDetectApp()
   await testPatchConfig()
   await testInventory()
+  await testListCommand()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
