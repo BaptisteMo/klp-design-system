@@ -1,0 +1,13 @@
+---
+description: Mark a reviewed design as awaiting validation. Usage: /klp-design-review <id>
+agent: mockup-composer
+---
+
+# /klp-design-review
+
+Argument: **$ARGUMENTS** — request id.
+
+1. Verify `requests/to-be-review/<id>.yaml` exists. If not, abort with a clear message.
+2. `git mv requests/to-be-review/<id>.yaml requests/to-be-validate/<id>.yaml` (fall back to plain `mv` if not a git repo).
+3. Append to `docs/design-log.md`: `- <ISO now> — \`<id>\` → to-be-validate — (review signed off)`.
+4. Print: `✓ <id> moved to to-be-validate/. Use /klp-design-validate <id> after meeting sign-off.`
