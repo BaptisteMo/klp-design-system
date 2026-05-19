@@ -277,6 +277,43 @@ async function testListCommand() {
   }
 }
 
+async function testAddCommand() {
+  console.log('\n[test] add command planning')
+  const { planAdd } = await import(join(REPO_ROOT, 'cli/add.mjs'))
+  const { writeInventory, createInventory } = await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+
+  const dir = mkdtempSync(join(tmpdir(), 'klp-add-'))
+  try {
+    const inv = createInventory({
+      ref: 'main', brand: 'wireframe', appDir: 'app', dsDir: 'external/ds',
+      catalog: [
+        { name: 'pagination', category: 'navigation',   deps: [] },
+        { name: 'table',      category: 'data-display', deps: [] },
+        { name: 'data-table', category: 'data-display', deps: ['pagination', 'table'] },
+        { name: 'button',     category: 'inputs',       deps: [] },
+      ],
+      initiallyInstalled: ['button'],
+    })
+    writeInventory(dir, inv)
+
+    const plan = planAdd({ rootDir: dir, names: ['data-table'], force: false })
+    assert(plan.toInstall.sort().join(',') === 'data-table,pagination,table', 'plans transitive deps')
+    assert(plan.unknown.length === 0, 'no unknown')
+
+    const planExisting = planAdd({ rootDir: dir, names: ['button'], force: false })
+    assert(planExisting.alreadyInstalled[0] === 'button', 'flags already-installed')
+    assert(planExisting.toInstall.length === 0, 'does not re-plan already-installed')
+
+    const planForce = planAdd({ rootDir: dir, names: ['button'], force: true })
+    assert(planForce.toInstall[0] === 'button', 'force re-includes already-installed')
+
+    const planBogus = planAdd({ rootDir: dir, names: ['nonexistent'], force: false })
+    assert(planBogus.unknown[0] === 'nonexistent', 'unknown component flagged')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -288,6 +325,7 @@ async function main() {
   await testPatchConfig()
   await testInventory()
   await testListCommand()
+  await testAddCommand()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
