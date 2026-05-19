@@ -6,7 +6,7 @@
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve, join } from 'node:path'
-import { mkdtempSync, rmSync } from 'node:fs'
+import { mkdtempSync, rmSync, writeFileSync, readFileSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -189,6 +189,49 @@ async function testPatchConfig() {
   assert(viteAfter === viteAfter2, 'vite patch is idempotent')
 }
 
+async function testInventory() {
+  console.log('\n[test] inventory')
+  const { createInventory, readInventory, writeInventory, markInstalled, listByStatus, resolveTransitive } =
+    await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+
+  const dir = mkdtempSync(join(tmpdir(), 'klp-inv-'))
+  try {
+    const inv = createInventory({
+      ref: 'main', brand: 'wireframe',
+      appDir: 'forge-output/04-app',
+      dsDir: 'external/klp-design-system',
+      catalog: [
+        { name: 'button', category: 'inputs', deps: [] },
+        { name: 'pagination', category: 'navigation', deps: [] },
+        { name: 'table', category: 'data-display', deps: [] },
+        { name: 'data-table', category: 'data-display', deps: ['pagination', 'table'] },
+      ],
+      initiallyInstalled: ['button'],
+    })
+
+    assert(inv.components.button.status === 'installed', 'button is installed')
+    assert(inv.components['data-table'].status === 'available', 'data-table is available')
+
+    writeInventory(dir, inv)
+    assert(existsSync(join(dir, 'klp-inventory.json')), 'inventory file written')
+
+    const read = readInventory(dir)
+    assert(read.brand === 'wireframe', 'inventory read back')
+
+    const transitive = resolveTransitive(read, ['data-table'])
+    assert(transitive.sort().join(',') === 'data-table,pagination,table', 'transitive deps resolved')
+
+    const updated = markInstalled(read, transitive)
+    assert(updated.components['data-table'].status === 'installed', 'data-table now installed')
+    assert(updated.components.pagination.status === 'installed', 'pagination transitively marked')
+
+    const installed = listByStatus(updated, 'installed')
+    assert(installed.length === 4, 'four components installed total')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -198,6 +241,7 @@ async function main() {
   await testDiff()
   await testDetectApp()
   await testPatchConfig()
+  await testInventory()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
