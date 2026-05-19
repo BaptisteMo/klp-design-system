@@ -314,6 +314,30 @@ async function testAddCommand() {
   }
 }
 
+function testListSubcommand() {
+  console.log('\n[test] list subcommand')
+  const dir = mkdtempSync(join(tmpdir(), 'klp-list-cli-'))
+  try {
+    writeFileSync(join(dir, 'klp-inventory.json'), JSON.stringify({
+      schemaVersion: 'v1', ref: 'main', brand: 'wireframe',
+      appDir: 'app', dsDir: 'external/ds',
+      components: { button: { status: 'installed', category: 'inputs', deps: [] } },
+    }, null, 2))
+
+    const out = spawnSync('node', [join(REPO_ROOT, 'cli/index.mjs'), 'list', '--json'], {
+      cwd: dir, encoding: 'utf8',
+    })
+    assert(out.status === 0, 'klp-ui list exits 0')
+    assert(JSON.parse(out.stdout).components.button.status === 'installed', 'list --json returns valid inventory')
+
+    const help = spawnSync('node', [join(REPO_ROOT, 'cli/index.mjs'), '--help'], { encoding: 'utf8' })
+    assert(/klp-ui list/.test(help.stdout), 'help lists `list` command')
+    assert(/klp-ui add/.test(help.stdout), 'help lists `add` command')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -326,6 +350,7 @@ async function main() {
   await testInventory()
   await testListCommand()
   await testAddCommand()
+  testListSubcommand()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)
