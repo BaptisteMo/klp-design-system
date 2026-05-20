@@ -155,10 +155,6 @@ async function main() {
   if (flags.help) { console.log(HELP); process.exit(0) }
 
   const rootDir = process.cwd()
-  if (!existsSync(join(rootDir, 'package.json'))) {
-    console.error('No package.json at cwd — run klep-ds-init from your project root.')
-    process.exit(2)
-  }
   if (existsSync(join(rootDir, 'klp.lock.json')) && !flags.force) {
     console.error('klp.lock.json already exists. Use --force or run `klp-ui update`.')
     process.exit(2)

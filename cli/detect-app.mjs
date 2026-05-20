@@ -21,9 +21,8 @@ async function walk(dir, out) {
 
 /**
  * Scan `rootDir` for sub-projects whose `package.json` declares react.
- * Only sub-project paths are returned; `rootDir` itself is never included
- * — `klep-ds-init` consumes this to find the sub-app to patch, and patching
- * the consumer's repo-root package.json is out of scope.
+ * Returns relative paths from rootDir. If rootDir itself is a React app
+ * (its own package.json declares react), the marker `'.'` is included.
  *
  * @returns {Promise<{ matches: string[] }>}
  */
@@ -37,8 +36,7 @@ export async function detectReactApp(rootDir) {
     const deps = { ...(pkg.dependencies ?? {}), ...(pkg.devDependencies ?? {}) }
     if (deps.react) {
       const rel = relative(rootDir, pkgPath).split(sep).slice(0, -1).join('/')
-      // empty rel == package.json sits at rootDir; skip per JSDoc contract above
-      if (rel) matches.push(rel)
+      matches.push(rel || '.')
     }
   }
   return { matches }
