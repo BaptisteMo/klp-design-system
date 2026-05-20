@@ -134,6 +134,29 @@ function collectComponentNpmDeps(manifest, installedNames) {
   return deps
 }
 
+function writeDsTsconfig(dsRoot) {
+  const tsconfig = {
+    compilerOptions: {
+      target: 'ES2020',
+      lib: ['ES2020', 'DOM', 'DOM.Iterable'],
+      module: 'ESNext',
+      moduleResolution: 'Bundler',
+      jsx: 'react-jsx',
+      strict: true,
+      esModuleInterop: true,
+      allowSyntheticDefaultImports: true,
+      skipLibCheck: true,
+      isolatedModules: true,
+      noEmit: true,
+      resolveJsonModule: true,
+      baseUrl: '.',
+      paths: { '@klp/*': ['./src/*'] },
+    },
+    include: ['src/**/*'],
+  }
+  writeFileSync(join(dsRoot, 'tsconfig.json'), JSON.stringify(tsconfig, null, 2) + '\n')
+}
+
 function writeDsPackageJson(dsRoot, manifest, installedNames) {
   const componentDeps = collectComponentNpmDeps(manifest, installedNames)
   const merged = { ...RUNTIME_DEPS, ...componentDeps }
@@ -258,6 +281,7 @@ async function main() {
   writeInventory(rootDir, finalInv)
   writeLockfile(rootDir, manifest, toInstall, ref, brand)
   writeDsPackageJson(dsRoot, manifest, toInstall)
+  writeDsTsconfig(dsRoot)
 
   console.log(`✓ Installed ${toInstall.length} components into external/klp-design-system/`)
   console.log(`✓ Agents + commands written to .opencode/`)
