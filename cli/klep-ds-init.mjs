@@ -187,10 +187,28 @@ async function main() {
   if (!flags.noConfigPatch) {
     const appAbs = join(rootDir, appDir)
     const rel = relative(appAbs, join(dsRoot, 'src'))
-    const tsPath = join(appAbs, 'tsconfig.app.json')
-    if (existsSync(tsPath)) writeFileSync(tsPath, patchTsconfig(readFileSync(tsPath, 'utf8'), rel))
+    // Patch whichever tsconfig is present. Prefer tsconfig.app.json (Vite split convention),
+    // fall back to tsconfig.json.
+    const tsCandidates = ['tsconfig.app.json', 'tsconfig.json']
+    let tsPatched = false
+    for (const name of tsCandidates) {
+      const p = join(appAbs, name)
+      if (existsSync(p)) {
+        writeFileSync(p, patchTsconfig(readFileSync(p, 'utf8'), rel))
+        if (flags.verbose) console.log(`patched ${name}`)
+        tsPatched = true
+        break
+      }
+    }
+    if (!tsPatched) console.warn(`! no tsconfig found in ${appDir} — skipped`)
+
     const vitePath = join(appAbs, 'vite.config.ts')
-    if (existsSync(vitePath)) writeFileSync(vitePath, patchViteConfig(readFileSync(vitePath, 'utf8'), rel))
+    if (existsSync(vitePath)) {
+      writeFileSync(vitePath, patchViteConfig(readFileSync(vitePath, 'utf8'), rel))
+      if (flags.verbose) console.log('patched vite.config.ts')
+    } else {
+      console.warn(`! no vite.config.ts in ${appDir} — skipped`)
+    }
   }
 
   const finalInv = createInventory({
