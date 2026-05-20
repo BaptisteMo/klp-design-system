@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-05-19T14:09:03.221Z",
+  "generatedAt": "2026-05-20T13:55:16.239Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -66,7 +66,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "overlays"
         },
         "action-sheet-menu": {
           "files": [
@@ -87,7 +88,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "lists"
         },
         "badges": {
           "files": [
@@ -108,7 +110,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "data-display"
         },
         "brand-provider": {
           "files": [
@@ -143,7 +146,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "navigation"
         },
         "button": {
           "files": [
@@ -164,7 +168,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "inputs"
         },
         "checkbox": {
           "files": [
@@ -186,7 +191,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "inputs"
         },
         "collapsible": {
           "files": [
@@ -208,7 +214,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "disclosure"
         },
         "data-table": {
           "files": [
@@ -253,7 +260,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "feedback"
         },
         "header-desktop": {
           "files": [
@@ -275,7 +283,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "navigation"
         },
         "header-phone": {
           "files": [
@@ -297,7 +306,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "containers"
         },
         "in-content-alert": {
           "files": [
@@ -318,7 +328,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "feedback"
         },
         "input": {
           "files": [
@@ -340,7 +351,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "inputs"
         },
         "item-side-bar": {
           "files": [
@@ -362,7 +374,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "navigation"
         },
         "list": {
           "files": [
@@ -385,7 +398,8 @@
             "components": [
               "list-content"
             ]
-          }
+          },
+          "category": "lists"
         },
         "list-content": {
           "files": [
@@ -407,7 +421,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "list"
         },
         "modal-variation": {
           "files": [
@@ -430,7 +445,8 @@
             "components": [
               "button"
             ]
-          }
+          },
+          "category": "overlays"
         },
         "pagination": {
           "files": [
@@ -473,7 +489,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "inputs"
         },
         "sidebar": {
           "files": [
@@ -500,7 +517,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "navigation"
         },
         "switch": {
           "files": [
@@ -522,7 +540,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "inputs"
         },
         "table": {
           "files": [
@@ -563,7 +582,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "navigation"
         },
         "tabulations": {
           "files": [
@@ -584,7 +604,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "navigation"
         },
         "text-area": {
           "files": [
@@ -606,7 +627,8 @@
               "lucide-react"
             ],
             "components": []
-          }
+          },
+          "category": "inputs"
         },
         "tooltip": {
           "files": [
@@ -627,7 +649,8 @@
               "class-variance-authority"
             ],
             "components": []
-          }
+          },
+          "category": "overlay"
         }
       }
     },

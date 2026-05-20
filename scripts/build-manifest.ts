@@ -17,6 +17,7 @@ type ManifestFile = { src: string; dst: string; hash: string; template?: boolean
 type ComponentManifest = {
   files: ManifestFile[]
   deps: { npm: string[]; components: string[] }
+  category?: string
 }
 
 function sha256(content: Buffer | string): string {
@@ -82,20 +83,23 @@ function buildComponentsGroup(): { items: Record<string, ComponentManifest> } {
         return { src: relSrc, dst, hash: hashFile(p) }
       })
 
-    // Parse registry file for deps hints (npm + component)
+    // Parse registry file for deps hints (npm + component) + category
     const registryFile = join(registryDir, `${name}.json`)
     const deps = { npm: [] as string[], components: [] as string[] }
+    let category: string | undefined
     if (existsSync(registryFile)) {
       const reg = JSON.parse(readFileSync(registryFile, 'utf8'))
       if (reg.meta?.radixPrimitive) deps.npm.push(reg.meta.radixPrimitive)
       if (Array.isArray(reg.dependencies?.npm)) deps.npm.push(...reg.dependencies.npm)
       if (Array.isArray(reg.dependencies?.components)) deps.components.push(...reg.dependencies.components)
+      if (typeof reg.meta?.category === 'string') category = reg.meta.category
+      else if (typeof reg.category === 'string') category = reg.category
     }
     // dedupe
     deps.npm = [...new Set(deps.npm)].sort()
     deps.components = [...new Set(deps.components)].sort()
 
-    items[name] = { files, deps }
+    items[name] = { files, deps, ...(category ? { category } : {}) }
   }
 
   // brand-provider is handled by the same scan (if present under src/components/brand-provider/)

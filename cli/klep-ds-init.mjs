@@ -10,7 +10,7 @@ import { spawnSync } from 'node:child_process'
 
 import { detectReactApp } from './detect-app.mjs'
 import { patchTsconfig, patchViteConfig } from './patch-config.mjs'
-import { createInventory, writeInventory, resolveTransitive } from './inventory.mjs'
+import { createInventory, writeInventory, writeInventoryMd, resolveTransitive } from './inventory.mjs'
 import { copyGroup, copyComponent, copyInstalledDocs } from './copy.mjs'
 
 const SELF_DIR = dirname(fileURLToPath(import.meta.url))
@@ -311,6 +311,7 @@ async function main() {
     catalog, initiallyInstalled: toInstall,
   })
   writeInventory(rootDir, finalInv)
+  writeInventoryMd(rootDir, finalInv)
   writeLockfile(rootDir, manifest, toInstall, ref, brand)
   writeDsPackageJson(dsRoot, manifest, toInstall)
   writeDsTsconfig(dsRoot)

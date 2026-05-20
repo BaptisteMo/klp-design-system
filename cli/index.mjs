@@ -29,7 +29,7 @@ const argv = process.argv.slice(2)
 async function runAdd(rest) {
   const { planAdd } = await import('./add.mjs')
   const { copyComponent, copyDocOfComponent } = await import('./copy.mjs')
-  const { writeInventory, markInstalled } = await import('./inventory.mjs')
+  const { writeInventory, writeInventoryMd, markInstalled } = await import('./inventory.mjs')
   const { join } = await import('node:path')
   const { readFileSync } = await import('node:fs')
 
@@ -70,6 +70,7 @@ async function runAdd(rest) {
 
   const updated = markInstalled(plan.inventory, plan.toInstall)
   writeInventory(rootDir, updated)
+  writeInventoryMd(rootDir, updated)
 
   if (json) console.log(JSON.stringify({ installed: plan.toInstall }, null, 2))
   else console.log(`✓ Installed: ${plan.toInstall.join(', ')}`)
