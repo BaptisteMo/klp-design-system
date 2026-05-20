@@ -7,9 +7,20 @@ export function patchTsconfig(source, relPath) {
   json.compilerOptions.paths ??= {}
   const existing = json.compilerOptions.paths['@klp/*']
   const wanted = [`${relPath}/*`]
-  if (Array.isArray(existing) && existing[0] === wanted[0]) return source
+  const includeEntry = `${relPath}/**/*`
+
+  const aliasOk = Array.isArray(existing) && existing[0] === wanted[0]
+  const includeOk = Array.isArray(json.include) && json.include.includes(includeEntry)
+  if (aliasOk && includeOk) return source
+
   json.compilerOptions.paths['@klp/*'] = wanted
   if (!json.compilerOptions.baseUrl) json.compilerOptions.baseUrl = '.'
+
+  // Include the DS source so TS type-checks @klp imports against the local
+  // node_modules (otherwise resolution falls back up the filesystem tree).
+  json.include ??= []
+  if (!json.include.includes(includeEntry)) json.include.push(includeEntry)
+
   return JSON.stringify(json, null, 2) + '\n'
 }
 
