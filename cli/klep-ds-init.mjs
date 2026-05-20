@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { join, relative, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createInterface } from 'node:readline/promises'
+import { spawnSync } from 'node:child_process'
 
 import { detectReactApp } from './detect-app.mjs'
 import { patchTsconfig, patchViteConfig } from './patch-config.mjs'
@@ -26,6 +27,8 @@ Options:
   --minimal            Install only tokens+lib (skips picker)
   --components=<csv>   Install named components (skips picker)
   --no-config-patch    Skip tsconfig/vite alias injection
+  --no-install         Skip auto pnpm install in the DS dir
+  --pm=<pnpm|npm|yarn|bun>  Package manager for the install (default: pnpm)
   --ref=<ref>          Git ref to install from (default: main)
   --force              Overwrite existing klp.lock.json
   --verbose            Print extra detail
@@ -40,6 +43,8 @@ function parseFlags(argv) {
     else if (a === '--minimal') out.minimal = true
     else if (a === '--force') out.force = true
     else if (a === '--no-config-patch') out.noConfigPatch = true
+    else if (a === '--no-install') out.noInstall = true
+    else if (a.startsWith('--pm=')) out.pm = a.slice(5)
     else if (a === '--verbose') out.verbose = true
     else if (a.startsWith('--app-dir=')) out.appDir = a.slice(10)
     else if (a.startsWith('--brand=')) out.brand = a.slice(8)
@@ -134,6 +139,32 @@ function collectComponentNpmDeps(manifest, installedNames) {
   return deps
 }
 
+function detectPackageManager(rootDir) {
+  if (existsSync(join(rootDir, 'pnpm-lock.yaml'))) return 'pnpm'
+  if (existsSync(join(rootDir, 'yarn.lock'))) return 'yarn'
+  if (existsSync(join(rootDir, 'bun.lockb'))) return 'bun'
+  if (existsSync(join(rootDir, 'package-lock.json'))) return 'npm'
+  return 'pnpm'
+}
+
+function runInstall(dsRoot, pm, verbose) {
+  const cmd = pm
+  const args = ['install']
+  if (verbose) console.log(`Running: ${cmd} ${args.join(' ')} (in ${dsRoot})`)
+  const result = spawnSync(cmd, args, {
+    cwd: dsRoot,
+    stdio: verbose ? 'inherit' : 'pipe',
+    encoding: 'utf8',
+  })
+  if (result.status !== 0) {
+    console.warn(`! ${cmd} install failed (exit ${result.status}). Stderr:`)
+    if (result.stderr) console.warn(result.stderr.slice(0, 800))
+    console.warn(`  Run "${cmd} install" manually inside ${dsRoot}`)
+    return false
+  }
+  return true
+}
+
 function writeDsTsconfig(dsRoot) {
   const tsconfig = {
     compilerOptions: {
@@ -158,7 +189,9 @@ function writeDsTsconfig(dsRoot) {
 
 function writeDsPackageJson(dsRoot, manifest, installedNames) {
   const componentDeps = collectComponentNpmDeps(manifest, installedNames)
-  const merged = { ...RUNTIME_DEPS, ...componentDeps }
+  // RUNTIME_DEPS pin known-good versions; componentDeps only contributes deps
+  // not already pinned (e.g. unusual Radix sub-packages from new components).
+  const merged = { ...componentDeps, ...RUNTIME_DEPS }
   const pkg = {
     name: '@klp/ui-vendored',
     private: true,
@@ -285,9 +318,16 @@ async function main() {
   console.log(`✓ Installed ${toInstall.length} components into external/klp-design-system/`)
   console.log(`✓ Agents + commands written to .opencode/`)
   console.log(`✓ Docs written to docs/`)
-  console.log(`\nNext step:`)
-  console.log(`  cd external/klp-design-system && pnpm install`)
-  console.log(`  (installs runtime deps so TS can resolve @klp/* imports)`)
+
+  if (!flags.noInstall) {
+    const pm = flags.pm ?? detectPackageManager(rootDir)
+    console.log(`\nInstalling runtime deps via ${pm}...`)
+    const ok = runInstall(dsRoot, pm, flags.verbose)
+    if (ok) console.log(`✓ Runtime deps installed in external/klp-design-system/node_modules/`)
+  } else {
+    console.log(`\nSkipped install (--no-install). Run manually:`)
+    console.log(`  cd external/klp-design-system && pnpm install`)
+  }
 }
 
 main().catch((e) => { console.error(e.message); process.exit(1) })
