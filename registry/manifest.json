@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-04-22T13:08:21.130Z",
+  "generatedAt": "2026-05-19T14:09:03.221Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -392,7 +392,7 @@
             {
               "src": "src/components/list-content/ListContent.tsx",
               "dst": "src/components/ui/list-content/ListContent.tsx",
-              "hash": "sha256:6337879dcbbc693420db78a5fbd52c6ca91a53b170b98751321e01327dd1d67b"
+              "hash": "sha256:5e7364d8ed771990d71d1714f241fd16989b791dbebb02091baedebca4725cb7"
             },
             {
               "src": "src/components/list-content/index.ts",
@@ -407,6 +407,29 @@
               "lucide-react"
             ],
             "components": []
+          }
+        },
+        "modal-variation": {
+          "files": [
+            {
+              "src": "src/components/modal-variation/ModalVariation.tsx",
+              "dst": "src/components/ui/modal-variation/ModalVariation.tsx",
+              "hash": "sha256:c97cbca04c922a945a8ed4b12e68cc188348b27867e23b6d2a5b9781004fe997"
+            },
+            {
+              "src": "src/components/modal-variation/index.ts",
+              "dst": "src/components/ui/modal-variation/index.ts",
+              "hash": "sha256:fa20e5814bf0221e112a59b5c4865e8012f330fdcf7d9876bc8af35c6fb3438a"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-dialog",
+              "class-variance-authority"
+            ],
+            "components": [
+              "button"
+            ]
           }
         },
         "pagination": {
@@ -619,7 +642,7 @@
         {
           "src": "docs/index.md",
           "dst": "docs/index.md",
-          "hash": "sha256:e4a361444a14659efd55a719144bb9fa5ac05922855f5ae1249d637ef8596c49"
+          "hash": "sha256:d903a67c4659811308f76b2b89c26f73e34befc570602d1483b48b9d9a50960d"
         },
         {
           "src": "docs/overview.md",
@@ -634,22 +657,22 @@
         {
           "src": "docs/tokens/colors.md",
           "dst": "docs/tokens/colors.md",
-          "hash": "sha256:cafb18ced2c08392a7a51b3885b9c1cfcd5c73ecedbb095a33b52ba914f43b6c"
+          "hash": "sha256:ab2431ba3d64fb456a709485fd44462a38c82df141338537cf081d588f211b4b"
         },
         {
           "src": "docs/tokens/radius.md",
           "dst": "docs/tokens/radius.md",
-          "hash": "sha256:1c9e413c02eda83abeb599098c3864fa4782747211005ef9fdb97229af1b0a2d"
+          "hash": "sha256:19e7113d153710c56b5b527be9f4b4016696e30bbf7d5feea677ddd06c3701ff"
         },
         {
           "src": "docs/tokens/spacing.md",
           "dst": "docs/tokens/spacing.md",
-          "hash": "sha256:033c073ff6f0160954538b5e10ee9d28140ce41775633a5b44d73d72778e06ed"
+          "hash": "sha256:e7bfe24856781784b4de48d0b9363d22e1d945bef49e43513b7ae07311f6e9a9"
         },
         {
           "src": "docs/tokens/typography.md",
           "dst": "docs/tokens/typography.md",
-          "hash": "sha256:0f4af2df54205bff19b7ec4d27a7a952b559dec734527c943ebcb850c5da89ab"
+          "hash": "sha256:086c771e800bcbd4d93df5ae465d04cfd06f0d1aa3759b23716eb3ed895804c4"
         },
         {
           "src": "docs/brands/_index_brands.md",
@@ -679,7 +702,7 @@
         {
           "src": "docs/components/_index_button.md",
           "dst": "docs/components/_index_button.md",
-          "hash": "sha256:dbe09eb7c2f216ad9435c347ad7d9e24e001328a25d571856c8a5cbf30159a8a"
+          "hash": "sha256:458637bc004bc984b39fd1404babc8586c831629ccdb4e1a63f325f6d8dc503f"
         },
         {
           "src": "docs/components/_index_checkbox.md",
@@ -735,6 +758,11 @@
           "src": "docs/components/_index_list.md",
           "dst": "docs/components/_index_list.md",
           "hash": "sha256:4e19afc080e56184c3607a84df61ed68724a2596a419ae74fc44545e88cfc229"
+        },
+        {
+          "src": "docs/components/_index_modal-variation.md",
+          "dst": "docs/components/_index_modal-variation.md",
+          "hash": "sha256:bf92b067e0b6c16fe457c29014e74379a1b438429210f2799e0e446cffb07225"
         },
         {
           "src": "docs/components/_index_pagination.md",
@@ -804,7 +832,7 @@
         {
           "src": "docs/brands/wireframe.md",
           "dst": "docs/brands/wireframe.md",
-          "hash": "sha256:8dbc8c467825332334b91b1bdd53120758d3245e78106ed4d8a204a42aba881d",
+          "hash": "sha256:d18727293b52d9393a7814300f24a3ce48d2f92539d33a4c10c624a9d35c192b",
           "brand": "wireframe"
         }
       ]
@@ -965,6 +993,51 @@
           "dst": "vite.config.ts",
           "hash": "sha256:b4889555a76758613ed445d50c2975f877856d00f976fa1b16864e3d6ea41806",
           "template": true
+        }
+      ]
+    },
+    "opencode-scaffold": {
+      "required": false,
+      "files": [
+        {
+          "src": "cli/scaffold/opencode/agents/ad-hoc-builder.md",
+          "dst": "agents/ad-hoc-builder.md",
+          "hash": "sha256:66785540d28a63a1da6c35207c94b5d7eb0aa5539c79f7304b379d935616825e"
+        },
+        {
+          "src": "cli/scaffold/opencode/agents/design-finalizer.md",
+          "dst": "agents/design-finalizer.md",
+          "hash": "sha256:10cf917e9a5f5d0ba7c168919e424969d11ce1aec666291d94dad7726261bed0"
+        },
+        {
+          "src": "cli/scaffold/opencode/agents/mockup-composer.md",
+          "dst": "agents/mockup-composer.md",
+          "hash": "sha256:30b65a3b1859bdc03f38dc1be9b1634657d52a7151e930eed921bf5b534b2369"
+        },
+        {
+          "src": "cli/scaffold/opencode/agents/request-analyzer.md",
+          "dst": "agents/request-analyzer.md",
+          "hash": "sha256:a3efaf3f0401d85e178e69614a1289ca68f3b04044f1c8a45f1745495d84069a"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design-reset.md",
+          "dst": "commands/klp-design-reset.md",
+          "hash": "sha256:4f26a16404424532da40eb547adbfa865fbd5cbd0338076c138a186dbd4bdebd"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design-review.md",
+          "dst": "commands/klp-design-review.md",
+          "hash": "sha256:536d05f5baf4d361c67300e29098701c2acd5b8f8109cbde9a3cde67c87ee8b0"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design-validate.md",
+          "dst": "commands/klp-design-validate.md",
+          "hash": "sha256:59e9d63956190d4d62e501c8d878bfce819f659203a069c7144c14f574c78014"
+        },
+        {
+          "src": "cli/scaffold/opencode/commands/klp-design.md",
+          "dst": "commands/klp-design.md",
+          "hash": "sha256:079aecb11af96abb0548ddec96b4325c81cb1d42b7bb90904615410a4e103130"
         }
       ]
     }

@@ -142,11 +142,26 @@ function buildDocsGroup(): { files: ManifestFile[]; brandFiles: (ManifestFile & 
 
 function buildScaffoldGroup(): { files: ManifestFile[] } {
   const dir = join(ROOT, 'cli/scaffold')
+  const entries = walkDir(dir)
+    // opencode/ is consumed by the separate opencode-scaffold group (klep-ds-init flow)
+    .filter((p) => !relative(ROOT, p).replace(/\\/g, '/').startsWith('cli/scaffold/opencode/'))
+    .map((p) => {
+      const relSrc = relative(ROOT, p).replace(/\\/g, '/')
+      const tmplName = relSrc.replace(/^cli\/scaffold\//, '')
+      const dst = tmplToDst(tmplName)
+      return { src: relSrc, dst, hash: hashFile(p), template: /\.tmpl$/.test(relSrc) }
+    })
+  return { files: entries }
+}
+
+function buildOpencodeScaffoldGroup(): { files: ManifestFile[] } {
+  const dir = join(ROOT, 'cli/scaffold/opencode')
+  if (!existsSync(dir)) return { files: [] }
   const entries = walkDir(dir).map((p) => {
     const relSrc = relative(ROOT, p).replace(/\\/g, '/')
-    const tmplName = relSrc.replace(/^cli\/scaffold\//, '')
-    const dst = tmplToDst(tmplName)
-    return { src: relSrc, dst, hash: hashFile(p), template: /\.tmpl$/.test(relSrc) }
+    // dst is relative to .opencode/ at the consumer root
+    const dst = relSrc.replace(/^cli\/scaffold\/opencode\//, '')
+    return { src: relSrc, dst, hash: hashFile(p) }
   })
   return { files: entries }
 }
@@ -202,6 +217,7 @@ function main() {
       docs: { required: true, files: docs.files, brandFiles: docs.brandFiles },
       claude: { required: false, ...buildClaudeGroup() },
       scaffold: { required: true, ...buildScaffoldGroup() },
+      'opencode-scaffold': { required: false, ...buildOpencodeScaffoldGroup() },
     },
   }
 

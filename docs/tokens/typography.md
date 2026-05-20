@@ -75,6 +75,7 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Header Phone](../components/_index_header-phone.md) — `--klp-font-size-heading-h1`, `--klp-font-family-title`, `--klp-font-weight-title` on the title `h1` layer.
 - [SideBar](../components/_index_sidebar.md) — `font-klp-label` on context-label and user-name layers; literal 14px (context-label) and 16px (user-name) font sizes.
 - [Collapsible](../components/_index_collapsible.md) — `text-klp-text-large`, `font-klp-label`, `font-klp-label-bold` on title layer; `text-klp-text-medium`, `font-klp-label` on content-text layer across both state variants.
+- [Modal Variation](../components/_index_modal-variation.md) — `--klp-font-size-text-medium`, `--klp-font-family-label`, `--klp-font-weight-label` on label layer across both type variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

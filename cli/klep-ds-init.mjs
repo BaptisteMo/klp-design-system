@@ -1,0 +1,213 @@
+#!/usr/bin/env node
+// cli/klep-ds-init.mjs
+// Install klp-design-system into an existing project.
+
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { join, relative, dirname, resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
+import { createInterface } from 'node:readline/promises'
+
+import { detectReactApp } from './detect-app.mjs'
+import { patchTsconfig, patchViteConfig } from './patch-config.mjs'
+import { createInventory, writeInventory, resolveTransitive } from './inventory.mjs'
+import { copyGroup, copyComponent, copyInstalledDocs } from './copy.mjs'
+
+const SELF_DIR = dirname(fileURLToPath(import.meta.url))
+const REPO_ROOT = resolve(SELF_DIR, '..')
+
+const HELP = `Usage: klep-ds-init [options]
+
+Install klp-design-system into an existing project.
+
+Options:
+  --app-dir=<rel>      Sub-app directory (auto-detected if omitted)
+  --brand=<name>       Brand: wireframe (default) | klub | atlas | showup
+  --all                Install all components (skips picker)
+  --minimal            Install only tokens+lib (skips picker)
+  --components=<csv>   Install named components (skips picker)
+  --no-config-patch    Skip tsconfig/vite alias injection
+  --ref=<ref>          Git ref to install from (default: main)
+  --force              Overwrite existing klp.lock.json
+  --verbose            Print extra detail
+  --help               Show this message
+`
+
+function parseFlags(argv) {
+  const out = { _: [] }
+  for (const a of argv) {
+    if (a === '--help') out.help = true
+    else if (a === '--all') out.all = true
+    else if (a === '--minimal') out.minimal = true
+    else if (a === '--force') out.force = true
+    else if (a === '--no-config-patch') out.noConfigPatch = true
+    else if (a === '--verbose') out.verbose = true
+    else if (a.startsWith('--app-dir=')) out.appDir = a.slice(10)
+    else if (a.startsWith('--brand=')) out.brand = a.slice(8)
+    else if (a.startsWith('--components=')) out.components = a.slice(13).split(',').filter(Boolean)
+    else if (a.startsWith('--ref=')) out.ref = a.slice(6)
+    else out._.push(a)
+  }
+  return out
+}
+
+async function prompt(rl, q) { return (await rl.question(q)).trim() }
+
+async function chooseAppDir(rootDir, flag) {
+  if (flag) return flag
+  const { matches } = await detectReactApp(rootDir)
+  if (matches.length === 1) return matches[0]
+  if (matches.length === 0) throw new Error('No React sub-app found. Pass --app-dir=<rel>.')
+
+  const rl = createInterface({ input: process.stdin, output: process.stdout })
+  try {
+    console.log('Multiple React sub-apps detected:')
+    matches.forEach((m, i) => console.log(`  [${i + 1}] ${m}`))
+    const ans = await prompt(rl, `Choose (1-${matches.length}): `)
+    const idx = Number(ans) - 1
+    if (!Number.isInteger(idx) || idx < 0 || idx >= matches.length) throw new Error(`Invalid choice: ${ans}`)
+    return matches[idx]
+  } finally { rl.close() }
+}
+
+async function chooseScope(catalog, flags) {
+  if (flags.all) return catalog.map((c) => c.name)
+  if (flags.minimal) return []
+  if (flags.components) return flags.components
+
+  const rl = createInterface({ input: process.stdin, output: process.stdout })
+  try {
+    console.log(`\n${catalog.length} components available:`)
+    const byCat = {}
+    for (const c of catalog) (byCat[c.category] ??= []).push(c.name)
+    for (const [cat, names] of Object.entries(byCat)) console.log(`  [${cat}] ${names.join(', ')}`)
+    console.log('\nScope: [a]ll  [m]inimal  [s]elect')
+    const ans = (await prompt(rl, 'Choice: ')).toLowerCase()
+    if (ans === 'a') return catalog.map((c) => c.name)
+    if (ans === 'm') return []
+    if (ans === 's') {
+      const list = await prompt(rl, 'Comma-separated names: ')
+      return list.split(',').map((s) => s.trim()).filter(Boolean)
+    }
+    throw new Error(`Invalid choice: ${ans}`)
+  } finally { rl.close() }
+}
+
+async function chooseBrand(flag) {
+  if (flag) return flag
+  const rl = createInterface({ input: process.stdin, output: process.stdout })
+  try {
+    const ans = (await prompt(rl, 'Brand [wireframe/klub/atlas/showup] (default wireframe): ')).toLowerCase()
+    if (!ans) return 'wireframe'
+    if (!['wireframe', 'klub', 'atlas', 'showup'].includes(ans)) throw new Error(`Unknown brand: ${ans}`)
+    return ans
+  } finally { rl.close() }
+}
+
+async function loadManifest(ref) {
+  if (ref === 'local') {
+    return JSON.parse(readFileSync(join(REPO_ROOT, 'registry/manifest.json'), 'utf8'))
+  }
+  const { fetchText } = await import('./fetch.mjs')
+  const url = `https://raw.githubusercontent.com/BaptisteMo/klp-design-system/${ref}/registry/manifest.json`
+  return JSON.parse(await fetchText(url))
+}
+
+function writeLockfile(rootDir, manifest, installedNames, ref, brand) {
+  const lock = {
+    manifestVersion: manifest.version ?? '1',
+    ref, brand,
+    installedAt: new Date().toISOString(),
+    files: {},
+  }
+  const installedSet = new Set(installedNames)
+  for (const [groupName, group] of Object.entries(manifest.groups)) {
+    if (groupName === 'components') {
+      const items = group.items ?? {}
+      for (const [name, item] of Object.entries(items)) {
+        if (!installedSet.has(name)) continue
+        for (const f of item.files) lock.files[f.dst] = { hash: f.hash, source: f.src, component: name }
+      }
+    } else if (group.files) {
+      for (const f of group.files) lock.files[f.dst] = { hash: f.hash, source: f.src, group: groupName }
+    }
+  }
+  writeFileSync(join(rootDir, 'klp.lock.json'), JSON.stringify(lock, null, 2) + '\n')
+}
+
+function catalogFromManifest(manifest) {
+  const items = manifest.groups.components.items ?? {}
+  // Categories live in registry/<name>.json; manifest doesn't currently carry them per-item.
+  // For attach-mode catalog purposes, derive category from the per-component registry shipped
+  // alongside the manifest by loading it lazily. Fallback to 'misc'.
+  const catalog = []
+  for (const [name, item] of Object.entries(items)) {
+    catalog.push({
+      name,
+      category: item.category ?? 'misc',
+      deps: item.deps?.components ?? [],
+    })
+  }
+  return catalog
+}
+
+async function main() {
+  const flags = parseFlags(process.argv.slice(2))
+  if (flags.help) { console.log(HELP); process.exit(0) }
+
+  const rootDir = process.cwd()
+  if (!existsSync(join(rootDir, 'package.json'))) {
+    console.error('No package.json at cwd — run klep-ds-init from your project root.')
+    process.exit(2)
+  }
+  if (existsSync(join(rootDir, 'klp.lock.json')) && !flags.force) {
+    console.error('klp.lock.json already exists. Use --force or run `klp-ui update`.')
+    process.exit(2)
+  }
+
+  const ref = flags.ref ?? 'main'
+  const manifest = await loadManifest(ref)
+
+  const appDir = await chooseAppDir(rootDir, flags.appDir)
+  const brand  = await chooseBrand(flags.brand)
+  const catalog = catalogFromManifest(manifest)
+  const chosen = await chooseScope(catalog, flags)
+
+  const stagingInv = createInventory({
+    ref, brand, appDir,
+    dsDir: 'external/klp-design-system',
+    catalog, initiallyInstalled: [],
+  })
+  const toInstall = resolveTransitive(stagingInv, chosen)
+  if (flags.verbose) console.log(`Installing ${toInstall.length} components: ${toInstall.join(', ')}`)
+
+  const dsRoot = join(rootDir, 'external/klp-design-system')
+
+  await copyGroup(manifest, 'lib',    dsRoot, { ref, mode: 'attach' })
+  await copyGroup(manifest, 'tokens', dsRoot, { ref })
+  for (const name of toInstall) await copyComponent(manifest, name, dsRoot, { ref })
+  await copyGroup(manifest, 'opencode-scaffold', join(rootDir, '.opencode'), { ref, interpolate: { brand } })
+  await copyInstalledDocs(manifest, toInstall, brand, join(rootDir, 'docs'), { ref })
+
+  if (!flags.noConfigPatch) {
+    const appAbs = join(rootDir, appDir)
+    const rel = relative(appAbs, join(dsRoot, 'src'))
+    const tsPath = join(appAbs, 'tsconfig.app.json')
+    if (existsSync(tsPath)) writeFileSync(tsPath, patchTsconfig(readFileSync(tsPath, 'utf8'), rel))
+    const vitePath = join(appAbs, 'vite.config.ts')
+    if (existsSync(vitePath)) writeFileSync(vitePath, patchViteConfig(readFileSync(vitePath, 'utf8'), rel))
+  }
+
+  const finalInv = createInventory({
+    ref, brand, appDir,
+    dsDir: 'external/klp-design-system',
+    catalog, initiallyInstalled: toInstall,
+  })
+  writeInventory(rootDir, finalInv)
+  writeLockfile(rootDir, manifest, toInstall, ref, brand)
+
+  console.log(`✓ Installed ${toInstall.length} components into external/klp-design-system/`)
+  console.log(`✓ Agents + commands written to .opencode/`)
+  console.log(`✓ Docs written to docs/`)
+}
+
+main().catch((e) => { console.error(e.message); process.exit(1) })

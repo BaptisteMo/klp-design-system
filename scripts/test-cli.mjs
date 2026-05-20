@@ -6,6 +6,8 @@
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { dirname, resolve, join } from 'node:path'
+import { mkdtempSync, rmSync, writeFileSync, readFileSync, existsSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = resolve(__dirname, '..')
@@ -71,6 +73,23 @@ async function testRewrite() {
     rewriteImports(`import { A } from "@/components/data-table"`, 'src/foo.tsx')
       === `import { A } from "@/components/ui/data-table"`,
     'double-quoted imports rewritten',
+  )
+
+  // attach mode
+  assert(
+    rewriteImports(`import { Button } from '@/components/button'`, 'src/foo.tsx', { mode: 'attach' })
+      === `import { Button } from '@klp/components/button'`,
+    'attach mode rewrites to @klp/components/<name>',
+  )
+  assert(
+    rewriteImports(`import { BrandProvider } from '@/components/brand-provider'`, 'src/App.tsx', { mode: 'attach' })
+      === `import { BrandProvider } from '@klp/components/brand-provider'`,
+    'attach mode rewrites brand-provider too',
+  )
+  assert(
+    rewriteImports(`import { cn } from '@/lib/cn'`, 'src/foo.tsx', { mode: 'attach' })
+      === `import { cn } from '@klp/lib/cn'`,
+    'attach mode rewrites @/lib/* to @klp/lib/*',
   )
 }
 
@@ -146,6 +165,261 @@ async function testDiff() {
   assert(Array.isArray(grouped['new']) && grouped['new'].length === 0, 'groupByStatus initializes empty buckets')
 }
 
+async function testDetectApp() {
+  console.log('\n[test] detect-app')
+  const { detectReactApp } = await import(join(REPO_ROOT, 'cli/detect-app.mjs'))
+  const fixture = join(REPO_ROOT, 'tests/fixtures/attach')
+
+  const single = await detectReactApp(fixture)
+  assert(single.matches.length === 1, 'detects exactly one react sub-app')
+  assert(single.matches[0] === 'forge-output/04-app', 'returns relative path to sub-app')
+
+  // Scan an empty tmp dir to prove no false positives, not just shape.
+  const emptyDir = mkdtempSync(join(tmpdir(), 'klp-detect-empty-'))
+  try {
+    const none = await detectReactApp(emptyDir)
+    assert(Array.isArray(none.matches), 'returns matches array on no match too')
+    assert(none.matches.length === 0, 'returns empty matches when no react sub-app present')
+  } finally {
+    rmSync(emptyDir, { recursive: true, force: true })
+  }
+}
+
+async function testPatchConfig() {
+  console.log('\n[test] patch-config')
+  const { patchTsconfig, patchViteConfig } = await import(join(REPO_ROOT, 'cli/patch-config.mjs'))
+
+  const tsBefore = JSON.stringify({ compilerOptions: { strict: true } }, null, 2)
+  const tsAfter = patchTsconfig(tsBefore, '../../external/klp-design-system/src')
+  const parsed = JSON.parse(tsAfter)
+  assert(parsed.compilerOptions.paths['@klp/*'][0] === '../../external/klp-design-system/src/*', 'tsconfig paths injected')
+
+  const tsAfter2 = patchTsconfig(tsAfter, '../../external/klp-design-system/src')
+  assert(tsAfter === tsAfter2, 'tsconfig patch is idempotent')
+
+  const viteBefore = `import { defineConfig } from 'vite'\nimport react from '@vitejs/plugin-react'\n\nexport default defineConfig({\n  plugins: [react()],\n})\n`
+  const viteAfter = patchViteConfig(viteBefore, '../../external/klp-design-system/src')
+  assert(/'@klp':\s*path\.resolve/.test(viteAfter), 'vite alias injected')
+  assert(/import path from 'node:path'/.test(viteAfter), 'vite import path added')
+
+  const viteAfter2 = patchViteConfig(viteAfter, '../../external/klp-design-system/src')
+  assert(viteAfter === viteAfter2, 'vite patch is idempotent')
+}
+
+async function testInventory() {
+  console.log('\n[test] inventory')
+  const { createInventory, readInventory, writeInventory, markInstalled, listByStatus, resolveTransitive } =
+    await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+
+  const dir = mkdtempSync(join(tmpdir(), 'klp-inv-'))
+  try {
+    const inv = createInventory({
+      ref: 'main', brand: 'wireframe',
+      appDir: 'forge-output/04-app',
+      dsDir: 'external/klp-design-system',
+      catalog: [
+        { name: 'button', category: 'inputs', deps: [] },
+        { name: 'pagination', category: 'navigation', deps: [] },
+        { name: 'table', category: 'data-display', deps: [] },
+        { name: 'data-table', category: 'data-display', deps: ['pagination', 'table'] },
+      ],
+      initiallyInstalled: ['button'],
+    })
+
+    assert(inv.components.button.status === 'installed', 'button is installed')
+    assert(inv.components['data-table'].status === 'available', 'data-table is available')
+
+    writeInventory(dir, inv)
+    assert(existsSync(join(dir, 'klp-inventory.json')), 'inventory file written')
+
+    const read = readInventory(dir)
+    assert(read.brand === 'wireframe', 'inventory read back')
+
+    const transitive = resolveTransitive(read, ['data-table'])
+    assert(transitive.sort().join(',') === 'data-table,pagination,table', 'transitive deps resolved')
+
+    const updated = markInstalled(read, transitive)
+    assert(updated.components['data-table'].status === 'installed', 'data-table now installed')
+    assert(updated.components.pagination.status === 'installed', 'pagination transitively marked')
+
+    const installed = listByStatus(updated, 'installed')
+    assert(installed.length === 4, 'four components installed total')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
+async function testListCommand() {
+  console.log('\n[test] list command')
+  const { runList } = await import(join(REPO_ROOT, 'cli/list.mjs'))
+  const { writeInventory, createInventory } = await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+
+  const dir = mkdtempSync(join(tmpdir(), 'klp-list-'))
+  try {
+    const inv = createInventory({
+      ref: 'main', brand: 'wireframe', appDir: 'app', dsDir: 'external/ds',
+      catalog: [
+        { name: 'button', category: 'inputs', deps: [] },
+        { name: 'input',  category: 'inputs', deps: [] },
+      ],
+      initiallyInstalled: ['button'],
+    })
+    writeInventory(dir, inv)
+
+    const jsonOut = runList({ rootDir: dir, json: true })
+    assert(JSON.parse(jsonOut).components.button.status === 'installed', 'list --json returns inventory')
+
+    const textOut = runList({ rootDir: dir, json: false })
+    assert(/installed/.test(textOut) && /button/.test(textOut), 'list text shows installed section')
+    assert(/available/.test(textOut) && /input/.test(textOut), 'list text shows available section')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
+async function testAddCommand() {
+  console.log('\n[test] add command planning')
+  const { planAdd } = await import(join(REPO_ROOT, 'cli/add.mjs'))
+  const { writeInventory, createInventory } = await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+
+  const dir = mkdtempSync(join(tmpdir(), 'klp-add-'))
+  try {
+    const inv = createInventory({
+      ref: 'main', brand: 'wireframe', appDir: 'app', dsDir: 'external/ds',
+      catalog: [
+        { name: 'pagination', category: 'navigation',   deps: [] },
+        { name: 'table',      category: 'data-display', deps: [] },
+        { name: 'data-table', category: 'data-display', deps: ['pagination', 'table'] },
+        { name: 'button',     category: 'inputs',       deps: [] },
+      ],
+      initiallyInstalled: ['button'],
+    })
+    writeInventory(dir, inv)
+
+    const plan = planAdd({ rootDir: dir, names: ['data-table'], force: false })
+    assert(plan.toInstall.sort().join(',') === 'data-table,pagination,table', 'plans transitive deps')
+    assert(plan.unknown.length === 0, 'no unknown')
+
+    const planExisting = planAdd({ rootDir: dir, names: ['button'], force: false })
+    assert(planExisting.alreadyInstalled[0] === 'button', 'flags already-installed')
+    assert(planExisting.toInstall.length === 0, 'does not re-plan already-installed')
+
+    const planForce = planAdd({ rootDir: dir, names: ['button'], force: true })
+    assert(planForce.toInstall[0] === 'button', 'force re-includes already-installed')
+
+    const planBogus = planAdd({ rootDir: dir, names: ['nonexistent'], force: false })
+    assert(planBogus.unknown[0] === 'nonexistent', 'unknown component flagged')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
+function testListSubcommand() {
+  console.log('\n[test] list subcommand')
+  const dir = mkdtempSync(join(tmpdir(), 'klp-list-cli-'))
+  try {
+    writeFileSync(join(dir, 'klp-inventory.json'), JSON.stringify({
+      schemaVersion: 'v1', ref: 'main', brand: 'wireframe',
+      appDir: 'app', dsDir: 'external/ds',
+      components: { button: { status: 'installed', category: 'inputs', deps: [] } },
+    }, null, 2))
+
+    const out = spawnSync('node', [join(REPO_ROOT, 'cli/index.mjs'), 'list', '--json'], {
+      cwd: dir, encoding: 'utf8',
+    })
+    assert(out.status === 0, 'klp-ui list exits 0')
+    assert(JSON.parse(out.stdout).components.button.status === 'installed', 'list --json returns valid inventory')
+
+    const help = spawnSync('node', [join(REPO_ROOT, 'cli/index.mjs'), '--help'], { encoding: 'utf8' })
+    assert(/klp-ui list/.test(help.stdout), 'help lists `list` command')
+    assert(/klp-ui add/.test(help.stdout), 'help lists `add` command')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
+function testOpencodeScaffoldGroup() {
+  console.log('\n[test] opencode-scaffold manifest group')
+  const manifest = JSON.parse(readFileSync(join(REPO_ROOT, 'registry/manifest.json'), 'utf8'))
+  const group = manifest.groups['opencode-scaffold']
+  assert(group, 'opencode-scaffold group present')
+  assert(group.files.length === 8, 'group has 8 files (4 agents + 4 commands)')
+  assert(group.files.some((f) => /agents\/request-analyzer\.md$/.test(f.dst)), 'includes request-analyzer')
+  assert(group.files.some((f) => /commands\/klp-design\.md$/.test(f.dst)), 'includes klp-design command')
+}
+
+function testKlepDsInitHelp() {
+  console.log('\n[test] klep-ds-init help')
+  const out = spawnSync('node', [join(REPO_ROOT, 'cli/klep-ds-init.mjs'), '--help'], { encoding: 'utf8' })
+  assert(out.status === 0, 'klep-ds-init --help exits 0')
+  assert(/Usage: klep-ds-init/.test(out.stdout), 'help shows binary name')
+  assert(/--app-dir/.test(out.stdout), 'help lists --app-dir')
+  assert(/--brand/.test(out.stdout), 'help lists --brand')
+  assert(/--components/.test(out.stdout), 'help lists --components')
+}
+
+function testKlepDsInitE2E() {
+  console.log('\n[test] klep-ds-init E2E')
+  const fixtureSrc = join(REPO_ROOT, 'tests/fixtures/attach')
+  const dir = mkdtempSync(join(tmpdir(), 'klp-attach-'))
+  spawnSync('cp', ['-R', `${fixtureSrc}/.`, dir])
+
+  const out = spawnSync('node', [
+    join(REPO_ROOT, 'cli/klep-ds-init.mjs'),
+    '--brand=wireframe', '--components=button', '--ref=local',
+  ], { cwd: dir, encoding: 'utf8' })
+
+  try {
+    assert(out.status === 0, `klep-ds-init E2E exits 0 (stderr: ${out.stderr})`)
+    assert(existsSync(join(dir, 'external/klp-design-system/src/components/button/Button.tsx')), 'button installed')
+    assert(existsSync(join(dir, 'external/klp-design-system/src/lib/cn.ts')), 'lib/cn.ts installed')
+    assert(existsSync(join(dir, '.opencode/agents/request-analyzer.md')), 'opencode agent installed')
+    assert(existsSync(join(dir, '.opencode/commands/klp-design.md')), 'opencode command installed')
+    assert(existsSync(join(dir, 'docs/agent-brief.md')), 'docs/agent-brief.md installed')
+    assert(existsSync(join(dir, 'klp.lock.json')), 'lockfile created')
+    assert(existsSync(join(dir, 'klp-inventory.json')), 'inventory created')
+
+    const ts = JSON.parse(readFileSync(join(dir, 'forge-output/04-app/tsconfig.app.json'), 'utf8'))
+    assert(ts.compilerOptions.paths['@klp/*'][0].includes('external/klp-design-system/src'), 'tsconfig patched')
+
+    const vite = readFileSync(join(dir, 'forge-output/04-app/vite.config.ts'), 'utf8')
+    assert(/'@klp':\s*path\.resolve/.test(vite), 'vite patched')
+
+    const inv = JSON.parse(readFileSync(join(dir, 'klp-inventory.json'), 'utf8'))
+    assert(inv.components.button.status === 'installed', 'inventory shows button installed')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
+function testAddCommandE2E() {
+  console.log('\n[test] add command E2E')
+  const fixtureSrc = join(REPO_ROOT, 'tests/fixtures/attach')
+  const dir = mkdtempSync(join(tmpdir(), 'klp-add-e2e-'))
+  spawnSync('cp', ['-R', `${fixtureSrc}/.`, dir])
+
+  const init = spawnSync('node', [
+    join(REPO_ROOT, 'cli/klep-ds-init.mjs'),
+    '--brand=wireframe', '--components=button', '--ref=local',
+  ], { cwd: dir, encoding: 'utf8' })
+  assert(init.status === 0, `init succeeds (stderr: ${init.stderr})`)
+
+  const add = spawnSync('node', [
+    join(REPO_ROOT, 'cli/index.mjs'), 'add', 'input', '--ref=local',
+  ], { cwd: dir, encoding: 'utf8' })
+
+  try {
+    assert(add.status === 0, `add succeeds (stderr: ${add.stderr})`)
+    assert(existsSync(join(dir, 'external/klp-design-system/src/components/input/Input.tsx')), 'input installed')
+
+    const inv = JSON.parse(readFileSync(join(dir, 'klp-inventory.json'), 'utf8'))
+    assert(inv.components.input.status === 'installed', 'inventory updated')
+    assert(inv.components.button.status === 'installed', 'button still installed')
+  } finally {
+    rmSync(dir, { recursive: true, force: true })
+  }
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -153,6 +427,16 @@ async function main() {
   await testHash()
   await testManifestModule()
   await testDiff()
+  await testDetectApp()
+  await testPatchConfig()
+  await testInventory()
+  await testListCommand()
+  await testAddCommand()
+  testListSubcommand()
+  testOpencodeScaffoldGroup()
+  testKlepDsInitHelp()
+  testKlepDsInitE2E()
+  testAddCommandE2E()
 
   if (failed > 0) {
     console.log(`\n${failed} test(s) failed.`)

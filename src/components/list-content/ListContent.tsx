@@ -107,7 +107,7 @@ export interface ListContentProps extends React.HTMLAttributes<HTMLDivElement> {
    * @propClass optional
    */
   showSublabel?: boolean
-  /** Whether to show the left decorative icon
+  /** Whether to show the left decorative icon. Defaults to false — opt in per row.
    * @propClass optional
    */
   showDecorativeIcon?: boolean
@@ -142,7 +142,7 @@ const ListContent = React.forwardRef<HTMLDivElement, ListContentProps>(
       label = 'Label of the list',
       sublabel = 'Sublabel',
       showSublabel = true,
-      showDecorativeIcon = true,
+      showDecorativeIcon = false,
       decorativeIcon,
       showActionButton = true,
       onActionClick,

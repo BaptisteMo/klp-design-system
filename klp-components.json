@@ -544,6 +544,7 @@
         "header-phone",
         "list",
         "list-content",
+        "modal-variation",
         "pagination",
         "sidebar",
         "text-area"
@@ -2561,6 +2562,150 @@
       "usedBy": [],
       "created": "2026-04-17",
       "updated": "2026-04-21"
+    },
+    {
+      "name": "modal-variation",
+      "displayName": "Modal Variation",
+      "description": "Modal dialog component with two layout variants: 'options-actions' (left option + right secondary/primary CTA) and '2-actions' (full-width secondary + primary CTA). Composed of Header, Content, and Footer zones with frosted-glass backdrop blur. Button instances in the footer reuse the DS Button component.",
+      "category": "overlays",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/modal-variation/ModalVariation.tsx",
+      "doc": "docs/components/_index_modal-variation.md",
+      "playground": "playground/routes/modal-variation.tsx",
+      "registry": "registry/modal-variation.json",
+      "spec": ".klp/figma-refs/modal-variation/spec.json",
+      "radixPrimitive": "@radix-ui/react-dialog",
+      "anatomy": [
+        "root",
+        "header",
+        "title",
+        "content",
+        "label",
+        "footer",
+        "left-buttons",
+        "right-buttons",
+        "button-option",
+        "button-secondary",
+        "button-primary"
+      ],
+      "variantAxes": {
+        "type": ["options-actions", "2-actions"]
+      },
+      "variantCount": 2,
+      "props": {
+        "type": {
+          "class": "optional",
+          "type": "ModalVariationType",
+          "default": "\"options-actions\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "open": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "defaultOpen": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "onOpenChange": {
+          "class": "optional",
+          "type": "(open: boolean) => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "title": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "primaryActionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Confirm\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "onPrimaryAction": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "secondaryActionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Cancel\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "onSecondaryAction": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "optionActionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Option\"",
+          "description": "visible only in options-actions variant",
+          "derivedFrom": null
+        },
+        "onOptionAction": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": ["button"],
+        "externals": [
+          "@radix-ui/react-dialog",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-23",
+      "updated": "2026-04-23"
     }
   ]
 }

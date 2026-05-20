@@ -100,6 +100,20 @@ The DS is also distributed to external (personal) React projects via a CLI commi
 Spec: `docs/superpowers/specs/2026-04-20-cli-distribution-design.md`.
 Plan: `docs/superpowers/plans/2026-04-20-cli-distribution.md`.
 
+### Existing-project distribution (`klep-ds-init`)
+
+For consumers who don't start fresh. Separate binary in the same npm package (declared in `package.json` `bin`). Installs DS under `external/klp-design-system/`, puts agents at `.opencode/` (OpenCode flavor — distinct from `.claude/`), and writes `klp-inventory.json` at the consumer repo root so agents can compose `klp-ui add` calls against current install state.
+
+- Entry point: `cli/klep-ds-init.mjs`. Auto-detects the React sub-app to patch (scans `**/package.json` for `react` in deps; prompts if multiple matches). Prompts brand + scope (`[a]ll / [m]inimal / [s]elect`) unless `--all`, `--minimal`, or `--components=<csv>` is given.
+- `klp-ui add <name> [<name>...]` — installs additional components on demand; auto-resolves transitive deps via manifest. Refuses already-installed unless `--force`. `--json` for agent-friendly output.
+- `klp-ui list [--json]` — dumps inventory grouped by status (installed/available). Read-only.
+- `klp-inventory.json` is the source of truth for agents: per-component `{ status, category, deps }`. Updated by `klep-ds-init` (creation) and `klp-ui add` (state transitions).
+- OpenCode scaffold lives at `cli/scaffold/opencode/` (parallel to `cli/scaffold/claude/`); ships via a separate `opencode-scaffold` manifest group, dst rooted at `.opencode/`.
+- `cli/rewrite.mjs` has `mode: 'fresh' | 'attach'`. Attach rewrites `@/components/<n>` → `@klp/components/<n>` and `@/lib/*` → `@klp/lib/*` (no flat exception). `cli/copy.mjs.copyComponent` uses `f.src` (not `f.dst`) when in attach mode so files land flat under `external/klp-design-system/src/` without the `ui/` segment.
+- Shared file-copy helpers: `cli/copy.mjs` (`loadFile`, `copyGroup`, `copyComponent`, `copyDocOfComponent`, `copyInstalledDocs`).
+
+Plan: `docs/superpowers/plans/2026-05-19-existing-project-distribution.md`.
+
 ## Agentic design workflow
 
 Separate from the DS authoring workflow (`/klp-build-component`), the consumer projects can run a 4-stage design pipeline triggered by `/klp-design <request-id> [extras…]`. The pipeline reads a YAML request and produces React mockup pages.

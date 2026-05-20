@@ -1,0 +1,33 @@
+{
+  "name": "modal-variation",
+  "type": "registry:ui",
+  "description": "Modal dialog component with two layout variants: 'options-actions' (left option + right secondary/primary CTA) and '2-actions' (full-width secondary + primary CTA). Composed of Header, Content, and Footer zones with frosted-glass backdrop blur. Button instances in the footer reuse the DS Button component.",
+  "meta": {
+    "figmaNode": "115223:3842",
+    "captureBrand": "wireframe",
+    "category": "overlays",
+    "radixPrimitive": "@radix-ui/react-dialog",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "header", "title", "content", "label", "footer", "left-buttons", "right-buttons", "button-option", "button-secondary", "button-primary"],
+    "variantAxes": {
+      "type": ["options-actions", "2-actions"]
+    }
+  },
+  "dependencies": {
+    "components": ["button"],
+    "npm": [
+      "@radix-ui/react-dialog",
+      "class-variance-authority"
+    ]
+  },
+  "files": [
+    {
+      "path": "src/components/modal-variation/ModalVariation.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/modal-variation/index.ts",
+      "type": "registry:ui"
+    }
+  ]
+}
