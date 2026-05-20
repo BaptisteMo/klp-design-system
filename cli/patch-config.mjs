@@ -14,7 +14,15 @@ export function patchTsconfig(source, relPath) {
   if (aliasOk && includeOk) return source
 
   json.compilerOptions.paths['@klp/*'] = wanted
-  if (!json.compilerOptions.baseUrl) json.compilerOptions.baseUrl = '.'
+  // moduleResolution: "Node" requires baseUrl for paths to work.
+  // moduleResolution: "Bundler" / "NodeNext" resolves paths relative to tsconfig.
+  // Set baseUrl only when it would otherwise break path resolution.
+  const mr = (json.compilerOptions.moduleResolution ?? 'Node').toLowerCase()
+  if (mr === 'node' && !json.compilerOptions.baseUrl) {
+    json.compilerOptions.baseUrl = '.'
+    // Silence the TS 6.x deprecation warning for baseUrl when we're forced to set it.
+    if (!json.compilerOptions.ignoreDeprecations) json.compilerOptions.ignoreDeprecations = '6.0'
+  }
 
   // Include the DS source so TS type-checks @klp imports against the local
   // node_modules (otherwise resolution falls back up the filesystem tree).

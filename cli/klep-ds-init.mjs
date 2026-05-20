@@ -149,7 +149,6 @@ function writeDsTsconfig(dsRoot) {
       isolatedModules: true,
       noEmit: true,
       resolveJsonModule: true,
-      baseUrl: '.',
       paths: { '@klp/*': ['./src/*'] },
     },
     include: ['src/**/*'],
