@@ -112,6 +112,45 @@ async function loadManifest(ref) {
   return JSON.parse(await fetchText(url))
 }
 
+// Runtime deps shipped by lib/ + components — same versions as the DS repo root.
+const RUNTIME_DEPS = {
+  '@radix-ui/react-slot': '^1.1.0',
+  'class-variance-authority': '^0.7.0',
+  'clsx': '^2.1.1',
+  'lucide-react': '^0.469.0',
+  'tailwind-merge': '^2.5.5',
+}
+
+function collectComponentNpmDeps(manifest, installedNames) {
+  const deps = {}
+  const items = manifest.groups.components.items ?? {}
+  for (const name of installedNames) {
+    const item = items[name]
+    if (!item) continue
+    for (const d of item.deps?.npm ?? []) {
+      if (!deps[d]) deps[d] = '*'
+    }
+  }
+  return deps
+}
+
+function writeDsPackageJson(dsRoot, manifest, installedNames) {
+  const componentDeps = collectComponentNpmDeps(manifest, installedNames)
+  const merged = { ...RUNTIME_DEPS, ...componentDeps }
+  const pkg = {
+    name: '@klp/ui-vendored',
+    private: true,
+    version: '0.0.0',
+    description: 'Vendored klp-design-system source. Installed by klep-ds-init.',
+    dependencies: Object.fromEntries(Object.entries(merged).sort()),
+    peerDependencies: {
+      react: '^18 || ^19',
+      'react-dom': '^18 || ^19',
+    },
+  }
+  writeFileSync(join(dsRoot, 'package.json'), JSON.stringify(pkg, null, 2) + '\n')
+}
+
 function writeLockfile(rootDir, manifest, installedNames, ref, brand) {
   const lock = {
     manifestVersion: manifest.version ?? '1',
@@ -218,10 +257,14 @@ async function main() {
   })
   writeInventory(rootDir, finalInv)
   writeLockfile(rootDir, manifest, toInstall, ref, brand)
+  writeDsPackageJson(dsRoot, manifest, toInstall)
 
   console.log(`✓ Installed ${toInstall.length} components into external/klp-design-system/`)
   console.log(`✓ Agents + commands written to .opencode/`)
   console.log(`✓ Docs written to docs/`)
+  console.log(`\nNext step:`)
+  console.log(`  cd external/klp-design-system && pnpm install`)
+  console.log(`  (installs runtime deps so TS can resolve @klp/* imports)`)
 }
 
 main().catch((e) => { console.error(e.message); process.exit(1) })
