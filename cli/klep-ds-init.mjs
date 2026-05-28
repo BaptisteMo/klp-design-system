@@ -15,6 +15,7 @@ import { copyGroup, copyComponent, copyInstalledDocs } from './copy.mjs'
 
 const SELF_DIR = dirname(fileURLToPath(import.meta.url))
 const REPO_ROOT = resolve(SELF_DIR, '..')
+const REPO = 'BaptisteMo/klp-design-system'
 
 const HELP = `Usage: klep-ds-init [options]
 
@@ -228,6 +229,53 @@ function writeLockfile(rootDir, manifest, installedNames, ref, brand) {
   writeFileSync(join(rootDir, 'klp.lock.json'), JSON.stringify(lock, null, 2) + '\n')
 }
 
+// Make `klp-ui` resolvable from the consumer root without a global link or PATH
+// hack: declare @klp/ui as a pinned devDependency in a root package.json, then
+// install so node_modules/.bin/klp-ui exists. Agents invoke `npx klp-ui …`.
+function depSpecForRef(ref) {
+  if (ref === 'local') return `file:${REPO_ROOT}`
+  return `github:${REPO}#${ref}`
+}
+
+function ensureRootPackageJson(rootDir, ref, basename) {
+  const pkgPath = join(rootDir, 'package.json')
+  let pkg = {}
+  if (existsSync(pkgPath)) {
+    try { pkg = JSON.parse(readFileSync(pkgPath, 'utf8')) } catch { pkg = {} }
+  } else {
+    pkg = { name: basename || 'klp-consumer', private: true, version: '0.0.0' }
+  }
+  pkg.devDependencies = { ...(pkg.devDependencies ?? {}), '@klp/ui': depSpecForRef(ref) }
+  writeFileSync(pkgPath, JSON.stringify(pkg, null, 2) + '\n')
+}
+
+function ensureGitignoreNodeModules(rootDir) {
+  const giPath = join(rootDir, '.gitignore')
+  if (!existsSync(giPath)) {
+    writeFileSync(giPath, 'node_modules/\n')
+    return
+  }
+  const content = readFileSync(giPath, 'utf8')
+  if (/^\s*node_modules\/?\s*$/m.test(content)) return
+  writeFileSync(giPath, content.replace(/\n?$/, '\n') + 'node_modules/\n')
+}
+
+function installRootCli(rootDir, pm, verbose) {
+  if (verbose) console.log(`Running: ${pm} install (in ${rootDir})`)
+  const result = spawnSync(pm, ['install'], {
+    cwd: rootDir,
+    stdio: verbose ? 'inherit' : 'pipe',
+    encoding: 'utf8',
+  })
+  if (result.status !== 0) {
+    console.warn(`! ${pm} install (root, for klp-ui bin) failed (exit ${result.status}). Stderr:`)
+    if (result.stderr) console.warn(result.stderr.slice(0, 800))
+    console.warn(`  Run "${pm} install" manually in ${rootDir}, then use "npx klp-ui add <name>".`)
+    return false
+  }
+  return true
+}
+
 function catalogFromManifest(manifest) {
   const items = manifest.groups.components.items ?? {}
   // Categories live in registry/<name>.json; manifest doesn't currently carry them per-item.
@@ -316,19 +364,34 @@ async function main() {
   writeDsPackageJson(dsRoot, manifest, toInstall)
   writeDsTsconfig(dsRoot)
 
+  // Make `klp-ui` resolvable from this repo root via a pinned devDependency.
+  const basename = rootDir.split(/[\\/]/).filter(Boolean).pop()
+  ensureRootPackageJson(rootDir, ref, basename)
+  ensureGitignoreNodeModules(rootDir)
+
   console.log(`✓ Installed ${toInstall.length} components into external/klp-design-system/`)
   console.log(`✓ Agents + commands written to .opencode/`)
   console.log(`✓ Docs written to docs/`)
+  console.log(`✓ Added @klp/ui devDependency to package.json (pinned: ${depSpecForRef(ref)})`)
 
   if (!flags.noInstall) {
     const pm = flags.pm ?? detectPackageManager(rootDir)
     console.log(`\nInstalling runtime deps via ${pm}...`)
     const ok = runInstall(dsRoot, pm, flags.verbose)
     if (ok) console.log(`✓ Runtime deps installed in external/klp-design-system/node_modules/`)
+    console.log(`\nInstalling klp-ui CLI at repo root via ${pm}...`)
+    const cliOk = installRootCli(rootDir, pm, flags.verbose)
+    if (cliOk) console.log(`✓ klp-ui CLI available — run: npx klp-ui add <name>`)
   } else {
     console.log(`\nSkipped install (--no-install). Run manually:`)
     console.log(`  cd external/klp-design-system && pnpm install`)
+    console.log(`  (in repo root) npm install   # to expose the klp-ui CLI`)
   }
+
+  console.log(`\nCanonical CLI invocation for this repo (agents + humans):`)
+  console.log(`  npx klp-ui list`)
+  console.log(`  npx klp-ui add <name> [<name>...]`)
+  console.log(`  npx klp-ui update`)
 }
 
 main().catch((e) => { console.error(e.message); process.exit(1) })
