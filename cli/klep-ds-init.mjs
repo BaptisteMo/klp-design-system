@@ -62,7 +62,11 @@ async function chooseAppDir(rootDir, flag) {
   if (flag) return flag
   const { matches } = await detectReactApp(rootDir)
   if (matches.length === 1) return matches[0]
-  if (matches.length === 0) throw new Error('No React sub-app found. Pass --app-dir=<rel>.')
+  if (matches.length === 0) {
+    console.warn('! No React sub-app found — appDir left unset. Config patch (tsconfig/vite alias) skipped.')
+    console.warn('  Re-run with --app-dir=<rel> once the app exists, or patch the alias manually.')
+    return null
+  }
 
   const rl = createInterface({ input: process.stdin, output: process.stdout })
   try {
@@ -326,7 +330,7 @@ async function main() {
   await copyGroup(manifest, 'opencode-scaffold', join(rootDir, '.opencode'), { ref, interpolate: { brand } })
   await copyInstalledDocs(manifest, toInstall, brand, join(rootDir, 'docs'), { ref })
 
-  if (!flags.noConfigPatch) {
+  if (!flags.noConfigPatch && appDir) {
     const appAbs = join(rootDir, appDir)
     const rel = relative(appAbs, join(dsRoot, 'src'))
     // Patch whichever tsconfig is present. Prefer tsconfig.app.json (Vite split convention),

@@ -24,8 +24,12 @@ See [`CLAUDE.md`](./CLAUDE.md) for conventions.
 
 ```bash
 cd path/to/your/project
-npx github:BaptisteMo/klp-design-system klep-ds-init
+npx -p github:BaptisteMo/klp-design-system klep-ds-init
 ```
+
+> `-p` is required: the package ships two bins (`klp-ui` + `klep-ds-init`), so npx
+> can't auto-pick. `npx github:… klep-ds-init` fails with "could not determine
+> executable to run" on npm 9+.
 
 Installs the design system into `external/klp-design-system/`, drops OpenCode-flavor agents into `.opencode/`, patches your sub-app's `tsconfig.app.json` + `vite.config.ts` with a `@klp/*` alias, and adds `@klp/ui` as a pinned devDependency in the repo-root `package.json` so the `klp-ui` CLI resolves locally (no global install or PATH setup).
 
