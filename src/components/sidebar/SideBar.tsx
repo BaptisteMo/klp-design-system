@@ -145,7 +145,7 @@ const menuItemVariants = cva(
 // height: 72px (literal)
 // ---------------------------------------------------------------------------
 const profilVariants = cva(
-  'flex items-center gap-[8px] bg-klp-bg-default border-t border-klp-border-default p-[16px] border-t  shrink-0'
+  'flex items-center gap-[8px] bg-klp-bg-default border-t border-klp-border-default p-[16px] shrink-0'
 )
 
 // ---------------------------------------------------------------------------

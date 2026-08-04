@@ -14,7 +14,9 @@ dependencies:
   tokenGroups: ["colors", "spacing"]
   brands: ["klub"]
 usedBy:
+  - action-sheet-menu
   - calendar
+  - tabulations
 created: 2026-08-04
 updated: 2026-08-04
 ---
@@ -141,7 +143,9 @@ From `spec.json:a11y`:
 
 ## Used by
 
+- [ActionSheet Menu](./_index_action-sheet-menu.md) — between-section rule; `default`/`flat` use `margin="medium"`, `checkbox` uses `margin="none"`.
 - [Calendar](./_index_calendar.md) — the footer rule, `direction="horizontal" margin="none"`.
+- [Tabulations](./_index_tabulations.md) — vertical divider between tabs, `direction="vertical" margin="none"`.
 
 ## Files
 

@@ -12,7 +12,7 @@
       "scroll-type": ["none"]
     },
     "variantCount": 1,
-    "dependencies": ["tabulation-cells"]
+    "dependencies": ["separator", "tabulation-cells"]
   },
   "dependencies": {
     "components": [],

@@ -153,7 +153,8 @@
       "dependencies": {
         "components": [
           "action-sheet-item",
-          "checkbox"
+          "checkbox",
+          "separator"
         ],
         "externals": [
           "@radix-ui/react-popover",
@@ -179,16 +180,13 @@
           {
             "klpComponent": "checkbox",
             "notes": "Used in checkbox type \u2014 each row wraps a Checkbox instance."
+          },
+          {
+            "klpComponent": "separator",
+            "notes": "default/flat map to margin=\"medium\" (paddingY --klp-size-m in Figma); checkbox maps to margin=\"none\"."
           }
         ],
-        "gaps": [
-          {
-            "kind": "unmatched-instance",
-            "part": "separator",
-            "reason": "No klp Separator component registered.",
-            "action": "inlined-local"
-          }
-        ]
+        "gaps": []
       },
       "usedBy": [
         "input-multiselect"
@@ -2654,7 +2652,9 @@
         "gaps": []
       },
       "usedBy": [
-        "calendar"
+        "action-sheet-menu",
+        "calendar",
+        "tabulations"
       ],
       "created": "2026-08-04",
       "updated": "2026-08-04"
@@ -2817,7 +2817,7 @@
       },
       "usedBy": [],
       "created": "2026-04-20",
-      "updated": "2026-04-22"
+      "updated": "2026-08-04"
     },
     {
       "name": "switch",
@@ -3037,6 +3037,7 @@
       },
       "dependencies": {
         "components": [
+          "separator",
           "tabulation-cells"
         ],
         "externals": [
@@ -3054,7 +3055,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-04"
     },
     {
       "name": "text-area",

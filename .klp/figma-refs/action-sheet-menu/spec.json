@@ -26,6 +26,15 @@
         "registeredIn": null,
         "notes": "Horizontal separator line instance (from Separator component set node 282:849). Not yet registered in klp-components.json as a standalone klp component."
       }
+    ],
+    "reuses": [
+      "action-sheet-item",
+      "checkbox",
+      "separator"
+    ],
+    "candidates": [],
+    "notes": [
+      "composition backfilled: this spec predates the composition discipline (v1). reuses[] reflects the @/components/* imports actually present in source."
     ]
   },
   "anatomy": [
@@ -52,7 +61,8 @@
     {
       "part": "separator",
       "element": "hr",
-      "notes": "INSTANCE of Separator. One between each section group."
+      "notes": "INSTANCE of Separator. One between each section group.",
+      "klpComponent": "separator"
     }
   ],
   "variantAxes": {

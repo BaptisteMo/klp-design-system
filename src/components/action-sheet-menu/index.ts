@@ -9,7 +9,6 @@ export {
   rootVariants,
   sectionVariants,
   titleVariants,
-  separatorVariants,
 } from './ActionSheetMenu'
 export type {
   ActionSheetMenuProps,

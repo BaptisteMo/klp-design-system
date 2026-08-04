@@ -7,6 +7,7 @@ import {
   TabulationCellsContent,
   type TabulationCellProps,
 } from '@/components/tabulation-cells'
+import { Separator } from '@/components/separator'
 
 // ---------------------------------------------------------------------------
 // rootVariants — derived from spec.variants[0].layers.root
@@ -30,15 +31,12 @@ const rootVariants = cva(
 )
 
 // ---------------------------------------------------------------------------
-// dividerVariants — derived from spec.variants[0].layers.divider
-//
-// stroke:       --klp-border-default  → border-l border-klp-border-default
-// strokeWeight: literal 1px           → border-l (1px)
-// length:       literal 24px          → h-[24px]
+// divider layer — REUSED: separator (direction="vertical", margin="none").
+// The stroke token (--klp-border-default) and the 1px weight come from the
+// Separator component itself; only the 24px length is local, since Separator
+// fills its container's cross axis by default.
 // ---------------------------------------------------------------------------
-const dividerVariants = cva(
-  'h-[24px] w-[1px] shrink-0 self-center border-l border-klp-border-default'
-)
+const DIVIDER_CLASS = 'h-[24px] self-center'
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -140,7 +138,7 @@ const Tabulations = React.forwardRef<
         {tabs.map((tab, index) => (
           <React.Fragment key={tab.value}>
             {index > 0 && (
-              <span aria-hidden="true" className={dividerVariants()} />
+              <Separator direction="vertical" margin="none" className={DIVIDER_CLASS} />
             )}
             <TabulationsCellBridge value={tab.value} badge={tab.badge}>
               {tab.label}
@@ -166,5 +164,4 @@ export {
   TabulationsContent,
   TabulationsCellBridge,
   rootVariants,
-  dividerVariants,
 }
