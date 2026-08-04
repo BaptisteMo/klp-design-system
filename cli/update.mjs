@@ -3,7 +3,9 @@
 
 import { readFile, writeFile, mkdir, unlink } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
+import { readFileSync as readFileSyncNode } from 'node:fs'
 import { resolve, dirname } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import { spawnSync } from 'node:child_process'
 import pc from 'picocolors'
 import { fetchManifest, collectNpmDeps } from './manifest.mjs'
@@ -15,8 +17,11 @@ import { askMultiselect } from './prompts.mjs'
 
 const REPO = 'BaptisteMo/klp-design-system'
 
+const SELF_DIR = dirname(fileURLToPath(import.meta.url))
+const REPO_ROOT = resolve(SELF_DIR, '..')
+
 function parseArgs(rest) {
-  const out = { ref: 'main', dryRun: false, verbose: false, force: false, brand: null, install: true }
+  const out = { ref: 'main', dryRun: false, verbose: false, force: false, brand: null, install: true, yes: false }
   for (const arg of rest) {
     if (arg.startsWith('--ref=')) out.ref = arg.slice(6)
     else if (arg === '--dry-run') out.dryRun = true
@@ -24,6 +29,7 @@ function parseArgs(rest) {
     else if (arg === '--force') out.force = true
     else if (arg === '--no-install') out.install = false
     else if (arg.startsWith('--brand=')) out.brand = arg.slice(8)
+    else if (arg === '--yes') out.yes = true
   }
   return out
 }
@@ -55,7 +61,10 @@ export async function run(rest) {
   const origLockfile = JSON.parse(JSON.stringify(lockfile))
 
   console.log(pc.cyan(`→ fetching manifest from ${args.ref}`))
-  const manifest = await fetchManifest(args.ref, REPO, { force: args.force })
+  const manifest =
+    args.ref === 'local'
+      ? JSON.parse(readFileSyncNode(resolve(REPO_ROOT, 'registry/manifest.json'), 'utf8'))
+      : await fetchManifest(args.ref, REPO, { force: args.force })
   if (manifest.groups.docs?.brandFiles) {
     manifest.groups.docs = {
       ...manifest.groups.docs,
@@ -110,7 +119,13 @@ export async function run(rest) {
     }
   })
 
-  const selected = await askMultiselect('files', 'Pick files to apply', choices)
+  let selected
+  if (args.yes) {
+    selected = choices.filter((c) => c.selected).map((c) => c.value)
+    console.log(pc.gray(`(--yes) applying ${selected.length} new/changed files`))
+  } else {
+    selected = await askMultiselect('files', 'Pick files to apply', choices)
+  }
   if (!selected || selected.length === 0) {
     console.log(pc.gray('No selection. Done.'))
     return
@@ -135,8 +150,10 @@ export async function run(rest) {
         console.log(pc.magenta(`  − ${e.dst}`))
         continue
       }
-      const url = `https://raw.githubusercontent.com/${REPO}/${args.ref}/${e.src}`
-      const buf = await fetchBuffer(url)
+      const buf =
+        args.ref === 'local'
+          ? readFileSyncNode(resolve(REPO_ROOT, e.src))
+          : await fetchBuffer(`https://raw.githubusercontent.com/${REPO}/${args.ref}/${e.src}`)
       if (sha256(buf) !== e.remoteHash) {
         throw new Error(`Integrity mismatch for ${e.src}`)
       }

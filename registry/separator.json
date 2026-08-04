@@ -1,0 +1,26 @@
+{
+  "name": "separator",
+  "type": "registry:ui",
+  "description": "A 1px rule used to visually divide content, with a margin axis (none/small/medium/large) controlling the space reserved around the line and a direction axis (horizontal/vertical).",
+  "meta": {
+    "displayName": "Separator",
+    "figmaNode": "282:849",
+    "captureBrand": "klub",
+    "category": "utilities",
+    "radixPrimitive": "@radix-ui/react-separator",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "line"],
+    "variantAxes": {
+      "margin": ["none", "small", "medium", "large"],
+      "direction": ["horizontal", "vertical"]
+    },
+    "composition": {
+      "reuses": [],
+      "gaps": []
+    }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": ["@radix-ui/react-separator", "class-variance-authority"]
+  }
+}

@@ -17,7 +17,10 @@ const COMPONENTS: ComponentEntry[] = [
   { slug: 'radio',             label: 'Radio',             category: 'inputs'   },
   { slug: 'switch',            label: 'Switch',            category: 'inputs'   },
   { slug: 'input',             label: 'Input',             category: 'inputs'   },
+  { slug: 'input-multiselect', label: 'Input Multiselect', category: 'inputs'   },
   { slug: 'text-area',         label: 'Text Area',         category: 'inputs'   },
+  { slug: 'calendar-button',   label: 'Calendar Button',   category: 'inputs'   },
+  { slug: 'calendar',          label: 'Calendar',          category: 'inputs'   },
   { slug: 'tooltip',           label: 'Tooltip',           category: 'overlays' },
   { slug: 'badges',            label: 'Badge',             category: 'feedback' },
   { slug: 'floating-alert',    label: 'Floating Alert',    category: 'feedback' },
@@ -38,6 +41,7 @@ const COMPONENTS: ComponentEntry[] = [
   { slug: 'sidebar',           label: 'SideBar',           category: 'navigation' },
   { slug: 'header-desktop',    label: 'Header Desktop',    category: 'navigation' },
   { slug: 'header-phone',      label: 'Header Phone',      category: 'navigation' },
+  { slug: 'separator',         label: 'Separator',         category: 'utilities' },
 ]
 
 const LATEST: ComponentEntry = {

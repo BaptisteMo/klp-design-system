@@ -122,6 +122,10 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Header Phone](../components/_index_header-phone.md) — consumes `border-default` (root bottom border), `bg-invisible`, `border-invisible` (tertiary button layers), `fg-brand-contrasted` (logo color, title color), `bg-decorative-orange` (notification dot).
 - [Collapsible](../components/_index_collapsible.md) — consumes `bg-default`, `bg-inset`, `bg-invisible`, `border-default`, `border-invisible`, `fg-default`, `fg-muted` tokens across root, header, icon, title, toggle-button, content, and content-text layers.
 - [Modal Variation](../components/_index_modal-variation.md) — consumes `bg-default`, `bg-inset`, `fg-default`, `border-default`, `border-invisible`, `border-brand`, `bg-brand` tokens across root, header, title, content, label, footer, button-option, button-secondary, and button-primary layers.
+- [Input Multiselect](../components/_index_input-multiselect.md) — consumes `bg-default`, `bg-inset`, `fg-default`, `fg-subtle`, `border-brand`, `border-invisible` tokens across trigger-label, input-box, chip, chip-label, placeholder, and dropdown layers.
+- [Calendar Button](../components/_index_calendar-button.md) — consumes `bg-default`, `bg-disable`, `bg-subtle`, `bg-brand`, `border-invisible`, `border-default`, `fg-default`, `fg-subtle`, `fg-disable`, `fg-on-emphasis` tokens across all 5 state variants.
+- [Calendar](../components/_index_calendar.md) — consumes `bg-default`, `bg-invisible`, `fg-muted`, `fg-default`, `border-invisible`, `border-default` tokens across root, nav-button, month-label, weekday-label, separator, and footer-label layers.
+- [Separator](../components/_index_separator.md) — consumes `border-default` (line stroke, both directions).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

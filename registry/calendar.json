@@ -1,0 +1,57 @@
+{
+  "name": "calendar",
+  "type": "registry:ui",
+  "description": "A date-picker panel with a month header (prev/next year and month navigation), a Monday-first 7-column day grid, a horizontal separator, and a footer hour-selection field. Single Figma COMPONENT, no variant axes.",
+  "meta": {
+    "displayName": "Calendar",
+    "figmaNode": "111590:16200",
+    "captureBrand": "klub",
+    "category": "inputs",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": [
+      "root",
+      "header",
+      "prev-year-button",
+      "prev-month-button",
+      "month-label",
+      "next-month-button",
+      "next-year-button",
+      "day-grid",
+      "weekday-header",
+      "weekday-label",
+      "week-row",
+      "day-cell",
+      "separator",
+      "footer",
+      "footer-label",
+      "footer-input"
+    ],
+    "variantAxes": {},
+    "composition": {
+      "reuses": [
+        {
+          "klpComponent": "button",
+          "notes": "The 4 header nav buttons render as <Button variant=\"tertiary\" size=\"icon\">, icons from lucide-react (ChevronsLeft/ChevronLeft/ChevronRight/ChevronsRight)."
+        },
+        {
+          "klpComponent": "calendar-button",
+          "notes": "Every day-grid cell renders as <CalendarButton day otherMonth today selected disabled>; state derivation fully owned by that component."
+        },
+        {
+          "klpComponent": "input",
+          "notes": "Footer hour field renders as <Input size=\"small\"> with a trailing Clock icon."
+        },
+        {
+          "klpComponent": "separator",
+          "notes": "Footer rule renders as <Separator direction=\"horizontal\" margin=\"none\">, replacing the local border-t cva."
+        }
+      ],
+      "gaps": []
+    }
+  },
+  "dependencies": {
+    "components": ["button", "calendar-button", "input", "separator"],
+    "npm": ["class-variance-authority", "lucide-react"]
+  }
+}

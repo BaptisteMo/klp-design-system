@@ -9,13 +9,14 @@ sources:
   - .klp/figma-refs/action-sheet-menu/spec.json
   - src/components/action-sheet-menu/ActionSheetMenu.tsx
 dependencies:
-  components: ["action-sheet-item", "checkbox"]
+  components: ["action-sheet-item", "checkbox", "separator"]
   externals: ["@radix-ui/react-popover", "class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "radius", "spacing", "typography"]
   brands: ["wireframe"]
-usedBy: []
+usedBy:
+  - input-multiselect
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-04
 ---
 
 # ActionSheet Menu
@@ -29,7 +30,7 @@ div (root)
 ├── section (div)         — Repeated per sections[]
 │   ├── title   (span)    — Section header text; hidden in flat type
 │   ├── item    (ActionSheetItem | label+Checkbox) — Repeated per section.items[]
-│   └── separator (div/hr) — Between sections; inlined (no klp Separator component)
+│   └── separator          — Between sections; REUSED: separator (default/flat → margin="medium", checkbox → margin="none")
 ```
 
 ## Variants
@@ -85,6 +86,7 @@ export function ActionSheetMenuDefaultExample() {
 
 - [ActionSheet Item](./_index_action-sheet-item.md) — Repeated for each list item row in default and flat types.
 - [Checkbox](./_index_checkbox.md) — Used in checkbox type — each row wraps a Checkbox instance.
+- [Separator](./_index_separator.md) — Between-section rule. `default`/`flat` map to `margin="medium"` (paddingY `--klp-size-m` in Figma, matches the previous inlined `<hr>` exactly); `checkbox` maps to `margin="none"` (bare 1px rectangle, no padding).
 
 ### External libraries
 
@@ -105,7 +107,7 @@ export function ActionSheetMenuDefaultExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [Input Multiselect](./_index_input-multiselect.md)
 
 ## Files
 
@@ -119,9 +121,7 @@ export function ActionSheetMenuDefaultExample() {
 <!-- KLP:GAPS:BEGIN -->
 ## DS gaps
 
-| Part | Kind | Reason | Action |
-|---|---|---|---|
-| separator | unmatched-instance | No klp Separator component registered. | inlined-local |
+No gaps recorded.
 <!-- KLP:GAPS:END -->
 
 <!-- KLP:NOTES:BEGIN -->

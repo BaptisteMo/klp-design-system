@@ -1,0 +1,64 @@
+{
+  "name": "input-multiselect",
+  "type": "registry:ui",
+  "description": "A multi-select input: a labeled trigger box (composed from the Input component) that displays selected values as removable chips (Badges) and a chevron affordance, plus an attached open dropdown panel (ActionSheet_Menu, checkbox type) listing selectable options grouped into sections.",
+  "meta": {
+    "displayName": "Input Multiselect",
+    "category": "inputs",
+    "captureBrand": "klub",
+    "radixPrimitive": "@radix-ui/react-popover",
+    "variantAxes": {
+      "content": [
+        "filled",
+        "empty",
+        "full"
+      ],
+      "state": [
+        "open",
+        "close"
+      ]
+    },
+    "composition": {
+      "reuses": [
+        {
+          "klpComponent": "input",
+          "notes": "Trigger renders as <Input size=\"small\"> with label/info-icon/input-box/placeholder reused; selected-value chips are passed via iconLeft, chevron via iconRight."
+        },
+        {
+          "klpComponent": "badges",
+          "notes": "Each selected value renders as <Badge badgeType=\"tertiary\" size=\"small\" badgeStyle=\"light\">; overflow beyond maxVisibleChips collapses into a \"+N\" badge."
+        },
+        {
+          "klpComponent": "action-sheet-menu",
+          "notes": "Dropdown panel renders as <ActionSheetMenu type=\"checkbox\"> inside a Radix Popover.Content."
+        }
+      ],
+      "gaps": [
+        {
+          "kind": "partial-reuse",
+          "part": "chip-remove-icon",
+          "reason": "Badge's rightIcon slot renders inside an aria-hidden wrapper (decorative-icon assumption) so it cannot host an accessible remove control.",
+          "action": "Wrapped the whole Badge in a native <button className=\"contents\"> with aria-label=\"Remove {label}\" to provide the actual remove affordance; Badge's rightIcon still renders the decorative X glyph."
+        },
+        {
+          "kind": "partial-reuse",
+          "part": "dropdown",
+          "reason": "ActionSheetMenu hardcodes role=\"menu\" internally; a true combobox pattern expects listbox semantics.",
+          "action": "Used ActionSheetMenu as-is (role mismatch not corrected \u2014 editing the shared DS component is out of scope for this adapter pass)."
+        }
+      ]
+    }
+  },
+  "dependencies": {
+    "components": [
+      "input",
+      "badges",
+      "action-sheet-menu"
+    ],
+    "npm": [
+      "@radix-ui/react-popover",
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
+}

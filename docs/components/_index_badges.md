@@ -14,6 +14,7 @@ dependencies:
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
 usedBy:
+  - input-multiselect
   - tabulation-cells
 created: 2026-04-16
 updated: 2026-04-21
@@ -118,6 +119,7 @@ export function BadgeExample() {
 
 ## Used by
 
+- [Input Multiselect](./_index_input-multiselect.md)
 - [Tabulation Cells](./_index_tabulation-cells.md)
 
 ## Files

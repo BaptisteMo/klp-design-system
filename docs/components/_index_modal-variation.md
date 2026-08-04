@@ -254,5 +254,5 @@ export function ModalVariationExample() {
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
 
-*Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
+> ⚠️ Token smell: the `footer` layer's top border resolves to `--klp-bg-inset` — a `bg-*`-named token used as a border color. Verified faithful to the source: `.klp/figma-refs/modal-variation/spec.json` shows Figma binding `--klp-bg-inset` on that stroke via a cross-file `footer-border` variable, and `ModalVariation.tsx` reproduces it exactly. This is a design-side naming smell (a border stroke bound to a `bg-*` alias) worth raising with the design team, not a code bug — do not change the source to "fix" it unilaterally.
 <!-- KLP:NOTES:END -->

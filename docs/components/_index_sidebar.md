@@ -15,7 +15,7 @@ dependencies:
   brands: ["klub"]
 usedBy: []
 created: 2026-04-21
-updated: 2026-04-22
+updated: 2026-08-04
 ---
 
 # SideBar

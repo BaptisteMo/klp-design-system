@@ -11,7 +11,9 @@ import { cn } from '@/lib/cn'
 // ---------------------------------------------------------------------------
 const rootVariants = cva(
   // base: layout, border, radius, focus ring, transitions
-  'box-border inline-flex items-center justify-center border rounded-klp-l transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand-emphasis disabled:pointer-events-none cursor-pointer',
+  // `group` is required: label/icon spans key their disabled color off `group-disabled:`
+  // (a child <span> is never itself :disabled).
+  'group box-border inline-flex items-center justify-center border rounded-klp-l transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-klp-border-brand-emphasis disabled:pointer-events-none cursor-pointer',
   {
     variants: {
       variant: {
@@ -51,7 +53,7 @@ const rootVariants = cva(
 const labelVariants = cva(
   // base: font family + weight (klp alias, resolves to brand-appropriate weight per --klp-font-weight-label-bold)
   // disabled: spec requires --klp-fg-disable across all types
-  'font-klp-label font-klp-label-bold leading-none disabled:text-klp-fg-disable',
+  'font-klp-label font-klp-label-bold leading-none group-disabled:text-klp-fg-disable',
   {
     variants: {
       variant: {
@@ -79,7 +81,7 @@ const labelVariants = cva(
 // ---------------------------------------------------------------------------
 const iconVariants = cva(
   // disabled: spec requires --klp-fg-disable across all types
-  'inline-flex shrink-0 items-center justify-center disabled:text-klp-fg-disable',
+  'inline-flex shrink-0 items-center justify-center group-disabled:text-klp-fg-disable',
   {
     variants: {
       variant: {

@@ -1,0 +1,22 @@
+{
+  "name": "calendar-button",
+  "type": "registry:ui",
+  "description": "Single day cell of a calendar grid (36x36). Renders a day number over a colored/bordered background communicating the day's state (default, other-month, disable, today, selected).",
+  "meta": {
+    "figmaNode": "111590:15856",
+    "captureBrand": "klub",
+    "category": "inputs",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": ["root", "label"],
+    "variantAxes": {
+      "state": ["default", "other-month", "disable", "today", "selected"]
+    }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority"
+    ]
+  }
+}

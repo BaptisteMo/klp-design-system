@@ -4,13 +4,13 @@ import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/cn'
 import { ActionSheetItem } from '@/components/action-sheet-item'
 import { Checkbox } from '@/components/checkbox'
+import { Separator } from '@/components/separator'
 
 // ---------------------------------------------------------------------------
 // Composition discipline
 //   REUSED: action-sheet-item  → imported from @/components/action-sheet-item
 //   REUSED: checkbox           → imported from @/components/checkbox
-//   GAP:    Separator          → no klp component registered; inlined as <hr>
-//                                (unmatched-instance gap — see registry stub)
+//   REUSED: separator          → imported from @/components/separator
 // ---------------------------------------------------------------------------
 
 // ---------------------------------------------------------------------------
@@ -22,6 +22,11 @@ import { Checkbox } from '@/components/checkbox'
 // checkbox-default also has itemSpacing: --klp-size-xs → gap-klp-size-xs
 // minWidth: literal from spec
 // ---------------------------------------------------------------------------
+// Drop shadow captured from Figma (3 stacked DROP_SHADOW effects):
+// 0/7 blur22 @25%, 0/0 blur1.5 @30%, 0/0 blur1 @40%.
+const MENU_SHADOW =
+  'shadow-[0_0_1px_0_rgba(0,0,0,0.40),0_0_1.5px_0_rgba(0,0,0,0.30),0_7px_22px_0_rgba(0,0,0,0.25)]'
+
 const rootVariants = cva(
   [
     'flex flex-col bg-klp-bg-default rounded-klp-l overflow-hidden',
@@ -30,8 +35,10 @@ const rootVariants = cva(
   {
     variants: {
       type: {
-        default:  'min-w-[251px] shadow-[0_0_1px_0_rgba(0,0,0,0.40),0_0_1.5px_0_rgba(0,0,0,0.30),0_7px_22px_0_rgba(0,0,0,0.25)]',
-        checkbox: 'min-w-[249px] gap-klp-size-xs',
+        // Figma: Type=Default and Type=Checkbox carry the same 3-layer drop
+        // shadow; Type=Flat has none (it sits inside a container).
+        default:  `min-w-[251px] ${MENU_SHADOW}`,
+        checkbox: `min-w-[249px] gap-klp-size-xs ${MENU_SHADOW}`,
         flat:     'min-w-[251px]',
       },
     },
@@ -69,24 +76,10 @@ const titleVariants = cva(
 )
 
 // ---------------------------------------------------------------------------
-// separator layer
-// default / flat variants (INSTANCE of Separator component):
-//   paddingY: --klp-size-m → pt-klp-size-m pb-klp-size-m on a wrapper
-//   stroke: --klp-border-default → border-klp-border-default
-// checkbox variant (direct rectangle):
-//   fill: --klp-border-default → bg-klp-border-default
-//   height: 1px (literal)
+// separator layer — owned by @/components/separator, see ActionSheetSeparator
+// below. default/flat map to margin="medium" (paddingY --klp-size-m in Figma),
+// checkbox to margin="none".
 // ---------------------------------------------------------------------------
-const separatorVariants = cva('', {
-  variants: {
-    type: {
-      default:  'pt-klp-size-m pb-klp-size-m',
-      checkbox: '',
-      flat:     'pt-klp-size-m pb-klp-size-m',
-    },
-  },
-  defaultVariants: { type: 'default' },
-})
 
 // ---------------------------------------------------------------------------
 // Public types
@@ -135,21 +128,13 @@ export interface ActionSheetMenuProps
 }
 
 // ---------------------------------------------------------------------------
-// Separator sub-component (unmatched-instance: no registered klp Separator)
-// default/flat: wrapper with paddingY + inner <hr> with border token
-// checkbox: solid 1px rectangle using bg token
+// Separator sub-component — REUSED: separator
+// default/flat are Separator INSTANCEs in Figma with paddingY --klp-size-m,
+// which is exactly margin="medium". The checkbox variant draws a bare 1px
+// rectangle instead (no padding) — margin="none" renders identically.
 // ---------------------------------------------------------------------------
 function ActionSheetSeparator({ type }: { type: ActionSheetMenuType }) {
-  if (type === 'checkbox') {
-    // direct rectangle separator — fill: --klp-border-default, height: 1px (literal)
-    return <div aria-hidden="true" className="h-[1px] bg-klp-border-default" />
-  }
-  // Separator INSTANCE (inlined): wrapper carries paddingY, hr carries border
-  return (
-    <div aria-hidden="true" className={cn(separatorVariants({ type }))}>
-      <hr className="border-0 border-t border-klp-border-default" />
-    </div>
-  )
+  return <Separator margin={type === 'checkbox' ? 'none' : 'medium'} />
 }
 
 // ---------------------------------------------------------------------------
@@ -278,7 +263,6 @@ export {
   rootVariants,
   sectionVariants,
   titleVariants,
-  separatorVariants,
   ActionSheetMenuRoot,
   ActionSheetMenuTrigger,
   ActionSheetMenuPortal,

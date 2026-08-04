@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-04-21
+updated: 2026-08-04
 ---
 
 # klp-design-system
@@ -16,8 +16,11 @@ Start here:
 
 ### inputs
 - [Button](./components/_index_button.md) — Interactive button, 5 types × 4 sizes × 4 states (20 variants)
+- [Calendar](./components/_index_calendar.md) — Date-picker panel with month header, day grid, and hour-selection footer, single variant (no variant axes)
+- [Calendar Button](./components/_index_calendar-button.md) — Single day cell of a calendar grid, single State axis (default / other-month / disable / today / selected), 5 variants
 - [Checkbox](./components/_index_checkbox.md) — Toggle control, single State axis (rest / hover / clicked / mixed / disable), 5 variants
 - [Input](./components/_index_input.md) — Text input field with label and optional icons, 3 sizes × 6 states (18 variants)
+- [Input Multiselect](./components/_index_input-multiselect.md) — Multi-select input with removable chips and a dropdown checkbox list, 3 content × 2 state variants (5 captured)
 - [Radio](./components/_index_radio.md) — Radio button control, single State axis (rest / hover / clicked / disable), 4 variants
 - [Switch](./components/_index_switch.md) — Toggle switch, 2 states (toggle-on / toggle-off), animated thumb with check icon
 - [Text Area](./components/_index_text-area.md) — Multi-line text input, 2 feature variants × 6 states (12 variants)
@@ -62,6 +65,9 @@ Start here:
 ### lists
 - [ActionSheet Menu](./components/_index_action-sheet-menu.md) — Contextual menu panel with grouped ActionSheet_Item rows, optional section titles, and separators. 3 layout types (default / checkbox / flat)
 - [List](./components/_index_list.md) — Vertical list container with header, optional action button, and repeated List Content rows. 3 style variants (condensed / default / with-inputs)
+
+### utilities
+- [Separator](./components/_index_separator.md) — 1px rule dividing content, 4 margins × 2 directions (8 variants)
 
 ## Tokens
 - [Token system overview](./tokens/_index_tokens.md) — 3-layer architecture (primitives → aliases → Tailwind theme)

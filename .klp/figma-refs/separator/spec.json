@@ -1,0 +1,178 @@
+{
+  "name": "separator",
+  "displayName": "Separator",
+  "figmaNode": "282:849",
+  "captureBrand": "klub",
+  "category": "utilities",
+  "description": "A 1px rule used to visually divide content, with a margin axis (none/small/medium/large) controlling the space around the line and a direction axis (horizontal/vertical). Geometrically trivial: the visible line is a stroke-drawn RECTANGLE nested inside a padding-only wrapper frame. Reconciles the local `border-t border-klp-border-default` rule already used ad hoc by `calendar` (flagged there as a `new-primitive` gap) — both resolve to the same `--klp-border-default` alias, so `calendar` should be migrated to consume this component once adapted.",
+  "radixPrimitive": "@radix-ui/react-separator",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Padding-only wrapper. No visible fill or stroke of its own (transparent) — its sole job is reserving the margin space around the line via layout padding, which is direction-dependent: paddingTop/paddingBottom for Direction=Horizontal, paddingLeft/paddingRight for Direction=Vertical. `none` margin has zero padding (no Figma variable bound)."
+    },
+    {
+      "part": "line",
+      "element": "div",
+      "notes": "The actual visible rule. In Figma this is a RECTANGLE node named 'Rectangle 1' with a bound `strokes` entry (no `fills` entry at all — the node has zero fill paint). This means the rule is drawn as a STROKE, not a filled rectangle. Source must use `border-*` utilities (e.g. `border-b border-klp-border-default` for horizontal, `border-r border-klp-border-default` for vertical), never `bg-*`. strokeWeight is a literal 1 (not bound to a variable)."
+    }
+  ],
+  "variantAxes": {
+    "margin": ["none", "small", "medium", "large"],
+    "direction": ["horizontal", "vertical"]
+  },
+  "variants": [
+    {
+      "id": "none-horizontal",
+      "axes": { "margin": "none", "direction": "horizontal" },
+      "figmaNodeId": "282:846",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (capture output not writable). Use figma_capture_screenshot(nodeId=\"282:846\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "literals": { "fill": "transparent", "paddingTop": "0px", "paddingBottom": "0px", "width": "234px (Figma canvas sample only — not a real constraint; the wrapper is meant to FILL its container's cross axis)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "height": "1px", "width": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    },
+    {
+      "id": "none-vertical",
+      "axes": { "margin": "none", "direction": "vertical" },
+      "figmaNodeId": "284:1695",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session. Use figma_capture_screenshot(nodeId=\"284:1695\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "literals": { "fill": "transparent", "paddingLeft": "0px", "paddingRight": "0px", "height": "234px (Figma canvas sample only — not a real constraint; the wrapper is meant to FILL its container's cross axis)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "width": "1px", "height": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    },
+    {
+      "id": "small-horizontal",
+      "axes": { "margin": "small", "direction": "horizontal" },
+      "figmaNodeId": "282:847",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session. Use figma_capture_screenshot(nodeId=\"282:847\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "paddingTop": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingBottom": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": { "fill": "transparent", "width": "234px (Figma canvas sample only — not a real constraint)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "height": "1px", "width": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    },
+    {
+      "id": "small-vertical",
+      "axes": { "margin": "small", "direction": "vertical" },
+      "figmaNodeId": "284:1693",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session. Use figma_capture_screenshot(nodeId=\"284:1693\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "paddingLeft": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "paddingRight": { "token": "--klp-size-xs", "figmaVar": "Sizing/XS", "value": "8px" },
+          "literals": { "fill": "transparent", "height": "234px (Figma canvas sample only — not a real constraint)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "width": "1px", "height": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    },
+    {
+      "id": "medium-horizontal",
+      "axes": { "margin": "medium", "direction": "horizontal" },
+      "figmaNodeId": "282:848",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session. Use figma_capture_screenshot(nodeId=\"282:848\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "paddingTop": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "paddingBottom": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "literals": { "fill": "transparent", "width": "234px (Figma canvas sample only — not a real constraint)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "height": "1px", "width": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    },
+    {
+      "id": "medium-vertical",
+      "axes": { "margin": "medium", "direction": "vertical" },
+      "figmaNodeId": "284:1691",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session. Use figma_capture_screenshot(nodeId=\"284:1691\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "paddingLeft": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "paddingRight": { "token": "--klp-size-m", "figmaVar": "Sizing/M", "value": "16px" },
+          "literals": { "fill": "transparent", "height": "234px (Figma canvas sample only — not a real constraint)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "width": "1px", "height": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    },
+    {
+      "id": "large-horizontal",
+      "axes": { "margin": "large", "direction": "horizontal" },
+      "figmaNodeId": "282:845",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session. Use figma_capture_screenshot(nodeId=\"282:845\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "paddingTop": { "token": "--klp-size-l", "figmaVar": "Sizing/L", "value": "24px" },
+          "paddingBottom": { "token": "--klp-size-l", "figmaVar": "Sizing/L", "value": "24px" },
+          "literals": { "fill": "transparent", "width": "234px (Figma canvas sample only — not a real constraint)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "height": "1px", "width": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    },
+    {
+      "id": "large-vertical",
+      "axes": { "margin": "large", "direction": "vertical" },
+      "figmaNodeId": "284:1697",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session. Use figma_capture_screenshot(nodeId=\"284:1697\") to re-capture on demand.",
+      "layers": {
+        "root": {
+          "paddingLeft": { "token": "--klp-size-l", "figmaVar": "Sizing/L", "value": "24px" },
+          "paddingRight": { "token": "--klp-size-l", "figmaVar": "Sizing/L", "value": "24px" },
+          "literals": { "fill": "transparent", "height": "234px (Figma canvas sample only — not a real constraint)" }
+        },
+        "line": {
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "literals": { "strokeWeight": "1px", "width": "1px", "height": "234px (canvas sample, FILL in real usage)" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "separator",
+    "keyboardSupport": [],
+    "notes": "Purely decorative divider by default — render with role=\"separator\" and aria-orientation matching the direction axis (\"horizontal\" | \"vertical\"). Radix's react-separator handles this: when `decorative` is true it sets role=\"none\" instead, which is preferable if the separator carries no semantic meaning for assistive tech (matches most usages, e.g. inside menus/calendars)."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": [],
+    "candidates": [],
+    "instances": []
+  }
+}

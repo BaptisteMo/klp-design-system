@@ -9,13 +9,13 @@ sources:
   - .klp/figma-refs/tabulations/spec.json
   - src/components/tabulations/Tabulations.tsx
 dependencies:
-  components: ["tabulation-cells"]
+  components: ["separator", "tabulation-cells"]
   externals: ["@radix-ui/react-tabs", "class-variance-authority"]
   tokenGroups: ["colors", "spacing", "radius"]
   brands: ["klub"]
 usedBy: []
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-04
 ---
 
 # Tabulations
@@ -28,7 +28,7 @@ A styled tab bar container built on Radix Tabs. Accepts a `tabs` array and rende
 TabsPrimitive.Root (root)
 └── TabsPrimitive.List (list)  — bg-subtle border rounded-l p-[2px] gap-[4px]
     └── [for each tab, with divider between]:
-        ├── divider (span)          — 24px h, 1px w; border-default; aria-hidden
+        ├── divider                 — REUSED: separator (direction="vertical" margin="none"), 24px h via local className
         └── TabulationsCellBridge   — bridges Radix data-state → TabulationCell state prop
             └── TabulationCell      — styled Tabs.Trigger + optional Badge
 └── children                   — TabulationsContent (Tabs.Content) panels
@@ -91,6 +91,7 @@ export function TabulationsExample() {
 ### klp components
 
 - [Tabulation Cells](./_index_tabulation-cells.md) — TabulationsCellBridge wraps TabulationCell and bridges Radix data-state to the cva state prop.
+- [Separator](./_index_separator.md) — Vertical divider between tabs (`direction="vertical" margin="none"`). Its `--klp-border-default` stroke and 1px weight are fully owned by Separator; only the 24px length (`h-[24px] self-center`) stays local, since Separator fills its container's cross axis by default. First consumer of Separator's vertical axis in the DS.
 
 ### External libraries
 
