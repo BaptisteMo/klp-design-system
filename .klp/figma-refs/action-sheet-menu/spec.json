@@ -29,138 +29,372 @@
     ]
   },
   "anatomy": [
-    { "part": "root",        "element": "div",    "notes": "Menu container with padding and rounded corners. Clips children." },
-    { "part": "section",     "element": "div",    "notes": "Repeated group of title + items. Optional per variant." },
-    { "part": "title",       "element": "span",   "notes": "Section header text label ('Titre de section'). Hidden in Flat variant." },
-    { "part": "item",        "element": "div",    "notes": "INSTANCE of ActionSheet_Item or Input Checkbox. Repeated n times per section." },
-    { "part": "separator",   "element": "hr",     "notes": "INSTANCE of Separator. One between each section group." }
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Menu container with padding and rounded corners. Clips children."
+    },
+    {
+      "part": "section",
+      "element": "div",
+      "notes": "Repeated group of title + items. Optional per variant."
+    },
+    {
+      "part": "title",
+      "element": "span",
+      "notes": "Section header text label ('Titre de section'). Hidden in Flat variant."
+    },
+    {
+      "part": "item",
+      "element": "div",
+      "notes": "INSTANCE of ActionSheet_Item or Input Checkbox. Repeated n times per section."
+    },
+    {
+      "part": "separator",
+      "element": "hr",
+      "notes": "INSTANCE of Separator. One between each section group."
+    }
   ],
   "variantAxes": {
-    "type": ["default", "checkbox", "flat"]
+    "type": [
+      "default",
+      "checkbox",
+      "flat"
+    ]
   },
   "variants": [
     {
       "id": "default-default",
-      "axes": { "type": "default" },
+      "axes": {
+        "type": "default"
+      },
       "figmaNodeId": "284:1077",
       "screenshot": "default-default.png",
       "layers": {
         "root": {
-          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
-          "paddingX":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102", "value": "8px",
-                            "notes": "External library variable — no matching --klp-* alias. Token gap." },
-          "literals":     { "minWidth": "251px" }
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "cornerRadius": {
+            "token": null,
+            "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102",
+            "value": "8px",
+            "notes": "External library variable — no matching --klp-* alias. Token gap."
+          },
+          "literals": {
+            "minWidth": "251px",
+            "boxShadow": "0 7px 22px rgba(0,0,0,0.25), 0 0 1.5px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.4)",
+            "boxShadowNote": "3 stacked Figma DROP_SHADOW effects; Type=Flat has none. Missed by the original capture, re-read from the Figma component set 389:636."
+          }
         },
         "section": {
-          "literals":     { "layout": "vertical", "gap": "0px" }
+          "literals": {
+            "layout": "vertical",
+            "gap": "0px"
+          }
         },
         "title": {
-          "color":      { "token": "--klp-fg-muted",                "figmaVar": "fg/muted",               "value": "#4A4A4A" },
-          "fontSize":   { "token": "--klp-font-size-text-small",    "figmaVar": "Sizing/Text/Small",      "value": "14px" },
-          "fontFamily": { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",           "value": "Test Calibre" },
-          "fontWeight": { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",      "value": "600" }
+          "color": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#4A4A4A"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-small",
+            "figmaVar": "Sizing/Text/Small",
+            "value": "14px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label-bold",
+            "figmaVar": "Weight/Label Bold",
+            "value": "600"
+          }
         },
         "item": {
-          "fill":         { "token": "--klp-bg-invisible",   "figmaVar": "bg/invisible",  "value": "transparent" },
-          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",  "value": "transparent" },
-          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:278:2851", "value": "8px",
-                            "notes": "Unnamed local variable — no matching --klp-* alias. Token gap." },
-          "paddingX":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "itemSpacing":  { "token": "--klp-size-s",         "figmaVar": "Sizing/S",      "value": "12px" },
-          "notes":        "INSTANCE of action-sheet-item klp component."
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "transparent"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": null,
+            "figmaVar": "VariableID:278:2851",
+            "value": "8px",
+            "notes": "Unnamed local variable — no matching --klp-* alias. Token gap."
+          },
+          "paddingX": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "paddingY": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-s",
+            "figmaVar": "Sizing/S",
+            "value": "12px"
+          },
+          "notes": "INSTANCE of action-sheet-item klp component."
         },
         "separator": {
-          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "stroke":       { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
-          "notes":        "INSTANCE of Separator component."
+          "paddingY": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#D7DAD9"
+          },
+          "notes": "INSTANCE of Separator component."
         }
       }
     },
     {
       "id": "checkbox-default",
-      "axes": { "type": "checkbox" },
+      "axes": {
+        "type": "checkbox"
+      },
       "figmaNodeId": "389:637",
       "screenshot": "checkbox-default.png",
       "layers": {
         "root": {
-          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
-          "paddingX":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "itemSpacing":  { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102", "value": "8px",
-                            "notes": "External library variable — no matching --klp-* alias. Token gap." },
-          "literals":     { "minWidth": "249px" }
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "cornerRadius": {
+            "token": null,
+            "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102",
+            "value": "8px",
+            "notes": "External library variable — no matching --klp-* alias. Token gap."
+          },
+          "literals": {
+            "minWidth": "249px",
+            "boxShadow": "0 7px 22px rgba(0,0,0,0.25), 0 0 1.5px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.4)",
+            "boxShadowNote": "3 stacked Figma DROP_SHADOW effects; Type=Flat has none. Missed by the original capture, re-read from the Figma component set 389:636."
+          }
         },
         "section": {
-          "literals":     { "layout": "vertical", "gap": "0px" }
+          "literals": {
+            "layout": "vertical",
+            "gap": "0px"
+          }
         },
         "title": {
-          "color":      { "token": "--klp-fg-muted",                "figmaVar": "fg/muted",               "value": "#4A4A4A" },
-          "fontSize":   { "token": "--klp-font-size-text-small",    "figmaVar": "Sizing/Text/Small",      "value": "14px" },
-          "fontFamily": { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",           "value": "Test Calibre" },
-          "fontWeight": { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",      "value": "600" }
+          "color": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#4A4A4A"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-small",
+            "figmaVar": "Sizing/Text/Small",
+            "value": "14px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label-bold",
+            "figmaVar": "Weight/Label Bold",
+            "value": "600"
+          }
         },
         "item": {
-          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
-          "stroke":       { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
-          "cornerRadius": { "token": "--klp-radius-m",       "figmaVar": "Radius/M",      "value": "4px" },
-          "paddingX":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "itemSpacing":  { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "notes":        "INSTANCE of Input Checkbox (checkbox klp component). Each row contains a Checkbox sub-instance + Label text."
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#D7DAD9"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-m",
+            "figmaVar": "Radius/M",
+            "value": "4px"
+          },
+          "paddingX": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "notes": "INSTANCE of Input Checkbox (checkbox klp component). Each row contains a Checkbox sub-instance + Label text."
         },
         "separator": {
-          "fill":         { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
-          "literals":     { "height": "1px" },
-          "notes":        "Rectangle separator (not a Separator INSTANCE in this variant — direct rectangle)."
+          "fill": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#D7DAD9"
+          },
+          "literals": {
+            "height": "1px"
+          },
+          "notes": "Rectangle separator (not a Separator INSTANCE in this variant — direct rectangle)."
         }
       }
     },
     {
       "id": "flat-default",
-      "axes": { "type": "flat" },
+      "axes": {
+        "type": "flat"
+      },
       "figmaNodeId": "524:1723",
       "screenshot": "flat-default.png",
       "layers": {
         "root": {
-          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",    "value": "#FFFFFF" },
-          "paddingX":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "paddingY":     { "token": "--klp-size-xs",        "figmaVar": "Sizing/XS",     "value": "8px" },
-          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102", "value": "8px",
-                            "notes": "External library variable — no matching --klp-* alias. Token gap." },
-          "literals":     { "minWidth": "251px" }
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "cornerRadius": {
+            "token": null,
+            "figmaVar": "VariableID:bb1cbde7be52ab74dc15eb38e8b18754de3fea73/152:102",
+            "value": "8px",
+            "notes": "External library variable — no matching --klp-* alias. Token gap."
+          },
+          "literals": {
+            "minWidth": "251px"
+          }
         },
         "section": {
-          "literals":     { "layout": "vertical", "gap": "0px" }
+          "literals": {
+            "layout": "vertical",
+            "gap": "0px"
+          }
         },
         "title": {
-          "literals":     { "display": "none" },
-          "notes":        "No section titles in Flat variant."
+          "literals": {
+            "display": "none"
+          },
+          "notes": "No section titles in Flat variant."
         },
         "item": {
-          "fill":         { "token": "--klp-bg-invisible",   "figmaVar": "bg/invisible",  "value": "transparent" },
-          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible",  "value": "transparent" },
-          "cornerRadius": { "token": null,                   "figmaVar": "VariableID:278:2851", "value": "8px",
-                            "notes": "Unnamed local variable — no matching --klp-* alias. Token gap." },
-          "paddingX":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "itemSpacing":  { "token": "--klp-size-s",         "figmaVar": "Sizing/S",      "value": "12px" },
-          "notes":        "INSTANCE of action-sheet-item klp component."
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "transparent"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": null,
+            "figmaVar": "VariableID:278:2851",
+            "value": "8px",
+            "notes": "Unnamed local variable — no matching --klp-* alias. Token gap."
+          },
+          "paddingX": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "paddingY": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-s",
+            "figmaVar": "Sizing/S",
+            "value": "12px"
+          },
+          "notes": "INSTANCE of action-sheet-item klp component."
         },
         "separator": {
-          "paddingY":     { "token": "--klp-size-m",         "figmaVar": "Sizing/M",      "value": "16px" },
-          "stroke":       { "token": "--klp-border-default", "figmaVar": "bd/default",    "value": "#D7DAD9" },
-          "notes":        "INSTANCE of Separator component."
+          "paddingY": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#D7DAD9"
+          },
+          "notes": "INSTANCE of Separator component."
         }
       }
     }
   ],
   "a11y": {
     "role": "menu",
-    "keyboardSupport": ["ArrowUp", "ArrowDown", "Enter", "Escape"],
+    "keyboardSupport": [
+      "ArrowUp",
+      "ArrowDown",
+      "Enter",
+      "Escape"
+    ],
     "notes": "Each ActionSheet_Item should have role='menuitem'. The menu container should use role='menu' and be focusable. Checkbox variant items use role='menuitemcheckbox'. Managed by @radix-ui/react-popover or @radix-ui/react-dropdown-menu depending on trigger context."
   },
   "tokenGaps": [

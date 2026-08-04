@@ -22,6 +22,11 @@ import { Checkbox } from '@/components/checkbox'
 // checkbox-default also has itemSpacing: --klp-size-xs → gap-klp-size-xs
 // minWidth: literal from spec
 // ---------------------------------------------------------------------------
+// Drop shadow captured from Figma (3 stacked DROP_SHADOW effects):
+// 0/7 blur22 @25%, 0/0 blur1.5 @30%, 0/0 blur1 @40%.
+const MENU_SHADOW =
+  'shadow-[0_0_1px_0_rgba(0,0,0,0.40),0_0_1.5px_0_rgba(0,0,0,0.30),0_7px_22px_0_rgba(0,0,0,0.25)]'
+
 const rootVariants = cva(
   [
     'flex flex-col bg-klp-bg-default rounded-klp-l overflow-hidden',
@@ -30,8 +35,10 @@ const rootVariants = cva(
   {
     variants: {
       type: {
-        default:  'min-w-[251px] shadow-[0_0_1px_0_rgba(0,0,0,0.40),0_0_1.5px_0_rgba(0,0,0,0.30),0_7px_22px_0_rgba(0,0,0,0.25)]',
-        checkbox: 'min-w-[249px] gap-klp-size-xs',
+        // Figma: Type=Default and Type=Checkbox carry the same 3-layer drop
+        // shadow; Type=Flat has none (it sits inside a container).
+        default:  `min-w-[251px] ${MENU_SHADOW}`,
+        checkbox: `min-w-[249px] gap-klp-size-xs ${MENU_SHADOW}`,
         flat:     'min-w-[251px]',
       },
     },

@@ -1,0 +1,1142 @@
+{
+  "name": "input-multiselect",
+  "displayName": "Input Multiselect",
+  "figmaNode": "519:3573",
+  "captureBrand": "klub",
+  "category": "inputs",
+  "description": "A multi-select input: a labeled trigger box (composed from the Input component) that displays selected values as removable chips (Badges) and a chevron affordance, plus an attached open dropdown panel (ActionSheet_Menu, checkbox type) listing selectable options grouped into sections. Re-extracted from the master COMPONENT_SET (519:3573) covering all 5 Content x State variant combinations. TODO: radixPrimitive guessed from the open/closed popover behavior; confirm against @radix-ui/react-popover vs a custom combobox implementation once behavior is finalized.",
+  "radixPrimitive": "@radix-ui/react-popover",
+  "sourceContext": {
+    "page": "Input multiselect",
+    "fileKey": "khboDX9DqkNBG2gcJnSQTa",
+    "fileName": "[NEW] UI Kit Klepierre",
+    "masterComponentSetNodeId": "519:3573",
+    "masterComponentSetName": "Input-multiselect",
+    "note": "This extraction targets the real master COMPONENT_SET (519:3573) supplied directly, resolved via figma_get_component_for_development_deep (Plugin API). All 5 declared variant children were found and traversed. FIGMA_ACCESS_TOKEN was expired for this session, so all REST-backed tools (figma_get_file_data, figma_get_component, figma_get_component_image, non-deep figma_get_component_for_development, figma_search_components) were not used; only Plugin-API-backed tools (figma_get_component_for_development_deep, figma_get_variables, figma_capture_screenshot) were used. mainComponent references for nested INSTANCEs were not exposed by the deep tool in this session (same limitation as the prior pass), so composition matches are based on Figma instance/layer names cross-referenced against klp-components.json, not resolved component keys."
+  },
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Outer wrapper stacking the trigger box above the (visually overflowing) open dropdown panel. Transparent - no fill of its own."
+    },
+    {
+      "part": "trigger",
+      "element": "div",
+      "notes": "The label + input-box trigger region. Backed by an INSTANCE named 'Input' with componentProperties Size=Small; State varies per variant (Focused/Default/Filled - see each variant's layers.trigger.literals.state).",
+      "klpComponent": "input",
+      "klpComponentProps": {
+        "size": "small"
+      },
+      "figmaInstance": {
+        "name": "Input",
+        "key": null
+      }
+    },
+    {
+      "part": "trigger-label",
+      "element": "span",
+      "notes": "Label text above the input box, e.g. 'Label of the input'."
+    },
+    {
+      "part": "trigger-info-icon",
+      "element": "span",
+      "notes": "Optional info icon next to the trigger label. Hidden when the Info icon boolean prop is false (visible=true in all 5 captured variants)."
+    },
+    {
+      "part": "input-box",
+      "element": "div",
+      "notes": "The bordered, rounded box (inside trigger's Content region) that holds the chips/placeholder and the chevron affordance. Border color follows the nested Input instance's State variant (bd/brand when Focused/Filled, bd/default when Default)."
+    },
+    {
+      "part": "chip",
+      "element": "span",
+      "notes": "One removable chip per selected value, repeated (2x in Filled, 4x in Full, 0x in Empty). Backed by an INSTANCE named 'badges' with variant Type=Tertiary/Size=Small/Style=Light.",
+      "klpComponent": "badges",
+      "klpComponentProps": {
+        "badgeType": "tertiary",
+        "size": "small",
+        "badgeStyle": "light"
+      },
+      "figmaInstance": {
+        "name": "badges",
+        "key": null
+      }
+    },
+    {
+      "part": "chip-label",
+      "element": "span",
+      "notes": "Chip text label, e.g. 'Label'. Not rendered in Content=Empty."
+    },
+    {
+      "part": "chip-remove-icon",
+      "element": "button",
+      "notes": "X icon button inside each chip to deselect that value. Not rendered in Content=Empty."
+    },
+    {
+      "part": "placeholder",
+      "element": "span",
+      "notes": "Placeholder text shown in place of chips when Content=Empty (e.g. 'This is the placeholder or input content'). Hidden/not rendered in Filled and Full variants (a sibling '.typeofcontent' instance swaps between showing chips vs. this placeholder text)."
+    },
+    {
+      "part": "chevron-icon",
+      "element": "span",
+      "notes": "Chevron affordance at the right edge of the input-box. Points down (chevron-down) when State=Open, and right (chevron-right) when State=Close - captured literally from the Figma layer names 'Icon/Chevron-down' / 'Icon/Chevron-right' per variant; verify this is intentional design behavior (not simply an authoring inconsistency) with design before implementing a rotate-on-toggle affordance instead."
+    },
+    {
+      "part": "dropdown",
+      "element": "div",
+      "notes": "The options panel. Backed by an INSTANCE named 'ActionSheet_Menu' with variant Type=Checkbox - each row wraps an 'Input Checkbox' instance (Checkbox + Label), grouped into sections with a title and a chevron-right disclosure affordance, separated by a divider line. Visible only when State=Open; hidden (visible=false, no boundVariables reported) when State=Close. The nested Checkbox reuse (klp 'checkbox' component) and the section/item/separator structure are internal to action-sheet-menu's own spec - not modeled as separate anatomy parts here since the whole subtree is delegated to the action-sheet-menu instance.",
+      "klpComponent": "action-sheet-menu",
+      "klpComponentProps": {
+        "type": "checkbox"
+      },
+      "figmaInstance": {
+        "name": "ActionSheet_Menu",
+        "key": null
+      }
+    }
+  ],
+  "variantAxes": {
+    "content": [
+      "filled",
+      "empty",
+      "full"
+    ],
+    "state": [
+      "open",
+      "close"
+    ]
+  },
+  "variants": [
+    {
+      "id": "filled-open",
+      "axes": {
+        "content": "filled",
+        "state": "open"
+      },
+      "figmaNodeId": "519:3570",
+      "screenshot": null,
+      "screenshotNote": "PNG skipped - FIGMA_ACCESS_TOKEN expired this session; figma_capture_screenshot returned the image inline only (no filesystem path/base64 reachable by Bash/Write). Re-run capture once REST access or an inline-persist path is available.",
+      "layers": {
+        "root": {
+          "fill": {
+            "literal": "transparent"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          }
+        },
+        "trigger": {
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "size": "small",
+            "state": "focused"
+          }
+        },
+        "trigger-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "24px"
+          }
+        },
+        "trigger-info-icon": {
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "info",
+            "size": "24px"
+          }
+        },
+        "input-box": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-brand",
+            "figmaVar": "bd/brand",
+            "value": "#1EADA5"
+          },
+          "cornerRadius": {
+            "literal": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "boxShadowFocusRing": "0 0 0 4px bg/brand-low (hidden unless focus-visible)"
+          }
+        },
+        "chip": {
+          "fill": {
+            "token": "--klp-bg-inset",
+            "figmaVar": "bg/inset",
+            "value": "#EEEFEF"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-m",
+            "figmaVar": "radius/m",
+            "value": "4px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          }
+        },
+        "chip-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-small",
+            "figmaVar": "Sizing/Text/Small",
+            "value": "14px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-body",
+            "figmaVar": "Family/Body",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-body",
+            "figmaVar": "Weight/Body",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "18px"
+          }
+        },
+        "chip-remove-icon": {
+          "literals": {
+            "icon": "x",
+            "size": "16px"
+          }
+        },
+        "placeholder": {
+          "literals": {
+            "visible": false,
+            "reason": "not rendered - Content!=Empty"
+          }
+        },
+        "chevron-icon": {
+          "literals": {
+            "icon": "chevron-down",
+            "size": "16px"
+          }
+        },
+        "dropdown": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "radius/l",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "visible": true,
+            "boxShadow": "0 7px 22px rgba(0,0,0,0.25), 0 0 1.5px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.4)",
+            "note": "Nested rows compose Checkbox (klp checkbox component) internally as part of the reused action-sheet-menu component; not a direct anatomy part of input-multiselect."
+          }
+        }
+      }
+    },
+    {
+      "id": "filled-close",
+      "axes": {
+        "content": "filled",
+        "state": "close"
+      },
+      "figmaNodeId": "519:3569",
+      "screenshot": null,
+      "screenshotNote": "PNG skipped - FIGMA_ACCESS_TOKEN expired this session; figma_capture_screenshot returned the image inline only (no filesystem path/base64 reachable by Bash/Write). Re-run capture once REST access or an inline-persist path is available.",
+      "layers": {
+        "root": {
+          "fill": {
+            "literal": "transparent"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          }
+        },
+        "trigger": {
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "size": "small",
+            "state": "focused"
+          }
+        },
+        "trigger-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "24px"
+          }
+        },
+        "trigger-info-icon": {
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "info",
+            "size": "24px"
+          }
+        },
+        "input-box": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-brand",
+            "figmaVar": "bd/brand",
+            "value": "#1EADA5"
+          },
+          "cornerRadius": {
+            "literal": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "boxShadowFocusRing": "0 0 0 4px bg/brand-low (hidden unless focus-visible)"
+          }
+        },
+        "chip": {
+          "fill": {
+            "token": "--klp-bg-inset",
+            "figmaVar": "bg/inset",
+            "value": "#EEEFEF"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-m",
+            "figmaVar": "radius/m",
+            "value": "4px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          }
+        },
+        "chip-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-small",
+            "figmaVar": "Sizing/Text/Small",
+            "value": "14px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-body",
+            "figmaVar": "Family/Body",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-body",
+            "figmaVar": "Weight/Body",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "18px"
+          }
+        },
+        "chip-remove-icon": {
+          "literals": {
+            "icon": "x",
+            "size": "16px"
+          }
+        },
+        "placeholder": {
+          "literals": {
+            "visible": false,
+            "reason": "not rendered - Content!=Empty"
+          }
+        },
+        "chevron-icon": {
+          "literals": {
+            "icon": "chevron-right",
+            "size": "16px"
+          }
+        },
+        "dropdown": {
+          "literals": {
+            "visible": false,
+            "reason": "ActionSheet_Menu instance is hidden when State=Close (no boundVariables reported on the hidden instance in this session)."
+          }
+        }
+      }
+    },
+    {
+      "id": "empty-close",
+      "axes": {
+        "content": "empty",
+        "state": "close"
+      },
+      "figmaNodeId": "724:2970",
+      "screenshot": null,
+      "screenshotNote": "PNG skipped - FIGMA_ACCESS_TOKEN expired this session; figma_capture_screenshot returned the image inline only (no filesystem path/base64 reachable by Bash/Write). Re-run capture once REST access or an inline-persist path is available.",
+      "layers": {
+        "root": {
+          "fill": {
+            "literal": "transparent"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          }
+        },
+        "trigger": {
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "size": "small",
+            "state": "default"
+          }
+        },
+        "trigger-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "24px"
+          }
+        },
+        "trigger-info-icon": {
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "info",
+            "size": "24px"
+          }
+        },
+        "input-box": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#D7DAD9"
+          },
+          "cornerRadius": {
+            "literal": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "boxShadowFocusRing": "0 0 0 4px bg/brand-low (hidden unless focus-visible)"
+          }
+        },
+        "chip": {
+          "literals": {
+            "visible": false,
+            "reason": "no chips in Content=Empty state"
+          }
+        },
+        "chip-label": {
+          "literals": {
+            "visible": false,
+            "reason": "no chips in Content=Empty state"
+          }
+        },
+        "chip-remove-icon": {
+          "literals": {
+            "visible": false,
+            "reason": "no chips in Content=Empty state"
+          }
+        },
+        "placeholder": {
+          "color": {
+            "token": "--klp-fg-subtle",
+            "figmaVar": "fg/subtle",
+            "value": "#868D8B"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "400"
+          },
+          "literals": {
+            "text": "This is the placeholder or input content"
+          }
+        },
+        "chevron-icon": {
+          "literals": {
+            "icon": "chevron-right",
+            "size": "16px"
+          }
+        },
+        "dropdown": {
+          "literals": {
+            "visible": false,
+            "reason": "ActionSheet_Menu instance is hidden when State=Close (no boundVariables reported on the hidden instance in this session)."
+          }
+        }
+      }
+    },
+    {
+      "id": "full-open",
+      "axes": {
+        "content": "full",
+        "state": "open"
+      },
+      "figmaNodeId": "519:3568",
+      "screenshot": null,
+      "screenshotNote": "PNG skipped - FIGMA_ACCESS_TOKEN expired this session; figma_capture_screenshot returned the image inline only (no filesystem path/base64 reachable by Bash/Write). Re-run capture once REST access or an inline-persist path is available.",
+      "layers": {
+        "root": {
+          "fill": {
+            "literal": "transparent"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          }
+        },
+        "trigger": {
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "size": "small",
+            "state": "focused"
+          }
+        },
+        "trigger-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "24px"
+          }
+        },
+        "trigger-info-icon": {
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "info",
+            "size": "24px"
+          }
+        },
+        "input-box": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-brand",
+            "figmaVar": "bd/brand",
+            "value": "#1EADA5"
+          },
+          "cornerRadius": {
+            "literal": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "boxShadowFocusRing": "0 0 0 4px bg/brand-low (hidden unless focus-visible)"
+          }
+        },
+        "chip": {
+          "fill": {
+            "token": "--klp-bg-inset",
+            "figmaVar": "bg/inset",
+            "value": "#EEEFEF"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-m",
+            "figmaVar": "radius/m",
+            "value": "4px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          }
+        },
+        "chip-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-small",
+            "figmaVar": "Sizing/Text/Small",
+            "value": "14px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-body",
+            "figmaVar": "Family/Body",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-body",
+            "figmaVar": "Weight/Body",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "18px"
+          }
+        },
+        "chip-remove-icon": {
+          "literals": {
+            "icon": "x",
+            "size": "16px"
+          }
+        },
+        "placeholder": {
+          "literals": {
+            "visible": false,
+            "reason": "not rendered - Content!=Empty"
+          }
+        },
+        "chevron-icon": {
+          "literals": {
+            "icon": "chevron-down",
+            "size": "16px"
+          }
+        },
+        "dropdown": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "radius/l",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "visible": true,
+            "boxShadow": "0 7px 22px rgba(0,0,0,0.25), 0 0 1.5px rgba(0,0,0,0.3), 0 0 1px rgba(0,0,0,0.4)",
+            "note": "Nested rows compose Checkbox (klp checkbox component) internally as part of the reused action-sheet-menu component; not a direct anatomy part of input-multiselect."
+          }
+        }
+      }
+    },
+    {
+      "id": "full-close",
+      "axes": {
+        "content": "full",
+        "state": "close"
+      },
+      "figmaNodeId": "519:3571",
+      "screenshot": null,
+      "screenshotNote": "PNG skipped - FIGMA_ACCESS_TOKEN expired this session; figma_capture_screenshot returned the image inline only (no filesystem path/base64 reachable by Bash/Write). Re-run capture once REST access or an inline-persist path is available.",
+      "layers": {
+        "root": {
+          "fill": {
+            "literal": "transparent"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          }
+        },
+        "trigger": {
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "size": "small",
+            "state": "filled"
+          }
+        },
+        "trigger-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "24px"
+          }
+        },
+        "trigger-info-icon": {
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "info",
+            "size": "24px"
+          }
+        },
+        "input-box": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "stroke": {
+            "token": "--klp-border-brand",
+            "figmaVar": "bd/brand",
+            "value": "#1EADA5"
+          },
+          "cornerRadius": {
+            "literal": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "paddingY": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "boxShadowFocusRing": "0 0 0 4px bg/brand-low (hidden unless focus-visible)"
+          }
+        },
+        "chip": {
+          "fill": {
+            "token": "--klp-bg-inset",
+            "figmaVar": "bg/inset",
+            "value": "#EEEFEF"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-m",
+            "figmaVar": "radius/m",
+            "value": "4px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          }
+        },
+        "chip-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-small",
+            "figmaVar": "Sizing/Text/Small",
+            "value": "14px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-body",
+            "figmaVar": "Family/Body",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-body",
+            "figmaVar": "Weight/Body",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "18px"
+          }
+        },
+        "chip-remove-icon": {
+          "literals": {
+            "icon": "x",
+            "size": "16px"
+          }
+        },
+        "placeholder": {
+          "literals": {
+            "visible": false,
+            "reason": "not rendered - Content!=Empty"
+          }
+        },
+        "chevron-icon": {
+          "literals": {
+            "icon": "chevron-right",
+            "size": "16px"
+          }
+        },
+        "dropdown": {
+          "literals": {
+            "visible": false,
+            "reason": "ActionSheet_Menu instance is hidden when State=Close (no boundVariables reported on the hidden instance in this session)."
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "combobox",
+    "keyboardSupport": [
+      "Enter/Space (open/close)",
+      "Arrow Down/Up (navigate options)",
+      "Escape (close)",
+      "Backspace (remove last chip when input empty)"
+    ],
+    "notes": "TODO: confirm accessible pattern with design/eng - likely a combobox with a listbox popup (aria-expanded, aria-controls, aria-multiselectable) composed from the existing Input, Badges, and ActionSheet_Menu (checkbox type) primitives rather than a from-scratch combobox."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": [
+      "input",
+      "badges",
+      "action-sheet-menu"
+    ],
+    "candidates": [],
+    "instances": [
+      {
+        "part": "trigger",
+        "klpComponent": "input",
+        "figmaInstance": {
+          "name": "Input",
+          "key": null
+        }
+      },
+      {
+        "part": "chip",
+        "klpComponent": "badges",
+        "figmaInstance": {
+          "name": "badges",
+          "key": null
+        }
+      },
+      {
+        "part": "dropdown",
+        "klpComponent": "action-sheet-menu",
+        "figmaInstance": {
+          "name": "ActionSheet_Menu",
+          "key": null
+        }
+      }
+    ],
+    "notes": [
+      "checkbox IS reused, but nested two levels inside the action-sheet-menu instance (ActionSheet_Menu > 'Input Checkbox' > 'Checkbox'), not as a direct top-level anatomy part of input-multiselect. This is action-sheet-menu's own composition concern (its rows already wrap the klp 'checkbox' component per its Type=Checkbox variant) - re-verify in action-sheet-menu/spec.json.",
+      "list / list-content are NOT used by this component. The dropdown rows in Type=Checkbox mode are built from 'Input Checkbox' instances directly inside ActionSheet_Menu, not from List/List_content rows."
+    ],
+    "gaps": [
+      {
+        "kind": "extraction-limitation",
+        "part": "*",
+        "reason": "mainComponent references were not exposed by figma_get_component_for_development_deep for any INSTANCE in this file/session (same limitation as the prior partial pass). All klpComponent matches above are based on Figma instance name + variant property cross-referencing against klp-components.json, not on resolved component keys.",
+        "action": "figmaInstance.key left null for all instances; re-run with REST access (figma_get_component_details / componentKey lookup) to backfill keys if exact key-level verification is needed."
+      },
+      {
+        "kind": "extraction-limitation",
+        "part": "screenshot",
+        "reason": "figma_capture_screenshot successfully rendered and returned PNGs inline for visual review in this conversation (e.g. filled-open: 133100 bytes, 331x80 @2x), but the MCP tool result does not expose a filesystem path or base64 payload that this agent's Bash/Write tools can persist to .klp/figma-refs/input-multiselect/*.png. There is no working REST fallback (figma_get_component_image also would 403) to source the bytes another way this session.",
+        "action": "screenshot fields set to null on every variant instead of a filename; screenshotNote on each variant explains the gap. Re-run capture once REST access or an inline-persist path is available. Do not write .png.FAILED placeholder files per this session's constraints - the stale filled-open.png.FAILED from the previous pass was deleted."
+      }
+    ]
+  }
+}

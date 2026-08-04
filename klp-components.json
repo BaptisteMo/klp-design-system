@@ -178,7 +178,7 @@
           },
           {
             "klpComponent": "checkbox",
-            "notes": "Used in checkbox type — each row wraps a Checkbox instance."
+            "notes": "Used in checkbox type \u2014 each row wraps a Checkbox instance."
           }
         ],
         "gaps": [
@@ -190,9 +190,11 @@
           }
         ]
       },
-      "usedBy": [],
+      "usedBy": [
+        "input-multiselect"
+      ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-04"
     },
     {
       "name": "badges",
@@ -256,14 +258,14 @@
           "class": "optional",
           "type": "BadgeSize",
           "default": "\"medium\"",
-          "description": "Size variant — controls padding and gap",
+          "description": "Size variant \u2014 controls padding and gap",
           "derivedFrom": null
         },
         "badgeStyle": {
           "class": "optional",
           "type": "BadgeStyle",
           "default": "\"bordered\"",
-          "description": "Style variant — bordered adds a colored stroke, light removes it",
+          "description": "Style variant \u2014 bordered adds a colored stroke, light removes it",
           "derivedFrom": null
         },
         "leftIcon": {
@@ -304,6 +306,7 @@
         ]
       },
       "usedBy": [
+        "input-multiselect",
         "tabulation-cells"
       ],
       "created": "2026-04-16",
@@ -423,7 +426,10 @@
           "wireframe"
         ]
       },
-      "usedBy": ["header-desktop", "header-phone"],
+      "usedBy": [
+        "header-desktop",
+        "header-phone"
+      ],
       "created": "2026-04-17",
       "updated": "2026-04-21"
     },
@@ -634,7 +640,10 @@
         "content-text"
       ],
       "variantAxes": {
-        "state": ["close", "open"]
+        "state": [
+          "close",
+          "open"
+        ]
       },
       "variantCount": 2,
       "props": {
@@ -689,14 +698,23 @@
         }
       },
       "dependencies": {
-        "components": ["button"],
+        "components": [
+          "button"
+        ],
         "externals": [
           "@radix-ui/react-collapsible",
           "class-variance-authority",
           "lucide-react"
         ],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["wireframe"]
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
       },
       "composition": {
         "reuses": [
@@ -709,7 +727,7 @@
           {
             "kind": "partial-reuse",
             "part": "toggle-button",
-            "reason": "Button is imported and used for the toggle. ChevronDown is passed as children (icon-only slot). A rotation class is appended via className to animate the chevron on open — this is a one-off visual tweak, not a rebuild.",
+            "reason": "Button is imported and used for the toggle. ChevronDown is passed as children (icon-only slot). A rotation class is appended via className to animate the chevron on open \u2014 this is a one-off visual tweak, not a rebuild.",
             "action": "className-override"
           }
         ]
@@ -876,7 +894,7 @@
           "class": "required",
           "type": "React.ReactNode",
           "default": null,
-          "description": "Alert title / content — the primary message.",
+          "description": "Alert title / content \u2014 the primary message.",
           "derivedFrom": null
         },
         "state": {
@@ -948,7 +966,10 @@
         "breadcrumbs"
       ],
       "variantAxes": {
-        "features": ["default", "search-active"]
+        "features": [
+          "default",
+          "search-active"
+        ]
       },
       "variantCount": 2,
       "props": {
@@ -983,7 +1004,7 @@
         "searchPlaceholder": {
           "class": "optional",
           "type": "string",
-          "default": "\"Search…\"",
+          "default": "\"Search\u2026\"",
           "description": "Placeholder for the search input. Only used when features='search-active'.",
           "derivedFrom": null
         },
@@ -1003,14 +1024,25 @@
         }
       },
       "dependencies": {
-        "components": ["breadcrumbs", "button", "input"],
+        "components": [
+          "breadcrumbs",
+          "button",
+          "input"
+        ],
         "externals": [
           "@radix-ui/react-slot",
           "class-variance-authority",
           "lucide-react"
         ],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["klub"]
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "composition": {
         "reuses": [
@@ -1036,7 +1068,7 @@
     {
       "name": "header-phone",
       "displayName": "Header Phone",
-      "description": "Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.",
+      "description": "Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant \u2014 no variant axes.",
       "category": "containers",
       "schemaVersion": "v2",
       "captureBrand": "klub",
@@ -1103,7 +1135,7 @@
           "class": "optional",
           "type": "React.ReactNode",
           "default": null,
-          "description": "Logo slot — accepts any React node (brand asset, img, svg component, etc.)",
+          "description": "Logo slot \u2014 accepts any React node (brand asset, img, svg component, etc.)",
           "derivedFrom": null
         },
         "onMenuClick": {
@@ -1129,14 +1161,24 @@
         }
       },
       "dependencies": {
-        "components": ["breadcrumbs", "button"],
+        "components": [
+          "breadcrumbs",
+          "button"
+        ],
         "externals": [
           "@radix-ui/react-slot",
           "class-variance-authority",
           "lucide-react"
         ],
-        "tokenGroups": ["colors", "spacing", "radius", "typography"],
-        "brands": ["klub"]
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "composition": {
         "reuses": [
@@ -1369,9 +1411,192 @@
           "klub"
         ]
       },
-      "usedBy": ["header-desktop"],
+      "usedBy": [
+        "header-desktop",
+        "input-multiselect"
+      ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-04"
+    },
+    {
+      "name": "input-multiselect",
+      "displayName": "Input Multiselect",
+      "description": "A multi-select input: a labeled trigger box (composed from the Input component) that displays selected values as removable chips (Badges) and a chevron affordance, plus an attached open dropdown panel (ActionSheet_Menu, checkbox type) listing selectable options grouped into sections.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/input-multiselect/InputMultiselect.tsx",
+      "doc": "docs/components/_index_input-multiselect.md",
+      "playground": "playground/routes/input-multiselect.tsx",
+      "registry": "registry/input-multiselect.json",
+      "spec": ".klp/figma-refs/input-multiselect/spec.json",
+      "radixPrimitive": "@radix-ui/react-popover",
+      "anatomy": [
+        "root",
+        "trigger",
+        "trigger-label",
+        "trigger-info-icon",
+        "input-box",
+        "chip",
+        "chip-label",
+        "chip-remove-icon",
+        "placeholder",
+        "chevron-icon",
+        "dropdown"
+      ],
+      "variantAxes": {
+        "content": [
+          "filled",
+          "empty",
+          "full"
+        ],
+        "state": [
+          "open",
+          "close"
+        ]
+      },
+      "variantCount": 5,
+      "props": {
+        "label": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Label text displayed above the trigger box",
+          "derivedFrom": null
+        },
+        "showInfoIcon": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Show the optional info icon next to the trigger label",
+          "derivedFrom": null
+        },
+        "placeholder": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"This is the placeholder or input content\"",
+          "description": "Placeholder text shown when no value is selected",
+          "derivedFrom": null
+        },
+        "sections": {
+          "class": "required",
+          "type": "InputMultiselectSection[]",
+          "default": null,
+          "description": "Grouped, selectable options rendered in the dropdown panel",
+          "derivedFrom": null
+        },
+        "value": {
+          "class": "optional",
+          "type": "string[]",
+          "default": null,
+          "description": "Controlled selected option ids",
+          "derivedFrom": null
+        },
+        "defaultValue": {
+          "class": "optional",
+          "type": "string[]",
+          "default": "[]",
+          "description": "Default selected option ids (uncontrolled)",
+          "derivedFrom": null
+        },
+        "onValueChange": {
+          "class": "optional",
+          "type": "(value: string[]) => void",
+          "default": null,
+          "description": "Callback fired whenever the selection changes",
+          "derivedFrom": null
+        },
+        "open": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Controlled dropdown open state",
+          "derivedFrom": null
+        },
+        "defaultOpen": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Default dropdown open state (uncontrolled)",
+          "derivedFrom": null
+        },
+        "onOpenChange": {
+          "class": "optional",
+          "type": "(open: boolean) => void",
+          "default": null,
+          "description": "Callback fired when the dropdown open state changes",
+          "derivedFrom": null
+        },
+        "maxVisibleChips": {
+          "class": "optional",
+          "type": "number",
+          "default": "4",
+          "description": "Maximum number of chips rendered before collapsing the rest into a \"+N\" overflow chip",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the outer root wrapper",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "action-sheet-menu",
+          "badges",
+          "input"
+        ],
+        "externals": [
+          "@radix-ui/react-popover",
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "input",
+            "notes": "Trigger renders as <Input size=\"small\"> with label/info-icon/input-box/placeholder reused; selected-value chips are passed via iconLeft, chevron via iconRight."
+          },
+          {
+            "klpComponent": "badges",
+            "notes": "Each selected value renders as <Badge badgeType=\"tertiary\" size=\"small\" badgeStyle=\"light\">; overflow beyond maxVisibleChips collapses into a \"+N\" badge."
+          },
+          {
+            "klpComponent": "action-sheet-menu",
+            "notes": "Dropdown panel renders as <ActionSheetMenu type=\"checkbox\"> inside a Radix Popover.Content."
+          }
+        ],
+        "gaps": [
+          {
+            "kind": "partial-reuse",
+            "part": "chip-remove-icon",
+            "reason": "Badge's rightIcon slot renders inside an aria-hidden wrapper (decorative-icon assumption) so it cannot host an accessible remove control.",
+            "action": "Wrapped the whole Badge in a native <button className=\"contents\"> with aria-label=\"Remove {label}\" to provide the actual remove affordance; Badge's rightIcon still renders the decorative X glyph."
+          },
+          {
+            "kind": "partial-reuse",
+            "part": "dropdown",
+            "reason": "ActionSheetMenu hardcodes role=\"menu\" internally; a true combobox pattern expects listbox semantics.",
+            "action": "Used ActionSheetMenu as-is (role mismatch not corrected \u2014 editing the shared DS component is out of scope for this adapter pass)."
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-04",
+      "updated": "2026-08-04"
     },
     {
       "name": "item-side-bar",
@@ -1398,8 +1623,15 @@
         "content"
       ],
       "variantAxes": {
-        "feature": ["collapsible", "static"],
-        "state": ["rest", "hover", "active"]
+        "feature": [
+          "collapsible",
+          "static"
+        ],
+        "state": [
+          "rest",
+          "hover",
+          "active"
+        ]
       },
       "variantCount": 6,
       "props": {
@@ -1407,14 +1639,14 @@
           "class": "persistent",
           "type": "ItemSideBarState",
           "default": "\"rest\"",
-          "description": "Interaction state — drives trigger fill and icon-container border. Represents the currently-selected navigation item.",
+          "description": "Interaction state \u2014 drives trigger fill and icon-container border. Represents the currently-selected navigation item.",
           "derivedFrom": null
         },
         "feature": {
           "class": "optional",
           "type": "ItemSideBarFeature",
           "default": "\"collapsible\"",
-          "description": "Feature mode — collapsible adds chevron + expandable content panel",
+          "description": "Feature mode \u2014 collapsible adds chevron + expandable content panel",
           "derivedFrom": null
         },
         "icon": {
@@ -1475,14 +1707,23 @@
         }
       },
       "dependencies": {
-        "components": ["action-sheet-item"],
+        "components": [
+          "action-sheet-item"
+        ],
         "externals": [
           "@radix-ui/react-collapsible",
           "class-variance-authority",
           "lucide-react"
         ],
-        "tokenGroups": ["colors", "radius", "spacing", "typography"],
-        "brands": ["klub"]
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
       },
       "composition": {
         "reuses": [
@@ -1598,7 +1839,7 @@
           "class": "required",
           "type": "ListItemConfig[]",
           "default": "[]",
-          "description": "Rows — each entry maps to a <ListContent> instance",
+          "description": "Rows \u2014 each entry maps to a <ListContent> instance",
           "derivedFrom": null
         },
         "headerInputs": {
@@ -1645,7 +1886,7 @@
             "part": "header-title",
             "property": "color",
             "reason": "header-title color is a literal #2b2b2b; no --klp-fg-* alias in any brand variant maps to this value. Closest alias (--klp-fg-default) resolves to --klp-color-gray-800 (wireframe), a different value.",
-            "action": "arbitrary-value-tailwind — text-[#2b2b2b] applied via cva class string"
+            "action": "arbitrary-value-tailwind \u2014 text-[#2b2b2b] applied via cva class string"
           }
         ]
       },
@@ -1694,14 +1935,14 @@
           "class": "optional",
           "type": "ListContentSize",
           "default": "\"medium\"",
-          "description": "Size variant — controls padding and sublabel font-size",
+          "description": "Size variant \u2014 controls padding and sublabel font-size",
           "derivedFrom": null
         },
         "state": {
           "class": "persistent",
           "type": "ListContentState",
           "default": "\"default\"",
-          "description": "Interaction state — controls background fill and text/icon color. Represents the selected row in the list.",
+          "description": "Interaction state \u2014 controls background fill and text/icon color. Represents the selected row in the list.",
           "derivedFrom": null
         },
         "label": {
@@ -1736,7 +1977,7 @@
           "class": "optional",
           "type": "React.ReactNode",
           "default": null,
-          "description": "Custom decorative icon — defaults to Plus from lucide-react",
+          "description": "Custom decorative icon \u2014 defaults to Plus from lucide-react",
           "derivedFrom": null
         },
         "showActionButton": {
@@ -1792,6 +2033,155 @@
       ],
       "created": "2026-04-17",
       "updated": "2026-04-21"
+    },
+    {
+      "name": "modal-variation",
+      "displayName": "Modal Variation",
+      "description": "Modal dialog component with two layout variants: 'options-actions' (left option + right secondary/primary CTA) and '2-actions' (full-width secondary + primary CTA). Composed of Header, Content, and Footer zones with frosted-glass backdrop blur. Button instances in the footer reuse the DS Button component.",
+      "category": "overlays",
+      "schemaVersion": "v2",
+      "captureBrand": "wireframe",
+      "status": "stable",
+      "source": "src/components/modal-variation/ModalVariation.tsx",
+      "doc": "docs/components/_index_modal-variation.md",
+      "playground": "playground/routes/modal-variation.tsx",
+      "registry": "registry/modal-variation.json",
+      "spec": ".klp/figma-refs/modal-variation/spec.json",
+      "radixPrimitive": "@radix-ui/react-dialog",
+      "anatomy": [
+        "root",
+        "header",
+        "title",
+        "content",
+        "label",
+        "footer",
+        "left-buttons",
+        "right-buttons",
+        "button-option",
+        "button-secondary",
+        "button-primary"
+      ],
+      "variantAxes": {
+        "type": [
+          "options-actions",
+          "2-actions"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "type": {
+          "class": "optional",
+          "type": "ModalVariationType",
+          "default": "\"options-actions\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "open": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "defaultOpen": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "onOpenChange": {
+          "class": "optional",
+          "type": "(open: boolean) => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "title": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "primaryActionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Confirm\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "onPrimaryAction": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "secondaryActionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Cancel\"",
+          "description": "",
+          "derivedFrom": null
+        },
+        "onSecondaryAction": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "optionActionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"Option\"",
+          "description": "visible only in options-actions variant",
+          "derivedFrom": null
+        },
+        "onOptionAction": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "@radix-ui/react-dialog",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "wireframe"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-04-23",
+      "updated": "2026-04-23"
     },
     {
       "name": "pagination",
@@ -1886,7 +2276,7 @@
     {
       "name": "radio",
       "displayName": "Radio",
-      "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.",
+      "description": "Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis \u2014 single size only.",
       "category": "inputs",
       "schemaVersion": "v2",
       "captureBrand": "klub",
@@ -1940,7 +2330,7 @@
     {
       "name": "sidebar",
       "displayName": "SideBar",
-      "description": "Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247px wide, 640px tall) and Phone (320px wide, 568px tall — wider with a close/dismiss button replacing the notification affordance).",
+      "description": "Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247px wide, 640px tall) and Phone (320px wide, 568px tall \u2014 wider with a close/dismiss button replacing the notification affordance).",
       "category": "navigation",
       "schemaVersion": "v2",
       "captureBrand": "klub",
@@ -1969,7 +2359,10 @@
         "user-name"
       ],
       "variantAxes": {
-        "device": ["desktop", "phone"]
+        "device": [
+          "desktop",
+          "phone"
+        ]
       },
       "variantCount": 2,
       "props": {
@@ -2026,7 +2419,7 @@
           "class": "optional",
           "type": "(key: string, parentKey?: string) => void",
           "default": null,
-          "description": "Called when a leaf row is clicked. `parentKey` is set for sub-rows. Parents with children do not fire this — they toggle their panel.",
+          "description": "Called when a leaf row is clicked. `parentKey` is set for sub-rows. Parents with children do not fire this \u2014 they toggle their panel.",
           "derivedFrom": null
         },
         "avatar": {
@@ -2562,150 +2955,6 @@
       "usedBy": [],
       "created": "2026-04-17",
       "updated": "2026-04-21"
-    },
-    {
-      "name": "modal-variation",
-      "displayName": "Modal Variation",
-      "description": "Modal dialog component with two layout variants: 'options-actions' (left option + right secondary/primary CTA) and '2-actions' (full-width secondary + primary CTA). Composed of Header, Content, and Footer zones with frosted-glass backdrop blur. Button instances in the footer reuse the DS Button component.",
-      "category": "overlays",
-      "schemaVersion": "v2",
-      "captureBrand": "wireframe",
-      "status": "stable",
-      "source": "src/components/modal-variation/ModalVariation.tsx",
-      "doc": "docs/components/_index_modal-variation.md",
-      "playground": "playground/routes/modal-variation.tsx",
-      "registry": "registry/modal-variation.json",
-      "spec": ".klp/figma-refs/modal-variation/spec.json",
-      "radixPrimitive": "@radix-ui/react-dialog",
-      "anatomy": [
-        "root",
-        "header",
-        "title",
-        "content",
-        "label",
-        "footer",
-        "left-buttons",
-        "right-buttons",
-        "button-option",
-        "button-secondary",
-        "button-primary"
-      ],
-      "variantAxes": {
-        "type": ["options-actions", "2-actions"]
-      },
-      "variantCount": 2,
-      "props": {
-        "type": {
-          "class": "optional",
-          "type": "ModalVariationType",
-          "default": "\"options-actions\"",
-          "description": "",
-          "derivedFrom": null
-        },
-        "open": {
-          "class": "optional",
-          "type": "boolean",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "defaultOpen": {
-          "class": "optional",
-          "type": "boolean",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "onOpenChange": {
-          "class": "optional",
-          "type": "(open: boolean) => void",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "title": {
-          "class": "required",
-          "type": "React.ReactNode",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "children": {
-          "class": "required",
-          "type": "React.ReactNode",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "primaryActionLabel": {
-          "class": "optional",
-          "type": "string",
-          "default": "\"Confirm\"",
-          "description": "",
-          "derivedFrom": null
-        },
-        "onPrimaryAction": {
-          "class": "optional",
-          "type": "() => void",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "secondaryActionLabel": {
-          "class": "optional",
-          "type": "string",
-          "default": "\"Cancel\"",
-          "description": "",
-          "derivedFrom": null
-        },
-        "onSecondaryAction": {
-          "class": "optional",
-          "type": "() => void",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "optionActionLabel": {
-          "class": "optional",
-          "type": "string",
-          "default": "\"Option\"",
-          "description": "visible only in options-actions variant",
-          "derivedFrom": null
-        },
-        "onOptionAction": {
-          "class": "optional",
-          "type": "() => void",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        },
-        "className": {
-          "class": "optional",
-          "type": "string",
-          "default": null,
-          "description": "",
-          "derivedFrom": null
-        }
-      },
-      "dependencies": {
-        "components": ["button"],
-        "externals": [
-          "@radix-ui/react-dialog",
-          "class-variance-authority"
-        ],
-        "tokenGroups": [
-          "colors",
-          "radius",
-          "spacing",
-          "typography"
-        ],
-        "brands": [
-          "wireframe"
-        ]
-      },
-      "usedBy": [],
-      "created": "2026-04-23",
-      "updated": "2026-04-23"
     }
   ]
 }

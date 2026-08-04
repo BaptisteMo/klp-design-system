@@ -18,6 +18,7 @@ Start here:
 - [Button](./components/_index_button.md) — Interactive button, 5 types × 4 sizes × 4 states (20 variants)
 - [Checkbox](./components/_index_checkbox.md) — Toggle control, single State axis (rest / hover / clicked / mixed / disable), 5 variants
 - [Input](./components/_index_input.md) — Text input field with label and optional icons, 3 sizes × 6 states (18 variants)
+- [Input Multiselect](./components/_index_input-multiselect.md) — Multi-select input with removable chips and a dropdown checkbox list, 3 content × 2 state variants (5 captured)
 - [Radio](./components/_index_radio.md) — Radio button control, single State axis (rest / hover / clicked / disable), 4 variants
 - [Switch](./components/_index_switch.md) — Toggle switch, 2 states (toggle-on / toggle-off), animated thumb with check icon
 - [Text Area](./components/_index_text-area.md) — Multi-line text input, 2 feature variants × 6 states (12 variants)

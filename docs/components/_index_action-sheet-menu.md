@@ -13,7 +13,8 @@ dependencies:
   externals: ["@radix-ui/react-popover", "class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "radius", "spacing", "typography"]
   brands: ["wireframe"]
-usedBy: []
+usedBy:
+  - input-multiselect
 created: 2026-04-17
 updated: 2026-04-21
 ---
@@ -105,7 +106,7 @@ export function ActionSheetMenuDefaultExample() {
 
 ## Used by
 
-*Not yet used by any other klp component.*
+- [Input Multiselect](./_index_input-multiselect.md)
 
 ## Files
 

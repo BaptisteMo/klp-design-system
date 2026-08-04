@@ -59,6 +59,7 @@ updated: 2026-04-16
 - [SideBar](../components/_index_sidebar.md) — `p-klp-size-xs` (notification-button padding via `--klp-size-xs`).
 - [Collapsible](../components/_index_collapsible.md) — `px-klp-size-m py-klp-size-m gap-klp-size-m` (close root padding/gap); `px-klp-size-m py-klp-size-m` (open header padding); `px-klp-size-m py-klp-size-l gap-klp-size-m` (open content padding/gap); `p-klp-size-xs` (toggle-button padding).
 - [Modal Variation](../components/_index_modal-variation.md) — `--klp-size-m` (button paddingX), `--klp-size-xs` (button paddingY), `--klp-size-2xs` (button itemSpacing) across button-option, button-secondary, and button-primary layers.
+- [Input Multiselect](../components/_index_input-multiselect.md) — `gap-klp-size-xs` (root, chips-row, input-box, dropdown gaps); `gap-klp-size-m` (trigger gap); `p-klp-size-4xs` (trigger-info-icon and input-box padding); `px-klp-size-xs py-klp-size-2xs` (chip padding); `px-klp-size-xs py-klp-size-xs` (dropdown padding).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

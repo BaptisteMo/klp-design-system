@@ -15,6 +15,7 @@ dependencies:
   brands: ["klub"]
 usedBy:
   - header-desktop
+  - input-multiselect
 created: 2026-04-17
 updated: 2026-04-21
 ---
@@ -116,6 +117,7 @@ export function InputExample() {
 ## Used by
 
 - [Header Desktop](./_index_header-desktop.md)
+- [Input Multiselect](./_index_input-multiselect.md)
 
 ## Files
 
