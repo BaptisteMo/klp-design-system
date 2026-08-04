@@ -66,6 +66,9 @@ Start here:
 - [ActionSheet Menu](./components/_index_action-sheet-menu.md) — Contextual menu panel with grouped ActionSheet_Item rows, optional section titles, and separators. 3 layout types (default / checkbox / flat)
 - [List](./components/_index_list.md) — Vertical list container with header, optional action button, and repeated List Content rows. 3 style variants (condensed / default / with-inputs)
 
+### utilities
+- [Separator](./components/_index_separator.md) — 1px rule dividing content, 4 margins × 2 directions (8 variants)
+
 ## Tokens
 - [Token system overview](./tokens/_index_tokens.md) — 3-layer architecture (primitives → aliases → Tailwind theme)
 - [Colors](./tokens/colors.md) — `bg-*`, `fg-*`, `border-*` aliases switched per brand

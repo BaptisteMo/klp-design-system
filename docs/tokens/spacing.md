@@ -62,6 +62,7 @@ updated: 2026-04-16
 - [Input Multiselect](../components/_index_input-multiselect.md) — `gap-klp-size-xs` (root, chips-row, input-box, dropdown gaps); `gap-klp-size-m` (trigger gap); `p-klp-size-4xs` (trigger-info-icon and input-box padding); `px-klp-size-xs py-klp-size-2xs` (chip padding); `px-klp-size-xs py-klp-size-xs` (dropdown padding).
 - [Calendar Button](../components/_index_calendar-button.md) — `px-klp-size-s py-klp-size-2xs gap-klp-size-2xs` (root padding/gap) across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — `px-klp-size-m py-klp-size-m` (root padding); `px-klp-size-xs py-klp-size-xs` (nav-button padding); `--klp-size-m` (footer-input itemSpacing).
+- [Separator](../components/_index_separator.md) — `pt/pb-klp-size-{xs,m,l}` (horizontal margin padding); `pl/pr-klp-size-{xs,m,l}` (vertical margin padding); `margin=none` uses no token.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

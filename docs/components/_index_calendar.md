@@ -9,7 +9,7 @@ sources:
   - .klp/figma-refs/calendar/spec.json
   - src/components/calendar/Calendar.tsx
 dependencies:
-  components: [button, calendar-button, input]
+  components: [button, calendar-button, input, separator]
   externals: [class-variance-authority, lucide-react]
   tokenGroups: [colors, radius, spacing, typography]
   brands: [klub]
@@ -39,7 +39,7 @@ root (div)
 │   │   └── weekday-label (span, role="columnheader") — one of Mo/Tu/We/Th/Fr/Sa/Su, ×7
 │   └── week-row (div, role="row") — one per displayed week, ×5 or ×6 depending on the month
 │       └── day-cell (button)      — REUSED: calendar-button — one per day, ×7 per row
-├── separator (hr)                — GAP: new-primitive, see DS gaps below. Rendered only when showTimePicker=true
+├── separator (div)                — REUSED: separator (direction=horizontal, margin=none) — Rendered only when showTimePicker=true
 └── footer (div)                  — Rendered only when showTimePicker=true
     ├── footer-label (span)        — "Select an hour" text
     └── footer-input (input)       — REUSED: input (size=small) — hour entry field with trailing clock icon
@@ -193,7 +193,7 @@ All properties are literal on the spec's captured instance frame — the full to
 
 ### `separator` layer
 
-GAP: `new-primitive` — see [DS gaps](#ds-gaps) below. Rendered as a local `separatorVariants` cva, not a klp component.
+Fully owned by the reused [Separator](./_index_separator.md) component (`direction="horizontal" margin="none"`); the bindings below are what the Figma spec captured on the instance frame.
 
 | Property | Token | Resolved (klub) |
 |---|---|---|
@@ -334,6 +334,7 @@ From `spec.json:a11y`:
 - [Button](./_index_button.md) — the 4 header nav affordances, `variant="tertiary" size="icon"`.
 - [Calendar Button](./_index_calendar-button.md) — every day-grid cell; day state (default/other-month/today/selected/disable) is fully owned by that component.
 - [Input](./_index_input.md) — the footer hour field, `size="small"`.
+- [Separator](./_index_separator.md) — the footer rule, `direction="horizontal" margin="none"`.
 
 ### External libraries
 
@@ -367,9 +368,7 @@ From `spec.json:a11y`:
 <!-- KLP:GAPS:BEGIN -->
 ## DS gaps
 
-| Part | Kind | Reason | Action |
-|---|---|---|---|
-| `separator` | `new-primitive` | No klp Separator component exists in the DS yet. | Rendered as a local 1px rule (`border-t border-klp-border-default`) scoped to this component via a dedicated `separatorVariants` cva — candidate for future extraction into a shared `@/components/separator`. |
+No gaps recorded.
 <!-- KLP:GAPS:END -->
 
 <!-- KLP:NOTES:BEGIN -->

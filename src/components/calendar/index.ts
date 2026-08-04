@@ -7,7 +7,6 @@ export {
   weekdayHeaderVariants,
   weekdayLabelVariants,
   weekRowVariants,
-  separatorVariants,
   footerVariants,
   footerLabelVariants,
 } from './Calendar'

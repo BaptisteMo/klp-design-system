@@ -113,11 +113,11 @@
       "part": "separator",
       "element": "hr",
       "notes": "Horizontal rule between the day grid and the footer. No klp Separator component exists in the DS.",
-      "klpComponentCandidate": "separator",
       "figmaInstance": {
         "name": "Separator (Margin=NoSpace, Direction=Horizontal)",
         "key": null
-      }
+      },
+      "klpComponent": "separator"
     },
     {
       "part": "footer",
@@ -487,11 +487,10 @@
     "reuses": [
       "button",
       "calendar-button",
-      "input"
-    ],
-    "candidates": [
+      "input",
       "separator"
     ],
+    "candidates": [],
     "instances": [
       {
         "part": "prev-year-button",
@@ -547,7 +546,8 @@
         "figmaInstance": {
           "name": "Separator (Margin=NoSpace, Direction=Horizontal)",
           "key": null
-        }
+        },
+        "klpComponent": "separator"
       }
     ]
   }

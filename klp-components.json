@@ -697,7 +697,8 @@
         "components": [
           "button",
           "calendar-button",
-          "input"
+          "input",
+          "separator"
         ],
         "externals": [
           "class-variance-authority",
@@ -2579,6 +2580,84 @@
       "usedBy": [],
       "created": "2026-04-17",
       "updated": "2026-04-21"
+    },
+    {
+      "name": "separator",
+      "displayName": "Separator",
+      "description": "A 1px rule used to visually divide content, with a margin axis (none/small/medium/large) controlling the space reserved around the line and a direction axis (horizontal/vertical).",
+      "category": "utilities",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/separator/Separator.tsx",
+      "doc": "docs/components/_index_separator.md",
+      "playground": "playground/routes/separator.tsx",
+      "registry": "registry/separator.json",
+      "spec": ".klp/figma-refs/separator/spec.json",
+      "radixPrimitive": "@radix-ui/react-separator",
+      "anatomy": [
+        "root",
+        "line"
+      ],
+      "variantAxes": {
+        "margin": [
+          "none",
+          "small",
+          "medium",
+          "large"
+        ],
+        "direction": [
+          "horizontal",
+          "vertical"
+        ]
+      },
+      "variantCount": 8,
+      "props": {
+        "direction": {
+          "class": "optional",
+          "type": "'horizontal' | 'vertical'",
+          "default": "\"horizontal\"",
+          "description": "Direction axis: maps to Radix's orientation prop.",
+          "derivedFrom": null
+        },
+        "margin": {
+          "class": "optional",
+          "type": "'none' | 'small' | 'medium' | 'large'",
+          "default": "\"none\"",
+          "description": "Space reserved around the line (maps to spec variantAxes.margin).",
+          "derivedFrom": null
+        },
+        "decorative": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Whether the separator is purely visual (role=\"none\") vs semantic (role=\"separator\").",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-separator",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "composition": {
+        "reuses": [],
+        "gaps": []
+      },
+      "usedBy": [
+        "calendar"
+      ],
+      "created": "2026-08-04",
+      "updated": "2026-08-04"
     },
     {
       "name": "sidebar",

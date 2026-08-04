@@ -5,6 +5,7 @@ import { cn } from '@/lib/cn'
 import { Button } from '@/components/button'
 import { Input } from '@/components/input'
 import { CalendarButton } from '@/components/calendar-button'
+import { Separator } from '@/components/separator'
 
 // ---------------------------------------------------------------------------
 // Composition discipline
@@ -12,9 +13,7 @@ import { CalendarButton } from '@/components/calendar-button'
 //   REUSED: calendar-button → every day-grid cell (default/other-month/today/
 //                              selected/disable state fully owned by that component)
 //   REUSED: input            → footer hour field (size="small")
-//   GAP: separator (new-primitive) → no klp Separator exists in the DS yet.
-//        Rendered as a minimal local rule element scoped to this component.
-//        See registry gaps[].
+//   REUSED: separator        → footer rule (direction="horizontal" margin="none")
 // ---------------------------------------------------------------------------
 
 // ─── root layer ─────────────────────────────────────────────────────────────
@@ -62,10 +61,6 @@ const weekdayLabelVariants = cva(
 // ─── week-row layer ─────────────────────────────────────────────────────────
 // itemSpacing/justify/height are literal.
 const weekRowVariants = cva('flex h-[36px] flex-row justify-between')
-
-// ─── separator layer (GAP: new-primitive, see composition notes above) ─────
-// stroke: --klp-border-default · height is literal (1px rule via border-t).
-const separatorVariants = cva('w-full border-t border-klp-border-default')
 
 // ─── footer layer ───────────────────────────────────────────────────────────
 // itemSpacing/height are literal.
@@ -353,8 +348,8 @@ export const Calendar = React.forwardRef<HTMLDivElement, CalendarProps>(
 
         {showTimePicker && (
           <>
-            {/* separator layer — GAP: new-primitive (no klp Separator exists) */}
-            <div role="separator" aria-orientation="horizontal" className={separatorVariants()} />
+            {/* separator layer — REUSED: separator */}
+            <Separator direction="horizontal" margin="none" />
 
             {/* footer layer — REUSED: input (size="small") */}
             <div className={footerVariants()}>
@@ -384,7 +379,6 @@ export {
   weekdayHeaderVariants,
   weekdayLabelVariants,
   weekRowVariants,
-  separatorVariants,
   footerVariants,
   footerLabelVariants,
 }

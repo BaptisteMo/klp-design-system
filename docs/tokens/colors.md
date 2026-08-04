@@ -125,6 +125,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Input Multiselect](../components/_index_input-multiselect.md) — consumes `bg-default`, `bg-inset`, `fg-default`, `fg-subtle`, `border-brand`, `border-invisible` tokens across trigger-label, input-box, chip, chip-label, placeholder, and dropdown layers.
 - [Calendar Button](../components/_index_calendar-button.md) — consumes `bg-default`, `bg-disable`, `bg-subtle`, `bg-brand`, `border-invisible`, `border-default`, `fg-default`, `fg-subtle`, `fg-disable`, `fg-on-emphasis` tokens across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — consumes `bg-default`, `bg-invisible`, `fg-muted`, `fg-default`, `border-invisible`, `border-default` tokens across root, nav-button, month-label, weekday-label, separator, and footer-label layers.
+- [Separator](../components/_index_separator.md) — consumes `border-default` (line stroke, both directions).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

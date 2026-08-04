@@ -29,6 +29,7 @@ import { ModalVariationRoute } from './routes/modal-variation'
 import { InputMultiselectRoute } from './routes/input-multiselect'
 import { CalendarButtonRoute } from './routes/calendar-button'
 import { CalendarRoute } from './routes/calendar'
+import { SeparatorRoute } from './routes/separator'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -61,6 +62,7 @@ const routes: Record<string, ComponentType> = {
   'input-multiselect': InputMultiselectRoute,
   'calendar-button': CalendarButtonRoute,
   'calendar': CalendarRoute,
+  'separator': SeparatorRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const
