@@ -19,6 +19,8 @@ const COMPONENTS: ComponentEntry[] = [
   { slug: 'input',             label: 'Input',             category: 'inputs'   },
   { slug: 'input-multiselect', label: 'Input Multiselect', category: 'inputs'   },
   { slug: 'text-area',         label: 'Text Area',         category: 'inputs'   },
+  { slug: 'calendar-button',   label: 'Calendar Button',   category: 'inputs'   },
+  { slug: 'calendar',          label: 'Calendar',          category: 'inputs'   },
   { slug: 'tooltip',           label: 'Tooltip',           category: 'overlays' },
   { slug: 'badges',            label: 'Badge',             category: 'feedback' },
   { slug: 'floating-alert',    label: 'Floating Alert',    category: 'feedback' },

@@ -77,6 +77,8 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Collapsible](../components/_index_collapsible.md) — `text-klp-text-large`, `font-klp-label`, `font-klp-label-bold` on title layer; `text-klp-text-medium`, `font-klp-label` on content-text layer across both state variants.
 - [Modal Variation](../components/_index_modal-variation.md) — `--klp-font-size-text-medium`, `--klp-font-family-label`, `--klp-font-weight-label` on label layer across both type variants.
 - [Input Multiselect](../components/_index_input-multiselect.md) — `font-klp-label`, `text-klp-text-medium` on trigger-label and placeholder layers; `font-klp-body`, `text-klp-text-small` on chip-label layer.
+- [Calendar Button](../components/_index_calendar-button.md) — `font-klp-label`, `font-klp-label-bold` (weight 600), `text-klp-text-medium` (16px) on label layer across all 5 state variants.
+- [Calendar](../components/_index_calendar.md) — `font-klp-label`, `font-klp-label-bold`, `text-klp-text-medium` on month-label and footer-label layers; `font-klp-body`, `text-klp-text-small` on weekday-label layer.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

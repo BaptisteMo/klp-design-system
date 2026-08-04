@@ -1,0 +1,167 @@
+{
+  "name": "calendar-button",
+  "displayName": "Calendar Button",
+  "figmaNode": "111590:15856",
+  "captureBrand": "klub",
+  "category": "inputs",
+  "description": "Single day cell of a calendar grid (36x36). Renders a day number label over a colored/bordered background that communicates the day's state (default, other-month, disable, today, selected). TODO: radixPrimitive is a best guess — Radix has no native calendar/date-grid primitive; a day cell like this is typically composed as a plain <button role=\"gridcell\"|\"button\"> inside a hand-rolled or react-day-picker-driven Calendar grid, not wrapped in a Radix component.",
+  "radixPrimitive": null,
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "button",
+      "notes": "36x36 day cell. Auto-layout frame (HORIZONTAL, center-aligned) with fill, 1px stroke, and 8px corner radius, all state-driven. Figma includes a 'Left Icon' and 'Right Icon' INSTANCE slot (icon-holder pattern) as the first/last child of every one of the 5 state variants, but both are set to visible:false in all 5 states with no exception. They render nothing in any variant, so they are intentionally excluded from this anatomy (and from adapter output) to avoid emitting dead/hidden markup. If a future Figma revision makes them visible in some state, re-run the extractor to pick them up."
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "notes": "Day number text ('1' placeholder in Figma for every variant). Centered, semibold, single line."
+    }
+  ],
+  "variantAxes": {
+    "state": ["default", "other-month", "disable", "today", "selected"]
+  },
+  "variants": [
+    {
+      "id": "default",
+      "axes": { "state": "default" },
+      "figmaNodeId": "111590:15857",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (figma_capture_screenshot only returns the image inline, no filesystem write path available). Re-run capture in a session with disk access to populate default.png.",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",  "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible","value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",    "value": "8px" },
+          "paddingX":     { "token": "--klp-size-s",          "figmaVar": "Sizing/S",    "value": "12px" },
+          "paddingY":     { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "literals":     { "borderWidth": "1px", "width": "36px", "height": "36px" }
+        },
+        "label": {
+          "color":        { "token": "--klp-fg-default",              "figmaVar": "fg/default",           "value": "#1A211E" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",    "figmaVar": "Sizing/Text/Medium",   "value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",          "value": "Test Calibre" },
+          "fontWeight":   { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",     "value": "600" },
+          "lineHeight":   { "literal": "24px" },
+          "letterSpacing":{ "literal": "0%" }
+        }
+      }
+    },
+    {
+      "id": "other-month",
+      "axes": { "state": "other-month" },
+      "figmaNodeId": "111590:15861",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (figma_capture_screenshot only returns the image inline, no filesystem write path available). Re-run capture in a session with disk access to populate other-month.png.",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-default",     "figmaVar": "bg/default",  "value": "#FFFFFF" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible","value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",    "value": "8px" },
+          "paddingX":     { "token": "--klp-size-s",          "figmaVar": "Sizing/S",    "value": "12px" },
+          "paddingY":     { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "literals":     { "borderWidth": "1px", "width": "36px", "height": "36px" }
+        },
+        "label": {
+          "color":        { "token": "--klp-fg-subtle",              "figmaVar": "fg/subtle",            "value": "#868E8B" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",    "figmaVar": "Sizing/Text/Medium",   "value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",          "value": "Test Calibre" },
+          "fontWeight":   { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",     "value": "600" },
+          "lineHeight":   { "literal": "24px" },
+          "letterSpacing":{ "literal": "0%" }
+        }
+      }
+    },
+    {
+      "id": "disable",
+      "axes": { "state": "disable" },
+      "figmaNodeId": "112723:343",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (figma_capture_screenshot only returns the image inline, no filesystem write path available). Re-run capture in a session with disk access to populate disable.png.",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-disable",     "figmaVar": "bg/disable",  "value": "#EEF1F0" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible","value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",    "value": "8px" },
+          "paddingX":     { "token": "--klp-size-s",          "figmaVar": "Sizing/S",    "value": "12px" },
+          "paddingY":     { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "literals":     { "borderWidth": "1px", "width": "36px", "height": "36px" }
+        },
+        "label": {
+          "color":        { "token": "--klp-fg-disable",             "figmaVar": "fg/disable",           "value": "#868E8B" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",    "figmaVar": "Sizing/Text/Medium",   "value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",          "value": "Test Calibre" },
+          "fontWeight":   { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",     "value": "600" },
+          "lineHeight":   { "literal": "24px" },
+          "letterSpacing":{ "literal": "0%" }
+        }
+      }
+    },
+    {
+      "id": "today",
+      "axes": { "state": "today" },
+      "figmaNodeId": "111590:15865",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (figma_capture_screenshot only returns the image inline, no filesystem write path available). Re-run capture in a session with disk access to populate today.png.",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-subtle",       "figmaVar": "bg/subtle",   "value": "#F7F9F8" },
+          "stroke":       { "token": "--klp-border-default",  "figmaVar": "bd/default",  "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",    "value": "8px" },
+          "paddingX":     { "token": "--klp-size-s",          "figmaVar": "Sizing/S",    "value": "12px" },
+          "paddingY":     { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "literals":     { "borderWidth": "1px", "width": "36px", "height": "36px" }
+        },
+        "label": {
+          "color":        { "token": "--klp-fg-default",             "figmaVar": "fg/default",           "value": "#1A211E" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",    "figmaVar": "Sizing/Text/Medium",   "value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",          "value": "Test Calibre" },
+          "fontWeight":   { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",     "value": "600" },
+          "lineHeight":   { "literal": "24px" },
+          "letterSpacing":{ "literal": "0%" }
+        }
+      }
+    },
+    {
+      "id": "selected",
+      "axes": { "state": "selected" },
+      "figmaNodeId": "111590:15869",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (figma_capture_screenshot only returns the image inline, no filesystem write path available). Re-run capture in a session with disk access to populate selected.png.",
+      "layers": {
+        "root": {
+          "fill":         { "token": "--klp-bg-brand",        "figmaVar": "bg/brand",    "value": "#1EADA5" },
+          "stroke":       { "token": "--klp-border-invisible","figmaVar": "bd/invisible","value": "#FFFFFF00" },
+          "cornerRadius": { "token": "--klp-radius-l",        "figmaVar": "Radius/L",    "value": "8px" },
+          "paddingX":     { "token": "--klp-size-s",          "figmaVar": "Sizing/S",    "value": "12px" },
+          "paddingY":     { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "itemSpacing":  { "token": "--klp-size-2xs",        "figmaVar": "Sizing/2XS",  "value": "6px" },
+          "literals":     { "borderWidth": "1px", "width": "36px", "height": "36px" }
+        },
+        "label": {
+          "color":        { "token": "--klp-fg-on-emphasis",         "figmaVar": "fg/on-emphasis",       "value": "#F7F9F8" },
+          "fontSize":     { "token": "--klp-font-size-text-medium",    "figmaVar": "Sizing/Text/Medium",   "value": "16px" },
+          "fontFamily":   { "token": "--klp-font-family-label",       "figmaVar": "Family/Label",          "value": "Test Calibre" },
+          "fontWeight":   { "token": "--klp-font-weight-label-bold",  "figmaVar": "Weight/Label Bold",     "value": "600" },
+          "lineHeight":   { "literal": "24px" },
+          "letterSpacing":{ "literal": "0%" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "button",
+    "keyboardSupport": ["Enter", "Space", "Arrow keys (when composed inside a full Calendar grid with roving tabindex)"],
+    "notes": "Represents a single selectable day cell. 'disable' state should render with the native `disabled` attribute (or aria-disabled + tabIndex=-1 if composed as a non-native element) and must not be focusable/actionable. 'selected' state should set aria-pressed=\"true\" (or aria-selected=\"true\" if the parent grid uses role=\"grid\"/\"gridcell\"). 'today' state should carry aria-current=\"date\". When composed inside a full Calendar, the parent grid is responsible for roving-tabindex keyboard navigation (Arrow keys) — this component in isolation only needs to support Enter/Space activation."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": [],
+    "candidates": [],
+    "instances": []
+  }
+}

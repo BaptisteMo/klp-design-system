@@ -45,6 +45,8 @@ document.documentElement.dataset.brand = 'klub'
 - [Header Phone](../components/_index_header-phone.md) — Figma reference screenshots captured under the klub brand.
 - [SideBar](../components/_index_sidebar.md) — Figma reference screenshots captured under the klub brand.
 - [Input Multiselect](../components/_index_input-multiselect.md) — Figma reference screenshots captured under the klub brand.
+- [Calendar Button](../components/_index_calendar-button.md) — Figma reference screenshots captured under the klub brand.
+- [Calendar](../components/_index_calendar.md) — Captured under the klub brand; reference screenshots unavailable this session (expired Figma REST token).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

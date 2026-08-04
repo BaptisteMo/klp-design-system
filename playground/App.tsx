@@ -27,6 +27,8 @@ import { SideBarRoute } from './routes/sidebar'
 import { CollapsibleRoute } from './routes/collapsible'
 import { ModalVariationRoute } from './routes/modal-variation'
 import { InputMultiselectRoute } from './routes/input-multiselect'
+import { CalendarButtonRoute } from './routes/calendar-button'
+import { CalendarRoute } from './routes/calendar'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -57,6 +59,8 @@ const routes: Record<string, ComponentType> = {
   'collapsible': CollapsibleRoute,
   'modal-variation': ModalVariationRoute,
   'input-multiselect': InputMultiselectRoute,
+  'calendar-button': CalendarButtonRoute,
+  'calendar': CalendarRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

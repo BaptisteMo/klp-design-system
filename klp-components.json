@@ -544,6 +544,7 @@
         ]
       },
       "usedBy": [
+        "calendar",
         "collapsible",
         "floating-alert",
         "header-desktop",
@@ -557,6 +558,257 @@
       ],
       "created": "2026-04-16",
       "updated": "2026-04-21"
+    },
+    {
+      "name": "calendar",
+      "displayName": "Calendar",
+      "description": "A date-picker panel with a month header (prev/next year and month navigation), a Monday-first 7-column day grid, a horizontal separator, and a footer hour-selection field. Single Figma COMPONENT, no variant axes.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/calendar/Calendar.tsx",
+      "doc": "docs/components/_index_calendar.md",
+      "playground": "playground/routes/calendar.tsx",
+      "registry": "registry/calendar.json",
+      "spec": ".klp/figma-refs/calendar/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "header",
+        "prev-year-button",
+        "prev-month-button",
+        "month-label",
+        "next-month-button",
+        "next-year-button",
+        "day-grid",
+        "weekday-header",
+        "weekday-label",
+        "week-row",
+        "day-cell",
+        "separator",
+        "footer",
+        "footer-label",
+        "footer-input"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "value": {
+          "class": "optional",
+          "type": "Date",
+          "default": null,
+          "description": "Controlled selected date.",
+          "derivedFrom": null
+        },
+        "defaultValue": {
+          "class": "optional",
+          "type": "Date",
+          "default": null,
+          "description": "Default selected date (uncontrolled).",
+          "derivedFrom": null
+        },
+        "onValueChange": {
+          "class": "optional",
+          "type": "(date: Date) => void",
+          "default": null,
+          "description": "Callback fired when the selected date changes.",
+          "derivedFrom": null
+        },
+        "month": {
+          "class": "optional",
+          "type": "Date",
+          "default": null,
+          "description": "Controlled displayed month (any Date within the month works).",
+          "derivedFrom": null
+        },
+        "defaultMonth": {
+          "class": "optional",
+          "type": "Date",
+          "default": null,
+          "description": "Default displayed month (uncontrolled).",
+          "derivedFrom": null
+        },
+        "onMonthChange": {
+          "class": "optional",
+          "type": "(date: Date) => void",
+          "default": null,
+          "description": "Callback fired when the displayed month changes (via header nav).",
+          "derivedFrom": null
+        },
+        "isDateDisabled": {
+          "class": "optional",
+          "type": "(date: Date) => boolean",
+          "default": null,
+          "description": "Predicate marking individual dates as disabled/non-selectable.",
+          "derivedFrom": null
+        },
+        "today": {
+          "class": "optional",
+          "type": "Date",
+          "default": "new Date()",
+          "description": "Reference \"today\" date, used to highlight the current day.",
+          "derivedFrom": null
+        },
+        "locale": {
+          "class": "optional",
+          "type": "string",
+          "default": "\"en-US\"",
+          "description": "Locale used to format the month label and weekday abbreviations.",
+          "derivedFrom": null
+        },
+        "showTimePicker": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "true",
+          "description": "Shows the footer \"Select an hour\" row with a time Input, matching the Figma capture.",
+          "derivedFrom": null
+        },
+        "hourValue": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Controlled hour field value (footer time Input).",
+          "derivedFrom": null
+        },
+        "defaultHourValue": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Default hour field value (uncontrolled).",
+          "derivedFrom": null
+        },
+        "onHourValueChange": {
+          "class": "optional",
+          "type": "(value: string) => void",
+          "default": null,
+          "description": "Callback fired when the hour field value changes.",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the root panel.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button",
+          "calendar-button",
+          "input"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-04",
+      "updated": "2026-08-04"
+    },
+    {
+      "name": "calendar-button",
+      "displayName": "Calendar Button",
+      "description": "Single day cell of a calendar grid (36x36). Renders a day number over a colored/bordered background communicating the day's state (default, other-month, disable, today, selected).",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/calendar-button/CalendarButton.tsx",
+      "doc": "docs/components/_index_calendar-button.md",
+      "playground": "playground/routes/calendar-button.tsx",
+      "registry": "registry/calendar-button.json",
+      "spec": ".klp/figma-refs/calendar-button/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "label"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "other-month",
+          "disable",
+          "today",
+          "selected"
+        ]
+      },
+      "variantCount": 5,
+      "props": {
+        "day": {
+          "class": "required",
+          "type": "number",
+          "default": null,
+          "description": "The day number rendered inside the cell.",
+          "derivedFrom": null
+        },
+        "otherMonth": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Marks this cell as belonging to the previous/next month (rendered in muted text).",
+          "derivedFrom": null
+        },
+        "today": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Marks this cell as today's date. Sets aria-current=\"date\".",
+          "derivedFrom": null
+        },
+        "selected": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Marks this cell as the currently selected date. Sets aria-pressed=\"true\".",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "computed",
+          "type": "CalendarButtonState",
+          "default": null,
+          "description": "Explicit visual state override. When omitted the component derives state from disabled (native) and the selected / today / otherMonth props, in that priority order.",
+          "derivedFrom": "disabled, selected, today, otherMonth"
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the root button.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "radius",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [
+        "calendar"
+      ],
+      "created": "2026-08-04",
+      "updated": "2026-08-04"
     },
     {
       "name": "checkbox",
@@ -1412,6 +1664,7 @@
         ]
       },
       "usedBy": [
+        "calendar",
         "header-desktop",
         "input-multiselect"
       ],

@@ -14,6 +14,7 @@ dependencies:
   tokenGroups: ["colors", "spacing", "radius", "typography"]
   brands: ["klub"]
 usedBy:
+  - calendar
   - header-desktop
   - input-multiselect
 created: 2026-04-17
@@ -116,6 +117,7 @@ export function InputExample() {
 
 ## Used by
 
+- [Calendar](./_index_calendar.md)
 - [Header Desktop](./_index_header-desktop.md)
 - [Input Multiselect](./_index_input-multiselect.md)
 

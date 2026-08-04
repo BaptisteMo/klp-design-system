@@ -14,6 +14,7 @@ dependencies:
   tokenGroups: ["colors", "spacing", "radius", "typography"]
   brands: ["atlas"]
 usedBy:
+  - calendar
   - collapsible
   - floating-alert
   - header-desktop
@@ -128,6 +129,7 @@ export function ButtonExample() {
 
 ## Used by
 
+- [Calendar](./_index_calendar.md)
 - [Collapsible](./_index_collapsible.md)
 - [Floating Alert](./_index_floating-alert.md)
 - [Header Desktop](./_index_header-desktop.md)

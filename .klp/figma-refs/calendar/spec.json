@@ -1,0 +1,554 @@
+{
+  "name": "calendar",
+  "displayName": "Calendar",
+  "figmaNode": "111590:16200",
+  "captureBrand": "klub",
+  "category": "inputs",
+  "description": "A date-picker panel with a month header (prev/next year and month navigation), a 7-column day grid (weekday header row + up to 5-6 week rows of day cells), a horizontal separator, and an hour-selection footer with a time input. Single Figma COMPONENT, not a component set — no variant axes.",
+  "radixPrimitive": null,
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Outer panel, 360x417 (auto-height), vertical layout, drop-shadow elevation."
+    },
+    {
+      "part": "header",
+      "element": "div",
+      "notes": "Month navigation row (Frame 1) — horizontal, centered, 4 icon buttons + month label."
+    },
+    {
+      "part": "prev-year-button",
+      "element": "button",
+      "notes": "Leftmost header button, jumps to previous year. Icon: chevrons-left.",
+      "klpComponent": "button",
+      "klpComponentProps": {
+        "variant": "tertiary",
+        "size": "icon"
+      },
+      "figmaInstance": {
+        "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+        "key": null
+      }
+    },
+    {
+      "part": "prev-month-button",
+      "element": "button",
+      "notes": "Second header button, jumps to previous month. Icon: chevron-left.",
+      "klpComponent": "button",
+      "klpComponentProps": {
+        "variant": "tertiary",
+        "size": "icon"
+      },
+      "figmaInstance": {
+        "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+        "key": null
+      }
+    },
+    {
+      "part": "month-label",
+      "element": "span",
+      "notes": "Centered 'Month 2023' text, fills remaining row width."
+    },
+    {
+      "part": "next-month-button",
+      "element": "button",
+      "notes": "Fourth header button, jumps to next month. Icon: chevron-right.",
+      "klpComponent": "button",
+      "klpComponentProps": {
+        "variant": "tertiary",
+        "size": "icon"
+      },
+      "figmaInstance": {
+        "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+        "key": null
+      }
+    },
+    {
+      "part": "next-year-button",
+      "element": "button",
+      "notes": "Rightmost header button, jumps to next year. Icon: chevrons-right.",
+      "klpComponent": "button",
+      "klpComponentProps": {
+        "variant": "tertiary",
+        "size": "icon"
+      },
+      "figmaInstance": {
+        "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+        "key": null
+      }
+    },
+    {
+      "part": "day-grid",
+      "element": "div",
+      "notes": "Vertical container (Frame 214) wrapping the weekday header row and week rows."
+    },
+    {
+      "part": "weekday-header",
+      "element": "div",
+      "notes": "Frame 206 — 7 weekday abbreviation labels, space-between."
+    },
+    {
+      "part": "weekday-label",
+      "element": "span",
+      "notes": "One of Mo/Tu/We/Th/Fr/Sa/Su. Fixed 36x24 cell, centered text."
+    },
+    {
+      "part": "week-row",
+      "element": "div",
+      "notes": "Frames 207-211 — 5 rows x 7 day cells, space-between, 36px tall."
+    },
+    {
+      "part": "day-cell",
+      "element": "button",
+      "notes": "36x36 CalendarButton instance. Observed states across the sample month: Default, Other month, Today, Selected, Disable.",
+      "klpComponent": "calendar-button",
+      "klpComponentProps": {},
+      "figmaInstance": {
+        "name": "CalendarButton",
+        "key": null
+      }
+    },
+    {
+      "part": "separator",
+      "element": "hr",
+      "notes": "Horizontal rule between the day grid and the footer. No klp Separator component exists in the DS.",
+      "klpComponentCandidate": "separator",
+      "figmaInstance": {
+        "name": "Separator (Margin=NoSpace, Direction=Horizontal)",
+        "key": null
+      }
+    },
+    {
+      "part": "footer",
+      "element": "div",
+      "notes": "Frame 213 — 'Select an hour' label + time Input, horizontal, centered."
+    },
+    {
+      "part": "footer-label",
+      "element": "span",
+      "notes": "'Select an hour' bold text, hugs content."
+    },
+    {
+      "part": "footer-input",
+      "element": "input",
+      "notes": "Time-entry input with a trailing action icon (clock) and info icon slots enabled.",
+      "klpComponent": "input",
+      "klpComponentProps": {
+        "size": "small",
+        "state": "default"
+      },
+      "figmaInstance": {
+        "name": "Input (Size=Small, State=Default, Action Button=true, Info icon=true)",
+        "key": null
+      }
+    }
+  ],
+  "variantAxes": {},
+  "variants": [
+    {
+      "id": "default",
+      "axes": {},
+      "figmaNodeId": "111590:16200",
+      "screenshot": null,
+      "screenshotNote": "Screenshot capture succeeded in-session (170KB PNG rendered via figma_capture_screenshot) but could not be persisted to disk under .klp/figma-refs/calendar/ this session per run constraints. Re-run figma_capture_screenshot on node 111590:16200 and save to default.png to complete the reference set.",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-default",
+            "figmaVar": "bg/default",
+            "value": "#FFFFFF"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "radius/l",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "paddingY": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "itemSpacing": "16px",
+            "width": "360px",
+            "boxShadow": "0 7px 22px rgba(0,0,0,0.25), 0 0 1.5px rgba(0,0,0,0.30), 0 0 1px rgba(0,0,0,0.40)"
+          }
+        },
+        "header": {
+          "literals": {
+            "paddingX": "8px",
+            "paddingY": "8px",
+            "itemSpacing": "8px",
+            "height": "52px"
+          }
+        },
+        "prev-year-button": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "icon": "chevrons-left",
+            "iconSize": "20px"
+          }
+        },
+        "prev-month-button": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "icon": "chevron-left",
+            "iconSize": "20px"
+          }
+        },
+        "month-label": {
+          "color": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#5F6563"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label-bold",
+            "figmaVar": "Weight/Label Bold",
+            "value": "600"
+          },
+          "lineHeight": {
+            "literal": "24px"
+          },
+          "literals": {
+            "textAlign": "center",
+            "text": "Month 2023"
+          }
+        },
+        "next-month-button": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "icon": "chevron-right",
+            "iconSize": "20px"
+          }
+        },
+        "next-year-button": {
+          "fill": {
+            "token": "--klp-bg-invisible",
+            "figmaVar": "bg/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "rgba(255,255,255,0)"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "literals": {
+            "icon": "chevrons-right",
+            "iconSize": "20px"
+          }
+        },
+        "day-grid": {
+          "literals": {
+            "itemSpacing": "8px",
+            "width": "328px"
+          }
+        },
+        "weekday-header": {
+          "literals": {
+            "itemSpacing": "13px",
+            "justify": "space-between",
+            "height": "24px"
+          }
+        },
+        "weekday-label": {
+          "color": {
+            "token": "--klp-fg-muted",
+            "figmaVar": "fg/muted",
+            "value": "#5F6563"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-small",
+            "figmaVar": "Sizing/Text/Small",
+            "value": "14px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-body",
+            "figmaVar": "Family/Body",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-body",
+            "figmaVar": "Weight/Body",
+            "value": "400"
+          },
+          "lineHeight": {
+            "literal": "18px"
+          },
+          "literals": {
+            "width": "36px",
+            "height": "24px",
+            "textAlign": "center",
+            "sample": "Mo"
+          }
+        },
+        "week-row": {
+          "literals": {
+            "itemSpacing": "13px",
+            "justify": "space-between",
+            "height": "36px"
+          }
+        },
+        "day-cell": {
+          "literals": {
+            "width": "36px",
+            "height": "36px",
+            "statesObserved": [
+              "default",
+              "other-month",
+              "today",
+              "selected",
+              "disable"
+            ]
+          }
+        },
+        "separator": {
+          "stroke": {
+            "token": "--klp-border-default",
+            "figmaVar": "bd/default",
+            "value": "#D7DAD9"
+          },
+          "literals": {
+            "height": "1px",
+            "direction": "horizontal",
+            "margin": "no-space"
+          }
+        },
+        "footer": {
+          "literals": {
+            "itemSpacing": "19px",
+            "height": "40px"
+          }
+        },
+        "footer-label": {
+          "color": {
+            "token": "--klp-fg-default",
+            "figmaVar": "fg/default",
+            "value": "#1A211E"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-medium",
+            "figmaVar": "Sizing/Text/Medium",
+            "value": "16px"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Test Calibre"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label-bold",
+            "figmaVar": "Weight/Label Bold",
+            "value": "600"
+          },
+          "lineHeight": {
+            "literal": "24px"
+          },
+          "literals": {
+            "text": "Select an hour"
+          }
+        },
+        "footer-input": {
+          "itemSpacing": {
+            "token": "--klp-size-m",
+            "figmaVar": "Sizing/M",
+            "value": "16px"
+          },
+          "literals": {
+            "actionButton": true,
+            "infoIcon": true,
+            "placeholderText": "00:00",
+            "actionIcon": "clock",
+            "width": "216px"
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "application",
+    "keyboardSupport": [
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowUp",
+      "ArrowDown",
+      "Enter",
+      "Space",
+      "PageUp",
+      "PageDown"
+    ],
+    "notes": "TODO: no Radix date-picker primitive exists in this DS's dependency set. Recommend building on a headless date library (e.g. react-day-picker or @internationalized/date) rather than a Radix primitive; header nav buttons and day cells should carry aria-label with the full date, and the currently-focused/selected day cell should be reachable via roving tabindex within the grid (role=\"grid\")."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": [
+      "button",
+      "calendar-button",
+      "input"
+    ],
+    "candidates": [
+      "separator"
+    ],
+    "instances": [
+      {
+        "part": "prev-year-button",
+        "klpComponent": "button",
+        "figmaInstance": {
+          "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+          "key": null
+        }
+      },
+      {
+        "part": "prev-month-button",
+        "klpComponent": "button",
+        "figmaInstance": {
+          "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+          "key": null
+        }
+      },
+      {
+        "part": "next-month-button",
+        "klpComponent": "button",
+        "figmaInstance": {
+          "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+          "key": null
+        }
+      },
+      {
+        "part": "next-year-button",
+        "klpComponent": "button",
+        "figmaInstance": {
+          "name": "Button (Size=Icon, Type=Tertiary, State=Rest)",
+          "key": null
+        }
+      },
+      {
+        "part": "day-cell",
+        "klpComponent": "calendar-button",
+        "figmaInstance": {
+          "name": "CalendarButton",
+          "key": null
+        }
+      },
+      {
+        "part": "footer-input",
+        "klpComponent": "input",
+        "figmaInstance": {
+          "name": "Input (Size=Small, State=Default, Action Button=true, Info icon=true)",
+          "key": null
+        }
+      },
+      {
+        "part": "separator",
+        "klpComponentCandidate": "separator",
+        "figmaInstance": {
+          "name": "Separator (Margin=NoSpace, Direction=Horizontal)",
+          "key": null
+        }
+      }
+    ]
+  }
+}
