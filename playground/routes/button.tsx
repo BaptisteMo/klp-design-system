@@ -123,6 +123,19 @@ export function ButtonRoute() {
               Label
             </Button>
           </Cell>
+          {/* disable state */}
+          <Cell id="secondary-md-disable">
+            <Button
+              variant="secondary"
+              size="md"
+              disabled
+              aria-disabled
+              leftIcon={<Check />}
+              rightIcon={<Check />}
+            >
+              Label
+            </Button>
+          </Cell>
         </div>
       </section>
 
@@ -144,6 +157,19 @@ export function ButtonRoute() {
           </Cell>
           <Cell id="tertiary-lg-rest">
             <Button variant="tertiary" size="lg" leftIcon={<Check />} rightIcon={<Check />}>
+              Label
+            </Button>
+          </Cell>
+          {/* disable state */}
+          <Cell id="tertiary-md-disable">
+            <Button
+              variant="tertiary"
+              size="md"
+              disabled
+              aria-disabled
+              leftIcon={<Check />}
+              rightIcon={<Check />}
+            >
               Label
             </Button>
           </Cell>
@@ -229,6 +255,27 @@ export function ButtonRoute() {
           </Cell>
           <Cell id="icon-destructive-rest">
             <Button variant="destructive" size="icon" aria-label="Delete">
+              <Check />
+            </Button>
+          </Cell>
+          {/* disable state — one per type, same principle as primary */}
+          <Cell id="icon-primary-disable">
+            <Button variant="primary" size="icon" aria-label="Confirm" disabled aria-disabled>
+              <Check />
+            </Button>
+          </Cell>
+          <Cell id="icon-secondary-disable">
+            <Button variant="secondary" size="icon" aria-label="Confirm" disabled aria-disabled>
+              <Check />
+            </Button>
+          </Cell>
+          <Cell id="icon-tertiary-disable">
+            <Button variant="tertiary" size="icon" aria-label="Confirm" disabled aria-disabled>
+              <Check />
+            </Button>
+          </Cell>
+          <Cell id="icon-destructive-disable">
+            <Button variant="destructive" size="icon" aria-label="Delete" disabled aria-disabled>
               <Check />
             </Button>
           </Cell>
