@@ -113,10 +113,6 @@ export function BadgeExample() {
 - [Spacing](../tokens/spacing.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [wireframe](../brands/wireframe.md)
-
 ## Used by
 
 - [Input Multiselect](./_index_input-multiselect.md)

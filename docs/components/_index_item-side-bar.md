@@ -145,10 +145,6 @@ export function ItemSideBarExample() {
 - [Spacing](../tokens/spacing.md)
 - [Radius](../tokens/radius.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [SideBar](./_index_sidebar.md) — renders ItemSideBar instances for each menu item.

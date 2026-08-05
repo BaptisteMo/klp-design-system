@@ -111,10 +111,6 @@ export function InputExample() {
 - [Radius](../tokens/radius.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [Calendar](./_index_calendar.md)

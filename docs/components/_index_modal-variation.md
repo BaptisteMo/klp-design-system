@@ -225,10 +225,6 @@ export function ModalVariationExample() {
 - [Radius](../tokens/radius.md) — `--klp-radius-l`
 - [Typography](../tokens/typography.md) — `--klp-font-size-text-medium`, `--klp-font-family-label`, `--klp-font-weight-label`
 
-### Brands
-
-- [wireframe](../brands/wireframe.md) — captured under the wireframe brand (source: spec.json:captureBrand)
-
 ## Used by
 
 *Not yet used by any other klp component.*

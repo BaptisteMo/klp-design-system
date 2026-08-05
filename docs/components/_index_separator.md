@@ -137,10 +137,6 @@ From `spec.json:a11y`:
 - [Colors](../tokens/colors.md) — `--klp-border-default` on the `line` layer.
 - [Spacing](../tokens/spacing.md) — `--klp-size-{xs,m,l}` on the `root` layer's margin padding.
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [ActionSheet Menu](./_index_action-sheet-menu.md) — between-section rule; `default`/`flat` use `margin="medium"`, `checkbox` uses `margin="none"`.

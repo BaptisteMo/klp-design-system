@@ -223,10 +223,6 @@ export function HeaderDesktopMinimal() {
 - [Spacing](../tokens/spacing.md) — `--klp-size-s`, `--klp-size-xs`, `--klp-size-m`, `--klp-size-2xs`
 - [Typography](../tokens/typography.md) — `--klp-font-size-heading-h1`, `--klp-font-family-title`, `--klp-font-weight-title`
 
-### Brands
-
-- [klub](../brands/klub.md) — captureBrand; all reference screenshots captured under klub brand
-
 ## Used by
 
 *Not yet used by any other klp component.*

@@ -99,10 +99,6 @@ export function SwitchExample() {
 - [Colors](../tokens/colors.md)
 - [Radius](../tokens/radius.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 *Not yet used by any other klp component.*

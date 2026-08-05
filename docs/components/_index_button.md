@@ -123,10 +123,6 @@ export function ButtonExample() {
 - [Radius](../tokens/radius.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [atlas](../brands/atlas.md)
-
 ## Used by
 
 - [Calendar](./_index_calendar.md)
@@ -157,7 +153,46 @@ No gaps recorded.
 <!-- KLP:GAPS:END -->
 
 <!-- KLP:NOTES:BEGIN -->
-## Notes
 
-*Manual prose preserved across regenerations. Anything between the BEGIN/END markers is never overwritten by the documentalist.*
+## When to use
+
+- **Trigger an action:** submit a form, save changes, delete a record, confirm a dialog — anything that *does* something rather than navigates.
+- **Signal the primary path:** give a view exactly one `primary` button so users know the main action at a glance.
+- **Group related actions:** pair a `primary` with one or more `secondary`/`tertiary` buttons (e.g. **Save** + **Cancel**).
+- **Navigate as a button:** set `asChild` and render an `<a>` when the action is a link but needs button styling.
+
+Reach for a plain link instead when the action only navigates within body text — a button there over-weights the interaction. Use `checkbox`, `radio`, or `switch` for state toggles, not a button.
+
+## States
+
+The interaction states (rest, hover, clicked, disabled) are driven entirely by CSS pseudo-classes (`:hover`, `:active`) and the native `disabled` attribute — there is **no `state` prop**. You set the state by setting `disabled`; the rest is automatic.
+
+- **Rest → hover → clicked:** each variant shifts background and/or border on `:hover` and `:active`. Nothing to wire.
+- **Disabled:** pass the native `disabled`. The button drops to the disabled token set, loses pointer events, and leaves the tab order. It also sets `aria-disabled`.
+- **No loading state.** The component has no `loading` prop. For async actions, disable the button while the request is in flight and surface progress elsewhere (spinner, toast). Don't fake a loading look by swapping the label alone.
+
+## Best practices
+
+- ✅ **Do** keep one `primary` per view — it names the main action and holds the hierarchy.
+- ❌ **Don't** stack several `primary` buttons — the hierarchy collapses and nothing stands out. Demote the rest to `secondary`/`tertiary`.
+- ✅ **Do** use `destructive` only for irreversible or hard-to-undo actions (delete, remove, revoke).
+- ❌ **Don't** reach for `destructive` just to draw attention — its red reads as danger, not emphasis.
+- ✅ **Do** pass `aria-label` on every `size="icon"` button — the visible glyph carries no accessible name (see Limitations).
+- ✅ **Do** place `leftIcon` for actions the icon *leads* (＋ Add) and `rightIcon` for directional follow-through (Continue →).
+- ❌ **Don't** wrap raw `<svg>` markup in the icon slots — pass a `lucide-react` icon, matching the rest of the DS.
+
+## Content guidelines
+
+- **Lead with a verb.** *Save changes*, *Create product*, *Delete variant* — not *OK* or *Submit form here*.
+- **Sentence case.** *Add tags*, not *Add Tags* or *ADD TAGS*.
+- **Keep it short.** One to three words. Drop articles (*a*, *the*) and trailing punctuation.
+- **Match the label to the outcome.** The label should say what happens on click, so a user never has to guess.
+
+## Limitations
+
+- **Icon-only buttons have no accessible name.** When `size="icon"`, the children are rendered inside an `aria-hidden` span. A screen reader announces nothing unless you pass `aria-label` (or `aria-labelledby`). Always label icon-only buttons.
+- **`asChild` + `disabled` is a trap.** With `asChild`, the component renders your child (e.g. `<a>`) via Slot and drops the native `type`. Anchors don't support `disabled` — the attribute is forwarded but the element stays focusable and clickable. For a disabled link, render a real `<button>` or remove `href` yourself.
+- **`disabled` removes the button from the tab order.** Keyboard and screen-reader users can't focus it, so they get no explanation for why it's unavailable. If the disable is temporary (pending validation), add visible text saying why — or keep it enabled and validate on click.
+- **No `type`/`tone` split.** Intent lives in the `variant` (`destructive` = danger, `validation` = success). There's no separate tone axis; you can't make a `secondary` button "critical" without switching to `destructive`.
+
 <!-- KLP:NOTES:END -->

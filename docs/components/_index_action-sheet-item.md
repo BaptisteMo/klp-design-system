@@ -115,10 +115,6 @@ export function ActionSheetItemExample() {
 - [Spacing](../tokens/spacing.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [wireframe](../brands/wireframe.md)
-
 ## Used by
 
 - [ActionSheet Menu](./_index_action-sheet-menu.md)
