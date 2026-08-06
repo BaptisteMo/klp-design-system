@@ -105,7 +105,7 @@ export interface HeaderShowupNavItem {
    * @propClass optional
    */
   active?: boolean
-  /** When provided, the item renders as an `<a href>` via nav-item's asChild/Slot pattern.
+  /** When provided, the item renders as an `<a href>` via nav-item's `href` prop.
    * @propClass optional
    */
   href?: string
@@ -182,7 +182,7 @@ export const HeaderShowup = React.forwardRef<HTMLElement, HeaderShowupProps>(
           {items.map((item) => (
             <NavItem
               key={item.id}
-              asChild={Boolean(item.href)}
+              href={item.href}
               active={item.active}
               icon={item.icon}
               counter={item.counter}
@@ -192,11 +192,7 @@ export const HeaderShowup = React.forwardRef<HTMLElement, HeaderShowupProps>(
                   : undefined
               }
             >
-              {item.href ? (
-                <a href={item.href}>{item.label}</a>
-              ) : (
-                item.label
-              )}
+              {item.label}
             </NavItem>
           ))}
         </nav>

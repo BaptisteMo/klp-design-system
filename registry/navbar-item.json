@@ -1,0 +1,30 @@
+{
+  "name": "navbar-item",
+  "type": "registry:ui",
+  "description": "Atlas application sidebar rail item. Single variant axis (state: default | hover | selected) with an icon slot over a label; hover is a real CSS :hover surface (also forceable via the state prop), selected is author-supplied and wins over hover.",
+  "meta": {
+    "figmaNode": "113645:25168",
+    "captureBrand": "atlas",
+    "category": "navigation",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": [
+      "root",
+      "icon",
+      "label"
+    ],
+    "variantAxes": {
+      "state": [
+        "default",
+        "hover",
+        "selected"
+      ]
+    }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": [
+      "class-variance-authority"
+    ]
+  }
+}

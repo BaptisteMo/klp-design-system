@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { Slot } from '@radix-ui/react-slot'
 import { cva, type VariantProps } from 'class-variance-authority'
 import { cn } from '@/lib/cn'
 import { Badge } from '@/components/badges'
@@ -71,11 +70,17 @@ export interface NavItemProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>,
     VariantProps<typeof contentVariants> {
   /**
-   * Render as child element (Slot pattern) — use this to render an `<a href>`,
-   * the common case for a navigation item.
+   * When set, the item renders as an `<a href>` instead of a `<button>` — the
+   * common case for a navigation entry.
+   *
+   * This deliberately does NOT use Radix's `asChild`/Slot: Slot clones the
+   * consumer's element and keeps *its* children, which would silently discard
+   * this component's own icon, label and overlay. Slot also requires exactly
+   * one child, so passing it this component's internal structure throws
+   * `React.Children.only`.
    * @propClass optional
    */
-  asChild?: boolean
+  href?: string
   /**
    * Marks this item as the current page. Toggles the bottom underline and
    * sets `aria-current="page"` for assistive tech (the underline alone is
@@ -103,15 +108,16 @@ export interface NavItemProps
   children: React.ReactNode
 }
 
-export const NavItem = React.forwardRef<HTMLButtonElement, NavItemProps>(
-  ({ className, active = false, asChild = false, icon, counter, children, ...props }, ref) => {
-    const Comp = asChild ? Slot : 'button'
+export const NavItem = React.forwardRef<HTMLElement, NavItemProps>(
+  ({ className, active = false, href, icon, counter, children, ...props }, ref) => {
+    const Comp = (href ? 'a' : 'button') as React.ElementType
     const state: NavItemState = active ? 'active' : 'default'
 
     return (
       <Comp
         ref={ref}
-        type={asChild ? undefined : 'button'}
+        href={href}
+        type={href ? undefined : 'button'}
         aria-current={active ? 'page' : undefined}
         className={cn(rootBaseClasses, className)}
         {...props}

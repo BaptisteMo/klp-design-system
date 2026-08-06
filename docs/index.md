@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-08-05
+updated: 2026-08-06
 ---
 
 # klp-design-system
@@ -44,8 +44,10 @@ Start here:
 - [Header Showup](./components/_index_header-showup.md) — ShowUp application top navigation bar (logo + primary nav-items + account/utility zone), single variant (no variant axes)
 - [Item Side Bar](./components/_index_item-side-bar.md) — Sidebar navigation item with icon, label, and optional collapsible content panel, 2 features × 3 states (6 variants)
 - [Nav Item](./components/_index_nav-item.md) — ShowUp header nav link with optional icon and counter badge, single State axis (default / active), 2 variants
+- [Navbar Item](./components/_index_navbar-item.md) — Atlas sidebar rail item, icon over label, single state axis (default / hover / selected), 3 variants
 - [Pagination](./components/_index_pagination.md) — Standalone page navigator with ellipsis algorithm, reusable outside tables
 - [SideBar](./components/_index_sidebar.md) — Vertical navigation sidebar (logo + notification + context-switcher + menu + profil footer), 2 device variants (desktop / phone)
+- [Sidebar (Atlas)](./components/_index_sidebar-atlas.md) — Atlas 70px-wide full-height nav rail (logo + navbar-item list), single variant (no variant axes)
 - [Tabulation Cells](./components/_index_tabulation-cells.md) — Single tab cell with label and optional badge, 2 states (rest / active)
 - [Tabulations](./components/_index_tabulations.md) — Horizontal tab bar container wrapping Tabulation Cells with dividers, scroll-type=none (1 variant)
 

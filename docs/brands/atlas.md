@@ -2,7 +2,7 @@
 title: atlas
 type: brand
 brand: atlas
-updated: 2026-04-16
+updated: 2026-08-06
 ---
 
 # atlas
@@ -35,6 +35,8 @@ document.documentElement.dataset.brand = 'atlas'
 ## Used by
 
 - [Button](../components/_index_button.md) — captureBrand=atlas, references at `.klp/figma-refs/button/*.png`.
+- [Navbar Item](../components/_index_navbar-item.md) — captureBrand=atlas, fully tokenized in Figma (no reconciled/literal color bindings).
+- [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — captureBrand=atlas, root fill uses the DS-side `--klp-bg-navrail` alias (no matching Figma variable — see gaps).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

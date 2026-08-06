@@ -32,6 +32,8 @@ import { CalendarRoute } from './routes/calendar'
 import { SeparatorRoute } from './routes/separator'
 import { NavItemRoute } from './routes/nav-item'
 import { HeaderShowupRoute } from './routes/header-showup'
+import { NavbarItemRoute } from './routes/navbar-item'
+import { SidebarAtlasRoute } from './routes/sidebar-atlas'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -67,6 +69,8 @@ const routes: Record<string, ComponentType> = {
   'separator': SeparatorRoute,
   'nav-item': NavItemRoute,
   'header-showup': HeaderShowupRoute,
+  'navbar-item': NavbarItemRoute,
+  'sidebar-atlas': SidebarAtlasRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

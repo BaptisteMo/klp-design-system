@@ -2,7 +2,7 @@
 title: Spacing tokens
 type: token-group
 group: spacing
-updated: 2026-04-16
+updated: 2026-08-06
 ---
 
 # Spacing tokens
@@ -65,6 +65,8 @@ updated: 2026-04-16
 - [Separator](../components/_index_separator.md) — `pt/pb-klp-size-{xs,m,l}` (horizontal margin padding); `pl/pr-klp-size-{xs,m,l}` (vertical margin padding); `margin=none` uses no token.
 - [Nav Item](../components/_index_nav-item.md) — `gap-klp-size-3xs` (content itemSpacing); `paddingY 25px` literal captured but not applied — see the fixed-height implementation note in Notes.
 - [Header Showup](../components/_index_header-showup.md) — `--klp-size-xs`/`--klp-size-2xs` (logo-badge padding/gap, via Badge); `--klp-size-s`/`--klp-size-2xs` (action-tools-button padding/gap, via Button); root paddingX (40px), root/zone-items/zone-right itemSpacing (24px/20px/16px) are literals pending token assignment.
+- [Navbar Item](../components/_index_navbar-item.md) — `--klp-size-4xs` (root paddingY/itemSpacing, icon padding) across all three states.
+- [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — root paddingY (24px) and itemSpacing (16px) are literals pending token assignment.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

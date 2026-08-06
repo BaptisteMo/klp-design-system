@@ -2593,7 +2593,7 @@
       "playground": "playground/routes/nav-item.tsx",
       "registry": "registry/nav-item.json",
       "spec": ".klp/figma-refs/nav-item/spec.json",
-      "radixPrimitive": "@radix-ui/react-slot",
+      "radixPrimitive": null,
       "anatomy": [
         "root",
         "content",
@@ -2616,11 +2616,11 @@
           "description": "Marks this item as the current page. Toggles the bottom underline and sets `aria-current=\"page\"` for assistive tech.",
           "derivedFrom": null
         },
-        "asChild": {
+        "href": {
           "class": "optional",
-          "type": "boolean",
-          "default": "false",
-          "description": "Render as child element (Slot pattern) \u2014 use this to render an `<a href>`, the common case for a navigation item.",
+          "type": "string",
+          "default": null,
+          "description": "When set, the item renders as an `<a href>` instead of a `<button>` \u2014 the common case for a navigation entry.",
           "derivedFrom": null
         },
         "icon": {
@@ -2650,7 +2650,6 @@
           "badges"
         ],
         "externals": [
-          "@radix-ui/react-slot",
           "class-variance-authority"
         ],
         "tokenGroups": [
@@ -2688,7 +2687,95 @@
         "header-showup"
       ],
       "created": "2026-08-05",
-      "updated": "2026-08-05"
+      "updated": "2026-08-06"
+    },
+    {
+      "name": "navbar-item",
+      "displayName": "Navbar Item",
+      "description": "Atlas application sidebar rail item (70x52 vertical icon-over-label stack). Single variant axis (state: default | hover | selected). Fully tokenized in Figma; hover is a real CSS :hover surface (forceable via the state prop for docs/playground); selected is author-supplied and always wins over hover.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "atlas",
+      "status": "stable",
+      "source": "src/components/navbar-item/NavbarItem.tsx",
+      "doc": "docs/components/_index_navbar-item.md",
+      "playground": "playground/routes/navbar-item.tsx",
+      "registry": "registry/navbar-item.json",
+      "spec": ".klp/figma-refs/navbar-item/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "icon",
+        "label"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "hover",
+          "selected"
+        ]
+      },
+      "variantCount": 3,
+      "props": {
+        "href": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "When set, the item renders as an <a href> instead of a <button> \u2014 the common case for real navigation.",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "computed",
+          "type": "NavbarItemState",
+          "default": "undefined",
+          "description": "Explicit visual state override. When omitted, the root derives its surface from real CSS :hover and falls back to \"default\" otherwise.",
+          "derivedFrom": "hover (CSS pseudo-class)"
+        },
+        "selected": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Marks this item as the current route. Wins over hover styling (including a real pointer hover) and over an explicit state override. Sets aria-current=\"page\".",
+          "derivedFrom": null
+        },
+        "icon": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Icon slot \u2014 pass a lucide-react icon element.",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Item label text.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "atlas"
+        ]
+      },
+      "composition": {
+        "reuses": [],
+        "gaps": []
+      },
+      "usedBy": [
+        "sidebar-atlas"
+      ],
+      "created": "2026-08-06",
+      "updated": "2026-08-06"
     },
     {
       "name": "pagination",
@@ -3073,6 +3160,90 @@
       "usedBy": [],
       "created": "2026-04-20",
       "updated": "2026-08-04"
+    },
+    {
+      "name": "sidebar-atlas",
+      "displayName": "Sidebar (Atlas)",
+      "description": "Atlas brand vertical nav rail (\"NavBar\" in Figma). Plain COMPONENT, no variant axis \u2014 a 70px-wide, full-height vertical stack of a logo slot plus an arbitrary list of navbar-item entries driven by the `items` prop (selected route, forced state, real hrefs).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "atlas",
+      "status": "stable",
+      "source": "src/components/sidebar-atlas/SidebarAtlas.tsx",
+      "doc": "docs/components/_index_sidebar-atlas.md",
+      "playground": "playground/routes/sidebar-atlas.tsx",
+      "registry": "registry/sidebar-atlas.json",
+      "spec": ".klp/figma-refs/sidebar-atlas/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "logo",
+        "nav-items"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "items": {
+          "class": "required",
+          "type": "SidebarAtlasItem[]",
+          "default": null,
+          "description": "Primary navigation entries rendered as navbar-item instances.",
+          "derivedFrom": null
+        },
+        "onItemSelect": {
+          "class": "optional",
+          "type": "(id: string) => void",
+          "default": "undefined",
+          "description": "Called when a nav item is selected, receiving its id.",
+          "derivedFrom": null
+        },
+        "logo": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "undefined",
+          "description": "Brand logo slot. Defaults to a minimal placeholder mark (no vector art reproduced).",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "navbar-item"
+        ],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "atlas"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          "navbar-item"
+        ],
+        "gaps": [
+          {
+            "part": "logo",
+            "kind": "new-primitive",
+            "reason": "Figma logo layer is an IMAGE fill (Atlas wordmark artwork), not a component and not bindable to a token. No klp equivalent exists.",
+            "action": "inlined-local-cva",
+            "figmaInstance": "image 12"
+          },
+          {
+            "part": "root",
+            "kind": "no-instance-no-match",
+            "reason": "Root fill #22222D is bound to no Figma variable anywhere in the file. DS-side alias --klp-bg-navrail was created pointing at the nearest existing primitive storm-900 (RGB distance 10, imperceptible). Figma should introduce a real token for this nav-rail surface.",
+            "action": "used-approximate-alias"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-06",
+      "updated": "2026-08-06"
     },
     {
       "name": "switch",

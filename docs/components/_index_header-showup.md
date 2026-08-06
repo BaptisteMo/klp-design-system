@@ -15,7 +15,7 @@ dependencies:
   brands: [showup]
 usedBy: []
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-06
 ---
 
 # Header Showup
@@ -69,7 +69,7 @@ Extends `React.HTMLAttributes<HTMLElement>`. All native `<header>` attributes ar
 | `icon` | optional | `React.ReactNode` | Optional leading icon (lucide-react element). |
 | `counter` | optional | `React.ReactNode` | Optional trailing counter badge content. |
 | `active` | optional | `boolean` | Marks this item as the current page (renders the active underline). |
-| `href` | optional | `string` | When provided, the item renders as an `<a href>` via `nav-item`'s `asChild`/Slot pattern. |
+| `href` | optional | `string` | When provided, the item renders as an `<a href>` via `nav-item`'s `href` prop. |
 
 ## Examples
 
@@ -284,4 +284,8 @@ The prior `⚠️ CONTRADICTION` on the `root` layer's fill (Figma capture `#141
 `--klp-bg-brand-contrasted` now resolves to `#141B4D` under `showup`, an exact match to the Figma capture. Verified in the browser: the rendered header background is `#141B4D`. The root `fill` row and the `user-avatar` slot's `initials color` row above are updated accordingly.
 
 `.klp/tokens.json` is now a **partially re-captured** file: the two corrected color entries above, plus the new `nav-item` `--klp-alpha-10` alias, are live-verified as of 2026-08-05; the rest of the file is still the 2026-04-16 capture. See `docs/tokens/_index_tokens.md` for the standing note on this drift.
+
+### 2026-08-06 — `nav-item`'s `asChild` removed, `href` added (runtime crash fix)
+
+[Nav Item](./_index_nav-item.md) previously exposed Radix `asChild` for rendering as an `<a href>`; that path crashed at runtime (`React.Children.only`, verified in a browser probe — see Nav Item's own Notes for the full account). `asChild` is now removed and replaced by a plain `href` prop. This component's `items[].href` field (see Props usage table above) forwards unchanged onto `nav-item`'s new `href` prop — no API change on `HeaderShowup` itself, only the description text was corrected (it previously said "via `nav-item`'s `asChild`/Slot pattern"). Verified in the browser: nav items with an `href` in the `items[]` array render as real `<a>` elements with icon, label, and counter intact; items without `href` still render as `<button>`. No dependency change — `header-showup` never imported `@radix-ui/react-slot` directly.
 <!-- KLP:NOTES:END -->

@@ -6,17 +6,27 @@
     "figmaNode": "113635:25029",
     "captureBrand": "showup",
     "category": "navigation",
-    "radixPrimitive": "@radix-ui/react-slot",
+    "radixPrimitive": null,
     "schemaVersion": "v2",
-    "anatomy": ["root", "content", "icon", "label", "counter-badge"],
+    "anatomy": [
+      "root",
+      "content",
+      "icon",
+      "label",
+      "counter-badge"
+    ],
     "variantAxes": {
-      "state": ["default", "active"]
+      "state": [
+        "default",
+        "active"
+      ]
     }
   },
   "dependencies": {
-    "components": ["badges"],
+    "components": [
+      "badges"
+    ],
     "npm": [
-      "@radix-ui/react-slot",
       "class-variance-authority"
     ]
   }

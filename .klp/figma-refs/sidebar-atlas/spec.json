@@ -1,0 +1,190 @@
+{
+  "name": "sidebar-atlas",
+  "displayName": "Sidebar (Atlas)",
+  "figmaNode": "113645:25415",
+  "captureBrand": "atlas",
+  "category": "navigation",
+  "description": "Atlas brand vertical nav rail (\"NavBar\" in Figma). A 70px-wide, full-height vertical stack: a top logo slot followed by ten navbar-item entries (Search, Map, Home, Todo, Benchmark, Matching, Operations, Contracts, Reporting, Admin). Plain COMPONENT with no variants — Figma models interaction states one level down, inside each navbar-item instance, not on the rail itself. TODO: radixPrimitive is a best guess (NavigationMenu.Root) since this is a static content-navigation landmark, not a Radix-primitive-driven widget; confirm during adaptation whether a bare <nav> is preferable to importing @radix-ui/react-navigation-menu.",
+  "radixPrimitive": "@radix-ui/react-navigation-menu",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "nav",
+      "notes": "70px-wide vertical flex stack (flex-col items-center), no wrapper frame around the nav items — logo and all ten navbar-item instances are DIRECT children of root, in document order. paddingTop/paddingBottom 24px, no horizontal padding, itemSpacing 16px between every child (logo-to-first-item and item-to-item alike). Sized FIXED 70x800 in Figma; the 800px height is a canvas sample only — the rail is meant to stretch to its container's full height (adapter should use h-full / min-h-screen, not a fixed 800px)."
+    },
+    {
+      "part": "logo",
+      "element": "img",
+      "notes": "RECTANGLE 'image 12', 48x51, IMAGE fill (Atlas logo artwork, imageHash 90cdf662b547c2a8ac07862b5aa4b64de2efac75, scaleMode FILL). Not an INSTANCE — no klp equivalent exists or is expected; image fills cannot bind to a Figma variable, so there is nothing to flag as a token gap here. Adapter should expose this as a consumer-provided slot (e.g. a `logo` prop defaulting to a minimal placeholder mark), not a hardcoded asset import.",
+      "klpComponentCandidate": "logo-slot",
+      "figmaInstance": { "name": "image 12", "key": null }
+    },
+    {
+      "part": "nav-item-search",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Search', icon glyph 'Icon/Search'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Search", "icon": "search" },
+      "figmaInstance": { "name": "Search", "key": null }
+    },
+    {
+      "part": "nav-item-map",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Map', icon glyph 'Icon/Map-pin'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Map", "icon": "map-pin" },
+      "figmaInstance": { "name": "Map", "key": null }
+    },
+    {
+      "part": "nav-item-home",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Icon glyph 'Icon/Home'. NOTE: the instance layer is named 'Home' but its TEXT child's actual copy reads 'Dashboard' — the adapter should use the rendered label text ('Dashboard'), not the layer name, as the prop value.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Dashboard", "icon": "home" },
+      "figmaInstance": { "name": "Home", "key": null }
+    },
+    {
+      "part": "nav-item-todo",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Todo', icon glyph 'Icon/List-todo'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Todo", "icon": "list-todo" },
+      "figmaInstance": { "name": "Todo", "key": null }
+    },
+    {
+      "part": "nav-item-benchmark",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Benchmark', icon glyph 'Icon/Align-horizontal-justify-center'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Benchmark", "icon": "align-horizontal-justify-center" },
+      "figmaInstance": { "name": "Benchmark", "key": null }
+    },
+    {
+      "part": "nav-item-matching",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Matching', icon glyph 'Icon/Puzzle'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Matching", "icon": "puzzle" },
+      "figmaInstance": { "name": "Matching", "key": null }
+    },
+    {
+      "part": "nav-item-operations",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Operations', icon glyph 'Icon/Handshake'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Operations", "icon": "handshake" },
+      "figmaInstance": { "name": "Operations", "key": null }
+    },
+    {
+      "part": "nav-item-contracts",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Contracts', icon glyph 'Icon/File-signature'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Contracts", "icon": "file-signature" },
+      "figmaInstance": { "name": "Contracts", "key": null }
+    },
+    {
+      "part": "nav-item-reporting",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Reporting', icon glyph 'Icon/Bar-chart-big'.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Reporting", "icon": "bar-chart-big" },
+      "figmaInstance": { "name": "Reporting", "key": null }
+    },
+    {
+      "part": "nav-item-admin",
+      "element": "a",
+      "notes": "State=default navbar-item instance, 70x52. Label 'Admin', icon glyph 'Icon/User-cog-2'. Closest lucide-react name is 'user-cog' (lucide has no '-2' suffixed variant); adapter should treat this as the intended match, not a literal name lookup.",
+      "klpComponent": "navbar-item",
+      "klpComponentProps": { "state": "default", "label": "Admin", "icon": "user-cog" },
+      "figmaInstance": { "name": "Admin", "key": null }
+    }
+  ],
+  "variantAxes": {},
+  "variants": [
+    {
+      "id": "default",
+      "axes": {},
+      "figmaNodeId": "113645:25415",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (figma_capture_screenshot / figma_get_component_image responses exposed no filesystem path or base64 reachable by this session's Write/Bash tools, and the REST image API is unavailable — FIGMA_ACCESS_TOKEN expired). No .png.FAILED placeholder was written per instructions. Re-run screenshot capture once file persistence is available.",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-navrail",
+            "figmaVar": null,
+            "value": "#22222D"
+          },
+          "paddingTop": {
+            "literal": "24px"
+          },
+          "paddingBottom": {
+            "literal": "24px"
+          },
+          "itemSpacing": {
+            "literal": "16px"
+          },
+          "literals": {
+            "width": "70px",
+            "height": "800px (canvas sample only — adapter should use full-height sizing, not a fixed 800px)",
+            "layoutMode": "VERTICAL",
+            "primaryAxisAlignItems": "MIN",
+            "counterAxisAlignItems": "CENTER",
+            "hasWrapperFrameForItems": "false — logo and all nav items are direct children of root, no intermediate items-wrapper frame exists"
+          }
+        },
+        "logo": {
+          "fill": {
+            "literal": "IMAGE fill (imageHash 90cdf662b547c2a8ac07862b5aa4b64de2efac75), not a color — cannot bind to a Figma variable, not a token gap"
+          },
+          "literals": {
+            "width": "48px",
+            "height": "51px",
+            "scaleMode": "FILL",
+            "scalingFactor": 0.5
+          }
+        },
+        "nav-item-search": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-map": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-home": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-todo": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-benchmark": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-matching": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-operations": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-contracts": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-reporting": { "reuse": { "component": "navbar-item", "state": "default" } },
+        "nav-item-admin": { "reuse": { "component": "navbar-item", "state": "default" } }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "navigation",
+    "keyboardSupport": ["Tab", "Enter", "Space"],
+    "notes": "This is a primary navigation landmark. Root should render as <nav aria-label=\"Primary\"> (or similar), with each nav-item rendered as <a> (navbar-item is asChild-friendly per its own spec) carrying aria-current=\"page\" when it represents the active route. The logo slot at top should be either decorative (aria-hidden, if a home link exists elsewhere) or itself a link to the app root with descriptive alt text — the adapter must decide based on how the consumer wires routing. All ten items are State=default in this capture; hover/selected visuals are owned entirely by navbar-item's own state machine (see .klp/figma-refs/navbar-item/spec.json) and must remain reachable via :focus-visible for keyboard users, not just :hover."
+  },
+  "tokenGaps": [
+    {
+      "figmaVar": null,
+      "expectedKlp": "--klp-bg-navrail",
+      "seenOn": "default/root/fill",
+      "note": "Root fill is the literal #22222D, bound to no variable anywhere in the file (confirmed exhaustively across every collection). A DS-side alias --klp-bg-navrail was added pointing at the nearest existing primitive storm-900 (#191D2C, RGB distance 10, imperceptible). Figma should introduce a real token for this nav-rail surface so the alias can point at an authoritative source instead of an approximation."
+    }
+  ],
+  "composition": {
+    "reuses": ["navbar-item"],
+    "candidates": ["logo-slot"],
+    "instances": [
+      { "part": "nav-item-search", "klpComponent": "navbar-item", "figmaInstance": { "name": "Search", "key": null } },
+      { "part": "nav-item-map", "klpComponent": "navbar-item", "figmaInstance": { "name": "Map", "key": null } },
+      { "part": "nav-item-home", "klpComponent": "navbar-item", "figmaInstance": { "name": "Home", "key": null } },
+      { "part": "nav-item-todo", "klpComponent": "navbar-item", "figmaInstance": { "name": "Todo", "key": null } },
+      { "part": "nav-item-benchmark", "klpComponent": "navbar-item", "figmaInstance": { "name": "Benchmark", "key": null } },
+      { "part": "nav-item-matching", "klpComponent": "navbar-item", "figmaInstance": { "name": "Matching", "key": null } },
+      { "part": "nav-item-operations", "klpComponent": "navbar-item", "figmaInstance": { "name": "Operations", "key": null } },
+      { "part": "nav-item-contracts", "klpComponent": "navbar-item", "figmaInstance": { "name": "Contracts", "key": null } },
+      { "part": "nav-item-reporting", "klpComponent": "navbar-item", "figmaInstance": { "name": "Reporting", "key": null } },
+      { "part": "nav-item-admin", "klpComponent": "navbar-item", "figmaInstance": { "name": "Admin", "key": null } },
+      { "part": "logo", "klpComponentCandidate": "logo-slot", "figmaInstance": { "name": "image 12", "key": null } }
+    ]
+  }
+}

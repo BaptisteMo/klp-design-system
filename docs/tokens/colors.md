@@ -2,7 +2,7 @@
 title: Color tokens
 type: token-group
 group: colors
-updated: 2026-08-05
+updated: 2026-08-06
 ---
 
 # Color tokens
@@ -21,6 +21,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 | `bg-brand` | `gray-500` | `emerald-500` | `night-blue-700` | `midnight-500` |
 | `bg-brand-low` | `gray-300` | `emerald-50` | `night-blue-100` | `night-blue-100` |
 | `bg-brand-contrasted` | `gray-600` | `emerald-700` | `night-blue-900` | `midnight-800` |
+| `bg-navrail` | `storm-900` | `storm-900` | `storm-900` | `storm-900` |
 | `bg-secondary-brand` | `gray-500` | `cyan-500` | `fuchsia-500` | `gold-500` |
 | `bg-secondary-brand-low` | `gray-300` | `cyan-50` | `fuchsia-300` | `gold-300` |
 | `bg-secondary-brand-contrasted` | `gray-600` | `cyan-700` | `fuchsia-800` | `gold-700` |
@@ -99,6 +100,8 @@ Translucency overlays. Same value across all four brands (they alias `light-N` p
 
 > `alpha-10` is a **DS-side addition** (2026-08-05), not a Figma capture: the Figma alpha family only defines `alpha/80`, but the `light-10` primitive (`#FFFFFF1A`) already existed. Added to satisfy [Nav Item](../components/_index_nav-item.md)'s hover overlay, a design instruction with no matching Figma variant. See `docs/tokens/_index_tokens.md` Notes for the standing partial-recapture note.
 
+> `bg-navrail` is a **DS-side addition** (2026-08-06), not a Figma capture: [Sidebar (Atlas)](../components/_index_sidebar-atlas.md)'s root fill `#22222D` is bound to no Figma variable anywhere in the file (searched exhaustively across every collection). Points at the nearest existing primitive `storm-900` (`#191D2C`, RGB distance 10, imperceptible) as an approximation, same across all four brands (only `atlas` is currently validated against it). This is a genuine gap — Figma should introduce a real token for the nav-rail surface.
+
 ## Tailwind utilities
 
 | Token | Utility |
@@ -140,6 +143,8 @@ Translucency overlays. Same value across all four brands (they alias `light-N` p
 - [Separator](../components/_index_separator.md) — consumes `border-default` (line stroke, both directions).
 - [Nav Item](../components/_index_nav-item.md) — consumes `fg-on-emphasis` (icon, label), `border-light` (active-state underline, reconciled onto a hardcoded Figma literal) across both state variants, and `alpha-10` (hover-overlay fill, a design addition not in the Figma spec — see gaps).
 - [Header Showup](../components/_index_header-showup.md) — consumes `bg-brand-contrasted` (root fill), `bg-info`/`fg-info-contrasted` (logo-badge, via Badge), `bg-inset`/`fg-on-emphasis` (action-tools-button, via Button), `bg-secondary-brand` (user-avatar slot default), `fg-on-emphasis` (language-selector slot default) tokens.
+- [Navbar Item](../components/_index_navbar-item.md) — consumes `fg-on-emphasis` (icon, label, identical across all three states), `alpha-10` (hover-state root fill), `border-light` (selected-state right-edge stroke) tokens.
+- [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — consumes `bg-navrail` (root fill, a DS-side alias for an unbound Figma literal — see gaps) and `alpha-10` (logo slot default fill) tokens.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

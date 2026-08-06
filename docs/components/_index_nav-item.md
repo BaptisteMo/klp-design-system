@@ -4,19 +4,19 @@ type: component
 status: stable
 category: navigation
 captureBrand: showup
-radixPrimitive: "@radix-ui/react-slot"
+radixPrimitive: null
 sources:
   - .klp/figma-refs/nav-item/spec.json
   - src/components/nav-item/NavItem.tsx
 dependencies:
   components: [badges]
-  externals: ["@radix-ui/react-slot", "class-variance-authority"]
+  externals: ["class-variance-authority"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["showup"]
 usedBy:
   - header-showup
 created: 2026-08-05
-updated: 2026-08-05
+updated: 2026-08-06
 ---
 
 # Nav Item
@@ -26,7 +26,7 @@ ShowUp application header nav item — a single link/tab entry with an optional 
 ## Anatomy
 
 ```
-root (button, or `<a>` via asChild)  — 80px tall, centers content at the bottom
+root (button, or `<a href>` when `href` is passed)  — 80px tall, centers content at the bottom
 ├── hover-overlay (span, aria-hidden) — DESIGN ADDITION, not in Figma spec — see note below
 └── content (span)                    — 71px-tall row, holds icon + label + counter, carries the underline
     ├── icon         (span)           — Optional, hidden if no `icon` prop
@@ -61,7 +61,7 @@ Extends `Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children'>`. All n
 | Prop | Class | Type | Default | Description |
 |---|---|---|---|---|
 | `children` | **required** | `React.ReactNode` | — | Nav item label text. |
-| `asChild` | optional | `boolean` | `false` | Render as child element (Slot pattern) — use this to render an `<a href>`, the common case for a navigation item. |
+| `href` | optional | `string` | — | When set, the item renders as an `<a href>` instead of a `<button>` — the common case for a navigation entry. |
 | `active` | optional | `boolean` | `false` | Marks this item as the current page. Toggles the bottom underline and sets `aria-current="page"` for assistive tech (the underline alone is not conveyed to screen readers). |
 | `icon` | optional | `React.ReactNode` | — | Optional leading icon (Figma boolean prop `Show Icon selector`). Pass a lucide-react icon element; omit to hide. |
 | `counter` | optional | `React.ReactNode` | — | Optional trailing counter badge (Figma boolean prop `HasCounter`). Pass the counter content (e.g. a number); omit to hide. Rendered via the shared Badge component (Type=Primary, Size=Small, Style=Light). |
@@ -130,12 +130,10 @@ import { NavItem } from '@/components/nav-item'
 export function NavItemExample() {
   return (
     <nav className="flex gap-2 bg-klp-bg-brand px-4">
-      <NavItem asChild active icon={<Home />} counter={3}>
-        <a href="/">Home</a>
+      <NavItem href="/" active icon={<Home />} counter={3}>
+        Home
       </NavItem>
-      <NavItem asChild>
-        <a href="/offers">My offer</a>
-      </NavItem>
+      <NavItem href="/offers">My offer</NavItem>
     </nav>
   )
 }
@@ -143,7 +141,7 @@ export function NavItemExample() {
 
 ## Accessibility
 
-- **Role**: `link` (source: spec.json a11y.role). The default rendered element is a native `<button type="button">` — pass `asChild` and render an `<a href>` to get the actual `link` role the spec targets; this is the expected usage inside a header nav.
+- **Role**: `link` (source: spec.json a11y.role). The default rendered element is a native `<button type="button">` — pass `href` to render an `<a href>` and get the actual `link` role the spec targets; this is the expected usage inside a header nav.
 - **Keyboard support**: `Enter` activates the link/button; `Tab` focuses it.
 - **ARIA notes**: `active` sets `aria-current="page"` in addition to the visual underline, since the underline alone is not conveyed to assistive tech (source: spec.json a11y.notes).
 
@@ -155,7 +153,6 @@ export function NavItemExample() {
 
 ### External libraries
 
-- [@radix-ui/react-slot](https://www.npmjs.com/package/@radix-ui/react-slot) — Slot/asChild pattern
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — cva variant composition (`content` state axis)
 
 ### Token groups
@@ -201,9 +198,17 @@ This component is not tokenized in the source Figma file: every color and the la
 
 ### Validator status
 
-`node scripts/validate-tokens.mjs nav-item` passes with 0 mismatches. It emits 6 informational warnings: `unknown-state` (the root `Slot`/`button` primitive doesn't declare a `state` in its own right — `state` lives on `content`) and `layer-no-cva` (layers whose classes are static strings rather than a `cva` block: `icon`, `label`, and the root). Both warning families are expected for this component's shape and are not mismatches.
+`node scripts/validate-tokens.mjs nav-item` passes with 0 mismatches. It emits 6 informational warnings: `unknown-state` (the root `button`/`a` primitive doesn't declare a `state` in its own right — `state` lives on `content`) and `layer-no-cva` (layers whose classes are static strings rather than a `cva` block: `icon`, `label`, and the root). Both warning families are expected for this component's shape and are not mismatches.
 
 ### 2026-08-05 — hover overlay added (post-capture, design instruction)
 
 A hover appearance was added at the user's request; it is not part of the captured Figma spec (see the Hover note under Variants and the `hover-overlay-token` gap). Implementation: an absolutely-positioned `span` (`pointer-events-none`, `aria-hidden`), inset `8px` from the header's top/bottom edges (64px tall inside the 80px item) and `-8px` past the label on each side (still clears the 20px gap between items), `rounded-klp-l`, `bg-klp-alpha-10`, fading `opacity-0 → group-hover:opacity-100`. `rootBaseClasses` gained `group relative cursor-pointer`; `content` gained `relative` so it paints above the absolutely-positioned overlay preceding it in DOM order — a static sibling would otherwise sit underneath it. Required a new token, `--klp-alpha-10`, added to `aliases.css` (see gap table above) since Figma's alpha family only defined `alpha/80`.
+
+### 2026-08-06 — `asChild` removed, `href` added (runtime crash fix)
+
+`nav-item` previously exposed Radix `asChild` for rendering as an `<a href>`. That path crashed at runtime: verified in a browser probe, it threw `React.Children.only expected to receive a single React element child` and rendered a blank page. Two compounding reasons — `nav-item` renders several sibling children under the root (the `hover-overlay` span plus the `content` box), and Radix `Slot` requires exactly one child; more fundamentally, `Slot` clones the consumer's element and keeps *its* children, which would have silently discarded this component's own icon, label, and hover overlay even if the sibling-count issue were fixed.
+
+`asChild` is removed and replaced by a plain `href` prop: set it and the root renders as `<a href>`, keeping all internal structure (hover overlay, icon, label, counter) intact; omit it and you get a `<button type="button">`. Verified in the browser: the href path now renders a real `<a>` with icon, label, and hover overlay intact, and the non-href path still renders a button. `header-showup` forwards `items[].href` onto this prop.
+
+The `@radix-ui/react-slot` dependency is no longer imported by this component; `dependencies.externals` in `klp-components.json` and `dependencies.npm` in `registry/nav-item.json` no longer list it. `radixPrimitive` in the frontmatter above is now `null` (was `"@radix-ui/react-slot"`).
 <!-- KLP:NOTES:END -->
