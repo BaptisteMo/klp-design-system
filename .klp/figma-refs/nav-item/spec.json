@@ -1,0 +1,223 @@
+{
+  "name": "nav-item",
+  "displayName": "Nav Item",
+  "figmaNode": "113635:25029",
+  "captureBrand": "showup",
+  "category": "navigation",
+  "description": "ShowUp application header nav item. Single COMPONENT_SET with one variant axis (State: Default | Active) plus two boolean component properties (HasCounter, Show Icon selector) that toggle an optional leading icon and a trailing counter badge. Active state is distinguished by a visible border/indicator on the content frame (root box highlight, not a bottom underline). TODO: radixPrimitive is a best guess — verify against actual usage (likely a link/tab acting as asChild button).",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "captureBrandVerification": "Inferred from Figma structural context (page 'Headers', SECTION 'Header Showup', file '[NEW] UI Kit Klepierre'), not from a live per-node mode read — REST API (figma_get_file_data) is unavailable this session (FIGMA_ACCESS_TOKEN expired) and the Plugin-API deep tool does not expose the active variable mode for an arbitrary node. All colour values actually captured on this component (pure white #FFFFFF, Arial family) are literal (unbound), so they render identically regardless of active brand mode and could not be used to cross-verify against aliases.css. Recommend a human confirm the active brand toggle in the Figma file before relying on captureBrand for anything beyond playground preview.",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "a",
+      "notes": "75x80 fixed-size vertical auto-layout box, centers 'content' frame. No fill/stroke observed on the outer component frame itself."
+    },
+    {
+      "part": "content",
+      "element": "span",
+      "notes": "Figma layer name 'Label' — horizontal auto-layout frame (75x71), paddingY literal, itemSpacing literal. Holds icon + label + optional counter-badge. Carries the state indicator (border) in Active."
+    },
+    {
+      "part": "icon",
+      "element": "span",
+      "notes": "Optional — visibility driven by component property 'Show Icon selector#2027:0' (boolean, default true). Figma instance is a generic 'Icon selector' atom (Size=Small, Icon=true), NOT a klp design-system component — treated as a lucide-react icon slot per explicit instruction, not a composition reuse."
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "notes": "TEXT node. Sample copy captured was 'My offer' (not 'Home' as assumed pre-capture) — this is Figma's example instance content, not a fixed default; adapter should treat as a required 'label' prop."
+    },
+    {
+      "part": "counter-badge",
+      "element": "span",
+      "notes": "Optional — visibility driven by component property 'HasCounter#263:0' (boolean, default false). Instance is invisible in both captured variants ('badges' INSTANCE, visible:false) so its variant properties (Type/Size/Style) could not be read: the Plugin-API deep tool returns no child/property data for invisible nodes, and the REST fallback (figma_get_component_for_development) is unavailable (FIGMA_ACCESS_TOKEN expired). klpComponentProps intentionally omitted — adapter should default to a small/tertiary badge and flag for design review.",
+      "klpComponent": "badges",
+      "figmaInstance": {
+        "name": "badges",
+        "key": null
+      }
+    }
+  ],
+  "variantAxes": {
+    "state": [
+      "default",
+      "active"
+    ]
+  },
+  "variants": [
+    {
+      "id": "default",
+      "axes": {
+        "state": "default"
+      },
+      "figmaNodeId": "113635:25035",
+      "screenshot": null,
+      "screenshotNote": "Screenshot capture not persisted this session — reference PNGs could not be written to disk under this environment. Re-run capture step once file writes are available.",
+      "layers": {
+        "root": {
+          "literals": {
+            "width": "75px",
+            "height": "80px"
+          }
+        },
+        "content": {
+          "borderBottomColor": {
+            "token": "--klp-border-light",
+            "figmaVar": "literal #FFFFFF (unbound)",
+            "value": "#FFFFFF",
+            "notes": "Bottom-only 2px stroke, toggled by visibility: shown in active, hidden in default. Everything else is identical between the two variants."
+          },
+          "literals": {
+            "width": "75px",
+            "height": "71px",
+            "paddingTop": "25px",
+            "paddingBottom": "25px",
+            "paddingLeft": "0px",
+            "paddingRight": "0px",
+            "itemSpacing": "4px",
+            "strokeBottomWeight": "2px",
+            "strokeAlign": "INSIDE",
+            "strokeVisible": false,
+            "layout": "HORIZONTAL, primaryAxis=CENTER, counterAxis=CENTER"
+          }
+        },
+        "icon": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "literal (unbound)",
+            "value": "#F7F9F8"
+          },
+          "literals": {
+            "size": "14px",
+            "figmaVarResolved": "Sizes: Button, Input, Nav/Small/Icon size -> spacing/3,5 = 14px"
+          }
+        },
+        "label": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "literal #F7F9F8 (unbound)",
+            "value": "#F7F9F8",
+            "notes": "Taken from the live Nav instances (#F7F9F8 = --klp-color-gray-100 = --klp-fg-on-emphasis). The isolated master variants use pure #FFFFFF; the instances are the real usage."
+          },
+          "literals": {
+            "fontFamily": "Arial",
+            "fontStyle": "Bold",
+            "fontSize": "14px",
+            "lineHeight": "16px",
+            "notes": "Hardcoded, no bound variable. Adapter must map onto the klp label font tokens."
+          }
+        },
+        "counter-badge": {
+          "notes": "klp Badge instance, hidden unless HasCounter=true. Figma variant props: Type=Primary, Size=Small, Style=Light.",
+          "klpComponent": "badges",
+          "klpComponentProps": {
+            "badgeType": "primary",
+            "size": "small",
+            "badgeStyle": "light"
+          }
+        }
+      }
+    },
+    {
+      "id": "active",
+      "axes": {
+        "state": "active"
+      },
+      "figmaNodeId": "113635:25030",
+      "screenshot": null,
+      "screenshotNote": "Screenshot capture not persisted this session — reference PNGs could not be written to disk under this environment. Re-run capture step once file writes are available.",
+      "layers": {
+        "root": {
+          "literals": {
+            "width": "75px",
+            "height": "80px"
+          }
+        },
+        "content": {
+          "borderBottomColor": {
+            "token": "--klp-border-light",
+            "figmaVar": "literal #FFFFFF (unbound)",
+            "value": "#FFFFFF",
+            "notes": "Bottom-only 2px stroke, toggled by visibility: shown in active, hidden in default. Everything else is identical between the two variants."
+          },
+          "literals": {
+            "width": "75px",
+            "height": "71px",
+            "paddingTop": "25px",
+            "paddingBottom": "25px",
+            "paddingLeft": "0px",
+            "paddingRight": "0px",
+            "itemSpacing": "4px",
+            "strokeBottomWeight": "2px",
+            "strokeAlign": "INSIDE",
+            "strokeVisible": true,
+            "layout": "HORIZONTAL, primaryAxis=CENTER, counterAxis=CENTER"
+          }
+        },
+        "icon": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "literal (unbound)",
+            "value": "#F7F9F8"
+          },
+          "literals": {
+            "size": "14px",
+            "figmaVarResolved": "Sizes: Button, Input, Nav/Small/Icon size -> spacing/3,5 = 14px"
+          }
+        },
+        "label": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "literal #F7F9F8 (unbound)",
+            "value": "#F7F9F8",
+            "notes": "Taken from the live Nav instances (#F7F9F8 = --klp-color-gray-100 = --klp-fg-on-emphasis). The isolated master variants use pure #FFFFFF; the instances are the real usage."
+          },
+          "literals": {
+            "fontFamily": "Arial",
+            "fontStyle": "Bold",
+            "fontSize": "14px",
+            "lineHeight": "16px",
+            "notes": "Hardcoded, no bound variable. Adapter must map onto the klp label font tokens."
+          }
+        },
+        "counter-badge": {
+          "notes": "klp Badge instance, hidden unless HasCounter=true. Figma variant props: Type=Primary, Size=Small, Style=Light.",
+          "klpComponent": "badges",
+          "klpComponentProps": {
+            "badgeType": "primary",
+            "size": "small",
+            "badgeStyle": "light"
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "link",
+    "keyboardSupport": [
+      "Enter"
+    ],
+    "notes": "Rendered as a navigation link/tab in a header. Active state should also set aria-current=\"page\" in addition to the visual indicator border, since the border alone is not conveyed to assistive tech."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": [
+      "badges"
+    ],
+    "candidates": [],
+    "instances": [
+      {
+        "part": "counter-badge",
+        "klpComponent": "badges",
+        "figmaInstance": {
+          "name": "badges",
+          "key": null
+        }
+      }
+    ]
+  },
+  "notes": [
+    "CORRECTED post-extraction via figma_execute (the extractor has no such tool, hence its 7 unresolved gaps). 1) active vs default is a BOTTOM-ONLY 2px underline toggled by stroke visibility, not a full-perimeter border. 2) Both icon-size variable IDs resolved: line-height 16px, icon size 14px. 3) The hidden counter Badge reads Type=Primary/Size=Small/Style=Light. 4) This component is NOT tokenized in Figma - every colour and the Arial/Bold 14 type are hardcoded literals with zero bound variables. The token mapping recorded here is a deliberate reconciliation onto klp aliases, verified by exact hex match (#F7F9F8 = --klp-color-gray-100 = --klp-fg-on-emphasis, #FFFFFF = --klp-color-light-100 = --klp-border-light), not a Figma binding."
+  ]
+}

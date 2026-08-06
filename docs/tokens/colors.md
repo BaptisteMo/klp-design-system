@@ -2,7 +2,7 @@
 title: Color tokens
 type: token-group
 group: colors
-updated: 2026-04-16
+updated: 2026-08-05
 ---
 
 # Color tokens
@@ -88,6 +88,17 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 
 > Cell values reference primitives in `src/styles/tokens/primitives.css`. Each cell is `var(--klp-color-<value>)`.
 
+## Alpha (`--klp-alpha-*`)
+
+Translucency overlays. Same value across all four brands (they alias `light-N` primitives, not brand-switched palette colors).
+
+| Alias | wireframe | klub | atlas | showup |
+|---|---|---|---|---|
+| `alpha-80` | `light-80` | `light-80` | `light-80` | `light-80` |
+| `alpha-10` | `light-10` | `light-10` | `light-10` | `light-10` |
+
+> `alpha-10` is a **DS-side addition** (2026-08-05), not a Figma capture: the Figma alpha family only defines `alpha/80`, but the `light-10` primitive (`#FFFFFF1A`) already existed. Added to satisfy [Nav Item](../components/_index_nav-item.md)'s hover overlay, a design instruction with no matching Figma variant. See `docs/tokens/_index_tokens.md` Notes for the standing partial-recapture note.
+
 ## Tailwind utilities
 
 | Token | Utility |
@@ -95,6 +106,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 | `--klp-bg-*` | `bg-klp-bg-*` (e.g. `bg-klp-bg-brand`) |
 | `--klp-fg-*` | `text-klp-fg-*` (e.g. `text-klp-fg-on-emphasis`) |
 | `--klp-border-*` | `border-klp-border-*` (always paired with `border` for width) |
+| `--klp-alpha-*` | `bg-klp-alpha-*` (e.g. `bg-klp-alpha-10`) |
 
 ## Used by
 
@@ -126,6 +138,8 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Calendar Button](../components/_index_calendar-button.md) — consumes `bg-default`, `bg-disable`, `bg-subtle`, `bg-brand`, `border-invisible`, `border-default`, `fg-default`, `fg-subtle`, `fg-disable`, `fg-on-emphasis` tokens across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — consumes `bg-default`, `bg-invisible`, `fg-muted`, `fg-default`, `border-invisible`, `border-default` tokens across root, nav-button, month-label, weekday-label, separator, and footer-label layers.
 - [Separator](../components/_index_separator.md) — consumes `border-default` (line stroke, both directions).
+- [Nav Item](../components/_index_nav-item.md) — consumes `fg-on-emphasis` (icon, label), `border-light` (active-state underline, reconciled onto a hardcoded Figma literal) across both state variants, and `alpha-10` (hover-overlay fill, a design addition not in the Figma spec — see gaps).
+- [Header Showup](../components/_index_header-showup.md) — consumes `bg-brand-contrasted` (root fill), `bg-info`/`fg-info-contrasted` (logo-badge, via Badge), `bg-inset`/`fg-on-emphasis` (action-tools-button, via Button), `bg-secondary-brand` (user-avatar slot default), `fg-on-emphasis` (language-selector slot default) tokens.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

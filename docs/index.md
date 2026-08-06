@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-08-04
+updated: 2026-08-05
 ---
 
 # klp-design-system
@@ -41,7 +41,9 @@ Start here:
 ### navigation
 - [BreadCrumbs](./components/_index_breadcrumbs.md) — Horizontal breadcrumb trail, single Steps axis (0–3 ancestor steps), 4 variants
 - [Header Desktop](./components/_index_header-desktop.md) — Desktop page header with title, breadcrumb trail, and contextual action row, 2 feature variants (default / search-active)
+- [Header Showup](./components/_index_header-showup.md) — ShowUp application top navigation bar (logo + primary nav-items + account/utility zone), single variant (no variant axes)
 - [Item Side Bar](./components/_index_item-side-bar.md) — Sidebar navigation item with icon, label, and optional collapsible content panel, 2 features × 3 states (6 variants)
+- [Nav Item](./components/_index_nav-item.md) — ShowUp header nav link with optional icon and counter badge, single State axis (default / active), 2 variants
 - [Pagination](./components/_index_pagination.md) — Standalone page navigator with ellipsis algorithm, reusable outside tables
 - [SideBar](./components/_index_sidebar.md) — Vertical navigation sidebar (logo + notification + context-switcher + menu + profil footer), 2 device variants (desktop / phone)
 - [Tabulation Cells](./components/_index_tabulation-cells.md) — Single tab cell with label and optional badge, 2 states (rest / active)

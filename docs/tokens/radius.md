@@ -43,6 +43,7 @@ updated: 2026-04-16
 - [Input Multiselect](../components/_index_input-multiselect.md) — `rounded-klp-m` on chip layer; `rounded-klp-l` on dropdown layer. `input-box` `cornerRadius 8px` is a literal (candidate: `--klp-radius-l`).
 - [Calendar Button](../components/_index_calendar-button.md) — `rounded-klp-l` on root layer across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — `--klp-radius-l` on root and nav-button `cornerRadius` layers.
+- [Header Showup](../components/_index_header-showup.md) — `--klp-radius-m` on logo-badge (via Badge); `--klp-radius-l` on action-tools-button (via Button); `rounded-full` literal on user-avatar; literal 8px on language-selector.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

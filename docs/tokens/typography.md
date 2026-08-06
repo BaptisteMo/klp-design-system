@@ -79,6 +79,8 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Input Multiselect](../components/_index_input-multiselect.md) — `font-klp-label`, `text-klp-text-medium` on trigger-label and placeholder layers; `font-klp-body`, `text-klp-text-small` on chip-label layer.
 - [Calendar Button](../components/_index_calendar-button.md) — `font-klp-label`, `font-klp-label-bold` (weight 600), `text-klp-text-medium` (16px) on label layer across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — `font-klp-label`, `font-klp-label-bold`, `text-klp-text-medium` on month-label and footer-label layers; `font-klp-body`, `text-klp-text-small` on weekday-label layer.
+- [Nav Item](../components/_index_nav-item.md) — `--klp-font-family-label`, `--klp-font-weight-label-bold`, `--klp-font-size-text-small` on the label layer — not Figma-bound (hardcoded Arial/Bold/14 literal), reconciled by exact value match under `showup`.
+- [Header Showup](../components/_index_header-showup.md) — `--klp-font-family-title` (logo-mark slot default); `--klp-font-family-body`/`--klp-font-weight-body` (logo-badge, via Badge); `--klp-font-size-text-small`/`--klp-font-weight-label-bold`/`--klp-font-family-label` (action-tools-button, via Button); literal 14px/700 (language-selector slot default, not token-bound).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

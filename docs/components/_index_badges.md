@@ -14,10 +14,12 @@ dependencies:
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
 usedBy:
+  - header-showup
   - input-multiselect
+  - nav-item
   - tabulation-cells
 created: 2026-04-16
-updated: 2026-04-21
+updated: 2026-08-05
 ---
 
 # Badge
@@ -115,7 +117,9 @@ export function BadgeExample() {
 
 ## Used by
 
+- [Header Showup](./_index_header-showup.md)
 - [Input Multiselect](./_index_input-multiselect.md)
+- [Nav Item](./_index_nav-item.md)
 - [Tabulation Cells](./_index_tabulation-cells.md)
 
 ## Files

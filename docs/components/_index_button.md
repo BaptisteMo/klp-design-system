@@ -19,6 +19,7 @@ usedBy:
   - floating-alert
   - header-desktop
   - header-phone
+  - header-showup
   - list
   - list-content
   - modal-variation
@@ -26,7 +27,7 @@ usedBy:
   - sidebar
   - text-area
 created: 2026-04-16
-updated: 2026-04-21
+updated: 2026-08-05
 ---
 
 # Button
@@ -130,6 +131,7 @@ export function ButtonExample() {
 - [Floating Alert](./_index_floating-alert.md)
 - [Header Desktop](./_index_header-desktop.md)
 - [Header Phone](./_index_header-phone.md)
+- [Header Showup](./_index_header-showup.md)
 - [List](./_index_list.md)
 - [List Content](./_index_list-content.md)
 - [Modal Variation](./_index_modal-variation.md)

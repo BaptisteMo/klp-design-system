@@ -304,7 +304,9 @@
         ]
       },
       "usedBy": [
+        "header-showup",
         "input-multiselect",
+        "nav-item",
         "tabulation-cells"
       ],
       "created": "2026-04-16",
@@ -547,6 +549,7 @@
         "floating-alert",
         "header-desktop",
         "header-phone",
+        "header-showup",
         "list",
         "list-content",
         "modal-variation",
@@ -1455,6 +1458,148 @@
       "usedBy": [],
       "created": "2026-04-20",
       "updated": "2026-04-21"
+    },
+    {
+      "name": "header-showup",
+      "displayName": "Header Showup",
+      "description": "ShowUp application top navigation bar (\"Nav\"). Single plain COMPONENT (no variant axes), 1440x80 canvas sample rendered as w-full. Three horizontal zones inside a SPACE_BETWEEN flex root: Logo (wordmark + info badge), Items (5 primary nav links via nav-item, bottom-aligned so the active underline sits flush on the header's bottom edge), and Right (Tools button, language selector, user avatar \u2014 only 3 of 7 Figma children are visible in the master instance).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "showup",
+      "status": "stable",
+      "source": "src/components/header-showup/HeaderShowup.tsx",
+      "doc": "docs/components/_index_header-showup.md",
+      "playground": "playground/routes/header-showup.tsx",
+      "registry": "registry/header-showup.json",
+      "spec": ".klp/figma-refs/header-showup/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "zone-logo",
+        "logo-mark",
+        "logo-badge",
+        "zone-items",
+        "nav-item",
+        "zone-right",
+        "action-tools-button",
+        "user-avatar",
+        "language-selector"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "items": {
+          "class": "required",
+          "type": "HeaderShowupNavItem[]",
+          "default": null,
+          "description": "Primary navigation entries rendered in the Items zone.",
+          "derivedFrom": null
+        },
+        "onItemSelect": {
+          "class": "optional",
+          "type": "(id: string) => void",
+          "default": null,
+          "description": "Called when a nav item is selected, receiving its id.",
+          "derivedFrom": null
+        },
+        "logo": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "\"SHOWUP\" text wordmark",
+          "description": "Brand wordmark slot.",
+          "derivedFrom": null
+        },
+        "badge": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Info badge slot rendered beside the logo. Defaults to a Badge (Type=Info, Size=Small, Style=Light).",
+          "derivedFrom": null
+        },
+        "languageSelector": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Language selector slot. Defaults to a minimal \"NL\" trigger button.",
+          "derivedFrom": null
+        },
+        "userSlot": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "User avatar slot. Defaults to a circular initial (\"C\").",
+          "derivedFrom": null
+        },
+        "actions": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Extra content appended after the Tools button in the Right zone.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "badges",
+          "button",
+          "nav-item"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "showup"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "badges",
+            "notes": "logo-badge renders as <Badge badgeType=\"info\" size=\"small\" badgeStyle=\"light\">."
+          },
+          {
+            "klpComponent": "button",
+            "notes": "action-tools-button renders as <Button variant=\"tertiary\" size=\"sm\" rightIcon={<ChevronDown />}>."
+          },
+          {
+            "klpComponent": "nav-item",
+            "notes": "Items zone renders one <NavItem> per entry in the items[] array, driving icon/counter/active/asChild props."
+          }
+        ],
+        "gaps": [
+          {
+            "part": "logo-mark",
+            "kind": "new-primitive",
+            "figmaInstance": "Logo SHOWUP W",
+            "reason": "No 'brand-logo' component exists in klp-components.json. The SHOWUP wordmark is pure vector artwork, not tokenizable.",
+            "action": "Exposed as a consumer-provided `logo` slot with a minimal default (plain 'SHOWUP' text, no inline SVG)."
+          },
+          {
+            "part": "user-avatar",
+            "kind": "new-primitive",
+            "figmaInstance": "User",
+            "reason": "No 'avatar' component exists yet in klp-components.json.",
+            "action": "Exposed as a consumer-provided `userSlot` slot with a minimal default (32px circle, bg/stroke --klp-bg-secondary-brand, initial \"C\")."
+          },
+          {
+            "part": "language-selector",
+            "kind": "new-primitive",
+            "figmaInstance": "Languages//Xhite",
+            "reason": "No 'language-selector' / Select component exists yet in klp-components.json. The flag icon is not a lucide-react icon.",
+            "action": "Exposed as a consumer-provided `languageSelector` slot with a minimal default (plain button, \"NL\" label + ChevronDown trailing icon, no flag)."
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-05",
+      "updated": "2026-08-05"
     },
     {
       "name": "in-content-alert",
@@ -2434,6 +2579,116 @@
       "usedBy": [],
       "created": "2026-04-23",
       "updated": "2026-04-23"
+    },
+    {
+      "name": "nav-item",
+      "displayName": "Nav Item",
+      "description": "ShowUp application header nav item. Single variant axis (State: Default | Active) plus two optional parts: a leading icon slot and a trailing counter badge (reused from the Badge component). Not tokenized in Figma \u2014 colors reconciled onto klp aliases by exact hex match; label font substituted onto klp label typography (see gaps).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "showup",
+      "status": "stable",
+      "source": "src/components/nav-item/NavItem.tsx",
+      "doc": "docs/components/_index_nav-item.md",
+      "playground": "playground/routes/nav-item.tsx",
+      "registry": "registry/nav-item.json",
+      "spec": ".klp/figma-refs/nav-item/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root",
+        "content",
+        "icon",
+        "label",
+        "counter-badge"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "active"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "active": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Marks this item as the current page. Toggles the bottom underline and sets `aria-current=\"page\"` for assistive tech.",
+          "derivedFrom": null
+        },
+        "asChild": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Render as child element (Slot pattern) \u2014 use this to render an `<a href>`, the common case for a navigation item.",
+          "derivedFrom": null
+        },
+        "icon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional leading icon (Figma boolean prop `Show Icon selector`). Pass a lucide-react icon element; omit to hide.",
+          "derivedFrom": null
+        },
+        "counter": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional trailing counter badge (Figma boolean prop `HasCounter`). Pass the counter content; omit to hide.",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Nav item label text.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "badges"
+        ],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "showup"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "badges",
+            "notes": "Trailing counter badge (Type=Primary, Size=Small, Style=Light)."
+          }
+        ],
+        "gaps": [
+          {
+            "part": "label-typography",
+            "kind": "no-instance-no-match",
+            "reason": "Figma type is hardcoded Arial/Bold 14 with zero bound variables; not a klp font.",
+            "action": "substituted-klp-label-font"
+          },
+          {
+            "part": "hover-overlay",
+            "kind": "token-gap",
+            "reason": "A hover state was added by design instruction; it does not exist in the Figma component set (State: Default | Active only). Implementing it required a 10%-white alpha alias that aliases.css did not expose (only alpha-80 existed).",
+            "action": "added-alias --klp-alpha-10 -> --klp-color-light-10 in all four [data-brand] blocks; DS-side addition, not a Figma capture."
+          }
+        ]
+      },
+      "usedBy": [
+        "header-showup"
+      ],
+      "created": "2026-08-05",
+      "updated": "2026-08-05"
     },
     {
       "name": "pagination",

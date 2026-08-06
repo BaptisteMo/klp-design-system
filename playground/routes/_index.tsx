@@ -41,6 +41,8 @@ const COMPONENTS: ComponentEntry[] = [
   { slug: 'sidebar',           label: 'SideBar',           category: 'navigation' },
   { slug: 'header-desktop',    label: 'Header Desktop',    category: 'navigation' },
   { slug: 'header-phone',      label: 'Header Phone',      category: 'navigation' },
+  { slug: 'nav-item',          label: 'Nav Item',          category: 'navigation' },
+  { slug: 'header-showup',     label: 'Header Showup',     category: 'navigation' },
   { slug: 'separator',         label: 'Separator',         category: 'utilities' },
 ]
 

@@ -30,6 +30,8 @@ import { InputMultiselectRoute } from './routes/input-multiselect'
 import { CalendarButtonRoute } from './routes/calendar-button'
 import { CalendarRoute } from './routes/calendar'
 import { SeparatorRoute } from './routes/separator'
+import { NavItemRoute } from './routes/nav-item'
+import { HeaderShowupRoute } from './routes/header-showup'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -63,6 +65,8 @@ const routes: Record<string, ComponentType> = {
   'calendar-button': CalendarButtonRoute,
   'calendar': CalendarRoute,
   'separator': SeparatorRoute,
+  'nav-item': NavItemRoute,
+  'header-showup': HeaderShowupRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

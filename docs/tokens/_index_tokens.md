@@ -1,7 +1,7 @@
 ---
 title: Token system
 type: token-overview
-updated: 2026-04-16
+updated: 2026-08-05
 ---
 
 # Token system
@@ -33,4 +33,14 @@ Set `document.documentElement.dataset.brand = '<brand>'` (or use the static attr
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
+
+### 2026-08-05 — `.klp/tokens.json` is a partial re-capture
+
+`.klp/tokens.json` was fully captured on 2026-04-16 (`capturedAt`). On 2026-08-05 three entries were live-verified against Figma and corrected in place, then `pnpm run sync:tokens` was re-run:
+
+- `bg-brand-contrasted` / showup: `midnight-800` → `midnight-900` (resolves the [Header Showup](../components/_index_header-showup.md) root-fill contradiction)
+- `bg-secondary-brand-contrasted` / atlas: `fuchsia-800` → `fuchsia-700`
+- `alpha-10` alias added in all four brands (`--klp-color-light-10`), a DS-side addition not present in the Figma alpha family — needed for [Nav Item](../components/_index_nav-item.md)'s hover overlay.
+
+The remaining 121 alias × brand pairs in `tokens.json` are still the 2026-04-16 capture (spot-checked against live Figma at the same time and found to match). **This partial-freshness split is not tracked anywhere machine-readable** — `tokens.json` carries only a single `capturedAt` date at the top level plus a free-form `notes[]` array recording the two corrections and the addition. If more drift is found, prefer a full re-capture over further piecemeal edits, or extend `tokens.json` with a per-entry `verifiedAt` field so this stops being invisible.
 <!-- KLP:NOTES:END -->

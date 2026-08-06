@@ -1,0 +1,23 @@
+{
+  "name": "nav-item",
+  "type": "registry:ui",
+  "description": "ShowUp application header nav item. Single variant axis (State: Default | Active) plus optional leading icon and trailing counter badge (reused from the Badge component).",
+  "meta": {
+    "figmaNode": "113635:25029",
+    "captureBrand": "showup",
+    "category": "navigation",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "schemaVersion": "v2",
+    "anatomy": ["root", "content", "icon", "label", "counter-badge"],
+    "variantAxes": {
+      "state": ["default", "active"]
+    }
+  },
+  "dependencies": {
+    "components": ["badges"],
+    "npm": [
+      "@radix-ui/react-slot",
+      "class-variance-authority"
+    ]
+  }
+}

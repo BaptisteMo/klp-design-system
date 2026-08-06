@@ -34,7 +34,8 @@ document.documentElement.dataset.brand = 'showup'
 
 ## Used by
 
-*(none yet — no component currently captures references in showup)*
+- [Nav Item](../components/_index_nav-item.md)
+- [Header Showup](../components/_index_header-showup.md)
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
