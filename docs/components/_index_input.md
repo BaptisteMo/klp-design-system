@@ -16,9 +16,10 @@ dependencies:
 usedBy:
   - calendar
   - header-desktop
+  - input-file
   - input-multiselect
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-07
 ---
 
 # Input
@@ -115,6 +116,7 @@ export function InputExample() {
 
 - [Calendar](./_index_calendar.md)
 - [Header Desktop](./_index_header-desktop.md)
+- [InputFile](./_index_input-file.md)
 - [Input Multiselect](./_index_input-multiselect.md)
 
 ## Files

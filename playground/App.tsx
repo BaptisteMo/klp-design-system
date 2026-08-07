@@ -1,4 +1,5 @@
 import { useSyncExternalStore, type ComponentType } from 'react'
+import { ComponentDoc } from './ComponentDoc'
 import { Index } from './routes/_index'
 import { ButtonRoute } from './routes/button'
 import { CheckboxRoute } from './routes/checkbox'
@@ -7,6 +8,8 @@ import { SwitchRoute } from './routes/switch'
 import { TooltipRoute } from './routes/tooltip'
 import { BadgesRoute } from './routes/badges'
 import { InputRoute } from './routes/input'
+import { InputFileRoute } from './routes/input-file'
+import { FileDroppedRoute } from './routes/file-dropped'
 import { ListContentRoute } from './routes/list-content'
 import { ActionSheetItemRoute } from './routes/action-sheet-item'
 import { FloatingAlertRoute } from './routes/floating-alert'
@@ -44,6 +47,8 @@ const routes: Record<string, ComponentType> = {
   'tooltip': TooltipRoute,
   'badges': BadgesRoute,
   'input': InputRoute,
+  'input-file': InputFileRoute,
+  'file-dropped': FileDroppedRoute,
   'list-content': ListContentRoute,
   'action-sheet-item': ActionSheetItemRoute,
   'floating-alert': FloatingAlertRoute,
@@ -128,6 +133,7 @@ export function App() {
       </header>
       <main className="p-6">
         <Route />
+        {hash && routes[hash] && <ComponentDoc name={hash} />}
       </main>
     </div>
   )

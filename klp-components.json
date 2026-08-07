@@ -546,10 +546,12 @@
       "usedBy": [
         "calendar",
         "collapsible",
+        "file-dropped",
         "floating-alert",
         "header-desktop",
         "header-phone",
         "header-showup",
+        "input-file",
         "list",
         "list-content",
         "modal-variation",
@@ -1106,6 +1108,110 @@
       "usedBy": [],
       "created": "2026-04-17",
       "updated": "2026-04-21"
+    },
+    {
+      "name": "file-dropped",
+      "displayName": "File Dropped",
+      "description": "Row displaying a single already-selected/uploaded file (filename + size) with download and delete actions. Plain Figma COMPONENT (no variant axis) \u2014 the designer stacked three mutually-exclusive state icons inside a clipped auto-layout frame; a `state` axis (default | uploading | done) is synthesized from that stack, not captured as a Figma variant.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/file-dropped/FileDropped.tsx",
+      "doc": "docs/components/_index_file-dropped.md",
+      "playground": "playground/routes/file-dropped.tsx",
+      "registry": "registry/file-dropped.json",
+      "spec": ".klp/figma-refs/file-dropped/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "icon-highlight",
+        "icon",
+        "filename",
+        "filesize",
+        "download-button",
+        "delete-button"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "uploading",
+          "done"
+        ]
+      },
+      "variantCount": 3,
+      "props": {
+        "name": {
+          "class": "required",
+          "type": "string",
+          "default": null,
+          "description": "Filename displayed in the row (e.g. \"contract_ready_signed.pdf\")",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "required",
+          "type": "string",
+          "default": null,
+          "description": "Pre-formatted file size string (e.g. \"442kb\")",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "persistent",
+          "type": "FileDroppedState",
+          "default": "'default'",
+          "description": "Which of the three mutually-exclusive state icons to render \u2014 synthesized from Figma's stacked-icon frame (file-text / loader-circle / check)",
+          "derivedFrom": null
+        },
+        "progress": {
+          "class": "optional",
+          "type": "number",
+          "default": null,
+          "description": "Upload progress percentage (0-100). Only meaningful while `state=\"uploading\"`; surfaced as `aria-valuenow` on the row for assistive tech",
+          "derivedFrom": null
+        },
+        "onDownload": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Called when the download action is activated. The download button is hidden while `state=\"uploading\"`",
+          "derivedFrom": null
+        },
+        "onDelete": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Called when the delete action is activated",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the outer root wrapper",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-07",
+      "updated": "2026-08-07"
     },
     {
       "name": "floating-alert",
@@ -1810,10 +1916,135 @@
       "usedBy": [
         "calendar",
         "header-desktop",
+        "input-file",
         "input-multiselect"
       ],
       "created": "2026-04-17",
       "updated": "2026-08-04"
+    },
+    {
+      "name": "input-file",
+      "displayName": "InputFile",
+      "description": "File upload field with two layouts: DropZone (dashed drag-and-drop panel with a decorative files illustration) and Simple (a labeled Input field with a plus icon + placeholder, helper text, and a 'Take picture' action button). Wraps a native <input type=\"file\"> with drag-and-drop support.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/input-file/InputFile.tsx",
+      "doc": "docs/components/_index_input-file.md",
+      "playground": "playground/routes/input-file.tsx",
+      "registry": "registry/input-file.json",
+      "spec": ".klp/figma-refs/input-file/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "illustration",
+        "dropzone-label",
+        "progress-indicator",
+        "file-input",
+        "action-button"
+      ],
+      "variantAxes": {
+        "inputType": [
+          "drop-zone",
+          "simple"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "layout": {
+          "class": "optional",
+          "type": "'drop-zone' | 'simple'",
+          "default": "'drop-zone'",
+          "description": "Which visual layout to render: dashed drag-and-drop panel or a labeled Input row",
+          "derivedFrom": null
+        },
+        "label": {
+          "class": "optional",
+          "type": "string",
+          "default": "'Power of attorney'",
+          "description": "Label rendered above the field in the `simple` layout (forwarded to the DS `Input`)",
+          "derivedFrom": null
+        },
+        "description": {
+          "class": "optional",
+          "type": "string",
+          "default": "'PDF, JPG, PNG (20mo max)'",
+          "description": "Helper text rendered below the field in the `simple` layout (forwarded to the DS `Input`)",
+          "derivedFrom": null
+        },
+        "placeholder": {
+          "class": "optional",
+          "type": "string",
+          "default": "'Choose your files'",
+          "description": "Placeholder text for the `simple` layout's Input field",
+          "derivedFrom": null
+        },
+        "actionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "'Take picture'",
+          "description": "Label for the 'Take picture' action button, only rendered in the `simple` layout",
+          "derivedFrom": null
+        },
+        "accept": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "MIME types / extensions accepted by the underlying `<input type=\"file\">`",
+          "derivedFrom": null
+        },
+        "multiple": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Allow selecting more than one file",
+          "derivedFrom": null
+        },
+        "disabled": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Disable both the field and drag-and-drop interaction",
+          "derivedFrom": null
+        },
+        "onFilesSelected": {
+          "class": "optional",
+          "type": "(files: File[]) => void",
+          "default": null,
+          "description": "Called with the array of selected files, from either the file picker or a drop event",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the outer root wrapper",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button",
+          "input"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-07",
+      "updated": "2026-08-07"
     },
     {
       "name": "input-multiselect",

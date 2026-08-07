@@ -16,10 +16,12 @@ dependencies:
 usedBy:
   - calendar
   - collapsible
+  - file-dropped
   - floating-alert
   - header-desktop
   - header-phone
   - header-showup
+  - input-file
   - list
   - list-content
   - modal-variation
@@ -27,7 +29,7 @@ usedBy:
   - sidebar
   - text-area
 created: 2026-04-16
-updated: 2026-08-05
+updated: 2026-08-07
 ---
 
 # Button
@@ -128,10 +130,12 @@ export function ButtonExample() {
 
 - [Calendar](./_index_calendar.md)
 - [Collapsible](./_index_collapsible.md)
+- [File Dropped](./_index_file-dropped.md)
 - [Floating Alert](./_index_floating-alert.md)
 - [Header Desktop](./_index_header-desktop.md)
 - [Header Phone](./_index_header-phone.md)
 - [Header Showup](./_index_header-showup.md)
+- [InputFile](./_index_input-file.md)
 - [List](./_index_list.md)
 - [List Content](./_index_list-content.md)
 - [Modal Variation](./_index_modal-variation.md)

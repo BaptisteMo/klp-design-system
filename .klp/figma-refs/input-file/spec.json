@@ -1,0 +1,150 @@
+{
+  "name": "input-file",
+  "displayName": "InputFile",
+  "figmaNode": "113649:1790",
+  "captureBrand": "klub",
+  "category": "inputs",
+  "description": "File upload field with two layouts: DropZone (dashed drag-and-drop panel with a decorative files illustration) and Simple (a labeled Input field with a plus icon + placeholder, helper text, and a 'Take picture' action button). TODO: no obvious Radix primitive — likely wraps a native <input type=\"file\"> plus drag-and-drop handlers; radixPrimitive left null pending adapter decision.",
+  "radixPrimitive": null,
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "div",
+      "notes": "Outer container. DropZone renders a dashed-border drop panel; Simple renders a vertical stack (Input + helper text + action button)."
+    },
+    {
+      "part": "illustration",
+      "element": "div",
+      "notes": "Opaque decorative asset (Figma frame 'Decorative', node 113648:1343). Already hand-implemented at src/components/input-file/InputFileIllustration.tsx — treat as an opaque child component, do not rebuild from paths. Only 2 of its 24 vector paths (nodes 113648:1357 and 113648:1367) are variable-bound (bg/brand accent); the remaining 22 neutral paths use literal grays/whites and must NOT be tokenized. Only present in the DropZone variant."
+    },
+    {
+      "part": "dropzone-label",
+      "element": "span",
+      "notes": "'Choose your files' text next to the illustration. Only present in the DropZone variant. Its fontSize/fontStyle/fontFamily bindings resolve to variable IDs from a linked/shared library (hashed prefix, not a local file variable) — best-guess mapped by resolved value (18px / Regular / Test Calibre) to the same Sizing/Text/Large + Weight/Label + Family/Label tokens used elsewhere in this file."
+    },
+    {
+      "part": "progress-indicator",
+      "element": "div",
+      "notes": "Hidden (opacity 0) progress-bar artifact (Figma 'Frame 195', node 113648:1339) present inside the DropZone component but never rendered (opacity 0). Included for completeness only — do not implement visually. Its filled bar segment (Rectangle 28) is bound to bg/brand."
+    },
+    {
+      "part": "file-input",
+      "element": "div",
+      "notes": "Only present in the Simple variant. Renders the DS <Input> component (Size=Small, Header=true, Label='Power of attorney', First Icon=true → plus icon, Description=true → 'PDF, JPG, PNG (20mo max)', Action Button=false). See .klp/figma-refs/input/spec.json for the Input component's own full token map.",
+      "klpComponent": "input",
+      "klpComponentProps": { "size": "small", "state": "default" },
+      "figmaInstance": { "name": "Input", "key": null }
+    },
+    {
+      "part": "action-button",
+      "element": "button",
+      "notes": "Only present in the Simple variant. Renders the DS <Button variant=\"tertiary\" size=\"sm\"> with label 'Take picture' and a trailing camera icon (rightIcon). See .klp/figma-refs/button/spec.json for the Button component's own full token map.",
+      "klpComponent": "button",
+      "klpComponentProps": { "variant": "tertiary", "size": "sm" },
+      "figmaInstance": { "name": "Button", "key": null }
+    }
+  ],
+  "variantAxes": {
+    "inputType": ["drop-zone", "simple"]
+  },
+  "variants": [
+    {
+      "id": "drop-zone",
+      "axes": { "inputType": "drop-zone" },
+      "figmaNodeId": "113649:1788",
+      "screenshot": "drop-zone.png",
+      "screenshotStatus": "FAILED",
+      "layers": {
+        "root": {
+          "fill": { "token": "--klp-bg-brand-low", "figmaVar": "bg/brand-low", "value": "#F2FAF7" },
+          "stroke": { "token": "--klp-border-brand", "figmaVar": "bd/brand", "value": "#1EADA5" },
+          "literals": {
+            "cornerRadius": "8px",
+            "paddingX": "16px",
+            "paddingY": "8px",
+            "itemSpacing": "24px",
+            "borderStyle": "dashed"
+          }
+        },
+        "illustration": {
+          "accentFill": { "token": "--klp-bg-brand", "figmaVar": "bg/brand", "value": "#1EADA5" },
+          "literals": {
+            "opaque": "true",
+            "note": "22 of 24 paths are literal neutral grays/whites, not tokenized; see InputFileIllustration.tsx"
+          }
+        },
+        "dropzone-label": {
+          "color": { "token": "--klp-fg-muted", "figmaVar": "fg/muted", "value": "#5F6563" },
+          "fontSize": { "token": "--klp-font-size-text-large", "figmaVar": "Sizing/Text/Large", "value": "18px" },
+          "fontFamily": { "token": "--klp-font-family-label", "figmaVar": "Family/Label", "value": "Test Calibre" },
+          "fontWeight": { "token": "--klp-font-weight-label", "figmaVar": "Weight/Label", "value": "400" },
+          "literals": { "lineHeight": "28px", "letterSpacing": "0%" }
+        },
+        "progress-indicator": {
+          "literals": { "opacity": "0", "display": "hidden-artifact-do-not-render" }
+        },
+        "file-input": {
+          "literals": { "present": "false", "reason": "only present in the simple variant" }
+        },
+        "action-button": {
+          "literals": { "present": "false", "reason": "only present in the simple variant" }
+        }
+      }
+    },
+    {
+      "id": "simple",
+      "axes": { "inputType": "simple" },
+      "figmaNodeId": "113649:1787",
+      "screenshot": "simple.png",
+      "screenshotStatus": "FAILED",
+      "layers": {
+        "root": {
+          "literals": { "background": "transparent", "itemSpacing": "24px" }
+        },
+        "illustration": {
+          "literals": { "present": "false", "reason": "only present in the drop-zone variant" }
+        },
+        "dropzone-label": {
+          "literals": { "present": "false", "reason": "only present in the drop-zone variant" }
+        },
+        "progress-indicator": {
+          "literals": { "present": "false", "reason": "only present in the drop-zone variant" }
+        },
+        "file-input": {
+          "fill": { "token": "--klp-bg-default", "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "stroke": { "token": "--klp-border-default", "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" },
+          "literals": { "note": "outermost Input-box properties shown; full Input token map lives in .klp/figma-refs/input/spec.json" }
+        },
+        "action-button": {
+          "fill": { "token": "--klp-bg-inset", "figmaVar": "bg/inset", "value": "#EEF1F0" },
+          "stroke": { "token": "--klp-border-invisible", "figmaVar": "bd/invisible", "value": "transparent" },
+          "cornerRadius": { "token": "--klp-radius-l", "figmaVar": "Radius/L", "value": "8px" },
+          "literals": { "note": "outermost Button properties shown; full Button token map lives in .klp/figma-refs/button/spec.json" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "group",
+    "keyboardSupport": ["Tab", "Enter", "Space"],
+    "notes": "Both variants should ultimately drive a native <input type=\"file\"> (visually hidden, triggered by click on the field/panel). DropZone should support native drag-and-drop (dragenter/dragover/drop) in addition to click-to-browse. The Simple variant's 'Take picture' button should set the capture attribute on its own hidden file input to invoke the device camera on mobile."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": ["input", "button"],
+    "candidates": [],
+    "instances": [
+      {
+        "part": "file-input",
+        "klpComponent": "input",
+        "figmaInstance": { "name": "Input", "key": null }
+      },
+      {
+        "part": "action-button",
+        "klpComponent": "button",
+        "figmaInstance": { "name": "Button", "key": null }
+      }
+    ]
+  }
+}

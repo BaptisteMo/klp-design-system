@@ -1,0 +1,11 @@
+FAILED: could not persist screenshot to disk.
+
+Same root cause as default.png.FAILED (REST token expired; plugin-bridge
+screenshot tool has no disk-write path). Additionally, isolated capture of
+node 113648:1332 (24/check) rendered as a blank/near-empty image even via the
+plugin bridge — this node sits outside the visible clip bounds of its parent
+"Icons Rotation" frame in the current static Figma state (see spec.json
+anatomy[].icon-highlight notes), so there is no true visual reference for the
+"done" state to capture. The `done` variant in spec.json is synthesized per
+the task brief (check icon, same bg/brand color token as the other two
+states).

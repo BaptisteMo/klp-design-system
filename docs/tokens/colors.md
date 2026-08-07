@@ -2,7 +2,7 @@
 title: Color tokens
 type: token-group
 group: colors
-updated: 2026-08-06
+updated: 2026-08-07
 ---
 
 # Color tokens
@@ -132,6 +132,7 @@ Translucency overlays. Same value across all four brands (they alias `light-N` p
 - [Pagination](../components/_index_pagination.md) — consumes `fg-muted` (range label and dots), `bg-inset` (active page button background), `border-brand` (active page button border).
 - [Data Table](../components/_index_data-table.md) — consumes `fg-default` (active sort icon), `fg-muted` (inactive sort icon and empty-state text); table-level and pagination-level color tokens inherited from sub-components.
 - [Item Side Bar](../components/_index_item-side-bar.md) — consumes `bg-default`, `bg-inset`, `bg-invisible`, `fg-default`, `border-contrasted`, `border-invisible` tokens across trigger, icon-container, label, and content layers.
+- [File Dropped](../components/_index_file-dropped.md) — consumes `bg-brand-low`, `bg-brand`, `border-brand`, `fg-default`, `fg-muted`, `border-danger-emphasis` tokens across root, icon-highlight, icon, filename, filesize, and delete-button layers.
 - [SideBar](../components/_index_sidebar.md) — consumes `bg-default`, `bg-invisible`, `bg-decorative-orange`, `bg-inset`, `border-default`, `fg-default`, `fg-muted` tokens across root, header, notification-button, notification-dot, context-label, context-chevron, menu, profil, and user-name layers.
 - [Header Desktop](../components/_index_header-desktop.md) — consumes `fg-brand-contrasted` (title), `bg-invisible`, `border-invisible` (tertiary buttons), `bg-default`, `border-brand`, `fg-brand` (secondary button), `bg-default`, `border-default`, `fg-subtle` (search-input), `fg-muted`, `fg-default` (breadcrumbs) across both feature variants.
 - [Header Phone](../components/_index_header-phone.md) — consumes `border-default` (root bottom border), `bg-invisible`, `border-invisible` (tertiary button layers), `fg-brand-contrasted` (logo color, title color), `bg-decorative-orange` (notification dot).
@@ -145,6 +146,7 @@ Translucency overlays. Same value across all four brands (they alias `light-N` p
 - [Header Showup](../components/_index_header-showup.md) — consumes `bg-brand-contrasted` (root fill), `bg-info`/`fg-info-contrasted` (logo-badge, via Badge), `bg-inset`/`fg-on-emphasis` (action-tools-button, via Button), `bg-secondary-brand` (user-avatar slot default), `fg-on-emphasis` (language-selector slot default) tokens.
 - [Navbar Item](../components/_index_navbar-item.md) — consumes `fg-on-emphasis` (icon, label, identical across all three states), `alpha-10` (hover-state root fill), `border-light` (selected-state right-edge stroke) tokens.
 - [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — consumes `bg-navrail` (root fill, a DS-side alias for an unbound Figma literal — see gaps) and `alpha-10` (logo slot default fill) tokens.
+- [InputFile](../components/_index_input-file.md) — consumes `bg-brand-low`, `border-brand`, `border-brand-emphasis` (drop-zone SVG dashed outline, rest/dragActive), `bg-brand`, `fg-muted`, `bg-default`, `border-default`, `bg-inset`, `border-invisible` tokens across root, illustration, dropzone-label, file-input, and action-button layers.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
