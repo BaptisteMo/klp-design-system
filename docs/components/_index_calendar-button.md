@@ -140,10 +140,6 @@ export function CalendarButtonExample() {
 - [Spacing](../tokens/spacing.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [Calendar](./_index_calendar.md)

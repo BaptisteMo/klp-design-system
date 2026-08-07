@@ -1,0 +1,12 @@
+FAILED: could not persist screenshot to disk.
+
+figma_get_component_image (REST) returned 403 Token expired for node 113649:1789.
+figma_capture_screenshot (plugin bridge) DID successfully render this node inline
+(PNG, 925x76 @1.7x, ~11KB) and visually confirmed the composite default state:
+teal-bordered row, teal file-text icon in a 40x40 highlight square, filename
+"contract_ready_signed.pdf", size "442kb", and two icon-only tertiary buttons
+(download, trash). However that tool has no filesystem-write / URL-return path
+available to this agent, so the bytes could not be saved as default.png.
+
+Regenerate a personal access token (figma.com -> Settings -> Security -> Personal
+access tokens), set FIGMA_ACCESS_TOKEN, and re-run the extractor to get a real PNG.

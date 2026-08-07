@@ -113,10 +113,6 @@ export function TabulationCellsExample() {
 - [Radius](../tokens/radius.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [Tabulations](./_index_tabulations.md) — TabulationsCellBridge renders TabulationCell with Radix data-state bridged to the state prop.

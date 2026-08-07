@@ -1,0 +1,52 @@
+{
+  "name": "header-showup",
+  "type": "registry:ui",
+  "description": "ShowUp application top navigation bar (\"Nav\"). Single plain COMPONENT (no variant axes). Three horizontal zones: Logo (wordmark + info badge), Items (5 primary nav links via nav-item, bottom-aligned), and Right (Tools button, language selector, user avatar).",
+  "meta": {
+    "figmaNode": "113635:24864",
+    "captureBrand": "showup",
+    "category": "navigation",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": [
+      "root",
+      "zone-logo",
+      "logo-mark",
+      "logo-badge",
+      "zone-items",
+      "nav-item",
+      "zone-right",
+      "action-tools-button",
+      "user-avatar",
+      "language-selector"
+    ],
+    "variantAxes": {},
+    "variantCount": 1
+  },
+  "internalDependencies": [
+    "badges",
+    "button",
+    "nav-item"
+  ],
+  "files": [
+    {
+      "path": "src/components/header-showup/HeaderShowup.tsx",
+      "type": "registry:ui"
+    },
+    {
+      "path": "src/components/header-showup/index.ts",
+      "type": "registry:ui"
+    }
+  ],
+  "dependencies": {
+    "components": [
+      "badges",
+      "button",
+      "nav-item"
+    ],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
+}

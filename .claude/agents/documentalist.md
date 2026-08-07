@@ -287,8 +287,10 @@ If empty: `*Leaf component — no klp dependencies.*`
 ### Token groups
 - [<group>](../tokens/<group>.md) — one line per token group consumed.
 
-### Brands
-- [<brand>](../brands/<brand>.md) — one line per brand the component has reference screenshots for.
+<!-- No "Brands" subsection: a component page listing the single brand it was
+captured under carried no signal for the reader. The `brands` key stays in the
+frontmatter — the brand pages' reverse index and the LINT brand-reference check
+both read it. Do not reintroduce the rendered section. -->
 
 ## Used by
 

@@ -150,10 +150,6 @@ export function TextAreaExample() {
 - [Radius](../tokens/radius.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 *Not yet used by any other klp component.*

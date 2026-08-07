@@ -1,0 +1,26 @@
+{
+  "name": "sidebar-atlas",
+  "type": "registry:ui",
+  "description": "Atlas application left navigation rail. 70px-wide, full-height vertical stack: a top logo slot followed by an arbitrary list of navbar-item entries, driven entirely through the `items` prop (selected route, forced state, real hrefs).",
+  "meta": {
+    "figmaNode": "113645:25415",
+    "captureBrand": "atlas",
+    "category": "navigation",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": [
+      "root",
+      "logo",
+      "nav-items"
+    ],
+    "variantAxes": {}
+  },
+  "dependencies": {
+    "components": [
+      "navbar-item"
+    ],
+    "npm": [
+      "class-variance-authority"
+    ]
+  }
+}

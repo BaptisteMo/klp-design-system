@@ -1,0 +1,23 @@
+{
+  "name": "file-dropped",
+  "type": "registry:ui",
+  "description": "Row displaying a single already-selected/uploaded file (filename + size) with download and delete actions across three states (default, uploading, done).",
+  "meta": {
+    "figmaNode": "113649:1789",
+    "captureBrand": "klub",
+    "category": "inputs",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": ["root", "icon-highlight", "icon", "filename", "filesize", "download-button", "delete-button"],
+    "variantAxes": {
+      "state": ["default", "uploading", "done"]
+    }
+  },
+  "dependencies": {
+    "components": ["button"],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
+}

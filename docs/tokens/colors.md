@@ -2,7 +2,7 @@
 title: Color tokens
 type: token-group
 group: colors
-updated: 2026-04-16
+updated: 2026-08-07
 ---
 
 # Color tokens
@@ -21,6 +21,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 | `bg-brand` | `gray-500` | `emerald-500` | `night-blue-700` | `midnight-500` |
 | `bg-brand-low` | `gray-300` | `emerald-50` | `night-blue-100` | `night-blue-100` |
 | `bg-brand-contrasted` | `gray-600` | `emerald-700` | `night-blue-900` | `midnight-800` |
+| `bg-navrail` | `storm-900` | `storm-900` | `storm-900` | `storm-900` |
 | `bg-secondary-brand` | `gray-500` | `cyan-500` | `fuchsia-500` | `gold-500` |
 | `bg-secondary-brand-low` | `gray-300` | `cyan-50` | `fuchsia-300` | `gold-300` |
 | `bg-secondary-brand-contrasted` | `gray-600` | `cyan-700` | `fuchsia-800` | `gold-700` |
@@ -88,6 +89,19 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 
 > Cell values reference primitives in `src/styles/tokens/primitives.css`. Each cell is `var(--klp-color-<value>)`.
 
+## Alpha (`--klp-alpha-*`)
+
+Translucency overlays. Same value across all four brands (they alias `light-N` primitives, not brand-switched palette colors).
+
+| Alias | wireframe | klub | atlas | showup |
+|---|---|---|---|---|
+| `alpha-80` | `light-80` | `light-80` | `light-80` | `light-80` |
+| `alpha-10` | `light-10` | `light-10` | `light-10` | `light-10` |
+
+> `alpha-10` is a **DS-side addition** (2026-08-05), not a Figma capture: the Figma alpha family only defines `alpha/80`, but the `light-10` primitive (`#FFFFFF1A`) already existed. Added to satisfy [Nav Item](../components/_index_nav-item.md)'s hover overlay, a design instruction with no matching Figma variant. See `docs/tokens/_index_tokens.md` Notes for the standing partial-recapture note.
+
+> `bg-navrail` is a **DS-side addition** (2026-08-06), not a Figma capture: [Sidebar (Atlas)](../components/_index_sidebar-atlas.md)'s root fill `#22222D` is bound to no Figma variable anywhere in the file (searched exhaustively across every collection). Points at the nearest existing primitive `storm-900` (`#191D2C`, RGB distance 10, imperceptible) as an approximation, same across all four brands (only `atlas` is currently validated against it). This is a genuine gap — Figma should introduce a real token for the nav-rail surface.
+
 ## Tailwind utilities
 
 | Token | Utility |
@@ -95,6 +109,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 | `--klp-bg-*` | `bg-klp-bg-*` (e.g. `bg-klp-bg-brand`) |
 | `--klp-fg-*` | `text-klp-fg-*` (e.g. `text-klp-fg-on-emphasis`) |
 | `--klp-border-*` | `border-klp-border-*` (always paired with `border` for width) |
+| `--klp-alpha-*` | `bg-klp-alpha-*` (e.g. `bg-klp-alpha-10`) |
 
 ## Used by
 
@@ -117,6 +132,7 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Pagination](../components/_index_pagination.md) — consumes `fg-muted` (range label and dots), `bg-inset` (active page button background), `border-brand` (active page button border).
 - [Data Table](../components/_index_data-table.md) — consumes `fg-default` (active sort icon), `fg-muted` (inactive sort icon and empty-state text); table-level and pagination-level color tokens inherited from sub-components.
 - [Item Side Bar](../components/_index_item-side-bar.md) — consumes `bg-default`, `bg-inset`, `bg-invisible`, `fg-default`, `border-contrasted`, `border-invisible` tokens across trigger, icon-container, label, and content layers.
+- [File Dropped](../components/_index_file-dropped.md) — consumes `bg-brand-low`, `bg-brand`, `border-brand`, `fg-default`, `fg-muted`, `border-danger-emphasis` tokens across root, icon-highlight, icon, filename, filesize, and delete-button layers.
 - [SideBar](../components/_index_sidebar.md) — consumes `bg-default`, `bg-invisible`, `bg-decorative-orange`, `bg-inset`, `border-default`, `fg-default`, `fg-muted` tokens across root, header, notification-button, notification-dot, context-label, context-chevron, menu, profil, and user-name layers.
 - [Header Desktop](../components/_index_header-desktop.md) — consumes `fg-brand-contrasted` (title), `bg-invisible`, `border-invisible` (tertiary buttons), `bg-default`, `border-brand`, `fg-brand` (secondary button), `bg-default`, `border-default`, `fg-subtle` (search-input), `fg-muted`, `fg-default` (breadcrumbs) across both feature variants.
 - [Header Phone](../components/_index_header-phone.md) — consumes `border-default` (root bottom border), `bg-invisible`, `border-invisible` (tertiary button layers), `fg-brand-contrasted` (logo color, title color), `bg-decorative-orange` (notification dot).
@@ -126,6 +142,11 @@ Semantic color aliases switched by `[data-brand]`. **Components must consume ali
 - [Calendar Button](../components/_index_calendar-button.md) — consumes `bg-default`, `bg-disable`, `bg-subtle`, `bg-brand`, `border-invisible`, `border-default`, `fg-default`, `fg-subtle`, `fg-disable`, `fg-on-emphasis` tokens across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — consumes `bg-default`, `bg-invisible`, `fg-muted`, `fg-default`, `border-invisible`, `border-default` tokens across root, nav-button, month-label, weekday-label, separator, and footer-label layers.
 - [Separator](../components/_index_separator.md) — consumes `border-default` (line stroke, both directions).
+- [Nav Item](../components/_index_nav-item.md) — consumes `fg-on-emphasis` (icon, label), `border-light` (active-state underline, reconciled onto a hardcoded Figma literal) across both state variants, and `alpha-10` (hover-overlay fill, a design addition not in the Figma spec — see gaps).
+- [Header Showup](../components/_index_header-showup.md) — consumes `bg-brand-contrasted` (root fill), `bg-info`/`fg-info-contrasted` (logo-badge, via Badge), `bg-inset`/`fg-on-emphasis` (action-tools-button, via Button), `bg-secondary-brand` (user-avatar slot default), `fg-on-emphasis` (language-selector slot default) tokens.
+- [Navbar Item](../components/_index_navbar-item.md) — consumes `fg-on-emphasis` (icon, label, identical across all three states), `alpha-10` (hover-state root fill), `border-light` (selected-state right-edge stroke) tokens.
+- [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — consumes `bg-navrail` (root fill, a DS-side alias for an unbound Figma literal — see gaps) and `alpha-10` (logo slot default fill) tokens.
+- [InputFile](../components/_index_input-file.md) — consumes `bg-brand-low`, `border-brand`, `border-brand-emphasis` (drop-zone SVG dashed outline, rest/dragActive), `bg-brand`, `fg-muted`, `bg-default`, `border-default`, `bg-inset`, `border-invisible` tokens across root, illustration, dropzone-label, file-input, and action-button layers.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

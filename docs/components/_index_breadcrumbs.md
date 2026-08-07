@@ -96,10 +96,6 @@ export function BreadCrumbsExample() {
 - [Colors](../tokens/colors.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [wireframe](../brands/wireframe.md)
-
 ## Used by
 
 - [Header Desktop](./_index_header-desktop.md)

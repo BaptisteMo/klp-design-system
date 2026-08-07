@@ -2,7 +2,7 @@
 title: Typography tokens
 type: token-group
 group: typography
-updated: 2026-04-16
+updated: 2026-08-07
 ---
 
 # Typography tokens
@@ -75,10 +75,15 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Header Phone](../components/_index_header-phone.md) — `--klp-font-size-heading-h1`, `--klp-font-family-title`, `--klp-font-weight-title` on the title `h1` layer.
 - [SideBar](../components/_index_sidebar.md) — `font-klp-label` on context-label and user-name layers; literal 14px (context-label) and 16px (user-name) font sizes.
 - [Collapsible](../components/_index_collapsible.md) — `text-klp-text-large`, `font-klp-label`, `font-klp-label-bold` on title layer; `text-klp-text-medium`, `font-klp-label` on content-text layer across both state variants.
+- [File Dropped](../components/_index_file-dropped.md) — `font-klp-body`, `text-klp-text-medium` on filename and filesize layers; fontFamily/fontSize/fontWeight/lineHeight were literal (unbound "Inter") on both layers, snapped onto the body-text alias by exact 16px match (see gaps).
 - [Modal Variation](../components/_index_modal-variation.md) — `--klp-font-size-text-medium`, `--klp-font-family-label`, `--klp-font-weight-label` on label layer across both type variants.
 - [Input Multiselect](../components/_index_input-multiselect.md) — `font-klp-label`, `text-klp-text-medium` on trigger-label and placeholder layers; `font-klp-body`, `text-klp-text-small` on chip-label layer.
 - [Calendar Button](../components/_index_calendar-button.md) — `font-klp-label`, `font-klp-label-bold` (weight 600), `text-klp-text-medium` (16px) on label layer across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — `font-klp-label`, `font-klp-label-bold`, `text-klp-text-medium` on month-label and footer-label layers; `font-klp-body`, `text-klp-text-small` on weekday-label layer.
+- [Nav Item](../components/_index_nav-item.md) — `--klp-font-family-label`, `--klp-font-weight-label-bold`, `--klp-font-size-text-small` on the label layer — not Figma-bound (hardcoded Arial/Bold/14 literal), reconciled by exact value match under `showup`.
+- [Header Showup](../components/_index_header-showup.md) — `--klp-font-family-title` (logo-mark slot default); `--klp-font-family-body`/`--klp-font-weight-body` (logo-badge, via Badge); `--klp-font-size-text-small`/`--klp-font-weight-label-bold`/`--klp-font-family-label` (action-tools-button, via Button); literal 14px/700 (language-selector slot default, not token-bound).
+- [Navbar Item](../components/_index_navbar-item.md) — `--klp-font-size-text-smaller`, `--klp-font-weight-label`, `--klp-font-family-label` on the label layer, fully Figma-bound and identical across all three states.
+- [InputFile](../components/_index_input-file.md) — `--klp-font-size-text-large`, `--klp-font-family-label`, `--klp-font-weight-label` on the dropzone-label layer (drop-zone layout only).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

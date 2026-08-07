@@ -110,10 +110,6 @@ export function TableExample() {
 - [Spacing](../tokens/spacing.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [Data Table](./_index_data-table.md) — DataTable renders rows using Table.Root/Header/Body/Row/Head/Cell primitives.

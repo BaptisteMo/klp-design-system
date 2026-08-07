@@ -1,0 +1,371 @@
+{
+  "name": "navbar-item",
+  "displayName": "Navbar Item",
+  "figmaNode": "113645:25168",
+  "captureBrand": "atlas",
+  "category": "navigation",
+  "description": "Atlas sidebar navigation item: a 70x52 vertical stack (icon over label) with three interaction states (default, hover, selected). Unlike the ShowUp `nav-item` component (which has multiple unresolved literal bindings — see token-gaps.md), this component is fully and correctly tokenized in Figma: every styled property on every layer resolves to a named Figma variable with a matching `--klp-*` alias. No token gaps on the component's own layers (root/icon/label); the single gap recorded below is on an internal geometry property of the nested icon-selector sub-instance, not on navbar-item itself.",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "button",
+      "notes": "70x52 vertical flex stack (flex-col items-center justify-center), paddingY 4px each side, gap 4px between icon and label. No horizontal padding. asChild-friendly so consumers can render as <a> for real navigation links."
+    },
+    {
+      "part": "icon",
+      "element": "span",
+      "notes": "70x24 lucide-react icon slot (NOT a klp component reuse per explicit instruction — the Figma 'Icon selector' instance is treated purely as an icon-rendering slot). Sample glyph resolves to lucide 'search'. Centered, 2px inset padding (--klp-size-4xs) on all sides around a 20x20 icon box; the icon glyph itself renders at 15x15 with a 1.5px stroke weight (literal, not bound to a variable)."
+    },
+    {
+      "part": "label",
+      "element": "span",
+      "notes": "70x16 TEXT node, sample copy \"Search\", centered, single line, fully token-bound (fill, fontSize, fontWeight, fontFamily)."
+    }
+  ],
+  "variantAxes": {
+    "state": [
+      "default",
+      "hover",
+      "selected"
+    ]
+  },
+  "variants": [
+    {
+      "id": "default",
+      "axes": {
+        "state": "default"
+      },
+      "figmaNodeId": "113645:25166",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (figma_capture_screenshot / figma_get_component_image responses exposed no filesystem path or base64 reachable by this session's Write/Bash tools, and the REST image API is unavailable — FIGMA_ACCESS_TOKEN expired). No .png.FAILED placeholder was written per instructions. Re-run screenshot capture once file persistence is available.",
+      "layers": {
+        "root": {
+          "fill": {
+            "literal": "none"
+          },
+          "stroke": {
+            "literal": "none"
+          },
+          "paddingTop": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "paddingBottom": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "literals": {
+            "width": "70px",
+            "height": "52px",
+            "cornerRadius": "0px"
+          }
+        },
+        "icon": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "fg/on-emphasis",
+            "value": "#F7F9F8"
+          },
+          "paddingTop": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingBottom": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingLeft": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingRight": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "search",
+            "width": "70px",
+            "height": "24px",
+            "iconBoxSize": "20px",
+            "iconGlyphSize": "15px",
+            "strokeWeight": "1.5px"
+          }
+        },
+        "label": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "fg/on-emphasis",
+            "value": "#F7F9F8"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-smaller",
+            "figmaVar": "Sizing/Text/Smaller",
+            "value": "11px"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "Regular (400)"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Roboto"
+          },
+          "lineHeight": {
+            "literal": "16px"
+          },
+          "literals": {
+            "width": "70px",
+            "height": "16px",
+            "textAlign": "center"
+          }
+        }
+      }
+    },
+    {
+      "id": "hover",
+      "axes": {
+        "state": "hover"
+      },
+      "figmaNodeId": "113645:25165",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (see 'default' variant note for details).",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-alpha-10",
+            "figmaVar": "color/light/10",
+            "value": "#FFFFFF1A"
+          },
+          "stroke": {
+            "literal": "none"
+          },
+          "paddingTop": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "paddingBottom": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "literals": {
+            "width": "70px",
+            "height": "52px",
+            "cornerRadius": "0px"
+          }
+        },
+        "icon": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "fg/on-emphasis",
+            "value": "#F7F9F8"
+          },
+          "paddingTop": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingBottom": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingLeft": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingRight": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "search",
+            "width": "70px",
+            "height": "24px",
+            "iconBoxSize": "20px",
+            "iconGlyphSize": "15px",
+            "strokeWeight": "1.5px"
+          }
+        },
+        "label": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "fg/on-emphasis",
+            "value": "#F7F9F8"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-smaller",
+            "figmaVar": "Sizing/Text/Smaller",
+            "value": "11px"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "Regular (400)"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Roboto"
+          },
+          "lineHeight": {
+            "literal": "16px"
+          },
+          "literals": {
+            "width": "70px",
+            "height": "16px",
+            "textAlign": "center"
+          }
+        }
+      }
+    },
+    {
+      "id": "selected",
+      "axes": {
+        "state": "selected"
+      },
+      "figmaNodeId": "113645:25167",
+      "screenshot": null,
+      "screenshotNote": "Reference PNG could not be persisted to disk this session (see 'default' variant note for details).",
+      "layers": {
+        "root": {
+          "fill": {
+            "literal": "none"
+          },
+          "stroke": {
+            "token": "--klp-border-light",
+            "figmaVar": "color/light/100",
+            "value": "#FFFFFF"
+          },
+          "paddingTop": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "paddingBottom": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-4xs",
+            "figmaVar": null,
+            "value": "4px"
+          },
+          "literals": {
+            "width": "70px",
+            "height": "52px",
+            "cornerRadius": "0px",
+            "strokeSide": "right-only",
+            "strokeRightWeight": "3px",
+            "strokeTopWeight": "0px",
+            "strokeBottomWeight": "0px",
+            "strokeLeftWeight": "0px",
+            "strokeAlign": "INSIDE"
+          }
+        },
+        "icon": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "fg/on-emphasis",
+            "value": "#F7F9F8"
+          },
+          "paddingTop": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingBottom": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingLeft": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "paddingRight": {
+            "token": "--klp-size-4xs",
+            "figmaVar": "Sizing/4XS",
+            "value": "2px"
+          },
+          "literals": {
+            "icon": "search",
+            "width": "70px",
+            "height": "24px",
+            "iconBoxSize": "20px",
+            "iconGlyphSize": "15px",
+            "strokeWeight": "1.5px"
+          }
+        },
+        "label": {
+          "color": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "fg/on-emphasis",
+            "value": "#F7F9F8"
+          },
+          "fontSize": {
+            "token": "--klp-font-size-text-smaller",
+            "figmaVar": "Sizing/Text/Smaller",
+            "value": "11px"
+          },
+          "fontWeight": {
+            "token": "--klp-font-weight-label",
+            "figmaVar": "Weight/Label",
+            "value": "Regular (400)"
+          },
+          "fontFamily": {
+            "token": "--klp-font-family-label",
+            "figmaVar": "Family/Label",
+            "value": "Roboto"
+          },
+          "lineHeight": {
+            "literal": "16px"
+          },
+          "literals": {
+            "width": "70px",
+            "height": "16px",
+            "textAlign": "center"
+          }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "link",
+    "keyboardSupport": [
+      "Enter",
+      "Space"
+    ],
+    "notes": "Rendered as a nav item inside an Atlas sidebar. Recommend <a> (or asChild + Slot to a router Link) with aria-current=\"page\" applied when state=\"selected\" instead of relying on the visual right-edge stroke alone. Hover state must remain reachable via :focus-visible for keyboard users, not just :hover."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": [],
+    "candidates": [],
+    "instances": []
+  }
+}

@@ -304,7 +304,9 @@
         ]
       },
       "usedBy": [
+        "header-showup",
         "input-multiselect",
+        "nav-item",
         "tabulation-cells"
       ],
       "created": "2026-04-16",
@@ -544,9 +546,12 @@
       "usedBy": [
         "calendar",
         "collapsible",
+        "file-dropped",
         "floating-alert",
         "header-desktop",
         "header-phone",
+        "header-showup",
+        "input-file",
         "list",
         "list-content",
         "modal-variation",
@@ -1105,6 +1110,110 @@
       "updated": "2026-04-21"
     },
     {
+      "name": "file-dropped",
+      "displayName": "File Dropped",
+      "description": "Row displaying a single already-selected/uploaded file (filename + size) with download and delete actions. Plain Figma COMPONENT (no variant axis) \u2014 the designer stacked three mutually-exclusive state icons inside a clipped auto-layout frame; a `state` axis (default | uploading | done) is synthesized from that stack, not captured as a Figma variant.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/file-dropped/FileDropped.tsx",
+      "doc": "docs/components/_index_file-dropped.md",
+      "playground": "playground/routes/file-dropped.tsx",
+      "registry": "registry/file-dropped.json",
+      "spec": ".klp/figma-refs/file-dropped/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "icon-highlight",
+        "icon",
+        "filename",
+        "filesize",
+        "download-button",
+        "delete-button"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "uploading",
+          "done"
+        ]
+      },
+      "variantCount": 3,
+      "props": {
+        "name": {
+          "class": "required",
+          "type": "string",
+          "default": null,
+          "description": "Filename displayed in the row (e.g. \"contract_ready_signed.pdf\")",
+          "derivedFrom": null
+        },
+        "size": {
+          "class": "required",
+          "type": "string",
+          "default": null,
+          "description": "Pre-formatted file size string (e.g. \"442kb\")",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "persistent",
+          "type": "FileDroppedState",
+          "default": "'default'",
+          "description": "Which of the three mutually-exclusive state icons to render \u2014 synthesized from Figma's stacked-icon frame (file-text / loader-circle / check)",
+          "derivedFrom": null
+        },
+        "progress": {
+          "class": "optional",
+          "type": "number",
+          "default": null,
+          "description": "Upload progress percentage (0-100). Only meaningful while `state=\"uploading\"`; surfaced as `aria-valuenow` on the row for assistive tech",
+          "derivedFrom": null
+        },
+        "onDownload": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Called when the download action is activated. The download button is hidden while `state=\"uploading\"`",
+          "derivedFrom": null
+        },
+        "onDelete": {
+          "class": "optional",
+          "type": "() => void",
+          "default": null,
+          "description": "Called when the delete action is activated",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the outer root wrapper",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-07",
+      "updated": "2026-08-07"
+    },
+    {
       "name": "floating-alert",
       "displayName": "Floating Alert",
       "description": "A floating alert banner with a state-colored icon highlight, body text, and a dismiss button. Four severity states (Danger, Warning, Information, Success) in three sizes (Small, Medium, Large).",
@@ -1457,6 +1566,148 @@
       "updated": "2026-04-21"
     },
     {
+      "name": "header-showup",
+      "displayName": "Header Showup",
+      "description": "ShowUp application top navigation bar (\"Nav\"). Single plain COMPONENT (no variant axes), 1440x80 canvas sample rendered as w-full. Three horizontal zones inside a SPACE_BETWEEN flex root: Logo (wordmark + info badge), Items (5 primary nav links via nav-item, bottom-aligned so the active underline sits flush on the header's bottom edge), and Right (Tools button, language selector, user avatar \u2014 only 3 of 7 Figma children are visible in the master instance).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "showup",
+      "status": "stable",
+      "source": "src/components/header-showup/HeaderShowup.tsx",
+      "doc": "docs/components/_index_header-showup.md",
+      "playground": "playground/routes/header-showup.tsx",
+      "registry": "registry/header-showup.json",
+      "spec": ".klp/figma-refs/header-showup/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "zone-logo",
+        "logo-mark",
+        "logo-badge",
+        "zone-items",
+        "nav-item",
+        "zone-right",
+        "action-tools-button",
+        "user-avatar",
+        "language-selector"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "items": {
+          "class": "required",
+          "type": "HeaderShowupNavItem[]",
+          "default": null,
+          "description": "Primary navigation entries rendered in the Items zone.",
+          "derivedFrom": null
+        },
+        "onItemSelect": {
+          "class": "optional",
+          "type": "(id: string) => void",
+          "default": null,
+          "description": "Called when a nav item is selected, receiving its id.",
+          "derivedFrom": null
+        },
+        "logo": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "\"SHOWUP\" text wordmark",
+          "description": "Brand wordmark slot.",
+          "derivedFrom": null
+        },
+        "badge": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Info badge slot rendered beside the logo. Defaults to a Badge (Type=Info, Size=Small, Style=Light).",
+          "derivedFrom": null
+        },
+        "languageSelector": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Language selector slot. Defaults to a minimal \"NL\" trigger button.",
+          "derivedFrom": null
+        },
+        "userSlot": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "User avatar slot. Defaults to a circular initial (\"C\").",
+          "derivedFrom": null
+        },
+        "actions": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Extra content appended after the Tools button in the Right zone.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "badges",
+          "button",
+          "nav-item"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "showup"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "badges",
+            "notes": "logo-badge renders as <Badge badgeType=\"info\" size=\"small\" badgeStyle=\"light\">."
+          },
+          {
+            "klpComponent": "button",
+            "notes": "action-tools-button renders as <Button variant=\"tertiary\" size=\"sm\" rightIcon={<ChevronDown />}>."
+          },
+          {
+            "klpComponent": "nav-item",
+            "notes": "Items zone renders one <NavItem> per entry in the items[] array, driving icon/counter/active/asChild props."
+          }
+        ],
+        "gaps": [
+          {
+            "part": "logo-mark",
+            "kind": "new-primitive",
+            "figmaInstance": "Logo SHOWUP W",
+            "reason": "No 'brand-logo' component exists in klp-components.json. The SHOWUP wordmark is pure vector artwork, not tokenizable.",
+            "action": "Exposed as a consumer-provided `logo` slot with a minimal default (plain 'SHOWUP' text, no inline SVG)."
+          },
+          {
+            "part": "user-avatar",
+            "kind": "new-primitive",
+            "figmaInstance": "User",
+            "reason": "No 'avatar' component exists yet in klp-components.json.",
+            "action": "Exposed as a consumer-provided `userSlot` slot with a minimal default (32px circle, bg/stroke --klp-bg-secondary-brand, initial \"C\")."
+          },
+          {
+            "part": "language-selector",
+            "kind": "new-primitive",
+            "figmaInstance": "Languages//Xhite",
+            "reason": "No 'language-selector' / Select component exists yet in klp-components.json. The flag icon is not a lucide-react icon.",
+            "action": "Exposed as a consumer-provided `languageSelector` slot with a minimal default (plain button, \"NL\" label + ChevronDown trailing icon, no flag)."
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-05",
+      "updated": "2026-08-05"
+    },
+    {
       "name": "in-content-alert",
       "displayName": "InContent Alert",
       "description": "Inline alert banner with a semantic content type (Info, Success, Danger, Warning) and three sizes. Displays a title with matching icon and an optional body text below.",
@@ -1665,10 +1916,135 @@
       "usedBy": [
         "calendar",
         "header-desktop",
+        "input-file",
         "input-multiselect"
       ],
       "created": "2026-04-17",
       "updated": "2026-08-04"
+    },
+    {
+      "name": "input-file",
+      "displayName": "InputFile",
+      "description": "File upload field with two layouts: DropZone (dashed drag-and-drop panel with a decorative files illustration) and Simple (a labeled Input field with a plus icon + placeholder, helper text, and a 'Take picture' action button). Wraps a native <input type=\"file\"> with drag-and-drop support.",
+      "category": "inputs",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/input-file/InputFile.tsx",
+      "doc": "docs/components/_index_input-file.md",
+      "playground": "playground/routes/input-file.tsx",
+      "registry": "registry/input-file.json",
+      "spec": ".klp/figma-refs/input-file/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "illustration",
+        "dropzone-label",
+        "progress-indicator",
+        "file-input",
+        "action-button"
+      ],
+      "variantAxes": {
+        "inputType": [
+          "drop-zone",
+          "simple"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "layout": {
+          "class": "optional",
+          "type": "'drop-zone' | 'simple'",
+          "default": "'drop-zone'",
+          "description": "Which visual layout to render: dashed drag-and-drop panel or a labeled Input row",
+          "derivedFrom": null
+        },
+        "label": {
+          "class": "optional",
+          "type": "string",
+          "default": "'Power of attorney'",
+          "description": "Label rendered above the field in the `simple` layout (forwarded to the DS `Input`)",
+          "derivedFrom": null
+        },
+        "description": {
+          "class": "optional",
+          "type": "string",
+          "default": "'PDF, JPG, PNG (20mo max)'",
+          "description": "Helper text rendered below the field in the `simple` layout (forwarded to the DS `Input`)",
+          "derivedFrom": null
+        },
+        "placeholder": {
+          "class": "optional",
+          "type": "string",
+          "default": "'Choose your files'",
+          "description": "Placeholder text for the `simple` layout's Input field",
+          "derivedFrom": null
+        },
+        "actionLabel": {
+          "class": "optional",
+          "type": "string",
+          "default": "'Take picture'",
+          "description": "Label for the 'Take picture' action button, only rendered in the `simple` layout",
+          "derivedFrom": null
+        },
+        "accept": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "MIME types / extensions accepted by the underlying `<input type=\"file\">`",
+          "derivedFrom": null
+        },
+        "multiple": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Allow selecting more than one file",
+          "derivedFrom": null
+        },
+        "disabled": {
+          "class": "optional",
+          "type": "boolean",
+          "default": null,
+          "description": "Disable both the field and drag-and-drop interaction",
+          "derivedFrom": null
+        },
+        "onFilesSelected": {
+          "class": "optional",
+          "type": "(files: File[]) => void",
+          "default": null,
+          "description": "Called with the array of selected files, from either the file picker or a drop event",
+          "derivedFrom": null
+        },
+        "className": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "Additional className applied to the outer root wrapper",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "button",
+          "input"
+        ],
+        "externals": [
+          "class-variance-authority",
+          "lucide-react"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "radius",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-07",
+      "updated": "2026-08-07"
     },
     {
       "name": "input-multiselect",
@@ -2436,6 +2812,203 @@
       "updated": "2026-04-23"
     },
     {
+      "name": "nav-item",
+      "displayName": "Nav Item",
+      "description": "ShowUp application header nav item. Single variant axis (State: Default | Active) plus two optional parts: a leading icon slot and a trailing counter badge (reused from the Badge component). Not tokenized in Figma \u2014 colors reconciled onto klp aliases by exact hex match; label font substituted onto klp label typography (see gaps).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "showup",
+      "status": "stable",
+      "source": "src/components/nav-item/NavItem.tsx",
+      "doc": "docs/components/_index_nav-item.md",
+      "playground": "playground/routes/nav-item.tsx",
+      "registry": "registry/nav-item.json",
+      "spec": ".klp/figma-refs/nav-item/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "content",
+        "icon",
+        "label",
+        "counter-badge"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "active"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "active": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Marks this item as the current page. Toggles the bottom underline and sets `aria-current=\"page\"` for assistive tech.",
+          "derivedFrom": null
+        },
+        "href": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "When set, the item renders as an `<a href>` instead of a `<button>` \u2014 the common case for a navigation entry.",
+          "derivedFrom": null
+        },
+        "icon": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional leading icon (Figma boolean prop `Show Icon selector`). Pass a lucide-react icon element; omit to hide.",
+          "derivedFrom": null
+        },
+        "counter": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Optional trailing counter badge (Figma boolean prop `HasCounter`). Pass the counter content; omit to hide.",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Nav item label text.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "badges"
+        ],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "showup"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          {
+            "klpComponent": "badges",
+            "notes": "Trailing counter badge (Type=Primary, Size=Small, Style=Light)."
+          }
+        ],
+        "gaps": [
+          {
+            "part": "label-typography",
+            "kind": "no-instance-no-match",
+            "reason": "Figma type is hardcoded Arial/Bold 14 with zero bound variables; not a klp font.",
+            "action": "substituted-klp-label-font"
+          },
+          {
+            "part": "hover-overlay",
+            "kind": "token-gap",
+            "reason": "A hover state was added by design instruction; it does not exist in the Figma component set (State: Default | Active only). Implementing it required a 10%-white alpha alias that aliases.css did not expose (only alpha-80 existed).",
+            "action": "added-alias --klp-alpha-10 -> --klp-color-light-10 in all four [data-brand] blocks; DS-side addition, not a Figma capture."
+          }
+        ]
+      },
+      "usedBy": [
+        "header-showup"
+      ],
+      "created": "2026-08-05",
+      "updated": "2026-08-06"
+    },
+    {
+      "name": "navbar-item",
+      "displayName": "Navbar Item",
+      "description": "Atlas application sidebar rail item (70x52 vertical icon-over-label stack). Single variant axis (state: default | hover | selected). Fully tokenized in Figma; hover is a real CSS :hover surface (forceable via the state prop for docs/playground); selected is author-supplied and always wins over hover.",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "atlas",
+      "status": "stable",
+      "source": "src/components/navbar-item/NavbarItem.tsx",
+      "doc": "docs/components/_index_navbar-item.md",
+      "playground": "playground/routes/navbar-item.tsx",
+      "registry": "registry/navbar-item.json",
+      "spec": ".klp/figma-refs/navbar-item/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "icon",
+        "label"
+      ],
+      "variantAxes": {
+        "state": [
+          "default",
+          "hover",
+          "selected"
+        ]
+      },
+      "variantCount": 3,
+      "props": {
+        "href": {
+          "class": "optional",
+          "type": "string",
+          "default": null,
+          "description": "When set, the item renders as an <a href> instead of a <button> \u2014 the common case for real navigation.",
+          "derivedFrom": null
+        },
+        "state": {
+          "class": "computed",
+          "type": "NavbarItemState",
+          "default": "undefined",
+          "description": "Explicit visual state override. When omitted, the root derives its surface from real CSS :hover and falls back to \"default\" otherwise.",
+          "derivedFrom": "hover (CSS pseudo-class)"
+        },
+        "selected": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Marks this item as the current route. Wins over hover styling (including a real pointer hover) and over an explicit state override. Sets aria-current=\"page\".",
+          "derivedFrom": null
+        },
+        "icon": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Icon slot \u2014 pass a lucide-react icon element.",
+          "derivedFrom": null
+        },
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Item label text.",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "atlas"
+        ]
+      },
+      "composition": {
+        "reuses": [],
+        "gaps": []
+      },
+      "usedBy": [
+        "sidebar-atlas"
+      ],
+      "created": "2026-08-06",
+      "updated": "2026-08-06"
+    },
+    {
       "name": "pagination",
       "displayName": "Pagination",
       "description": "Standalone page navigator with ellipsis algorithm. Reusable outside tables.",
@@ -2818,6 +3391,90 @@
       "usedBy": [],
       "created": "2026-04-20",
       "updated": "2026-08-04"
+    },
+    {
+      "name": "sidebar-atlas",
+      "displayName": "Sidebar (Atlas)",
+      "description": "Atlas brand vertical nav rail (\"NavBar\" in Figma). Plain COMPONENT, no variant axis \u2014 a 70px-wide, full-height vertical stack of a logo slot plus an arbitrary list of navbar-item entries driven by the `items` prop (selected route, forced state, real hrefs).",
+      "category": "navigation",
+      "schemaVersion": "v2",
+      "captureBrand": "atlas",
+      "status": "stable",
+      "source": "src/components/sidebar-atlas/SidebarAtlas.tsx",
+      "doc": "docs/components/_index_sidebar-atlas.md",
+      "playground": "playground/routes/sidebar-atlas.tsx",
+      "registry": "registry/sidebar-atlas.json",
+      "spec": ".klp/figma-refs/sidebar-atlas/spec.json",
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "logo",
+        "nav-items"
+      ],
+      "variantAxes": {},
+      "variantCount": 1,
+      "props": {
+        "items": {
+          "class": "required",
+          "type": "SidebarAtlasItem[]",
+          "default": null,
+          "description": "Primary navigation entries rendered as navbar-item instances.",
+          "derivedFrom": null
+        },
+        "onItemSelect": {
+          "class": "optional",
+          "type": "(id: string) => void",
+          "default": "undefined",
+          "description": "Called when a nav item is selected, receiving its id.",
+          "derivedFrom": null
+        },
+        "logo": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "undefined",
+          "description": "Brand logo slot. Defaults to a minimal placeholder mark (no vector art reproduced).",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [
+          "navbar-item"
+        ],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "atlas"
+        ]
+      },
+      "composition": {
+        "reuses": [
+          "navbar-item"
+        ],
+        "gaps": [
+          {
+            "part": "logo",
+            "kind": "new-primitive",
+            "reason": "Figma logo layer is an IMAGE fill (Atlas wordmark artwork), not a component and not bindable to a token. No klp equivalent exists.",
+            "action": "inlined-local-cva",
+            "figmaInstance": "image 12"
+          },
+          {
+            "part": "root",
+            "kind": "no-instance-no-match",
+            "reason": "Root fill #22222D is bound to no Figma variable anywhere in the file. DS-side alias --klp-bg-navrail was created pointing at the nearest existing primitive storm-900 (RGB distance 10, imperceptible). Figma should introduce a real token for this nav-rail surface.",
+            "action": "used-approximate-alias"
+          }
+        ]
+      },
+      "usedBy": [],
+      "created": "2026-08-06",
+      "updated": "2026-08-06"
     },
     {
       "name": "switch",

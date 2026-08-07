@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-04-22T13:08:20.802Z
+generated-at: 2026-08-07T09:57:51.723Z
 schema-version: 0.1.0
 ---
 
@@ -9,7 +9,7 @@ schema-version: 0.1.0
 
 Condensed reference for design agents. Read this first before any design task; drill into `docs/components/_index_<name>.md` for specifics.
 
-## Inventory (26 components)
+## Inventory (37 components)
 
 ### containers
 - **header-phone** (1 variants) — Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.
@@ -28,8 +28,13 @@ Condensed reference for design agents. Read this first before any design task; d
 
 ### inputs
 - **button** (20 variants) — Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots.
+- **calendar** (1 variants) — A date-picker panel with a month header (prev/next year and month navigation), a Monday-first 7-column day grid, a horizontal separator, and a footer hour-selection field. Single Figma COMPONENT, no variant axes.
+- **calendar-button** (5 variants) — Single day cell of a calendar grid (36x36). Renders a day number over a colored/bordered background communicating the day's state (default, other-month, disable, today, selected).
 - **checkbox** (5 variants) — A toggle control that supports unchecked (Rest), hover, checked (Clicked), indeterminate (Mixed), and disabled states. Single variant axis: State.
+- **file-dropped** (3 variants) — Row displaying a single already-selected/uploaded file (filename + size) with download and delete actions. Plain Figma COMPONENT (no variant axis) — the designer stacked three mutually-exclusive state icons inside a clipped auto-layout frame; a `state` axis (default | uploading | done) is synthesized from that stack, not captured as a Figma variant.
 - **input** (18 variants) — Text input field with label, optional icons (search/action), and helper text. Supports three sizes (large, medium, small) and six states (default, filled, focused, success, danger, disable).
+- **input-file** (2 variants) — File upload field with two layouts: DropZone (dashed drag-and-drop panel with a decorative files illustration) and Simple (a labeled Input field with a plus icon + placeholder, helper text, and a 'Take picture' action button). Wraps a native <input type="file"> with drag-and-drop support.
+- **input-multiselect** (5 variants) — A multi-select input: a labeled trigger box (composed from the Input component) that displays selected values as removable chips (Badges) and a chevron affordance, plus an attached open dropdown panel (ActionSheet_Menu, checkbox type) listing selectable options grouped into sections.
 - **radio** (4 variants) — Radio button control with four interaction states: rest (unchecked default), hover (unchecked hovered), clicked (checked/selected), and disable. No size axis — single size only.
 - **switch** (2 variants) — Toggle switch with two states: on (checked) and off (unchecked). Uses animated thumb with icon indicator. Backed by Radix Switch primitive for full a11y and keyboard support.
 - **text-area** (12 variants) — Multi-line text input with optional rich-text formatting toolbar. Two feature variants: Simple (plain textarea) and Rich text (with formatting toolbar and action bar). Supports Default, Focus, Filled, Danger, Success, and Disable states.
@@ -44,9 +49,13 @@ Condensed reference for design agents. Read this first before any design task; d
 ### navigation
 - **breadcrumbs** (4 variants) — Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.
 - **header-desktop** (2 variants) — Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).
+- **header-showup** (1 variants) — ShowUp application top navigation bar ("Nav"). Single plain COMPONENT (no variant axes), 1440x80 canvas sample rendered as w-full. Three horizontal zones inside a SPACE_BETWEEN flex root: Logo (wordmark + info badge), Items (5 primary nav links via nav-item, bottom-aligned so the active underline sits flush on the header's bottom edge), and Right (Tools button, language selector, user avatar — only 3 of 7 Figma children are visible in the master instance).
 - **item-side-bar** (6 variants) — A sidebar navigation item with an icon, label, and optional collapsible content panel. Two feature axes: Collapsible (shows chevron affordance and expands an ActionSheet content area) and Static (no chevron, no content panel). Three states: Rest, Hover, Active.
+- **nav-item** (2 variants) — ShowUp application header nav item. Single variant axis (State: Default | Active) plus two optional parts: a leading icon slot and a trailing counter badge (reused from the Badge component). Not tokenized in Figma — colors reconciled onto klp aliases by exact hex match; label font substituted onto klp label typography (see gaps).
+- **navbar-item** (3 variants) — Atlas application sidebar rail item (70x52 vertical icon-over-label stack). Single variant axis (state: default | hover | selected). Fully tokenized in Figma; hover is a real CSS :hover surface (forceable via the state prop for docs/playground); selected is author-supplied and always wins over hover.
 - **pagination** (1 variants) — Standalone page navigator with ellipsis algorithm. Reusable outside tables.
 - **sidebar** (2 variants) — Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247px wide, 640px tall) and Phone (320px wide, 568px tall — wider with a close/dismiss button replacing the notification affordance).
+- **sidebar-atlas** (1 variants) — Atlas brand vertical nav rail ("NavBar" in Figma). Plain COMPONENT, no variant axis — a 70px-wide, full-height vertical stack of a logo slot plus an arbitrary list of navbar-item entries driven by the `items` prop (selected route, forced state, real hrefs).
 - **tabulation-cells** (2 variants) — A single tab cell used within a tabulation bar. Renders a label and an optional badge count. State=Rest shows a neutral transparent background; State=Active shows the selected tab with brand-low fill, bold label, and brand-accented badge.
 - **tabulations** (1 variants) — Horizontal tab bar container that wraps Tabulation_Cells instances separated by vertical line dividers. Scroll type=None (fixed layout). Delegates cell selection state (active/rest) to the tabulation-cells sub-component via a MutationObserver bridge. Backed by @radix-ui/react-tabs for full a11y keyboard navigation.
 
@@ -55,13 +64,15 @@ Condensed reference for design agents. Read this first before any design task; d
 
 ### overlays
 - **action-sheet-item** (21 variants) — A single row item for action sheets. Supports icon slots on both sides, an optional description label, and seven semantic states (Default, Hover, Active, Emphased, Disabled, Destructive, Creation) across three sizes.
+- **modal-variation** (2 variants) — Modal dialog component with two layout variants: 'options-actions' (left option + right secondary/primary CTA) and '2-actions' (full-width secondary + primary CTA). Composed of Header, Content, and Footer zones with frosted-glass backdrop blur. Button instances in the footer reuse the DS Button component.
 
 ### utilities
 - **brand-provider** (1 variants) — Applies a chosen brand to document.documentElement so CSS alias tokens switch. No visual layers.
+- **separator** (8 variants) — A 1px rule used to visually divide content, with a margin axis (none/small/medium/large) controlling the space reserved around the line and a direction axis (horizontal/vertical).
 
 ## Token aliases (use these; never raw `--klp-color-*`)
 
-- **bg:** `bg-klp-bg-brand`, `bg-klp-bg-brand-contrasted`, `bg-klp-bg-brand-low`, `bg-klp-bg-danger`, `bg-klp-bg-danger-contrasted`, `bg-klp-bg-danger-emphasis`, `bg-klp-bg-decorative-orange`, `bg-klp-bg-default`, … (14 more)
+- **bg:** `bg-klp-bg-brand`, `bg-klp-bg-brand-contrasted`, `bg-klp-bg-brand-low`, `bg-klp-bg-danger`, `bg-klp-bg-danger-contrasted`, `bg-klp-bg-danger-emphasis`, `bg-klp-bg-decorative-orange`, `bg-klp-bg-default`, … (15 more)
 - **fg:** `text-klp-fg-brand`, `text-klp-fg-brand-contrasted`, `text-klp-fg-danger`, `text-klp-fg-danger-contrasted`, `text-klp-fg-default`, `text-klp-fg-disable`, `text-klp-fg-info`, `text-klp-fg-info-contrasted`, … (9 more)
 - **border:** `border-klp-border-brand`, `border-klp-border-brand-contrasted`, `border-klp-border-brand-emphasis`, `border-klp-border-contrasted`, `border-klp-border-danger`, `border-klp-border-danger-contrasted`, `border-klp-border-danger-emphasis`, `border-klp-border-default`, … (15 more)
 - **radius:** `rounded-klp-l`, `rounded-klp-m`, `rounded-klp-round`, `rounded-klp-xl`
@@ -92,9 +103,12 @@ Derived from every component's `Props` interface `@propClass` tags. Computed = d
 | Component | Prop | Class | Description |
 |---|---|---|---|
 | `action-sheet-item` | `state` | **persistent** |  |
+| `calendar-button` | `state` | **computed** | Explicit visual state override. When omitted the component derives state from disabled (native) and the selected / today |
+| `file-dropped` | `state` | **persistent** | Which of the three mutually-exclusive state icons to render — synthesized from Figma's stacked-icon frame (file-text / l |
 | `input` | `state` | **computed** | Explicit visual state override. When omitted the component derives state from native HTML attributes (disabled, aria-inv |
 | `item-side-bar` | `state` | **persistent** | Interaction state — drives trigger fill and icon-container border. Represents the currently-selected navigation item. |
 | `list-content` | `state` | **persistent** | Interaction state — controls background fill and text/icon color. Represents the selected row in the list. |
+| `navbar-item` | `state` | **computed** | Explicit visual state override. When omitted, the root derives its surface from real CSS :hover and falls back to "defau |
 | `sidebar` | `activeKey` | **persistent** | Key of the currently active top-level menu entry. Drives row highlight and auto-expansion of the matching collapsible pa |
 | `sidebar` | `activeChildKey` | **persistent** | Key of the currently active sub-item. Only honored when its parent matches `activeKey`. |
 | `text-area` | `state` | **computed** | Explicit visual state override. When omitted, state is derived from native attributes (disabled, aria-invalid) and from  |

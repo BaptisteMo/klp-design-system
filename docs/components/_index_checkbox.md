@@ -103,10 +103,6 @@ export function CheckboxExample() {
 - [Spacing](../tokens/spacing.md)
 - [Radius](../tokens/radius.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [ActionSheet Menu](./_index_action-sheet-menu.md)

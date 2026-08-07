@@ -2,7 +2,7 @@
 title: Radius tokens
 type: token-group
 group: radius
-updated: 2026-04-16
+updated: 2026-08-07
 ---
 
 # Radius tokens
@@ -43,6 +43,9 @@ updated: 2026-04-16
 - [Input Multiselect](../components/_index_input-multiselect.md) — `rounded-klp-m` on chip layer; `rounded-klp-l` on dropdown layer. `input-box` `cornerRadius 8px` is a literal (candidate: `--klp-radius-l`).
 - [Calendar Button](../components/_index_calendar-button.md) — `rounded-klp-l` on root layer across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — `--klp-radius-l` on root and nav-button `cornerRadius` layers.
+- [Header Showup](../components/_index_header-showup.md) — `--klp-radius-m` on logo-badge (via Badge); `--klp-radius-l` on action-tools-button (via Button); `rounded-full` literal on user-avatar; literal 8px on language-selector.
+- [InputFile](../components/_index_input-file.md) — `--klp-radius-l` on file-input and action-button outermost box layers (simple layout); root `cornerRadius 8px` is a literal.
+- [File Dropped](../components/_index_file-dropped.md) — `rounded-klp-l` on root and icon-highlight layers, snapped from unbound Figma literals (8px) by exact value match (see gaps).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

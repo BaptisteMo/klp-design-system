@@ -1,0 +1,23 @@
+{
+  "name": "input-file",
+  "type": "registry:ui",
+  "description": "File upload field with two layouts: DropZone (dashed drag-and-drop panel with a decorative files illustration) and Simple (a labeled Input field with a plus icon + placeholder, helper text, and a 'Take picture' action button). Wraps a native <input type=\"file\"> with drag-and-drop support.",
+  "meta": {
+    "figmaNode": "113649:1790",
+    "captureBrand": "klub",
+    "category": "inputs",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": ["root", "illustration", "dropzone-label", "progress-indicator", "file-input", "action-button"],
+    "variantAxes": {
+      "inputType": ["drop-zone", "simple"]
+    }
+  },
+  "dependencies": {
+    "components": ["input", "button"],
+    "npm": [
+      "class-variance-authority",
+      "lucide-react"
+    ]
+  }
+}

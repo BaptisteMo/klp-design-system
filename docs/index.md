@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-08-04
+updated: 2026-08-07
 ---
 
 # klp-design-system
@@ -19,7 +19,9 @@ Start here:
 - [Calendar](./components/_index_calendar.md) — Date-picker panel with month header, day grid, and hour-selection footer, single variant (no variant axes)
 - [Calendar Button](./components/_index_calendar-button.md) — Single day cell of a calendar grid, single State axis (default / other-month / disable / today / selected), 5 variants
 - [Checkbox](./components/_index_checkbox.md) — Toggle control, single State axis (rest / hover / clicked / mixed / disable), 5 variants
+- [File Dropped](./components/_index_file-dropped.md) — Display row for an already-selected/uploaded file (filename + size + download/delete), synthesized `state` axis (default / uploading / done), reuses Button
 - [Input](./components/_index_input.md) — Text input field with label and optional icons, 3 sizes × 6 states (18 variants)
+- [InputFile](./components/_index_input-file.md) — File upload field, two layouts (drop-zone / simple), reuses Input and Button
 - [Input Multiselect](./components/_index_input-multiselect.md) — Multi-select input with removable chips and a dropdown checkbox list, 3 content × 2 state variants (5 captured)
 - [Radio](./components/_index_radio.md) — Radio button control, single State axis (rest / hover / clicked / disable), 4 variants
 - [Switch](./components/_index_switch.md) — Toggle switch, 2 states (toggle-on / toggle-off), animated thumb with check icon
@@ -41,9 +43,13 @@ Start here:
 ### navigation
 - [BreadCrumbs](./components/_index_breadcrumbs.md) — Horizontal breadcrumb trail, single Steps axis (0–3 ancestor steps), 4 variants
 - [Header Desktop](./components/_index_header-desktop.md) — Desktop page header with title, breadcrumb trail, and contextual action row, 2 feature variants (default / search-active)
+- [Header Showup](./components/_index_header-showup.md) — ShowUp application top navigation bar (logo + primary nav-items + account/utility zone), single variant (no variant axes)
 - [Item Side Bar](./components/_index_item-side-bar.md) — Sidebar navigation item with icon, label, and optional collapsible content panel, 2 features × 3 states (6 variants)
+- [Nav Item](./components/_index_nav-item.md) — ShowUp header nav link with optional icon and counter badge, single State axis (default / active), 2 variants
+- [Navbar Item](./components/_index_navbar-item.md) — Atlas sidebar rail item, icon over label, single state axis (default / hover / selected), 3 variants
 - [Pagination](./components/_index_pagination.md) — Standalone page navigator with ellipsis algorithm, reusable outside tables
 - [SideBar](./components/_index_sidebar.md) — Vertical navigation sidebar (logo + notification + context-switcher + menu + profil footer), 2 device variants (desktop / phone)
+- [Sidebar (Atlas)](./components/_index_sidebar-atlas.md) — Atlas 70px-wide full-height nav rail (logo + navbar-item list), single variant (no variant axes)
 - [Tabulation Cells](./components/_index_tabulation-cells.md) — Single tab cell with label and optional badge, 2 states (rest / active)
 - [Tabulations](./components/_index_tabulations.md) — Horizontal tab bar container wrapping Tabulation Cells with dividers, scroll-type=none (1 variant)
 

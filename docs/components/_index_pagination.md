@@ -13,7 +13,8 @@ dependencies:
   externals: ["lucide-react"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["klub"]
-usedBy: []
+usedBy:
+  - data-table
 created: 2026-04-20
 updated: 2026-04-21
 ---
@@ -88,13 +89,9 @@ export function PaginationExample() {
 - [Spacing](../tokens/spacing.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
-*Not yet used by any other klp component.*
+- [Data Table](./_index_data-table.md)
 
 ## Files
 

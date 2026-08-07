@@ -2,7 +2,7 @@
 title: Spacing tokens
 type: token-group
 group: spacing
-updated: 2026-04-16
+updated: 2026-08-07
 ---
 
 # Spacing tokens
@@ -55,6 +55,7 @@ updated: 2026-04-16
 - [Data Table](../components/_index_data-table.md) — `gap-klp-size-m` (container column gap), `py-klp-size-2xl` (empty-state cell padding).
 - [Item Side Bar](../components/_index_item-side-bar.md) — `px-klp-size-xs py-klp-size-xs` (trigger padding); `p-klp-size-4xs` (decorative-icon padding); `p-klp-size-xs` (content panel padding); `gap-klp-size-xs` (trigger row gap).
 - [Header Desktop](../components/_index_header-desktop.md) — `px-klp-size-s py-klp-size-xs` (tertiary button padding); `px-klp-size-m py-klp-size-xs gap-klp-size-2xs` (secondary button padding/gap); `px-klp-size-xs py-klp-size-xs gap-klp-size-m` (search-input padding/gap).
+- [File Dropped](../components/_index_file-dropped.md) — `px-klp-size-m py-klp-size-m gap-klp-size-l` (root padding/gap); `p-klp-size-xs` (icon-highlight padding); root `cornerRadius`/paddingX/paddingY/itemSpacing and icon-highlight `cornerRadius`/padding/itemSpacing/40px width-height are literals snapped onto these aliases by exact value match (see gaps).
 - [Header Phone](../components/_index_header-phone.md) — `p-klp-size-xs` (padding on menu-button, notification-btn, and search-button layers via `--klp-size-xs`).
 - [SideBar](../components/_index_sidebar.md) — `p-klp-size-xs` (notification-button padding via `--klp-size-xs`).
 - [Collapsible](../components/_index_collapsible.md) — `px-klp-size-m py-klp-size-m gap-klp-size-m` (close root padding/gap); `px-klp-size-m py-klp-size-m` (open header padding); `px-klp-size-m py-klp-size-l gap-klp-size-m` (open content padding/gap); `p-klp-size-xs` (toggle-button padding).
@@ -63,6 +64,11 @@ updated: 2026-04-16
 - [Calendar Button](../components/_index_calendar-button.md) — `px-klp-size-s py-klp-size-2xs gap-klp-size-2xs` (root padding/gap) across all 5 state variants.
 - [Calendar](../components/_index_calendar.md) — `px-klp-size-m py-klp-size-m` (root padding); `px-klp-size-xs py-klp-size-xs` (nav-button padding); `--klp-size-m` (footer-input itemSpacing).
 - [Separator](../components/_index_separator.md) — `pt/pb-klp-size-{xs,m,l}` (horizontal margin padding); `pl/pr-klp-size-{xs,m,l}` (vertical margin padding); `margin=none` uses no token.
+- [Nav Item](../components/_index_nav-item.md) — `gap-klp-size-3xs` (content itemSpacing); `paddingY 25px` literal captured but not applied — see the fixed-height implementation note in Notes.
+- [Header Showup](../components/_index_header-showup.md) — `--klp-size-xs`/`--klp-size-2xs` (logo-badge padding/gap, via Badge); `--klp-size-s`/`--klp-size-2xs` (action-tools-button padding/gap, via Button); root paddingX (40px), root/zone-items/zone-right itemSpacing (24px/20px/16px) are literals pending token assignment.
+- [Navbar Item](../components/_index_navbar-item.md) — `--klp-size-4xs` (root paddingY/itemSpacing, icon padding) across all three states.
+- [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — root paddingY (24px) and itemSpacing (16px) are literals pending token assignment.
+- [InputFile](../components/_index_input-file.md) — root paddingX/paddingY (16px/8px) are literals pending token assignment; root itemSpacing is 8px on drop-zone (`gap-klp-size-xs`, corrected from a stale 24px capture) and 24px on simple (`gap-klp-size-l`).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

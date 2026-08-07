@@ -17,7 +17,9 @@ const COMPONENTS: ComponentEntry[] = [
   { slug: 'radio',             label: 'Radio',             category: 'inputs'   },
   { slug: 'switch',            label: 'Switch',            category: 'inputs'   },
   { slug: 'input',             label: 'Input',             category: 'inputs'   },
+  { slug: 'input-file',        label: 'Input File',        category: 'inputs'   },
   { slug: 'input-multiselect', label: 'Input Multiselect', category: 'inputs'   },
+  { slug: 'file-dropped',      label: 'File Dropped',      category: 'inputs'   },
   { slug: 'text-area',         label: 'Text Area',         category: 'inputs'   },
   { slug: 'calendar-button',   label: 'Calendar Button',   category: 'inputs'   },
   { slug: 'calendar',          label: 'Calendar',          category: 'inputs'   },
@@ -41,6 +43,10 @@ const COMPONENTS: ComponentEntry[] = [
   { slug: 'sidebar',           label: 'SideBar',           category: 'navigation' },
   { slug: 'header-desktop',    label: 'Header Desktop',    category: 'navigation' },
   { slug: 'header-phone',      label: 'Header Phone',      category: 'navigation' },
+  { slug: 'nav-item',          label: 'Nav Item',          category: 'navigation' },
+  { slug: 'navbar-item',       label: 'Navbar Item',       category: 'navigation' },
+  { slug: 'sidebar-atlas',     label: 'Sidebar (Atlas)',   category: 'navigation' },
+  { slug: 'header-showup',     label: 'Header Showup',     category: 'navigation' },
   { slug: 'separator',         label: 'Separator',         category: 'utilities' },
 ]
 

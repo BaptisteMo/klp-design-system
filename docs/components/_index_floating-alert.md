@@ -101,10 +101,6 @@ export function FloatingAlertExample() {
 - [Spacing](../tokens/spacing.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [wireframe](../brands/wireframe.md)
-
 ## Used by
 
 *Not yet used by any other klp component.*

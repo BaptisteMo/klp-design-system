@@ -1,0 +1,513 @@
+{
+  "name": "header-showup",
+  "displayName": "Header Showup",
+  "figmaNode": "113635:24864",
+  "captureBrand": "showup",
+  "category": "navigation",
+  "description": "ShowUp application top navigation bar (\"Nav\"). Single plain COMPONENT (no variant axes), 1440x80 canvas sample — the header must fill its container width. Three horizontal zones inside a SPACE_BETWEEN flex root: Logo (brand mark + info badge), Items (5 primary nav links, bottom-aligned so the active underline sits flush on the header's bottom edge), and Right (user/account cluster — only 3 of 7 children are visible in this master instance, the rest are dead Figma layers). TODO: radixPrimitive left null — this is a compound nav landmark, not a single Radix primitive; individual reused parts (Button) bring their own Slot primitive.",
+  "radixPrimitive": null,
+  "anatomy": [
+    {
+      "part": "root",
+      "element": "nav",
+      "notes": "1440x80 sample width; adapter must render as `w-full`, not a fixed 1440px box. HORIZONTAL flex, justify SPACE_BETWEEN, align CENTER, paddingX 40 paddingY 0, gap 24. Fill bg/brand-contrasted."
+    },
+    {
+      "part": "zone-logo",
+      "element": "div",
+      "notes": "434x40 sample width, HORIZONTAL flex, gap 8, paddingY 6, align MIN/CENTER, grow/fill along main axis (flex-1)."
+    },
+    {
+      "part": "logo-mark",
+      "element": "img",
+      "notes": "96x21 'Logo SHOWUP W' instance (White variant), pure vector artwork — no klp equivalent. Consumer-provided slot with a minimal default (e.g. wordmark text or bundled SVG asset).",
+      "klpComponentCandidate": "brand-logo",
+      "figmaInstance": {
+        "name": "Logo SHOWUP W",
+        "key": null
+      }
+    },
+    {
+      "part": "logo-badge",
+      "element": "span",
+      "notes": "56x28 badges instance next to the logo: Type=Info, Size=Small, Style=Light, Right icon=true.",
+      "klpComponent": "badges",
+      "klpComponentProps": {
+        "badgeType": "info",
+        "size": "small",
+        "badgeStyle": "light"
+      },
+      "figmaInstance": {
+        "name": "badges",
+        "key": null
+      }
+    },
+    {
+      "part": "zone-items",
+      "element": "div",
+      "notes": "492x80 sample width, HORIZONTAL flex, gap 20, no padding, align MIN/MAX (bottom-aligned — lets each nav-item's active underline sit on the header's own bottom edge), sizing HUG."
+    },
+    {
+      "part": "nav-item",
+      "element": "a",
+      "notes": "5 repeated instances of the klp nav-item component (see .klp/figma-refs/nav-item/spec.json), all State=Default, all Show Icon selector=true. Only the 4th (\"My draft\") also sets HasCounter=true. Adapter should accept an array of { icon, label, active?, counter? } items. Order and copy: Home (icon Home), Search (icon Search), Calendar (icon Calendar), My draft (icon File-edit, counter visible), Mall income activity (icon Activity).",
+      "klpComponent": "nav-item",
+      "klpComponentProps": {
+        "state": "default",
+        "showIcon": true
+      },
+      "figmaInstance": {
+        "name": "Nav item",
+        "key": null
+      }
+    },
+    {
+      "part": "zone-right",
+      "element": "div",
+      "notes": "434x32 sample width, HORIZONTAL flex, gap 16, align MAX/CENTER, grow/fill along main axis (flex-1). Only 3 of its 7 Figma children are visible; the other 4 are dead (invisible in this master instance) and must NOT be rendered — see 'hidden-*' anatomy entries below, recorded for traceability only."
+    },
+    {
+      "part": "action-tools-button",
+      "element": "button",
+      "notes": "77x32 Button instance: Label=Tools, Size=Small, Type=Tertiary, Right Icon=true (chevron-down).",
+      "klpComponent": "button",
+      "klpComponentProps": {
+        "variant": "tertiary",
+        "size": "sm",
+        "rightIcon": "chevron-down"
+      },
+      "figmaInstance": {
+        "name": "Button",
+        "key": null
+      }
+    },
+    {
+      "part": "user-avatar",
+      "element": "div",
+      "notes": "32x32 FRAME, cornerRadius 80 (renders as a circle), fill+stroke bg/secondary-brand, contains a single-letter initial ('C') text node. No klp Avatar component exists yet. Consumer-provided slot (initials or image), minimal default renders the initials in a circular div using the same token.",
+      "klpComponentCandidate": "avatar",
+      "figmaInstance": {
+        "name": "User",
+        "key": null
+      }
+    },
+    {
+      "part": "language-selector",
+      "element": "button",
+      "notes": "91x32 'Languages//Xhite' instance containing a flag icon, 'NL' label text, and a chevron-down trailing icon. No klp LanguageSelector/Select component exists yet. Consumer-provided slot, minimal default renders a plain button with the label text.",
+      "klpComponentCandidate": "language-selector",
+      "figmaInstance": {
+        "name": "Languages//Xhite",
+        "key": null
+      }
+    },
+    {
+      "part": "hidden-search-icon",
+      "element": null,
+      "hidden": true,
+      "notes": "Invisible 'search' icon instance in the master Nav component. Not rendered — dead Figma layer, no boolean control drives its visibility. Adapter must emit no markup for this part.",
+      "figmaInstance": {
+        "name": "search",
+        "key": null
+      }
+    },
+    {
+      "part": "hidden-secondary-button",
+      "element": null,
+      "hidden": true,
+      "notes": "Invisible second 'Button' instance in the master Nav component. Not rendered.",
+      "figmaInstance": {
+        "name": "Button",
+        "key": null
+      }
+    },
+    {
+      "part": "hidden-notification-group",
+      "element": null,
+      "hidden": true,
+      "notes": "Invisible 'Group 1713' (bell icon + notification dot). Not rendered.",
+      "figmaInstance": {
+        "name": "Group 1713",
+        "key": null
+      }
+    },
+    {
+      "part": "hidden-user-icon",
+      "element": null,
+      "hidden": true,
+      "notes": "Invisible 'user' icon instance. Not rendered.",
+      "figmaInstance": {
+        "name": "user",
+        "key": null
+      }
+    }
+  ],
+  "variantAxes": {},
+  "variants": [
+    {
+      "id": "default",
+      "axes": {},
+      "figmaNodeId": "113635:24864",
+      "screenshot": null,
+      "screenshotNote": "Screenshot capture could not be persisted to disk this session (reference PNGs not writable under this environment). Re-run the capture step once file writes are available. No .png.FAILED marker written per explicit session instruction.",
+      "layers": {
+        "root": {
+          "fill": {
+            "token": "--klp-bg-brand-contrasted",
+            "figmaVar": "bg/brand-contrasted",
+            "value": "#141B4D"
+          },
+          "literals": {
+            "stroke": "rgba(20,27,77,0.4) — unbound, same hue as fill at 40% opacity, no boundVariables entry",
+            "paddingLeft": "40px",
+            "paddingRight": "40px",
+            "paddingTop": "0px",
+            "paddingBottom": "0px",
+            "itemSpacing": "24px",
+            "layout": "HORIZONTAL, primaryAxis=SPACE_BETWEEN, counterAxis=CENTER, width sample=1440px — render as w-full",
+            "notes": "None of paddingX/itemSpacing carry boundVariables on this node despite matching the spacing scale (40=Sizing/2XL-ish, 24=Sizing/2XL); Figma has them as literal numbers."
+          }
+        },
+        "zone-logo": {
+          "literals": {
+            "paddingTop": "6px",
+            "paddingBottom": "6px",
+            "itemSpacing": "8px",
+            "layout": "HORIZONTAL, primaryAxis=MIN, counterAxis=CENTER, layoutSizingHorizontal=FILL, layoutSizingVertical=HUG",
+            "fill": "none (fill layer present but visible:false)",
+            "notes": "No boundVariables on padding/gap for this frame — literal, though 8px matches Sizing/XS and 6px matches Sizing/2XS in the scale."
+          }
+        },
+        "logo-mark": {
+          "notes": "Vector artwork instance, no fill/stroke token bindings surfaced by the plugin bridge for the outer instance (individual internal Vector children carry their own literal paths, out of scope for a per-layer binding capture)."
+        },
+        "logo-badge": {
+          "fill": {
+            "token": "--klp-bg-info",
+            "figmaVar": "bg/info",
+            "value": "#EFF6FB"
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent (opacity 0)"
+          },
+          "paddingX": {
+            "token": "--klp-size-xs",
+            "figmaVar": "Sizing/XS",
+            "value": "8px"
+          },
+          "paddingY": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-m",
+            "figmaVar": "radius/m",
+            "value": "4px",
+            "notes": "Same unresolved variable already flagged in the badges component's own token-gaps entry. Needs figma_execute to walk the alias chain and confirm the name; do not guess. Likely --klp-radius-m by value match only.",
+            "resolutionNote": "Badge/Small/Border Radius -> Sizing/3XS -> 4px"
+          },
+          "label": {
+            "color": {
+              "token": "--klp-fg-info-contrasted",
+              "figmaVar": "fg/info-contrasted",
+              "value": "#244784"
+            },
+            "fontFamily": {
+              "token": "--klp-font-family-body",
+              "figmaVar": "Family/Body",
+              "value": "Test Calibre"
+            },
+            "fontWeight": {
+              "token": "--klp-font-weight-body",
+              "figmaVar": "Weight/Body",
+              "value": "400"
+            },
+            "literals": {
+              "fontSize": "10px",
+              "lineHeight": "13px",
+              "sampleText": "Qual"
+            }
+          },
+          "icon": {
+            "color": {
+              "token": "--klp-fg-info-contrasted",
+              "figmaVar": "fg/info-contrasted",
+              "value": "#244784"
+            },
+            "literals": {
+              "icon": "unknown",
+              "notes": "Right icon inside the badge instance (Icon/Bug per Figma layer name, but Bug is not a semantically obvious choice for this badge — flagged unknown for adapter/design review rather than guessed."
+            }
+          }
+        },
+        "zone-items": {
+          "literals": {
+            "itemSpacing": "20px",
+            "layout": "HORIZONTAL, primaryAxis=MIN, counterAxis=MAX, layoutSizingHorizontal=HUG, layoutSizingVertical=FILL",
+            "notes": "No boundVariables on itemSpacing — literal 20px, no exact match in the Sizing scale (nearest: Sizing/L=20px per primitives, but not confirmed bound)."
+          }
+        },
+        "nav-item": {
+          "notes": "Delegates entirely to the nav-item component spec (.klp/figma-refs/nav-item/spec.json) for per-layer token bindings (icon, label, counter-badge, active-state underline). Not re-captured here."
+        },
+        "zone-right": {
+          "literals": {
+            "itemSpacing": "16px",
+            "layout": "HORIZONTAL, primaryAxis=MAX, counterAxis=CENTER, layoutSizingHorizontal=FILL, layoutSizingVertical=HUG",
+            "notes": "No boundVariables on itemSpacing — literal 16px, matches Sizing/M=16px in the scale but not confirmed bound in Figma."
+          }
+        },
+        "action-tools-button": {
+          "fill": {
+            "token": "--klp-bg-inset",
+            "figmaVar": "bg/inset",
+            "value": "#F3F4FB",
+            "notes": "fill layer present but visible:false on the tertiary variant — background is effectively transparent at rest; token captured for adapter's hover/pressed states."
+          },
+          "stroke": {
+            "token": "--klp-border-invisible",
+            "figmaVar": "bd/invisible",
+            "value": "transparent (opacity 0)"
+          },
+          "cornerRadius": {
+            "token": "--klp-radius-l",
+            "figmaVar": "Radius/L",
+            "value": "8px"
+          },
+          "paddingX": {
+            "token": "--klp-size-s",
+            "figmaVar": "Sizing/S",
+            "value": "12px"
+          },
+          "paddingY": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "itemSpacing": {
+            "token": "--klp-size-2xs",
+            "figmaVar": "Sizing/2XS",
+            "value": "6px"
+          },
+          "label": {
+            "color": {
+              "token": "--klp-fg-on-emphasis",
+              "figmaVar": "fg/on-emphasis",
+              "value": "#F7F9F8"
+            },
+            "fontSize": {
+              "token": "--klp-font-size-text-small",
+              "figmaVar": "Sizing/Text/Small",
+              "value": "14px"
+            },
+            "fontWeight": {
+              "token": "--klp-font-weight-label-bold",
+              "figmaVar": "Weight/Label Bold",
+              "value": "600"
+            },
+            "fontFamily": {
+              "token": "--klp-font-family-label",
+              "figmaVar": "Family/Label",
+              "value": "Test Calibre"
+            },
+            "literals": {
+              "lineHeight": "20px",
+              "sampleText": "Tools"
+            }
+          },
+          "rightIcon": {
+            "color": {
+              "token": "--klp-fg-on-emphasis",
+              "figmaVar": "fg/on-emphasis",
+              "value": "#F7F9F8"
+            },
+            "literals": {
+              "icon": "chevron-down",
+              "size": "16px",
+              "figmaVarResolved": "width/height bound to VariableID:19:504 (Sizing/M) on the outer icon slot, but the inner vector geometry (7x4) is a plain chevron shape"
+            }
+          }
+        },
+        "user-avatar": {
+          "fill": {
+            "token": "--klp-bg-secondary-brand",
+            "figmaVar": "bg/secondary-brand",
+            "value": "#BE9360"
+          },
+          "stroke": {
+            "token": "--klp-bg-secondary-brand",
+            "figmaVar": "bg/secondary-brand",
+            "value": "#BE9360",
+            "notes": "Stroke is bound to the same bg/secondary-brand color variable as the fill (a fill-color reused as a 1px matching stroke, visually invisible against the fill itself)."
+          },
+          "cornerRadius": {
+            "literal": "80px (renders as a full circle at 32x32)"
+          },
+          "literals": {
+            "paddingAll": "20px (unused visually since content is centered text, not affecting the 32x32 fixed box)",
+            "width": "32px",
+            "height": "32px"
+          },
+          "initialsText": {
+            "literals": {
+              "color": "#141B4D (unbound, matches root's bg/brand-contrasted hue)",
+              "fontSize": "24px",
+              "fontWeight": "500",
+              "lineHeight": "150%",
+              "sampleText": "C",
+              "notes": "No boundVariables on this TEXT node's fill — literal color, not a Figma binding despite matching an existing alias by hex."
+            }
+          }
+        },
+        "language-selector": {
+          "stroke": {
+            "token": "--klp-fg-on-emphasis",
+            "figmaVar": "fg/on-emphasis",
+            "value": "#F7F9F8",
+            "notes": "Published-library variable ID (hashed file key prefix) — not present in this file's local variable catalog returned by figma_get_variables. Needs figma_execute (or REST access to the source library file) to resolve the name. Do not guess an alias.",
+            "resolutionNote": "cross-file alias -> fg/on-emphasis -> gray/100"
+          },
+          "cornerRadius": {
+            "literal": "8px"
+          },
+          "labelText": {
+            "color": {
+              "token": "--klp-fg-on-emphasis",
+              "figmaVar": "fg/on-emphasis",
+              "value": "#F7F9F8"
+            },
+            "literals": {
+              "fontSize": "14px",
+              "fontWeight": "700",
+              "lineHeight": "150%",
+              "sampleText": "NL",
+              "notes": "No boundVariables for fontSize/fontWeight/fontFamily on this TEXT node — literal, unlike action-tools-button's label which is fully token-bound."
+            }
+          },
+          "flagIcon": {
+            "literals": {
+              "icon": "unknown",
+              "notes": "Flag/Netherlands instance — not a lucide-react icon; adapter should render as a flag image/emoji or accept a flag slot prop, not force it through the lucide icon set.",
+              "size": "16px bound to VariableID:f811396fabf52873f2fd7362ae833ead8749306f/722:326 (cross-file, unresolvable this session)"
+            }
+          },
+          "trailingIcon": {
+            "color": {
+              "token": "--klp-fg-on-emphasis",
+              "figmaVar": "fg/on-emphasis",
+              "value": "#F7F9F8",
+              "resolutionNote": "cross-file alias -> fg/on-emphasis -> gray/100"
+            },
+            "literals": {
+              "icon": "chevron-down",
+              "size": "16px bound to VariableID:fd86709df0651bd204dd8e85f66b483c0aa9cd0d/112395:505 (cross-file, unresolvable)"
+            }
+          }
+        },
+        "hidden-search-icon": {
+          "hidden": true,
+          "notes": "Not rendered — no visual properties captured."
+        },
+        "hidden-secondary-button": {
+          "hidden": true,
+          "notes": "Not rendered — no visual properties captured."
+        },
+        "hidden-notification-group": {
+          "hidden": true,
+          "notes": "Not rendered — no visual properties captured."
+        },
+        "hidden-user-icon": {
+          "hidden": true,
+          "notes": "Not rendered — no visual properties captured."
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "banner containing nav",
+    "keyboardSupport": [
+      "Tab",
+      "Enter"
+    ],
+    "notes": "Root should render as <header><nav aria-label=\"Main\">...</nav></header> (or a single <nav> landmark). Each nav-item is a link/tab — the currently active one should carry aria-current=\"page\" (see nav-item spec). The user-avatar and language-selector are interactive triggers (likely open a menu/dropdown) and should be real <button> elements with accessible names, not decorative divs, even though this master instance renders them statically."
+  },
+  "tokenGaps": [],
+  "composition": {
+    "reuses": [
+      "badges",
+      "button",
+      "nav-item"
+    ],
+    "candidates": [
+      "brand-logo",
+      "avatar",
+      "language-selector"
+    ],
+    "instances": [
+      {
+        "part": "logo-badge",
+        "klpComponent": "badges",
+        "figmaInstance": {
+          "name": "badges",
+          "key": null
+        }
+      },
+      {
+        "part": "nav-item",
+        "klpComponent": "nav-item",
+        "figmaInstance": {
+          "name": "Nav item",
+          "key": null
+        }
+      },
+      {
+        "part": "action-tools-button",
+        "klpComponent": "button",
+        "figmaInstance": {
+          "name": "Button",
+          "key": null
+        }
+      },
+      {
+        "part": "logo-mark",
+        "klpComponentCandidate": "brand-logo",
+        "figmaInstance": {
+          "name": "Logo SHOWUP W",
+          "key": null
+        }
+      },
+      {
+        "part": "user-avatar",
+        "klpComponentCandidate": "avatar",
+        "figmaInstance": {
+          "name": "User",
+          "key": null
+        }
+      },
+      {
+        "part": "language-selector",
+        "klpComponentCandidate": "language-selector",
+        "figmaInstance": {
+          "name": "Languages//Xhite",
+          "key": null
+        }
+      }
+    ]
+  },
+  "notes": [
+    "Zone geometry (root/Logo/Items/Right dimensions, alignment, sizing modes) and the 5 nav-item instances' state/props/label order were pre-resolved by the requester via figma_execute (a tool unavailable to this agent) and treated as established facts — not re-derived here.",
+    "Per-layer token bindings for zones and their direct children (Logo badge, Right's visible Button/User/Languages children) were newly captured this pass via figma_get_component_for_development_deep + figma_get_variables + a local aliases.css cross-reference.",
+    "The 4 hidden Right-zone children (search icon, second Button, Group 1713 bell+dot, user icon) are recorded as non-rendered anatomy entries per instruction — the adapter must emit no markup for them.",
+    "logo-mark, user-avatar, and language-selector have no klp equivalent and are recorded as klpComponentCandidate entries; the adapter is expected to expose each as a consumer-provided slot prop with a minimal default rendering (per explicit instruction), and to report each as a typed 'new-primitive' gap.",
+    "Four token bindings could not be resolved to a name this session: one local unnamed variable (badge cornerRadius, already known from the badges component) and three cross-file published-library variables on the language-selector (stroke, flag icon size, trailing icon size). All four need figma_execute (or a valid REST token) to resolve — recorded as tokenGaps with token: null rather than guessed.",
+    "All 5 extractor tokenGaps were resolved afterwards with figma_execute (a tool the extractor lacks): badge radius -> --klp-radius-m; language-selector stroke/trailing-icon colour -> --klp-fg-on-emphasis; the two remaining cross-file IDs are both the Nav/Small/Line height size, resolving to a 16px literal, not a colour."
+  ]
+}

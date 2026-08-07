@@ -115,10 +115,6 @@ export function ListContentExample() {
 - [Spacing](../tokens/spacing.md)
 - [Typography](../tokens/typography.md)
 
-### Brands
-
-- [klub](../brands/klub.md)
-
 ## Used by
 
 - [List](./_index_list.md) — renders ListContent instances for each row in the `items[]` prop.
