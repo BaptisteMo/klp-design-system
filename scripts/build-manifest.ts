@@ -117,6 +117,7 @@ function buildDocsGroup(): { files: ManifestFile[]; brandFiles: (ManifestFile & 
     'docs/tokens/radius.md',
     'docs/tokens/spacing.md',
     'docs/tokens/typography.md',
+    'docs/tokens/vocabulary.md',
     'docs/brands/_index_brands.md',
   ]
   for (const p of simple) {
