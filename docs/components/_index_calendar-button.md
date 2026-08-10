@@ -23,6 +23,22 @@ updated: 2026-08-04
 
 Single day cell of a calendar grid (36×36), rendering a day number over a colored/bordered background that communicates the day's state (default, other-month, disable, today, selected).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+One 36x36 day cell of a calendar grid, rendering the day number with a state of default, other-month, disable, today or selected.
+
+**Don't use it for:** Never standalone and never as a general-purpose button — use button. Building a month grid by hand from these is wrong; use calendar.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `calendar` | calendar-button is one day cell; calendar is the panel that lays them out. |
+| `button` | calendar-button only means a date; button is the general action control. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

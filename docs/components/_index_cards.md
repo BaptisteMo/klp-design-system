@@ -22,6 +22,22 @@ updated: 2026-08-10
 
 Very basic card container with a rounded, bordered surface. Only variation is padding size (8px or 16px). Serves as the base primitive for all card-style elements; consumers pass arbitrary children (source: spec.json:description).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A rounded bordered surface that groups arbitrary children into one visual block, with 8px or 16px padding. The base primitive for every card-style element.
+
+**Don't use it for:** Not as a floating overlay — modal-variation and action-sheet-menu bring their own surface. Not merely to add spacing between elements; it draws a border and a background.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `modal-variation` | cards sits in the page flow; modal-variation floats over it and blocks. |
+| `collapsible` | cards is always fully visible; collapsible hides its content behind a toggle. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

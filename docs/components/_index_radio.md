@@ -24,6 +24,22 @@ A radio button group built on Radix RadioGroup. States (rest, hover, checked, di
 
 > **Class B note:** This component has no `state` prop. Visual states (`rest`, `hover`, `checked`, `disable`) are driven entirely by Radix `data-state="checked|unchecked"` and `data-disabled` attribute selectors in the cva classes. Do not attempt to control visual state programmatically — use `value` / `defaultValue` on `RadioGroup` instead.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Choosing exactly one option from a mutually exclusive set. The DS has no single-select dropdown or combobox, so radio is the answer for a single choice whatever the length of the option list — long lists render as a scrollable radio group.
+
+**Don't use it for:** Not when several options may be chosen — that is input-multiselect for a dropdown of many, or checkbox for a few inline. Not for an on/off setting — that is switch.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `checkbox` | radio allows exactly one per group; checkbox allows many. |
+| `switch` | radio picks among options; switch turns one thing on or off. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

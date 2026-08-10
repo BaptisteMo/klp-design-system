@@ -22,6 +22,25 @@ updated: 2026-04-21
 
 A floating alert banner with a state-colored icon highlight, body text, and a dismiss button. Four severity states (Danger, Warning, Information, Success) in three sizes (Small, Medium, Large).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Transient system feedback that floats over the page and goes away — the result of a save, an upload, a failed request — in danger, warning, information or success.
+
+**Don't use it for:** Not for a message that belongs in the page flow next to the content it describes — that is in-content-alert. Not when the user must acknowledge before continuing — that is modal-variation.
+
+**Family — `floating-surfaces`:** modal-variation blocks on a decision. action-sheet-menu is a contextual action list anchored to a trigger. tooltip is a hover hint with zero actions. floating-alert is transient self-dismissing system feedback.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `modal-variation` | floating-alert self-dismisses; modal-variation waits for an answer. |
+| `action-sheet-menu` | floating-alert is system-emitted feedback; action-sheet-menu is a user-invoked action list. |
+| `tooltip` | floating-alert reports what happened; tooltip explains a control on hover. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

@@ -22,6 +22,22 @@ updated: 2026-04-21
 
 A multi-line text input with label, optional info icon, and two feature modes: simple (plain textarea) and rich-text (adds a formatting toolbar with tertiary icon buttons). Six visual states auto-derived from focus/value/disabled/aria-invalid signals.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Multi-line free text — comments, descriptions, notes. The rich-text feature adds a formatting toolbar and action bar; simple is a plain multi-line field.
+
+**Don't use it for:** Not for a single-line value — that is input. Not for a value that is only read — that is data-field.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `input` | text-area is multi-line; input is one line. |
+| `data-field` | text-area is editable; data-field is read-only. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

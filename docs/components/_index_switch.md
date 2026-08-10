@@ -24,6 +24,22 @@ A toggle switch built on Radix Switch. Two states (checked/unchecked) driven by 
 
 > **Class B note:** This component has no `state` prop. Visual states (toggle-off, toggle-on, disabled) are driven entirely by Radix `data-state="checked|unchecked"` and `data-disabled` attribute selectors in the cva classes. Use `checked` / `defaultChecked` on the Switch to control state.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A setting that turns on or off and takes effect immediately, with an animated thumb showing the current state.
+
+**Don't use it for:** Not for a value submitted later with a form — that is checkbox. Not for choosing among several options — that is radio. Not for an action; an action is a button.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `checkbox` | switch applies immediately; checkbox is submitted with the form. |
+| `radio` | switch turns one thing on or off; radio picks one option among several. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

@@ -21,6 +21,25 @@ updated: 2026-08-10
 
 Generic data-driven table built on @tanstack/react-table. Accepts columns[] + data and renders sort + pagination + custom cells. Uses `<Table>` primitives internally.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Any collection of records shown as rows and columns — the default choice for tabular data. Accepts columns[] + data and brings sorting, pagination and custom cell renderers.
+
+**Don't use it for:** Not for a non-tabular vertical stack of rows — use list. Not when the layout cannot be expressed as columns[] (merged cells, nested sections) — drop to the table primitives.
+
+**Family — `collections`:** data-table is the default for any tabular data — sorting and pagination are built in. table exposes primitives, used only when data-table cannot express the layout. list renders vertical non-tabular rows. list-content is a row inside list, never standalone.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `table` | data-table owns the data; table is markup you drive yourself. |
+| `list` | Columns with headers -> data-table. Label/sublabel rows -> list. |
+| `list-content` | data-table renders its own cells; list-content is a row of list, not of a table. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

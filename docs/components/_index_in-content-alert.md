@@ -22,6 +22,22 @@ updated: 2026-04-21
 
 Inline alert banner with a semantic content type (Info, Success, Danger, Warning) and three sizes. Displays a title with matching icon and an optional body text below.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A message that stays in the page flow next to the content it concerns — an icon, a title and an optional body, in info, success, danger or warning.
+
+**Don't use it for:** Not for transient feedback that should disappear on its own — that is floating-alert. Not for a per-field validation message; input and text-area carry their own helper text and danger state.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `floating-alert` | in-content-alert stays in the page; floating-alert floats and self-dismisses. |
+| `badges` | in-content-alert is a full message; badges is a one-word status pill. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

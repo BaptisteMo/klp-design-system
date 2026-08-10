@@ -24,6 +24,25 @@ A sidebar navigation item with an icon, label, and optional collapsible content 
 
 > **Class B note:** The `hover` state is driven by CSS `:hover` pseudo-class on the trigger element — it is not a value you pass via a prop. The `state` prop controls `rest` and `active` only; the `hover` appearance applies automatically when the user hovers. Do not set `state="hover"` in interactive contexts.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A row inside the generic sidebar: icon, label, and optionally a collapsible content panel with an ActionSheet inside.
+
+**Don't use it for:** Never inside sidebar-atlas — that rail's rows are navbar-item. Never standalone outside a sidebar.
+
+**Family — `sidebars`:** sidebar is the generic full nav (desktop + phone). sidebar-atlas is the Atlas-only 70px icon rail. item-side-bar is a row inside sidebar; navbar-item is a row inside sidebar-atlas. The two row types are not interchangeable.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `navbar-item` | item-side-bar is a row of sidebar; navbar-item is a row of sidebar-atlas. |
+| `sidebar` | sidebar is the container; item-side-bar is one of its rows. |
+| `sidebar-atlas` | sidebar-atlas never contains item-side-bar. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

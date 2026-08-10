@@ -36,6 +36,22 @@ updated: 2026-08-10
 
 Interactive button component with 6 type variants (primary, secondary, tertiary, destructive, validation, on-emphasis), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots. `on-emphasis` is an icon-only variant for dark/emphasis surfaces (source: Button.tsx:rootVariants, not yet captured in spec.json).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Any element that performs an action or navigates on click — primary, secondary, tertiary, destructive and validation types, plus an icon size for icon-only affordances and on-emphasis for dark surfaces.
+
+**Don't use it for:** Not for a row inside a menu — that is action-sheet-item. Not for an inert status label — that is badges. Not for a binary setting that applies immediately — that is switch.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `action-sheet-item` | button is a standalone control; action-sheet-item is a row inside a menu. |
+| `switch` | button fires an action; switch holds an on/off state. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

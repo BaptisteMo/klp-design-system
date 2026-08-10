@@ -22,6 +22,24 @@ updated: 2026-08-06
 
 The ShowUp application's top navigation bar — a `<header>` wrapping a `<nav>`, with a logo zone, a primary nav-items zone, and a right-hand account/utility zone (source: spec.json:description).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The ShowUp product's global top navigation bar — wordmark, primary nav links as nav-item instances with a flush active underline, and a right zone of tools, language and avatar.
+
+**Don't use it for:** Never under klub, atlas or wireframe — those get header-desktop or header-phone. Not a per-page header either; it is the application-level nav that persists across routes.
+
+**Family — `headers`:** header-desktop and header-phone are generic and brand-agnostic. header-showup is the ShowUp top nav only — never used under another brand.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `header-desktop` | header-showup is ShowUp only; header-desktop is the brand-agnostic page header. |
+| `header-phone` | header-showup is ShowUp only; header-phone is the brand-agnostic phone header. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

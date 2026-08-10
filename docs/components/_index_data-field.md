@@ -26,6 +26,22 @@ Read-only display of a single labelled value: a muted label stacked above a `fg-
 
 DataField is the read-only counterpart to [Input](./_index_input.md). It is deliberately **not** a variant of Input: it is not a form control, so it has no border, no padding, no background, no focus ring, no validation states, and is not tab-reachable (source: `DataField.tsx`).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A single read-only labelled value — muted label above the value — for detail panels, summaries and confirmation screens. The strong emphasis picks out the key value.
+
+**Don't use it for:** Never for anything editable; a field the user can type into is input. Not for a whole record set of key/value pairs shown as columns — that is data-table.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `input` | data-field only displays; input accepts typing. |
+| `data-table` | data-field is one labelled value; data-table is a grid of records. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

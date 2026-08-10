@@ -22,6 +22,22 @@ updated: 2026-04-21
 
 A single tab cell built on Radix Tabs.Trigger. Two states: rest (transparent background) and active (white background + shadow). Optionally displays a Badge count. Exports `TabulationCellsRoot`, `TabulationCellsList`, and `TabulationCellsContent` for direct Radix compound usage.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+One tab within a tabulation bar — a label plus an optional count Badge, in rest or active where active carries the brand-low fill and bold label.
+
+**Don't use it for:** Never standalone; tabs only make sense inside tabulations, which owns selection and keyboard navigation. Not for a horizontal header nav link — that is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no horizontal route link.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `tabulations` | tabulations is the bar and owns selection; tabulation-cells is one tab. |
+| `nav-item` | tabulation-cells switches panes inside one page; nav-item navigates between routes, under ShowUp only. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

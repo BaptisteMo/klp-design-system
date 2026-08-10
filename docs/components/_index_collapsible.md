@@ -22,6 +22,22 @@ updated: 2026-04-21
 
 Expandable disclosure panel with a header (icon + title + chevron toggle button) and a collapsible content area. Single variant axis: open/close state.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A titled panel whose body can be hidden and revealed by a chevron toggle — for secondary detail that would otherwise crowd the page.
+
+**Don't use it for:** Not to hide content behind a hover — that is tooltip. Not for the expandable rows of a sidebar; those are item-side-bar with the collapsible feature.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `cards` | collapsible can hide its content; cards is always visible. |
+| `item-side-bar` | collapsible is a page-level panel; item-side-bar is a sidebar row that happens to expand. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

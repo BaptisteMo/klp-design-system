@@ -23,6 +23,22 @@ updated: 2026-04-21
 
 A page navigation bar with prev/next buttons, numbered page buttons, ellipsis markers, and an optional "X-Y of Z" count label. Page list is computed from `page`, `total`, `pageSize`, and `siblingCount`.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Moving through pages of one result set — numbered pages with an ellipsis algorithm and prev/next controls. Usable standalone, not only under a table.
+
+**Don't use it for:** Not inside data-table, which already renders its own pager. Not for navigating a hierarchy — that is breadcrumbs — nor for switching sibling views, which is tabulations.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `data-table` | data-table already includes pagination; do not add a second one. |
+| `breadcrumbs` | pagination walks pages of one set; breadcrumbs walks the page hierarchy. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```

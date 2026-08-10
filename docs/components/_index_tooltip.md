@@ -22,6 +22,25 @@ updated: 2026-04-21
 
 A floating tooltip bubble built on Radix Tooltip. Four arrow orientations control the placement (bottom-left, bottom-right, top-left, top-right). The `Tooltip` convenience wrapper accepts a `content` prop and wraps the compound Root + Trigger + Content. Individual parts (`TooltipProvider`, `TooltipRoot`, `TooltipTrigger`, `TooltipContent`) are exported for advanced usage.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A short hover or focus hint that names or clarifies a control, in a bubble with a directional arrow pointing back at its trigger.
+
+**Don't use it for:** Never put buttons, links or any interactive element inside it — if the surface needs an action, use action-sheet-menu. Not for content the user must read to proceed; that belongs in the page or in modal-variation.
+
+**Family — `floating-surfaces`:** modal-variation blocks on a decision. action-sheet-menu is a contextual action list anchored to a trigger. tooltip is a hover hint with zero actions. floating-alert is transient self-dismissing system feedback.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `action-sheet-menu` | tooltip has zero actions; action-sheet-menu is a list of actions. |
+| `modal-variation` | tooltip informs on hover; modal-variation blocks until a choice is made. |
+| `floating-alert` | tooltip is triggered by pointing at a control; floating-alert appears on its own. |
+
+<!-- KLP:INTENT:END -->
 ## Anatomy
 
 ```
