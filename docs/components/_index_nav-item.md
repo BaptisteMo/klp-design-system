@@ -40,6 +40,7 @@ One primary link in the ShowUp header bar — label with optional leading icon a
 | `tabulation-cells` | nav-item navigates between routes; tabulation-cells switches panes inside one page. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

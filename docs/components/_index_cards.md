@@ -38,6 +38,7 @@ A rounded bordered surface that groups arbitrary children into one visual block,
 | `collapsible` | cards is always fully visible; collapsible hides its content behind a toggle. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

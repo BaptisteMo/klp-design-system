@@ -38,6 +38,7 @@ The control that selects files — the drop-zone layout for a dashed drag-and-dr
 | `input` | input-file handles files and drag-and-drop; input handles typed text. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

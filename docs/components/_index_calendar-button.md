@@ -39,6 +39,7 @@ One 36x36 day cell of a calendar grid, rendering the day number with a state of 
 | `button` | calendar-button only means a date; button is the general action control. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

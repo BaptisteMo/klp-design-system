@@ -40,6 +40,7 @@ The date-picking panel — month and year navigation over a Monday-first day gri
 | `input` | calendar picks a date from a grid; input takes typed text. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

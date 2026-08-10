@@ -41,6 +41,7 @@ A short hover or focus hint that names or clarifies a control, in a bubble with 
 | `floating-alert` | tooltip is triggered by pointing at a control; floating-alert appears on its own. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

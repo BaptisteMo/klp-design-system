@@ -40,6 +40,7 @@ The header strip at the top of a desktop page body — page title, breadcrumb tr
 | `header-showup` | header-desktop is brand-agnostic; header-showup is ShowUp only. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

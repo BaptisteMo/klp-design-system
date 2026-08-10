@@ -38,6 +38,7 @@ The row representing one file that has already been chosen or uploaded — filen
 | `list-content` | file-dropped is file-specific with download and delete; list-content is the generic row. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

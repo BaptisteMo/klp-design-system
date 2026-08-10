@@ -38,6 +38,7 @@ Multi-line free text — comments, descriptions, notes. The rich-text feature ad
 | `data-field` | text-area is editable; data-field is read-only. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

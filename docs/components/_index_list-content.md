@@ -42,6 +42,7 @@ A single row inside a list: leading decorative icon, label + sublabel, optional 
 | `table` | list-content only belongs inside list; table rows are Table.Row primitives. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

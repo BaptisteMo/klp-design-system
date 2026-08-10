@@ -38,6 +38,7 @@ A titled panel whose body can be hidden and revealed by a chevron toggle — for
 | `item-side-bar` | collapsible is a page-level panel; item-side-bar is a sidebar row that happens to expand. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

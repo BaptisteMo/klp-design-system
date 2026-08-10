@@ -39,6 +39,7 @@ Moving through pages of one result set — numbered pages with an ellipsis algor
 | `breadcrumbs` | pagination walks pages of one set; breadcrumbs walks the page hierarchy. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

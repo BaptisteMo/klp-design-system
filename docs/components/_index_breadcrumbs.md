@@ -40,6 +40,7 @@ The ancestor trail showing where the current page sits in the hierarchy — a ho
 | `pagination` | breadcrumbs navigates the hierarchy; pagination navigates pages of one result set. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

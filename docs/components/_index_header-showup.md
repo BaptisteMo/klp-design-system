@@ -40,6 +40,7 @@ The ShowUp product's global top navigation bar — wordmark, primary nav links a
 | `header-phone` | header-showup is ShowUp only; header-phone is the brand-agnostic phone header. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

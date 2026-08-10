@@ -42,6 +42,7 @@ A single read-only labelled value — muted label above the value — for detail
 | `data-table` | data-field is one labelled value; data-table is a grid of records. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

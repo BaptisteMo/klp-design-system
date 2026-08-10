@@ -41,6 +41,7 @@ A vertical collection of non-tabular rows with a header and an optional action, 
 | `table` | list stacks non-tabular rows; table lays out columns and headers. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

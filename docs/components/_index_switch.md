@@ -40,6 +40,7 @@ A setting that turns on or off and takes effect immediately, with an animated th
 | `radio` | switch turns one thing on or off; radio picks one option among several. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

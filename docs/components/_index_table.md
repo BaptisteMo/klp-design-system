@@ -41,6 +41,7 @@ Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for
 | `list-content` | table rows are Table.Row primitives; list-content only belongs inside list. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

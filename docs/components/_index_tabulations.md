@@ -38,6 +38,7 @@ Switching between sibling views of the same page without navigating — a horizo
 | `breadcrumbs` | tabulations switches sibling views; breadcrumbs shows depth in a hierarchy. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

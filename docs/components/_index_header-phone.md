@@ -40,6 +40,7 @@ The header bar for a phone-width layout — hamburger, logo and notification on 
 | `header-showup` | header-phone is brand-agnostic; header-showup is ShowUp only. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

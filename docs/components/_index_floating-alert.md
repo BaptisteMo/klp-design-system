@@ -41,6 +41,7 @@ Transient system feedback that floats over the page and goes away — the result
 | `tooltip` | floating-alert reports what happened; tooltip explains a control on hover. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

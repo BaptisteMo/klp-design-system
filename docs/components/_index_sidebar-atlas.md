@@ -41,6 +41,7 @@ The Atlas brand's 70px-wide, full-height icon rail — a logo slot over a list o
 | `item-side-bar` | sidebar-atlas never contains item-side-bar — its rows are navbar-item. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

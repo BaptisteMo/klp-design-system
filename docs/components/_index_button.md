@@ -52,6 +52,7 @@ Any element that performs an action or navigates on click — primary, secondary
 | `switch` | button fires an action; switch holds an on/off state. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

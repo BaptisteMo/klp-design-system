@@ -40,6 +40,7 @@ Any collection of records shown as rows and columns — the default choice for t
 | `list-content` | data-table renders its own cells; list-content is a row of list, not of a table. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

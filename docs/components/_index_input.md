@@ -43,6 +43,7 @@ A single-line text field with label, optional leading or action icon and helper 
 | `data-field` | input is editable; data-field is read-only. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

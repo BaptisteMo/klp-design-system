@@ -39,6 +39,7 @@ Picking several values from a known option list — a labelled trigger showing t
 | `action-sheet-menu` | input-multiselect is a form field that opens action-sheet-menu as its panel. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

@@ -40,6 +40,7 @@ One actionable row inside a menu surface — leading and trailing icon slots, op
 | `action-sheet-menu` | action-sheet-menu is the panel; action-sheet-item is one of its rows. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

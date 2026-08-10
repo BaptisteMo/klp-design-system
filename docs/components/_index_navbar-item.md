@@ -42,6 +42,7 @@ A row of the Atlas rail — a 70x52 icon-over-label stack with default, hover an
 | `sidebar` | sidebar never contains navbar-item. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

@@ -40,6 +40,7 @@ Choosing exactly one option from a mutually exclusive set. The DS has no single-
 | `switch` | radio picks among options; switch turns one thing on or off. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

@@ -41,6 +41,7 @@ A blocking dialog that stops the flow until the user decides — header, content
 | `tooltip` | modal-variation carries actions; tooltip carries none. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

@@ -42,6 +42,7 @@ A small non-interactive pill labelling a status, category or count next to the t
 | `in-content-alert` | badges is a one-word status pill; in-content-alert is a full banner message. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

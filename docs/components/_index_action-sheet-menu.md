@@ -42,6 +42,7 @@ A contextual list of actions anchored to a trigger — grouped action-sheet-item
 | `floating-alert` | action-sheet-menu is user-invoked; floating-alert is system-emitted. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

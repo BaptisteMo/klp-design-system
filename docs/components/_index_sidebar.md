@@ -41,6 +41,7 @@ The generic full-width vertical navigation panel — branded header, context swi
 | `navbar-item` | sidebar never contains navbar-item — its rows are item-side-bar. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

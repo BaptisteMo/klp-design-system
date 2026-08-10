@@ -38,6 +38,7 @@ A message that stays in the page flow next to the content it concerns — an ico
 | `badges` | in-content-alert is a full message; badges is a one-word status pill. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

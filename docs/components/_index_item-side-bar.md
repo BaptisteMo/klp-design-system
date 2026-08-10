@@ -43,6 +43,7 @@ A row inside the generic sidebar: icon, label, and optionally a collapsible cont
 | `sidebar-atlas` | sidebar-atlas never contains item-side-bar. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

@@ -40,6 +40,7 @@ A 1px rule that visually splits neighbouring content, horizontal or vertical, wi
 | `cards` | separator draws one line between siblings; cards wraps content in a bordered surface. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

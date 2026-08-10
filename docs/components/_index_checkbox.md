@@ -40,6 +40,7 @@ A binary or tri-state selection the user confirms as part of a form or a list â€
 | `input-multiselect` | checkbox is one option inline; input-multiselect picks many from a dropdown. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

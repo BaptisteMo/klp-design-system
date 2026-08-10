@@ -38,6 +38,7 @@ One tab within a tabulation bar — a label plus an optional count Badge, in res
 | `nav-item` | tabulation-cells switches panes inside one page; nav-item navigates between routes, under ShowUp only. |
 
 <!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```
