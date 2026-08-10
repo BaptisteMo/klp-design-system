@@ -31,6 +31,29 @@ export function createInventory({ ref, brand, appDir, dsDir, catalog, initiallyI
   return { schemaVersion: SCHEMA, ref, brand, appDir, dsDir, components }
 }
 
+// True when an entry carries any agent-facing metadata beyond its own name.
+function hasMeta(e) {
+  return Boolean(
+    (e.exports ?? []).length ||
+    (e.typeExports ?? []).length ||
+    e.whenToUse ||
+    Object.keys(e.props ?? {}).length ||
+    (e.aliases ?? []).length > 1,
+  )
+}
+
+// True when the shipped catalog knows metadata the on-disk inventory is missing.
+// Covers the case of a v2 file written from a manifest that predates component metadata:
+// the schemaVersion alone would never trigger a refresh, so the empty fields would be permanent.
+export function needsMetaRefresh(inv, catalog) {
+  for (const e of catalog) {
+    if (!hasMeta(e)) continue
+    const cur = inv.components?.[e.name]
+    if (!cur || !hasMeta(cur)) return true
+  }
+  return false
+}
+
 // Re-derives every field from the shipped catalog while preserving each component's status.
 // Safe to call on a v2 file — it is then a no-op refresh.
 export function upgradeInventory(inv, catalog) {

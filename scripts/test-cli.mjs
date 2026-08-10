@@ -422,7 +422,8 @@ function testAddCommandE2E() {
 
 async function testInventoryV2() {
   console.log('\n[test] inventory v2')
-  const { createInventory, upgradeInventory, listByStatus } = await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+  const { createInventory, upgradeInventory, listByStatus, needsMetaRefresh } =
+    await import(join(REPO_ROOT, 'cli/inventory.mjs'))
 
   const catalog = [
     {
@@ -456,7 +457,77 @@ async function testInventoryV2() {
   assert(upgraded.schemaVersion === 'v2', 'v1 file upgrades to v2')
   assert(upgraded.components.badges.status === 'installed', 'status preserved through upgrade')
   assert(upgraded.components.badges.exports.join(',') === 'Badge', 'upgrade re-derives exports from the catalog')
-  assert(upgradeInventory(upgraded, catalog).schemaVersion === 'v2', 'upgrading a v2 file is a no-op')
+  const reUpgraded = upgradeInventory(upgraded, catalog)
+  assert(reUpgraded.schemaVersion === 'v2', 'v2 file stays v2')
+  assert(
+    JSON.stringify(reUpgraded) === JSON.stringify(upgraded),
+    'upgrading a v2 file is a no-op (deep-equal to the previous result)',
+  )
+
+  // A v2 file written against a metadata-less manifest must still be repairable.
+  assert(needsMetaRefresh(v1, catalog), 'needsMetaRefresh detects a metadata-less v1 file')
+  assert(!needsMetaRefresh(upgraded, catalog), 'needsMetaRefresh is false once metadata is present')
+
+  const staleV2 = {
+    schemaVersion: 'v2', ref: 'main', brand: 'klub', appDir: 'app', dsDir: 'd',
+    components: {
+      badges: { status: 'installed', category: 'data-display', deps: [], aliases: ['badges'], exports: [], typeExports: [], whenToUse: null, props: {}, doc: 'docs/components/_index_badges.md' },
+      button: { status: 'available', category: 'inputs', deps: [], aliases: ['button'], exports: [], typeExports: [], whenToUse: null, props: {}, doc: 'docs/components/_index_button.md' },
+    },
+  }
+  assert(needsMetaRefresh(staleV2, catalog), 'needsMetaRefresh detects a v2 file with empty metadata')
+  const repaired = upgradeInventory(staleV2, catalog)
+  assert(repaired.components.badges.exports.join(',') === 'Badge', 'stale v2 metadata is repaired')
+  assert(repaired.components.badges.status === 'installed', 'status preserved through the repair')
+}
+
+// Covers the primary data path of inventory v2: klp-components.json → registry/manifest.json
+// → catalogFromManifest → createInventory. Fails if build-manifest stops emitting `meta`.
+async function testManifestComponentMeta() {
+  console.log('\n[test] manifest component meta')
+  const manifest = JSON.parse(readFileSync(join(REPO_ROOT, 'registry/manifest.json'), 'utf8'))
+  const items = manifest.groups.components.items
+
+  const withMeta = Object.values(items).filter((i) => i.meta)
+  assert(withMeta.length > 0, 'manifest carries meta on at least one component')
+
+  const probe = 'badges'
+  const item = items[probe]
+  assert(Boolean(item), `${probe} present in the manifest`)
+  assert(Boolean(item?.meta), `${probe} carries a meta block`)
+  const meta = item?.meta ?? { aliases: [], exports: [], typeExports: [], whenToUse: null, props: {} }
+  assert(Array.isArray(meta.aliases) && meta.aliases.length > 0, 'meta.aliases is non-empty')
+  assert(Array.isArray(meta.exports) && meta.exports.length > 0, 'meta.exports is non-empty')
+  assert(Array.isArray(meta.typeExports) && meta.typeExports.length > 0, 'meta.typeExports is non-empty')
+  assert(typeof meta.whenToUse === 'string' && meta.whenToUse.length > 0, 'meta.whenToUse is a non-null sentence')
+  const propEntries = Object.entries(meta.props ?? {})
+  assert(propEntries.length > 0, 'meta.props is non-empty')
+  assert(
+    propEntries.length > 0 && propEntries.every(([, v]) => typeof v?.type === 'string' && typeof v?.class === 'string'),
+    'every meta.props entry is shaped {type, class}',
+  )
+
+  // …and that the same values survive the catalog deriver into a fresh inventory.
+  const { catalogFromManifest } = await import(join(REPO_ROOT, 'cli/klep-ds-init.mjs'))
+  const { createInventory } = await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+  const catalog = catalogFromManifest(manifest)
+  const entry = catalog.find((c) => c.name === probe)
+  assert(Boolean(entry), 'catalogFromManifest emits the probe component')
+  assert((entry?.exports ?? []).join(',') === (meta.exports ?? []).join(','), 'catalogFromManifest propagates exports')
+  assert(entry?.whenToUse === meta.whenToUse, 'catalogFromManifest propagates whenToUse')
+
+  const inv = createInventory({
+    ref: 'main', brand: 'wireframe', appDir: 'app', dsDir: 'external/ds',
+    catalog, initiallyInstalled: [probe],
+  })
+  const invEntry = inv.components[probe]
+  assert(invEntry.exports.join(',') === (meta.exports ?? []).join(','), 'manifest exports reach the inventory')
+  assert(invEntry.typeExports.join(',') === (meta.typeExports ?? []).join(','), 'manifest typeExports reach the inventory')
+  assert(invEntry.aliases.join(',') === (meta.aliases ?? []).join(','), 'manifest aliases reach the inventory')
+  assert(invEntry.whenToUse === meta.whenToUse, 'manifest whenToUse reaches the inventory')
+  const [propName, propVal] = propEntries[0] ?? ['__none__', undefined]
+  assert(Boolean(propVal) && invEntry.props[propName]?.type === propVal?.type, 'manifest prop type reaches the inventory')
+  assert(Boolean(propVal) && invEntry.props[propName]?.class === propVal?.class, 'manifest prop class reaches the inventory')
 }
 
 async function main() {
@@ -470,6 +541,7 @@ async function main() {
   await testPatchConfig()
   await testInventory()
   await testInventoryV2()
+  await testManifestComponentMeta()
   await testListCommand()
   await testAddCommand()
   testListSubcommand()

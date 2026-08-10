@@ -41,7 +41,21 @@ async function runAdd(rest) {
 
   const rootDir = process.cwd()
 
-  // Manifest is loaded first: it is the source of the catalog used to upgrade a v1 inventory.
+  // First pass runs against the on-disk inventory only — unknown names and already-installed
+  // components must stay network-free, as they were before the catalog was threaded in.
+  const localPlan = planAdd({ rootDir, names: positional, force })
+
+  if (localPlan.unknown.length) {
+    console.error(`Unknown components: ${localPlan.unknown.join(', ')}`)
+    process.exit(2)
+  }
+  if (!localPlan.toInstall.length) {
+    console.log(`Nothing to install. Already installed: ${localPlan.alreadyInstalled.join(', ') || '(none)'}`)
+    process.exit(0)
+  }
+
+  // Only now — with real work to do — is the manifest needed, both to copy files and as the
+  // source of the catalog that refreshes a stale/v1 inventory.
   let manifest
   if (ref === 'local') {
     manifest = JSON.parse(readFileSync(resolve(__dirname, '../registry/manifest.json'), 'utf8'))
@@ -53,15 +67,6 @@ async function runAdd(rest) {
 
   const { catalogFromManifest } = await import('./klep-ds-init.mjs')
   const plan = planAdd({ rootDir, names: positional, force, catalog: catalogFromManifest(manifest) })
-
-  if (plan.unknown.length) {
-    console.error(`Unknown components: ${plan.unknown.join(', ')}`)
-    process.exit(2)
-  }
-  if (!plan.toInstall.length) {
-    console.log(`Nothing to install. Already installed: ${plan.alreadyInstalled.join(', ') || '(none)'}`)
-    process.exit(0)
-  }
 
   const dsRoot  = join(rootDir, plan.inventory.dsDir)
   const docsRoot = join(rootDir, 'docs')

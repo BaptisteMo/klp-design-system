@@ -2,7 +2,7 @@
 // `klp-ui add <name> [<name>...]` planning logic.
 // Filesystem ops live in cli/copy.mjs and are wired in cli/index.mjs.
 
-import { readInventory, resolveTransitive, upgradeInventory } from './inventory.mjs'
+import { readInventory, resolveTransitive, upgradeInventory, needsMetaRefresh } from './inventory.mjs'
 
 /**
  * @param {{ rootDir: string, names: string[], force: boolean, catalog?: object[] }} input
@@ -10,8 +10,11 @@ import { readInventory, resolveTransitive, upgradeInventory } from './inventory.
  */
 export function planAdd({ rootDir, names, force, catalog }) {
   let inv = readInventory(rootDir)
-  // A lockfile written by an older CLI is upgraded in place; statuses are preserved.
-  if (inv.schemaVersion !== 'v2' && catalog) inv = upgradeInventory(inv, catalog)
+  // An inventory written by an older CLI — or by a v2 CLI against a manifest that carried no
+  // component metadata — is refreshed in place from the catalog; statuses are preserved.
+  if (catalog && (inv.schemaVersion !== 'v2' || needsMetaRefresh(inv, catalog))) {
+    inv = upgradeInventory(inv, catalog)
+  }
 
   const unknown = []
   const alreadyInstalled = []
