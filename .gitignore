@@ -13,6 +13,10 @@ coverage
 .klp/staging
 .klp/token-gaps.md
 .klp/figma-refs/**/*.FAILED
+# Reference screenshots are an authoring aid for building components against
+# Figma — never needed to consume the DS. spec.json stays tracked (the token
+# validator reads it); the PNGs do not.
+.klp/figma-refs/**/*.png
 docs/.lint-report.md
 .agents/
 plans/
