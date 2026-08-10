@@ -16,13 +16,24 @@ type ComponentEntry = {
   anatomy?: string[]
   status?: string
   exemptFromFigmaPipeline?: boolean
+  aliases?: string[]
+  family?: string | null
+  intent?: {
+    whenToUse: string
+    whenNotToUse: string
+    confusedWith: { component: string; rule: string }[]
+  } | null
 }
 
-function loadComponents(): ComponentEntry[] {
+type Family = { members: string[]; rule: string }
+
+function loadCatalog(): { components: ComponentEntry[]; families: Record<string, Family> } {
   const raw = readFileSync(join(ROOT, 'klp-components.json'), 'utf8')
   const parsed = JSON.parse(raw)
-  if (Array.isArray(parsed)) return parsed
-  if (parsed.components && Array.isArray(parsed.components)) return parsed.components
+  if (Array.isArray(parsed)) return { components: parsed, families: {} }
+  if (parsed.components && Array.isArray(parsed.components)) {
+    return { components: parsed.components, families: parsed.families ?? {} }
+  }
   throw new Error('klp-components.json: unexpected schema (expected array or { components: [] })')
 }
 
@@ -58,7 +69,8 @@ function tailwindPrefix(group: string): string {
 }
 
 function main() {
-  const components = loadComponents().filter((c) => c.status !== 'deleted' && c.status !== 'removed')
+  const catalog = loadCatalog()
+  const components = catalog.components.filter((c) => c.status !== 'deleted' && c.status !== 'removed')
   const byCat = groupByCategory(components)
   const aliases = extractAliases()
 
@@ -82,9 +94,35 @@ function main() {
     for (const c of byCat[cat]) {
       const vc = c.variantCount ? ` (${c.variantCount} variants)` : ''
       const desc = c.description ? ` — ${c.description.split('\n')[0]}` : ''
-      lines.push(`- **${c.name}**${vc}${desc}`)
+      const extra = (c.aliases ?? []).filter((a) => a !== c.name)
+      const also = extra.length ? ` _also: ${extra.join(', ')}_` : ''
+      const use = c.intent ? ` **Use for** ${c.intent.whenToUse}` : ''
+      const not = c.intent ? ` **Not for** ${c.intent.whenNotToUse}` : ''
+      lines.push(`- **${c.name}**${vc}${desc}${use}${not}${also}`)
     }
     lines.push('')
+  }
+
+  const familyNames = Object.keys(catalog.families).sort()
+  if (familyNames.length) {
+    lines.push('## Choosing between similar components')
+    lines.push('')
+    lines.push('These groups are routinely mixed up. The rule decides; never guess.')
+    lines.push('')
+    const byName = new Map(components.map((c) => [c.name, c]))
+    for (const fam of familyNames) {
+      lines.push(`### ${fam}`)
+      lines.push('')
+      lines.push(catalog.families[fam].rule.replace(/\s*\n\s*/g, ' ').trim())
+      lines.push('')
+      lines.push('| Component | Use when |')
+      lines.push('|---|---|')
+      for (const m of catalog.families[fam].members) {
+        const use = (byName.get(m)?.intent?.whenToUse ?? '').replace(/\s*\n\s*/g, ' ').replace(/\|/g, '\\|').trim()
+        lines.push(`| \`${m}\` | ${use} |`)
+      }
+      lines.push('')
+    }
   }
 
   lines.push('## Token aliases (use these; never raw `--klp-color-*`)')
@@ -96,6 +134,9 @@ function main() {
     const more = names.length > 8 ? `, … (${names.length - 8} more)` : ''
     lines.push(`- **${group}:** ${sample}${more}`)
   }
+  lines.push('')
+
+  lines.push('Figma variable path → CSS variable → utility is mechanical: lowercase, `/` → `-`, prefix `--klp-`. Full table in `docs/tokens/vocabulary.md` — check there before inventing a token name.')
   lines.push('')
 
   lines.push('## Brand')
