@@ -29,9 +29,11 @@ export function validateIntent(intent, names) {
   for (const [famName, fam] of Object.entries(families)) {
     if (typeof fam?.rule !== 'string' || fam.rule.trim() === '') errors.push(`families.${famName}: rule is required`)
     if (!Array.isArray(fam?.members) || fam.members.length < 2) errors.push(`families.${famName}: members must list at least 2 components`)
-    for (const m of fam?.members ?? []) {
-      if (!known.has(m)) { errors.push(`families.${famName}.members: "${m}" matches no component`); continue }
-      if (components[m]?.family !== famName) errors.push(`components.${m}: must declare family "${famName}" (listed in families.${famName}.members)`)
+    if (Array.isArray(fam?.members)) {
+      for (const m of fam.members) {
+        if (!known.has(m)) { errors.push(`families.${famName}.members: "${m}" matches no component`); continue }
+        if (components[m]?.family !== famName) errors.push(`components.${m}: must declare family "${famName}" (listed in families.${famName}.members)`)
+      }
     }
   }
 
@@ -43,10 +45,14 @@ export function validateIntent(intent, names) {
     if (c?.family && !families[c.family]) errors.push(`components.${name}: family "${c.family}" is not declared under families`)
     if (c?.aliases && !Array.isArray(c.aliases)) errors.push(`components.${name}: aliases must be a list`)
     if (c?.figmaName && typeof c.figmaName !== 'string') errors.push(`components.${name}: figmaName must be a string`)
-    for (const cw of c?.confusedWith ?? []) {
-      if (!known.has(cw?.component)) errors.push(`components.${name}.confusedWith: "${cw?.component}" matches no component`)
-      if (cw?.component === name) errors.push(`components.${name}.confusedWith: cannot reference itself`)
-      if (typeof cw?.rule !== 'string' || cw.rule.trim() === '') errors.push(`components.${name}.confusedWith[${cw?.component}]: rule is required`)
+    if (c?.confusedWith !== undefined && !Array.isArray(c.confusedWith)) {
+      errors.push(`components.${name}: confusedWith must be a list`)
+    } else {
+      for (const cw of c?.confusedWith ?? []) {
+        if (!known.has(cw?.component)) errors.push(`components.${name}.confusedWith: "${cw?.component}" matches no component`)
+        if (cw?.component === name) errors.push(`components.${name}.confusedWith: cannot reference itself`)
+        if (typeof cw?.rule !== 'string' || cw.rule.trim() === '') errors.push(`components.${name}.confusedWith[${cw?.component}]: rule is required`)
+      }
     }
   }
 

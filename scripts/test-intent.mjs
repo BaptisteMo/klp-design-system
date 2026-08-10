@@ -72,11 +72,43 @@ function testCoverage() {
   assert(errs.some((e) => /list-content/.test(e)), 'a component with no intent entry is reported')
 }
 
+function testMalformedFields() {
+  console.log('validateIntent — malformed non-array fields do not throw')
+
+  const doc = base()
+  doc.families.collections.members = 4
+  let errs
+  assert(
+    (() => { try { errs = validateIntent(doc, NAMES); return true } catch { return false } })(),
+    'non-array family members does not throw',
+  )
+  assert(errs.some((e) => /collections.*members/.test(e)), 'non-array family members is reported')
+
+  const doc2 = base()
+  doc2.components.badges.confusedWith = { component: 'table' }
+  let errs2
+  assert(
+    (() => { try { errs2 = validateIntent(doc2, NAMES); return true } catch { return false } })(),
+    'non-array confusedWith does not throw',
+  )
+  assert(errs2.some((e) => /badges.*confusedWith/.test(e)), 'non-array confusedWith is reported')
+
+  const doc3 = base()
+  doc3.components.badges.confusedWith = 'fix-me-later'
+  let errs3
+  assert(
+    (() => { try { errs3 = validateIntent(doc3, NAMES); return true } catch { return false } })(),
+    'string confusedWith does not throw',
+  )
+  assert(errs3.some((e) => /badges.*confusedWith/.test(e)), 'string confusedWith is reported, not silently iterated')
+}
+
 testValid()
 testMissingRequired()
 testUnknownComponent()
 testFamilyBackReference()
 testCoverage()
+testMalformedFields()
 
 if (failures > 0) { console.error(`\n${failures} assertion(s) failed`); process.exit(1) }
 console.log('\nintent validator OK')
