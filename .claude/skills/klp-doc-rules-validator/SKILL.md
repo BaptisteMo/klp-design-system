@@ -6,7 +6,7 @@ allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs:*)
 
 # klp-doc-rules-validator
 
-Deterministic validator + auto-fixer for per-component doc pages. Runs in under a second, no Chromium, no thresholds. Enforces five rules.
+Deterministic validator + auto-fixer for per-component doc pages. Runs in under a second, no Chromium, no thresholds. Enforces five rules structurally (R1-R5); R6 (intent block) is a separate report-only check covered by `pnpm run sync:intent` / `scripts/validate-intent.mjs`, documented here for completeness.
 
 ## Invocation
 
@@ -51,6 +51,7 @@ Single JSON object on stdout:
 | R3 | `### Do / Don't` block emitted iff at least one prop has Class `**computed**` or `**persistent**`. | Yes — add stub when missing, remove when extraneous. |
 | R4 | Blockquote (verbatim text) above `## Variants` iff source `cva()` declares a `state` axis AND source `Props` interface has no `state` prop at top level. | Yes — insert the blockquote. |
 | R5 | Every prop in the source's exported `interface <Name>Props` has a `@propClass` JSDoc tag. | No — report-only (semantic decision). |
+| R6 | **Intent block present (report-only).** The page contains a `<!-- KLP:INTENT:BEGIN -->` … `<!-- KLP:INTENT:END -->` block, its `## When to use` body is non-empty, and its text equals `klp-components.json` `components[].intent.whenToUse` for that component. Report as a mismatch when the component has no intent entry in `.klp/intent.yaml`. | No — re-run `pnpm run sync:intent`. |
 
 ## Retry contract
 

@@ -45,6 +45,7 @@ Inputs: `component: <kebab-name>`.
 
 Steps:
 
+0. **Sync intent.** Run `pnpm run sync:intent` (merges `.klp/intent.yaml` into `klp-components.json` and refreshes the `KLP:INTENT` block on every doc page). It exits 1 if `.klp/intent.yaml` is invalid or a component has no intent entry — report that to the user and stop; do not hand-write the missing entry.
 1. **Validate sources.** Confirm `.klp/figma-refs/<component>/spec.json` and `src/components/<component>/<PascalName>.tsx` exist. If either is missing, abort with a precise diagnostic (don't try to fix the spec — that's the extractor's job).
 2. **Read the spec** at `.klp/figma-refs/<component>/spec.json`. Extract: displayName, captureBrand, category, description, radixPrimitive, anatomy, variantAxes, variants[], a11y.
 3. **Read the source** at `src/components/<component>/<PascalName>.tsx`. Extract:
@@ -124,6 +125,7 @@ Same as DOCUMENT plus:
 
 On `operation: SYNC`, iterate over every component in `klp-components.json`:
 
+0. **Sync intent.** Run `pnpm run sync:intent` (merges `.klp/intent.yaml` into `klp-components.json` and refreshes the `KLP:INTENT` block on every doc page). It exits 1 if `.klp/intent.yaml` is invalid or a component has no intent entry — report that to the user and stop; do not hand-write the missing entry.
 1. Re-run the systematic import scan on each component's source.
 2. Rebuild `dependencies.components[]` from scratch for every entry.
 2a. Re-parse the `@propClass` JSDoc tags from every component source and rewrite `klp-components.json[<name>].props` for every component.
@@ -168,6 +170,7 @@ Walk `docs/` and validate:
 8. **No circular component dependencies**: walk the forward graph; any cycle is an architectural smell — report but do not auto-fix.
 9. **Registry npm-deps consistency**: for every component, the set `registry/<name>.json#dependencies.npm` must equal the component's scanned externals minus the baseline-exclusion list (`react`, `react-dom`, `clsx`, `tailwind-merge`). Any divergence (missing or extra package) is a drift bug. Report but do not auto-fix under LINT — the user re-runs DOCUMENT (or full SYNC) to correct it.
 10. **Prop classification coverage**: every prop in every component's `Props` interface must declare a `@propClass` JSDoc tag. Any prop without it counts as a violation. Report with component + prop name. Do not auto-fix.
+11. **Intent coverage**: run `node scripts/validate-intent.mjs` and report every error verbatim. A component with no intent entry is a warning today; treat it as a blocker once `.klp/intent.yaml` covers the full inventory.
 
 Report findings as a Markdown checklist at `docs/.lint-report.md` (gitignored — see project `.gitignore`). Fix what is mechanically safe (graph asymmetry, missing index entries, stale dependency lists). Ask before deleting anything.
 
@@ -581,6 +584,7 @@ The `doc` field is the path to the human-readable doc page; it is added by the d
 - **Standard markdown links only.** Use `[text](relative/path.md)`, never `[[wikilinks]]`. The doc must be readable in any markdown viewer (GitHub, VS Code, Marked, etc.) without plugins.
 - **Reverse-index pass runs at the end of every DOCUMENT and SYNC.** No exceptions. Without it, the graph drifts.
 - **Frontmatter `updated` is the only field that may differ between regenerations** of an unchanged component (other than `usedBy` and `## Used by` content, which can change as other components evolve).
+- **Do not hand-write intent output.** The `KLP:INTENT:BEGIN/END` block on doc pages, and the `intent` / `aliases` / `exports` / `typeExports` / `family` / `figmaName` fields of `klp-components.json`, are owned by `pnpm run sync:intent` (`scripts/merge-intent.mjs` + `scripts/inject-doc-intent.mjs`). Edit `.klp/intent.yaml` instead and re-run the sync.
 
 ## Failure modes
 
