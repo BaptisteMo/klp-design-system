@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-08-10T16:43:53.623Z",
+  "generatedAt": "2026-08-10T16:50:51.312Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -987,7 +987,7 @@
         {
           "src": "docs/tokens/vocabulary.md",
           "dst": "docs/tokens/vocabulary.md",
-          "hash": "sha256:c1eca2769b81e2d7b16fefe8e8c0b9a033f2b5ab2759799970f6f13b18962b9f"
+          "hash": "sha256:5b83506f5cd9ac50c38253c5b490b14f318d9b23f0e6ed74c2810b00a37375c9"
         },
         {
           "src": "docs/brands/_index_brands.md",

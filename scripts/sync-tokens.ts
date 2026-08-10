@@ -242,6 +242,9 @@ function figmaPath(alias: string): string {
     [/^border-/, 'border', false],
     [/^alpha-/, 'alpha', false],
     [/^size-/, 'Sizing', true],
+    // default-text lives in aliasSpacing alongside size-*/radius-* — it has no
+    // dedicated Figma collection of its own, so it groups under Sizing too.
+    [/^default-/, 'Sizing', false],
     [/^radius-/, 'Radius', true],
     [/^font-family-/, 'Font/family', false],
     [/^font-weight-/, 'Font/weight', false],
@@ -252,6 +255,13 @@ function figmaPath(alias: string): string {
     const leaf = alias.replace(re, '')
     return `${collection}/${upper ? leaf.toUpperCase() : leaf}`
   }
+  // No known collection matched — the generic fallback below invents a
+  // section name from the raw alias. That's a guess, not a fact: surface it
+  // loudly so the next unmapped alias gets a real case instead of silently
+  // fabricating a Figma collection that doesn't exist.
+  console.warn(
+    `[sync-tokens] ⚠ alias '${alias}' matched no known Figma collection in figmaPath() — falling back to a generic (possibly wrong) path; add a case for it`
+  )
   return alias.replace(/-/g, '/')
 }
 
@@ -277,6 +287,29 @@ function buildVocabulary(themeCss: string): string {
     })
   }
 
+  // Tailwind v4 compiles multiple theme namespaces (e.g. --font-* and
+  // --font-weight-*) to the same class prefix. When two different CSS
+  // variables produce the identical utility string, that utility is
+  // ambiguous: only one of the two meanings actually wins in the generated
+  // CSS. Detect it here instead of documenting both as if they were both
+  // safe to use.
+  const utilOwners = new Map<string, Set<string>>()
+  for (const r of rows) {
+    for (const u of r.utils) {
+      if (!utilOwners.has(u)) utilOwners.set(u, new Set())
+      utilOwners.get(u)!.add(r.cssVar)
+    }
+  }
+  const collisions = new Map<string, Set<string>>()
+  for (const [u, owners] of utilOwners) {
+    if (owners.size > 1) collisions.set(u, owners)
+  }
+  for (const [u, owners] of [...collisions].sort(([a], [b]) => a.localeCompare(b))) {
+    console.warn(
+      `[sync-tokens] ⚠ utility '${u}' is produced by multiple CSS variables (${[...owners].sort().join(', ')}) — the class is ambiguous, do not rely on it`
+    )
+  }
+
   const lines: string[] = []
   lines.push('---')
   lines.push('title: klp-ui — token vocabulary')
@@ -290,6 +323,15 @@ function buildVocabulary(themeCss: string): string {
   lines.push('The mapping is mechanical: lowercase the Figma path, replace `/` with `-`, prefix `--klp-`. Use this table to confirm a token exists before referencing it. Primitives (`--klp-color-*`) are internal — never reference them from a component.')
   lines.push('')
 
+  if (collisions.size > 0) {
+    lines.push('> **Known collisions** — Tailwind v4 compiles more than one theme namespace to the same class prefix (e.g. `--font-*` and `--font-weight-*` both produce `font-` utilities). When two CSS variables below claim the same utility string, only one meaning actually applies at runtime; the other is a false entry kept here for visibility. Do not rely on the font-weight variant through these utilities.')
+    lines.push('>')
+    for (const [u, owners] of [...collisions].sort(([a], [b]) => a.localeCompare(b))) {
+      lines.push(`> - \`${u}\` ← ${[...owners].sort().join(' vs ')}`)
+    }
+    lines.push('')
+  }
+
   const byGroup = new Map<string, typeof rows>()
   for (const r of rows) {
     if (!byGroup.has(r.group)) byGroup.set(r.group, [])
@@ -301,7 +343,8 @@ function buildVocabulary(themeCss: string): string {
     lines.push('| Figma variable | CSS variable | Tailwind utility |')
     lines.push('|---|---|---|')
     for (const r of list.sort((a, b) => a.cssVar.localeCompare(b.cssVar))) {
-      lines.push(`| \`${r.figma}\` | \`${r.cssVar}\` | ${r.utils.map((u) => `\`${u}\``).join(', ')} |`)
+      const utilCells = r.utils.map((u) => (collisions.has(u) ? `\`${u}\` ⚠️ collides` : `\`${u}\``))
+      lines.push(`| \`${r.figma}\` | \`${r.cssVar}\` | ${utilCells.join(', ')} |`)
     }
     lines.push('')
   }
