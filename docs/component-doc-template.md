@@ -68,15 +68,14 @@ Do/don't format (Primer): pair them, lead with the do.
 
 Paste inside the `KLP:NOTES` markers of any component and fill. Delete sections that genuinely don't apply (note why).
 
+Do not add a `## When to use` or `## Don't confuse with` heading here — those are generated
+sections 2-3 above, owned by `.klp/intent.yaml` and rendered into the `KLP:INTENT` block right
+after the H1. Editing `whenToUse` / `whenNotToUse` / `confusedWith` there and re-running
+`pnpm run sync:intent` is how you change that content; duplicating it inside `KLP:NOTES` produces
+two conflicting sections on the page.
+
 ```markdown
 <!-- KLP:NOTES:BEGIN -->
-
-## When to use
-
-- **<scenario>:** <one concrete sentence>.
-- **<scenario>:** <one concrete sentence>.
-
-Reach for [<sibling>](./_index_<sibling>.md) instead when <the case this component is wrong for>.
 
 ## States
 

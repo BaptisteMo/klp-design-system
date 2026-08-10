@@ -170,7 +170,7 @@ Walk `docs/` and validate:
 8. **No circular component dependencies**: walk the forward graph; any cycle is an architectural smell — report but do not auto-fix.
 9. **Registry npm-deps consistency**: for every component, the set `registry/<name>.json#dependencies.npm` must equal the component's scanned externals minus the baseline-exclusion list (`react`, `react-dom`, `clsx`, `tailwind-merge`). Any divergence (missing or extra package) is a drift bug. Report but do not auto-fix under LINT — the user re-runs DOCUMENT (or full SYNC) to correct it.
 10. **Prop classification coverage**: every prop in every component's `Props` interface must declare a `@propClass` JSDoc tag. Any prop without it counts as a violation. Report with component + prop name. Do not auto-fix.
-11. **Intent coverage**: run `node scripts/validate-intent.mjs` and report every error verbatim. A component with no intent entry is a warning today; treat it as a blocker once `.klp/intent.yaml` covers the full inventory.
+11. **Intent coverage**: run `node scripts/validate-intent.mjs` and report every error verbatim. `.klp/intent.yaml` covers the full inventory (39/39 components) as of this writing — a component with no intent entry is a blocker, not a warning; do not hand-write the missing entry, add it to `.klp/intent.yaml` and re-run `pnpm run sync:intent`.
 
 Report findings as a Markdown checklist at `docs/.lint-report.md` (gitignored — see project `.gitignore`). Fix what is mechanically safe (graph asymmetry, missing index entries, stale dependency lists). Ask before deleting anything.
 

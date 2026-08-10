@@ -1,12 +1,12 @@
 ---
 name: klp-doc-rules-validator
-description: Validate structural rules on a klp component's generated doc page (Props usage table, Class column, Do/Don't block, Class B blockquote, @propClass coverage). Auto-fixes mechanical drift (R1-R4) in place; R5 is report-only. Triggers when /klp-build-component runs Stage 4b, when documentalist runs DOCUMENT or SYNC, or when the user runs /klp-doc-validate.
+description: Validate structural rules on a klp component's generated doc page (Props usage table, Class column, Do/Don't block, Class B blockquote, @propClass coverage, KLP:INTENT block). Auto-fixes mechanical drift (R1-R4) in place; R5 and R6 are report-only. Triggers when /klp-build-component runs Stage 4b, when documentalist runs DOCUMENT or SYNC, or when the user runs /klp-doc-validate.
 allowed-tools: Bash(node ${CLAUDE_SKILL_DIR}/scripts/validate-doc-rules.mjs:*)
 ---
 
 # klp-doc-rules-validator
 
-Deterministic validator + auto-fixer for per-component doc pages. Runs in under a second, no Chromium, no thresholds. Enforces five rules structurally (R1-R5); R6 (intent block) is a separate report-only check covered by `pnpm run sync:intent` / `scripts/validate-intent.mjs`, documented here for completeness.
+Deterministic validator + auto-fixer for per-component doc pages. Runs in under a second, no Chromium, no thresholds. Enforces six rules: R1-R4 are auto-fixable, R5 and R6 are report-only (semantic decisions the script flags but never rewrites).
 
 ## Invocation
 
@@ -27,7 +27,7 @@ Single JSON object on stdout:
 {
   "component": "<kebab-name-or---all>",
   "passed": true,
-  "rulesChecked": 5,
+  "rulesChecked": 6,
   "autoFixed": [{ "rule": "R4", "component": "<name>", "hint": "inserted Class B blockquote" }],
   "mismatches": [{ "rule": "R5", "component": "<name>", "prop": "<name>", "hint": "missing @propClass" }],
   "warnings": []
@@ -51,8 +51,8 @@ Single JSON object on stdout:
 | R3 | `### Do / Don't` block emitted iff at least one prop has Class `**computed**` or `**persistent**`. | Yes — add stub when missing, remove when extraneous. |
 | R4 | Blockquote (verbatim text) above `## Variants` iff source `cva()` declares a `state` axis AND source `Props` interface has no `state` prop at top level. | Yes — insert the blockquote. |
 | R5 | Every prop in the source's exported `interface <Name>Props` has a `@propClass` JSDoc tag. | No — report-only (semantic decision). |
-| R6 | **Intent block present (report-only).** The page contains a `<!-- KLP:INTENT:BEGIN -->` … `<!-- KLP:INTENT:END -->` block, its `## When to use` body is non-empty, and its text equals `klp-components.json` `components[].intent.whenToUse` for that component. Report as a mismatch when the component has no intent entry in `.klp/intent.yaml`. | No — re-run `pnpm run sync:intent`. |
+| R6 | **Intent block present.** The page contains a `<!-- KLP:INTENT:BEGIN -->` … `<!-- KLP:INTENT:END -->` block, its `## When to use` body is non-empty, and its first paragraph equals `klp-components.json` `components[].intent.whenToUse` for that component (whitespace-normalized). Reported as a mismatch when the component has no intent entry in `.klp/intent.yaml` at all. | No — report-only. `--fix` never rewrites this block itself; the remedy is either re-running `pnpm run sync:intent` (regenerates the block from the catalog) or editing `.klp/intent.yaml` when the catalog text itself is wrong, then re-running the validator. |
 
 ## Retry contract
 
-Documentalist invokes with `--fix`, parses the JSON, and reports `mismatches[]` (R5 entries) up to the user. Max 1 automated retry after the user fixes R5 at the source.
+Documentalist invokes with `--fix`, parses the JSON, and reports `mismatches[]` (R5 and R6 entries) up to the user. Max 1 automated retry after the user fixes R5 at the source or resyncs/edits intent for R6.
