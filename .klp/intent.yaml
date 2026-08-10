@@ -1,0 +1,71 @@
+# .klp/intent.yaml — hand-authored component intent.
+# The ONLY human-edited file in the intent chain. Merged into klp-components.json
+# by `pnpm run sync:intent`; never generated, never overwritten.
+schemaVersion: v1
+
+families:
+  collections:
+    members: [table, data-table, list, list-content]
+    rule: >
+      data-table is the default for any tabular data — sorting and pagination are built in.
+      table exposes primitives, used only when data-table cannot express the layout.
+      list renders vertical non-tabular rows. list-content is a row inside list, never standalone.
+
+components:
+  data-table:
+    family: collections
+    aliases: [datatable, grid, tanstack-table]
+    whenToUse: >
+      Any collection of records shown as rows and columns — the default choice for tabular data.
+      Accepts columns[] + data and brings sorting, pagination and custom cell renderers.
+    whenNotToUse: >
+      Not for a non-tabular vertical stack of rows — use list. Not when the layout cannot be
+      expressed as columns[] (merged cells, nested sections) — drop to the table primitives.
+    confusedWith:
+      - component: table
+        rule: data-table owns the data; table is markup you drive yourself.
+      - component: list
+        rule: Columns with headers -> data-table. Label/sublabel rows -> list.
+
+  table:
+    family: collections
+    aliases: [table-primitives, thead, tbody]
+    whenToUse: >
+      Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for a table
+      whose layout data-table cannot express.
+    whenNotToUse: >
+      Never as the first choice for record data — reach for data-table and only fall back here
+      when it cannot render the layout.
+    confusedWith:
+      - component: data-table
+        rule: Reach for data-table first; table is the escape hatch.
+
+  list:
+    family: collections
+    aliases: [listbox, stack]
+    whenToUse: >
+      A vertical collection of non-tabular rows with a header and an optional action, in
+      condensed, default or with-inputs spacing.
+    whenNotToUse: >
+      Not for data with columns and headers — use data-table. Do not render a single row here;
+      rows are list-content instances.
+    confusedWith:
+      - component: data-table
+        rule: Columns with headers -> data-table. Label/sublabel rows -> list.
+      - component: list-content
+        rule: list is the container; list-content is one of its rows.
+
+  list-content:
+    family: collections
+    aliases: [list-row, list-item]
+    whenToUse: >
+      A single row inside a list: leading decorative icon, label + sublabel, optional trailing
+      tertiary icon-button.
+    whenNotToUse: >
+      Never standalone outside a list, and never as a menu row — a contextual action row is
+      action-sheet-item.
+    confusedWith:
+      - component: list
+        rule: list-content is a row; list is the container that holds them.
+      - component: action-sheet-item
+        rule: list-content displays content; action-sheet-item triggers an action in a menu.
