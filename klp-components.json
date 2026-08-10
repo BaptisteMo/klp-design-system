@@ -86,8 +86,7 @@
         "components": [],
         "externals": [
           "@radix-ui/react-slot",
-          "class-variance-authority",
-          "lucide-react"
+          "class-variance-authority"
         ],
         "tokenGroups": [
           "colors",
@@ -103,7 +102,7 @@
         "item-side-bar"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "action-sheet-menu",
@@ -158,8 +157,7 @@
         ],
         "externals": [
           "@radix-ui/react-popover",
-          "class-variance-authority",
-          "lucide-react"
+          "class-variance-authority"
         ],
         "tokenGroups": [
           "colors",
@@ -192,7 +190,7 @@
         "input-multiselect"
       ],
       "created": "2026-04-17",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
     },
     {
       "name": "badges",
@@ -310,7 +308,7 @@
         "tabulation-cells"
       ],
       "created": "2026-04-16",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "brand-provider",
@@ -355,7 +353,7 @@
       },
       "usedBy": [],
       "created": "2026-04-20",
-      "updated": "2026-04-21",
+      "updated": "2026-08-10",
       "exemptFromValidator": true,
       "exemptFromFigmaPipeline": true
     },
@@ -431,12 +429,12 @@
         "header-phone"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "button",
       "displayName": "Button",
-      "description": "Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots.",
+      "description": "Interactive button component with 6 type variants (primary, secondary, tertiary, destructive, validation, on-emphasis), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots. on-emphasis is an icon-only variant for dark/emphasis surfaces, intended for size=icon.",
       "category": "inputs",
       "schemaVersion": "v2",
       "captureBrand": "atlas",
@@ -459,7 +457,8 @@
           "secondary",
           "tertiary",
           "destructive",
-          "validation"
+          "validation",
+          "on-emphasis"
         ],
         "size": [
           "sm",
@@ -474,7 +473,7 @@
           "disable"
         ]
       },
-      "variantCount": 20,
+      "variantCount": 21,
       "props": {
         "children": {
           "class": "required",
@@ -487,7 +486,7 @@
           "class": "optional",
           "type": "VariantProps<typeof rootVariants>['variant']",
           "default": "\"primary\"",
-          "description": "Visual style variant (maps to spec variantAxes.type)",
+          "description": "Visual style variant (maps to spec variantAxes.type).",
           "derivedFrom": null
         },
         "size": {
@@ -530,8 +529,7 @@
         "components": [],
         "externals": [
           "@radix-ui/react-slot",
-          "class-variance-authority",
-          "lucide-react"
+          "class-variance-authority"
         ],
         "tokenGroups": [
           "colors",
@@ -560,7 +558,7 @@
         "text-area"
       ],
       "created": "2026-04-16",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "calendar",
@@ -719,7 +717,7 @@
       },
       "usedBy": [],
       "created": "2026-08-04",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
     },
     {
       "name": "calendar-button",
@@ -812,7 +810,75 @@
         "calendar"
       ],
       "created": "2026-08-04",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
+    },
+    {
+      "name": "cards",
+      "displayName": "Card",
+      "description": "Very basic card container with a rounded, bordered surface. Only variation is padding size (8px or 16px). Serves as the base primitive for all card-style elements; consumers pass arbitrary children.",
+      "category": "containers",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/cards/Cards.tsx",
+      "doc": "docs/components/_index_cards.md",
+      "playground": "playground/routes/cards.tsx",
+      "registry": "registry/cards.json",
+      "spec": ".klp/figma-refs/cards/spec.json",
+      "radixPrimitive": "@radix-ui/react-slot",
+      "anatomy": [
+        "root"
+      ],
+      "variantAxes": {
+        "paddingSize": [
+          "8px",
+          "16px"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "children": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Generic content rendered inside the card surface.",
+          "derivedFrom": null
+        },
+        "paddingSize": {
+          "class": "optional",
+          "type": "VariantProps<typeof rootVariants>['paddingSize']",
+          "default": "\"16px\"",
+          "description": "Padding density axis (maps to spec variantAxes.paddingSize).",
+          "derivedFrom": null
+        },
+        "asChild": {
+          "class": "optional",
+          "type": "boolean",
+          "default": "false",
+          "description": "Render child element in place of the native <div> (e.g. an <article> or <a>).",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "@radix-ui/react-slot",
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "composition": {
+        "reuses": [],
+        "gaps": []
+      },
+      "usedBy": [],
+      "created": "2026-08-10",
+      "updated": "2026-08-10"
     },
     {
       "name": "checkbox",
@@ -855,7 +921,8 @@
         "components": [],
         "externals": [
           "@radix-ui/react-checkbox",
-          "class-variance-authority"
+          "class-variance-authority",
+          "lucide-react"
         ],
         "tokenGroups": [
           "colors",
@@ -870,7 +937,7 @@
         "action-sheet-menu"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "collapsible",
@@ -990,7 +1057,7 @@
       },
       "usedBy": [],
       "created": "2026-04-21",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "data-table",
@@ -1093,7 +1160,6 @@
         ],
         "externals": [
           "@tanstack/react-table",
-          "class-variance-authority",
           "lucide-react"
         ],
         "tokenGroups": [
@@ -1107,7 +1173,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "file-dropped",
@@ -1211,7 +1277,7 @@
       },
       "usedBy": [],
       "created": "2026-08-07",
-      "updated": "2026-08-07"
+      "updated": "2026-08-10"
     },
     {
       "name": "floating-alert",
@@ -1299,7 +1365,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "header-desktop",
@@ -1390,7 +1456,6 @@
           "input"
         ],
         "externals": [
-          "@radix-ui/react-slot",
           "class-variance-authority",
           "lucide-react"
         ],
@@ -1423,7 +1488,7 @@
       },
       "usedBy": [],
       "created": "2026-04-20",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "header-phone",
@@ -1526,7 +1591,6 @@
           "button"
         ],
         "externals": [
-          "@radix-ui/react-slot",
           "class-variance-authority",
           "lucide-react"
         ],
@@ -1563,7 +1627,7 @@
       },
       "usedBy": [],
       "created": "2026-04-20",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "header-showup",
@@ -1705,7 +1769,7 @@
       },
       "usedBy": [],
       "created": "2026-08-05",
-      "updated": "2026-08-05"
+      "updated": "2026-08-10"
     },
     {
       "name": "in-content-alert",
@@ -1789,7 +1853,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "input",
@@ -1920,7 +1984,7 @@
         "input-multiselect"
       ],
       "created": "2026-04-17",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
     },
     {
       "name": "input-file",
@@ -1954,7 +2018,7 @@
       "props": {
         "layout": {
           "class": "optional",
-          "type": "'drop-zone' | 'simple'",
+          "type": "InputFileLayout",
           "default": "'drop-zone'",
           "description": "Which visual layout to render: dashed drag-and-drop panel or a labeled Input row",
           "derivedFrom": null
@@ -2044,7 +2108,7 @@
       },
       "usedBy": [],
       "created": "2026-08-07",
-      "updated": "2026-08-07"
+      "updated": "2026-08-10"
     },
     {
       "name": "input-multiselect",
@@ -2224,7 +2288,7 @@
       },
       "usedBy": [],
       "created": "2026-08-04",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
     },
     {
       "name": "item-side-bar",
@@ -2388,7 +2452,7 @@
         "sidebar"
       ],
       "created": "2026-04-20",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "list",
@@ -2520,7 +2584,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "list-content",
@@ -2660,7 +2724,7 @@
         "list"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "modal-variation",
@@ -2809,7 +2873,7 @@
       },
       "usedBy": [],
       "created": "2026-04-23",
-      "updated": "2026-04-23"
+      "updated": "2026-08-10"
     },
     {
       "name": "nav-item",
@@ -2918,7 +2982,7 @@
         "header-showup"
       ],
       "created": "2026-08-05",
-      "updated": "2026-08-06"
+      "updated": "2026-08-10"
     },
     {
       "name": "navbar-item",
@@ -3006,7 +3070,7 @@
         "sidebar-atlas"
       ],
       "created": "2026-08-06",
-      "updated": "2026-08-06"
+      "updated": "2026-08-10"
     },
     {
       "name": "pagination",
@@ -3080,7 +3144,6 @@
           "button"
         ],
         "externals": [
-          "class-variance-authority",
           "lucide-react"
         ],
         "tokenGroups": [
@@ -3096,7 +3159,7 @@
         "data-table"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "radio",
@@ -3150,7 +3213,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "separator",
@@ -3193,7 +3256,7 @@
         },
         "margin": {
           "class": "optional",
-          "type": "'none' | 'small' | 'medium' | 'large'",
+          "type": "VariantProps<typeof rootVariants>['margin']",
           "default": "\"none\"",
           "description": "Space reserved around the line (maps to spec variantAxes.margin).",
           "derivedFrom": null
@@ -3230,7 +3293,7 @@
         "tabulations"
       ],
       "created": "2026-08-04",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
     },
     {
       "name": "sidebar",
@@ -3390,7 +3453,7 @@
       },
       "usedBy": [],
       "created": "2026-04-20",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
     },
     {
       "name": "sidebar-atlas",
@@ -3474,7 +3537,7 @@
       },
       "usedBy": [],
       "created": "2026-08-06",
-      "updated": "2026-08-06"
+      "updated": "2026-08-10"
     },
     {
       "name": "switch",
@@ -3528,7 +3591,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "table",
@@ -3589,7 +3652,7 @@
         "data-table"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "tabulation-cells",
@@ -3654,7 +3717,7 @@
         "tabulations"
       ],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "tabulations",
@@ -3712,7 +3775,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-08-04"
+      "updated": "2026-08-10"
     },
     {
       "name": "text-area",
@@ -3830,7 +3893,6 @@
           "button"
         ],
         "externals": [
-          "@radix-ui/react-slot",
           "class-variance-authority",
           "lucide-react"
         ],
@@ -3845,7 +3907,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     },
     {
       "name": "tooltip",
@@ -3944,7 +4006,7 @@
       },
       "usedBy": [],
       "created": "2026-04-17",
-      "updated": "2026-04-21"
+      "updated": "2026-08-10"
     }
   ]
 }

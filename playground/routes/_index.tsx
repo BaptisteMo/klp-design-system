@@ -48,6 +48,8 @@ const COMPONENTS: ComponentEntry[] = [
   { slug: 'sidebar-atlas',     label: 'Sidebar (Atlas)',   category: 'navigation' },
   { slug: 'header-showup',     label: 'Header Showup',     category: 'navigation' },
   { slug: 'separator',         label: 'Separator',         category: 'utilities' },
+  { slug: 'cards',             label: 'Card',              category: 'containers' },
+  { slug: 'data-field',        label: 'Data Field',        category: 'data-display' },
 ]
 
 const LATEST: ComponentEntry = {

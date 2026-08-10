@@ -10,3 +10,7 @@ coverage
 .klp/staging
 .klp/token-gaps.md
 docs/.lint-report.md
+
+# env
+.env.local
+.env*.local

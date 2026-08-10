@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-08-07T09:57:51.723Z
+generated-at: 2026-08-10T14:45:40.091Z
 schema-version: 0.1.0
 ---
 
@@ -9,9 +9,10 @@ schema-version: 0.1.0
 
 Condensed reference for design agents. Read this first before any design task; drill into `docs/components/_index_<name>.md` for specifics.
 
-## Inventory (37 components)
+## Inventory (38 components)
 
 ### containers
+- **cards** (2 variants) — Very basic card container with a rounded, bordered surface. Only variation is padding size (8px or 16px). Serves as the base primitive for all card-style elements; consumers pass arbitrary children.
 - **header-phone** (1 variants) — Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.
 
 ### data-display
@@ -27,7 +28,7 @@ Condensed reference for design agents. Read this first before any design task; d
 - **in-content-alert** (12 variants) — Inline alert banner with a semantic content type (Info, Success, Danger, Warning) and three sizes. Displays a title with matching icon and an optional body text below.
 
 ### inputs
-- **button** (20 variants) — Interactive button component with 5 type variants (primary, secondary, tertiary, destructive, validation), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots.
+- **button** (21 variants) — Interactive button component with 6 type variants (primary, secondary, tertiary, destructive, validation, on-emphasis), 4 sizes (sm, md, lg, icon), and 4 interaction states (rest, hover, clicked, disable). Supports optional left/right icon slots. on-emphasis is an icon-only variant for dark/emphasis surfaces, intended for size=icon.
 - **calendar** (1 variants) — A date-picker panel with a month header (prev/next year and month navigation), a Monday-first 7-column day grid, a horizontal separator, and a footer hour-selection field. Single Figma COMPONENT, no variant axes.
 - **calendar-button** (5 variants) — Single day cell of a calendar grid (36x36). Renders a day number over a colored/bordered background communicating the day's state (default, other-month, disable, today, selected).
 - **checkbox** (5 variants) — A toggle control that supports unchecked (Rest), hover, checked (Clicked), indeterminate (Mixed), and disabled states. Single variant axis: State.

@@ -2,7 +2,7 @@
 title: klub
 type: brand
 brand: klub
-updated: 2026-08-07
+updated: 2026-08-10
 ---
 
 # klub
@@ -50,6 +50,7 @@ document.documentElement.dataset.brand = 'klub'
 - [Separator](../components/_index_separator.md) — Captured under the klub brand; reference screenshots unavailable this session (expired Figma REST token).
 - [InputFile](../components/_index_input-file.md) — Captured under the klub brand; reference screenshots unavailable this session (`spec.json:variants[*].screenshotStatus = "FAILED"`, expired Figma REST token).
 - [File Dropped](../components/_index_file-dropped.md) — Captured under the klub brand; reference screenshots unavailable this session (`spec.json:variants[*].screenshotStatus = "FAILED"`, expired Figma REST token).
+- [Card](../components/_index_cards.md) — Captured under the klub brand; reference screenshots unavailable this session (`padding-8.png.FAILED`, `padding-16.png.FAILED`, expired Figma REST token).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

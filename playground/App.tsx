@@ -37,6 +37,8 @@ import { NavItemRoute } from './routes/nav-item'
 import { HeaderShowupRoute } from './routes/header-showup'
 import { NavbarItemRoute } from './routes/navbar-item'
 import { SidebarAtlasRoute } from './routes/sidebar-atlas'
+import { CardsRoute } from './routes/cards'
+import { DataFieldRoute } from './routes/data-field'
 
 const routes: Record<string, ComponentType> = {
   '': Index,
@@ -76,6 +78,8 @@ const routes: Record<string, ComponentType> = {
   'header-showup': HeaderShowupRoute,
   'navbar-item': NavbarItemRoute,
   'sidebar-atlas': SidebarAtlasRoute,
+  'cards': CardsRoute,
+  'data-field': DataFieldRoute,
 }
 
 const BRANDS = ['wireframe', 'klub', 'atlas', 'showup'] as const

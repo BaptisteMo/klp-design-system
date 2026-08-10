@@ -10,13 +10,13 @@ sources:
   - src/components/action-sheet-menu/ActionSheetMenu.tsx
 dependencies:
   components: ["action-sheet-item", "checkbox", "separator"]
-  externals: ["@radix-ui/react-popover", "class-variance-authority", "lucide-react"]
+  externals: ["@radix-ui/react-popover", "class-variance-authority"]
   tokenGroups: ["colors", "radius", "spacing", "typography"]
   brands: ["wireframe"]
 usedBy:
   - input-multiselect
 created: 2026-04-17
-updated: 2026-08-04
+updated: 2026-08-10
 ---
 
 # ActionSheet Menu

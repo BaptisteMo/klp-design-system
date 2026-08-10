@@ -9,12 +9,12 @@ sources:
   - src/components/data-table/DataTable.tsx
 dependencies:
   components: ["pagination", "table"]
-  externals: ["@tanstack/react-table", "class-variance-authority", "lucide-react"]
+  externals: ["@tanstack/react-table", "lucide-react"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
 usedBy: []
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # Data Table
@@ -100,7 +100,6 @@ export function DataTableExample() {
 ### External libraries
 
 - [@tanstack/react-table](https://www.npmjs.com/package/@tanstack/react-table) — Core table engine (sorting, pagination, filtering)
-- [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — (available via peer imports)
 - [lucide-react](https://www.npmjs.com/package/lucide-react) — ChevronUp, ChevronDown, ChevronsUpDown sort icons
 
 ### Token groups

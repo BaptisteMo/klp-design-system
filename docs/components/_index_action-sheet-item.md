@@ -10,14 +10,14 @@ sources:
   - src/components/action-sheet-item/ActionSheetItem.tsx
 dependencies:
   components: []
-  externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+  externals: ["@radix-ui/react-slot", "class-variance-authority"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
 usedBy:
   - action-sheet-menu
   - item-side-bar
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # ActionSheet Item

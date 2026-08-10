@@ -10,12 +10,12 @@ sources:
   - src/components/header-desktop/HeaderDesktop.tsx
 dependencies:
   components: ["breadcrumbs", "button", "input"]
-  externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+  externals: ["class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "radius", "spacing", "typography"]
   brands: ["klub"]
 usedBy: []
 created: 2026-04-20
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # Header Desktop

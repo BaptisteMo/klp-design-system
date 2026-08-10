@@ -29,6 +29,10 @@ const rootVariants = cva(
           'bg-klp-bg-danger-emphasis border-klp-border-danger-emphasis hover:border-2 hover:border-klp-border-danger-contrasted active:bg-klp-bg-danger-contrasted active:border-klp-border-danger-contrasted disabled:bg-klp-bg-inset disabled:border-klp-border-default',
         validation:
           'bg-klp-bg-success-emphasis border-klp-border-success-emphasis hover:border-2 hover:border-klp-border-success-contrasted active:bg-klp-bg-success-contrasted active:border-klp-border-success-contrasted disabled:bg-klp-bg-inset disabled:border-klp-border-default',
+        'on-emphasis':
+          // Icon-only variant for dark / emphasis surfaces. No fill at rest;
+          // white overlay 10% on hover, 15% on active. Pair with size="icon".
+          'bg-klp-bg-invisible border-klp-border-invisible hover:bg-klp-alpha-10 active:bg-klp-alpha-15 disabled:bg-klp-bg-invisible disabled:border-klp-border-invisible',
       },
       size: {
         sm:   'h-[36px] px-klp-size-s py-klp-size-2xs gap-klp-size-2xs',
@@ -62,6 +66,8 @@ const labelVariants = cva(
         tertiary:    'text-klp-fg-default',
         destructive: 'text-klp-fg-on-emphasis',
         validation:  'text-klp-fg-on-emphasis',
+        // Label is not rendered at size="icon"; kept for completeness.
+        'on-emphasis': 'text-klp-fg-on-emphasis',
       },
       size: {
         sm:   'text-klp-text-medium',
@@ -90,6 +96,10 @@ const iconVariants = cva(
         tertiary:    'text-klp-fg-default',
         destructive: 'text-klp-fg-on-emphasis',
         validation:  'text-klp-fg-on-emphasis',
+        // Rest 80% opacity → 100% on hover/active. Keyed off `group-*` because
+        // this class lands on a child <span>, never on the :hover target itself.
+        'on-emphasis':
+          'text-klp-fg-on-emphasis/80 group-hover:text-klp-fg-on-emphasis group-active:text-klp-fg-on-emphasis',
       },
       size: {
         sm:   '[&>svg]:h-[14px] [&>svg]:w-[14px]',
@@ -116,7 +126,9 @@ export interface ButtonProps
    * @propClass required
    */
   children?: React.ReactNode
-  /** Visual style variant (maps to spec variantAxes.type)
+  /** Visual style variant (maps to spec variantAxes.type).
+   * `on-emphasis` is icon-only — always pair it with `size="icon"` and use it
+   * on dark / emphasis surfaces.
    * @propClass optional
    */
   variant?: VariantProps<typeof rootVariants>['variant']

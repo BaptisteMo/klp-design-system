@@ -10,13 +10,13 @@ sources:
   - src/components/checkbox/Checkbox.tsx
 dependencies:
   components: []
-  externals: ["@radix-ui/react-checkbox", "class-variance-authority"]
+  externals: ["@radix-ui/react-checkbox", "class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "spacing", "radius"]
   brands: ["klub"]
 usedBy:
   - action-sheet-menu
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # Checkbox
@@ -96,6 +96,7 @@ export function CheckboxExample() {
 
 - [@radix-ui/react-checkbox](https://www.npmjs.com/package/@radix-ui/react-checkbox) — Radix Checkbox primitive
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — cva variant composition
+- [lucide-react](https://www.npmjs.com/package/lucide-react) — `Check`/`Minus` indicator icons
 
 ### Token groups
 

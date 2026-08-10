@@ -1,0 +1,58 @@
+{
+  "name": "cards",
+  "displayName": "Card",
+  "figmaNode": "113667:1153",
+  "captureBrand": "klub",
+  "category": "containers",
+  "description": "Very basic card container with a rounded, bordered surface. Only variation is padding size (8px or 16px). Serves as the base primitive for all card-style elements; consumers pass arbitrary children. TODO: no interactive/behavioral semantics observed in Figma — radixPrimitive inferred from DS convention (Slot for asChild support), not from an explicit Radix pattern in the source.",
+  "radixPrimitive": "@radix-ui/react-slot",
+  "anatomy": [
+    { "part": "root", "element": "div", "notes": "Rounded bordered surface; only anatomy layer. The Figma 'ContentExemple'/'Content' children are illustrative demo content used to show usage, not part of the reusable card anatomy — the real component exposes a generic children slot." }
+  ],
+  "variantAxes": {
+    "paddingSize": ["8px", "16px"]
+  },
+  "variants": [
+    {
+      "id": "padding-8",
+      "axes": { "paddingSize": "8px" },
+      "figmaNodeId": "113667:1152",
+      "screenshot": "padding-8.png",
+      "layers": {
+        "root": {
+          "fill":   { "token": "--klp-bg-default",     "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "stroke": { "token": "--klp-border-default",  "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "cornerRadius": { "literal": "16px" },
+          "paddingX": { "literal": "8px" },
+          "paddingY": { "literal": "8px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "strokeWeight": "1px" }
+        }
+      }
+    },
+    {
+      "id": "padding-16",
+      "axes": { "paddingSize": "16px" },
+      "figmaNodeId": "113667:1151",
+      "screenshot": "padding-16.png",
+      "layers": {
+        "root": {
+          "fill":   { "token": "--klp-bg-default",     "figmaVar": "bg/default", "value": "#FFFFFF" },
+          "stroke": { "token": "--klp-border-default",  "figmaVar": "bd/default", "value": "#D7DAD9" },
+          "cornerRadius": { "literal": "16px" },
+          "paddingX": { "literal": "16px" },
+          "paddingY": { "literal": "16px" },
+          "itemSpacing": { "literal": "8px" },
+          "literals": { "strokeWeight": "1px" }
+        }
+      }
+    }
+  ],
+  "a11y": {
+    "role": "generic",
+    "keyboardSupport": [],
+    "notes": "Purely presentational container. No interactive semantics — consumer content inside determines role/keyboard behavior."
+  },
+  "tokenGaps": [],
+  "composition": { "reuses": [], "candidates": [], "instances": [] }
+}
