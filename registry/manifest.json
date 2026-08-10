@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-08-10T14:54:38.199Z",
+  "generatedAt": "2026-08-10T14:59:34.175Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -952,7 +952,7 @@
         {
           "src": "docs/index.md",
           "dst": "docs/index.md",
-          "hash": "sha256:bba07b340d4aee5660fd8b9699dfa88f2894e3ace317a37d6614d423e8a7f5c2"
+          "hash": "sha256:30d5d6755fea49d79cc365a21d059399806e1a3602c80ce8d40f1f792e106e7d"
         },
         {
           "src": "docs/overview.md",
@@ -967,7 +967,7 @@
         {
           "src": "docs/tokens/colors.md",
           "dst": "docs/tokens/colors.md",
-          "hash": "sha256:931bff48589dcf280fcb00d9d7d5048ad6748320fdf0b543ab0ea57fd17f9d87"
+          "hash": "sha256:ad8126a6d5e2c966e49ff736f152c0f90daa0e735c5e0e03152e1a546136acd8"
         },
         {
           "src": "docs/tokens/radius.md",
@@ -977,12 +977,12 @@
         {
           "src": "docs/tokens/spacing.md",
           "dst": "docs/tokens/spacing.md",
-          "hash": "sha256:f83db4f0e739fb8807737a10b4b5e4bbe4ce820b611cae8b43ccce8a955ce8e3"
+          "hash": "sha256:3c82d64b7c78c5f47fee718a8af7104c37b60fb9addf35cb74c9e6a52336a10c"
         },
         {
           "src": "docs/tokens/typography.md",
           "dst": "docs/tokens/typography.md",
-          "hash": "sha256:e000dbf27ed4980f69b45c2dd80e258b3940b421b4ba15f3ad796349ee0f3f9d"
+          "hash": "sha256:609cb4177ae8af62383d00407d04115ad836b8deefba6a9984865af8d873408a"
         },
         {
           "src": "docs/brands/_index_brands.md",
@@ -1038,6 +1038,11 @@
           "src": "docs/components/_index_collapsible.md",
           "dst": "docs/components/_index_collapsible.md",
           "hash": "sha256:f1df165204d8683ba2f06f76033b0e6bdfa840be421ceffe75e09cd351e233f4"
+        },
+        {
+          "src": "docs/components/_index_data-field.md",
+          "dst": "docs/components/_index_data-field.md",
+          "hash": "sha256:ee8c781c0747e290d2f43f49da474d5dbb635311139d6c60e150d52f4ef8782e"
         },
         {
           "src": "docs/components/_index_data-table.md",
@@ -1185,7 +1190,7 @@
         {
           "src": "docs/brands/klub.md",
           "dst": "docs/brands/klub.md",
-          "hash": "sha256:d6600e7cd2d45a2ba24f0cedb9cadb72c44eb569d4b37d2cb6c94cfc2ec0fdf4",
+          "hash": "sha256:e6b7b7a7f737535f340e817c632c04f30e935d9a43ebf621154345cd5d5f558a",
           "brand": "klub"
         },
         {

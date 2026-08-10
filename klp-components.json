@@ -1060,6 +1060,84 @@
       "updated": "2026-08-10"
     },
     {
+      "name": "data-field",
+      "displayName": "DataField",
+      "description": "Read-only display of a single labelled value: muted label above a fg-default value, 4px apart. Not a form control — use Input for editable fields.",
+      "category": "data-display",
+      "schemaVersion": "v2",
+      "captureBrand": "klub",
+      "status": "stable",
+      "source": "src/components/data-field/DataField.tsx",
+      "doc": "docs/components/_index_data-field.md",
+      "playground": "playground/routes/data-field.tsx",
+      "registry": "registry/data-field.json",
+      "spec": null,
+      "radixPrimitive": null,
+      "anatomy": [
+        "root",
+        "label",
+        "value"
+      ],
+      "variantAxes": {
+        "emphasis": [
+          "default",
+          "strong"
+        ]
+      },
+      "variantCount": 2,
+      "props": {
+        "label": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "Field name, rendered muted above the value.",
+          "derivedFrom": null
+        },
+        "value": {
+          "class": "required",
+          "type": "React.ReactNode",
+          "default": null,
+          "description": "The read-only content. Strings keep their line breaks (whitespace-pre-line).",
+          "derivedFrom": null
+        },
+        "emphasis": {
+          "class": "optional",
+          "type": "VariantProps<typeof valueVariants>['emphasis']",
+          "default": "\"default\"",
+          "description": "Weight of the value text. strong bolds it; size and color never change.",
+          "derivedFrom": null
+        },
+        "emptyText": {
+          "class": "optional",
+          "type": "React.ReactNode",
+          "default": "'—'",
+          "description": "Rendered in place of value when it is empty (undefined, null or '').",
+          "derivedFrom": null
+        }
+      },
+      "dependencies": {
+        "components": [],
+        "externals": [
+          "class-variance-authority"
+        ],
+        "tokenGroups": [
+          "colors",
+          "spacing",
+          "typography"
+        ],
+        "brands": [
+          "klub"
+        ]
+      },
+      "composition": {
+        "reuses": [],
+        "gaps": []
+      },
+      "usedBy": [],
+      "created": "2026-08-10",
+      "updated": "2026-08-10"
+    },
+    {
       "name": "data-table",
       "displayName": "Data Table",
       "description": "Generic data-driven table built on @tanstack/react-table. Accepts columns[] + data and renders sort + pagination + custom cells. Uses <Table> primitives internally.",

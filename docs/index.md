@@ -63,6 +63,7 @@ Start here:
 
 ### data-display
 - [Badge](./components/_index_badges.md) — Status indicator pill, 9 types × 3 sizes × 2 styles (48 variants)
+- [DataField](./components/_index_data-field.md) — Read-only labelled value display (muted label + fg-default value), single emphasis axis (default / strong), 2 variants
 - [Data Table](./components/_index_data-table.md) — Generic data-driven table with sort + pagination, built on @tanstack/react-table
 - [Table (primitives)](./components/_index_table.md) — Compound HTML table primitives (Root/Header/Body/Row/Head/Cell/Caption) with klp styling, 3 row variants
 

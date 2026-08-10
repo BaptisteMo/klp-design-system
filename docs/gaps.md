@@ -2,7 +2,7 @@
 title: Design System Gaps
 type: aggregation
 updated: 2026-08-10
-<!-- regenerated: 2026-08-10 SYNC full recompute (button gained 1 token-gap; cards remains gap-free) -->
+<!-- regenerated: 2026-08-10 DOCUMENT data-field (spec-less component, no gaps recorded; cards confirmed still gap-free) -->
 ---
 
 # Design System Gaps

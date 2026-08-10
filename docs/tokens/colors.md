@@ -148,6 +148,7 @@ Translucency overlays. Same value across all four brands (they alias `light-N` p
 - [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — consumes `bg-navrail` (root fill, a DS-side alias for an unbound Figma literal — see gaps) and `alpha-10` (logo slot default fill) tokens.
 - [InputFile](../components/_index_input-file.md) — consumes `bg-brand-low`, `border-brand`, `border-brand-emphasis` (drop-zone SVG dashed outline, rest/dragActive), `bg-brand`, `fg-muted`, `bg-default`, `border-default`, `bg-inset`, `border-invisible` tokens across root, illustration, dropzone-label, file-input, and action-button layers.
 - [Card](../components/_index_cards.md) — consumes `bg-default` (fill), `border-default` (stroke) tokens across both padding-size variants.
+- [DataField](../components/_index_data-field.md) — consumes `fg-muted` (label), `fg-default` (value), `fg-subtle` (value when empty) tokens across both emphasis variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

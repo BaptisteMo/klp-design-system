@@ -2,7 +2,7 @@
 title: Typography tokens
 type: token-group
 group: typography
-updated: 2026-08-07
+updated: 2026-08-10
 ---
 
 # Typography tokens
@@ -84,6 +84,7 @@ Atlas runs a deliberately denser type scale (~2px smaller across the board) to m
 - [Header Showup](../components/_index_header-showup.md) — `--klp-font-family-title` (logo-mark slot default); `--klp-font-family-body`/`--klp-font-weight-body` (logo-badge, via Badge); `--klp-font-size-text-small`/`--klp-font-weight-label-bold`/`--klp-font-family-label` (action-tools-button, via Button); literal 14px/700 (language-selector slot default, not token-bound).
 - [Navbar Item](../components/_index_navbar-item.md) — `--klp-font-size-text-smaller`, `--klp-font-weight-label`, `--klp-font-family-label` on the label layer, fully Figma-bound and identical across all three states.
 - [InputFile](../components/_index_input-file.md) — `--klp-font-size-text-large`, `--klp-font-family-label`, `--klp-font-weight-label` on the dropzone-label layer (drop-zone layout only).
+- [DataField](../components/_index_data-field.md) — `font-klp-label`, `text-klp-text-small` on the label layer; `font-klp-label` / `font-klp-label-bold`, `text-klp-text-medium` on the value layer across both emphasis variants.
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes
