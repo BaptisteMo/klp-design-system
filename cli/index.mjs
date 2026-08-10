@@ -40,7 +40,19 @@ async function runAdd(rest) {
   const ref = refFlag ? refFlag.slice(6) : 'main'
 
   const rootDir = process.cwd()
-  const plan = planAdd({ rootDir, names: positional, force })
+
+  // Manifest is loaded first: it is the source of the catalog used to upgrade a v1 inventory.
+  let manifest
+  if (ref === 'local') {
+    manifest = JSON.parse(readFileSync(resolve(__dirname, '../registry/manifest.json'), 'utf8'))
+  } else {
+    const { fetchText } = await import('./fetch.mjs')
+    const url = `https://raw.githubusercontent.com/BaptisteMo/klp-design-system/${ref}/registry/manifest.json`
+    manifest = JSON.parse(await fetchText(url))
+  }
+
+  const { catalogFromManifest } = await import('./klep-ds-init.mjs')
+  const plan = planAdd({ rootDir, names: positional, force, catalog: catalogFromManifest(manifest) })
 
   if (plan.unknown.length) {
     console.error(`Unknown components: ${plan.unknown.join(', ')}`)
@@ -49,15 +61,6 @@ async function runAdd(rest) {
   if (!plan.toInstall.length) {
     console.log(`Nothing to install. Already installed: ${plan.alreadyInstalled.join(', ') || '(none)'}`)
     process.exit(0)
-  }
-
-  let manifest
-  if (ref === 'local') {
-    manifest = JSON.parse(readFileSync(resolve(__dirname, '../registry/manifest.json'), 'utf8'))
-  } else {
-    const { fetchText } = await import('./fetch.mjs')
-    const url = `https://raw.githubusercontent.com/BaptisteMo/klp-design-system/${ref}/registry/manifest.json`
-    manifest = JSON.parse(await fetchText(url))
   }
 
   const dsRoot  = join(rootDir, plan.inventory.dsDir)

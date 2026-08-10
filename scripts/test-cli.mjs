@@ -420,6 +420,45 @@ function testAddCommandE2E() {
   }
 }
 
+async function testInventoryV2() {
+  console.log('\n[test] inventory v2')
+  const { createInventory, upgradeInventory, listByStatus } = await import(join(REPO_ROOT, 'cli/inventory.mjs'))
+
+  const catalog = [
+    {
+      name: 'badges', category: 'data-display', deps: [],
+      aliases: ['badges', 'Badge', 'chip'],
+      exports: ['Badge'], typeExports: ['BadgeProps'],
+      whenToUse: 'Short read-only status.',
+      props: { type: { type: 'BadgeType', class: 'optional' } },
+    },
+    { name: 'button', category: 'inputs', deps: [], aliases: ['button', 'Button'], exports: ['Button'], typeExports: [], whenToUse: 'Trigger an action.', props: {} },
+  ]
+
+  const inv = createInventory({ ref: 'main', brand: 'klub', appDir: 'app', dsDir: 'external/klp-design-system', catalog, initiallyInstalled: ['badges'] })
+
+  assert(inv.schemaVersion === 'v2', 'schemaVersion is v2')
+  assert(inv.components.badges.status === 'installed', 'initiallyInstalled honoured')
+  assert(inv.components.badges.exports.join(',') === 'Badge', 'exports carried into inventory')
+  assert(inv.components.badges.typeExports.join(',') === 'BadgeProps', 'typeExports carried into inventory')
+  assert(inv.components.badges.aliases.includes('chip'), 'aliases carried into inventory')
+  assert(inv.components.badges.whenToUse === 'Short read-only status.', 'whenToUse carried into inventory')
+  assert(inv.components.badges.props.type.type === 'BadgeType', 'prop type carried into inventory')
+  assert(inv.components.badges.props.type.class === 'optional', 'prop class carried into inventory')
+  assert(inv.components.badges.doc === 'docs/components/_index_badges.md', 'doc path recorded')
+  assert(listByStatus(inv, 'available').join(',') === 'button', 'listByStatus still works')
+
+  const v1 = {
+    schemaVersion: 'v1', ref: 'main', brand: 'klub', appDir: 'app', dsDir: 'd',
+    components: { badges: { status: 'installed', category: 'data-display', deps: [] }, button: { status: 'available', category: 'inputs', deps: [] } },
+  }
+  const upgraded = upgradeInventory(v1, catalog)
+  assert(upgraded.schemaVersion === 'v2', 'v1 file upgrades to v2')
+  assert(upgraded.components.badges.status === 'installed', 'status preserved through upgrade')
+  assert(upgraded.components.badges.exports.join(',') === 'Badge', 'upgrade re-derives exports from the catalog')
+  assert(upgradeInventory(upgraded, catalog).schemaVersion === 'v2', 'upgrading a v2 file is a no-op')
+}
+
 async function main() {
   testCliBasics()
   testManifestValidator()
@@ -430,6 +469,7 @@ async function main() {
   await testDetectApp()
   await testPatchConfig()
   await testInventory()
+  await testInventoryV2()
   await testListCommand()
   await testAddCommand()
   testListSubcommand()

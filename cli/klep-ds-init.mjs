@@ -2,7 +2,7 @@
 // cli/klep-ds-init.mjs
 // Install klp-design-system into an existing project.
 
-import { readFileSync, writeFileSync, existsSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync, realpathSync } from 'node:fs'
 import { join, relative, dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { createInterface } from 'node:readline/promises'
@@ -280,7 +280,7 @@ function installRootCli(rootDir, pm, verbose) {
   return true
 }
 
-function catalogFromManifest(manifest) {
+export function catalogFromManifest(manifest) {
   const items = manifest.groups.components.items ?? {}
   // Categories live in registry/<name>.json; manifest doesn't currently carry them per-item.
   // For attach-mode catalog purposes, derive category from the per-component registry shipped
@@ -291,6 +291,11 @@ function catalogFromManifest(manifest) {
       name,
       category: item.category ?? 'misc',
       deps: item.deps?.components ?? [],
+      aliases: item.meta?.aliases ?? [name],
+      exports: item.meta?.exports ?? [],
+      typeExports: item.meta?.typeExports ?? [],
+      whenToUse: item.meta?.whenToUse ?? null,
+      props: item.meta?.props ?? {},
     })
   }
   return catalog
@@ -398,4 +403,14 @@ async function main() {
   console.log(`  npx klp-ui update`)
 }
 
-main().catch((e) => { console.error(e.message); process.exit(1) })
+// Only run the installer when invoked as a binary — `cli/index.mjs` imports this module
+// for `catalogFromManifest` and must not trigger the init flow.
+function invokedDirectly() {
+  if (!process.argv[1]) return false
+  const self = fileURLToPath(import.meta.url)
+  try { return realpathSync(process.argv[1]) === realpathSync(self) } catch { return resolve(process.argv[1]) === self }
+}
+
+if (invokedDirectly()) {
+  main().catch((e) => { console.error(e.message); process.exit(1) })
+}

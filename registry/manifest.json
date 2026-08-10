@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-08-10T16:50:51.312Z",
+  "generatedAt": "2026-08-10T16:55:22.573Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -67,7 +67,56 @@
             ],
             "components": []
           },
-          "category": "overlays"
+          "category": "overlays",
+          "meta": {
+            "aliases": [
+              "action-sheet-item",
+              "ActionSheetItem",
+              "ActionSheet_Item",
+              "menu-item",
+              "action-row",
+              "dropdown-item"
+            ],
+            "exports": [
+              "ActionSheetItem",
+              "rootVariants",
+              "iconVariants",
+              "labelVariants",
+              "contentVariants"
+            ],
+            "typeExports": [
+              "ActionSheetItemProps",
+              "ActionSheetItemState",
+              "ActionSheetItemSize"
+            ],
+            "whenToUse": "One actionable row inside a menu surface — leading and trailing icon slots, optional description line, and semantic states including destructive and creation.",
+            "props": {
+              "state": {
+                "type": "ActionSheetItemState",
+                "class": "persistent"
+              },
+              "size": {
+                "type": "ActionSheetItemSize",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "firstIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "secondAction": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "description": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "action-sheet-menu": {
           "files": [
@@ -89,7 +138,48 @@
             ],
             "components": []
           },
-          "category": "lists"
+          "category": "lists",
+          "meta": {
+            "aliases": [
+              "action-sheet-menu",
+              "ActionSheetMenu",
+              "ActionSheet_Menu",
+              "dropdown",
+              "menu",
+              "popover-menu",
+              "context-menu"
+            ],
+            "exports": [
+              "ActionSheetMenu",
+              "ActionSheetMenuRoot",
+              "ActionSheetMenuTrigger",
+              "ActionSheetMenuPortal",
+              "ActionSheetMenuAnchor",
+              "ActionSheetMenuContent",
+              "ActionSheetSeparator",
+              "rootVariants",
+              "sectionVariants",
+              "titleVariants"
+            ],
+            "typeExports": [
+              "ActionSheetMenuProps",
+              "ActionSheetMenuType",
+              "ActionSheetMenuSection",
+              "ActionSheetMenuItemDef",
+              "ActionSheetMenuContentProps"
+            ],
+            "whenToUse": "A contextual list of actions anchored to a trigger — grouped action-sheet-item rows with optional section titles and separators. Use the checkbox type for multi-select option lists (this is what input-multiselect opens).",
+            "props": {
+              "sections": {
+                "type": "ActionSheetMenuSection[]",
+                "class": "required"
+              },
+              "type": {
+                "type": "ActionSheetMenuType",
+                "class": "optional"
+              }
+            }
+          }
         },
         "badges": {
           "files": [
@@ -111,7 +201,60 @@
             ],
             "components": []
           },
-          "category": "data-display"
+          "category": "data-display",
+          "meta": {
+            "aliases": [
+              "badges",
+              "Badge",
+              "badge",
+              "chip",
+              "pill",
+              "tag"
+            ],
+            "exports": [
+              "Badge",
+              "rootVariants",
+              "labelVariants",
+              "iconVariants"
+            ],
+            "typeExports": [
+              "BadgeProps",
+              "BadgeType",
+              "BadgeSize",
+              "BadgeStyle"
+            ],
+            "whenToUse": "A small non-interactive pill labelling a status, category or count next to the thing it describes — nine semantic types across bordered and light styles.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "badgeType": {
+                "type": "BadgeType",
+                "class": "optional"
+              },
+              "size": {
+                "type": "BadgeSize",
+                "class": "optional"
+              },
+              "badgeStyle": {
+                "type": "BadgeStyle",
+                "class": "optional"
+              },
+              "leftIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "rightIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "brand-provider": {
           "files": [
@@ -124,6 +267,33 @@
           "deps": {
             "npm": [],
             "components": []
+          },
+          "meta": {
+            "aliases": [
+              "brand-provider",
+              "BrandProvider",
+              "theme-provider",
+              "brand"
+            ],
+            "exports": [
+              "BrandProvider",
+              "BRANDS"
+            ],
+            "typeExports": [
+              "Brand",
+              "BrandProviderProps"
+            ],
+            "whenToUse": "Mount once at the app root to set data-brand on document.documentElement so the alias tokens resolve. Renders no markup.",
+            "props": {
+              "brand": {
+                "type": "Brand",
+                "class": "required"
+              },
+              "children": {
+                "type": "ReactNode",
+                "class": "required"
+              }
+            }
           }
         },
         "breadcrumbs": {
@@ -147,7 +317,43 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "breadcrumbs",
+              "BreadCrumbs",
+              "breadcrumb",
+              "crumbs",
+              "trail"
+            ],
+            "exports": [
+              "BreadCrumbs",
+              "breadCrumbsRootVariants",
+              "breadCrumbsStepItemVariants",
+              "breadCrumbsStepIconVariants",
+              "breadCrumbsStepLabelVariants",
+              "breadCrumbsStepSeparatorVariants"
+            ],
+            "typeExports": [
+              "BreadCrumbsProps",
+              "BreadCrumbStep"
+            ],
+            "whenToUse": "The ancestor trail showing where the current page sits in the hierarchy — a home icon, up to three muted ancestor steps, and the current step.",
+            "props": {
+              "steps": {
+                "type": "BreadCrumbStep[]",
+                "class": "required"
+              },
+              "showDropdownAffordance": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "stepsVariant": {
+                "type": "VariantProps<typeof rootVariants>['steps']",
+                "class": "optional"
+              }
+            }
+          }
         },
         "button": {
           "files": [
@@ -169,7 +375,56 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "button",
+              "Button",
+              "btn",
+              "cta",
+              "icon-button"
+            ],
+            "exports": [
+              "Button",
+              "buttonVariants",
+              "labelVariants",
+              "iconVariants"
+            ],
+            "typeExports": [
+              "ButtonProps"
+            ],
+            "whenToUse": "Any element that performs an action or navigates on click — primary, secondary, tertiary, destructive and validation types, plus an icon size for icon-only affordances and on-emphasis for dark surfaces.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "variant": {
+                "type": "VariantProps<typeof rootVariants>['variant']",
+                "class": "optional"
+              },
+              "size": {
+                "type": "VariantProps<typeof rootVariants>['size']",
+                "class": "optional"
+              },
+              "htmlType": {
+                "type": "'button' | 'submit' | 'reset'",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "leftIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "rightIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "calendar": {
           "files": [
@@ -196,7 +451,90 @@
               "separator"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "calendar",
+              "Calendar",
+              "date-picker",
+              "datepicker",
+              "month-view"
+            ],
+            "exports": [
+              "Calendar",
+              "rootVariants",
+              "headerVariants",
+              "monthLabelVariants",
+              "dayGridVariants",
+              "weekdayHeaderVariants",
+              "weekdayLabelVariants",
+              "weekRowVariants",
+              "footerVariants",
+              "footerLabelVariants"
+            ],
+            "typeExports": [
+              "CalendarProps"
+            ],
+            "whenToUse": "The date-picking panel — month and year navigation over a Monday-first day grid, with an hour field in the footer. Use it when the user picks a date or a date and time.",
+            "props": {
+              "value": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "defaultValue": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "onValueChange": {
+                "type": "(date: Date) => void",
+                "class": "optional"
+              },
+              "month": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "defaultMonth": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "onMonthChange": {
+                "type": "(date: Date) => void",
+                "class": "optional"
+              },
+              "isDateDisabled": {
+                "type": "(date: Date) => boolean",
+                "class": "optional"
+              },
+              "today": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "locale": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showTimePicker": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "hourValue": {
+                "type": "string",
+                "class": "optional"
+              },
+              "defaultHourValue": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onHourValueChange": {
+                "type": "(value: string) => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "calendar-button": {
           "files": [
@@ -217,7 +555,51 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "calendar-button",
+              "CalendarButton",
+              "day-cell",
+              "date-cell"
+            ],
+            "exports": [
+              "CalendarButton",
+              "rootVariants",
+              "labelVariants"
+            ],
+            "typeExports": [
+              "CalendarButtonProps",
+              "CalendarButtonState"
+            ],
+            "whenToUse": "One 36x36 day cell of a calendar grid, rendering the day number with a state of default, other-month, disable, today or selected.",
+            "props": {
+              "day": {
+                "type": "number",
+                "class": "required"
+              },
+              "otherMonth": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "today": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "selected": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "state": {
+                "type": "CalendarButtonState",
+                "class": "computed"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "cards": {
           "files": [
@@ -239,7 +621,39 @@
             ],
             "components": []
           },
-          "category": "containers"
+          "category": "containers",
+          "meta": {
+            "aliases": [
+              "cards",
+              "Card",
+              "card",
+              "panel",
+              "surface",
+              "tile"
+            ],
+            "exports": [
+              "Card",
+              "cardVariants"
+            ],
+            "typeExports": [
+              "CardProps"
+            ],
+            "whenToUse": "A rounded bordered surface that groups arbitrary children into one visual block, with 8px or 16px padding. The base primitive for every card-style element.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "paddingSize": {
+                "type": "VariantProps<typeof rootVariants>['paddingSize']",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "checkbox": {
           "files": [
@@ -262,7 +676,30 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "checkbox",
+              "Checkbox",
+              "check",
+              "tickbox"
+            ],
+            "exports": [
+              "Checkbox",
+              "checkboxRootVariants",
+              "checkboxIndicatorVariants"
+            ],
+            "typeExports": [
+              "CheckboxProps"
+            ],
+            "whenToUse": "A binary or tri-state selection the user confirms as part of a form or a list — supports unchecked, checked, indeterminate and disabled.",
+            "props": {
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "collapsible": {
           "files": [
@@ -285,7 +722,62 @@
             ],
             "components": []
           },
-          "category": "disclosure"
+          "category": "disclosure",
+          "meta": {
+            "aliases": [
+              "collapsible",
+              "Collapsible",
+              "accordion",
+              "disclosure",
+              "expander"
+            ],
+            "exports": [
+              "Collapsible",
+              "CollapsibleRoot",
+              "CollapsibleTrigger",
+              "CollapsibleContent",
+              "collapsibleRootVariants",
+              "collapsibleHeaderVariants",
+              "collapsibleIconVariants",
+              "collapsibleTitleVariants",
+              "collapsibleContentVariants",
+              "collapsibleContentTextVariants"
+            ],
+            "typeExports": [
+              "CollapsibleProps"
+            ],
+            "whenToUse": "A titled panel whose body can be hidden and revealed by a chevron toggle — for secondary detail that would otherwise crowd the page.",
+            "props": {
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "title": {
+                "type": "string",
+                "class": "optional"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "data-field": {
           "files": [
@@ -306,7 +798,45 @@
             ],
             "components": []
           },
-          "category": "data-display"
+          "category": "data-display",
+          "meta": {
+            "aliases": [
+              "data-field",
+              "DataField",
+              "read-only-field",
+              "key-value",
+              "label-value",
+              "definition"
+            ],
+            "exports": [
+              "DataField",
+              "dataFieldRootVariants",
+              "dataFieldLabelVariants",
+              "dataFieldValueVariants"
+            ],
+            "typeExports": [
+              "DataFieldProps"
+            ],
+            "whenToUse": "A single read-only labelled value — muted label above the value — for detail panels, summaries and confirmation screens. The strong emphasis picks out the key value.",
+            "props": {
+              "label": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "value": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "emphasis": {
+                "type": "VariantProps<typeof valueVariants>['emphasis']",
+                "class": "optional"
+              },
+              "emptyText": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "data-table": {
           "files": [
@@ -330,6 +860,65 @@
               "pagination",
               "table"
             ]
+          },
+          "meta": {
+            "aliases": [
+              "data-table",
+              "DataTable",
+              "datatable",
+              "grid",
+              "tanstack-table"
+            ],
+            "exports": [
+              "DataTable"
+            ],
+            "typeExports": [
+              "ColumnDef",
+              "DataTableProps"
+            ],
+            "whenToUse": "Any collection of records shown as rows and columns — the default choice for tabular data. Accepts columns[] + data and brings sorting, pagination and custom cell renderers.",
+            "props": {
+              "columns": {
+                "type": "ColumnDef<TData>[]",
+                "class": "required"
+              },
+              "data": {
+                "type": "TData[]",
+                "class": "required"
+              },
+              "pagination": {
+                "type": "{ pageSize: number } | false",
+                "class": "optional"
+              },
+              "initialSorting": {
+                "type": "{ id: string; desc: boolean }[]",
+                "class": "optional"
+              },
+              "onSortingChange": {
+                "type": "(sorting: SortingState) => void",
+                "class": "optional"
+              },
+              "toolbar": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "emptyState": {
+                "type": "React.ReactNode | string",
+                "class": "optional"
+              },
+              "caption": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              },
+              "tableClassName": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
           }
         },
         "file-dropped": {
@@ -354,7 +943,59 @@
               "button"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "file-dropped",
+              "FileDropped",
+              "file-row",
+              "uploaded-file",
+              "attachment-row"
+            ],
+            "exports": [
+              "FileDropped",
+              "fileDroppedRootVariants",
+              "iconHighlightVariants",
+              "fileDroppedIconVariants",
+              "filenameVariants",
+              "filesizeVariants"
+            ],
+            "typeExports": [
+              "FileDroppedProps",
+              "FileDroppedState"
+            ],
+            "whenToUse": "The row representing one file that has already been chosen or uploaded — filename, size, and download plus delete actions, with a default, uploading or done state.",
+            "props": {
+              "name": {
+                "type": "string",
+                "class": "required"
+              },
+              "size": {
+                "type": "string",
+                "class": "required"
+              },
+              "state": {
+                "type": "FileDroppedState",
+                "class": "persistent"
+              },
+              "progress": {
+                "type": "number",
+                "class": "optional"
+              },
+              "onDownload": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "onDelete": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "floating-alert": {
           "files": [
@@ -376,7 +1017,45 @@
             ],
             "components": []
           },
-          "category": "feedback"
+          "category": "feedback",
+          "meta": {
+            "aliases": [
+              "floating-alert",
+              "FloatingAlert",
+              "toast",
+              "snackbar",
+              "notification"
+            ],
+            "exports": [
+              "FloatingAlert",
+              "rootVariants",
+              "iconHighlightVariants",
+              "iconVariants",
+              "contentVariants"
+            ],
+            "typeExports": [
+              "FloatingAlertProps"
+            ],
+            "whenToUse": "Transient system feedback that floats over the page and goes away — the result of a save, an upload, a failed request — in danger, warning, information or success.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "state": {
+                "type": "'danger' | 'warning' | 'information' | 'success'",
+                "class": "optional"
+              },
+              "size": {
+                "type": "'sm' | 'md' | 'lg'",
+                "class": "optional"
+              },
+              "onDismiss": {
+                "type": "() => void",
+                "class": "optional"
+              }
+            }
+          }
         },
         "header-desktop": {
           "files": [
@@ -399,7 +1078,59 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "header-desktop",
+              "HeaderDesktop",
+              "page-header",
+              "desktop-header",
+              "topbar"
+            ],
+            "exports": [
+              "HeaderDesktop",
+              "rootVariants",
+              "titleActionRowVariants",
+              "titleVariants",
+              "actionsVariants",
+              "searchInputVariants"
+            ],
+            "typeExports": [
+              "HeaderDesktopProps",
+              "HeaderAction"
+            ],
+            "whenToUse": "The header strip at the top of a desktop page body — page title, breadcrumb trail and a contextual action row. Brand-agnostic; the search-active variant swaps the action row for an inline search field.",
+            "props": {
+              "title": {
+                "type": "string",
+                "class": "optional"
+              },
+              "features": {
+                "type": "'default' | 'search-active'",
+                "class": "optional"
+              },
+              "actions": {
+                "type": "HeaderAction[]",
+                "class": "optional"
+              },
+              "breadcrumbs": {
+                "type": "BreadCrumbStep[] | false",
+                "class": "optional"
+              },
+              "searchPlaceholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onSearchChange": {
+                "type": "(value: string) => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "header-phone": {
           "files": [
@@ -422,7 +1153,69 @@
             ],
             "components": []
           },
-          "category": "containers"
+          "category": "containers",
+          "meta": {
+            "aliases": [
+              "header-phone",
+              "HeaderPhone",
+              "mobile-header",
+              "phone-header",
+              "appbar"
+            ],
+            "exports": [
+              "HeaderPhone",
+              "headerPhoneRootVariants",
+              "headerPhoneContentVariants",
+              "headerPhoneTopBarVariants",
+              "headerPhoneNotificationButtonVariants",
+              "headerPhoneNotificationDotVariants",
+              "headerPhoneLogoVariants",
+              "headerPhoneTitleBarVariants",
+              "headerPhoneTitleVariants"
+            ],
+            "typeExports": [
+              "HeaderPhoneProps"
+            ],
+            "whenToUse": "The header bar for a phone-width layout — hamburger, logo and notification on the top row, page title and search on the second, breadcrumbs beneath. Brand-agnostic.",
+            "props": {
+              "title": {
+                "type": "string",
+                "class": "optional"
+              },
+              "hasNotification": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "notificationCount": {
+                "type": "number",
+                "class": "optional"
+              },
+              "breadcrumbs": {
+                "type": "BreadCrumbStep[] | false",
+                "class": "optional"
+              },
+              "showSearch": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "onMenuClick": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "onNotificationClick": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "onSearchClick": {
+                "type": "() => void",
+                "class": "optional"
+              }
+            }
+          }
         },
         "header-showup": {
           "files": [
@@ -448,7 +1241,62 @@
               "nav-item"
             ]
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "header-showup",
+              "HeaderShowup",
+              "Nav",
+              "showup-nav",
+              "showup-header",
+              "global-nav"
+            ],
+            "exports": [
+              "HeaderShowup",
+              "headerShowupRootVariants",
+              "headerShowupZoneLogoVariants",
+              "headerShowupLogoMarkVariants",
+              "headerShowupZoneItemsVariants",
+              "headerShowupZoneRightVariants",
+              "headerShowupUserAvatarVariants",
+              "headerShowupLanguageSelectorVariants"
+            ],
+            "typeExports": [
+              "HeaderShowupProps",
+              "HeaderShowupNavItem"
+            ],
+            "whenToUse": "The ShowUp product's global top navigation bar — wordmark, primary nav links as nav-item instances with a flush active underline, and a right zone of tools, language and avatar.",
+            "props": {
+              "items": {
+                "type": "HeaderShowupNavItem[]",
+                "class": "required"
+              },
+              "onItemSelect": {
+                "type": "(id: string) => void",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "badge": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "languageSelector": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "userSlot": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "actions": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "in-content-alert": {
           "files": [
@@ -470,7 +1318,48 @@
             ],
             "components": []
           },
-          "category": "feedback"
+          "category": "feedback",
+          "meta": {
+            "aliases": [
+              "in-content-alert",
+              "InContentAlert",
+              "InContent_Alert",
+              "inline-alert",
+              "banner",
+              "callout",
+              "notice"
+            ],
+            "exports": [
+              "InContentAlert",
+              "rootVariants",
+              "headerVariants",
+              "iconVariants",
+              "titleVariants",
+              "bodyVariants"
+            ],
+            "typeExports": [
+              "InContentAlertProps"
+            ],
+            "whenToUse": "A message that stays in the page flow next to the content it concerns — an icon, a title and an optional body, in info, success, danger or warning.",
+            "props": {
+              "content": {
+                "type": "'info' | 'success' | 'danger' | 'warning'",
+                "class": "optional"
+              },
+              "size": {
+                "type": "'lg' | 'md' | 'sm'",
+                "class": "optional"
+              },
+              "title": {
+                "type": "string",
+                "class": "required"
+              },
+              "body": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "input": {
           "files": [
@@ -493,7 +1382,71 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "input",
+              "Input",
+              "text-field",
+              "textbox",
+              "textfield",
+              "search-input"
+            ],
+            "exports": [
+              "Input",
+              "rootVariants",
+              "headVariants",
+              "labelVariants",
+              "infoIconVariants",
+              "inputBoxVariants",
+              "iconLeftVariants",
+              "placeholderVariants",
+              "iconRightVariants",
+              "descriptionVariants"
+            ],
+            "typeExports": [
+              "InputProps"
+            ],
+            "whenToUse": "A single-line text field with label, optional leading or action icon and helper text, across three sizes and the default, filled, focused, success, danger and disable states.",
+            "props": {
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "description": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showInfoIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "iconLeft": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "iconRight": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "size": {
+                "type": "InputSize",
+                "class": "optional"
+              },
+              "state": {
+                "type": "InputState",
+                "class": "computed"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              },
+              "inputBoxClassName": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "input-file": {
           "files": [
@@ -523,7 +1476,70 @@
               "input"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "input-file",
+              "InputFile",
+              "file-upload",
+              "file-picker",
+              "dropzone",
+              "upload"
+            ],
+            "exports": [
+              "InputFile",
+              "inputFileRootVariants",
+              "dropzoneLabelVariants",
+              "InputFileIllustration"
+            ],
+            "typeExports": [
+              "InputFileProps",
+              "InputFileIllustrationProps"
+            ],
+            "whenToUse": "The control that selects files — the drop-zone layout for a dashed drag-and-drop panel, or the simple layout for a compact labelled field with a take-picture action.",
+            "props": {
+              "layout": {
+                "type": "InputFileLayout",
+                "class": "optional"
+              },
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "description": {
+                "type": "string",
+                "class": "optional"
+              },
+              "placeholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "actionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "accept": {
+                "type": "string",
+                "class": "optional"
+              },
+              "multiple": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "disabled": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onFilesSelected": {
+                "type": "(files: File[]) => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "input-multiselect": {
           "files": [
@@ -550,7 +1566,79 @@
               "input"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "input-multiselect",
+              "InputMultiselect",
+              "Input_MultiSelect",
+              "multiselect",
+              "combobox",
+              "select",
+              "tag-input"
+            ],
+            "exports": [
+              "InputMultiselect",
+              "rootVariants",
+              "chipsRowVariants"
+            ],
+            "typeExports": [
+              "InputMultiselectProps",
+              "InputMultiselectOption",
+              "InputMultiselectSection"
+            ],
+            "whenToUse": "Picking several values from a known option list — a labelled trigger showing the choices as removable Badge chips, opening an action-sheet-menu of checkbox rows grouped in sections.",
+            "props": {
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showInfoIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "placeholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "sections": {
+                "type": "InputMultiselectSection[]",
+                "class": "required"
+              },
+              "value": {
+                "type": "string[]",
+                "class": "optional"
+              },
+              "defaultValue": {
+                "type": "string[]",
+                "class": "optional"
+              },
+              "onValueChange": {
+                "type": "(value: string[]) => void",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "maxVisibleChips": {
+                "type": "number",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "item-side-bar": {
           "files": [
@@ -573,7 +1661,77 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "item-side-bar",
+              "ItemSideBar",
+              "Item_SideBar",
+              "sidebar-item",
+              "side-bar-item",
+              "nav-row"
+            ],
+            "exports": [
+              "ItemSideBar",
+              "ActionSheetItem",
+              "rootVariants",
+              "triggerVariants",
+              "iconContainerVariants",
+              "decorativeIconVariants",
+              "iconVariants",
+              "labelVariants",
+              "chevronVariants",
+              "contentVariants"
+            ],
+            "typeExports": [
+              "ItemSideBarProps",
+              "ItemSideBarState",
+              "ItemSideBarFeature"
+            ],
+            "whenToUse": "A row inside the generic sidebar: icon, label, and optionally a collapsible content panel with an ActionSheet inside.",
+            "props": {
+              "state": {
+                "type": "ItemSideBarState",
+                "class": "persistent"
+              },
+              "feature": {
+                "type": "ItemSideBarFeature",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "label": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "onClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "list": {
           "files": [
@@ -597,7 +1755,63 @@
               "list-content"
             ]
           },
-          "category": "lists"
+          "category": "lists",
+          "meta": {
+            "aliases": [
+              "list",
+              "List",
+              "listbox",
+              "stack"
+            ],
+            "exports": [
+              "List",
+              "rootVariants",
+              "headerVariants",
+              "headerTitleVariants",
+              "headerInputsVariants",
+              "itemsVariants"
+            ],
+            "typeExports": [
+              "ListProps",
+              "ListStyle",
+              "ListItemConfig"
+            ],
+            "whenToUse": "A vertical collection of non-tabular rows with a header and an optional action, in condensed, default or with-inputs spacing.",
+            "props": {
+              "listStyle": {
+                "type": "ListStyle",
+                "class": "optional"
+              },
+              "listTitle": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "showButton": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "buttonLabel": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "onButtonClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "itemSize": {
+                "type": "ListContentSize",
+                "class": "optional"
+              },
+              "items": {
+                "type": "ListItemConfig[]",
+                "class": "required"
+              },
+              "headerInputs": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "list-content": {
           "files": [
@@ -620,7 +1834,74 @@
             ],
             "components": []
           },
-          "category": "list"
+          "category": "list",
+          "meta": {
+            "aliases": [
+              "list-content",
+              "ListContent",
+              "list-row",
+              "list-item"
+            ],
+            "exports": [
+              "ListContent",
+              "rootVariants",
+              "decorativeIconVariants",
+              "labelVariants",
+              "sublabelVariants"
+            ],
+            "typeExports": [
+              "ListContentProps",
+              "ListContentSize",
+              "ListContentState"
+            ],
+            "whenToUse": "A single row inside a list: leading decorative icon, label + sublabel, optional trailing tertiary icon-button.",
+            "props": {
+              "size": {
+                "type": "ListContentSize",
+                "class": "optional"
+              },
+              "state": {
+                "type": "ListContentState",
+                "class": "persistent"
+              },
+              "label": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "sublabel": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "showSublabel": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "showDecorativeIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "decorativeIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "showActionButton": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onActionClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "actionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "modal-variation": {
           "files": [
@@ -644,7 +1925,91 @@
               "button"
             ]
           },
-          "category": "overlays"
+          "category": "overlays",
+          "meta": {
+            "aliases": [
+              "modal-variation",
+              "ModalVariation",
+              "modal",
+              "dialog",
+              "confirm-dialog"
+            ],
+            "exports": [
+              "ModalVariation",
+              "ModalVariationRoot",
+              "ModalVariationTrigger",
+              "ModalVariationPortal",
+              "ModalVariationOverlay",
+              "ModalVariationClose",
+              "modalVariationRootVariants",
+              "modalVariationHeaderVariants",
+              "modalVariationTitleVariants",
+              "modalVariationContentVariants",
+              "modalVariationLabelVariants",
+              "modalVariationFooterVariants",
+              "modalVariationLeftButtonsVariants",
+              "modalVariationRightButtonsVariants"
+            ],
+            "typeExports": [
+              "ModalVariationProps",
+              "ModalVariationType"
+            ],
+            "whenToUse": "A blocking dialog that stops the flow until the user decides — header, content and a footer of DS Buttons, over a frosted backdrop. Pick options-actions for a left-hand secondary option beside the CTA pair, or 2-actions for a full-width cancel/confirm pair.",
+            "props": {
+              "type": {
+                "type": "ModalVariationType",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "title": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "primaryActionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onPrimaryAction": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "secondaryActionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onSecondaryAction": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "optionActionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onOptionAction": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "nav-item": {
           "files": [
@@ -667,7 +2032,51 @@
               "badges"
             ]
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "nav-item",
+              "NavItem",
+              "Nav item",
+              "header-nav-link",
+              "top-nav-item",
+              "nav-link"
+            ],
+            "exports": [
+              "NavItem",
+              "rootBaseClasses",
+              "contentVariants",
+              "labelClasses",
+              "iconClasses"
+            ],
+            "typeExports": [
+              "NavItemProps",
+              "NavItemState"
+            ],
+            "whenToUse": "One primary link in the ShowUp header bar — label with optional leading icon and trailing counter Badge, in default or active where active draws the underline.",
+            "props": {
+              "active": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "href": {
+                "type": "string",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "counter": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              }
+            }
+          }
         },
         "navbar-item": {
           "files": [
@@ -688,7 +2097,50 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "navbar-item",
+              "NavbarItem",
+              "NavBar_Item",
+              "rail-item",
+              "atlas-nav-item",
+              "icon-nav-item"
+            ],
+            "exports": [
+              "NavbarItem",
+              "rootVariants",
+              "iconClasses",
+              "labelClasses"
+            ],
+            "typeExports": [
+              "NavbarItemProps",
+              "NavbarItemState"
+            ],
+            "whenToUse": "A row of the Atlas rail — a 70x52 icon-over-label stack with default, hover and selected states, where selected is author-supplied and always beats hover.",
+            "props": {
+              "href": {
+                "type": "string",
+                "class": "optional"
+              },
+              "state": {
+                "type": "NavbarItemState",
+                "class": "computed"
+              },
+              "selected": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              }
+            }
+          }
         },
         "pagination": {
           "files": [
@@ -710,6 +2162,48 @@
             "components": [
               "button"
             ]
+          },
+          "meta": {
+            "aliases": [
+              "pagination",
+              "Pagination",
+              "pager",
+              "page-nav"
+            ],
+            "exports": [
+              "Pagination",
+              "buildPageList"
+            ],
+            "typeExports": [
+              "PaginationProps"
+            ],
+            "whenToUse": "Moving through pages of one result set — numbered pages with an ellipsis algorithm and prev/next controls. Usable standalone, not only under a table.",
+            "props": {
+              "page": {
+                "type": "number",
+                "class": "required"
+              },
+              "pageSize": {
+                "type": "number",
+                "class": "required"
+              },
+              "total": {
+                "type": "number",
+                "class": "required"
+              },
+              "onPageChange": {
+                "type": "(page: number) => void",
+                "class": "required"
+              },
+              "siblingCount": {
+                "type": "number",
+                "class": "optional"
+              },
+              "showLabel": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
           }
         },
         "radio": {
@@ -732,7 +2226,33 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "radio",
+              "RadioGroup",
+              "radio-button",
+              "radio-group",
+              "option"
+            ],
+            "exports": [
+              "RadioGroup",
+              "RadioItem",
+              "radioRootVariants",
+              "radioIndicatorVariants"
+            ],
+            "typeExports": [
+              "RadioGroupProps",
+              "RadioItemProps"
+            ],
+            "whenToUse": "Choosing exactly one option from a mutually exclusive set. The DS has no single-select dropdown or combobox, so radio is the answer for a single choice whatever the length of the option list — long lists render as a scrollable radio group.",
+            "props": {
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "separator": {
           "files": [
@@ -754,7 +2274,39 @@
             ],
             "components": []
           },
-          "category": "utilities"
+          "category": "utilities",
+          "meta": {
+            "aliases": [
+              "separator",
+              "Separator",
+              "divider",
+              "rule",
+              "hr"
+            ],
+            "exports": [
+              "Separator",
+              "separatorRootVariants",
+              "separatorLineVariants"
+            ],
+            "typeExports": [
+              "SeparatorProps"
+            ],
+            "whenToUse": "A 1px rule that visually splits neighbouring content, horizontal or vertical, with a margin axis reserving the surrounding space.",
+            "props": {
+              "direction": {
+                "type": "'horizontal' | 'vertical'",
+                "class": "optional"
+              },
+              "margin": {
+                "type": "VariantProps<typeof rootVariants>['margin']",
+                "class": "optional"
+              },
+              "decorative": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "sidebar": {
           "files": [
@@ -782,7 +2334,83 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "sidebar",
+              "SideBar",
+              "side-nav",
+              "drawer",
+              "nav-drawer"
+            ],
+            "exports": [
+              "SideBar",
+              "rootVariants",
+              "contentVariants",
+              "headerVariants",
+              "logoNotifVariants",
+              "logoVariants",
+              "notificationDotVariants",
+              "contextSwitcherVariants",
+              "contextLabelVariants",
+              "contextChevronVariants",
+              "menuVariants",
+              "menuItemVariants",
+              "profilVariants",
+              "avatarVariants",
+              "userNameVariants",
+              "SIDEBAR_MENU"
+            ],
+            "typeExports": [
+              "SideBarProps",
+              "SideBarDevice",
+              "SidebarTopItem",
+              "SidebarChildItem"
+            ],
+            "whenToUse": "The generic full-width vertical navigation panel — branded header, context switcher, a scrollable menu of item-side-bar rows and a user footer. Desktop variant is a fixed 247px column; phone variant is a 320px dismissible drawer.",
+            "props": {
+              "device": {
+                "type": "SideBarDevice",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "contextLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onNotificationClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "onContextSwitcherClick": {
+                "type": "React.MouseEventHandler<HTMLDivElement>",
+                "class": "optional"
+              },
+              "activeKey": {
+                "type": "string",
+                "class": "persistent"
+              },
+              "activeChildKey": {
+                "type": "string",
+                "class": "persistent"
+              },
+              "onNavigate": {
+                "type": "(key: string, parentKey?: string) => void",
+                "class": "optional"
+              },
+              "avatar": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "userName": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "sidebar-atlas": {
           "files": [
@@ -805,7 +2433,41 @@
               "navbar-item"
             ]
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "sidebar-atlas",
+              "SidebarAtlas",
+              "NavBar",
+              "atlas-rail",
+              "icon-rail",
+              "nav-rail"
+            ],
+            "exports": [
+              "SidebarAtlas",
+              "rootVariants",
+              "logoVariants"
+            ],
+            "typeExports": [
+              "SidebarAtlasProps",
+              "SidebarAtlasItem"
+            ],
+            "whenToUse": "The Atlas brand's 70px-wide, full-height icon rail — a logo slot over a list of navbar-item entries driven by an items prop with real hrefs and a selected route.",
+            "props": {
+              "items": {
+                "type": "SidebarAtlasItem[]",
+                "class": "required"
+              },
+              "onItemSelect": {
+                "type": "(id: string) => void",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "switch": {
           "files": [
@@ -828,7 +2490,31 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "switch",
+              "Switch",
+              "toggle",
+              "on-off"
+            ],
+            "exports": [
+              "Switch",
+              "switchRootVariants",
+              "switchThumbVariants",
+              "switchIconVariants"
+            ],
+            "typeExports": [
+              "SwitchProps"
+            ],
+            "whenToUse": "A setting that turns on or off and takes effect immediately, with an animated thumb showing the current state.",
+            "props": {
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "table": {
           "files": [
@@ -848,6 +2534,33 @@
               "class-variance-authority"
             ],
             "components": []
+          },
+          "meta": {
+            "aliases": [
+              "table",
+              "Table",
+              "table-primitives",
+              "thead",
+              "tbody"
+            ],
+            "exports": [
+              "Table",
+              "tableRootVariants",
+              "tableRowVariants",
+              "tableHeadVariants",
+              "tableCellVariants",
+              "tableCaptionVariants"
+            ],
+            "typeExports": [
+              "TableRowProps"
+            ],
+            "whenToUse": "Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.",
+            "props": {
+              "variant": {
+                "type": "'default' | 'selected' | 'muted'",
+                "class": "optional"
+              }
+            }
           }
         },
         "tabulation-cells": {
@@ -870,7 +2583,39 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "tabulation-cells",
+              "TabulationCell",
+              "Tabulation_Cells",
+              "tab",
+              "tab-cell",
+              "tab-item"
+            ],
+            "exports": [
+              "TabulationCell",
+              "TabulationCellsRoot",
+              "TabulationCellsList",
+              "TabulationCellsContent",
+              "rootVariants",
+              "labelVariants"
+            ],
+            "typeExports": [
+              "TabulationCellProps"
+            ],
+            "whenToUse": "One tab within a tabulation bar — a label plus an optional count Badge, in rest or active where active carries the brand-low fill and bold label.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "badge": {
+                "type": "number | string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "tabulations": {
           "files": [
@@ -892,7 +2637,32 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "tabulations",
+              "Tabulations",
+              "tabs",
+              "tab-bar",
+              "segmented-control"
+            ],
+            "exports": [
+              "Tabulations",
+              "TabulationsContent",
+              "TabulationsCellBridge",
+              "rootVariants"
+            ],
+            "typeExports": [
+              "TabulationsProps"
+            ],
+            "whenToUse": "Switching between sibling views of the same page without navigating — a horizontal bar of tabulation-cells split by vertical dividers, with Radix keyboard support.",
+            "props": {
+              "tabs": {
+                "type": "Array<{ value: string; label: React.ReactNode; badge?: TabulationCellProps['badge'] }>",
+                "class": "required"
+              }
+            }
+          }
         },
         "text-area": {
           "files": [
@@ -915,7 +2685,75 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "text-area",
+              "TextArea",
+              "textarea",
+              "multiline-input",
+              "rich-text-editor"
+            ],
+            "exports": [
+              "TextArea",
+              "rootVariants",
+              "headVariants",
+              "labelVariants",
+              "infoIconVariants",
+              "inputVariants",
+              "toolbarVariants",
+              "placeholderVariants"
+            ],
+            "typeExports": [
+              "TextAreaProps",
+              "TextAreaResize",
+              "TextAreaState",
+              "ToolbarAction"
+            ],
+            "whenToUse": "Multi-line free text — comments, descriptions, notes. The rich-text feature adds a formatting toolbar and action bar; simple is a plain multi-line field.",
+            "props": {
+              "feature": {
+                "type": "'simple' | 'rich-text'",
+                "class": "optional"
+              },
+              "state": {
+                "type": "TextAreaState",
+                "class": "computed"
+              },
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showHeader": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "showInfoIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "placeholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "id": {
+                "type": "string",
+                "class": "optional"
+              },
+              "toolbarActions": {
+                "type": "ToolbarAction[]",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              },
+              "resize": {
+                "type": "TextAreaResize",
+                "class": "optional"
+              }
+            }
+          }
         },
         "tooltip": {
           "files": [
@@ -937,7 +2775,61 @@
             ],
             "components": []
           },
-          "category": "overlay"
+          "category": "overlay",
+          "meta": {
+            "aliases": [
+              "tooltip",
+              "Tooltip",
+              "hint",
+              "popover-hint",
+              "title"
+            ],
+            "exports": [
+              "Tooltip",
+              "TooltipProvider",
+              "TooltipRoot",
+              "TooltipTrigger",
+              "TooltipContent",
+              "rootVariants",
+              "labelVariants",
+              "arrowVariants"
+            ],
+            "typeExports": [
+              "TooltipProps",
+              "TooltipContentProps"
+            ],
+            "whenToUse": "A short hover or focus hint that names or clarifies a control, in a bubble with a directional arrow pointing back at its trigger.",
+            "props": {
+              "content": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "arrowOrientation": {
+                "type": "ArrowOrientation",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "delayDuration": {
+                "type": "number",
+                "class": "optional"
+              }
+            }
+          }
         }
       }
     },
