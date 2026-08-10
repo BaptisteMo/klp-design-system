@@ -96,8 +96,9 @@ function main() {
       const desc = c.description ? ` — ${c.description.split('\n')[0]}` : ''
       const extra = (c.aliases ?? []).filter((a) => a !== c.name)
       const also = extra.length ? ` _also: ${extra.join(', ')}_` : ''
-      const use = c.intent ? ` **Use for** ${c.intent.whenToUse}` : ''
-      const not = c.intent ? ` **Not for** ${c.intent.whenNotToUse}` : ''
+      const norm = (s: string) => s.replace(/\s*\n\s*/g, ' ').trim()
+      const use = c.intent ? ` **Use for** ${norm(c.intent.whenToUse)}` : ''
+      const not = c.intent ? ` **Not for** ${norm(c.intent.whenNotToUse)}` : ''
       lines.push(`- **${c.name}**${vc}${desc}${use}${not}${also}`)
     }
     lines.push('')
@@ -109,18 +110,12 @@ function main() {
     lines.push('')
     lines.push('These groups are routinely mixed up. The rule decides; never guess.')
     lines.push('')
-    const byName = new Map(components.map((c) => [c.name, c]))
     for (const fam of familyNames) {
       lines.push(`### ${fam}`)
       lines.push('')
       lines.push(catalog.families[fam].rule.replace(/\s*\n\s*/g, ' ').trim())
       lines.push('')
-      lines.push('| Component | Use when |')
-      lines.push('|---|---|')
-      for (const m of catalog.families[fam].members) {
-        const use = (byName.get(m)?.intent?.whenToUse ?? '').replace(/\s*\n\s*/g, ' ').replace(/\|/g, '\\|').trim()
-        lines.push(`| \`${m}\` | ${use} |`)
-      }
+      lines.push(`Members: ${catalog.families[fam].members.map((m) => `\`${m}\``).join(', ')}`)
       lines.push('')
     }
   }

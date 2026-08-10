@@ -1,7 +1,7 @@
 ---
 title: klp-ui — agent brief
 type: agent-context
-generated-at: 2026-08-10T16:26:56.205Z
+generated-at: 2026-08-10T16:40:43.558Z
 schema-version: 0.1.0
 ---
 
@@ -80,44 +80,25 @@ These groups are routinely mixed up. The rule decides; never guess.
 
 data-table is the default for any tabular data — sorting and pagination are built in. table exposes primitives, used only when data-table cannot express the layout. list renders vertical non-tabular rows. list-content is a row inside list, never standalone.
 
-| Component | Use when |
-|---|---|
-| `table` | Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for a table whose layout data-table cannot express. |
-| `data-table` | Any collection of records shown as rows and columns — the default choice for tabular data. Accepts columns[] + data and brings sorting, pagination and custom cell renderers. |
-| `list` | A vertical collection of non-tabular rows with a header and an optional action, in condensed, default or with-inputs spacing. |
-| `list-content` | A single row inside a list: leading decorative icon, label + sublabel, optional trailing tertiary icon-button. |
+Members: `table`, `data-table`, `list`, `list-content`
 
 ### floating-surfaces
 
 modal-variation blocks on a decision. action-sheet-menu is a contextual action list anchored to a trigger. tooltip is a hover hint with zero actions. floating-alert is transient self-dismissing system feedback.
 
-| Component | Use when |
-|---|---|
-| `modal-variation` | A blocking dialog that stops the flow until the user decides — header, content and a footer of DS Buttons, over a frosted backdrop. Pick options-actions for a left-hand secondary option beside the CTA pair, or 2-actions for a full-width cancel/confirm pair. |
-| `action-sheet-menu` | A contextual list of actions anchored to a trigger — grouped action-sheet-item rows with optional section titles and separators. Use the checkbox type for multi-select option lists (this is what input-multiselect opens). |
-| `tooltip` | A short hover or focus hint that names or clarifies a control, in a bubble with a directional arrow pointing back at its trigger. |
-| `floating-alert` | Transient system feedback that floats over the page and goes away — the result of a save, an upload, a failed request — in danger, warning, information or success. |
+Members: `modal-variation`, `action-sheet-menu`, `tooltip`, `floating-alert`
 
 ### headers
 
 header-desktop and header-phone are generic and brand-agnostic. header-showup is the ShowUp top nav only — never used under another brand.
 
-| Component | Use when |
-|---|---|
-| `header-desktop` | The header strip at the top of a desktop page body — page title, breadcrumb trail and a contextual action row. Brand-agnostic; the search-active variant swaps the action row for an inline search field. |
-| `header-phone` | The header bar for a phone-width layout — hamburger, logo and notification on the top row, page title and search on the second, breadcrumbs beneath. Brand-agnostic. |
-| `header-showup` | The ShowUp product's global top navigation bar — wordmark, primary nav links as nav-item instances with a flush active underline, and a right zone of tools, language and avatar. |
+Members: `header-desktop`, `header-phone`, `header-showup`
 
 ### sidebars
 
 sidebar is the generic full nav (desktop + phone). sidebar-atlas is the Atlas-only 70px icon rail. item-side-bar is a row inside sidebar; navbar-item is a row inside sidebar-atlas. The two row types are not interchangeable.
 
-| Component | Use when |
-|---|---|
-| `sidebar` | The generic full-width vertical navigation panel — branded header, context switcher, a scrollable menu of item-side-bar rows and a user footer. Desktop variant is a fixed 247px column; phone variant is a 320px dismissible drawer. |
-| `sidebar-atlas` | The Atlas brand's 70px-wide, full-height icon rail — a logo slot over a list of navbar-item entries driven by an items prop with real hrefs and a selected route. |
-| `item-side-bar` | A row inside the generic sidebar: icon, label, and optionally a collapsible content panel with an ActionSheet inside. |
-| `navbar-item` | A row of the Atlas rail — a 70x52 icon-over-label stack with default, hover and selected states, where selected is author-supplied and always beats hover. |
+Members: `sidebar`, `sidebar-atlas`, `item-side-bar`, `navbar-item`
 
 ## Token aliases (use these; never raw `--klp-color-*`)
 
