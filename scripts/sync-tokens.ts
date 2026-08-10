@@ -288,11 +288,13 @@ function buildVocabulary(themeCss: string): string {
   }
 
   // Tailwind v4 compiles multiple theme namespaces (e.g. --font-* and
-  // --font-weight-*) to the same class prefix. When two different CSS
-  // variables produce the identical utility string, that utility is
-  // ambiguous: only one of the two meanings actually wins in the generated
-  // CSS. Detect it here instead of documenting both as if they were both
-  // safe to use.
+  // --font-weight-*) to the same class prefix. The resolution is
+  // deterministic, not ambiguous: the FAMILY namespace owns the `font-`
+  // class, so `.font-klp-label { font-family: var(--klp-font-family-label) }`.
+  // The same-named weight variable is simply unreachable through that class
+  // name. Detect the overlap so the doc can name the winner and flag the
+  // shadowed row, rather than discrediting a utility that ~20 components
+  // legitimately use.
   const utilOwners = new Map<string, Set<string>>()
   for (const r of rows) {
     for (const u of r.utils) {
@@ -304,9 +306,18 @@ function buildVocabulary(themeCss: string): string {
   for (const [u, owners] of utilOwners) {
     if (owners.size > 1) collisions.set(u, owners)
   }
+  // Which CSS variable actually wins the shared class name. Tailwind resolves
+  // the family namespace for `font-*`; any other claimant is shadowed.
+  const collisionWinner = new Map<string, string>()
+  for (const [u, owners] of collisions) {
+    const sorted = [...owners].sort()
+    collisionWinner.set(u, sorted.find((v) => v.includes('-family-')) ?? sorted[0])
+  }
   for (const [u, owners] of [...collisions].sort(([a], [b]) => a.localeCompare(b))) {
+    const winner = collisionWinner.get(u)!
+    const shadowed = [...owners].filter((v) => v !== winner).sort()
     console.warn(
-      `[sync-tokens] ⚠ utility '${u}' is produced by multiple CSS variables (${[...owners].sort().join(', ')}) — the class is ambiguous, do not rely on it`
+      `[sync-tokens] ⚠ utility '${u}' is claimed by several CSS variables — '${winner}' wins and is the correct utility; ${shadowed.join(', ')} is unreachable through this class and needs an explicit font-weight utility or a theme rename`
     )
   }
 
@@ -324,10 +335,12 @@ function buildVocabulary(themeCss: string): string {
   lines.push('')
 
   if (collisions.size > 0) {
-    lines.push('> **Known collisions** — Tailwind v4 compiles more than one theme namespace to the same class prefix (e.g. `--font-*` and `--font-weight-*` both produce `font-` utilities). When two CSS variables below claim the same utility string, only one meaning actually applies at runtime; the other is a false entry kept here for visibility. Do not rely on the font-weight variant through these utilities.')
+    lines.push('> **Shared class names** — Tailwind v4 compiles more than one theme namespace to the same class prefix (e.g. `--font-*` and `--font-weight-*` both produce `font-` utilities). The resolution is deterministic: the **family** variant wins and is the correct utility to use — `.font-klp-label` sets `font-family: var(--klp-font-family-label)`. The same-named **weight** variant is unreachable through that class; to apply it, use an explicit `font-weight` utility (e.g. `font-medium`) or rename the theme key.')
     lines.push('>')
     for (const [u, owners] of [...collisions].sort(([a], [b]) => a.localeCompare(b))) {
-      lines.push(`> - \`${u}\` ← ${[...owners].sort().join(' vs ')}`)
+      const winner = collisionWinner.get(u)!
+      const shadowed = [...owners].filter((v) => v !== winner).sort()
+      lines.push(`> - \`${u}\` → ${winner} (wins) · unreachable: ${shadowed.join(', ')}`)
     }
     lines.push('')
   }
@@ -343,7 +356,12 @@ function buildVocabulary(themeCss: string): string {
     lines.push('| Figma variable | CSS variable | Tailwind utility |')
     lines.push('|---|---|---|')
     for (const r of list.sort((a, b) => a.cssVar.localeCompare(b.cssVar))) {
-      const utilCells = r.utils.map((u) => (collisions.has(u) ? `\`${u}\` ⚠️ collides` : `\`${u}\``))
+      const utilCells = r.utils.map((u) => {
+        if (!collisions.has(u)) return `\`${u}\``
+        return collisionWinner.get(u) === r.cssVar
+          ? `\`${u}\` ✅ wins the shared class name`
+          : `\`${u}\` ⚠️ unreachable through this class — use an explicit \`font-weight\` utility`
+      })
       lines.push(`| \`${r.figma}\` | \`${r.cssVar}\` | ${utilCells.join(', ')} |`)
     }
     lines.push('')

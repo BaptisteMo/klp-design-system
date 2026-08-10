@@ -26,7 +26,7 @@ Low-level HTML table primitives styled with klp tokens. Compound component — u
 
 ## When to use
 
-Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.
+Low-level compound primitives (Table.Root/Header/Body/Footer/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.
 
 **Don't use it for:** Never as the first choice for record data — reach for data-table and only fall back here when it cannot render the layout.
 

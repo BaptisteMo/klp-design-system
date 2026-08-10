@@ -32,7 +32,7 @@ Status indicator pill with optional leading/trailing icons. Supports 9 semantic 
 
 A small non-interactive pill labelling a status, category or count next to the thing it describes — nine semantic types across bordered and light styles.
 
-**Don't use it for:** Never as a control; if it can be clicked it is a button. Not for a message with a body of text — that is in-content-alert. Note the exported symbol is Badge even though the folder is badges.
+**Don't use it for:** Never as a control; if it can be clicked it is a button. Not for a message with a body of text — that is in-content-alert.
 
 ## Don't confuse with
 

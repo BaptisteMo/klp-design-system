@@ -195,7 +195,9 @@ export function ButtonExample() {
 
 <!-- KLP:NOTES:BEGIN -->
 
-## When to use
+## Usage patterns
+
+Applied guidance on top of the generated *When to use* section above.
 
 - **Trigger an action:** submit a form, save changes, delete a record, confirm a dialog — anything that *does* something rather than navigates.
 - **Signal the primary path:** give a view exactly one `primary` button so users know the main action at a glance.

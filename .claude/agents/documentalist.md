@@ -80,7 +80,7 @@ Steps:
 - `tailwind-merge`
 
 Everything else scanned from `from '<pkg>'` imports (notably `@radix-ui/*`, `@tanstack/*`, `@fontsource/*`, `lucide-react`, `class-variance-authority`) is kept.
-11. **Update `klp-components.json`** at repo root. Find the component entry by `name` and overwrite with the canonical entry. If absent, append. Sort the array by `name`.
+11. **Update `klp-components.json`** at repo root. The file is an object (`{ components: [...], families: {...} }`), not a bare array. Find the entry in `components` by `name` and overwrite with the canonical entry — but carry over the merge-owned fields (`figmaName`, `aliases`, `family`, `exports`, `typeExports`, `intent`) verbatim from the existing entry, and leave the top-level `families` key untouched; those belong to `pnpm run sync:intent`. If absent, append. Sort `components` by `name`.
 11b. **Populate the `props` field on the canonical entry.** Shape: `props: { "<prop-name>": { "class": "required" | "optional" | "computed" | "persistent", "type": "<raw TS type>", "default": "<string or null>", "description": "<first line of JSDoc or empty>", "derivedFrom": "<comma list or null>" } }`. Source: the parsed JSDoc tags + TS type + `@default` JSDoc tag (if present) from step 3. Preserve order matching the source interface. Sole writer of this field is the documentalist.
 12. **Update `docs/index.md`**. Find the entry under the component's `category` section and refresh the line. If the category section doesn't exist, create it.
 13. **Run the reverse-index pass.** See "Reverse-index pass" below.
@@ -537,41 +537,70 @@ Walked 5 component pages, 4 token pages, 4 brand pages. All links resolve. Graph
 
 ## klp-components.json schema (you are the sole writer)
 
-A JSON array, sorted by `name`. One entry per component:
+A JSON **object** with two top-level keys:
+
+- `components` — an array of component entries, sorted by `name`.
+- `families` — the ambiguity-family map, keyed by family name (`{ members: [...], rule: "..." }`).
+
+One entry of `components` (modelled on the real `badges` entry — read the file before writing):
 
 ```json
 {
-  "name": "button",
-  "displayName": "Button",
+  "name": "badges",
+  "displayName": "Badge",
   "description": "...",
-  "category": "inputs",
+  "category": "data-display",
   "schemaVersion": "v2",
-  "captureBrand": "atlas",
+  "captureBrand": "wireframe",
   "status": "stable",
-  "source": "src/components/button/Button.tsx",
-  "doc": "docs/components/_index_button.md",
-  "playground": "playground/routes/button.tsx",
-  "registry": "registry/button.json",
-  "spec": ".klp/figma-refs/button/spec.json",
+  "source": "src/components/badges/Badges.tsx",
+  "doc": "docs/components/_index_badges.md",
+  "playground": "playground/routes/badges.tsx",
+  "registry": "registry/badges.json",
+  "spec": ".klp/figma-refs/badges/spec.json",
   "radixPrimitive": "@radix-ui/react-slot",
   "anatomy": ["root", "icon-left", "label", "icon-right"],
   "variantAxes": {
-    "type": ["primary", "secondary", "tertiary", "destructive", "validation"],
-    "size": ["sm", "md", "lg", "icon"],
-    "state": ["rest", "hover", "clicked", "disable"]
+    "type": ["primary", "secondary", "tertiary", "success", "info", "warning", "danger", "on-emphasis", "outlined"],
+    "size": ["small", "medium", "large"],
+    "style": ["bordered", "light"]
   },
-  "variantCount": 20,
+  "variantCount": 48,
+  "props": {
+    "children": {
+      "class": "required",
+      "type": "React.ReactNode",
+      "default": null,
+      "description": "Required badge content (text, number, etc.).",
+      "derivedFrom": null
+    }
+  },
   "dependencies": {
     "components": [],
-    "externals": ["@radix-ui/react-slot", "lucide-react", "class-variance-authority"],
-    "tokenGroups": ["colors", "spacing", "radius", "typography"],
-    "brands": ["atlas"]
+    "externals": ["@radix-ui/react-slot", "class-variance-authority"],
+    "tokenGroups": ["colors", "spacing", "typography"],
+    "brands": ["wireframe"]
   },
-  "usedBy": []
+  "usedBy": ["header-showup", "input-multiselect", "nav-item", "tabulation-cells"],
+  "created": "2026-04-16",
+  "updated": "2026-08-10",
+
+  "figmaName": "badges",
+  "aliases": ["badges", "Badge", "badge", "chip", "pill", "tag"],
+  "family": null,
+  "exports": ["Badge", "rootVariants", "labelVariants", "iconVariants"],
+  "typeExports": ["BadgeProps", "BadgeType", "BadgeSize", "BadgeStyle"],
+  "intent": {
+    "whenToUse": "...",
+    "whenNotToUse": "...",
+    "confusedWith": [{ "component": "button", "rule": "..." }]
+  }
 }
 ```
 
 The `doc` field is the path to the human-readable doc page; it is added by the documentalist (the component-adapter doesn't know about it).
+
+**Merge-owned fields — preserve, never hand-author.** The block below the blank line above (`figmaName`, `aliases`, `family`, `exports`, `typeExports`, `intent`) plus the top-level `families` key are written by `pnpm run sync:intent` (`scripts/merge-intent.mjs`), sourced from `.klp/intent.yaml` and the component's `index.ts`. When you overwrite an entry with the canonical entry in step 11, carry these fields through verbatim from the entry you are replacing, and never drop the top-level `families` key or collapse the file back to a bare array. To change any of them, edit `.klp/intent.yaml` and re-run `pnpm run sync:intent` — see the Hard rule "Do not hand-write intent output".
 
 ## Hard rules
 

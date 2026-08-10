@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-08-10T17:04:11.444Z",
+  "generatedAt": "2026-08-10T17:35:04.633Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -2554,7 +2554,7 @@
             "typeExports": [
               "TableRowProps"
             ],
-            "whenToUse": "Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.",
+            "whenToUse": "Low-level compound primitives (Table.Root/Header/Body/Footer/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.",
             "props": {
               "variant": {
                 "type": "'default' | 'selected' | 'muted'",
@@ -2839,12 +2839,12 @@
         {
           "src": "docs/agent-brief.md",
           "dst": "docs/agent-brief.md",
-          "hash": "sha256:4b3837c612f789d68ade02b961dd3c68079728a8cf254b7de5f168bfaec3f81f"
+          "hash": "sha256:6c950098219fd5d1733e39852cc6e86cdc5202b7a9ffb30ca6a1dba54bf11327"
         },
         {
           "src": "docs/index.md",
           "dst": "docs/index.md",
-          "hash": "sha256:30d5d6755fea49d79cc365a21d059399806e1a3602c80ce8d40f1f792e106e7d"
+          "hash": "sha256:a8c16df8cc0b16671f03d4a77f9b28453dfe3aab6be7464f679d2f2a6bf37fbf"
         },
         {
           "src": "docs/overview.md",
@@ -2879,7 +2879,7 @@
         {
           "src": "docs/tokens/vocabulary.md",
           "dst": "docs/tokens/vocabulary.md",
-          "hash": "sha256:5b83506f5cd9ac50c38253c5b490b14f318d9b23f0e6ed74c2810b00a37375c9"
+          "hash": "sha256:91a7aeb2919804e79b44c7f5f27156aa0e6d7ee608bff01b2824053da4f0c527"
         },
         {
           "src": "docs/brands/_index_brands.md",
@@ -2899,7 +2899,7 @@
         {
           "src": "docs/components/_index_badges.md",
           "dst": "docs/components/_index_badges.md",
-          "hash": "sha256:b9d23780985b3b814613b5b248b8c23ec482951840236ef99ca50d11b6ecfe43"
+          "hash": "sha256:5ed9570dfadbdfeabe4b2a5d5bb997e4754777ade3ee7fc563bf9129c9de217f"
         },
         {
           "src": "docs/components/_index_breadcrumbs.md",
@@ -2909,7 +2909,7 @@
         {
           "src": "docs/components/_index_button.md",
           "dst": "docs/components/_index_button.md",
-          "hash": "sha256:301b11becf01e8b2aadfe76b804350872f869a789cc8ed2f6c3e3137b01e5540"
+          "hash": "sha256:561d5bd90e6bf9098f9cd1b6b7813ede1e37688dfe5cee417b3d216510e144bc"
         },
         {
           "src": "docs/components/_index_calendar-button.md",
@@ -3054,7 +3054,7 @@
         {
           "src": "docs/components/_index_table.md",
           "dst": "docs/components/_index_table.md",
-          "hash": "sha256:1928639babf8357c0fd4728d414755fbb1c8501540758dafb87264374ca28874"
+          "hash": "sha256:75b3212939a7bc1e0cb7dbdd0c80c882d4471aa18703ae6419ce83fc2a8bc926"
         },
         {
           "src": "docs/components/_index_tabulation-cells.md",
@@ -3064,7 +3064,7 @@
         {
           "src": "docs/components/_index_tabulations.md",
           "dst": "docs/components/_index_tabulations.md",
-          "hash": "sha256:e4a09a0128f1ce287476b867da256d05171794e7470bc7e8cf2035bfd7b9aff1"
+          "hash": "sha256:4e27e9554766dccb5a1476855f31995ed21dbc91c9d944bc10e7dcf504538c20"
         },
         {
           "src": "docs/components/_index_text-area.md",

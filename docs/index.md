@@ -83,6 +83,7 @@ Start here:
 - [Spacing](./tokens/spacing.md) — `size-*` scale
 - [Radius](./tokens/radius.md) — `radius-*` scale
 - [Typography](./tokens/typography.md) — `font-*` family / weight / size
+- [Token vocabulary](./tokens/vocabulary.md) — maps every Figma variable path to its CSS variable and Tailwind utility
 
 ## Brands
 - [Brand system overview](./brands/_index_brands.md) — how brands switch at runtime

@@ -28,7 +28,7 @@ A styled tab bar container built on Radix Tabs. Accepts a `tabs` array and rende
 
 Switching between sibling views of the same page without navigating — a horizontal bar of tabulation-cells split by vertical dividers, with Radix keyboard support.
 
-**Don't use it for:** Not for moving between routes — a hierarchy trail is breadcrumbs, and a horizontal global nav link is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no horizontal route link, so route between them with sidebar. Not for paging through one result set — that is pagination.
+**Don't use it for:** Not for moving between routes — a hierarchy trail is breadcrumbs, and a horizontal global nav link is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no horizontal route link, so route between them with sidebar-atlas under atlas and sidebar under klub or wireframe. Not for paging through one result set — that is pagination.
 
 ## Don't confuse with
 

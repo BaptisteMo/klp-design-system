@@ -417,7 +417,7 @@
       ],
       "intent": {
         "whenToUse": "A small non-interactive pill labelling a status, category or count next to the thing it describes — nine semantic types across bordered and light styles.",
-        "whenNotToUse": "Never as a control; if it can be clicked it is a button. Not for a message with a body of text — that is in-content-alert. Note the exported symbol is Badge even though the folder is badges.",
+        "whenNotToUse": "Never as a control; if it can be clicked it is a button. Not for a message with a body of text — that is in-content-alert.",
         "confusedWith": [
           {
             "component": "button",
@@ -4991,7 +4991,7 @@
         "TableRowProps"
       ],
       "intent": {
-        "whenToUse": "Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.",
+        "whenToUse": "Low-level compound primitives (Table.Root/Header/Body/Footer/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.",
         "whenNotToUse": "Never as the first choice for record data — reach for data-table and only fall back here when it cannot render the layout.",
         "confusedWith": [
           {
@@ -5186,7 +5186,7 @@
       ],
       "intent": {
         "whenToUse": "Switching between sibling views of the same page without navigating — a horizontal bar of tabulation-cells split by vertical dividers, with Radix keyboard support.",
-        "whenNotToUse": "Not for moving between routes — a hierarchy trail is breadcrumbs, and a horizontal global nav link is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no horizontal route link, so route between them with sidebar. Not for paging through one result set — that is pagination.",
+        "whenNotToUse": "Not for moving between routes — a hierarchy trail is breadcrumbs, and a horizontal global nav link is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no horizontal route link, so route between them with sidebar-atlas under atlas and sidebar under klub or wireframe. Not for paging through one result set — that is pagination.",
         "confusedWith": [
           {
             "component": "tabulation-cells",

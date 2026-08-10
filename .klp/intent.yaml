@@ -50,7 +50,7 @@ components:
     family: collections
     aliases: [table-primitives, thead, tbody]
     whenToUse: >
-      Low-level compound primitives (Table.Root/Header/Body/Row/Head/Cell/Caption) for a table
+      Low-level compound primitives (Table.Root/Header/Body/Footer/Row/Head/Cell/Caption) for a table
       whose layout data-table cannot express.
     whenNotToUse: >
       Never as the first choice for record data — reach for data-table and only fall back here
@@ -318,8 +318,7 @@ components:
       describes — nine semantic types across bordered and light styles.
     whenNotToUse: >
       Never as a control; if it can be clicked it is a button. Not for a message with a body of
-      text — that is in-content-alert. Note the exported symbol is Badge even though the folder
-      is badges.
+      text — that is in-content-alert.
     confusedWith:
       - component: button
         rule: badges label state and are inert; button is clickable.
@@ -639,8 +638,8 @@ components:
     whenNotToUse: >
       Not for moving between routes — a hierarchy trail is breadcrumbs, and a horizontal global
       nav link is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no
-      horizontal route link, so route between them with sidebar. Not for paging through one
-      result set — that is pagination.
+      horizontal route link, so route between them with sidebar-atlas under atlas and sidebar
+      under klub or wireframe. Not for paging through one result set — that is pagination.
     confusedWith:
       - component: tabulation-cells
         rule: tabulations is the bar; tabulation-cells is one tab inside it.
