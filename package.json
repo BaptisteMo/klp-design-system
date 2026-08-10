@@ -32,9 +32,10 @@
     "validate:manifest": "node scripts/validate-manifest.mjs",
     "test:cli": "node scripts/test-cli.mjs",
     "validate:intent": "node scripts/validate-intent.mjs",
-    "test:intent": "node scripts/test-intent.mjs",
+    "sync:intent": "node scripts/merge-intent.mjs",
+    "test:intent": "node scripts/test-intent.mjs && node scripts/test-merge-intent.mjs",
     "build:agent-brief": "tsx scripts/build-agent-brief.ts",
-    "build:all": "pnpm run sync:tokens && pnpm run build:agent-brief && pnpm run build:manifest && pnpm run validate:manifest"
+    "build:all": "pnpm run sync:tokens && pnpm run sync:intent && pnpm run build:agent-brief && pnpm run build:manifest && pnpm run validate:manifest"
   },
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
