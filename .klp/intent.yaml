@@ -88,7 +88,8 @@ components:
       tertiary icon-button.
     whenNotToUse: >
       Never standalone outside a list, and never as a menu row — a contextual action row is
-      action-sheet-item.
+      action-sheet-item. Not every icon-and-label row in a vertical panel is a list-content: a
+      row of the generic sidebar is item-side-bar, and a row of the Atlas rail is navbar-item.
     confusedWith:
       - component: list
         rule: list-content is a row; list is the container that holds them.
@@ -334,6 +335,7 @@ components:
       Never inside a page or a mockup — one instance per app, at the root.
 
   breadcrumbs:
+    figmaName: BreadCrumbs
     aliases: [breadcrumb, crumbs, trail]
     whenToUse: >
       The ancestor trail showing where the current page sits in the hierarchy — a home icon,
@@ -349,6 +351,7 @@ components:
         rule: breadcrumbs navigates the hierarchy; pagination navigates pages of one result set.
 
   button:
+    figmaName: Button
     aliases: [btn, cta, icon-button]
     whenToUse: >
       Any element that performs an action or navigates on click — primary, secondary, tertiary,
@@ -379,6 +382,7 @@ components:
         rule: calendar picks a date from a grid; input takes typed text.
 
   calendar-button:
+    figmaName: CalendarButton
     aliases: [day-cell, date-cell]
     whenToUse: >
       One 36x36 day cell of a calendar grid, rendering the day number with a state of default,
@@ -484,19 +488,21 @@ components:
         rule: in-content-alert is a full message; badges is a one-word status pill.
 
   input:
+    figmaName: Input
     aliases: [text-field, textbox, textfield, search-input]
     whenToUse: >
       A single-line text field with label, optional leading or action icon and helper text,
       across three sizes and the default, filled, focused, success, danger and disable states.
     whenNotToUse: >
-      Not for multi-line prose — that is text-area. Not for choosing from a fixed option list —
-      that is input-multiselect. Not for picking a file (input-file) or a date (calendar). For a
+      Not for multi-line prose — that is text-area. Not for choosing from a fixed option list:
+      several values is input-multiselect, and a single value is radio because the DS has no
+      single-select dropdown. Not for picking a file (input-file) or a date (calendar). For a
       value that is only displayed, use data-field.
     confusedWith:
       - component: text-area
         rule: input is one line; text-area is multi-line.
       - component: input-multiselect
-        rule: input takes free text; input-multiselect picks from a known option list.
+        rule: input takes free text; input-multiselect picks several values from a known option list.
       - component: data-field
         rule: input is editable; data-field is read-only.
 
@@ -522,8 +528,10 @@ components:
       Picking several values from a known option list — a labelled trigger showing the choices
       as removable Badge chips, opening an action-sheet-menu of checkbox rows grouped in sections.
     whenNotToUse: >
-      Not for free-text entry — that is input. Not for a handful of options that fit inline; a
-      few checkboxes are clearer. Not for one-of-many where exactly one wins — that is radio.
+      Only for choosing several values. Single-select is a documented DS gap — there is no
+      single-select dropdown or combobox, so a one-of-many choice is radio, whatever the length
+      of the option list. Not for free-text entry — that is input. Not for a handful of options
+      that fit inline; a few checkboxes are clearer.
     confusedWith:
       - component: input
         rule: input-multiselect picks from a list; input takes free text.
@@ -533,7 +541,7 @@ components:
         rule: input-multiselect is a form field that opens action-sheet-menu as its panel.
 
   nav-item:
-    figmaName: Nav_Item
+    figmaName: Nav item
     aliases: [header-nav-link, top-nav-item, nav-link]
     whenToUse: >
       One primary link in the ShowUp header bar — label with optional leading icon and trailing
@@ -567,12 +575,12 @@ components:
   radio:
     aliases: [radio-button, radio-group, option]
     whenToUse: >
-      Choosing exactly one option from a small mutually exclusive set, where every option should
-      stay visible.
+      Choosing exactly one option from a mutually exclusive set. The DS has no single-select
+      dropdown or combobox, so radio is the answer for a single choice whatever the length of
+      the option list — long lists render as a scrollable radio group.
     whenNotToUse: >
-      Not when several options may be chosen — that is checkbox. Not when the set is long enough
-      to want a dropdown — use input-multiselect for many, or a menu of action-sheet-item rows.
-      Not for an on/off setting — that is switch.
+      Not when several options may be chosen — that is input-multiselect for a dropdown of many,
+      or checkbox for a few inline. Not for an on/off setting — that is switch.
     confusedWith:
       - component: checkbox
         rule: radio allows exactly one per group; checkbox allows many.
@@ -580,6 +588,7 @@ components:
         rule: radio picks among options; switch turns one thing on or off.
 
   separator:
+    figmaName: Separator
     aliases: [divider, rule, hr]
     whenToUse: >
       A 1px rule that visually splits neighbouring content, horizontal or vertical, with a
@@ -613,12 +622,13 @@ components:
       where active carries the brand-low fill and bold label.
     whenNotToUse: >
       Never standalone; tabs only make sense inside tabulations, which owns selection and
-      keyboard navigation. Not for a header nav link — that is nav-item.
+      keyboard navigation. Not for a horizontal header nav link — that is nav-item under ShowUp
+      only; under klub, atlas or wireframe the DS has no horizontal route link.
     confusedWith:
       - component: tabulations
         rule: tabulations is the bar and owns selection; tabulation-cells is one tab.
       - component: nav-item
-        rule: tabulation-cells switches panes inside one page; nav-item navigates between routes.
+        rule: tabulation-cells switches panes inside one page; nav-item navigates between routes, under ShowUp only.
 
   tabulations:
     figmaName: Tabulations
@@ -627,8 +637,10 @@ components:
       Switching between sibling views of the same page without navigating — a horizontal bar of
       tabulation-cells split by vertical dividers, with Radix keyboard support.
     whenNotToUse: >
-      Not for moving between routes — a hierarchy trail is breadcrumbs and a global nav link is
-      nav-item. Not for paging through one result set — that is pagination.
+      Not for moving between routes — a hierarchy trail is breadcrumbs, and a horizontal global
+      nav link is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no
+      horizontal route link, so route between them with sidebar. Not for paging through one
+      result set — that is pagination.
     confusedWith:
       - component: tabulation-cells
         rule: tabulations is the bar; tabulation-cells is one tab inside it.
