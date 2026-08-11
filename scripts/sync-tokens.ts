@@ -12,9 +12,10 @@
  * layers and holds the preserved `--- manual additions ---` section.
  */
 
-import { readFileSync, writeFileSync } from 'node:fs'
+import { readFileSync, writeFileSync, existsSync } from 'node:fs'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { parse as parseYaml } from 'yaml'
 
 // ────────────────────────────────────────────────────────────────────────────
 // Types
@@ -44,6 +45,7 @@ interface TokensFile {
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const repoRoot  = resolve(__dirname, '..')
 const tokensJson = resolve(repoRoot, '.klp/tokens.json')
+const intentYaml = resolve(repoRoot, '.klp/token-intent.yaml')
 const outDir     = resolve(repoRoot, 'src/styles/tokens')
 
 // ────────────────────────────────────────────────────────────────────────────
@@ -223,15 +225,49 @@ function buildTheme(tokens: TokensFile): string {
   return lines.join('\n')
 }
 
-// Tailwind v4 namespace -> the utility prefixes it generates. Keys are the
-// namespaces emitted by buildTheme(); see src/styles/tokens/theme.css.
-const NAMESPACE_UTILS: Record<string, { label: string; prefixes: string[] }> = {
-  color: { label: 'Colors', prefixes: ['bg-', 'text-', 'border-'] },
-  spacing: { label: 'Sizing', prefixes: ['p-', 'm-', 'gap-', 'w-', 'h-'] },
-  radius: { label: 'Radius', prefixes: ['rounded-'] },
-  font: { label: 'Font family', prefixes: ['font-'] },
-  'font-weight': { label: 'Font weight', prefixes: ['font-'] },
-  text: { label: 'Text size', prefixes: ['text-'] },
+// The Tailwind v4 theme namespaces emitted by buildTheme(); see
+// src/styles/tokens/theme.css. Anything else in that file is a bug.
+const KNOWN_NAMESPACES = new Set(['color', 'spacing', 'radius', 'font', 'font-weight', 'text'])
+
+// The CANONICAL utility prefixes for a token, keyed by ALIAS prefix — not by
+// Tailwind namespace. Tailwind compiles every `--color-*` entry to bg-, text-,
+// border-, ring-, fill- … but a `bg/*` token means a surface and a `fg/*` token
+// means ink: listing all of them invites `text-klp-border-default`. Only the
+// prefixes that match the token's semantic role are documented.
+function canonicalPrefixes(alias: string): string[] {
+  if (alias.startsWith('bg-') || alias.startsWith('alpha-')) return ['bg-']
+  if (alias.startsWith('fg-')) return ['text-']
+  if (alias.startsWith('border-')) return ['border-']
+  if (alias.startsWith('radius-')) return ['rounded-']
+  if (alias.startsWith('font-family-') || alias.startsWith('font-weight-')) return ['font-']
+  if (alias.startsWith('font-size-')) return ['text-']
+  // size-* and default-text: all three spacing axes are legitimate.
+  return ['p-', 'm-', 'gap-']
+}
+
+// ── token intent (hand-authored) ────────────────────────────────────────────
+
+interface TokenIntentEntry { useFor?: string; notFor?: string }
+
+/** Read .klp/token-intent.yaml. Missing file is not an error — cells render empty. */
+function loadTokenIntent(): Record<string, TokenIntentEntry> {
+  if (!existsSync(intentYaml)) {
+    console.warn(`[sync-tokens] ⚠ ${intentYaml} not found — Use for / Not for columns will be empty`)
+    return {}
+  }
+  const doc = parseYaml(readFileSync(intentYaml, 'utf8')) as
+    | { schemaVersion?: string; tokens?: Record<string, TokenIntentEntry> }
+    | null
+  if (doc?.schemaVersion !== 'v1') {
+    console.warn(`[sync-tokens] ⚠ token-intent.yaml: expected schemaVersion "v1", got ${JSON.stringify(doc?.schemaVersion)}`)
+  }
+  return doc?.tokens ?? {}
+}
+
+/** YAML block scalars fold to multi-line strings; the table needs one clean line. */
+function cell(text: string | undefined): string {
+  if (!text) return ''
+  return text.replace(/\s+/g, ' ').trim().replace(/\|/g, '\\|')
 }
 
 // Figma collection per alias prefix. The Figma path is <collection>/<leaf>.
@@ -266,25 +302,46 @@ function figmaPath(alias: string): string {
 }
 
 function buildVocabulary(themeCss: string): string {
-  const rows: { group: string; figma: string; cssVar: string; utils: string[] }[] = []
+  const intent = loadTokenIntent()
+  const rows: {
+    group: string
+    figma: string
+    cssVar: string
+    alias: string
+    utils: string[]
+    useFor: string
+    notFor: string
+  }[] = []
   const re = /^\s*--([a-z-]+?)-klp-([a-z0-9-]+):\s*var\(--klp-([a-z0-9-]+)\);/gm
   let m: RegExpExecArray | null
   while ((m = re.exec(themeCss))) {
     const [, namespace, leaf, alias] = m
-    const ns = NAMESPACE_UTILS[namespace]
-    if (!ns) {
+    if (!KNOWN_NAMESPACES.has(namespace)) {
       console.warn(`[sync-tokens] ⚠ unknown theme namespace '${namespace}' — skipped in vocabulary`)
       continue
     }
     const figma = figmaPath(alias)
+    const entry = intent[alias]
     rows.push({
       // Group by Figma collection root (bg / fg / border / Sizing / Radius / Font),
       // which is the axis a designer or an agent actually searches by.
       group: figma.split('/')[0],
       figma,
       cssVar: `--klp-${alias}`,
-      utils: ns.prefixes.map((p) => `${p}klp-${leaf}`),
+      alias,
+      utils: canonicalPrefixes(alias).map((p) => `${p}klp-${leaf}`),
+      useFor: cell(entry?.useFor),
+      notFor: cell(entry?.notFor),
     })
+  }
+
+  // Surface the authoring gap: a token with no intent entry renders empty cells,
+  // which is silent unless we count it here.
+  const missing = [...new Set(rows.filter((r) => !r.useFor && !r.notFor).map((r) => r.alias))].sort()
+  if (missing.length > 0) {
+    console.warn(
+      `[sync-tokens] ⚠ ${missing.length}/${new Set(rows.map((r) => r.alias)).size} tokens have no entry in .klp/token-intent.yaml: ${missing.join(', ')}`
+    )
   }
 
   // Tailwind v4 compiles multiple theme namespaces (e.g. --font-* and
@@ -331,7 +388,11 @@ function buildVocabulary(themeCss: string): string {
   lines.push('')
   lines.push('Generated by `pnpm run sync:tokens`. Do not edit by hand.')
   lines.push('')
-  lines.push('The mapping is mechanical: lowercase the Figma path, replace `/` with `-`, prefix `--klp-`. Use this table to confirm a token exists before referencing it. Primitives (`--klp-color-*`) are internal — never reference them from a component.')
+  lines.push('The mapping is mechanical: lowercase the Figma path, replace `/` with `-`, prefix `--klp-`. Use this table to confirm a token exists before referencing it, and read **Use for** / **Not for** to pick the right one. Primitives (`--klp-color-*`) are internal — never reference them from a component.')
+  lines.push('')
+  lines.push('The **Utility** column lists the *canonical* utility for each token\'s role, not every class Tailwind can generate. Tailwind compiles all colour tokens to `bg-`, `text-`, `border-` and more, but a `bg/*` token means a surface, an `fg/*` token means ink and a `border/*` token means an edge: use each in its semantic role, never as `text-klp-border-default`.')
+  lines.push('')
+  lines.push('**Use for** and **Not for** come from `.klp/token-intent.yaml`, which is hand-authored — edit that file, not this page.')
   lines.push('')
 
   if (collisions.size > 0) {
@@ -353,8 +414,8 @@ function buildVocabulary(themeCss: string): string {
   for (const [group, list] of byGroup) {
     lines.push(`## ${group}`)
     lines.push('')
-    lines.push('| Figma variable | CSS variable | Tailwind utility |')
-    lines.push('|---|---|---|')
+    lines.push('| Figma variable | CSS variable | Utility | Use for | Not for |')
+    lines.push('|---|---|---|---|---|')
     for (const r of list.sort((a, b) => a.cssVar.localeCompare(b.cssVar))) {
       const utilCells = r.utils.map((u) => {
         if (!collisions.has(u)) return `\`${u}\``
@@ -362,7 +423,7 @@ function buildVocabulary(themeCss: string): string {
           ? `\`${u}\` ✅ wins the shared class name`
           : `\`${u}\` ⚠️ unreachable through this class — use an explicit \`font-weight\` utility`
       })
-      lines.push(`| \`${r.figma}\` | \`${r.cssVar}\` | ${utilCells.join(', ')} |`)
+      lines.push(`| \`${r.figma}\` | \`${r.cssVar}\` | ${utilCells.join(', ')} | ${r.useFor} | ${r.notFor} |`)
     }
     lines.push('')
   }

@@ -1,0 +1,737 @@
+# .klp/token-intent.yaml — hand-authored token intent.
+# The ONLY human-edited file in the token intent chain. Read by
+# `pnpm run sync:tokens` and rendered into docs/tokens/vocabulary.md;
+# never generated, never overwritten.
+#
+# Key = the alias name exactly as it appears as `--klp-<key>` in
+# src/styles/tokens/aliases.css. Every entry is optional: a token with no
+# entry renders empty cells and is counted in the build-time gap warning.
+#
+# useFor  — the surface or role this token is for, grounded in real DS usage.
+# notFor  — the boundary, always naming the token to reach for instead.
+schemaVersion: v1
+
+tokens:
+  # ── bg ────────────────────────────────────────────────────────────────────
+  bg-default:
+    useFor: >
+      The plain page-and-field surface — white in every brand. The resting fill of
+      input, text-area, the action-sheet-menu panel, the sidebar column and an
+      unselected calendar-button.
+    notFor: >
+      Not for a tinted row or a hover state, which is bg-subtle, nor for the resting
+      fill of a tertiary control or a disabled surface, which is bg-inset.
+  bg-disable:
+    useFor: >
+      The greyed fill of a disabled form control — checkbox, radio, input and a
+      disabled calendar-button or action-sheet-item. Pinned to gray-200 in all four
+      brands so a disabled control never picks up brand colour.
+    notFor: >
+      Not for a disabled Button or text-area, which the DS fills with bg-inset, and
+      never as a neutral panel background — that is bg-inset or bg-subtle.
+  bg-inset:
+    useFor: >
+      A recessed neutral block one step darker than the page — the resting fill of a
+      tertiary Button and every disabled Button, the tertiary badges, the off track of
+      switch, the modal-variation header and footer bands, item-side-bar hover/active
+      and the current page chip in pagination.
+    notFor: >
+      Not the faintest row-hover tint, which is bg-subtle — bg-inset is a deliberate
+      block of colour, not a wash. Not a disabled checkbox or radio, which use
+      bg-disable.
+  bg-info:
+    useFor: >
+      The pale informational tint behind a message — the light info badges, the info
+      floating-alert and the info in-content-alert.
+    notFor: >
+      Not the saturated info fill you would put white text on; that is
+      bg-info-contrasted. Pair it with fg-info, not fg-on-emphasis.
+  bg-info-contrasted:
+    useFor: >
+      The saturated info fill (blue-500) meant to carry fg-on-emphasis text. No
+      component consumes it today — it is the info counterpart of the
+      success/danger emphasis fills, reserved for a solid info surface.
+    notFor: >
+      Not behind dark info text; the pale tint under fg-info is bg-info.
+  bg-success:
+    useFor: >
+      The pale success tint behind a message — the light success badges, the success
+      floating-alert, the success in-content-alert and the creation state of
+      action-sheet-item.
+    notFor: >
+      Not the solid green fill of the validation Button, which is
+      bg-success-emphasis. Pair it with fg-success, not fg-on-emphasis.
+  bg-success-emphasis:
+    useFor: >
+      The solid green fill (green-500) of the validation Button at rest, carrying
+      fg-on-emphasis text.
+    notFor: >
+      Not behind dark success text — a pale tint under fg-success is bg-success. Not
+      the pressed state of that same Button, which darkens to bg-success-contrasted.
+  bg-success-contrasted:
+    useFor: >
+      The darker green (green-700) the validation Button moves to when active or
+      pressed — the pressed step of bg-success-emphasis, still under fg-on-emphasis.
+    notFor: >
+      Not the resting fill of the validation Button, which is bg-success-emphasis, and
+      never as a text colour — success text is fg-success-contrasted.
+  bg-danger:
+    useFor: >
+      The pale red tint behind a message — the light danger badges, the danger
+      floating-alert, the danger in-content-alert and the destructive state of
+      action-sheet-item.
+    notFor: >
+      Not the solid red fill of the destructive Button, which is bg-danger-emphasis.
+      Pair it with fg-danger, not fg-on-emphasis.
+  bg-danger-emphasis:
+    useFor: >
+      The solid red fill (red-500) of the destructive Button at rest, carrying
+      fg-on-emphasis text.
+    notFor: >
+      Not behind dark danger text — a pale tint under fg-danger is bg-danger. Not the
+      pressed state of that Button, which darkens to bg-danger-contrasted.
+  bg-danger-contrasted:
+    useFor: >
+      The darker red (red-700) the destructive Button moves to when active or pressed
+      — the pressed step of bg-danger-emphasis, still under fg-on-emphasis.
+    notFor: >
+      Not the resting fill of the destructive Button, which is bg-danger-emphasis, and
+      never as a text colour — danger text is fg-danger-contrasted.
+  bg-warning:
+    useFor: >
+      The pale amber tint behind a message — the light warning badges, the warning
+      floating-alert and the warning in-content-alert.
+    notFor: >
+      Not the saturated orange fill you would put white text on; that is
+      bg-warning-contrasted. Pair it with fg-warning, not fg-on-emphasis.
+  bg-warning-contrasted:
+    useFor: >
+      The saturated warning fill (orange-500) meant to carry fg-on-emphasis text. No
+      component consumes it today — the DS has no solid warning Button, so it is
+      reserved for one.
+    notFor: >
+      Not behind dark warning text; the pale tint under fg-warning is bg-warning.
+  bg-brand-low:
+    useFor: >
+      The palest brand tint, used as a brand-tinted hover or selection wash — the
+      hover of the secondary Button, the hover of checkbox and radio, the active
+      action-sheet-item, the brand badges and the icon tile in file-dropped.
+    notFor: >
+      Not the solid brand fill of a primary Button, which is bg-brand. Text on it is
+      fg-brand or fg-default, never fg-on-emphasis.
+  bg-brand:
+    useFor: >
+      The solid brand fill that carries fg-on-emphasis — the primary Button at rest,
+      a checked checkbox or radio, the on track of switch and the selected
+      calendar-button.
+    notFor: >
+      Not a tinted hover wash, which is bg-brand-low. Not the pressed step of the
+      primary Button, which darkens to bg-brand-contrasted.
+  bg-brand-contrasted:
+    useFor: >
+      The darkest brand step — the primary Button on hover and active, the tooltip
+      bubble and the header-showup bar, all under fg-on-emphasis.
+    notFor: >
+      Not the resting primary fill, which is bg-brand, and never as brand text — brand
+      text is fg-brand or fg-brand-contrasted.
+  bg-navrail:
+    useFor: >
+      The near-black rail surface of sidebar-atlas, and nothing else. A DS-side
+      addition (2026-08-06): the Atlas NavBar paints a literal #22222D that matches no
+      Figma variable, so the alias points at storm-900, the nearest primitive.
+    notFor: >
+      Never for a generic dark panel — it exists to be replaced the day Figma
+      introduces a real nav-rail token. Any other dark surface should use a brand fill.
+  bg-secondary-brand-low:
+    useFor: >
+      The pale secondary-brand tint that marks a chosen row — the selected table row,
+      the active list-content row and the secondary badges.
+    notFor: >
+      Not a hover tint, which is bg-subtle for neutral rows and bg-brand-low for brand
+      controls. Text on it is fg-secondary-brand-contrasted, not fg-on-emphasis.
+  bg-secondary-brand:
+    useFor: >
+      The solid secondary-brand fill; the only consumer is the accent block in
+      header-showup.
+    notFor: >
+      Not for the primary action colour, which is bg-brand, and not for a row
+      selection wash, which is bg-secondary-brand-low.
+  bg-secondary-brand-contrasted:
+    useFor: >
+      The darkest secondary-brand step, intended as the pressed state of
+      bg-secondary-brand. No component consumes it today.
+    notFor: >
+      Not the resting secondary fill, which is bg-secondary-brand, and never as text —
+      that is fg-secondary-brand-contrasted.
+  bg-decorative-orange:
+    useFor: >
+      Purely decorative accent dots — the unread notification dot on the sidebar and
+      header-phone bell, its only two consumers.
+    notFor: >
+      Never as a warning colour; a warning surface is bg-warning. Never as a
+      general-purpose fill — it carries no semantic meaning.
+  bg-invisible:
+    useFor: >
+      A fully transparent fill (#FFFFFF00) that states "no background" explicitly, so
+      a cva variant can flip between filled and unfilled without dropping the class —
+      the rest state of item-side-bar, tabulation-cells, action-sheet-item and the
+      on-emphasis Button.
+    notFor: >
+      Not a light neutral surface — that is bg-default or bg-subtle. For a translucent
+      white overlay on a dark surface use alpha-10.
+  bg-subtle:
+    useFor: >
+      The faintest wash on the page, one step lighter than bg-inset — the row hover of
+      table, list-content and action-sheet-item, the muted table row, the tabulations
+      track, today's calendar-button and the pressed tertiary Button.
+    notFor: >
+      Not a solid neutral block such as a tertiary Button or badge, which is bg-inset.
+      Not a disabled control fill, which is bg-disable.
+
+  # ── fg ────────────────────────────────────────────────────────────────────
+  fg-default:
+    useFor: >
+      Primary reading text and the icons beside it — the default colour for labels,
+      values, headings and body copy across nearly every component.
+    notFor: >
+      Not for secondary or supporting text, which is fg-muted, and never on a brand or
+      emphasis fill, where text must be fg-on-emphasis.
+  fg-muted:
+    useFor: >
+      Secondary text that supports the primary value — the label of data-field, the
+      ancestor steps of breadcrumbs, the pagination result count, calendar weekday
+      headers and the leading icons in sidebar.
+    notFor: >
+      Not placeholder or empty-state text, which is one step lighter at fg-subtle, and
+      not the main value itself, which is fg-default.
+  fg-subtle:
+    useFor: >
+      The lightest readable grey, reserved for text that is not really content — the
+      placeholder and helper text of input and text-area, and the em-dash of an empty
+      data-field.
+    notFor: >
+      Not real secondary content such as a field label, which is fg-muted. Not a
+      disabled control's text, which is fg-disable.
+  fg-on-emphasis:
+    useFor: >
+      Text and icons sitting ON a saturated fill — the label of a filled Button, the
+      checkbox tick, tooltip text, header-showup links, and every navbar-item and
+      sidebar-atlas label on the dark rail.
+    notFor: >
+      Never on a light surface; on bg-default or a pale status tint use fg-default or
+      the matching fg-<status>.
+  fg-disable:
+    useFor: >
+      The text and icon colour of a disabled control — a disabled input, Button,
+      checkbox, radio, action-sheet-item or calendar-button.
+    notFor: >
+      Not for merely de-emphasised but active text, which is fg-muted or fg-subtle;
+      this colour signals that the control cannot be used.
+  fg-brand:
+    useFor: >
+      Brand-coloured text and icons on a light surface — the leading icon of a focused
+      input, the brand badges label and the brand tertiary Button.
+    notFor: >
+      Never on a bg-brand fill, where text must be fg-on-emphasis. For the darker,
+      higher-contrast brand text use fg-brand-contrasted.
+  fg-brand-contrasted:
+    useFor: >
+      The darker, higher-contrast brand text — the page titles of header-desktop and
+      header-phone and the bordered brand badges.
+    notFor: >
+      Never on a bg-brand fill, where text must be fg-on-emphasis. For lighter brand
+      text next to a form control use fg-brand.
+  fg-secondary-brand:
+    useFor: >
+      Secondary-brand text on a light surface. No component consumes it today — every
+      secondary-brand label in the DS uses the darker fg-secondary-brand-contrasted.
+    notFor: >
+      Not on a bg-secondary-brand-low tint, where the DS uses
+      fg-secondary-brand-contrasted for contrast.
+  fg-secondary-brand-contrasted:
+    useFor: >
+      The text colour that sits on a bg-secondary-brand-low tint — the active
+      list-content row and the secondary badges.
+    notFor: >
+      Not on a solid bg-secondary-brand fill, where text must be fg-on-emphasis. Not
+      for primary brand text, which is fg-brand-contrasted.
+  fg-success:
+    useFor: >
+      Success text and icons on a pale bg-success tint — the success badges and the
+      success in-content-alert.
+    notFor: >
+      Never on the solid bg-success-emphasis fill, where text must be fg-on-emphasis.
+      For the darker success label used in menus and toasts use fg-success-contrasted.
+  fg-success-contrasted:
+    useFor: >
+      The darker success label used where the tint is faint or absent — the creation
+      state of action-sheet-item and the success floating-alert.
+    notFor: >
+      Not on a solid bg-success-emphasis fill, where text must be fg-on-emphasis. On a
+      standard bg-success tint the DS uses fg-success.
+  fg-danger:
+    useFor: >
+      Danger text and icons on a pale bg-danger tint — the danger badges, the danger
+      in-content-alert and the error affordance of input.
+    notFor: >
+      Never on the solid bg-danger-emphasis fill, where text must be fg-on-emphasis.
+      For the darker destructive label use fg-danger-contrasted.
+  fg-danger-contrasted:
+    useFor: >
+      The darker danger label used where the tint is faint or absent — the destructive
+      state of action-sheet-item and the error message of text-area.
+    notFor: >
+      Not on a solid bg-danger-emphasis fill, where text must be fg-on-emphasis. On a
+      standard bg-danger tint the DS uses fg-danger.
+  fg-warning:
+    useFor: >
+      Warning text and icons on a pale bg-warning tint — the warning badges, the
+      warning in-content-alert and the warning floating-alert.
+    notFor: >
+      Never on the saturated bg-warning-contrasted fill, where text must be
+      fg-on-emphasis.
+  fg-warning-contrasted:
+    useFor: >
+      The darker warning label, the counterpart of fg-danger-contrasted and
+      fg-success-contrasted. No component consumes it today — every warning label in
+      the DS uses fg-warning.
+    notFor: >
+      Not on a pale bg-warning tint, where the DS consistently uses fg-warning.
+  fg-info:
+    useFor: >
+      Informational text and icons on a pale bg-info tint — the info
+      in-content-alert and the info floating-alert.
+    notFor: >
+      Never on the saturated bg-info-contrasted fill, where text must be
+      fg-on-emphasis. For the darker info label used on badges use fg-info-contrasted.
+  fg-info-contrasted:
+    useFor: >
+      The darker info label; the only consumer is the info badges, which needs more
+      contrast than the alerts do.
+    notFor: >
+      Not in the info alerts, which use fg-info, and never on a saturated info fill,
+      where text must be fg-on-emphasis.
+
+  # ── border ────────────────────────────────────────────────────────────────
+  border-default:
+    useFor: >
+      The standard 1px outline of a neutral surface or control — cards, input,
+      text-area, table, collapsible, the sidebar column and the separator rule.
+    notFor: >
+      Not a high-contrast outline for a selectable control such as checkbox or radio,
+      which is border-contrasted. To reserve the 1px box without drawing it, use
+      border-invisible.
+  border-muted:
+    useFor: >
+      The faintest neutral outline, one step lighter than border-default. No component
+      consumes it today.
+    notFor: >
+      Not the everyday surface outline, which is border-default — every bordered
+      surface in the DS currently uses that instead.
+  border-light:
+    useFor: >
+      A pure white 1px edge, only legible on a dark surface — the active underline of
+      nav-item in the ShowUp header and the selected right edge of navbar-item on the
+      Atlas rail.
+    notFor: >
+      Never on a light background, where it is invisible; a neutral outline there is
+      border-default.
+  border-contrasted:
+    useFor: >
+      A high-contrast neutral outline on a control the user is meant to click — the
+      unchecked box of checkbox and radio, the pressed tertiary Button and the
+      collapsible panel of item-side-bar.
+    notFor: >
+      Not the outline of a passive surface such as cards or table, which is
+      border-default.
+  border-invisible:
+    useFor: >
+      A fully transparent 1px edge that reserves the border box so a state change can
+      colour it without shifting layout — the rest state of badges, action-sheet-item,
+      calendar-button, item-side-bar and Button.
+    notFor: >
+      Not a way to hide a surface outline you never wanted; simply omit the border.
+      For a visible neutral outline use border-default.
+  border-brand:
+    useFor: >
+      The brand outline at rest — the secondary Button, a focused input or text-area,
+      a checked checkbox or radio, the current pagination page and the on track of
+      switch.
+    notFor: >
+      Not the hover step, which darkens to border-brand-emphasis, nor the pressed
+      step, which is border-brand-contrasted.
+  border-brand-emphasis:
+    useFor: >
+      The middle step of the brand outline ladder — the hover state of the primary and
+      secondary Button and the bordered brand badges.
+    notFor: >
+      Not the resting brand outline, which is border-brand, nor the pressed state,
+      which is border-brand-contrasted.
+  border-brand-contrasted:
+    useFor: >
+      The darkest step of the brand outline ladder — the active/pressed state of the
+      primary and secondary Button.
+    notFor: >
+      Not the resting brand outline, which is border-brand, nor the hover step, which
+      is border-brand-emphasis.
+  border-secondary-brand:
+    useFor: >
+      The secondary-brand outline at rest, mirroring border-brand. No component
+      consumes it today.
+    notFor: >
+      Not the bordered secondary badges, which reach one step darker for
+      border-secondary-brand-emphasis.
+  border-secondary-brand-emphasis:
+    useFor: >
+      The middle step of the secondary-brand outline ladder; the only consumer is the
+      secondary-bordered badges.
+    notFor: >
+      Not a primary brand outline, which is border-brand-emphasis, and not the pressed
+      step, which is border-secondary-brand-contrasted.
+  border-secondary-brand-contrasted:
+    useFor: >
+      The darkest step of the secondary-brand outline ladder, intended for a pressed
+      state. No component consumes it today.
+    notFor: >
+      Not the outline of the secondary badges, which uses
+      border-secondary-brand-emphasis.
+  border-info:
+    useFor: >
+      The pale info outline meant to pair with a bg-info tint. No component consumes
+      it today — the info alerts and badges all reach for border-info-emphasis.
+    notFor: >
+      Not the visible outline of an info alert or badge, which is border-info-emphasis.
+  border-info-emphasis:
+    useFor: >
+      The saturated info outline that actually reads against a pale tint — the info
+      badges and the info floating-alert.
+    notFor: >
+      Not a pressed or heavier state, which would be border-info-contrasted; not a
+      neutral surface outline, which is border-default.
+  border-info-contrasted:
+    useFor: >
+      The darkest info outline, the counterpart of border-danger-contrasted. No
+      component consumes it today — the DS has no solid info Button to press.
+    notFor: >
+      Not the outline of an info alert or badge, which is border-info-emphasis.
+  border-success:
+    useFor: >
+      The pale success outline; the only consumer is the success floating-alert, which
+      pairs it with a bg-success tint.
+    notFor: >
+      Not the outline of a success badge or a valid input, which both need the
+      stronger border-success-emphasis.
+  border-success-emphasis:
+    useFor: >
+      The saturated green outline of a success state — the success badges, the
+      validation Button at rest, and input or text-area in their success state.
+    notFor: >
+      Not the pressed state of the validation Button, which is
+      border-success-contrasted, and not the faint alert outline, which is
+      border-success.
+  border-success-contrasted:
+    useFor: >
+      The darkest green outline — the hover and active state of the validation Button.
+    notFor: >
+      Not the resting outline of that Button, which is border-success-emphasis.
+  border-danger:
+    useFor: >
+      The pale danger outline meant to pair with a bg-danger tint. No component
+      consumes it today — the danger alert, badge and input states all reach for
+      border-danger-emphasis.
+    notFor: >
+      Not the visible outline of an error field or danger badge, which is
+      border-danger-emphasis.
+  border-danger-emphasis:
+    useFor: >
+      The saturated red outline of an error state — the danger badges, the destructive
+      Button at rest, the danger floating-alert and input or text-area in error.
+    notFor: >
+      Not the pressed state of the destructive Button, which is
+      border-danger-contrasted.
+  border-danger-contrasted:
+    useFor: >
+      The darkest red outline — the hover and active state of the destructive Button.
+    notFor: >
+      Not the resting outline of that Button or of an error field, which is
+      border-danger-emphasis.
+  border-warning:
+    useFor: >
+      The pale warning outline meant to pair with a bg-warning tint. No component
+      consumes it today — the warning badge and alert both reach for
+      border-warning-emphasis.
+    notFor: >
+      Not the visible outline of a warning alert or badge, which is
+      border-warning-emphasis.
+  border-warning-emphasis:
+    useFor: >
+      The saturated orange outline of a warning state — the warning badges and the
+      warning floating-alert.
+    notFor: >
+      Not a danger state, which is border-danger-emphasis; warning advises, danger
+      stops.
+  border-warning-contrasted:
+    useFor: >
+      The darkest warning outline, the counterpart of border-danger-contrasted. No
+      component consumes it today — the DS has no warning Button to press.
+    notFor: >
+      Not the outline of a warning alert or badge, which is border-warning-emphasis.
+
+  # ── alpha ─────────────────────────────────────────────────────────────────
+  alpha-80:
+    useFor: >
+      An 80% white veil (#FFFFFFCC), intended for a frosted scrim over content. No
+      component consumes it today — the frosted surfaces in modal-variation and
+      collapsible were built from Tailwind opacity modifiers instead.
+    notFor: >
+      Not a hover overlay on a dark surface, which is the 10% alpha-10. Not an opaque
+      panel fill, which is bg-default.
+  alpha-10:
+    useFor: >
+      A 10% white overlay (#FFFFFF1A) for hover and resting emphasis on dark surfaces
+      — navbar-item hover, nav-item hover, the sidebar-atlas logo tile and the
+      on-emphasis Button hover. A DS-side addition (2026-08-05) covering a state the
+      Figma component set does not define.
+    notFor: >
+      Never on a light surface, where a 10% white wash is invisible — a light hover is
+      bg-subtle. For a heavy frosted scrim use alpha-80.
+
+  # ── size ──────────────────────────────────────────────────────────────────
+  size-4xs:
+    useFor: >
+      2px — the smallest gap in the system, for optically touching elements such as
+      the icon-over-label stack of navbar-item and the tight padding of item-side-bar.
+    notFor: >
+      Not for real separation between two pieces of content; the smallest readable gap
+      is size-xs.
+  size-3xs:
+    useFor: >
+      4px — the hairline gap between a control and its immediate label, as in
+      checkbox, radio, nav-item and the list header.
+    notFor: >
+      Not for padding inside a container, which starts at size-xs; this is a gap
+      between adjacent elements.
+  size-2xs:
+    useFor: >
+      6px — the inner padding and gap of small chips and dense rows: badges, the
+      compact Button, calendar-button, the data-table toolbar and header-desktop.
+    notFor: >
+      Not the standard control padding, which is size-xs or size-s; reach here only
+      when the element is deliberately dense.
+  size-xs:
+    useFor: >
+      8px — the default gap of the design system, used by more components than any
+      other spacing token: icon-to-label gaps, list row padding, alert internals and
+      the vertical rhythm inside input, text-area and cards.
+    notFor: >
+      Not the padding of a large container, which is size-m. When two blocks belong to
+      different groups, separate them with size-s or more.
+  size-s:
+    useFor: >
+      12px — the medium step, used for the horizontal padding of Button and input, the
+      internal padding of action-sheet-item and the spacing of table cells.
+    notFor: >
+      Not the padding of a page-level panel, which is size-m or size-l. For a tight
+      chip use size-2xs.
+  size-m:
+    useFor: >
+      16px — the container padding of the design system: cards, collapsible, the
+      action-sheet-menu panel, in-content-alert, floating-alert and the padded
+      variants of list and table.
+    notFor: >
+      Not the gap between an icon and its label, which is size-xs or smaller. For the
+      generous padding of a hero or drop zone use size-l.
+  size-l:
+    useFor: >
+      24px — generous padding for large surfaces: the input-file drop zone, the open
+      collapsible, the spacious floating-alert and the large Button.
+    notFor: >
+      Not everyday container padding, which is size-m; this is a deliberate breathing
+      step.
+  size-xl:
+    useFor: >
+      32px — a page-level section gap. No component consumes it today; it exists for
+      layout composition above the component layer.
+    notFor: >
+      Not padding inside a component, which tops out at size-l.
+  size-2xl:
+    useFor: >
+      48px — the only consumer is the vertical padding of the data-table empty state.
+    notFor: >
+      Not ordinary component padding, which tops out at size-l; this is a
+      page-composition step.
+  size-3xl:
+    useFor: >
+      64px — the largest spacing step, for gaps between major page sections. No
+      component consumes it today.
+    notFor: >
+      Not padding inside a component; nothing in the DS is spaced this far internally.
+  size-square:
+    useFor: >
+      A 0px value carried in the sizing collection as the "no radius" sizing
+      counterpart of radius-round. No component consumes it today.
+    notFor: >
+      Not a way to square off a corner — a component with no radius simply omits the
+      rounded utility, and a fully round one uses radius-round.
+  default-text:
+    useFor: >
+      The default text-related spacing step captured from Figma's sizing collection
+      (14px, 16px under atlas). No component consumes it today — every component sets
+      its type size through the font-size tokens instead.
+    notFor: >
+      Not a font size; text sizes are the font-size-text-* and font-size-heading-*
+      tokens. Not a general spacing step, which is the size-* scale.
+
+  # ── radius ────────────────────────────────────────────────────────────────
+  radius-round:
+    useFor: >
+      A fully circular corner (9999px) — the only consumer is the thumb and track of
+      switch.
+    notFor: >
+      Not for a card, panel or field, which use radius-l or radius-xl. An avatar or
+      dot in the DS uses Tailwind's own rounded-full.
+  radius-m:
+    useFor: >
+      4px — the tightest real corner, for small floating and dense surfaces: the
+      action-sheet-menu panel, the tooltip bubble, the checkbox box, the
+      tabulation-cells tab and the sidebar-atlas logo tile.
+    notFor: >
+      Not the standard control corner, which is the 8px radius-l — reach here only for
+      small or dense elements.
+  radius-l:
+    useFor: >
+      8px — the standard corner of the design system: input, text-area, Button,
+      list-content, action-sheet-item, file-dropped, calendar and in-content-alert.
+    notFor: >
+      Not a large panel corner, which is radius-xl, and not a dense chip corner, which
+      is radius-m.
+  radius-xl:
+    useFor: >
+      16px — the corner of the largest surfaces: cards, the open collapsible, the
+      sidebar panel and the in-content-alert container.
+    notFor: >
+      Not a control corner such as a Button or input, which is radius-l — using it
+      there makes the control look like a pill.
+
+  # ── font family ───────────────────────────────────────────────────────────
+  font-family-title:
+    useFor: >
+      Page and section titles — the headings of header-desktop and header-phone, the
+      list header and the sidebar-atlas wordmark. Pair it with font-size-heading-*.
+    notFor: >
+      Not for a form label or a control's text, which is font-family-label, and not
+      for running prose, which is font-family-body.
+  font-family-body:
+    useFor: >
+      Running prose and message copy — file-dropped filenames, floating-alert and
+      in-content-alert bodies, breadcrumbs, calendar and tooltip text.
+    notFor: >
+      Not for the label or value of a form control, which is font-family-label. Not
+      for a heading, which is font-family-title.
+  font-family-label:
+    useFor: >
+      The UI-chrome face, and the most used of the three — every form label and helper
+      line (input, checkbox, radio, text-area, data-field), plus menu rows, sidebar
+      entries and tab labels.
+    notFor: >
+      Not for a paragraph of prose, which is font-family-body, and not for a page
+      heading, which is font-family-title.
+  # ── font weight ───────────────────────────────────────────────────────────
+  font-weight-title:
+    useFor: >
+      The heading weight (600, 700 under atlas), applied alongside font-family-title
+      on the header-desktop, header-phone, list and sidebar-atlas headings.
+    notFor: >
+      Not for emphasising a label inside a control, which is font-weight-label-bold.
+      Note that the font-klp-title utility resolves to the family, not this weight.
+  font-weight-body:
+    useFor: >
+      The regular prose weight (400), applied alongside font-family-body in alerts,
+      breadcrumbs, file-dropped, calendar and tooltip.
+    notFor: >
+      Not for emphasised prose, which is font-weight-body-bold. Note that the
+      font-klp-body utility resolves to the family, not this weight.
+  font-weight-body-bold:
+    useFor: >
+      The bold prose weight (600), the emphasis counterpart of font-weight-body. No
+      component consumes it today — emphasised text in the DS is label-shaped and uses
+      font-weight-label-bold.
+    notFor: >
+      Not for a heading, which is font-weight-title, and not for a bold form label,
+      which is font-weight-label-bold.
+  font-weight-label:
+    useFor: >
+      The regular UI-chrome weight (400), applied alongside font-family-label on form
+      labels, helper text, menu rows and tab labels.
+    notFor: >
+      Not for the emphasised state of those same labels, which is
+      font-weight-label-bold. Note that the font-klp-label utility resolves to the
+      family, not this weight.
+  font-weight-label-bold:
+    useFor: >
+      The emphasis weight for UI chrome (600, 700 under atlas) — the active
+      tabulation-cells tab, the in-content-alert title, an input label, the
+      action-sheet-menu section title and the strong emphasis of data-field.
+    notFor: >
+      Not for a page heading, which is font-weight-title, and not for emphasised
+      prose, which is font-weight-body-bold.
+
+  # ── font size ─────────────────────────────────────────────────────────────
+  font-size-text-large:
+    useFor: >
+      The largest body step (18px, 16px under atlas) — the large size of input and
+      Button, the floating-alert title and the collapsible header.
+    notFor: >
+      Not for a page or section title, which uses the font-size-heading-* scale. The
+      default reading size is font-size-text-medium.
+  font-size-text-medium:
+    useFor: >
+      The default reading size (16px, 14px under atlas) and the most used type token —
+      control labels, alert bodies, table cells, tab labels and the standard size of
+      input, Button and text-area.
+    notFor: >
+      Not for dense secondary text such as a menu hint or a pagination counter, which
+      is font-size-text-small.
+  font-size-text-small:
+    useFor: >
+      The dense secondary step (14px, 12px under atlas) — the data-field label,
+      action-sheet-menu section titles, pagination counters, badges text, the
+      list-content sublabel and the sidebar-atlas label.
+    notFor: >
+      Not for body copy the user is meant to read at length, which is
+      font-size-text-medium. For the very smallest caption use font-size-text-smaller.
+  font-size-text-smaller:
+    useFor: >
+      The smallest step in the scale (12px, 11px under atlas); the only consumer is
+      the navbar-item label under the Atlas rail icon.
+    notFor: >
+      Not for secondary text in the page body, which is font-size-text-small — at this
+      size legibility is marginal outside a nav rail.
+  font-size-heading-h1:
+    useFor: >
+      The largest heading (30px, 24px under atlas) — the page title of header-desktop
+      and header-phone, its only two consumers.
+    notFor: >
+      Not for a section title inside a page, which starts at font-size-heading-h2, and
+      never for body text.
+  font-size-heading-h2:
+    useFor: >
+      The second heading step (24px, 20px under atlas); the only consumer is the list
+      header title.
+    notFor: >
+      Not for a page title, which is font-size-heading-h1, and not for a control label,
+      which is font-size-text-medium.
+  font-size-heading-h3:
+    useFor: >
+      The third heading step (20px, 18px under atlas). No component consumes it today
+      — it exists for page composition above the component layer.
+    notFor: >
+      Not for a card or panel title inside a component; those are sized with
+      font-size-text-large or font-size-text-medium.
+  font-size-heading-h4:
+    useFor: >
+      The smallest heading step (18px, 16px under atlas). No component consumes it
+      today, and it shares its value with font-size-text-large.
+    notFor: >
+      Not for control text of the same pixel size, which should use
+      font-size-text-large so it stays on the body scale.

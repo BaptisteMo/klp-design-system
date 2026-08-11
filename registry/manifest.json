@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-08-10T17:35:04.633Z",
+  "generatedAt": "2026-08-11T07:28:07.799Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -20,17 +20,17 @@
         {
           "src": "src/styles/tokens/primitives.css",
           "dst": "src/styles/tokens/primitives.css",
-          "hash": "sha256:d5ccedcc0493f4656ddbede6f2ac24445dd35100bfb18226ebc85b7537f15af0"
+          "hash": "sha256:fcc1d29df96fd93b2f4ebdb81cc032b5737ebee83a38a4cda6e106ad5a95f527"
         },
         {
           "src": "src/styles/tokens/aliases.css",
           "dst": "src/styles/tokens/aliases.css",
-          "hash": "sha256:4a9b42f54bf0ae3d0dd55a4a980036053ff425f8ca5fd0f910efb9e22a0c7225"
+          "hash": "sha256:a2030c47918230ee3b91f0796df7747b319331749435ac047d67892c51a9ef80"
         },
         {
           "src": "src/styles/tokens/theme.css",
           "dst": "src/styles/tokens/theme.css",
-          "hash": "sha256:0c1e1baaeaa0ee079207acb4aa69ec97e0349583f1ea459dc10f484bc6dcf278"
+          "hash": "sha256:993aa3f8ae3cf328347f6c69cbd60532b1b329b66b51ba8bf60534dfef5a53b3"
         }
       ]
     },
@@ -2879,7 +2879,7 @@
         {
           "src": "docs/tokens/vocabulary.md",
           "dst": "docs/tokens/vocabulary.md",
-          "hash": "sha256:91a7aeb2919804e79b44c7f5f27156aa0e6d7ee608bff01b2824053da4f0c527"
+          "hash": "sha256:b47de17ab6fbaf8247d95e069c18c874017d62ad73a04a08ca2e3bb26c058ff7"
         },
         {
           "src": "docs/brands/_index_brands.md",
