@@ -22,6 +22,26 @@ updated: 2026-08-04
 
 Vertical navigation sidebar with a branded header (logo + notification button), a location/context switcher, a scrollable menu of item-side-bar instances, and a user profile footer. Two device variants: Desktop (247×640px) and Phone (320×568px — wider, close button replaces notification affordance).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The generic full-width vertical navigation panel — branded header, context switcher, a scrollable menu of item-side-bar rows and a user footer. Desktop variant is a fixed 247px column; phone variant is a 320px dismissible drawer.
+
+**Don't use it for:** Not for the Atlas icon rail — that is sidebar-atlas. Do not hand-roll its rows; every menu entry is an item-side-bar instance.
+
+**Family — `sidebars`:** sidebar is the generic full nav (desktop + phone). sidebar-atlas is the Atlas-only 70px icon rail. item-side-bar is a row inside sidebar; navbar-item is a row inside sidebar-atlas. The two row types are not interchangeable.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `sidebar-atlas` | sidebar is the generic labelled nav; sidebar-atlas is the Atlas-only 70px icon rail. |
+| `item-side-bar` | sidebar is the container; item-side-bar is one of its rows. |
+| `navbar-item` | sidebar never contains navbar-item — its rows are item-side-bar. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

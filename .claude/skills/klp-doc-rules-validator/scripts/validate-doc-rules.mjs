@@ -281,6 +281,38 @@ export function checkR5(source) {
   return { rule: 'R5', passed: missing.length === 0, fixable: false, missing }
 }
 
+// --- R6 ---
+// Report-only, like R5. Confirms the KLP:INTENT block is present, its "## When to use"
+// body is non-empty, and its first paragraph (the rendered `intent.whenToUse` text —
+// see scripts/inject-doc-intent.mjs renderIntentBlock, which writes it as the sole
+// paragraph before the blank line that precedes "**Don't use it for:**") matches
+// klp-components.json's `components[].intent.whenToUse` for this component,
+// whitespace-normalized. No auto-fix: the remedy is re-running `pnpm run sync:intent`
+// (regenerates the block from the catalog) or editing `.klp/intent.yaml` when the
+// catalog text itself is wrong.
+export function checkR6(doc, catalogEntry) {
+  const blockMatch = doc.match(/<!-- KLP:INTENT:BEGIN -->([\s\S]*?)<!-- KLP:INTENT:END -->/)
+  if (!blockMatch) {
+    return { rule: 'R6', passed: false, fixable: false, hint: 'missing <!-- KLP:INTENT:BEGIN/END --> block — run pnpm run sync:intent' }
+  }
+  const block = blockMatch[1]
+  const sectionMatch = block.match(/^## When to use\s*\n([\s\S]*?)(?=\n## |\s*$)/m)
+  const sectionBody = sectionMatch ? sectionMatch[1] : ''
+  const firstParagraph = (sectionBody.split(/\n\s*\n/)[0] ?? '').replace(/\s+/g, ' ').trim()
+
+  if (!firstParagraph) {
+    return { rule: 'R6', passed: false, fixable: false, hint: '## When to use body is empty' }
+  }
+  if (!catalogEntry || !catalogEntry.intent) {
+    return { rule: 'R6', passed: false, fixable: false, hint: 'component has no intent entry in .klp/intent.yaml' }
+  }
+  const expected = String(catalogEntry.intent.whenToUse ?? '').replace(/\s+/g, ' ').trim()
+  if (firstParagraph !== expected) {
+    return { rule: 'R6', passed: false, fixable: false, hint: '## When to use text does not match klp-components.json intent.whenToUse — re-run pnpm run sync:intent, or edit .klp/intent.yaml if the catalog text itself is wrong' }
+  }
+  return { rule: 'R6', passed: true, fixable: false }
+}
+
 // --- Auto-fix ---
 
 export function applyAutoFixes(doc, violations) {
@@ -329,7 +361,15 @@ export function applyAutoFixes(doc, violations) {
 
 // --- CLI ---
 
-async function runOne(component, { fix }) {
+async function loadCatalogEntry(component) {
+  const manifestPath = resolve(REPO_ROOT, 'klp-components.json')
+  if (!existsSync(manifestPath)) return null
+  const manifest = JSON.parse(await readFile(manifestPath, 'utf8'))
+  const list = Array.isArray(manifest.components) ? manifest.components : Object.values(manifest.components ?? {})
+  return list.find(c => c.name === component) ?? null
+}
+
+async function runOne(component, { fix, catalogEntry } = {}) {
   const pascal = pascalName(component)
   const sourcePath = resolve(REPO_ROOT, `src/components/${component}/${pascal}.tsx`)
   const docPath = resolve(REPO_ROOT, `docs/components/_index_${component}.md`)
@@ -338,6 +378,7 @@ async function runOne(component, { fix }) {
   }
   const source = await readFile(sourcePath, 'utf8')
   let doc = await readFile(docPath, 'utf8')
+  const entry = catalogEntry !== undefined ? catalogEntry : await loadCatalogEntry(component)
 
   const collected = []
   const r1 = checkR1(doc); if (!r1.passed) collected.push(r1)
@@ -372,11 +413,15 @@ async function runOne(component, { fix }) {
   if (!r5.passed) {
     for (const m of r5.missing) mismatches.push({ rule: 'R5', component, prop: m.prop, hint: m.hint })
   }
+  const r6Final = checkR6(doc, entry)
+  if (!r6Final.passed) {
+    mismatches.push({ rule: 'R6', component, hint: r6Final.hint })
+  }
 
   return {
     component,
     passed: mismatches.length === 0,
-    rulesChecked: 5,
+    rulesChecked: 6,
     autoFixed,
     mismatches,
     warnings: [],
@@ -390,6 +435,8 @@ async function runAll({ fix }) {
     process.exit(2)
   }
   const manifest = JSON.parse(await readFile(manifestPath, 'utf8'))
+  const entryList = Array.isArray(manifest.components) ? manifest.components : Object.values(manifest.components ?? {})
+  const entryByName = new Map(entryList.map(c => [c.name, c]))
   // Skip utility/exempt components (e.g. brand-provider) — no doc page by design.
   const components = Array.isArray(manifest.components)
     ? manifest.components.filter(c => !c.exemptFromFigmaPipeline).map(c => c.name)
@@ -398,12 +445,12 @@ async function runAll({ fix }) {
         .map(([name]) => name)
   const results = []
   for (const name of components) {
-    results.push(await runOne(name, { fix }))
+    results.push(await runOne(name, { fix, catalogEntry: entryByName.get(name) ?? null }))
   }
   return {
     component: '--all',
     passed: results.every(r => r.passed),
-    rulesChecked: 5,
+    rulesChecked: 6,
     autoFixed: results.flatMap(r => r.autoFixed),
     mismatches: results.flatMap(r => r.mismatches),
     warnings: results.flatMap(r => r.warnings),

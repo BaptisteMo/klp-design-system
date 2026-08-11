@@ -10,17 +10,36 @@ sources:
   - src/components/header-phone/HeaderPhone.tsx
 dependencies:
   components: ["breadcrumbs", "button"]
-  externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+  externals: ["class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "radius", "spacing", "typography"]
   brands: ["klub"]
 usedBy: []
 created: 2026-04-20
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # Header Phone
 
 Mobile phone header bar with a top row (hamburger menu button, brand logo, notification button with dot indicator) and a second row (page title + search button), followed by a breadcrumb trail. Single variant — no variant axes.
+
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The header bar for a phone-width layout — hamburger, logo and notification on the top row, page title and search on the second, breadcrumbs beneath. Brand-agnostic.
+
+**Don't use it for:** Not on a desktop-width layout — use header-desktop. Never under the ShowUp brand's global nav, which is header-showup. The hamburger opens sidebar in its phone variant; do not re-implement that drawer here.
+
+**Family — `headers`:** header-desktop and header-phone are generic and brand-agnostic. header-showup is the ShowUp top nav only — never used under another brand.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `header-desktop` | Phone viewport -> header-phone. Desktop viewport -> header-desktop. |
+| `header-showup` | header-phone is brand-agnostic; header-showup is ShowUp only. |
+
+<!-- KLP:INTENT:END -->
 
 ## Anatomy
 

@@ -22,6 +22,24 @@ updated: 2026-08-04
 
 A multi-select input: a labeled trigger box (composed from Input) that displays selected values as removable chips (Badges) and a chevron affordance, plus an attached open dropdown panel (ActionSheetMenu, checkbox type) listing selectable options grouped into sections.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Picking several values from a known option list — a labelled trigger showing the choices as removable Badge chips, opening an action-sheet-menu of checkbox rows grouped in sections.
+
+**Don't use it for:** Only for choosing several values. Single-select is a documented DS gap — there is no single-select dropdown or combobox, so a one-of-many choice is radio, whatever the length of the option list. Not for free-text entry — that is input. Not for a handful of options that fit inline; a few checkboxes are clearer.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `input` | input-multiselect picks from a list; input takes free text. |
+| `checkbox` | input-multiselect wraps many options in a dropdown; checkbox is one option inline. |
+| `action-sheet-menu` | input-multiselect is a form field that opens action-sheet-menu as its panel. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

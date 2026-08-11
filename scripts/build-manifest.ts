@@ -14,10 +14,18 @@ const BRANDS = ['wireframe', 'klub', 'atlas', 'showup']
 const FLAT_COMPONENTS = new Set(['brand-provider'])
 
 type ManifestFile = { src: string; dst: string; hash: string; template?: boolean }
+type ComponentMeta = {
+  aliases: string[]
+  exports: string[]
+  typeExports: string[]
+  whenToUse: string | null
+  props: Record<string, { type: string; class: string }>
+}
 type ComponentManifest = {
   files: ManifestFile[]
   deps: { npm: string[]; components: string[] }
   category?: string
+  meta?: ComponentMeta
 }
 
 function sha256(content: Buffer | string): string {
@@ -65,6 +73,12 @@ function buildComponentsGroup(): { items: Record<string, ComponentManifest> } {
   const items: Record<string, ComponentManifest> = {}
   const registryDir = join(ROOT, 'registry')
 
+  // Agent-facing metadata (aliases, exports, prop types, intent) comes from the catalog.
+  const catalogPath = join(ROOT, 'klp-components.json')
+  const catalogEntries: Record<string, any> = existsSync(catalogPath)
+    ? Object.fromEntries(JSON.parse(readFileSync(catalogPath, 'utf8')).components.map((c: any) => [c.name, c]))
+    : {}
+
   for (const name of readdirSync(srcDir)) {
     const full = join(srcDir, name)
     if (!statSync(full).isDirectory()) continue
@@ -99,7 +113,21 @@ function buildComponentsGroup(): { items: Record<string, ComponentManifest> } {
     deps.npm = [...new Set(deps.npm)].sort()
     deps.components = [...new Set(deps.components)].sort()
 
-    items[name] = { files, deps, ...(category ? { category } : {}) }
+    const cat = catalogEntries[name]
+    const meta: ComponentMeta | undefined = cat
+      ? {
+          aliases: cat.aliases ?? [name],
+          exports: cat.exports ?? [],
+          typeExports: cat.typeExports ?? [],
+          whenToUse: cat.intent?.whenToUse ?? null,
+          props: Object.fromEntries(
+            Object.entries((cat.props ?? {}) as Record<string, { type?: string; class?: string }>)
+              .map(([k, v]) => [k, { type: v.type ?? 'unknown', class: v.class ?? 'optional' }]),
+          ),
+        }
+      : undefined
+
+    items[name] = { files, deps, ...(category ? { category } : {}), ...(meta ? { meta } : {}) }
   }
 
   // brand-provider is handled by the same scan (if present under src/components/brand-provider/)
@@ -117,6 +145,7 @@ function buildDocsGroup(): { files: ManifestFile[]; brandFiles: (ManifestFile & 
     'docs/tokens/radius.md',
     'docs/tokens/spacing.md',
     'docs/tokens/typography.md',
+    'docs/tokens/vocabulary.md',
     'docs/brands/_index_brands.md',
   ]
   for (const p of simple) {

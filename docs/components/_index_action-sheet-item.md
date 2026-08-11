@@ -10,19 +10,36 @@ sources:
   - src/components/action-sheet-item/ActionSheetItem.tsx
 dependencies:
   components: []
-  externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+  externals: ["@radix-ui/react-slot", "class-variance-authority"]
   tokenGroups: ["colors", "spacing", "typography"]
   brands: ["wireframe"]
 usedBy:
   - action-sheet-menu
   - item-side-bar
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # ActionSheet Item
 
 A single row item for action sheets. Supports icon slots on both sides, an optional description label, and seven semantic states (Default, Hover, Active, Emphased, Disabled, Destructive, Creation) across three sizes.
+
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+One actionable row inside a menu surface — leading and trailing icon slots, optional description line, and semantic states including destructive and creation.
+
+**Don't use it for:** Never standalone; it only lives inside action-sheet-menu or the collapsible panel of item-side-bar. For a passive content row use list-content, and for a full-size clickable control use button.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `list-content` | action-sheet-item triggers an action in a menu; list-content displays content in a list. |
+| `action-sheet-menu` | action-sheet-menu is the panel; action-sheet-item is one of its rows. |
+
+<!-- KLP:INTENT:END -->
 
 ## Anatomy
 

@@ -22,6 +22,27 @@ updated: 2026-04-21
 
 A single list row with a decorative icon, label/sublabel stack, and an optional action button. Three sizes and three states (default, hover, active). The active state communicates the selected row.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A single row inside a list: leading decorative icon, label + sublabel, optional trailing tertiary icon-button.
+
+**Don't use it for:** Never standalone outside a list, and never as a menu row — a contextual action row is action-sheet-item. Not every icon-and-label row in a vertical panel is a list-content: a row of the generic sidebar is item-side-bar, and a row of the Atlas rail is navbar-item.
+
+**Family — `collections`:** data-table is the default for any tabular data — sorting and pagination are built in. table exposes primitives, used only when data-table cannot express the layout. list renders vertical non-tabular rows. list-content is a row inside list, never standalone.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `list` | list-content is a row; list is the container that holds them. |
+| `action-sheet-item` | list-content displays content; action-sheet-item triggers an action in a menu. |
+| `data-table` | list-content is a row of list; a tabular row is rendered by data-table itself. |
+| `table` | list-content only belongs inside list; table rows are Table.Row primitives. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

@@ -24,6 +24,23 @@ updated: 2026-04-21
 
 Horizontal breadcrumb trail showing navigation hierarchy. A single axis (Steps) controls how many ancestor steps are shown before the current (active) step. The first step always shows a home icon. Intermediate steps use fg/muted with a chevron-right separator. The last (current) step uses fg/default with a chevron-down dropdown affordance.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The ancestor trail showing where the current page sits in the hierarchy — a home icon, up to three muted ancestor steps, and the current step.
+
+**Don't use it for:** Not for switching between sibling views of the same page — that is tabulations. Not for moving through pages of a result set — that is pagination. Usually already rendered by header-desktop and header-phone, so do not add a second trail beside them.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `tabulations` | breadcrumbs shows depth in a hierarchy; tabulations switches sibling views. |
+| `pagination` | breadcrumbs navigates the hierarchy; pagination navigates pages of one result set. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

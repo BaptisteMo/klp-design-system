@@ -22,6 +22,23 @@ updated: 2026-08-07
 
 File upload field with two layouts: DropZone (dashed drag-and-drop panel with a decorative files illustration) and Simple (a labeled Input field with a plus icon + placeholder, helper text, and a 'Take picture' action button).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The control that selects files — the drop-zone layout for a dashed drag-and-drop panel, or the simple layout for a compact labelled field with a take-picture action.
+
+**Don't use it for:** Not for showing files already chosen; render a file-dropped row per file beneath it. Do not wire a bare input to type=file — this component owns the drag-and-drop behaviour.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `file-dropped` | input-file selects the file; file-dropped displays one already selected. |
+| `input` | input-file handles files and drag-and-drop; input handles typed text. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

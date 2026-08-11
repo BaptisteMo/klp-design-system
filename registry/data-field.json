@@ -1,0 +1,25 @@
+{
+  "name": "data-field",
+  "type": "registry:ui",
+  "description": "Read-only display of a single labelled value: muted label above a fg-default value, 4px apart. Not a form control — use Input for editable fields.",
+  "meta": {
+    "displayName": "DataField",
+    "figmaNode": null,
+    "captureBrand": "klub",
+    "category": "data-display",
+    "radixPrimitive": null,
+    "schemaVersion": "v2",
+    "anatomy": ["root", "label", "value"],
+    "variantAxes": {
+      "emphasis": ["default", "strong"]
+    },
+    "composition": {
+      "reuses": [],
+      "gaps": []
+    }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": ["class-variance-authority"]
+  }
+}

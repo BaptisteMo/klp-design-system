@@ -26,6 +26,24 @@ updated: 2026-08-07
 
 Text input field with label, optional icons (search/action), and helper text. Supports three sizes (large, medium, small) and six states (default, filled, focused, success, danger, disable).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A single-line text field with label, optional leading or action icon and helper text, across three sizes and the default, filled, focused, success, danger and disable states.
+
+**Don't use it for:** Not for multi-line prose — that is text-area. Not for choosing from a fixed option list: several values is input-multiselect, and a single value is radio because the DS has no single-select dropdown. Not for picking a file (input-file) or a date (calendar). For a value that is only displayed, use data-field.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `text-area` | input is one line; text-area is multi-line. |
+| `input-multiselect` | input takes free text; input-multiselect picks several values from a known option list. |
+| `data-field` | input is editable; data-field is read-only. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

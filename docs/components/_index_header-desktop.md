@@ -10,17 +10,36 @@ sources:
   - src/components/header-desktop/HeaderDesktop.tsx
 dependencies:
   components: ["breadcrumbs", "button", "input"]
-  externals: ["@radix-ui/react-slot", "class-variance-authority", "lucide-react"]
+  externals: ["class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "radius", "spacing", "typography"]
   brands: ["klub"]
 usedBy: []
 created: 2026-04-20
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # Header Desktop
 
 Desktop page header with a title, breadcrumb trail, and contextual action row. Two feature variants: Default (icon-only tertiary action buttons + a primary secondary button) and Search active (title + a small search input replacing the action row).
+
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The header strip at the top of a desktop page body — page title, breadcrumb trail and a contextual action row. Brand-agnostic; the search-active variant swaps the action row for an inline search field.
+
+**Don't use it for:** Not on a phone-width layout — use header-phone. Not for the ShowUp product's global top nav, which is header-showup. It is a page header, not a global application nav bar.
+
+**Family — `headers`:** header-desktop and header-phone are generic and brand-agnostic. header-showup is the ShowUp top nav only — never used under another brand.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `header-phone` | Desktop viewport -> header-desktop. Phone viewport -> header-phone. |
+| `header-showup` | header-desktop is brand-agnostic; header-showup is ShowUp only. |
+
+<!-- KLP:INTENT:END -->
 
 ## Anatomy
 

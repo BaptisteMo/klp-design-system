@@ -22,6 +22,26 @@ updated: 2026-04-21
 
 A data list container with a header row (title + optional action button or filter inputs) and a vertical stack of ListContent rows. Three layout styles: Default, Condensed, and With-inputs.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A vertical collection of non-tabular rows with a header and an optional action, in condensed, default or with-inputs spacing.
+
+**Don't use it for:** Not for data with columns and headers — use data-table. Do not render a single row here; rows are list-content instances.
+
+**Family — `collections`:** data-table is the default for any tabular data — sorting and pagination are built in. table exposes primitives, used only when data-table cannot express the layout. list renders vertical non-tabular rows. list-content is a row inside list, never standalone.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `data-table` | Columns with headers -> data-table. Label/sublabel rows -> list. |
+| `list-content` | list is the container; list-content is one of its rows. |
+| `table` | list stacks non-tabular rows; table lays out columns and headers. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

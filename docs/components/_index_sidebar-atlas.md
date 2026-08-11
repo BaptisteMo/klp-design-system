@@ -22,6 +22,26 @@ updated: 2026-08-06
 
 Atlas brand vertical nav rail ("NavBar" in Figma) — a 70px-wide, full-height stack of a logo slot followed by primary navigation entries (source: spec.json:description).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The Atlas brand's 70px-wide, full-height icon rail — a logo slot over a list of navbar-item entries driven by an items prop with real hrefs and a selected route.
+
+**Don't use it for:** Never under klub, showup or wireframe — those get sidebar. Not when entries need labels, context switching or a user footer; that is sidebar.
+
+**Family — `sidebars`:** sidebar is the generic full nav (desktop + phone). sidebar-atlas is the Atlas-only 70px icon rail. item-side-bar is a row inside sidebar; navbar-item is a row inside sidebar-atlas. The two row types are not interchangeable.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `sidebar` | sidebar-atlas is the Atlas-only 70px icon rail; sidebar is the generic labelled nav. |
+| `navbar-item` | sidebar-atlas is the rail; navbar-item is one of its rows. |
+| `item-side-bar` | sidebar-atlas never contains item-side-bar — its rows are navbar-item. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

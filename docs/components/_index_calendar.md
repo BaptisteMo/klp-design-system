@@ -24,6 +24,23 @@ A date-picker panel with a month header (prev/next year and month navigation), a
 
 The panel supports two usages as a first-class part of its contract: **standalone**, rendered inline as a normal block, and **as an input's dropdown**, passed to `Popover.Content asChild` so the panel itself becomes the positioned element (source: Calendar.tsx:139-143, 274-282). This works because the root `<div>` forwards its ref and spreads unremapped props (`{...props}`) after a `role="application"` default that a host — e.g. Radix `Popover.Content`, which injects `role="dialog"` — can override. The DS has no dedicated `date-picker` component yet; the Popover composition shown below is assembled by the consumer, and the Figma file only defines the panel.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The date-picking panel — month and year navigation over a Monday-first day grid, with an hour field in the footer. Use it when the user picks a date or a date and time.
+
+**Don't use it for:** Not as an events or schedule display; it is a picker, not an agenda. Do not build the grid from calendar-button yourself — calendar already composes them. For a free-text date use input.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `calendar-button` | calendar is the whole panel; calendar-button is one day cell inside it. |
+| `input` | calendar picks a date from a grid; input takes typed text. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

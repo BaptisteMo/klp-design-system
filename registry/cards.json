@@ -1,0 +1,25 @@
+{
+  "name": "cards",
+  "type": "registry:ui",
+  "description": "Very basic card container with a rounded, bordered surface. Only variation is padding size (8px or 16px). Serves as the base primitive for all card-style elements; consumers pass arbitrary children.",
+  "meta": {
+    "displayName": "Card",
+    "figmaNode": "113667:1153",
+    "captureBrand": "klub",
+    "category": "containers",
+    "radixPrimitive": "@radix-ui/react-slot",
+    "schemaVersion": "v2",
+    "anatomy": ["root"],
+    "variantAxes": {
+      "paddingSize": ["8px", "16px"]
+    },
+    "composition": {
+      "reuses": [],
+      "gaps": []
+    }
+  },
+  "dependencies": {
+    "components": [],
+    "npm": ["@radix-ui/react-slot", "class-variance-authority"]
+  }
+}

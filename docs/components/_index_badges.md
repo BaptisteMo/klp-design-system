@@ -26,6 +26,23 @@ updated: 2026-08-05
 
 Status indicator pill with optional leading/trailing icons. Supports 9 semantic types (Primary, Secondary, Tertiary, Success, Info, Warning, Danger, onEmphasis, Outlined), 3 sizes (Small, Medium, Large) and 2 styles (Bordered, Light). Outlined and onEmphasis only exist in Light style.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A small non-interactive pill labelling a status, category or count next to the thing it describes — nine semantic types across bordered and light styles.
+
+**Don't use it for:** Never as a control; if it can be clicked it is a button. Not for a message with a body of text — that is in-content-alert.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `button` | badges label state and are inert; button is clickable. |
+| `in-content-alert` | badges is a one-word status pill; in-content-alert is a full banner message. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

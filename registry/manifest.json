@@ -1,6 +1,6 @@
 {
   "version": "0.1.0",
-  "generatedAt": "2026-08-07T09:59:51.125Z",
+  "generatedAt": "2026-08-11T07:28:07.799Z",
   "ref": "main",
   "brands": [
     "wireframe",
@@ -15,22 +15,22 @@
         {
           "src": "src/styles/tokens.css",
           "dst": "src/styles/tokens.css",
-          "hash": "sha256:0ec3888ba9541a14144bfd668539951c31838d2f7df504f0e9a233806a0348da"
+          "hash": "sha256:c87f392dc982c73281507faf31de1e4c553bf3de57882e9657ff16db145d69d1"
         },
         {
           "src": "src/styles/tokens/primitives.css",
           "dst": "src/styles/tokens/primitives.css",
-          "hash": "sha256:0d3cf26cdf9e6f7fc0a48fc47fc31612dda932589910e2ba7c72899bbd5ae2c3"
+          "hash": "sha256:fcc1d29df96fd93b2f4ebdb81cc032b5737ebee83a38a4cda6e106ad5a95f527"
         },
         {
           "src": "src/styles/tokens/aliases.css",
           "dst": "src/styles/tokens/aliases.css",
-          "hash": "sha256:eb1d03ae6259899e0ad43e01b4c5f4195edbe73cb25cd1c115b9809c5bc01d7f"
+          "hash": "sha256:a2030c47918230ee3b91f0796df7747b319331749435ac047d67892c51a9ef80"
         },
         {
           "src": "src/styles/tokens/theme.css",
           "dst": "src/styles/tokens/theme.css",
-          "hash": "sha256:bb326f8d3e59983e00004632f8be11db1c9f4d2b242624f0426b5248c4c27c22"
+          "hash": "sha256:993aa3f8ae3cf328347f6c69cbd60532b1b329b66b51ba8bf60534dfef5a53b3"
         }
       ]
     },
@@ -67,7 +67,56 @@
             ],
             "components": []
           },
-          "category": "overlays"
+          "category": "overlays",
+          "meta": {
+            "aliases": [
+              "action-sheet-item",
+              "ActionSheetItem",
+              "ActionSheet_Item",
+              "menu-item",
+              "action-row",
+              "dropdown-item"
+            ],
+            "exports": [
+              "ActionSheetItem",
+              "rootVariants",
+              "iconVariants",
+              "labelVariants",
+              "contentVariants"
+            ],
+            "typeExports": [
+              "ActionSheetItemProps",
+              "ActionSheetItemState",
+              "ActionSheetItemSize"
+            ],
+            "whenToUse": "One actionable row inside a menu surface — leading and trailing icon slots, optional description line, and semantic states including destructive and creation.",
+            "props": {
+              "state": {
+                "type": "ActionSheetItemState",
+                "class": "persistent"
+              },
+              "size": {
+                "type": "ActionSheetItemSize",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "firstIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "secondAction": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "description": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "action-sheet-menu": {
           "files": [
@@ -89,7 +138,48 @@
             ],
             "components": []
           },
-          "category": "lists"
+          "category": "lists",
+          "meta": {
+            "aliases": [
+              "action-sheet-menu",
+              "ActionSheetMenu",
+              "ActionSheet_Menu",
+              "dropdown",
+              "menu",
+              "popover-menu",
+              "context-menu"
+            ],
+            "exports": [
+              "ActionSheetMenu",
+              "ActionSheetMenuRoot",
+              "ActionSheetMenuTrigger",
+              "ActionSheetMenuPortal",
+              "ActionSheetMenuAnchor",
+              "ActionSheetMenuContent",
+              "ActionSheetSeparator",
+              "rootVariants",
+              "sectionVariants",
+              "titleVariants"
+            ],
+            "typeExports": [
+              "ActionSheetMenuProps",
+              "ActionSheetMenuType",
+              "ActionSheetMenuSection",
+              "ActionSheetMenuItemDef",
+              "ActionSheetMenuContentProps"
+            ],
+            "whenToUse": "A contextual list of actions anchored to a trigger — grouped action-sheet-item rows with optional section titles and separators. Use the checkbox type for multi-select option lists (this is what input-multiselect opens).",
+            "props": {
+              "sections": {
+                "type": "ActionSheetMenuSection[]",
+                "class": "required"
+              },
+              "type": {
+                "type": "ActionSheetMenuType",
+                "class": "optional"
+              }
+            }
+          }
         },
         "badges": {
           "files": [
@@ -111,7 +201,60 @@
             ],
             "components": []
           },
-          "category": "data-display"
+          "category": "data-display",
+          "meta": {
+            "aliases": [
+              "badges",
+              "Badge",
+              "badge",
+              "chip",
+              "pill",
+              "tag"
+            ],
+            "exports": [
+              "Badge",
+              "rootVariants",
+              "labelVariants",
+              "iconVariants"
+            ],
+            "typeExports": [
+              "BadgeProps",
+              "BadgeType",
+              "BadgeSize",
+              "BadgeStyle"
+            ],
+            "whenToUse": "A small non-interactive pill labelling a status, category or count next to the thing it describes — nine semantic types across bordered and light styles.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "badgeType": {
+                "type": "BadgeType",
+                "class": "optional"
+              },
+              "size": {
+                "type": "BadgeSize",
+                "class": "optional"
+              },
+              "badgeStyle": {
+                "type": "BadgeStyle",
+                "class": "optional"
+              },
+              "leftIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "rightIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "brand-provider": {
           "files": [
@@ -124,6 +267,33 @@
           "deps": {
             "npm": [],
             "components": []
+          },
+          "meta": {
+            "aliases": [
+              "brand-provider",
+              "BrandProvider",
+              "theme-provider",
+              "brand"
+            ],
+            "exports": [
+              "BrandProvider",
+              "BRANDS"
+            ],
+            "typeExports": [
+              "Brand",
+              "BrandProviderProps"
+            ],
+            "whenToUse": "Mount once at the app root to set data-brand on document.documentElement so the alias tokens resolve. Renders no markup.",
+            "props": {
+              "brand": {
+                "type": "Brand",
+                "class": "required"
+              },
+              "children": {
+                "type": "ReactNode",
+                "class": "required"
+              }
+            }
           }
         },
         "breadcrumbs": {
@@ -147,14 +317,50 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "breadcrumbs",
+              "BreadCrumbs",
+              "breadcrumb",
+              "crumbs",
+              "trail"
+            ],
+            "exports": [
+              "BreadCrumbs",
+              "breadCrumbsRootVariants",
+              "breadCrumbsStepItemVariants",
+              "breadCrumbsStepIconVariants",
+              "breadCrumbsStepLabelVariants",
+              "breadCrumbsStepSeparatorVariants"
+            ],
+            "typeExports": [
+              "BreadCrumbsProps",
+              "BreadCrumbStep"
+            ],
+            "whenToUse": "The ancestor trail showing where the current page sits in the hierarchy — a home icon, up to three muted ancestor steps, and the current step.",
+            "props": {
+              "steps": {
+                "type": "BreadCrumbStep[]",
+                "class": "required"
+              },
+              "showDropdownAffordance": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "stepsVariant": {
+                "type": "VariantProps<typeof rootVariants>['steps']",
+                "class": "optional"
+              }
+            }
+          }
         },
         "button": {
           "files": [
             {
               "src": "src/components/button/Button.tsx",
               "dst": "src/components/ui/button/Button.tsx",
-              "hash": "sha256:cb370037afc5a978ff8d7ebb74997023b0d01a0e9be9352d54e1f19153d706e1"
+              "hash": "sha256:1b00b38dcd57b9e581b2f382f9f50c2882e4e3ab2994910fc88da39739ee6a68"
             },
             {
               "src": "src/components/button/index.ts",
@@ -169,7 +375,56 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "button",
+              "Button",
+              "btn",
+              "cta",
+              "icon-button"
+            ],
+            "exports": [
+              "Button",
+              "buttonVariants",
+              "labelVariants",
+              "iconVariants"
+            ],
+            "typeExports": [
+              "ButtonProps"
+            ],
+            "whenToUse": "Any element that performs an action or navigates on click — primary, secondary, tertiary, destructive and validation types, plus an icon size for icon-only affordances and on-emphasis for dark surfaces.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "variant": {
+                "type": "VariantProps<typeof rootVariants>['variant']",
+                "class": "optional"
+              },
+              "size": {
+                "type": "VariantProps<typeof rootVariants>['size']",
+                "class": "optional"
+              },
+              "htmlType": {
+                "type": "'button' | 'submit' | 'reset'",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "leftIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "rightIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "calendar": {
           "files": [
@@ -196,7 +451,90 @@
               "separator"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "calendar",
+              "Calendar",
+              "date-picker",
+              "datepicker",
+              "month-view"
+            ],
+            "exports": [
+              "Calendar",
+              "rootVariants",
+              "headerVariants",
+              "monthLabelVariants",
+              "dayGridVariants",
+              "weekdayHeaderVariants",
+              "weekdayLabelVariants",
+              "weekRowVariants",
+              "footerVariants",
+              "footerLabelVariants"
+            ],
+            "typeExports": [
+              "CalendarProps"
+            ],
+            "whenToUse": "The date-picking panel — month and year navigation over a Monday-first day grid, with an hour field in the footer. Use it when the user picks a date or a date and time.",
+            "props": {
+              "value": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "defaultValue": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "onValueChange": {
+                "type": "(date: Date) => void",
+                "class": "optional"
+              },
+              "month": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "defaultMonth": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "onMonthChange": {
+                "type": "(date: Date) => void",
+                "class": "optional"
+              },
+              "isDateDisabled": {
+                "type": "(date: Date) => boolean",
+                "class": "optional"
+              },
+              "today": {
+                "type": "Date",
+                "class": "optional"
+              },
+              "locale": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showTimePicker": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "hourValue": {
+                "type": "string",
+                "class": "optional"
+              },
+              "defaultHourValue": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onHourValueChange": {
+                "type": "(value: string) => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "calendar-button": {
           "files": [
@@ -217,7 +555,105 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "calendar-button",
+              "CalendarButton",
+              "day-cell",
+              "date-cell"
+            ],
+            "exports": [
+              "CalendarButton",
+              "rootVariants",
+              "labelVariants"
+            ],
+            "typeExports": [
+              "CalendarButtonProps",
+              "CalendarButtonState"
+            ],
+            "whenToUse": "One 36x36 day cell of a calendar grid, rendering the day number with a state of default, other-month, disable, today or selected.",
+            "props": {
+              "day": {
+                "type": "number",
+                "class": "required"
+              },
+              "otherMonth": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "today": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "selected": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "state": {
+                "type": "CalendarButtonState",
+                "class": "computed"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
+        },
+        "cards": {
+          "files": [
+            {
+              "src": "src/components/cards/Cards.tsx",
+              "dst": "src/components/ui/cards/Cards.tsx",
+              "hash": "sha256:ecc63208caf8827b883c27327821b2be9635d22084a1c3d2f921f0a740060210"
+            },
+            {
+              "src": "src/components/cards/index.ts",
+              "dst": "src/components/ui/cards/index.ts",
+              "hash": "sha256:4a1ac4b644c930a911dc2ad2c83ae783a8a15dee0a8adcf572e159e79fc2812b"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "@radix-ui/react-slot",
+              "class-variance-authority"
+            ],
+            "components": []
+          },
+          "category": "containers",
+          "meta": {
+            "aliases": [
+              "cards",
+              "Card",
+              "card",
+              "panel",
+              "surface",
+              "tile"
+            ],
+            "exports": [
+              "Card",
+              "cardVariants"
+            ],
+            "typeExports": [
+              "CardProps"
+            ],
+            "whenToUse": "A rounded bordered surface that groups arbitrary children into one visual block, with 8px or 16px padding. The base primitive for every card-style element.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "paddingSize": {
+                "type": "VariantProps<typeof rootVariants>['paddingSize']",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "checkbox": {
           "files": [
@@ -240,7 +676,30 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "checkbox",
+              "Checkbox",
+              "check",
+              "tickbox"
+            ],
+            "exports": [
+              "Checkbox",
+              "checkboxRootVariants",
+              "checkboxIndicatorVariants"
+            ],
+            "typeExports": [
+              "CheckboxProps"
+            ],
+            "whenToUse": "A binary or tri-state selection the user confirms as part of a form or a list — supports unchecked, checked, indeterminate and disabled.",
+            "props": {
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "collapsible": {
           "files": [
@@ -263,7 +722,121 @@
             ],
             "components": []
           },
-          "category": "disclosure"
+          "category": "disclosure",
+          "meta": {
+            "aliases": [
+              "collapsible",
+              "Collapsible",
+              "accordion",
+              "disclosure",
+              "expander"
+            ],
+            "exports": [
+              "Collapsible",
+              "CollapsibleRoot",
+              "CollapsibleTrigger",
+              "CollapsibleContent",
+              "collapsibleRootVariants",
+              "collapsibleHeaderVariants",
+              "collapsibleIconVariants",
+              "collapsibleTitleVariants",
+              "collapsibleContentVariants",
+              "collapsibleContentTextVariants"
+            ],
+            "typeExports": [
+              "CollapsibleProps"
+            ],
+            "whenToUse": "A titled panel whose body can be hidden and revealed by a chevron toggle — for secondary detail that would otherwise crowd the page.",
+            "props": {
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "title": {
+                "type": "string",
+                "class": "optional"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
+        },
+        "data-field": {
+          "files": [
+            {
+              "src": "src/components/data-field/DataField.tsx",
+              "dst": "src/components/ui/data-field/DataField.tsx",
+              "hash": "sha256:32948d595a9907834663007923997b7ebbe87436d1a1324ddf6c04bf6e0d9bd9"
+            },
+            {
+              "src": "src/components/data-field/index.ts",
+              "dst": "src/components/ui/data-field/index.ts",
+              "hash": "sha256:43b291169f6e5a2d35601c1c19cd6d52264234c4a011c04e28de12d7f3ecf924"
+            }
+          ],
+          "deps": {
+            "npm": [
+              "class-variance-authority"
+            ],
+            "components": []
+          },
+          "category": "data-display",
+          "meta": {
+            "aliases": [
+              "data-field",
+              "DataField",
+              "read-only-field",
+              "key-value",
+              "label-value",
+              "definition"
+            ],
+            "exports": [
+              "DataField",
+              "dataFieldRootVariants",
+              "dataFieldLabelVariants",
+              "dataFieldValueVariants"
+            ],
+            "typeExports": [
+              "DataFieldProps"
+            ],
+            "whenToUse": "A single read-only labelled value — muted label above the value — for detail panels, summaries and confirmation screens. The strong emphasis picks out the key value.",
+            "props": {
+              "label": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "value": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "emphasis": {
+                "type": "VariantProps<typeof valueVariants>['emphasis']",
+                "class": "optional"
+              },
+              "emptyText": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "data-table": {
           "files": [
@@ -287,6 +860,65 @@
               "pagination",
               "table"
             ]
+          },
+          "meta": {
+            "aliases": [
+              "data-table",
+              "DataTable",
+              "datatable",
+              "grid",
+              "tanstack-table"
+            ],
+            "exports": [
+              "DataTable"
+            ],
+            "typeExports": [
+              "ColumnDef",
+              "DataTableProps"
+            ],
+            "whenToUse": "Any collection of records shown as rows and columns — the default choice for tabular data. Accepts columns[] + data and brings sorting, pagination and custom cell renderers.",
+            "props": {
+              "columns": {
+                "type": "ColumnDef<TData>[]",
+                "class": "required"
+              },
+              "data": {
+                "type": "TData[]",
+                "class": "required"
+              },
+              "pagination": {
+                "type": "{ pageSize: number } | false",
+                "class": "optional"
+              },
+              "initialSorting": {
+                "type": "{ id: string; desc: boolean }[]",
+                "class": "optional"
+              },
+              "onSortingChange": {
+                "type": "(sorting: SortingState) => void",
+                "class": "optional"
+              },
+              "toolbar": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "emptyState": {
+                "type": "React.ReactNode | string",
+                "class": "optional"
+              },
+              "caption": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              },
+              "tableClassName": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
           }
         },
         "file-dropped": {
@@ -311,7 +943,59 @@
               "button"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "file-dropped",
+              "FileDropped",
+              "file-row",
+              "uploaded-file",
+              "attachment-row"
+            ],
+            "exports": [
+              "FileDropped",
+              "fileDroppedRootVariants",
+              "iconHighlightVariants",
+              "fileDroppedIconVariants",
+              "filenameVariants",
+              "filesizeVariants"
+            ],
+            "typeExports": [
+              "FileDroppedProps",
+              "FileDroppedState"
+            ],
+            "whenToUse": "The row representing one file that has already been chosen or uploaded — filename, size, and download plus delete actions, with a default, uploading or done state.",
+            "props": {
+              "name": {
+                "type": "string",
+                "class": "required"
+              },
+              "size": {
+                "type": "string",
+                "class": "required"
+              },
+              "state": {
+                "type": "FileDroppedState",
+                "class": "persistent"
+              },
+              "progress": {
+                "type": "number",
+                "class": "optional"
+              },
+              "onDownload": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "onDelete": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "floating-alert": {
           "files": [
@@ -333,7 +1017,45 @@
             ],
             "components": []
           },
-          "category": "feedback"
+          "category": "feedback",
+          "meta": {
+            "aliases": [
+              "floating-alert",
+              "FloatingAlert",
+              "toast",
+              "snackbar",
+              "notification"
+            ],
+            "exports": [
+              "FloatingAlert",
+              "rootVariants",
+              "iconHighlightVariants",
+              "iconVariants",
+              "contentVariants"
+            ],
+            "typeExports": [
+              "FloatingAlertProps"
+            ],
+            "whenToUse": "Transient system feedback that floats over the page and goes away — the result of a save, an upload, a failed request — in danger, warning, information or success.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "state": {
+                "type": "'danger' | 'warning' | 'information' | 'success'",
+                "class": "optional"
+              },
+              "size": {
+                "type": "'sm' | 'md' | 'lg'",
+                "class": "optional"
+              },
+              "onDismiss": {
+                "type": "() => void",
+                "class": "optional"
+              }
+            }
+          }
         },
         "header-desktop": {
           "files": [
@@ -356,7 +1078,59 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "header-desktop",
+              "HeaderDesktop",
+              "page-header",
+              "desktop-header",
+              "topbar"
+            ],
+            "exports": [
+              "HeaderDesktop",
+              "rootVariants",
+              "titleActionRowVariants",
+              "titleVariants",
+              "actionsVariants",
+              "searchInputVariants"
+            ],
+            "typeExports": [
+              "HeaderDesktopProps",
+              "HeaderAction"
+            ],
+            "whenToUse": "The header strip at the top of a desktop page body — page title, breadcrumb trail and a contextual action row. Brand-agnostic; the search-active variant swaps the action row for an inline search field.",
+            "props": {
+              "title": {
+                "type": "string",
+                "class": "optional"
+              },
+              "features": {
+                "type": "'default' | 'search-active'",
+                "class": "optional"
+              },
+              "actions": {
+                "type": "HeaderAction[]",
+                "class": "optional"
+              },
+              "breadcrumbs": {
+                "type": "BreadCrumbStep[] | false",
+                "class": "optional"
+              },
+              "searchPlaceholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onSearchChange": {
+                "type": "(value: string) => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "header-phone": {
           "files": [
@@ -379,7 +1153,69 @@
             ],
             "components": []
           },
-          "category": "containers"
+          "category": "containers",
+          "meta": {
+            "aliases": [
+              "header-phone",
+              "HeaderPhone",
+              "mobile-header",
+              "phone-header",
+              "appbar"
+            ],
+            "exports": [
+              "HeaderPhone",
+              "headerPhoneRootVariants",
+              "headerPhoneContentVariants",
+              "headerPhoneTopBarVariants",
+              "headerPhoneNotificationButtonVariants",
+              "headerPhoneNotificationDotVariants",
+              "headerPhoneLogoVariants",
+              "headerPhoneTitleBarVariants",
+              "headerPhoneTitleVariants"
+            ],
+            "typeExports": [
+              "HeaderPhoneProps"
+            ],
+            "whenToUse": "The header bar for a phone-width layout — hamburger, logo and notification on the top row, page title and search on the second, breadcrumbs beneath. Brand-agnostic.",
+            "props": {
+              "title": {
+                "type": "string",
+                "class": "optional"
+              },
+              "hasNotification": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "notificationCount": {
+                "type": "number",
+                "class": "optional"
+              },
+              "breadcrumbs": {
+                "type": "BreadCrumbStep[] | false",
+                "class": "optional"
+              },
+              "showSearch": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "onMenuClick": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "onNotificationClick": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "onSearchClick": {
+                "type": "() => void",
+                "class": "optional"
+              }
+            }
+          }
         },
         "header-showup": {
           "files": [
@@ -405,7 +1241,62 @@
               "nav-item"
             ]
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "header-showup",
+              "HeaderShowup",
+              "Nav",
+              "showup-nav",
+              "showup-header",
+              "global-nav"
+            ],
+            "exports": [
+              "HeaderShowup",
+              "headerShowupRootVariants",
+              "headerShowupZoneLogoVariants",
+              "headerShowupLogoMarkVariants",
+              "headerShowupZoneItemsVariants",
+              "headerShowupZoneRightVariants",
+              "headerShowupUserAvatarVariants",
+              "headerShowupLanguageSelectorVariants"
+            ],
+            "typeExports": [
+              "HeaderShowupProps",
+              "HeaderShowupNavItem"
+            ],
+            "whenToUse": "The ShowUp product's global top navigation bar — wordmark, primary nav links as nav-item instances with a flush active underline, and a right zone of tools, language and avatar.",
+            "props": {
+              "items": {
+                "type": "HeaderShowupNavItem[]",
+                "class": "required"
+              },
+              "onItemSelect": {
+                "type": "(id: string) => void",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "badge": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "languageSelector": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "userSlot": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "actions": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "in-content-alert": {
           "files": [
@@ -427,7 +1318,48 @@
             ],
             "components": []
           },
-          "category": "feedback"
+          "category": "feedback",
+          "meta": {
+            "aliases": [
+              "in-content-alert",
+              "InContentAlert",
+              "InContent_Alert",
+              "inline-alert",
+              "banner",
+              "callout",
+              "notice"
+            ],
+            "exports": [
+              "InContentAlert",
+              "rootVariants",
+              "headerVariants",
+              "iconVariants",
+              "titleVariants",
+              "bodyVariants"
+            ],
+            "typeExports": [
+              "InContentAlertProps"
+            ],
+            "whenToUse": "A message that stays in the page flow next to the content it concerns — an icon, a title and an optional body, in info, success, danger or warning.",
+            "props": {
+              "content": {
+                "type": "'info' | 'success' | 'danger' | 'warning'",
+                "class": "optional"
+              },
+              "size": {
+                "type": "'lg' | 'md' | 'sm'",
+                "class": "optional"
+              },
+              "title": {
+                "type": "string",
+                "class": "required"
+              },
+              "body": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "input": {
           "files": [
@@ -450,7 +1382,71 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "input",
+              "Input",
+              "text-field",
+              "textbox",
+              "textfield",
+              "search-input"
+            ],
+            "exports": [
+              "Input",
+              "rootVariants",
+              "headVariants",
+              "labelVariants",
+              "infoIconVariants",
+              "inputBoxVariants",
+              "iconLeftVariants",
+              "placeholderVariants",
+              "iconRightVariants",
+              "descriptionVariants"
+            ],
+            "typeExports": [
+              "InputProps"
+            ],
+            "whenToUse": "A single-line text field with label, optional leading or action icon and helper text, across three sizes and the default, filled, focused, success, danger and disable states.",
+            "props": {
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "description": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showInfoIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "iconLeft": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "iconRight": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "size": {
+                "type": "InputSize",
+                "class": "optional"
+              },
+              "state": {
+                "type": "InputState",
+                "class": "computed"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              },
+              "inputBoxClassName": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "input-file": {
           "files": [
@@ -480,7 +1476,70 @@
               "input"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "input-file",
+              "InputFile",
+              "file-upload",
+              "file-picker",
+              "dropzone",
+              "upload"
+            ],
+            "exports": [
+              "InputFile",
+              "inputFileRootVariants",
+              "dropzoneLabelVariants",
+              "InputFileIllustration"
+            ],
+            "typeExports": [
+              "InputFileProps",
+              "InputFileIllustrationProps"
+            ],
+            "whenToUse": "The control that selects files — the drop-zone layout for a dashed drag-and-drop panel, or the simple layout for a compact labelled field with a take-picture action.",
+            "props": {
+              "layout": {
+                "type": "InputFileLayout",
+                "class": "optional"
+              },
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "description": {
+                "type": "string",
+                "class": "optional"
+              },
+              "placeholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "actionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "accept": {
+                "type": "string",
+                "class": "optional"
+              },
+              "multiple": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "disabled": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onFilesSelected": {
+                "type": "(files: File[]) => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "input-multiselect": {
           "files": [
@@ -507,7 +1566,79 @@
               "input"
             ]
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "input-multiselect",
+              "InputMultiselect",
+              "Input_MultiSelect",
+              "multiselect",
+              "combobox",
+              "select",
+              "tag-input"
+            ],
+            "exports": [
+              "InputMultiselect",
+              "rootVariants",
+              "chipsRowVariants"
+            ],
+            "typeExports": [
+              "InputMultiselectProps",
+              "InputMultiselectOption",
+              "InputMultiselectSection"
+            ],
+            "whenToUse": "Picking several values from a known option list — a labelled trigger showing the choices as removable Badge chips, opening an action-sheet-menu of checkbox rows grouped in sections.",
+            "props": {
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showInfoIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "placeholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "sections": {
+                "type": "InputMultiselectSection[]",
+                "class": "required"
+              },
+              "value": {
+                "type": "string[]",
+                "class": "optional"
+              },
+              "defaultValue": {
+                "type": "string[]",
+                "class": "optional"
+              },
+              "onValueChange": {
+                "type": "(value: string[]) => void",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "maxVisibleChips": {
+                "type": "number",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "item-side-bar": {
           "files": [
@@ -530,7 +1661,77 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "item-side-bar",
+              "ItemSideBar",
+              "Item_SideBar",
+              "sidebar-item",
+              "side-bar-item",
+              "nav-row"
+            ],
+            "exports": [
+              "ItemSideBar",
+              "ActionSheetItem",
+              "rootVariants",
+              "triggerVariants",
+              "iconContainerVariants",
+              "decorativeIconVariants",
+              "iconVariants",
+              "labelVariants",
+              "chevronVariants",
+              "contentVariants"
+            ],
+            "typeExports": [
+              "ItemSideBarProps",
+              "ItemSideBarState",
+              "ItemSideBarFeature"
+            ],
+            "whenToUse": "A row inside the generic sidebar: icon, label, and optionally a collapsible content panel with an ActionSheet inside.",
+            "props": {
+              "state": {
+                "type": "ItemSideBarState",
+                "class": "persistent"
+              },
+              "feature": {
+                "type": "ItemSideBarFeature",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "label": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "onClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "list": {
           "files": [
@@ -554,7 +1755,63 @@
               "list-content"
             ]
           },
-          "category": "lists"
+          "category": "lists",
+          "meta": {
+            "aliases": [
+              "list",
+              "List",
+              "listbox",
+              "stack"
+            ],
+            "exports": [
+              "List",
+              "rootVariants",
+              "headerVariants",
+              "headerTitleVariants",
+              "headerInputsVariants",
+              "itemsVariants"
+            ],
+            "typeExports": [
+              "ListProps",
+              "ListStyle",
+              "ListItemConfig"
+            ],
+            "whenToUse": "A vertical collection of non-tabular rows with a header and an optional action, in condensed, default or with-inputs spacing.",
+            "props": {
+              "listStyle": {
+                "type": "ListStyle",
+                "class": "optional"
+              },
+              "listTitle": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "showButton": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "buttonLabel": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "onButtonClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "itemSize": {
+                "type": "ListContentSize",
+                "class": "optional"
+              },
+              "items": {
+                "type": "ListItemConfig[]",
+                "class": "required"
+              },
+              "headerInputs": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "list-content": {
           "files": [
@@ -577,7 +1834,74 @@
             ],
             "components": []
           },
-          "category": "list"
+          "category": "list",
+          "meta": {
+            "aliases": [
+              "list-content",
+              "ListContent",
+              "list-row",
+              "list-item"
+            ],
+            "exports": [
+              "ListContent",
+              "rootVariants",
+              "decorativeIconVariants",
+              "labelVariants",
+              "sublabelVariants"
+            ],
+            "typeExports": [
+              "ListContentProps",
+              "ListContentSize",
+              "ListContentState"
+            ],
+            "whenToUse": "A single row inside a list: leading decorative icon, label + sublabel, optional trailing tertiary icon-button.",
+            "props": {
+              "size": {
+                "type": "ListContentSize",
+                "class": "optional"
+              },
+              "state": {
+                "type": "ListContentState",
+                "class": "persistent"
+              },
+              "label": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "sublabel": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "showSublabel": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "showDecorativeIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "decorativeIcon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "showActionButton": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onActionClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "actionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "asChild": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "modal-variation": {
           "files": [
@@ -601,7 +1925,91 @@
               "button"
             ]
           },
-          "category": "overlays"
+          "category": "overlays",
+          "meta": {
+            "aliases": [
+              "modal-variation",
+              "ModalVariation",
+              "modal",
+              "dialog",
+              "confirm-dialog"
+            ],
+            "exports": [
+              "ModalVariation",
+              "ModalVariationRoot",
+              "ModalVariationTrigger",
+              "ModalVariationPortal",
+              "ModalVariationOverlay",
+              "ModalVariationClose",
+              "modalVariationRootVariants",
+              "modalVariationHeaderVariants",
+              "modalVariationTitleVariants",
+              "modalVariationContentVariants",
+              "modalVariationLabelVariants",
+              "modalVariationFooterVariants",
+              "modalVariationLeftButtonsVariants",
+              "modalVariationRightButtonsVariants"
+            ],
+            "typeExports": [
+              "ModalVariationProps",
+              "ModalVariationType"
+            ],
+            "whenToUse": "A blocking dialog that stops the flow until the user decides — header, content and a footer of DS Buttons, over a frosted backdrop. Pick options-actions for a left-hand secondary option beside the CTA pair, or 2-actions for a full-width cancel/confirm pair.",
+            "props": {
+              "type": {
+                "type": "ModalVariationType",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "title": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "primaryActionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onPrimaryAction": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "secondaryActionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onSecondaryAction": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "optionActionLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onOptionAction": {
+                "type": "() => void",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "nav-item": {
           "files": [
@@ -624,7 +2032,51 @@
               "badges"
             ]
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "nav-item",
+              "NavItem",
+              "Nav item",
+              "header-nav-link",
+              "top-nav-item",
+              "nav-link"
+            ],
+            "exports": [
+              "NavItem",
+              "rootBaseClasses",
+              "contentVariants",
+              "labelClasses",
+              "iconClasses"
+            ],
+            "typeExports": [
+              "NavItemProps",
+              "NavItemState"
+            ],
+            "whenToUse": "One primary link in the ShowUp header bar — label with optional leading icon and trailing counter Badge, in default or active where active draws the underline.",
+            "props": {
+              "active": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "href": {
+                "type": "string",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "counter": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              }
+            }
+          }
         },
         "navbar-item": {
           "files": [
@@ -645,7 +2097,50 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "navbar-item",
+              "NavbarItem",
+              "NavBar_Item",
+              "rail-item",
+              "atlas-nav-item",
+              "icon-nav-item"
+            ],
+            "exports": [
+              "NavbarItem",
+              "rootVariants",
+              "iconClasses",
+              "labelClasses"
+            ],
+            "typeExports": [
+              "NavbarItemProps",
+              "NavbarItemState"
+            ],
+            "whenToUse": "A row of the Atlas rail — a 70x52 icon-over-label stack with default, hover and selected states, where selected is author-supplied and always beats hover.",
+            "props": {
+              "href": {
+                "type": "string",
+                "class": "optional"
+              },
+              "state": {
+                "type": "NavbarItemState",
+                "class": "computed"
+              },
+              "selected": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "icon": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              }
+            }
+          }
         },
         "pagination": {
           "files": [
@@ -667,6 +2162,48 @@
             "components": [
               "button"
             ]
+          },
+          "meta": {
+            "aliases": [
+              "pagination",
+              "Pagination",
+              "pager",
+              "page-nav"
+            ],
+            "exports": [
+              "Pagination",
+              "buildPageList"
+            ],
+            "typeExports": [
+              "PaginationProps"
+            ],
+            "whenToUse": "Moving through pages of one result set — numbered pages with an ellipsis algorithm and prev/next controls. Usable standalone, not only under a table.",
+            "props": {
+              "page": {
+                "type": "number",
+                "class": "required"
+              },
+              "pageSize": {
+                "type": "number",
+                "class": "required"
+              },
+              "total": {
+                "type": "number",
+                "class": "required"
+              },
+              "onPageChange": {
+                "type": "(page: number) => void",
+                "class": "required"
+              },
+              "siblingCount": {
+                "type": "number",
+                "class": "optional"
+              },
+              "showLabel": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
           }
         },
         "radio": {
@@ -689,7 +2226,33 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "radio",
+              "RadioGroup",
+              "radio-button",
+              "radio-group",
+              "option"
+            ],
+            "exports": [
+              "RadioGroup",
+              "RadioItem",
+              "radioRootVariants",
+              "radioIndicatorVariants"
+            ],
+            "typeExports": [
+              "RadioGroupProps",
+              "RadioItemProps"
+            ],
+            "whenToUse": "Choosing exactly one option from a mutually exclusive set. The DS has no single-select dropdown or combobox, so radio is the answer for a single choice whatever the length of the option list — long lists render as a scrollable radio group.",
+            "props": {
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "separator": {
           "files": [
@@ -711,7 +2274,39 @@
             ],
             "components": []
           },
-          "category": "utilities"
+          "category": "utilities",
+          "meta": {
+            "aliases": [
+              "separator",
+              "Separator",
+              "divider",
+              "rule",
+              "hr"
+            ],
+            "exports": [
+              "Separator",
+              "separatorRootVariants",
+              "separatorLineVariants"
+            ],
+            "typeExports": [
+              "SeparatorProps"
+            ],
+            "whenToUse": "A 1px rule that visually splits neighbouring content, horizontal or vertical, with a margin axis reserving the surrounding space.",
+            "props": {
+              "direction": {
+                "type": "'horizontal' | 'vertical'",
+                "class": "optional"
+              },
+              "margin": {
+                "type": "VariantProps<typeof rootVariants>['margin']",
+                "class": "optional"
+              },
+              "decorative": {
+                "type": "boolean",
+                "class": "optional"
+              }
+            }
+          }
         },
         "sidebar": {
           "files": [
@@ -739,7 +2334,83 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "sidebar",
+              "SideBar",
+              "side-nav",
+              "drawer",
+              "nav-drawer"
+            ],
+            "exports": [
+              "SideBar",
+              "rootVariants",
+              "contentVariants",
+              "headerVariants",
+              "logoNotifVariants",
+              "logoVariants",
+              "notificationDotVariants",
+              "contextSwitcherVariants",
+              "contextLabelVariants",
+              "contextChevronVariants",
+              "menuVariants",
+              "menuItemVariants",
+              "profilVariants",
+              "avatarVariants",
+              "userNameVariants",
+              "SIDEBAR_MENU"
+            ],
+            "typeExports": [
+              "SideBarProps",
+              "SideBarDevice",
+              "SidebarTopItem",
+              "SidebarChildItem"
+            ],
+            "whenToUse": "The generic full-width vertical navigation panel — branded header, context switcher, a scrollable menu of item-side-bar rows and a user footer. Desktop variant is a fixed 247px column; phone variant is a 320px dismissible drawer.",
+            "props": {
+              "device": {
+                "type": "SideBarDevice",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "contextLabel": {
+                "type": "string",
+                "class": "optional"
+              },
+              "onNotificationClick": {
+                "type": "React.MouseEventHandler<HTMLButtonElement>",
+                "class": "optional"
+              },
+              "onContextSwitcherClick": {
+                "type": "React.MouseEventHandler<HTMLDivElement>",
+                "class": "optional"
+              },
+              "activeKey": {
+                "type": "string",
+                "class": "persistent"
+              },
+              "activeChildKey": {
+                "type": "string",
+                "class": "persistent"
+              },
+              "onNavigate": {
+                "type": "(key: string, parentKey?: string) => void",
+                "class": "optional"
+              },
+              "avatar": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "userName": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "sidebar-atlas": {
           "files": [
@@ -762,7 +2433,41 @@
               "navbar-item"
             ]
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "sidebar-atlas",
+              "SidebarAtlas",
+              "NavBar",
+              "atlas-rail",
+              "icon-rail",
+              "nav-rail"
+            ],
+            "exports": [
+              "SidebarAtlas",
+              "rootVariants",
+              "logoVariants"
+            ],
+            "typeExports": [
+              "SidebarAtlasProps",
+              "SidebarAtlasItem"
+            ],
+            "whenToUse": "The Atlas brand's 70px-wide, full-height icon rail — a logo slot over a list of navbar-item entries driven by an items prop with real hrefs and a selected route.",
+            "props": {
+              "items": {
+                "type": "SidebarAtlasItem[]",
+                "class": "required"
+              },
+              "onItemSelect": {
+                "type": "(id: string) => void",
+                "class": "optional"
+              },
+              "logo": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              }
+            }
+          }
         },
         "switch": {
           "files": [
@@ -785,7 +2490,31 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "switch",
+              "Switch",
+              "toggle",
+              "on-off"
+            ],
+            "exports": [
+              "Switch",
+              "switchRootVariants",
+              "switchThumbVariants",
+              "switchIconVariants"
+            ],
+            "typeExports": [
+              "SwitchProps"
+            ],
+            "whenToUse": "A setting that turns on or off and takes effect immediately, with an animated thumb showing the current state.",
+            "props": {
+              "className": {
+                "type": "string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "table": {
           "files": [
@@ -805,6 +2534,33 @@
               "class-variance-authority"
             ],
             "components": []
+          },
+          "meta": {
+            "aliases": [
+              "table",
+              "Table",
+              "table-primitives",
+              "thead",
+              "tbody"
+            ],
+            "exports": [
+              "Table",
+              "tableRootVariants",
+              "tableRowVariants",
+              "tableHeadVariants",
+              "tableCellVariants",
+              "tableCaptionVariants"
+            ],
+            "typeExports": [
+              "TableRowProps"
+            ],
+            "whenToUse": "Low-level compound primitives (Table.Root/Header/Body/Footer/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.",
+            "props": {
+              "variant": {
+                "type": "'default' | 'selected' | 'muted'",
+                "class": "optional"
+              }
+            }
           }
         },
         "tabulation-cells": {
@@ -827,7 +2583,39 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "tabulation-cells",
+              "TabulationCell",
+              "Tabulation_Cells",
+              "tab",
+              "tab-cell",
+              "tab-item"
+            ],
+            "exports": [
+              "TabulationCell",
+              "TabulationCellsRoot",
+              "TabulationCellsList",
+              "TabulationCellsContent",
+              "rootVariants",
+              "labelVariants"
+            ],
+            "typeExports": [
+              "TabulationCellProps"
+            ],
+            "whenToUse": "One tab within a tabulation bar — a label plus an optional count Badge, in rest or active where active carries the brand-low fill and bold label.",
+            "props": {
+              "children": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "badge": {
+                "type": "number | string",
+                "class": "optional"
+              }
+            }
+          }
         },
         "tabulations": {
           "files": [
@@ -849,7 +2637,32 @@
             ],
             "components": []
           },
-          "category": "navigation"
+          "category": "navigation",
+          "meta": {
+            "aliases": [
+              "tabulations",
+              "Tabulations",
+              "tabs",
+              "tab-bar",
+              "segmented-control"
+            ],
+            "exports": [
+              "Tabulations",
+              "TabulationsContent",
+              "TabulationsCellBridge",
+              "rootVariants"
+            ],
+            "typeExports": [
+              "TabulationsProps"
+            ],
+            "whenToUse": "Switching between sibling views of the same page without navigating — a horizontal bar of tabulation-cells split by vertical dividers, with Radix keyboard support.",
+            "props": {
+              "tabs": {
+                "type": "Array<{ value: string; label: React.ReactNode; badge?: TabulationCellProps['badge'] }>",
+                "class": "required"
+              }
+            }
+          }
         },
         "text-area": {
           "files": [
@@ -872,7 +2685,75 @@
             ],
             "components": []
           },
-          "category": "inputs"
+          "category": "inputs",
+          "meta": {
+            "aliases": [
+              "text-area",
+              "TextArea",
+              "textarea",
+              "multiline-input",
+              "rich-text-editor"
+            ],
+            "exports": [
+              "TextArea",
+              "rootVariants",
+              "headVariants",
+              "labelVariants",
+              "infoIconVariants",
+              "inputVariants",
+              "toolbarVariants",
+              "placeholderVariants"
+            ],
+            "typeExports": [
+              "TextAreaProps",
+              "TextAreaResize",
+              "TextAreaState",
+              "ToolbarAction"
+            ],
+            "whenToUse": "Multi-line free text — comments, descriptions, notes. The rich-text feature adds a formatting toolbar and action bar; simple is a plain multi-line field.",
+            "props": {
+              "feature": {
+                "type": "'simple' | 'rich-text'",
+                "class": "optional"
+              },
+              "state": {
+                "type": "TextAreaState",
+                "class": "computed"
+              },
+              "label": {
+                "type": "string",
+                "class": "optional"
+              },
+              "showHeader": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "showInfoIcon": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "placeholder": {
+                "type": "string",
+                "class": "optional"
+              },
+              "id": {
+                "type": "string",
+                "class": "optional"
+              },
+              "toolbarActions": {
+                "type": "ToolbarAction[]",
+                "class": "optional"
+              },
+              "className": {
+                "type": "string",
+                "class": "optional"
+              },
+              "resize": {
+                "type": "TextAreaResize",
+                "class": "optional"
+              }
+            }
+          }
         },
         "tooltip": {
           "files": [
@@ -894,7 +2775,61 @@
             ],
             "components": []
           },
-          "category": "overlay"
+          "category": "overlay",
+          "meta": {
+            "aliases": [
+              "tooltip",
+              "Tooltip",
+              "hint",
+              "popover-hint",
+              "title"
+            ],
+            "exports": [
+              "Tooltip",
+              "TooltipProvider",
+              "TooltipRoot",
+              "TooltipTrigger",
+              "TooltipContent",
+              "rootVariants",
+              "labelVariants",
+              "arrowVariants"
+            ],
+            "typeExports": [
+              "TooltipProps",
+              "TooltipContentProps"
+            ],
+            "whenToUse": "A short hover or focus hint that names or clarifies a control, in a bubble with a directional arrow pointing back at its trigger.",
+            "props": {
+              "content": {
+                "type": "React.ReactNode",
+                "class": "required"
+              },
+              "children": {
+                "type": "React.ReactNode",
+                "class": "optional"
+              },
+              "arrowOrientation": {
+                "type": "ArrowOrientation",
+                "class": "optional"
+              },
+              "open": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "defaultOpen": {
+                "type": "boolean",
+                "class": "optional"
+              },
+              "onOpenChange": {
+                "type": "(open: boolean) => void",
+                "class": "optional"
+              },
+              "delayDuration": {
+                "type": "number",
+                "class": "optional"
+              }
+            }
+          }
         }
       }
     },
@@ -904,12 +2839,12 @@
         {
           "src": "docs/agent-brief.md",
           "dst": "docs/agent-brief.md",
-          "hash": "sha256:4424340b6bbd9a794a69f14df6d74d501939cbc6b340abe5818f86c2ead65071"
+          "hash": "sha256:6c950098219fd5d1733e39852cc6e86cdc5202b7a9ffb30ca6a1dba54bf11327"
         },
         {
           "src": "docs/index.md",
           "dst": "docs/index.md",
-          "hash": "sha256:cbbbeda94404c4cb64d1b6e6a8153ca41e0e1afd9f6cf7c16b444168686e9daf"
+          "hash": "sha256:a8c16df8cc0b16671f03d4a77f9b28453dfe3aab6be7464f679d2f2a6bf37fbf"
         },
         {
           "src": "docs/overview.md",
@@ -924,7 +2859,7 @@
         {
           "src": "docs/tokens/colors.md",
           "dst": "docs/tokens/colors.md",
-          "hash": "sha256:d31e1c656e189cc9bb42397d32fbbecf35c165e9e2e3e1653901d64cf83a7901"
+          "hash": "sha256:ad8126a6d5e2c966e49ff736f152c0f90daa0e735c5e0e03152e1a546136acd8"
         },
         {
           "src": "docs/tokens/radius.md",
@@ -934,12 +2869,17 @@
         {
           "src": "docs/tokens/spacing.md",
           "dst": "docs/tokens/spacing.md",
-          "hash": "sha256:f83db4f0e739fb8807737a10b4b5e4bbe4ce820b611cae8b43ccce8a955ce8e3"
+          "hash": "sha256:3c82d64b7c78c5f47fee718a8af7104c37b60fb9addf35cb74c9e6a52336a10c"
         },
         {
           "src": "docs/tokens/typography.md",
           "dst": "docs/tokens/typography.md",
-          "hash": "sha256:e000dbf27ed4980f69b45c2dd80e258b3940b421b4ba15f3ad796349ee0f3f9d"
+          "hash": "sha256:609cb4177ae8af62383d00407d04115ad836b8deefba6a9984865af8d873408a"
+        },
+        {
+          "src": "docs/tokens/vocabulary.md",
+          "dst": "docs/tokens/vocabulary.md",
+          "hash": "sha256:b47de17ab6fbaf8247d95e069c18c874017d62ad73a04a08ca2e3bb26c058ff7"
         },
         {
           "src": "docs/brands/_index_brands.md",
@@ -949,182 +2889,192 @@
         {
           "src": "docs/components/_index_action-sheet-item.md",
           "dst": "docs/components/_index_action-sheet-item.md",
-          "hash": "sha256:ed526985fcfaf2ffdd70458bcabc287109f284e3070f4202b3693fc1f6227fb6"
+          "hash": "sha256:522a3229185c380c4bb22600402a9a85a5aca8470f50fda73f6cf215e3e70da3"
         },
         {
           "src": "docs/components/_index_action-sheet-menu.md",
           "dst": "docs/components/_index_action-sheet-menu.md",
-          "hash": "sha256:141aef1f0964305394503f82992ed4f83319d9c14749eeafdf0a7aaf9a7f06ea"
+          "hash": "sha256:a80424a9657d1cd72a1b0f06438a6b88f8f9d1051a34e259256821b0a1bf1f07"
         },
         {
           "src": "docs/components/_index_badges.md",
           "dst": "docs/components/_index_badges.md",
-          "hash": "sha256:5d559b0d0921334afb89eba8a68b3f14e0beeee5cd3835ae516e87b25d01e6f7"
+          "hash": "sha256:5ed9570dfadbdfeabe4b2a5d5bb997e4754777ade3ee7fc563bf9129c9de217f"
         },
         {
           "src": "docs/components/_index_breadcrumbs.md",
           "dst": "docs/components/_index_breadcrumbs.md",
-          "hash": "sha256:d82c620ab8c5ebe67cf35ea16d83ba7f4555765799e12aeb6cf6f8f96eed0352"
+          "hash": "sha256:d1a549dd07db9b5ca628a680666ea303e2e851538a1ad1fd99e51c664ec626f3"
         },
         {
           "src": "docs/components/_index_button.md",
           "dst": "docs/components/_index_button.md",
-          "hash": "sha256:38f7d3f1241d8a810eeb421de5c65f255ec61844ca2e3efa47a46735caefee6c"
+          "hash": "sha256:561d5bd90e6bf9098f9cd1b6b7813ede1e37688dfe5cee417b3d216510e144bc"
         },
         {
           "src": "docs/components/_index_calendar-button.md",
           "dst": "docs/components/_index_calendar-button.md",
-          "hash": "sha256:c91baa1ddec6e046d7400daf824084eb42d41d748354cce9d11dca268198344d"
+          "hash": "sha256:57fab51d4d17204a391ac59a3191a4e23cd928677bac7773a05546b985011b57"
         },
         {
           "src": "docs/components/_index_calendar.md",
           "dst": "docs/components/_index_calendar.md",
-          "hash": "sha256:0e383e5632c2d298d3ad43accf2e0f507a31eb3d04e29f60c184222db07a4803"
+          "hash": "sha256:b4ca7060d94561ec59ef6552043ab6938cf741af9ffc98331da7a1bc45bf1f95"
+        },
+        {
+          "src": "docs/components/_index_cards.md",
+          "dst": "docs/components/_index_cards.md",
+          "hash": "sha256:56ada4616f0419da0500e87c2337db7eca7cf81a3a918de027d581f17acf03ce"
         },
         {
           "src": "docs/components/_index_checkbox.md",
           "dst": "docs/components/_index_checkbox.md",
-          "hash": "sha256:83ebec285b71ad29264ad6ee9de938b8d8e1e762358d52ca2fbc51b27ebc453d"
+          "hash": "sha256:1d7815d6549e281a96074b1f3ff8c117272c26197e5978e6dd011dd152f17022"
         },
         {
           "src": "docs/components/_index_collapsible.md",
           "dst": "docs/components/_index_collapsible.md",
-          "hash": "sha256:f1df165204d8683ba2f06f76033b0e6bdfa840be421ceffe75e09cd351e233f4"
+          "hash": "sha256:d707d606f24ffe5f78b029d01f659a184244706342e670bf008b0963d18c3a69"
+        },
+        {
+          "src": "docs/components/_index_data-field.md",
+          "dst": "docs/components/_index_data-field.md",
+          "hash": "sha256:fdc1c2984c873d4e486b3c5691fe39f523c5468d78d1f53d8c70817bf2655a0a"
         },
         {
           "src": "docs/components/_index_data-table.md",
           "dst": "docs/components/_index_data-table.md",
-          "hash": "sha256:fef029bf48341695a1085a1c2e4a9ce2ce256469efc37014dd8a8d75a8389dcd"
+          "hash": "sha256:6cc6c7b7d80c855f17c0c104c9b8dea954caca2ff0b4492c040b8ca784e43552"
         },
         {
           "src": "docs/components/_index_file-dropped.md",
           "dst": "docs/components/_index_file-dropped.md",
-          "hash": "sha256:b92f46c85a56c489327fd75f726a395c004d956e6b1f1635a411a1d826bf3bea"
+          "hash": "sha256:20cfd37746436fbef1525c8da14d842a5636bdbdaf19ef09cf7f28802380d910"
         },
         {
           "src": "docs/components/_index_floating-alert.md",
           "dst": "docs/components/_index_floating-alert.md",
-          "hash": "sha256:6c8fafbf8985cdf5145480d7ecd57fd05c194df52128d45b40c52003c83d6747"
+          "hash": "sha256:71de4237a11c3db30b2c48d422a7381b2d0f4ce13f54008fcd04e1feba671696"
         },
         {
           "src": "docs/components/_index_header-desktop.md",
           "dst": "docs/components/_index_header-desktop.md",
-          "hash": "sha256:829dc883703e9fa59f8a71aa38f6dbf9a9ea1a3ecb78f86e1a33235d00760952"
+          "hash": "sha256:216163a28bd9737be9ff7f1aead5773e58091dc73eea127087866289ef71761f"
         },
         {
           "src": "docs/components/_index_header-phone.md",
           "dst": "docs/components/_index_header-phone.md",
-          "hash": "sha256:40f5f9289514109498c93c438c567a31670572b02b7da1a2b9676f1634aa7207"
+          "hash": "sha256:5c5d913e143ba976c0bc2dc3661d66acccef086224e9039ac6ce15064ab86b69"
         },
         {
           "src": "docs/components/_index_header-showup.md",
           "dst": "docs/components/_index_header-showup.md",
-          "hash": "sha256:37221d029e306c610ceba9f57be700a1804cd6eabb2675df0097115d81d20360"
+          "hash": "sha256:e396d2f5e3a4d3a61c54f84743b8253184b92db5ba0f9f45d1088dc0b4fde8fb"
         },
         {
           "src": "docs/components/_index_in-content-alert.md",
           "dst": "docs/components/_index_in-content-alert.md",
-          "hash": "sha256:1721536193103e94b73b0daf189107b6f91e355d4d219039d6c65f1ae44e596a"
+          "hash": "sha256:ce4267919a7ea18932fddd1fd26251d7b0d5ff92af359171441f57170e97bab3"
         },
         {
           "src": "docs/components/_index_input-file.md",
           "dst": "docs/components/_index_input-file.md",
-          "hash": "sha256:63c38fe6841f3eb01563bb1d3605314f8140fb066039942a9e0c64328125ea49"
+          "hash": "sha256:d60daccce6075491914d9c7bf0b01b2603cd4551c01c28f1c7549d769e9dce53"
         },
         {
           "src": "docs/components/_index_input-multiselect.md",
           "dst": "docs/components/_index_input-multiselect.md",
-          "hash": "sha256:869136ba84418b18efa92950b7f4252e358abb78d4f6c3687a0af5e8d553834a"
+          "hash": "sha256:2dc0a4f9f6c9b3d4af7342f555701306eb37ff2c8d3cf4308570c9de278d1c25"
         },
         {
           "src": "docs/components/_index_input.md",
           "dst": "docs/components/_index_input.md",
-          "hash": "sha256:f5eeb62648c81133e9ce26c436795c543a85c14512fb3ab3a0d6dc98dd0c0617"
+          "hash": "sha256:ee9dca8ebb8e3c175b010d1b60d16117177d02ca1cbfce407df3e7d20ab99020"
         },
         {
           "src": "docs/components/_index_item-side-bar.md",
           "dst": "docs/components/_index_item-side-bar.md",
-          "hash": "sha256:d95b59dd6605955595fb80767545766fc03cc0aab30f1645c1b2744d2a31356b"
+          "hash": "sha256:bc7e612e8c3f5e43290bf80d079bad00eab33c01e58018de9ed1b51e8b61543a"
         },
         {
           "src": "docs/components/_index_list-content.md",
           "dst": "docs/components/_index_list-content.md",
-          "hash": "sha256:73027ca49cbbb4236ed00c9bf46054c1481354d404bd3342585e7437eb598c14"
+          "hash": "sha256:ecba3c5f377aaee6b06b05a8af8f40b379e76cfa7c1448471c1ace14f27fa73a"
         },
         {
           "src": "docs/components/_index_list.md",
           "dst": "docs/components/_index_list.md",
-          "hash": "sha256:98fcc28921d7eeee26f67fb45df8500484d8f4cce608547b503d80eef00d20cf"
+          "hash": "sha256:4921e0c36e8d7d8a94a86d1ce19d90fe04ea338bf8ca54479e0eaa5bb67f6c6e"
         },
         {
           "src": "docs/components/_index_modal-variation.md",
           "dst": "docs/components/_index_modal-variation.md",
-          "hash": "sha256:9cf98b089905d0a4cc3455b4b47c542561012c796570bdfe88892ec64510e756"
+          "hash": "sha256:6c505c6934c37125a4c773ba76256d41882672934a8fa807f2d4247ca03dce69"
         },
         {
           "src": "docs/components/_index_nav-item.md",
           "dst": "docs/components/_index_nav-item.md",
-          "hash": "sha256:057dd44d4a79f1c0f48902c41c0615077c71492db42029348732734585f3a187"
+          "hash": "sha256:d98557e844bfe7c989731939f2e10cc6281077f8a76930dcba1728acbaa11ea5"
         },
         {
           "src": "docs/components/_index_navbar-item.md",
           "dst": "docs/components/_index_navbar-item.md",
-          "hash": "sha256:027e38a8acfc5b56c431b0bc75a66c33b2b19611db539d4be6aed8795d5a6ffd"
+          "hash": "sha256:d7084204601273e4219fc4af4983d029d4b49667c0c1b7401623419167c35af5"
         },
         {
           "src": "docs/components/_index_pagination.md",
           "dst": "docs/components/_index_pagination.md",
-          "hash": "sha256:56a984d9200c1cecdae33447f2115fd5c761b2266384c6d27f731b8dfcb74eb8"
+          "hash": "sha256:56226556859be3cc36f77ad39376798ae803a82dd952fc01dd5d3071172fbeb0"
         },
         {
           "src": "docs/components/_index_radio.md",
           "dst": "docs/components/_index_radio.md",
-          "hash": "sha256:af2941e5d403652178e79d57ee40d088882a235a7dcd464507f867f110fa8690"
+          "hash": "sha256:eaca06448f75768e2306158eea7be6d777fb9c4ab93aa46dd94079aa87d959bd"
         },
         {
           "src": "docs/components/_index_separator.md",
           "dst": "docs/components/_index_separator.md",
-          "hash": "sha256:ab3e9c0c60690bb62a30dd7b2973b2d6d01358a8d8e96ccb4646538871e7bdd5"
+          "hash": "sha256:7971b33a1014ac52f47c02556fb280077c197de0970f9a7fc2469a94e9433044"
         },
         {
           "src": "docs/components/_index_sidebar-atlas.md",
           "dst": "docs/components/_index_sidebar-atlas.md",
-          "hash": "sha256:dc6a1db104e69c8577b5555b0418eece7b62ab7c162022b9fbde9413601132bd"
+          "hash": "sha256:10c468dbaa18a9c1b5a36b7b359a5df0f9a82c93018fd44ce186064cc70ad955"
         },
         {
           "src": "docs/components/_index_sidebar.md",
           "dst": "docs/components/_index_sidebar.md",
-          "hash": "sha256:520295bdc75c2218a209c4f1271fddf0f478061f54071cd08fc42fc8731af40b"
+          "hash": "sha256:076109b46534609ae371b40ec2ae9475c0b1cce4d34be117beac7819721ad922"
         },
         {
           "src": "docs/components/_index_switch.md",
           "dst": "docs/components/_index_switch.md",
-          "hash": "sha256:aef67db2317473bef766cf5c6623d7f65a2048e152117a77189ffa739fc2e510"
+          "hash": "sha256:48ffeb111680dd69ac1cfbe439a1a2b58e5d70b402dca1ae1d7fb58846abb338"
         },
         {
           "src": "docs/components/_index_table.md",
           "dst": "docs/components/_index_table.md",
-          "hash": "sha256:7796658fa6a73cafe223a1633c98f64e3632f4cda44d2ed64898476e81537a45"
+          "hash": "sha256:75b3212939a7bc1e0cb7dbdd0c80c882d4471aa18703ae6419ce83fc2a8bc926"
         },
         {
           "src": "docs/components/_index_tabulation-cells.md",
           "dst": "docs/components/_index_tabulation-cells.md",
-          "hash": "sha256:4e6584ab7304e8849925fe3a3390cf89599448987c9bfb04a52cf4c42f20757e"
+          "hash": "sha256:d076ec6bdee5de9dc0f9c4f022d1aa7cd4902eb39ed733be74117ae73ea414e2"
         },
         {
           "src": "docs/components/_index_tabulations.md",
           "dst": "docs/components/_index_tabulations.md",
-          "hash": "sha256:f6edcbe092e25118ded507633403c93cefb850b74a3a21c5b5d4b085b149426e"
+          "hash": "sha256:4e27e9554766dccb5a1476855f31995ed21dbc91c9d944bc10e7dcf504538c20"
         },
         {
           "src": "docs/components/_index_text-area.md",
           "dst": "docs/components/_index_text-area.md",
-          "hash": "sha256:366ff49c4b9aff2f3c60fca2aeafae853ac5e6617da5e8908d7a561e575f2288"
+          "hash": "sha256:b0ddb29cad434d8cb44d1ea7c5e4ed4efe908fec8994b1612f25a44252413784"
         },
         {
           "src": "docs/components/_index_tooltip.md",
           "dst": "docs/components/_index_tooltip.md",
-          "hash": "sha256:9c04949c26d893b40f6a7ffa93a78e8e302b097c9888e9f5211a808875701532"
+          "hash": "sha256:86c9b3f35838fdbcf1d652b40cb7d41e23367986e93c0f7a71bad80985fa654e"
         }
       ],
       "brandFiles": [
@@ -1137,7 +3087,7 @@
         {
           "src": "docs/brands/klub.md",
           "dst": "docs/brands/klub.md",
-          "hash": "sha256:3739130ad9078f11249f0e8c24c280cc10e4fc1c4a7f83b6e908d9f5b3e78bd8",
+          "hash": "sha256:e6b7b7a7f737535f340e817c632c04f30e935d9a43ebf621154345cd5d5f558a",
           "brand": "klub"
         },
         {

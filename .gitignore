@@ -7,6 +7,24 @@ coverage
 .worktrees
 
 # Agent-local artefacts
+# The repo is a distribution surface: it ships components + the minimum needed
+# to run the DS in an external project. Local tooling, scratch planning and
+# failed captures never belong here.
 .klp/staging
 .klp/token-gaps.md
+.klp/figma-refs/**/*.FAILED
+# Reference screenshots are an authoring aid for building components against
+# Figma — never needed to consume the DS. spec.json stays tracked (the token
+# validator reads it); the PNGs do not.
+.klp/figma-refs/**/*.png
 docs/.lint-report.md
+.agents/
+plans/
+skills-lock.json
+# .claude/ is partly tracked on purpose (agents, commands, the klp-* pipeline
+# skills). Only third-party / personal skills are ignored.
+.claude/skills/improve
+
+# env
+.env.local
+.env*.local

@@ -6,19 +6,63 @@ import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
 const FILE = 'klp-inventory.json'
-const SCHEMA = 'v1'
+const SCHEMA = 'v2'
+
+function entryFrom(e, status) {
+  return {
+    status,
+    category: e.category,
+    deps: e.deps ?? [],
+    aliases: e.aliases ?? [e.name],
+    exports: e.exports ?? [],
+    typeExports: e.typeExports ?? [],
+    whenToUse: e.whenToUse ?? null,
+    props: e.props ?? {},
+    doc: `docs/components/_index_${e.name}.md`,
+  }
+}
 
 export function createInventory({ ref, brand, appDir, dsDir, catalog, initiallyInstalled = [] }) {
   const installed = new Set(initiallyInstalled)
   const components = {}
   for (const e of catalog) {
-    components[e.name] = {
-      status: installed.has(e.name) ? 'installed' : 'available',
-      category: e.category,
-      deps: e.deps ?? [],
-    }
+    components[e.name] = entryFrom(e, installed.has(e.name) ? 'installed' : 'available')
   }
   return { schemaVersion: SCHEMA, ref, brand, appDir, dsDir, components }
+}
+
+// True when an entry carries any agent-facing metadata beyond its own name.
+function hasMeta(e) {
+  return Boolean(
+    (e.exports ?? []).length ||
+    (e.typeExports ?? []).length ||
+    e.whenToUse ||
+    Object.keys(e.props ?? {}).length ||
+    (e.aliases ?? []).length > 1,
+  )
+}
+
+// True when the shipped catalog knows metadata the on-disk inventory is missing.
+// Covers the case of a v2 file written from a manifest that predates component metadata:
+// the schemaVersion alone would never trigger a refresh, so the empty fields would be permanent.
+export function needsMetaRefresh(inv, catalog) {
+  for (const e of catalog) {
+    if (!hasMeta(e)) continue
+    const cur = inv.components?.[e.name]
+    if (!cur || !hasMeta(cur)) return true
+  }
+  return false
+}
+
+// Re-derives every field from the shipped catalog while preserving each component's status.
+// Safe to call on a v2 file — it is then a no-op refresh.
+export function upgradeInventory(inv, catalog) {
+  const components = {}
+  for (const e of catalog) {
+    const status = inv.components?.[e.name]?.status ?? 'available'
+    components[e.name] = entryFrom(e, status)
+  }
+  return { ...inv, schemaVersion: SCHEMA, components }
 }
 
 export function inventoryPath(rootDir) { return join(rootDir, FILE) }
@@ -77,7 +121,10 @@ export function writeInventoryMd(rootDir, inventory) {
       for (const c of items) {
         const docLink = `[docs](./docs/components/_index_${c.name}.md)`
         const depsTag = c.deps.length ? ` _(deps: ${c.deps.join(', ')})_` : ''
-        lines.push(`- \`${c.name}\` — ${docLink}${depsTag}`)
+        const use = c.whenToUse ? ` — ${c.whenToUse}` : ''
+        const alsoList = (c.aliases ?? []).filter((a) => a !== c.name)
+        const also = alsoList.length ? ` _also: ${alsoList.join(', ')}_` : ''
+        lines.push(`- \`${c.name}\` — ${docLink}${depsTag}${use}${also}`)
       }
       lines.push('')
     }
@@ -96,7 +143,10 @@ export function writeInventoryMd(rootDir, inventory) {
       lines.push('')
       for (const c of items) {
         const depsTag = c.deps.length ? ` _(pulls: ${c.deps.join(', ')})_` : ''
-        lines.push(`- \`${c.name}\`${depsTag}`)
+        const use = c.whenToUse ? ` — ${c.whenToUse}` : ''
+        const alsoList = (c.aliases ?? []).filter((a) => a !== c.name)
+        const also = alsoList.length ? ` _also: ${alsoList.join(', ')}_` : ''
+        lines.push(`- \`${c.name}\`${depsTag}${use}${also}`)
       }
       lines.push('')
     }

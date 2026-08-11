@@ -29,6 +29,18 @@ function Cell({ id, children }: { id: string; children: React.ReactNode }) {
   )
 }
 
+// Same as Cell, minus the light fill — the parent section supplies the dark surface.
+function DarkCell({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <div
+      data-variant-id={id}
+      className="flex items-center justify-center rounded-klp-m border border-klp-border-invisible p-4"
+    >
+      {children}
+    </div>
+  )
+}
+
 export function ButtonRoute() {
   useForceBrand('atlas')
 
@@ -279,6 +291,47 @@ export function ButtonRoute() {
               <Check />
             </Button>
           </Cell>
+        </div>
+      </section>
+
+      {/* ── On-emphasis (icon-only, dark surface) ───────────────────────── */}
+      <section className="flex flex-col gap-klp-size-s">
+        <h2 className="text-klp-text-small font-klp-label text-klp-fg-muted uppercase tracking-wide">
+          On-emphasis — icon only
+        </h2>
+        {/* Rendered over a dark surface: this variant has no fill of its own. */}
+        <div className="grid grid-cols-4 gap-klp-size-s rounded-klp-m bg-klp-bg-brand p-4">
+          <DarkCell id="icon-on-emphasis-rest">
+            <Button variant="on-emphasis" size="icon" aria-label="Confirm">
+              <Check />
+            </Button>
+          </DarkCell>
+          {/* hover / active are pointer-driven — forced here for visual review */}
+          <DarkCell id="icon-on-emphasis-hover">
+            <Button
+              variant="on-emphasis"
+              size="icon"
+              aria-label="Confirm"
+              className="bg-klp-alpha-10 [&_span]:text-klp-fg-on-emphasis"
+            >
+              <Check />
+            </Button>
+          </DarkCell>
+          <DarkCell id="icon-on-emphasis-active">
+            <Button
+              variant="on-emphasis"
+              size="icon"
+              aria-label="Confirm"
+              className="bg-klp-alpha-15 [&_span]:text-klp-fg-on-emphasis"
+            >
+              <Check />
+            </Button>
+          </DarkCell>
+          <DarkCell id="icon-on-emphasis-disable">
+            <Button variant="on-emphasis" size="icon" aria-label="Confirm" disabled aria-disabled>
+              <Check />
+            </Button>
+          </DarkCell>
         </div>
       </section>
     </div>

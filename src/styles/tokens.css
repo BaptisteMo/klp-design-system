@@ -21,7 +21,16 @@
 
 /* --- manual additions below (preserved by sync script) --- */
 
+/* White overlay at 15% — Figma has no `light-15` primitive, so no generated
+ * alias. Used by Button variant `on-emphasis` (active state). Push `light-15`
+ * to the Figma token set, then delete this block and let sync:tokens own it. */
+:root {
+  --klp-alpha-15: #FFFFFF26;
+}
+
 @theme {
   /* Monospace stack — Figma has no equivalent; kept as a local addition. */
   --font-klp-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  --color-klp-alpha-15: var(--klp-alpha-15);
 }

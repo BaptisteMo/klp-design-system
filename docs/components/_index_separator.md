@@ -25,6 +25,22 @@ updated: 2026-08-04
 
 A 1px rule used to visually divide content, with a margin axis controlling the space reserved around the line and a direction axis controlling its orientation (source: spec.json:description).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A 1px rule that visually splits neighbouring content, horizontal or vertical, with a margin axis reserving the surrounding space.
+
+**Don't use it for:** Not to create spacing — use the gap and padding utilities. Not to outline a region; a bordered surface is cards.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `cards` | separator draws one line between siblings; cards wraps content in a bordered surface. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

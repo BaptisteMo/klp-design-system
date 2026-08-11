@@ -10,18 +10,38 @@ sources:
   - src/components/action-sheet-menu/ActionSheetMenu.tsx
 dependencies:
   components: ["action-sheet-item", "checkbox", "separator"]
-  externals: ["@radix-ui/react-popover", "class-variance-authority", "lucide-react"]
+  externals: ["@radix-ui/react-popover", "class-variance-authority"]
   tokenGroups: ["colors", "radius", "spacing", "typography"]
   brands: ["wireframe"]
 usedBy:
   - input-multiselect
 created: 2026-04-17
-updated: 2026-08-04
+updated: 2026-08-10
 ---
 
 # ActionSheet Menu
 
 A contextual menu panel composed of grouped ActionSheet_Item rows, optional section titles, and separator lines. Supports three layout types: Default (icon + label + secondary icon), Checkbox (checkbox row layout), and Flat (icon + label + secondary icon, no section headers).
+
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A contextual list of actions anchored to a trigger — grouped action-sheet-item rows with optional section titles and separators. Use the checkbox type for multi-select option lists (this is what input-multiselect opens).
+
+**Don't use it for:** Not when the user must not proceed without answering — that is modal-variation. Not for a passive collection of records — that is list. Never as a permanently visible panel.
+
+**Family — `floating-surfaces`:** modal-variation blocks on a decision. action-sheet-menu is a contextual action list anchored to a trigger. tooltip is a hover hint with zero actions. floating-alert is transient self-dismissing system feedback.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `modal-variation` | action-sheet-menu offers actions from a trigger; modal-variation blocks on a decision. |
+| `tooltip` | action-sheet-menu holds actionable rows; tooltip is a hint with no actions. |
+| `floating-alert` | action-sheet-menu is user-invoked; floating-alert is system-emitted. |
+
+<!-- KLP:INTENT:END -->
 
 ## Anatomy
 

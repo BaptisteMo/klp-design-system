@@ -22,6 +22,26 @@ updated: 2026-04-21
 
 Low-level HTML table primitives styled with klp tokens. Compound component — use as `Table.Root`, `Table.Header`, `Table.Body`, `Table.Footer`, `Table.Row`, `Table.Head`, `Table.Cell`, `Table.Caption`. Used internally by the DataTable component.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+Low-level compound primitives (Table.Root/Header/Body/Footer/Row/Head/Cell/Caption) for a table whose layout data-table cannot express.
+
+**Don't use it for:** Never as the first choice for record data — reach for data-table and only fall back here when it cannot render the layout.
+
+**Family — `collections`:** data-table is the default for any tabular data — sorting and pagination are built in. table exposes primitives, used only when data-table cannot express the layout. list renders vertical non-tabular rows. list-content is a row inside list, never standalone.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `data-table` | Reach for data-table first; table is the escape hatch. |
+| `list` | table lays out columns and headers; list stacks non-tabular rows. |
+| `list-content` | table rows are Table.Row primitives; list-content only belongs inside list. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

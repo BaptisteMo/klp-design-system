@@ -10,18 +10,36 @@ sources:
   - src/components/checkbox/Checkbox.tsx
 dependencies:
   components: []
-  externals: ["@radix-ui/react-checkbox", "class-variance-authority"]
+  externals: ["@radix-ui/react-checkbox", "class-variance-authority", "lucide-react"]
   tokenGroups: ["colors", "spacing", "radius"]
   brands: ["klub"]
 usedBy:
   - action-sheet-menu
 created: 2026-04-17
-updated: 2026-04-21
+updated: 2026-08-10
 ---
 
 # Checkbox
 
 A toggle control that supports unchecked (Rest), hover, checked (Clicked), indeterminate (Mixed), and disabled states. Single variant axis: State.
+
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A binary or tri-state selection the user confirms as part of a form or a list — supports unchecked, checked, indeterminate and disabled.
+
+**Don't use it for:** Not when exactly one of several options must be picked — that is radio. Not for a setting that takes effect the moment it is flipped — that is switch. For picking several values from a long option list use input-multiselect.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `radio` | checkbox allows many selections; radio allows exactly one per group. |
+| `switch` | checkbox is submitted with a form; switch applies immediately. |
+| `input-multiselect` | checkbox is one option inline; input-multiselect picks many from a dropdown. |
+
+<!-- KLP:INTENT:END -->
 
 ## Anatomy
 
@@ -96,6 +114,7 @@ export function CheckboxExample() {
 
 - [@radix-ui/react-checkbox](https://www.npmjs.com/package/@radix-ui/react-checkbox) — Radix Checkbox primitive
 - [class-variance-authority](https://www.npmjs.com/package/class-variance-authority) — cva variant composition
+- [lucide-react](https://www.npmjs.com/package/lucide-react) — `Check`/`Minus` indicator icons
 
 ### Token groups
 

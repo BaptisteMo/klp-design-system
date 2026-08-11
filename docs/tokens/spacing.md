@@ -2,7 +2,7 @@
 title: Spacing tokens
 type: token-group
 group: spacing
-updated: 2026-08-07
+updated: 2026-08-10
 ---
 
 # Spacing tokens
@@ -69,6 +69,7 @@ updated: 2026-08-07
 - [Navbar Item](../components/_index_navbar-item.md) — `--klp-size-4xs` (root paddingY/itemSpacing, icon padding) across all three states.
 - [Sidebar (Atlas)](../components/_index_sidebar-atlas.md) — root paddingY (24px) and itemSpacing (16px) are literals pending token assignment.
 - [InputFile](../components/_index_input-file.md) — root paddingX/paddingY (16px/8px) are literals pending token assignment; root itemSpacing is 8px on drop-zone (`gap-klp-size-xs`, corrected from a stale 24px capture) and 24px on simple (`gap-klp-size-l`).
+- [DataField](../components/_index_data-field.md) — `gap-klp-size-xs` (root label↔value gap).
 
 <!-- KLP:NOTES:BEGIN -->
 ## Notes

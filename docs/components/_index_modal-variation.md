@@ -22,6 +22,26 @@ updated: 2026-04-23
 
 Modal dialog component with two layout variants: 'Options actions' (left option + right secondary/primary CTA) and '2 Actions' (full-width secondary + primary CTA). Composed of a Header zone, a scrollable Content zone, and a footer Footer with frosted-glass backdrop blur. Button instances in the footer reuse the integrated Button DS component.
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A blocking dialog that stops the flow until the user decides — header, content and a footer of DS Buttons, over a frosted backdrop. Pick options-actions for a left-hand secondary option beside the CTA pair, or 2-actions for a full-width cancel/confirm pair.
+
+**Don't use it for:** Not for a list of contextual actions hung off a trigger — that is action-sheet-menu. Not for feedback the user need not acknowledge — that is floating-alert. Never to explain a control on hover — that is tooltip.
+
+**Family — `floating-surfaces`:** modal-variation blocks on a decision. action-sheet-menu is a contextual action list anchored to a trigger. tooltip is a hover hint with zero actions. floating-alert is transient self-dismissing system feedback.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `action-sheet-menu` | modal-variation blocks on a decision; action-sheet-menu offers actions from a trigger. |
+| `floating-alert` | modal-variation demands a choice; floating-alert self-dismisses. |
+| `tooltip` | modal-variation carries actions; tooltip carries none. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

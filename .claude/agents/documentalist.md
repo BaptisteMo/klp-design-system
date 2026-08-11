@@ -45,6 +45,7 @@ Inputs: `component: <kebab-name>`.
 
 Steps:
 
+0. **Sync intent.** Run `pnpm run sync:intent` (merges `.klp/intent.yaml` into `klp-components.json` and refreshes the `KLP:INTENT` block on every doc page). It exits 1 if `.klp/intent.yaml` is invalid or a component has no intent entry — report that to the user and stop; do not hand-write the missing entry.
 1. **Validate sources.** Confirm `.klp/figma-refs/<component>/spec.json` and `src/components/<component>/<PascalName>.tsx` exist. If either is missing, abort with a precise diagnostic (don't try to fix the spec — that's the extractor's job).
 2. **Read the spec** at `.klp/figma-refs/<component>/spec.json`. Extract: displayName, captureBrand, category, description, radixPrimitive, anatomy, variantAxes, variants[], a11y.
 3. **Read the source** at `src/components/<component>/<PascalName>.tsx`. Extract:
@@ -79,7 +80,7 @@ Steps:
 - `tailwind-merge`
 
 Everything else scanned from `from '<pkg>'` imports (notably `@radix-ui/*`, `@tanstack/*`, `@fontsource/*`, `lucide-react`, `class-variance-authority`) is kept.
-11. **Update `klp-components.json`** at repo root. Find the component entry by `name` and overwrite with the canonical entry. If absent, append. Sort the array by `name`.
+11. **Update `klp-components.json`** at repo root. The file is an object (`{ components: [...], families: {...} }`), not a bare array. Find the entry in `components` by `name` and overwrite with the canonical entry — but carry over the merge-owned fields (`figmaName`, `aliases`, `family`, `exports`, `typeExports`, `intent`) verbatim from the existing entry, and leave the top-level `families` key untouched; those belong to `pnpm run sync:intent`. If absent, append. Sort `components` by `name`.
 11b. **Populate the `props` field on the canonical entry.** Shape: `props: { "<prop-name>": { "class": "required" | "optional" | "computed" | "persistent", "type": "<raw TS type>", "default": "<string or null>", "description": "<first line of JSDoc or empty>", "derivedFrom": "<comma list or null>" } }`. Source: the parsed JSDoc tags + TS type + `@default` JSDoc tag (if present) from step 3. Preserve order matching the source interface. Sole writer of this field is the documentalist.
 12. **Update `docs/index.md`**. Find the entry under the component's `category` section and refresh the line. If the category section doesn't exist, create it.
 13. **Run the reverse-index pass.** See "Reverse-index pass" below.
@@ -124,6 +125,7 @@ Same as DOCUMENT plus:
 
 On `operation: SYNC`, iterate over every component in `klp-components.json`:
 
+0. **Sync intent.** Run `pnpm run sync:intent` (merges `.klp/intent.yaml` into `klp-components.json` and refreshes the `KLP:INTENT` block on every doc page). It exits 1 if `.klp/intent.yaml` is invalid or a component has no intent entry — report that to the user and stop; do not hand-write the missing entry.
 1. Re-run the systematic import scan on each component's source.
 2. Rebuild `dependencies.components[]` from scratch for every entry.
 2a. Re-parse the `@propClass` JSDoc tags from every component source and rewrite `klp-components.json[<name>].props` for every component.
@@ -168,6 +170,7 @@ Walk `docs/` and validate:
 8. **No circular component dependencies**: walk the forward graph; any cycle is an architectural smell — report but do not auto-fix.
 9. **Registry npm-deps consistency**: for every component, the set `registry/<name>.json#dependencies.npm` must equal the component's scanned externals minus the baseline-exclusion list (`react`, `react-dom`, `clsx`, `tailwind-merge`). Any divergence (missing or extra package) is a drift bug. Report but do not auto-fix under LINT — the user re-runs DOCUMENT (or full SYNC) to correct it.
 10. **Prop classification coverage**: every prop in every component's `Props` interface must declare a `@propClass` JSDoc tag. Any prop without it counts as a violation. Report with component + prop name. Do not auto-fix.
+11. **Intent coverage**: run `node scripts/validate-intent.mjs` and report every error verbatim. `.klp/intent.yaml` covers the full inventory (39/39 components) as of this writing — a component with no intent entry is a blocker, not a warning; do not hand-write the missing entry, add it to `.klp/intent.yaml` and re-run `pnpm run sync:intent`.
 
 Report findings as a Markdown checklist at `docs/.lint-report.md` (gitignored — see project `.gitignore`). Fix what is mechanically safe (graph asymmetry, missing index entries, stale dependency lists). Ask before deleting anything.
 
@@ -534,41 +537,70 @@ Walked 5 component pages, 4 token pages, 4 brand pages. All links resolve. Graph
 
 ## klp-components.json schema (you are the sole writer)
 
-A JSON array, sorted by `name`. One entry per component:
+A JSON **object** with two top-level keys:
+
+- `components` — an array of component entries, sorted by `name`.
+- `families` — the ambiguity-family map, keyed by family name (`{ members: [...], rule: "..." }`).
+
+One entry of `components` (modelled on the real `badges` entry — read the file before writing):
 
 ```json
 {
-  "name": "button",
-  "displayName": "Button",
+  "name": "badges",
+  "displayName": "Badge",
   "description": "...",
-  "category": "inputs",
+  "category": "data-display",
   "schemaVersion": "v2",
-  "captureBrand": "atlas",
+  "captureBrand": "wireframe",
   "status": "stable",
-  "source": "src/components/button/Button.tsx",
-  "doc": "docs/components/_index_button.md",
-  "playground": "playground/routes/button.tsx",
-  "registry": "registry/button.json",
-  "spec": ".klp/figma-refs/button/spec.json",
+  "source": "src/components/badges/Badges.tsx",
+  "doc": "docs/components/_index_badges.md",
+  "playground": "playground/routes/badges.tsx",
+  "registry": "registry/badges.json",
+  "spec": ".klp/figma-refs/badges/spec.json",
   "radixPrimitive": "@radix-ui/react-slot",
   "anatomy": ["root", "icon-left", "label", "icon-right"],
   "variantAxes": {
-    "type": ["primary", "secondary", "tertiary", "destructive", "validation"],
-    "size": ["sm", "md", "lg", "icon"],
-    "state": ["rest", "hover", "clicked", "disable"]
+    "type": ["primary", "secondary", "tertiary", "success", "info", "warning", "danger", "on-emphasis", "outlined"],
+    "size": ["small", "medium", "large"],
+    "style": ["bordered", "light"]
   },
-  "variantCount": 20,
+  "variantCount": 48,
+  "props": {
+    "children": {
+      "class": "required",
+      "type": "React.ReactNode",
+      "default": null,
+      "description": "Required badge content (text, number, etc.).",
+      "derivedFrom": null
+    }
+  },
   "dependencies": {
     "components": [],
-    "externals": ["@radix-ui/react-slot", "lucide-react", "class-variance-authority"],
-    "tokenGroups": ["colors", "spacing", "radius", "typography"],
-    "brands": ["atlas"]
+    "externals": ["@radix-ui/react-slot", "class-variance-authority"],
+    "tokenGroups": ["colors", "spacing", "typography"],
+    "brands": ["wireframe"]
   },
-  "usedBy": []
+  "usedBy": ["header-showup", "input-multiselect", "nav-item", "tabulation-cells"],
+  "created": "2026-04-16",
+  "updated": "2026-08-10",
+
+  "figmaName": "badges",
+  "aliases": ["badges", "Badge", "badge", "chip", "pill", "tag"],
+  "family": null,
+  "exports": ["Badge", "rootVariants", "labelVariants", "iconVariants"],
+  "typeExports": ["BadgeProps", "BadgeType", "BadgeSize", "BadgeStyle"],
+  "intent": {
+    "whenToUse": "...",
+    "whenNotToUse": "...",
+    "confusedWith": [{ "component": "button", "rule": "..." }]
+  }
 }
 ```
 
 The `doc` field is the path to the human-readable doc page; it is added by the documentalist (the component-adapter doesn't know about it).
+
+**Merge-owned fields — preserve, never hand-author.** The block below the blank line above (`figmaName`, `aliases`, `family`, `exports`, `typeExports`, `intent`) plus the top-level `families` key are written by `pnpm run sync:intent` (`scripts/merge-intent.mjs`), sourced from `.klp/intent.yaml` and the component's `index.ts`. When you overwrite an entry with the canonical entry in step 11, carry these fields through verbatim from the entry you are replacing, and never drop the top-level `families` key or collapse the file back to a bare array. To change any of them, edit `.klp/intent.yaml` and re-run `pnpm run sync:intent` — see the Hard rule "Do not hand-write intent output".
 
 ## Hard rules
 
@@ -581,6 +613,7 @@ The `doc` field is the path to the human-readable doc page; it is added by the d
 - **Standard markdown links only.** Use `[text](relative/path.md)`, never `[[wikilinks]]`. The doc must be readable in any markdown viewer (GitHub, VS Code, Marked, etc.) without plugins.
 - **Reverse-index pass runs at the end of every DOCUMENT and SYNC.** No exceptions. Without it, the graph drifts.
 - **Frontmatter `updated` is the only field that may differ between regenerations** of an unchanged component (other than `usedBy` and `## Used by` content, which can change as other components evolve).
+- **Do not hand-write intent output.** The `KLP:INTENT:BEGIN/END` block on doc pages, and the `intent` / `aliases` / `exports` / `typeExports` / `family` / `figmaName` fields of `klp-components.json`, are owned by `pnpm run sync:intent` (`scripts/merge-intent.mjs` + `scripts/inject-doc-intent.mjs`). Edit `.klp/intent.yaml` instead and re-run the sync.
 
 ## Failure modes
 

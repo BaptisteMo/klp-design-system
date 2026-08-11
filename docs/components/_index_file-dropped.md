@@ -22,6 +22,23 @@ updated: 2026-08-07
 
 Row displaying a single already-selected/uploaded file (filename + size) with download and delete actions (source: spec.json:description).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+The row representing one file that has already been chosen or uploaded — filename, size, and download plus delete actions, with a default, uploading or done state.
+
+**Don't use it for:** Not the control that picks the file — that is input-file. Do not use it as a generic list row; a non-file row is list-content.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `input-file` | input-file selects the file; file-dropped shows one already selected. |
+| `list-content` | file-dropped is file-specific with download and delete; list-content is the generic row. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

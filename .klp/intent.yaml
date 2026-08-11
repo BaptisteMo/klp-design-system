@@ -1,0 +1,662 @@
+# .klp/intent.yaml — hand-authored component intent.
+# The ONLY human-edited file in the intent chain. Merged into klp-components.json
+# by `pnpm run sync:intent`; never generated, never overwritten.
+schemaVersion: v1
+
+families:
+  collections:
+    members: [table, data-table, list, list-content]
+    rule: >
+      data-table is the default for any tabular data — sorting and pagination are built in.
+      table exposes primitives, used only when data-table cannot express the layout.
+      list renders vertical non-tabular rows. list-content is a row inside list, never standalone.
+  headers:
+    members: [header-desktop, header-phone, header-showup]
+    rule: >
+      header-desktop and header-phone are generic and brand-agnostic. header-showup is the
+      ShowUp top nav only — never used under another brand.
+  sidebars:
+    members: [sidebar, sidebar-atlas, item-side-bar, navbar-item]
+    rule: >
+      sidebar is the generic full nav (desktop + phone). sidebar-atlas is the Atlas-only 70px
+      icon rail. item-side-bar is a row inside sidebar; navbar-item is a row inside
+      sidebar-atlas. The two row types are not interchangeable.
+  floating-surfaces:
+    members: [modal-variation, action-sheet-menu, tooltip, floating-alert]
+    rule: >
+      modal-variation blocks on a decision. action-sheet-menu is a contextual action list
+      anchored to a trigger. tooltip is a hover hint with zero actions. floating-alert is
+      transient self-dismissing system feedback.
+
+components:
+  data-table:
+    family: collections
+    aliases: [datatable, grid, tanstack-table]
+    whenToUse: >
+      Any collection of records shown as rows and columns — the default choice for tabular data.
+      Accepts columns[] + data and brings sorting, pagination and custom cell renderers.
+    whenNotToUse: >
+      Not for a non-tabular vertical stack of rows — use list. Not when the layout cannot be
+      expressed as columns[] (merged cells, nested sections) — drop to the table primitives.
+    confusedWith:
+      - component: table
+        rule: data-table owns the data; table is markup you drive yourself.
+      - component: list
+        rule: Columns with headers -> data-table. Label/sublabel rows -> list.
+      - component: list-content
+        rule: data-table renders its own cells; list-content is a row of list, not of a table.
+
+  table:
+    family: collections
+    aliases: [table-primitives, thead, tbody]
+    whenToUse: >
+      Low-level compound primitives (Table.Root/Header/Body/Footer/Row/Head/Cell/Caption) for a table
+      whose layout data-table cannot express.
+    whenNotToUse: >
+      Never as the first choice for record data — reach for data-table and only fall back here
+      when it cannot render the layout.
+    confusedWith:
+      - component: data-table
+        rule: Reach for data-table first; table is the escape hatch.
+      - component: list
+        rule: table lays out columns and headers; list stacks non-tabular rows.
+      - component: list-content
+        rule: table rows are Table.Row primitives; list-content only belongs inside list.
+
+  list:
+    family: collections
+    aliases: [listbox, stack]
+    whenToUse: >
+      A vertical collection of non-tabular rows with a header and an optional action, in
+      condensed, default or with-inputs spacing.
+    whenNotToUse: >
+      Not for data with columns and headers — use data-table. Do not render a single row here;
+      rows are list-content instances.
+    confusedWith:
+      - component: data-table
+        rule: Columns with headers -> data-table. Label/sublabel rows -> list.
+      - component: list-content
+        rule: list is the container; list-content is one of its rows.
+      - component: table
+        rule: list stacks non-tabular rows; table lays out columns and headers.
+
+  list-content:
+    family: collections
+    aliases: [list-row, list-item]
+    whenToUse: >
+      A single row inside a list: leading decorative icon, label + sublabel, optional trailing
+      tertiary icon-button.
+    whenNotToUse: >
+      Never standalone outside a list, and never as a menu row — a contextual action row is
+      action-sheet-item. Not every icon-and-label row in a vertical panel is a list-content: a
+      row of the generic sidebar is item-side-bar, and a row of the Atlas rail is navbar-item.
+    confusedWith:
+      - component: list
+        rule: list-content is a row; list is the container that holds them.
+      - component: action-sheet-item
+        rule: list-content displays content; action-sheet-item triggers an action in a menu.
+      - component: data-table
+        rule: list-content is a row of list; a tabular row is rendered by data-table itself.
+      - component: table
+        rule: list-content only belongs inside list; table rows are Table.Row primitives.
+
+  header-desktop:
+    family: headers
+    aliases: [page-header, desktop-header, topbar]
+    whenToUse: >
+      The header strip at the top of a desktop page body — page title, breadcrumb trail and a
+      contextual action row. Brand-agnostic; the search-active variant swaps the action row for
+      an inline search field.
+    whenNotToUse: >
+      Not on a phone-width layout — use header-phone. Not for the ShowUp product's global top
+      nav, which is header-showup. It is a page header, not a global application nav bar.
+    confusedWith:
+      - component: header-phone
+        rule: Desktop viewport -> header-desktop. Phone viewport -> header-phone.
+      - component: header-showup
+        rule: header-desktop is brand-agnostic; header-showup is ShowUp only.
+
+  header-phone:
+    family: headers
+    aliases: [mobile-header, phone-header, appbar]
+    whenToUse: >
+      The header bar for a phone-width layout — hamburger, logo and notification on the top row,
+      page title and search on the second, breadcrumbs beneath. Brand-agnostic.
+    whenNotToUse: >
+      Not on a desktop-width layout — use header-desktop. Never under the ShowUp brand's global
+      nav, which is header-showup. The hamburger opens sidebar in its phone variant; do not
+      re-implement that drawer here.
+    confusedWith:
+      - component: header-desktop
+        rule: Phone viewport -> header-phone. Desktop viewport -> header-desktop.
+      - component: header-showup
+        rule: header-phone is brand-agnostic; header-showup is ShowUp only.
+
+  header-showup:
+    family: headers
+    figmaName: Nav
+    aliases: [showup-nav, showup-header, global-nav]
+    whenToUse: >
+      The ShowUp product's global top navigation bar — wordmark, primary nav links as nav-item
+      instances with a flush active underline, and a right zone of tools, language and avatar.
+    whenNotToUse: >
+      Never under klub, atlas or wireframe — those get header-desktop or header-phone. Not a
+      per-page header either; it is the application-level nav that persists across routes.
+    confusedWith:
+      - component: header-desktop
+        rule: header-showup is ShowUp only; header-desktop is the brand-agnostic page header.
+      - component: header-phone
+        rule: header-showup is ShowUp only; header-phone is the brand-agnostic phone header.
+
+  sidebar:
+    family: sidebars
+    aliases: [side-nav, drawer, nav-drawer]
+    whenToUse: >
+      The generic full-width vertical navigation panel — branded header, context switcher, a
+      scrollable menu of item-side-bar rows and a user footer. Desktop variant is a fixed 247px
+      column; phone variant is a 320px dismissible drawer.
+    whenNotToUse: >
+      Not for the Atlas icon rail — that is sidebar-atlas. Do not hand-roll its rows; every menu
+      entry is an item-side-bar instance.
+    confusedWith:
+      - component: sidebar-atlas
+        rule: sidebar is the generic labelled nav; sidebar-atlas is the Atlas-only 70px icon rail.
+      - component: item-side-bar
+        rule: sidebar is the container; item-side-bar is one of its rows.
+      - component: navbar-item
+        rule: sidebar never contains navbar-item — its rows are item-side-bar.
+
+  sidebar-atlas:
+    family: sidebars
+    figmaName: NavBar
+    aliases: [atlas-rail, icon-rail, nav-rail]
+    whenToUse: >
+      The Atlas brand's 70px-wide, full-height icon rail — a logo slot over a list of
+      navbar-item entries driven by an items prop with real hrefs and a selected route.
+    whenNotToUse: >
+      Never under klub, showup or wireframe — those get sidebar. Not when entries need labels,
+      context switching or a user footer; that is sidebar.
+    confusedWith:
+      - component: sidebar
+        rule: sidebar-atlas is the Atlas-only 70px icon rail; sidebar is the generic labelled nav.
+      - component: navbar-item
+        rule: sidebar-atlas is the rail; navbar-item is one of its rows.
+      - component: item-side-bar
+        rule: sidebar-atlas never contains item-side-bar — its rows are navbar-item.
+
+  item-side-bar:
+    family: sidebars
+    figmaName: Item_SideBar
+    aliases: [sidebar-item, side-bar-item, nav-row]
+    whenToUse: >
+      A row inside the generic sidebar: icon, label, and optionally a collapsible content
+      panel with an ActionSheet inside.
+    whenNotToUse: >
+      Never inside sidebar-atlas — that rail's rows are navbar-item. Never standalone outside
+      a sidebar.
+    confusedWith:
+      - component: navbar-item
+        rule: item-side-bar is a row of sidebar; navbar-item is a row of sidebar-atlas.
+      - component: sidebar
+        rule: sidebar is the container; item-side-bar is one of its rows.
+      - component: sidebar-atlas
+        rule: sidebar-atlas never contains item-side-bar.
+
+  navbar-item:
+    family: sidebars
+    figmaName: NavBar_Item
+    aliases: [rail-item, atlas-nav-item, icon-nav-item]
+    whenToUse: >
+      A row of the Atlas rail — a 70x52 icon-over-label stack with default, hover and selected
+      states, where selected is author-supplied and always beats hover.
+    whenNotToUse: >
+      Never inside sidebar — that panel's rows are item-side-bar. Never standalone outside
+      sidebar-atlas, and never in a horizontal header bar (that is nav-item).
+    confusedWith:
+      - component: item-side-bar
+        rule: navbar-item is a row of sidebar-atlas; item-side-bar is a row of sidebar.
+      - component: sidebar-atlas
+        rule: sidebar-atlas is the rail; navbar-item is one of its rows.
+      - component: sidebar
+        rule: sidebar never contains navbar-item.
+
+  modal-variation:
+    family: floating-surfaces
+    aliases: [modal, dialog, confirm-dialog]
+    whenToUse: >
+      A blocking dialog that stops the flow until the user decides — header, content and a
+      footer of DS Buttons, over a frosted backdrop. Pick options-actions for a left-hand
+      secondary option beside the CTA pair, or 2-actions for a full-width cancel/confirm pair.
+    whenNotToUse: >
+      Not for a list of contextual actions hung off a trigger — that is action-sheet-menu. Not
+      for feedback the user need not acknowledge — that is floating-alert. Never to explain a
+      control on hover — that is tooltip.
+    confusedWith:
+      - component: action-sheet-menu
+        rule: modal-variation blocks on a decision; action-sheet-menu offers actions from a trigger.
+      - component: floating-alert
+        rule: modal-variation demands a choice; floating-alert self-dismisses.
+      - component: tooltip
+        rule: modal-variation carries actions; tooltip carries none.
+
+  action-sheet-menu:
+    family: floating-surfaces
+    figmaName: ActionSheet_Menu
+    aliases: [dropdown, menu, popover-menu, context-menu]
+    whenToUse: >
+      A contextual list of actions anchored to a trigger — grouped action-sheet-item rows with
+      optional section titles and separators. Use the checkbox type for multi-select option
+      lists (this is what input-multiselect opens).
+    whenNotToUse: >
+      Not when the user must not proceed without answering — that is modal-variation. Not for a
+      passive collection of records — that is list. Never as a permanently visible panel.
+    confusedWith:
+      - component: modal-variation
+        rule: action-sheet-menu offers actions from a trigger; modal-variation blocks on a decision.
+      - component: tooltip
+        rule: action-sheet-menu holds actionable rows; tooltip is a hint with no actions.
+      - component: floating-alert
+        rule: action-sheet-menu is user-invoked; floating-alert is system-emitted.
+
+  tooltip:
+    family: floating-surfaces
+    aliases: [hint, popover-hint, title]
+    whenToUse: >
+      A short hover or focus hint that names or clarifies a control, in a bubble with a
+      directional arrow pointing back at its trigger.
+    whenNotToUse: >
+      Never put buttons, links or any interactive element inside it — if the surface needs an
+      action, use action-sheet-menu. Not for content the user must read to proceed; that belongs
+      in the page or in modal-variation.
+    confusedWith:
+      - component: action-sheet-menu
+        rule: tooltip has zero actions; action-sheet-menu is a list of actions.
+      - component: modal-variation
+        rule: tooltip informs on hover; modal-variation blocks until a choice is made.
+      - component: floating-alert
+        rule: tooltip is triggered by pointing at a control; floating-alert appears on its own.
+
+  floating-alert:
+    family: floating-surfaces
+    aliases: [toast, snackbar, notification]
+    whenToUse: >
+      Transient system feedback that floats over the page and goes away — the result of a save,
+      an upload, a failed request — in danger, warning, information or success.
+    whenNotToUse: >
+      Not for a message that belongs in the page flow next to the content it describes — that is
+      in-content-alert. Not when the user must acknowledge before continuing — that is
+      modal-variation.
+    confusedWith:
+      - component: modal-variation
+        rule: floating-alert self-dismisses; modal-variation waits for an answer.
+      - component: action-sheet-menu
+        rule: floating-alert is system-emitted feedback; action-sheet-menu is a user-invoked action list.
+      - component: tooltip
+        rule: floating-alert reports what happened; tooltip explains a control on hover.
+
+  action-sheet-item:
+    figmaName: ActionSheet_Item
+    aliases: [menu-item, action-row, dropdown-item]
+    whenToUse: >
+      One actionable row inside a menu surface — leading and trailing icon slots, optional
+      description line, and semantic states including destructive and creation.
+    whenNotToUse: >
+      Never standalone; it only lives inside action-sheet-menu or the collapsible panel of
+      item-side-bar. For a passive content row use list-content, and for a full-size clickable
+      control use button.
+    confusedWith:
+      - component: list-content
+        rule: action-sheet-item triggers an action in a menu; list-content displays content in a list.
+      - component: action-sheet-menu
+        rule: action-sheet-menu is the panel; action-sheet-item is one of its rows.
+
+  badges:
+    figmaName: badges
+    aliases: [badge, chip, pill, tag]
+    whenToUse: >
+      A small non-interactive pill labelling a status, category or count next to the thing it
+      describes — nine semantic types across bordered and light styles.
+    whenNotToUse: >
+      Never as a control; if it can be clicked it is a button. Not for a message with a body of
+      text — that is in-content-alert.
+    confusedWith:
+      - component: button
+        rule: badges label state and are inert; button is clickable.
+      - component: in-content-alert
+        rule: badges is a one-word status pill; in-content-alert is a full banner message.
+
+  brand-provider:
+    aliases: [theme-provider, brand]
+    whenToUse: >
+      Mount once at the app root to set data-brand on document.documentElement so the alias
+      tokens resolve. Renders no markup.
+    whenNotToUse: >
+      Never inside a page or a mockup — one instance per app, at the root.
+
+  breadcrumbs:
+    figmaName: BreadCrumbs
+    aliases: [breadcrumb, crumbs, trail]
+    whenToUse: >
+      The ancestor trail showing where the current page sits in the hierarchy — a home icon,
+      up to three muted ancestor steps, and the current step.
+    whenNotToUse: >
+      Not for switching between sibling views of the same page — that is tabulations. Not for
+      moving through pages of a result set — that is pagination. Usually already rendered by
+      header-desktop and header-phone, so do not add a second trail beside them.
+    confusedWith:
+      - component: tabulations
+        rule: breadcrumbs shows depth in a hierarchy; tabulations switches sibling views.
+      - component: pagination
+        rule: breadcrumbs navigates the hierarchy; pagination navigates pages of one result set.
+
+  button:
+    figmaName: Button
+    aliases: [btn, cta, icon-button]
+    whenToUse: >
+      Any element that performs an action or navigates on click — primary, secondary, tertiary,
+      destructive and validation types, plus an icon size for icon-only affordances and
+      on-emphasis for dark surfaces.
+    whenNotToUse: >
+      Not for a row inside a menu — that is action-sheet-item. Not for an inert status label —
+      that is badges. Not for a binary setting that applies immediately — that is switch.
+    confusedWith:
+      - component: action-sheet-item
+        rule: button is a standalone control; action-sheet-item is a row inside a menu.
+      - component: switch
+        rule: button fires an action; switch holds an on/off state.
+
+  calendar:
+    aliases: [date-picker, datepicker, month-view]
+    whenToUse: >
+      The date-picking panel — month and year navigation over a Monday-first day grid, with an
+      hour field in the footer. Use it when the user picks a date or a date and time.
+    whenNotToUse: >
+      Not as an events or schedule display; it is a picker, not an agenda. Do not build the grid
+      from calendar-button yourself — calendar already composes them. For a free-text date use
+      input.
+    confusedWith:
+      - component: calendar-button
+        rule: calendar is the whole panel; calendar-button is one day cell inside it.
+      - component: input
+        rule: calendar picks a date from a grid; input takes typed text.
+
+  calendar-button:
+    figmaName: CalendarButton
+    aliases: [day-cell, date-cell]
+    whenToUse: >
+      One 36x36 day cell of a calendar grid, rendering the day number with a state of default,
+      other-month, disable, today or selected.
+    whenNotToUse: >
+      Never standalone and never as a general-purpose button — use button. Building a month grid
+      by hand from these is wrong; use calendar.
+    confusedWith:
+      - component: calendar
+        rule: calendar-button is one day cell; calendar is the panel that lays them out.
+      - component: button
+        rule: calendar-button only means a date; button is the general action control.
+
+  cards:
+    figmaName: Card
+    aliases: [card, panel, surface, tile]
+    whenToUse: >
+      A rounded bordered surface that groups arbitrary children into one visual block, with 8px
+      or 16px padding. The base primitive for every card-style element.
+    whenNotToUse: >
+      Not as a floating overlay — modal-variation and action-sheet-menu bring their own surface.
+      Not merely to add spacing between elements; it draws a border and a background.
+    confusedWith:
+      - component: modal-variation
+        rule: cards sits in the page flow; modal-variation floats over it and blocks.
+      - component: collapsible
+        rule: cards is always fully visible; collapsible hides its content behind a toggle.
+
+  checkbox:
+    aliases: [check, tickbox]
+    whenToUse: >
+      A binary or tri-state selection the user confirms as part of a form or a list — supports
+      unchecked, checked, indeterminate and disabled.
+    whenNotToUse: >
+      Not when exactly one of several options must be picked — that is radio. Not for a setting
+      that takes effect the moment it is flipped — that is switch. For picking several values
+      from a long option list use input-multiselect.
+    confusedWith:
+      - component: radio
+        rule: checkbox allows many selections; radio allows exactly one per group.
+      - component: switch
+        rule: checkbox is submitted with a form; switch applies immediately.
+      - component: input-multiselect
+        rule: checkbox is one option inline; input-multiselect picks many from a dropdown.
+
+  collapsible:
+    aliases: [accordion, disclosure, expander]
+    whenToUse: >
+      A titled panel whose body can be hidden and revealed by a chevron toggle — for secondary
+      detail that would otherwise crowd the page.
+    whenNotToUse: >
+      Not to hide content behind a hover — that is tooltip. Not for the expandable rows of a
+      sidebar; those are item-side-bar with the collapsible feature.
+    confusedWith:
+      - component: cards
+        rule: collapsible can hide its content; cards is always visible.
+      - component: item-side-bar
+        rule: collapsible is a page-level panel; item-side-bar is a sidebar row that happens to expand.
+
+  data-field:
+    aliases: [read-only-field, key-value, label-value, definition]
+    whenToUse: >
+      A single read-only labelled value — muted label above the value — for detail panels,
+      summaries and confirmation screens. The strong emphasis picks out the key value.
+    whenNotToUse: >
+      Never for anything editable; a field the user can type into is input. Not for a whole
+      record set of key/value pairs shown as columns — that is data-table.
+    confusedWith:
+      - component: input
+        rule: data-field only displays; input accepts typing.
+      - component: data-table
+        rule: data-field is one labelled value; data-table is a grid of records.
+
+  file-dropped:
+    figmaName: FileDropped
+    aliases: [file-row, uploaded-file, attachment-row]
+    whenToUse: >
+      The row representing one file that has already been chosen or uploaded — filename, size,
+      and download plus delete actions, with a default, uploading or done state.
+    whenNotToUse: >
+      Not the control that picks the file — that is input-file. Do not use it as a generic list
+      row; a non-file row is list-content.
+    confusedWith:
+      - component: input-file
+        rule: input-file selects the file; file-dropped shows one already selected.
+      - component: list-content
+        rule: file-dropped is file-specific with download and delete; list-content is the generic row.
+
+  in-content-alert:
+    figmaName: InContent_Alert
+    aliases: [inline-alert, banner, callout, notice]
+    whenToUse: >
+      A message that stays in the page flow next to the content it concerns — an icon, a title
+      and an optional body, in info, success, danger or warning.
+    whenNotToUse: >
+      Not for transient feedback that should disappear on its own — that is floating-alert. Not
+      for a per-field validation message; input and text-area carry their own helper text and
+      danger state.
+    confusedWith:
+      - component: floating-alert
+        rule: in-content-alert stays in the page; floating-alert floats and self-dismisses.
+      - component: badges
+        rule: in-content-alert is a full message; badges is a one-word status pill.
+
+  input:
+    figmaName: Input
+    aliases: [text-field, textbox, textfield, search-input]
+    whenToUse: >
+      A single-line text field with label, optional leading or action icon and helper text,
+      across three sizes and the default, filled, focused, success, danger and disable states.
+    whenNotToUse: >
+      Not for multi-line prose — that is text-area. Not for choosing from a fixed option list:
+      several values is input-multiselect, and a single value is radio because the DS has no
+      single-select dropdown. Not for picking a file (input-file) or a date (calendar). For a
+      value that is only displayed, use data-field.
+    confusedWith:
+      - component: text-area
+        rule: input is one line; text-area is multi-line.
+      - component: input-multiselect
+        rule: input takes free text; input-multiselect picks several values from a known option list.
+      - component: data-field
+        rule: input is editable; data-field is read-only.
+
+  input-file:
+    figmaName: InputFile
+    aliases: [file-upload, file-picker, dropzone, upload]
+    whenToUse: >
+      The control that selects files — the drop-zone layout for a dashed drag-and-drop panel,
+      or the simple layout for a compact labelled field with a take-picture action.
+    whenNotToUse: >
+      Not for showing files already chosen; render a file-dropped row per file beneath it. Do
+      not wire a bare input to type=file — this component owns the drag-and-drop behaviour.
+    confusedWith:
+      - component: file-dropped
+        rule: input-file selects the file; file-dropped displays one already selected.
+      - component: input
+        rule: input-file handles files and drag-and-drop; input handles typed text.
+
+  input-multiselect:
+    figmaName: Input_MultiSelect
+    aliases: [multiselect, combobox, select, tag-input]
+    whenToUse: >
+      Picking several values from a known option list — a labelled trigger showing the choices
+      as removable Badge chips, opening an action-sheet-menu of checkbox rows grouped in sections.
+    whenNotToUse: >
+      Only for choosing several values. Single-select is a documented DS gap — there is no
+      single-select dropdown or combobox, so a one-of-many choice is radio, whatever the length
+      of the option list. Not for free-text entry — that is input. Not for a handful of options
+      that fit inline; a few checkboxes are clearer.
+    confusedWith:
+      - component: input
+        rule: input-multiselect picks from a list; input takes free text.
+      - component: checkbox
+        rule: input-multiselect wraps many options in a dropdown; checkbox is one option inline.
+      - component: action-sheet-menu
+        rule: input-multiselect is a form field that opens action-sheet-menu as its panel.
+
+  nav-item:
+    figmaName: Nav item
+    aliases: [header-nav-link, top-nav-item, nav-link]
+    whenToUse: >
+      One primary link in the ShowUp header bar — label with optional leading icon and trailing
+      counter Badge, in default or active where active draws the underline.
+    whenNotToUse: >
+      Never standalone outside header-showup, and never in a vertical nav — a sidebar row is
+      item-side-bar and an Atlas rail row is navbar-item. Not for switching panes within a page;
+      that is tabulation-cells.
+    confusedWith:
+      - component: header-showup
+        rule: header-showup is the bar; nav-item is one of its links.
+      - component: navbar-item
+        rule: nav-item is a horizontal ShowUp header link; navbar-item is a vertical Atlas rail row.
+      - component: tabulation-cells
+        rule: nav-item navigates between routes; tabulation-cells switches panes inside one page.
+
+  pagination:
+    aliases: [pager, page-nav]
+    whenToUse: >
+      Moving through pages of one result set — numbered pages with an ellipsis algorithm and
+      prev/next controls. Usable standalone, not only under a table.
+    whenNotToUse: >
+      Not inside data-table, which already renders its own pager. Not for navigating a hierarchy
+      — that is breadcrumbs — nor for switching sibling views, which is tabulations.
+    confusedWith:
+      - component: data-table
+        rule: data-table already includes pagination; do not add a second one.
+      - component: breadcrumbs
+        rule: pagination walks pages of one set; breadcrumbs walks the page hierarchy.
+
+  radio:
+    aliases: [radio-button, radio-group, option]
+    whenToUse: >
+      Choosing exactly one option from a mutually exclusive set. The DS has no single-select
+      dropdown or combobox, so radio is the answer for a single choice whatever the length of
+      the option list — long lists render as a scrollable radio group.
+    whenNotToUse: >
+      Not when several options may be chosen — that is input-multiselect for a dropdown of many,
+      or checkbox for a few inline. Not for an on/off setting — that is switch.
+    confusedWith:
+      - component: checkbox
+        rule: radio allows exactly one per group; checkbox allows many.
+      - component: switch
+        rule: radio picks among options; switch turns one thing on or off.
+
+  separator:
+    figmaName: Separator
+    aliases: [divider, rule, hr]
+    whenToUse: >
+      A 1px rule that visually splits neighbouring content, horizontal or vertical, with a
+      margin axis reserving the surrounding space.
+    whenNotToUse: >
+      Not to create spacing — use the gap and padding utilities. Not to outline a region; a
+      bordered surface is cards.
+    confusedWith:
+      - component: cards
+        rule: separator draws one line between siblings; cards wraps content in a bordered surface.
+
+  switch:
+    aliases: [toggle, on-off]
+    whenToUse: >
+      A setting that turns on or off and takes effect immediately, with an animated thumb
+      showing the current state.
+    whenNotToUse: >
+      Not for a value submitted later with a form — that is checkbox. Not for choosing among
+      several options — that is radio. Not for an action; an action is a button.
+    confusedWith:
+      - component: checkbox
+        rule: switch applies immediately; checkbox is submitted with the form.
+      - component: radio
+        rule: switch turns one thing on or off; radio picks one option among several.
+
+  tabulation-cells:
+    figmaName: Tabulation_Cells
+    aliases: [tab, tab-cell, tab-item]
+    whenToUse: >
+      One tab within a tabulation bar — a label plus an optional count Badge, in rest or active
+      where active carries the brand-low fill and bold label.
+    whenNotToUse: >
+      Never standalone; tabs only make sense inside tabulations, which owns selection and
+      keyboard navigation. Not for a horizontal header nav link — that is nav-item under ShowUp
+      only; under klub, atlas or wireframe the DS has no horizontal route link.
+    confusedWith:
+      - component: tabulations
+        rule: tabulations is the bar and owns selection; tabulation-cells is one tab.
+      - component: nav-item
+        rule: tabulation-cells switches panes inside one page; nav-item navigates between routes, under ShowUp only.
+
+  tabulations:
+    figmaName: Tabulations
+    aliases: [tabs, tab-bar, segmented-control]
+    whenToUse: >
+      Switching between sibling views of the same page without navigating — a horizontal bar of
+      tabulation-cells split by vertical dividers, with Radix keyboard support.
+    whenNotToUse: >
+      Not for moving between routes — a hierarchy trail is breadcrumbs, and a horizontal global
+      nav link is nav-item under ShowUp only; under klub, atlas or wireframe the DS has no
+      horizontal route link, so route between them with sidebar-atlas under atlas and sidebar
+      under klub or wireframe. Not for paging through one result set — that is pagination.
+    confusedWith:
+      - component: tabulation-cells
+        rule: tabulations is the bar; tabulation-cells is one tab inside it.
+      - component: breadcrumbs
+        rule: tabulations switches sibling views; breadcrumbs shows depth in a hierarchy.
+
+  text-area:
+    figmaName: TextArea
+    aliases: [textarea, multiline-input, rich-text-editor]
+    whenToUse: >
+      Multi-line free text — comments, descriptions, notes. The rich-text feature adds a
+      formatting toolbar and action bar; simple is a plain multi-line field.
+    whenNotToUse: >
+      Not for a single-line value — that is input. Not for a value that is only read — that is
+      data-field.
+    confusedWith:
+      - component: input
+        rule: text-area is multi-line; input is one line.
+      - component: data-field
+        rule: text-area is editable; data-field is read-only.

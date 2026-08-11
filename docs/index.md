@@ -1,7 +1,7 @@
 ---
 title: klp-design-system — Documentation Index
 type: overview
-updated: 2026-08-07
+updated: 2026-08-10
 ---
 
 # klp-design-system
@@ -15,7 +15,7 @@ Start here:
 ## Components
 
 ### inputs
-- [Button](./components/_index_button.md) — Interactive button, 5 types × 4 sizes × 4 states (20 variants)
+- [Button](./components/_index_button.md) — Interactive button, 6 types × 4 sizes × 4 states (21 documented combinations; `on-emphasis` is icon-only)
 - [Calendar](./components/_index_calendar.md) — Date-picker panel with month header, day grid, and hour-selection footer, single variant (no variant axes)
 - [Calendar Button](./components/_index_calendar-button.md) — Single day cell of a calendar grid, single State axis (default / other-month / disable / today / selected), 5 variants
 - [Checkbox](./components/_index_checkbox.md) — Toggle control, single State axis (rest / hover / clicked / mixed / disable), 5 variants
@@ -32,6 +32,7 @@ Start here:
 - [InContent Alert](./components/_index_in-content-alert.md) — Inline alert banner, 4 content types × 3 sizes (12 variants)
 
 ### containers
+- [Card](./components/_index_cards.md) — Rounded, bordered surface primitive, 2 padding-size variants (8px / 16px)
 - [Header Phone](./components/_index_header-phone.md) — Mobile phone header bar (top-bar + title-bar + breadcrumbs), single variant
 
 ### disclosure
@@ -62,6 +63,7 @@ Start here:
 
 ### data-display
 - [Badge](./components/_index_badges.md) — Status indicator pill, 9 types × 3 sizes × 2 styles (48 variants)
+- [DataField](./components/_index_data-field.md) — Read-only labelled value display (muted label + fg-default value), single emphasis axis (default / strong), 2 variants
 - [Data Table](./components/_index_data-table.md) — Generic data-driven table with sort + pagination, built on @tanstack/react-table
 - [Table (primitives)](./components/_index_table.md) — Compound HTML table primitives (Root/Header/Body/Row/Head/Cell/Caption) with klp styling, 3 row variants
 
@@ -81,6 +83,7 @@ Start here:
 - [Spacing](./tokens/spacing.md) — `size-*` scale
 - [Radius](./tokens/radius.md) — `radius-*` scale
 - [Typography](./tokens/typography.md) — `font-*` family / weight / size
+- [Token vocabulary](./tokens/vocabulary.md) — maps every Figma variable path to its CSS variable and Tailwind utility
 
 ## Brands
 - [Brand system overview](./brands/_index_brands.md) — how brands switch at runtime

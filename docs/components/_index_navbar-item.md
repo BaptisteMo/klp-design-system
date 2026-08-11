@@ -23,6 +23,26 @@ updated: 2026-08-06
 
 Atlas sidebar navigation item — a 70×52 vertical stack (icon over label) with three interaction states (source: spec.json:description).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+A row of the Atlas rail — a 70x52 icon-over-label stack with default, hover and selected states, where selected is author-supplied and always beats hover.
+
+**Don't use it for:** Never inside sidebar — that panel's rows are item-side-bar. Never standalone outside sidebar-atlas, and never in a horizontal header bar (that is nav-item).
+
+**Family — `sidebars`:** sidebar is the generic full nav (desktop + phone). sidebar-atlas is the Atlas-only 70px icon rail. item-side-bar is a row inside sidebar; navbar-item is a row inside sidebar-atlas. The two row types are not interchangeable.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `item-side-bar` | navbar-item is a row of sidebar-atlas; item-side-bar is a row of sidebar. |
+| `sidebar-atlas` | sidebar-atlas is the rail; navbar-item is one of its rows. |
+| `sidebar` | sidebar never contains navbar-item. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```

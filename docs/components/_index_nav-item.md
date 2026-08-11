@@ -23,6 +23,24 @@ updated: 2026-08-06
 
 ShowUp application header nav item — a single link/tab entry with an optional leading icon and trailing counter badge, distinguishing the current page with a bottom underline (source: spec.json:description).
 
+<!-- KLP:INTENT:BEGIN -->
+
+## When to use
+
+One primary link in the ShowUp header bar — label with optional leading icon and trailing counter Badge, in default or active where active draws the underline.
+
+**Don't use it for:** Never standalone outside header-showup, and never in a vertical nav — a sidebar row is item-side-bar and an Atlas rail row is navbar-item. Not for switching panes within a page; that is tabulation-cells.
+
+## Don't confuse with
+
+| Component | How to choose |
+|---|---|
+| `header-showup` | header-showup is the bar; nav-item is one of its links. |
+| `navbar-item` | nav-item is a horizontal ShowUp header link; navbar-item is a vertical Atlas rail row. |
+| `tabulation-cells` | nav-item navigates between routes; tabulation-cells switches panes inside one page. |
+
+<!-- KLP:INTENT:END -->
+
 ## Anatomy
 
 ```
